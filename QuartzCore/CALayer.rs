@@ -151,247 +151,247 @@ unsafe impl NSSecureCoding for CALayer {}
 extern_methods!(
     unsafe impl CALayer {
         /// Layer creation and initialization. *
-        #[method(layer)]
+        #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
         pub fn layer() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithLayer:)]
+        #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
 
-        #[method(presentationLayer)]
+        #[unsafe(method(presentationLayer))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentationLayer(&self) -> Option<Retained<Self>>;
 
-        #[method(modelLayer)]
+        #[unsafe(method(modelLayer))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelLayer(&self) -> Retained<Self>;
 
         /// Property methods. *
-        #[method(defaultValueForKey:)]
+        #[unsafe(method(defaultValueForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
 
-        #[method(needsDisplayForKey:)]
+        #[unsafe(method(needsDisplayForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn needsDisplayForKey(key: &NSString) -> bool;
 
-        #[method(shouldArchiveValueForKey:)]
+        #[unsafe(method(shouldArchiveValueForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldArchiveValueForKey(&self, key: &NSString) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Geometry and layer hierarchy properties. *
-        #[method(bounds)]
+        #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
         pub fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bounds`][Self::bounds].
-        #[method(setBounds:)]
+        #[unsafe(method(setBounds:))]
         #[unsafe(method_family = none)]
         pub fn setBounds(&self, bounds: CGRect);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(position)]
+        #[unsafe(method(position))]
         #[unsafe(method_family = none)]
         pub fn position(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`position`][Self::position].
-        #[method(setPosition:)]
+        #[unsafe(method(setPosition:))]
         #[unsafe(method_family = none)]
         pub fn setPosition(&self, position: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(zPosition)]
+        #[unsafe(method(zPosition))]
         #[unsafe(method_family = none)]
         pub fn zPosition(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`zPosition`][Self::zPosition].
-        #[method(setZPosition:)]
+        #[unsafe(method(setZPosition:))]
         #[unsafe(method_family = none)]
         pub fn setZPosition(&self, z_position: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(anchorPoint)]
+        #[unsafe(method(anchorPoint))]
         #[unsafe(method_family = none)]
         pub fn anchorPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`anchorPoint`][Self::anchorPoint].
-        #[method(setAnchorPoint:)]
+        #[unsafe(method(setAnchorPoint:))]
         #[unsafe(method_family = none)]
         pub fn setAnchorPoint(&self, anchor_point: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(anchorPointZ)]
+        #[unsafe(method(anchorPointZ))]
         #[unsafe(method_family = none)]
         pub fn anchorPointZ(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`anchorPointZ`][Self::anchorPointZ].
-        #[method(setAnchorPointZ:)]
+        #[unsafe(method(setAnchorPointZ:))]
         #[unsafe(method_family = none)]
         pub fn setAnchorPointZ(&self, anchor_point_z: CGFloat);
 
         #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
-        #[method(transform)]
+        #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub fn transform(&self) -> CATransform3D;
 
         #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
         /// Setter for [`transform`][Self::transform].
-        #[method(setTransform:)]
+        #[unsafe(method(setTransform:))]
         #[unsafe(method_family = none)]
         pub fn setTransform(&self, transform: CATransform3D);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(affineTransform)]
+        #[unsafe(method(affineTransform))]
         #[unsafe(method_family = none)]
         pub fn affineTransform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(setAffineTransform:)]
+        #[unsafe(method(setAffineTransform:))]
         #[unsafe(method_family = none)]
         pub fn setAffineTransform(&self, m: CGAffineTransform);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(frame)]
+        #[unsafe(method(frame))]
         #[unsafe(method_family = none)]
         pub fn frame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`frame`][Self::frame].
-        #[method(setFrame:)]
+        #[unsafe(method(setFrame:))]
         #[unsafe(method_family = none)]
         pub fn setFrame(&self, frame: CGRect);
 
-        #[method(isHidden)]
+        #[unsafe(method(isHidden))]
         #[unsafe(method_family = none)]
         pub fn isHidden(&self) -> bool;
 
         /// Setter for [`isHidden`][Self::isHidden].
-        #[method(setHidden:)]
+        #[unsafe(method(setHidden:))]
         #[unsafe(method_family = none)]
         pub fn setHidden(&self, hidden: bool);
 
-        #[method(isDoubleSided)]
+        #[unsafe(method(isDoubleSided))]
         #[unsafe(method_family = none)]
         pub fn isDoubleSided(&self) -> bool;
 
         /// Setter for [`isDoubleSided`][Self::isDoubleSided].
-        #[method(setDoubleSided:)]
+        #[unsafe(method(setDoubleSided:))]
         #[unsafe(method_family = none)]
         pub fn setDoubleSided(&self, double_sided: bool);
 
-        #[method(isGeometryFlipped)]
+        #[unsafe(method(isGeometryFlipped))]
         #[unsafe(method_family = none)]
         pub fn isGeometryFlipped(&self) -> bool;
 
         /// Setter for [`isGeometryFlipped`][Self::isGeometryFlipped].
-        #[method(setGeometryFlipped:)]
+        #[unsafe(method(setGeometryFlipped:))]
         #[unsafe(method_family = none)]
         pub fn setGeometryFlipped(&self, geometry_flipped: bool);
 
-        #[method(contentsAreFlipped)]
+        #[unsafe(method(contentsAreFlipped))]
         #[unsafe(method_family = none)]
         pub fn contentsAreFlipped(&self) -> bool;
 
-        #[method(superlayer)]
+        #[unsafe(method(superlayer))]
         #[unsafe(method_family = none)]
         pub fn superlayer(&self) -> Option<Retained<CALayer>>;
 
-        #[method(removeFromSuperlayer)]
+        #[unsafe(method(removeFromSuperlayer))]
         #[unsafe(method_family = none)]
         pub fn removeFromSuperlayer(&self);
 
-        #[method(sublayers)]
+        #[unsafe(method(sublayers))]
         #[unsafe(method_family = none)]
         pub unsafe fn sublayers(&self) -> Option<Retained<NSArray<CALayer>>>;
 
         /// Setter for [`sublayers`][Self::sublayers].
-        #[method(setSublayers:)]
+        #[unsafe(method(setSublayers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSublayers(&self, sublayers: Option<&NSArray<CALayer>>);
 
-        #[method(addSublayer:)]
+        #[unsafe(method(addSublayer:))]
         #[unsafe(method_family = none)]
         pub fn addSublayer(&self, layer: &CALayer);
 
-        #[method(insertSublayer:atIndex:)]
+        #[unsafe(method(insertSublayer:atIndex:))]
         #[unsafe(method_family = none)]
         pub fn insertSublayer_atIndex(&self, layer: &CALayer, idx: c_uint);
 
-        #[method(insertSublayer:below:)]
+        #[unsafe(method(insertSublayer:below:))]
         #[unsafe(method_family = none)]
         pub fn insertSublayer_below(&self, layer: &CALayer, sibling: Option<&CALayer>);
 
-        #[method(insertSublayer:above:)]
+        #[unsafe(method(insertSublayer:above:))]
         #[unsafe(method_family = none)]
         pub fn insertSublayer_above(&self, layer: &CALayer, sibling: Option<&CALayer>);
 
-        #[method(replaceSublayer:with:)]
+        #[unsafe(method(replaceSublayer:with:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceSublayer_with(&self, old_layer: &CALayer, new_layer: &CALayer);
 
         #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
-        #[method(sublayerTransform)]
+        #[unsafe(method(sublayerTransform))]
         #[unsafe(method_family = none)]
         pub fn sublayerTransform(&self) -> CATransform3D;
 
         #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
         /// Setter for [`sublayerTransform`][Self::sublayerTransform].
-        #[method(setSublayerTransform:)]
+        #[unsafe(method(setSublayerTransform:))]
         #[unsafe(method_family = none)]
         pub fn setSublayerTransform(&self, sublayer_transform: CATransform3D);
 
-        #[method(mask)]
+        #[unsafe(method(mask))]
         #[unsafe(method_family = none)]
         pub fn mask(&self) -> Option<Retained<CALayer>>;
 
         /// Setter for [`mask`][Self::mask].
-        #[method(setMask:)]
+        #[unsafe(method(setMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMask(&self, mask: Option<&CALayer>);
 
-        #[method(masksToBounds)]
+        #[unsafe(method(masksToBounds))]
         #[unsafe(method_family = none)]
         pub fn masksToBounds(&self) -> bool;
 
         /// Setter for [`masksToBounds`][Self::masksToBounds].
-        #[method(setMasksToBounds:)]
+        #[unsafe(method(setMasksToBounds:))]
         #[unsafe(method_family = none)]
         pub fn setMasksToBounds(&self, masks_to_bounds: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Mapping between layer coordinate and time spaces. *
-        #[method(convertPoint:fromLayer:)]
+        #[unsafe(method(convertPoint:fromLayer:))]
         #[unsafe(method_family = none)]
         pub fn convertPoint_fromLayer(&self, p: CGPoint, l: Option<&CALayer>) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(convertPoint:toLayer:)]
+        #[unsafe(method(convertPoint:toLayer:))]
         #[unsafe(method_family = none)]
         pub fn convertPoint_toLayer(&self, p: CGPoint, l: Option<&CALayer>) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(convertRect:fromLayer:)]
+        #[unsafe(method(convertRect:fromLayer:))]
         #[unsafe(method_family = none)]
         pub fn convertRect_fromLayer(&self, r: CGRect, l: Option<&CALayer>) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(convertRect:toLayer:)]
+        #[unsafe(method(convertRect:toLayer:))]
         #[unsafe(method_family = none)]
         pub fn convertRect_toLayer(&self, r: CGRect, l: Option<&CALayer>) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(convertTime:fromLayer:)]
+        #[unsafe(method(convertTime:fromLayer:))]
         #[unsafe(method_family = none)]
         pub fn convertTime_fromLayer(
             &self,
@@ -400,419 +400,419 @@ extern_methods!(
         ) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(convertTime:toLayer:)]
+        #[unsafe(method(convertTime:toLayer:))]
         #[unsafe(method_family = none)]
         pub fn convertTime_toLayer(&self, t: CFTimeInterval, l: Option<&CALayer>)
             -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Hit testing methods. *
-        #[method(hitTest:)]
+        #[unsafe(method(hitTest:))]
         #[unsafe(method_family = none)]
         pub fn hitTest(&self, p: CGPoint) -> Option<Retained<CALayer>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(containsPoint:)]
+        #[unsafe(method(containsPoint:))]
         #[unsafe(method_family = none)]
         pub fn containsPoint(&self, p: CGPoint) -> bool;
 
         /// Layer content properties and methods. *
-        #[method(contents)]
+        #[unsafe(method(contents))]
         #[unsafe(method_family = none)]
         pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`contents`][Self::contents].
-        #[method(setContents:)]
+        #[unsafe(method(setContents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(contentsRect)]
+        #[unsafe(method(contentsRect))]
         #[unsafe(method_family = none)]
         pub fn contentsRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentsRect`][Self::contentsRect].
-        #[method(setContentsRect:)]
+        #[unsafe(method(setContentsRect:))]
         #[unsafe(method_family = none)]
         pub fn setContentsRect(&self, contents_rect: CGRect);
 
-        #[method(contentsGravity)]
+        #[unsafe(method(contentsGravity))]
         #[unsafe(method_family = none)]
         pub fn contentsGravity(&self) -> Retained<CALayerContentsGravity>;
 
         /// Setter for [`contentsGravity`][Self::contentsGravity].
-        #[method(setContentsGravity:)]
+        #[unsafe(method(setContentsGravity:))]
         #[unsafe(method_family = none)]
         pub fn setContentsGravity(&self, contents_gravity: &CALayerContentsGravity);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(contentsScale)]
+        #[unsafe(method(contentsScale))]
         #[unsafe(method_family = none)]
         pub fn contentsScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentsScale`][Self::contentsScale].
-        #[method(setContentsScale:)]
+        #[unsafe(method(setContentsScale:))]
         #[unsafe(method_family = none)]
         pub fn setContentsScale(&self, contents_scale: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(contentsCenter)]
+        #[unsafe(method(contentsCenter))]
         #[unsafe(method_family = none)]
         pub fn contentsCenter(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentsCenter`][Self::contentsCenter].
-        #[method(setContentsCenter:)]
+        #[unsafe(method(setContentsCenter:))]
         #[unsafe(method_family = none)]
         pub fn setContentsCenter(&self, contents_center: CGRect);
 
-        #[method(contentsFormat)]
+        #[unsafe(method(contentsFormat))]
         #[unsafe(method_family = none)]
         pub fn contentsFormat(&self) -> Retained<CALayerContentsFormat>;
 
         /// Setter for [`contentsFormat`][Self::contentsFormat].
-        #[method(setContentsFormat:)]
+        #[unsafe(method(setContentsFormat:))]
         #[unsafe(method_family = none)]
         pub fn setContentsFormat(&self, contents_format: &CALayerContentsFormat);
 
-        #[method(wantsExtendedDynamicRangeContent)]
+        #[unsafe(method(wantsExtendedDynamicRangeContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn wantsExtendedDynamicRangeContent(&self) -> bool;
 
         /// Setter for [`wantsExtendedDynamicRangeContent`][Self::wantsExtendedDynamicRangeContent].
-        #[method(setWantsExtendedDynamicRangeContent:)]
+        #[unsafe(method(setWantsExtendedDynamicRangeContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWantsExtendedDynamicRangeContent(
             &self,
             wants_extended_dynamic_range_content: bool,
         );
 
-        #[method(toneMapMode)]
+        #[unsafe(method(toneMapMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn toneMapMode(&self) -> Retained<CAToneMapMode>;
 
         /// Setter for [`toneMapMode`][Self::toneMapMode].
-        #[method(setToneMapMode:)]
+        #[unsafe(method(setToneMapMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setToneMapMode(&self, tone_map_mode: &CAToneMapMode);
 
-        #[method(wantsDynamicContentScaling)]
+        #[unsafe(method(wantsDynamicContentScaling))]
         #[unsafe(method_family = none)]
         pub unsafe fn wantsDynamicContentScaling(&self) -> bool;
 
         /// Setter for [`wantsDynamicContentScaling`][Self::wantsDynamicContentScaling].
-        #[method(setWantsDynamicContentScaling:)]
+        #[unsafe(method(setWantsDynamicContentScaling:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWantsDynamicContentScaling(&self, wants_dynamic_content_scaling: bool);
 
-        #[method(minificationFilter)]
+        #[unsafe(method(minificationFilter))]
         #[unsafe(method_family = none)]
         pub fn minificationFilter(&self) -> Retained<CALayerContentsFilter>;
 
         /// Setter for [`minificationFilter`][Self::minificationFilter].
-        #[method(setMinificationFilter:)]
+        #[unsafe(method(setMinificationFilter:))]
         #[unsafe(method_family = none)]
         pub fn setMinificationFilter(&self, minification_filter: &CALayerContentsFilter);
 
-        #[method(magnificationFilter)]
+        #[unsafe(method(magnificationFilter))]
         #[unsafe(method_family = none)]
         pub fn magnificationFilter(&self) -> Retained<CALayerContentsFilter>;
 
         /// Setter for [`magnificationFilter`][Self::magnificationFilter].
-        #[method(setMagnificationFilter:)]
+        #[unsafe(method(setMagnificationFilter:))]
         #[unsafe(method_family = none)]
         pub fn setMagnificationFilter(&self, magnification_filter: &CALayerContentsFilter);
 
-        #[method(minificationFilterBias)]
+        #[unsafe(method(minificationFilterBias))]
         #[unsafe(method_family = none)]
         pub fn minificationFilterBias(&self) -> c_float;
 
         /// Setter for [`minificationFilterBias`][Self::minificationFilterBias].
-        #[method(setMinificationFilterBias:)]
+        #[unsafe(method(setMinificationFilterBias:))]
         #[unsafe(method_family = none)]
         pub fn setMinificationFilterBias(&self, minification_filter_bias: c_float);
 
-        #[method(isOpaque)]
+        #[unsafe(method(isOpaque))]
         #[unsafe(method_family = none)]
         pub fn isOpaque(&self) -> bool;
 
         /// Setter for [`isOpaque`][Self::isOpaque].
-        #[method(setOpaque:)]
+        #[unsafe(method(setOpaque:))]
         #[unsafe(method_family = none)]
         pub fn setOpaque(&self, opaque: bool);
 
-        #[method(display)]
+        #[unsafe(method(display))]
         #[unsafe(method_family = none)]
         pub fn display(&self);
 
-        #[method(setNeedsDisplay)]
+        #[unsafe(method(setNeedsDisplay))]
         #[unsafe(method_family = none)]
         pub fn setNeedsDisplay(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(setNeedsDisplayInRect:)]
+        #[unsafe(method(setNeedsDisplayInRect:))]
         #[unsafe(method_family = none)]
         pub fn setNeedsDisplayInRect(&self, r: CGRect);
 
-        #[method(needsDisplay)]
+        #[unsafe(method(needsDisplay))]
         #[unsafe(method_family = none)]
         pub fn needsDisplay(&self) -> bool;
 
-        #[method(displayIfNeeded)]
+        #[unsafe(method(displayIfNeeded))]
         #[unsafe(method_family = none)]
         pub fn displayIfNeeded(&self);
 
-        #[method(needsDisplayOnBoundsChange)]
+        #[unsafe(method(needsDisplayOnBoundsChange))]
         #[unsafe(method_family = none)]
         pub fn needsDisplayOnBoundsChange(&self) -> bool;
 
         /// Setter for [`needsDisplayOnBoundsChange`][Self::needsDisplayOnBoundsChange].
-        #[method(setNeedsDisplayOnBoundsChange:)]
+        #[unsafe(method(setNeedsDisplayOnBoundsChange:))]
         #[unsafe(method_family = none)]
         pub fn setNeedsDisplayOnBoundsChange(&self, needs_display_on_bounds_change: bool);
 
-        #[method(drawsAsynchronously)]
+        #[unsafe(method(drawsAsynchronously))]
         #[unsafe(method_family = none)]
         pub fn drawsAsynchronously(&self) -> bool;
 
         /// Setter for [`drawsAsynchronously`][Self::drawsAsynchronously].
-        #[method(setDrawsAsynchronously:)]
+        #[unsafe(method(setDrawsAsynchronously:))]
         #[unsafe(method_family = none)]
         pub fn setDrawsAsynchronously(&self, draws_asynchronously: bool);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(drawInContext:)]
+        #[unsafe(method(drawInContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawInContext(&self, ctx: &CGContext);
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Rendering properties and methods. *
-        #[method(renderInContext:)]
+        #[unsafe(method(renderInContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderInContext(&self, ctx: &CGContext);
 
-        #[method(edgeAntialiasingMask)]
+        #[unsafe(method(edgeAntialiasingMask))]
         #[unsafe(method_family = none)]
         pub fn edgeAntialiasingMask(&self) -> CAEdgeAntialiasingMask;
 
         /// Setter for [`edgeAntialiasingMask`][Self::edgeAntialiasingMask].
-        #[method(setEdgeAntialiasingMask:)]
+        #[unsafe(method(setEdgeAntialiasingMask:))]
         #[unsafe(method_family = none)]
         pub fn setEdgeAntialiasingMask(&self, edge_antialiasing_mask: CAEdgeAntialiasingMask);
 
-        #[method(allowsEdgeAntialiasing)]
+        #[unsafe(method(allowsEdgeAntialiasing))]
         #[unsafe(method_family = none)]
         pub fn allowsEdgeAntialiasing(&self) -> bool;
 
         /// Setter for [`allowsEdgeAntialiasing`][Self::allowsEdgeAntialiasing].
-        #[method(setAllowsEdgeAntialiasing:)]
+        #[unsafe(method(setAllowsEdgeAntialiasing:))]
         #[unsafe(method_family = none)]
         pub fn setAllowsEdgeAntialiasing(&self, allows_edge_antialiasing: bool);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(backgroundColor)]
+        #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
-        #[method(setBackgroundColor:)]
+        #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&CGColor>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(cornerRadius)]
+        #[unsafe(method(cornerRadius))]
         #[unsafe(method_family = none)]
         pub fn cornerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`cornerRadius`][Self::cornerRadius].
-        #[method(setCornerRadius:)]
+        #[unsafe(method(setCornerRadius:))]
         #[unsafe(method_family = none)]
         pub fn setCornerRadius(&self, corner_radius: CGFloat);
 
-        #[method(maskedCorners)]
+        #[unsafe(method(maskedCorners))]
         #[unsafe(method_family = none)]
         pub fn maskedCorners(&self) -> CACornerMask;
 
         /// Setter for [`maskedCorners`][Self::maskedCorners].
-        #[method(setMaskedCorners:)]
+        #[unsafe(method(setMaskedCorners:))]
         #[unsafe(method_family = none)]
         pub fn setMaskedCorners(&self, masked_corners: CACornerMask);
 
-        #[method(cornerCurve)]
+        #[unsafe(method(cornerCurve))]
         #[unsafe(method_family = none)]
         pub fn cornerCurve(&self) -> Retained<CALayerCornerCurve>;
 
         /// Setter for [`cornerCurve`][Self::cornerCurve].
-        #[method(setCornerCurve:)]
+        #[unsafe(method(setCornerCurve:))]
         #[unsafe(method_family = none)]
         pub fn setCornerCurve(&self, corner_curve: &CALayerCornerCurve);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(cornerCurveExpansionFactor:)]
+        #[unsafe(method(cornerCurveExpansionFactor:))]
         #[unsafe(method_family = none)]
         pub fn cornerCurveExpansionFactor(curve: &CALayerCornerCurve) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(borderWidth)]
+        #[unsafe(method(borderWidth))]
         #[unsafe(method_family = none)]
         pub fn borderWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`borderWidth`][Self::borderWidth].
-        #[method(setBorderWidth:)]
+        #[unsafe(method(setBorderWidth:))]
         #[unsafe(method_family = none)]
         pub fn setBorderWidth(&self, border_width: CGFloat);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(borderColor)]
+        #[unsafe(method(borderColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`borderColor`][Self::borderColor].
-        #[method(setBorderColor:)]
+        #[unsafe(method(setBorderColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderColor(&self, border_color: Option<&CGColor>);
 
-        #[method(opacity)]
+        #[unsafe(method(opacity))]
         #[unsafe(method_family = none)]
         pub fn opacity(&self) -> c_float;
 
         /// Setter for [`opacity`][Self::opacity].
-        #[method(setOpacity:)]
+        #[unsafe(method(setOpacity:))]
         #[unsafe(method_family = none)]
         pub fn setOpacity(&self, opacity: c_float);
 
-        #[method(allowsGroupOpacity)]
+        #[unsafe(method(allowsGroupOpacity))]
         #[unsafe(method_family = none)]
         pub fn allowsGroupOpacity(&self) -> bool;
 
         /// Setter for [`allowsGroupOpacity`][Self::allowsGroupOpacity].
-        #[method(setAllowsGroupOpacity:)]
+        #[unsafe(method(setAllowsGroupOpacity:))]
         #[unsafe(method_family = none)]
         pub fn setAllowsGroupOpacity(&self, allows_group_opacity: bool);
 
-        #[method(compositingFilter)]
+        #[unsafe(method(compositingFilter))]
         #[unsafe(method_family = none)]
         pub unsafe fn compositingFilter(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`compositingFilter`][Self::compositingFilter].
-        #[method(setCompositingFilter:)]
+        #[unsafe(method(setCompositingFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompositingFilter(&self, compositing_filter: Option<&AnyObject>);
 
-        #[method(filters)]
+        #[unsafe(method(filters))]
         #[unsafe(method_family = none)]
         pub unsafe fn filters(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`filters`][Self::filters].
-        #[method(setFilters:)]
+        #[unsafe(method(setFilters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilters(&self, filters: Option<&NSArray>);
 
-        #[method(backgroundFilters)]
+        #[unsafe(method(backgroundFilters))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundFilters(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`backgroundFilters`][Self::backgroundFilters].
-        #[method(setBackgroundFilters:)]
+        #[unsafe(method(setBackgroundFilters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundFilters(&self, background_filters: Option<&NSArray>);
 
-        #[method(shouldRasterize)]
+        #[unsafe(method(shouldRasterize))]
         #[unsafe(method_family = none)]
         pub fn shouldRasterize(&self) -> bool;
 
         /// Setter for [`shouldRasterize`][Self::shouldRasterize].
-        #[method(setShouldRasterize:)]
+        #[unsafe(method(setShouldRasterize:))]
         #[unsafe(method_family = none)]
         pub fn setShouldRasterize(&self, should_rasterize: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(rasterizationScale)]
+        #[unsafe(method(rasterizationScale))]
         #[unsafe(method_family = none)]
         pub fn rasterizationScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`rasterizationScale`][Self::rasterizationScale].
-        #[method(setRasterizationScale:)]
+        #[unsafe(method(setRasterizationScale:))]
         #[unsafe(method_family = none)]
         pub fn setRasterizationScale(&self, rasterization_scale: CGFloat);
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Shadow properties. *
-        #[method(shadowColor)]
+        #[unsafe(method(shadowColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn shadowColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`shadowColor`][Self::shadowColor].
-        #[method(setShadowColor:)]
+        #[unsafe(method(setShadowColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowColor(&self, shadow_color: Option<&CGColor>);
 
-        #[method(shadowOpacity)]
+        #[unsafe(method(shadowOpacity))]
         #[unsafe(method_family = none)]
         pub fn shadowOpacity(&self) -> c_float;
 
         /// Setter for [`shadowOpacity`][Self::shadowOpacity].
-        #[method(setShadowOpacity:)]
+        #[unsafe(method(setShadowOpacity:))]
         #[unsafe(method_family = none)]
         pub fn setShadowOpacity(&self, shadow_opacity: c_float);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(shadowOffset)]
+        #[unsafe(method(shadowOffset))]
         #[unsafe(method_family = none)]
         pub fn shadowOffset(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`shadowOffset`][Self::shadowOffset].
-        #[method(setShadowOffset:)]
+        #[unsafe(method(setShadowOffset:))]
         #[unsafe(method_family = none)]
         pub fn setShadowOffset(&self, shadow_offset: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(shadowRadius)]
+        #[unsafe(method(shadowRadius))]
         #[unsafe(method_family = none)]
         pub fn shadowRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`shadowRadius`][Self::shadowRadius].
-        #[method(setShadowRadius:)]
+        #[unsafe(method(setShadowRadius:))]
         #[unsafe(method_family = none)]
         pub fn setShadowRadius(&self, shadow_radius: CGFloat);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(shadowPath)]
+        #[unsafe(method(shadowPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn shadowPath(&self) -> Option<Retained<CGPath>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`shadowPath`][Self::shadowPath].
-        #[method(setShadowPath:)]
+        #[unsafe(method(setShadowPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowPath(&self, shadow_path: Option<&CGPath>);
 
         /// Layout methods. *
-        #[method(autoresizingMask)]
+        #[unsafe(method(autoresizingMask))]
         #[unsafe(method_family = none)]
         pub fn autoresizingMask(&self) -> CAAutoresizingMask;
 
         /// Setter for [`autoresizingMask`][Self::autoresizingMask].
-        #[method(setAutoresizingMask:)]
+        #[unsafe(method(setAutoresizingMask:))]
         #[unsafe(method_family = none)]
         pub fn setAutoresizingMask(&self, autoresizing_mask: CAAutoresizingMask);
 
-        #[method(layoutManager)]
+        #[unsafe(method(layoutManager))]
         #[unsafe(method_family = none)]
         pub fn layoutManager(&self) -> Option<Retained<ProtocolObject<dyn CALayoutManager>>>;
 
         /// Setter for [`layoutManager`][Self::layoutManager].
-        #[method(setLayoutManager:)]
+        #[unsafe(method(setLayoutManager:))]
         #[unsafe(method_family = none)]
         pub fn setLayoutManager(
             &self,
@@ -820,58 +820,58 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(preferredFrameSize)]
+        #[unsafe(method(preferredFrameSize))]
         #[unsafe(method_family = none)]
         pub fn preferredFrameSize(&self) -> CGSize;
 
-        #[method(setNeedsLayout)]
+        #[unsafe(method(setNeedsLayout))]
         #[unsafe(method_family = none)]
         pub fn setNeedsLayout(&self);
 
-        #[method(needsLayout)]
+        #[unsafe(method(needsLayout))]
         #[unsafe(method_family = none)]
         pub fn needsLayout(&self) -> bool;
 
-        #[method(layoutIfNeeded)]
+        #[unsafe(method(layoutIfNeeded))]
         #[unsafe(method_family = none)]
         pub fn layoutIfNeeded(&self);
 
-        #[method(layoutSublayers)]
+        #[unsafe(method(layoutSublayers))]
         #[unsafe(method_family = none)]
         pub fn layoutSublayers(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(resizeSublayersWithOldSize:)]
+        #[unsafe(method(resizeSublayersWithOldSize:))]
         #[unsafe(method_family = none)]
         pub fn resizeSublayersWithOldSize(&self, size: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(resizeWithOldSuperlayerSize:)]
+        #[unsafe(method(resizeWithOldSuperlayerSize:))]
         #[unsafe(method_family = none)]
         pub fn resizeWithOldSuperlayerSize(&self, size: CGSize);
 
         /// Action methods. *
-        #[method(defaultActionForKey:)]
+        #[unsafe(method(defaultActionForKey:))]
         #[unsafe(method_family = none)]
         pub fn defaultActionForKey(
             event: &NSString,
         ) -> Option<Retained<ProtocolObject<dyn CAAction>>>;
 
-        #[method(actionForKey:)]
+        #[unsafe(method(actionForKey:))]
         #[unsafe(method_family = none)]
         pub fn actionForKey(
             &self,
             event: &NSString,
         ) -> Option<Retained<ProtocolObject<dyn CAAction>>>;
 
-        #[method(actions)]
+        #[unsafe(method(actions))]
         #[unsafe(method_family = none)]
         pub fn actions(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, ProtocolObject<dyn CAAction>>>>;
 
         /// Setter for [`actions`][Self::actions].
-        #[method(setActions:)]
+        #[unsafe(method(setActions:))]
         #[unsafe(method_family = none)]
         pub fn setActions(
             &self,
@@ -880,53 +880,53 @@ extern_methods!(
 
         #[cfg(feature = "CAAnimation")]
         /// Animation methods. *
-        #[method(addAnimation:forKey:)]
+        #[unsafe(method(addAnimation:forKey:))]
         #[unsafe(method_family = none)]
         pub fn addAnimation_forKey(&self, anim: &CAAnimation, key: Option<&NSString>);
 
-        #[method(removeAllAnimations)]
+        #[unsafe(method(removeAllAnimations))]
         #[unsafe(method_family = none)]
         pub fn removeAllAnimations(&self);
 
-        #[method(removeAnimationForKey:)]
+        #[unsafe(method(removeAnimationForKey:))]
         #[unsafe(method_family = none)]
         pub fn removeAnimationForKey(&self, key: &NSString);
 
-        #[method(animationKeys)]
+        #[unsafe(method(animationKeys))]
         #[unsafe(method_family = none)]
         pub fn animationKeys(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "CAAnimation")]
-        #[method(animationForKey:)]
+        #[unsafe(method(animationForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationForKey(&self, key: &NSString) -> Option<Retained<CAAnimation>>;
 
         /// Miscellaneous properties. *
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub fn setName(&self, name: Option<&NSString>);
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn CALayerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn CALayerDelegate>>);
 
-        #[method(style)]
+        #[unsafe(method(style))]
         #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`style`][Self::style].
-        #[method(setStyle:)]
+        #[unsafe(method(setStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStyle(&self, style: Option<&NSDictionary>);
     }
@@ -935,7 +935,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CALayer {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -955,17 +955,17 @@ extern_protocol!(
     pub unsafe trait CALayoutManager: NSObjectProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
-        #[method(preferredSizeOfLayer:)]
+        #[unsafe(method(preferredSizeOfLayer:))]
         #[unsafe(method_family = none)]
         unsafe fn preferredSizeOfLayer(&self, layer: &CALayer) -> CGSize;
 
         #[optional]
-        #[method(invalidateLayoutOfLayer:)]
+        #[unsafe(method(invalidateLayoutOfLayer:))]
         #[unsafe(method_family = none)]
         unsafe fn invalidateLayoutOfLayer(&self, layer: &CALayer);
 
         #[optional]
-        #[method(layoutSublayersOfLayer:)]
+        #[unsafe(method(layoutSublayersOfLayer:))]
         #[unsafe(method_family = none)]
         unsafe fn layoutSublayersOfLayer(&self, layer: &CALayer);
     }
@@ -976,7 +976,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caaction?language=objc)
     pub unsafe trait CAAction {
-        #[method(runActionForKey:object:arguments:)]
+        #[unsafe(method(runActionForKey:object:arguments:))]
         #[unsafe(method_family = none)]
         unsafe fn runActionForKey_object_arguments(
             &self,
@@ -995,28 +995,28 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayerdelegate?language=objc)
     pub unsafe trait CALayerDelegate: NSObjectProtocol {
         #[optional]
-        #[method(displayLayer:)]
+        #[unsafe(method(displayLayer:))]
         #[unsafe(method_family = none)]
         unsafe fn displayLayer(&self, layer: &CALayer);
 
         #[cfg(feature = "objc2-core-graphics")]
         #[optional]
-        #[method(drawLayer:inContext:)]
+        #[unsafe(method(drawLayer:inContext:))]
         #[unsafe(method_family = none)]
         unsafe fn drawLayer_inContext(&self, layer: &CALayer, ctx: &CGContext);
 
         #[optional]
-        #[method(layerWillDraw:)]
+        #[unsafe(method(layerWillDraw:))]
         #[unsafe(method_family = none)]
         unsafe fn layerWillDraw(&self, layer: &CALayer);
 
         #[optional]
-        #[method(layoutSublayersOfLayer:)]
+        #[unsafe(method(layoutSublayersOfLayer:))]
         #[unsafe(method_family = none)]
         unsafe fn layoutSublayersOfLayer(&self, layer: &CALayer);
 
         #[optional]
-        #[method(actionForLayer:forKey:)]
+        #[unsafe(method(actionForLayer:forKey:))]
         #[unsafe(method_family = none)]
         unsafe fn actionForLayer_forKey(
             &self,

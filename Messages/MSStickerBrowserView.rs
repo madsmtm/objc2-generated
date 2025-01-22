@@ -93,7 +93,7 @@ extern_methods!(
     unsafe impl MSStickerBrowserView {
         #[cfg(feature = "objc2-core-foundation")]
         /// Initializes a MSStickerBrowserView with a frame using the regular size class.
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
@@ -106,7 +106,7 @@ extern_methods!(
         /// vary based on the device. Sticker images will be scaled down to fit in the grid cell. If the
         /// sticker image is smaller than the cell size measured in pixels then it will be  centered
         /// in the grid cell.
-        #[method(initWithFrame:stickerSize:)]
+        #[unsafe(method(initWithFrame:stickerSize:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_stickerSize(
             this: Allocated<Self>,
@@ -115,13 +115,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The sticker size class.
-        #[method(stickerSize)]
+        #[unsafe(method(stickerSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn stickerSize(&self) -> MSStickerSize;
 
         #[cfg(feature = "MSStickerBrowserViewDataSource")]
         /// The Sticker Browser View data source.
-        #[method(dataSource)]
+        #[unsafe(method(dataSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataSource(
             &self,
@@ -130,7 +130,7 @@ extern_methods!(
         #[cfg(feature = "MSStickerBrowserViewDataSource")]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dataSource`][Self::dataSource].
-        #[method(setDataSource:)]
+        #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(
             &self,
@@ -139,34 +139,34 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The Sticker Browser View content offset.
-        #[method(contentOffset)]
+        #[unsafe(method(contentOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentOffset`][Self::contentOffset].
-        #[method(setContentOffset:)]
+        #[unsafe(method(setContentOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentOffset(&self, content_offset: CGPoint);
 
         /// The Sticker Browser View content inset.
-        #[method(contentInset)]
+        #[unsafe(method(contentInset))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentInset(&self) -> UIEdgeInsets;
 
         /// Setter for [`contentInset`][Self::contentInset].
-        #[method(setContentInset:)]
+        #[unsafe(method(setContentInset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentInset(&self, content_inset: UIEdgeInsets);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// animate Sticker Browser View at constant velocity to new offset.
-        #[method(setContentOffset:animated:)]
+        #[unsafe(method(setContentOffset:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentOffset_animated(&self, content_offset: CGPoint, animated: bool);
 
         /// Asks the Sticker Browser View to reload its data from its data source.
-        #[method(reloadData)]
+        #[unsafe(method(reloadData))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadData(&self);
     }
@@ -176,7 +176,7 @@ extern_methods!(
     /// Methods declared on superclass `UIView`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MSStickerBrowserView {
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -189,11 +189,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MSStickerBrowserView {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

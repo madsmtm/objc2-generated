@@ -24,11 +24,11 @@ unsafe impl NSObjectProtocol for AVSampleBufferAudioRenderer {}
 extern_methods!(
     unsafe impl AVSampleBufferAudioRenderer {
         #[cfg(feature = "AVQueuedSampleBufferRendering")]
-        #[method(status)]
+        #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> AVQueuedSampleBufferRenderingStatus;
 
-        #[method(error)]
+        #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
@@ -43,12 +43,12 @@ extern_methods!(
         /// On macOS, the audio device clock may be used as the AVSampleBufferRenderSynchronizer's and all attached AVQueuedSampleBufferRendering's timebase's clocks.  If the audioOutputDeviceUniqueID is modified, the clocks of all these timebases may also change.
         ///
         /// If multiple AVSampleBufferAudioRenderers with different values for audioOutputDeviceUniqueID are attached to the same AVSampleBufferRenderSynchronizer, audio may not stay in sync during playback.  To avoid this, ensure that all synchronized AVSampleBufferAudioRenderers are using the same audio output device.
-        #[method(audioOutputDeviceUniqueID)]
+        #[unsafe(method(audioOutputDeviceUniqueID))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioOutputDeviceUniqueID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`audioOutputDeviceUniqueID`][Self::audioOutputDeviceUniqueID].
-        #[method(setAudioOutputDeviceUniqueID:)]
+        #[unsafe(method(setAudioOutputDeviceUniqueID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioOutputDeviceUniqueID(
             &self,
@@ -66,13 +66,13 @@ extern_methods!(
         /// If the timebase's rate is not supported by the audioTimePitchAlgorithm, audio will be muted.
         ///
         /// Modifying this property while the timebase's rate is not 0.0 may cause the rate to briefly change to 0.0.
-        #[method(audioTimePitchAlgorithm)]
+        #[unsafe(method(audioTimePitchAlgorithm))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioTimePitchAlgorithm(&self) -> Retained<AVAudioTimePitchAlgorithm>;
 
         #[cfg(feature = "AVAudioProcessingSettings")]
         /// Setter for [`audioTimePitchAlgorithm`][Self::audioTimePitchAlgorithm].
-        #[method(setAudioTimePitchAlgorithm:)]
+        #[unsafe(method(setAudioTimePitchAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioTimePitchAlgorithm(
             &self,
@@ -83,13 +83,13 @@ extern_methods!(
         /// Indicates the source audio channel layouts allowed by the receiver for spatialization.
         ///
         /// Spatialization uses psychoacoustic methods to create a more immersive audio rendering when the content is played on specialized headphones and speaker arrangements. When an  AVSampleBufferAudioRenderer's allowedAudioSpatializationFormats property is set to AVAudioSpatializationFormatMonoAndStereo the  AVSampleBufferAudioRenderer will attempt to spatialize content tagged with a stereo channel layout, two-channel content with no layout specified as well as mono. It is considered incorrect to render a binaural recording with spatialization. A binaural recording is captured using two carefully placed microphones at each ear where the intent, when played on headphones, is to reproduce a naturally occurring spatial effect. Content tagged with a binaural channel layout will ignore this property value. When an  AVSampleBufferAudioRenderer's allowedAudioSpatializationFormats property is set to AVAudioSpatializationFormatMultichannel the  AVSampleBufferAudioRenderer will attempt to spatialize any decodable multichannel layout. Setting this property to AVAudioSpatializationFormatMonoStereoAndMultichannel indicates that the sender allows the  AVSampleBufferAudioRenderer to spatialize any decodable mono, stereo or multichannel layout. This property is not observable. The default value for this property is AVAudioSpatializationFormatMultichannel.
-        #[method(allowedAudioSpatializationFormats)]
+        #[unsafe(method(allowedAudioSpatializationFormats))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedAudioSpatializationFormats(&self) -> AVAudioSpatializationFormats;
 
         #[cfg(feature = "AVAudioProcessingSettings")]
         /// Setter for [`allowedAudioSpatializationFormats`][Self::allowedAudioSpatializationFormats].
-        #[method(setAllowedAudioSpatializationFormats:)]
+        #[unsafe(method(setAllowedAudioSpatializationFormats:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedAudioSpatializationFormats(
             &self,
@@ -101,11 +101,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVSampleBufferAudioRenderer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -114,21 +114,21 @@ extern_methods!(
 extern_methods!(
     /// AVSampleBufferAudioRendererVolumeControl
     unsafe impl AVSampleBufferAudioRenderer {
-        #[method(volume)]
+        #[unsafe(method(volume))]
         #[unsafe(method_family = none)]
         pub unsafe fn volume(&self) -> c_float;
 
         /// Setter for [`volume`][Self::volume].
-        #[method(setVolume:)]
+        #[unsafe(method(setVolume:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
-        #[method(isMuted)]
+        #[unsafe(method(isMuted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMuted(&self) -> bool;
 
         /// Setter for [`isMuted`][Self::isMuted].
-        #[method(setMuted:)]
+        #[unsafe(method(setMuted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMuted(&self, muted: bool);
     }
@@ -178,7 +178,7 @@ extern_methods!(
         /// This method can be used to replace media data scheduled to be rendered in the future, without interrupting playback.  One example of this is when the data that has already been enqueued is from a sequence of two songs and the second song is swapped for a new song.  In this case, this method would be called with the time stamp of the first sample buffer from the second song.  After the completion handler is executed with a YES parameter, media data may again be enqueued with timestamps at the specified time.
         ///
         /// If NO is provided to the completion handler, the flush did not succeed and the set of enqueued sample buffers remains unchanged.  A flush can fail becuse the source time was too close to (or earlier than) the current time or because the current configuration of the receiver does not support flushing at a particular time.  In these cases, the caller can choose to flush all enqueued media data by invoking the -flush method.
-        #[method(flushFromSourceTime:completionHandler:)]
+        #[unsafe(method(flushFromSourceTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn flushFromSourceTime_completionHandler(
             &self,

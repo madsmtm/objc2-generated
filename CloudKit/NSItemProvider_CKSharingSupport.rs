@@ -39,7 +39,7 @@ extern_category!(
         /// `CKShare,`or an
         /// `NSError`if saving failed. Invoking the share sheet with a
         /// `CKShare`registered with this method will prompt the user to start sharing.
-        #[method(registerCKShareWithContainer:allowedSharingOptions:preparationHandler:)]
+        #[unsafe(method(registerCKShareWithContainer:allowedSharingOptions:preparationHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn registerCKShareWithContainer_allowedSharingOptions_preparationHandler(
             &self,
@@ -57,7 +57,7 @@ extern_category!(
         /// Use this method when you have a
         /// `CKShare`that is already saved to the server. Invoking the share sheet with a
         /// `CKShare`registered with this method will allow the owner to make modifications to the share settings, or will allow a participant to view the share settings.
-        #[method(registerCKShare:container:allowedSharingOptions:)]
+        #[unsafe(method(registerCKShare:container:allowedSharingOptions:))]
         #[unsafe(method_family = none)]
         unsafe fn registerCKShare_container_allowedSharingOptions(
             &self,

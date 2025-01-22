@@ -19,29 +19,29 @@ unsafe impl NSObjectProtocol for NLLanguageRecognizer {}
 extern_methods!(
     unsafe impl NLLanguageRecognizer {
         #[cfg(feature = "NLLanguage")]
-        #[method(dominantLanguageForString:)]
+        #[unsafe(method(dominantLanguageForString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dominantLanguageForString(string: &NSString) -> Option<Retained<NLLanguage>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(processString:)]
+        #[unsafe(method(processString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn processString(&self, string: &NSString);
 
-        #[method(reset)]
+        #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
         pub unsafe fn reset(&self);
 
         #[cfg(feature = "NLLanguage")]
-        #[method(dominantLanguage)]
+        #[unsafe(method(dominantLanguage))]
         #[unsafe(method_family = none)]
         pub unsafe fn dominantLanguage(&self) -> Option<Retained<NLLanguage>>;
 
         #[cfg(feature = "NLLanguage")]
-        #[method(languageHypothesesWithMaximum:)]
+        #[unsafe(method(languageHypothesesWithMaximum:))]
         #[unsafe(method_family = none)]
         pub unsafe fn languageHypothesesWithMaximum(
             &self,
@@ -49,24 +49,24 @@ extern_methods!(
         ) -> Retained<NSDictionary<NLLanguage, NSNumber>>;
 
         #[cfg(feature = "NLLanguage")]
-        #[method(languageHints)]
+        #[unsafe(method(languageHints))]
         #[unsafe(method_family = none)]
         pub unsafe fn languageHints(&self) -> Retained<NSDictionary<NLLanguage, NSNumber>>;
 
         #[cfg(feature = "NLLanguage")]
         /// Setter for [`languageHints`][Self::languageHints].
-        #[method(setLanguageHints:)]
+        #[unsafe(method(setLanguageHints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLanguageHints(&self, language_hints: &NSDictionary<NLLanguage, NSNumber>);
 
         #[cfg(feature = "NLLanguage")]
-        #[method(languageConstraints)]
+        #[unsafe(method(languageConstraints))]
         #[unsafe(method_family = none)]
         pub unsafe fn languageConstraints(&self) -> Retained<NSArray<NLLanguage>>;
 
         #[cfg(feature = "NLLanguage")]
         /// Setter for [`languageConstraints`][Self::languageConstraints].
-        #[method(setLanguageConstraints:)]
+        #[unsafe(method(setLanguageConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLanguageConstraints(&self, language_constraints: &NSArray<NLLanguage>);
     }
@@ -75,7 +75,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NLLanguageRecognizer {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

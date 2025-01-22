@@ -68,7 +68,7 @@ unsafe impl NSSecureCoding for NSFileWrapper {}
 extern_methods!(
     unsafe impl NSFileWrapper {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method(initWithURL:options:error:_)]
+        #[unsafe(method(initWithURL:options:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options_error(
             this: Allocated<Self>,
@@ -77,7 +77,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(initDirectoryWithFileWrappers:)]
+        #[unsafe(method(initDirectoryWithFileWrappers:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initDirectoryWithFileWrappers(
             this: Allocated<Self>,
@@ -85,7 +85,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSData")]
-        #[method(initRegularFileWithContents:)]
+        #[unsafe(method(initRegularFileWithContents:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initRegularFileWithContents(
             this: Allocated<Self>,
@@ -93,7 +93,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
-        #[method(initSymbolicLinkWithDestinationURL:)]
+        #[unsafe(method(initSymbolicLinkWithDestinationURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initSymbolicLinkWithDestinationURL(
             this: Allocated<Self>,
@@ -101,7 +101,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSData")]
-        #[method(initWithSerializedRepresentation:)]
+        #[unsafe(method(initWithSerializedRepresentation:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSerializedRepresentation(
             this: Allocated<Self>,
@@ -109,65 +109,65 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSCoder")]
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(isDirectory)]
+        #[unsafe(method(isDirectory))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDirectory(&self) -> bool;
 
-        #[method(isRegularFile)]
+        #[unsafe(method(isRegularFile))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRegularFile(&self) -> bool;
 
-        #[method(isSymbolicLink)]
+        #[unsafe(method(isSymbolicLink))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSymbolicLink(&self) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method(preferredFilename)]
+        #[unsafe(method(preferredFilename))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredFilename(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`preferredFilename`][Self::preferredFilename].
-        #[method(setPreferredFilename:)]
+        #[unsafe(method(setPreferredFilename:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredFilename(&self, preferred_filename: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        #[method(filename)]
+        #[unsafe(method(filename))]
         #[unsafe(method_family = none)]
         pub unsafe fn filename(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`filename`][Self::filename].
-        #[method(setFilename:)]
+        #[unsafe(method(setFilename:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilename(&self, filename: Option<&NSString>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(fileAttributes)]
+        #[unsafe(method(fileAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileAttributes(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`fileAttributes`][Self::fileAttributes].
-        #[method(setFileAttributes:)]
+        #[unsafe(method(setFileAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFileAttributes(&self, file_attributes: &NSDictionary<NSString, AnyObject>);
 
         #[cfg(feature = "NSURL")]
-        #[method(matchesContentsOfURL:)]
+        #[unsafe(method(matchesContentsOfURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchesContentsOfURL(&self, url: &NSURL) -> bool;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method(readFromURL:options:error:_)]
+        #[unsafe(method(readFromURL:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn readFromURL_options_error(
             &self,
@@ -176,7 +176,7 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method(writeToURL:options:originalContentsURL:error:_)]
+        #[unsafe(method(writeToURL:options:originalContentsURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_options_originalContentsURL_error(
             &self,
@@ -186,17 +186,17 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSData")]
-        #[method(serializedRepresentation)]
+        #[unsafe(method(serializedRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn serializedRepresentation(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSString")]
-        #[method(addFileWrapper:)]
+        #[unsafe(method(addFileWrapper:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addFileWrapper(&self, child: &NSFileWrapper) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
-        #[method(addRegularFileWithContents:preferredFilename:)]
+        #[unsafe(method(addRegularFileWithContents:preferredFilename:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRegularFileWithContents_preferredFilename(
             &self,
@@ -204,30 +204,30 @@ extern_methods!(
             file_name: &NSString,
         ) -> Retained<NSString>;
 
-        #[method(removeFileWrapper:)]
+        #[unsafe(method(removeFileWrapper:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFileWrapper(&self, child: &NSFileWrapper);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(fileWrappers)]
+        #[unsafe(method(fileWrappers))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileWrappers(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSFileWrapper>>>;
 
         #[cfg(feature = "NSString")]
-        #[method(keyForFileWrapper:)]
+        #[unsafe(method(keyForFileWrapper:))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyForFileWrapper(&self, child: &NSFileWrapper)
             -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSData")]
-        #[method(regularFileContents)]
+        #[unsafe(method(regularFileContents))]
         #[unsafe(method_family = none)]
         pub unsafe fn regularFileContents(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSURL")]
-        #[method(symbolicLinkDestinationURL)]
+        #[unsafe(method(symbolicLinkDestinationURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolicLinkDestinationURL(&self) -> Option<Retained<NSURL>>;
     }
@@ -236,11 +236,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileWrapper {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -251,7 +251,7 @@ extern_methods!(
     unsafe impl NSFileWrapper {
         #[cfg(feature = "NSString")]
         #[deprecated = "Use -initWithURL:options:error: instead."]
-        #[method(initWithPath:)]
+        #[unsafe(method(initWithPath:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPath(
             this: Allocated<Self>,
@@ -260,7 +260,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use -initSymbolicLinkWithDestinationURL: and -setPreferredFileName:, if necessary, instead."]
-        #[method(initSymbolicLinkWithDestination:)]
+        #[unsafe(method(initSymbolicLinkWithDestination:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initSymbolicLinkWithDestination(
             this: Allocated<Self>,
@@ -269,19 +269,19 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use -matchesContentsOfURL: instead."]
-        #[method(needsToBeUpdatedFromPath:)]
+        #[unsafe(method(needsToBeUpdatedFromPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn needsToBeUpdatedFromPath(&self, path: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use -readFromURL:options:error: instead."]
-        #[method(updateFromPath:)]
+        #[unsafe(method(updateFromPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateFromPath(&self, path: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use -writeToURL:options:originalContentsURL:error: instead."]
-        #[method(writeToFile:atomically:updateFilenames:)]
+        #[unsafe(method(writeToFile:atomically:updateFilenames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeToFile_atomically_updateFilenames(
             &self,
@@ -292,13 +292,13 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Instantiate a new NSFileWrapper with -initWithURL:options:error:, send it -setPreferredFileName: if necessary, then use -addFileWrapper: instead."]
-        #[method(addFileWithPath:)]
+        #[unsafe(method(addFileWithPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addFileWithPath(&self, path: &NSString) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Instantiate a new NSFileWrapper with -initWithSymbolicLinkDestinationURL:, send it -setPreferredFileName: if necessary, then use -addFileWrapper: instead."]
-        #[method(addSymbolicLinkWithDestination:preferredFilename:)]
+        #[unsafe(method(addSymbolicLinkWithDestination:preferredFilename:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSymbolicLinkWithDestination_preferredFilename(
             &self,
@@ -308,7 +308,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use -symbolicLinkDestinationURL instead."]
-        #[method(symbolicLinkDestination)]
+        #[unsafe(method(symbolicLinkDestination))]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolicLinkDestination(&self) -> Retained<NSString>;
     }

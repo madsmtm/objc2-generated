@@ -26,12 +26,12 @@ unsafe impl NSObjectProtocol for CMStepCounter {}
 
 extern_methods!(
     unsafe impl CMStepCounter {
-        #[method(isStepCountingAvailable)]
+        #[unsafe(method(isStepCountingAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStepCountingAvailable() -> bool;
 
         #[cfg(feature = "block2")]
-        #[method(queryStepCountStartingFrom:to:toQueue:withHandler:)]
+        #[unsafe(method(queryStepCountStartingFrom:to:toQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryStepCountStartingFrom_to_toQueue_withHandler(
             &self,
@@ -42,7 +42,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(startStepCountingUpdatesToQueue:updateOn:withHandler:)]
+        #[unsafe(method(startStepCountingUpdatesToQueue:updateOn:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startStepCountingUpdatesToQueue_updateOn_withHandler(
             &self,
@@ -51,7 +51,7 @@ extern_methods!(
             handler: CMStepUpdateHandler,
         );
 
-        #[method(stopStepCountingUpdates)]
+        #[unsafe(method(stopStepCountingUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopStepCountingUpdates(&self);
     }
@@ -60,11 +60,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMStepCounter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

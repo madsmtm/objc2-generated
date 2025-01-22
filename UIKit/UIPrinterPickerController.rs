@@ -21,7 +21,7 @@ extern_protocol!(
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[method(printerPickerControllerParentViewController:)]
+        #[unsafe(method(printerPickerControllerParentViewController:))]
         #[unsafe(method_family = none)]
         unsafe fn printerPickerControllerParentViewController(
             &self,
@@ -37,7 +37,7 @@ extern_protocol!(
         /// This method may be called from threads other than the main thread,
         /// and may be called simultaneously from several different threads.
         #[optional]
-        #[method(printerPickerController:shouldShowPrinter:)]
+        #[unsafe(method(printerPickerController:shouldShowPrinter:))]
         #[unsafe(method_family = none)]
         unsafe fn printerPickerController_shouldShowPrinter(
             &self,
@@ -46,7 +46,7 @@ extern_protocol!(
         ) -> bool;
 
         #[optional]
-        #[method(printerPickerControllerWillPresent:)]
+        #[unsafe(method(printerPickerControllerWillPresent:))]
         #[unsafe(method_family = none)]
         unsafe fn printerPickerControllerWillPresent(
             &self,
@@ -54,7 +54,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(printerPickerControllerDidPresent:)]
+        #[unsafe(method(printerPickerControllerDidPresent:))]
         #[unsafe(method_family = none)]
         unsafe fn printerPickerControllerDidPresent(
             &self,
@@ -62,7 +62,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(printerPickerControllerWillDismiss:)]
+        #[unsafe(method(printerPickerControllerWillDismiss:))]
         #[unsafe(method_family = none)]
         unsafe fn printerPickerControllerWillDismiss(
             &self,
@@ -70,7 +70,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(printerPickerControllerDidDismiss:)]
+        #[unsafe(method(printerPickerControllerDidDismiss:))]
         #[unsafe(method_family = none)]
         unsafe fn printerPickerControllerDidDismiss(
             &self,
@@ -78,7 +78,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(printerPickerControllerDidSelectPrinter:)]
+        #[unsafe(method(printerPickerControllerDidSelectPrinter:))]
         #[unsafe(method_family = none)]
         unsafe fn printerPickerControllerDidSelectPrinter(
             &self,
@@ -104,7 +104,7 @@ extern_methods!(
         /// UI that allows the user to select a printer. This is only used with the
         /// UIPrintInteractionController's printWithoutUIToPrinter: method.
         /// If no printer should be preselected, use a value of nil for the parameter.
-        #[method(printerPickerControllerWithInitiallySelectedPrinter:)]
+        #[unsafe(method(printerPickerControllerWithInitiallySelectedPrinter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn printerPickerControllerWithInitiallySelectedPrinter(
             printer: Option<&UIPrinter>,
@@ -114,11 +114,11 @@ extern_methods!(
         #[cfg(feature = "UIPrinter")]
         /// The selected printer. Set this before presenting the UI to show the currently
         /// selected printer. Use this to determine which printer the user selected.
-        #[method(selectedPrinter)]
+        #[unsafe(method(selectedPrinter))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedPrinter(&self) -> Option<Retained<UIPrinter>>;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -126,7 +126,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -134,7 +134,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(presentAnimated:completionHandler:)]
+        #[unsafe(method(presentAnimated:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentAnimated_completionHandler(
             &self,
@@ -148,7 +148,7 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
-        #[method(presentFromRect:inView:animated:completionHandler:)]
+        #[unsafe(method(presentFromRect:inView:animated:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentFromRect_inView_animated_completionHandler(
             &self,
@@ -159,7 +159,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem", feature = "block2"))]
-        #[method(presentFromBarButtonItem:animated:completionHandler:)]
+        #[unsafe(method(presentFromBarButtonItem:animated:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentFromBarButtonItem_animated_completionHandler(
             &self,
@@ -168,7 +168,7 @@ extern_methods!(
             completion: UIPrinterPickerCompletionHandler,
         ) -> bool;
 
-        #[method(dismissAnimated:)]
+        #[unsafe(method(dismissAnimated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissAnimated(&self, animated: bool);
     }
@@ -177,11 +177,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrinterPickerController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

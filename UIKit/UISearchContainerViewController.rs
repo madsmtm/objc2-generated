@@ -52,12 +52,12 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISearchContainerViewController {
         #[cfg(feature = "UISearchController")]
-        #[method(searchController)]
+        #[unsafe(method(searchController))]
         #[unsafe(method_family = none)]
         pub unsafe fn searchController(&self) -> Retained<UISearchController>;
 
         #[cfg(feature = "UISearchController")]
-        #[method(initWithSearchController:)]
+        #[unsafe(method(initWithSearchController:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSearchController(
             this: Allocated<Self>,
@@ -70,7 +70,7 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISearchContainerViewController {
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -78,7 +78,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -91,11 +91,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISearchContainerViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

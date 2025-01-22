@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for NSAccessibilityElement {}
 extern_methods!(
     unsafe impl NSAccessibilityElement {
         #[cfg(feature = "NSAccessibilityConstants")]
-        #[method(accessibilityElementWithRole:frame:label:parent:)]
+        #[unsafe(method(accessibilityElementWithRole:frame:label:parent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityElementWithRole_frame_label_parent(
             role: &NSAccessibilityRole,
@@ -31,16 +31,16 @@ extern_methods!(
             parent: Option<&AnyObject>,
         ) -> Retained<AnyObject>;
 
-        #[method(accessibilityAddChildElement:)]
+        #[unsafe(method(accessibilityAddChildElement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityAddChildElement(&self, child_element: &NSAccessibilityElement);
 
-        #[method(accessibilityFrameInParentSpace)]
+        #[unsafe(method(accessibilityFrameInParentSpace))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityFrameInParentSpace(&self) -> NSRect;
 
         /// Setter for [`accessibilityFrameInParentSpace`][Self::accessibilityFrameInParentSpace].
-        #[method(setAccessibilityFrameInParentSpace:)]
+        #[unsafe(method(setAccessibilityFrameInParentSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityFrameInParentSpace(
             &self,
@@ -52,11 +52,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAccessibilityElement {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

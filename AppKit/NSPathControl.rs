@@ -72,102 +72,102 @@ unsafe impl NSUserInterfaceItemIdentification for NSPathControl {}
 extern_methods!(
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSPathControl {
-        #[method(isEditable)]
+        #[unsafe(method(isEditable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEditable(&self) -> bool;
 
         /// Setter for [`isEditable`][Self::isEditable].
-        #[method(setEditable:)]
+        #[unsafe(method(setEditable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEditable(&self, editable: bool);
 
-        #[method(allowedTypes)]
+        #[unsafe(method(allowedTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedTypes(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`allowedTypes`][Self::allowedTypes].
-        #[method(setAllowedTypes:)]
+        #[unsafe(method(setAllowedTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedTypes(&self, allowed_types: Option<&NSArray<NSString>>);
 
-        #[method(placeholderString)]
+        #[unsafe(method(placeholderString))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderString(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`placeholderString`][Self::placeholderString].
-        #[method(setPlaceholderString:)]
+        #[unsafe(method(setPlaceholderString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
-        #[method(placeholderAttributedString)]
+        #[unsafe(method(placeholderAttributedString))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderAttributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`placeholderAttributedString`][Self::placeholderAttributedString].
-        #[method(setPlaceholderAttributedString:)]
+        #[unsafe(method(setPlaceholderAttributedString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
             placeholder_attributed_string: Option<&NSAttributedString>,
         );
 
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
-        #[method(setURL:)]
+        #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
-        #[method(doubleAction)]
+        #[unsafe(method(doubleAction))]
         #[unsafe(method_family = none)]
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
         /// Setter for [`doubleAction`][Self::doubleAction].
-        #[method(setDoubleAction:)]
+        #[unsafe(method(setDoubleAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
         #[cfg(feature = "NSPathCell")]
-        #[method(pathStyle)]
+        #[unsafe(method(pathStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn pathStyle(&self) -> NSPathStyle;
 
         #[cfg(feature = "NSPathCell")]
         /// Setter for [`pathStyle`][Self::pathStyle].
-        #[method(setPathStyle:)]
+        #[unsafe(method(setPathStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPathStyle(&self, path_style: NSPathStyle);
 
         #[cfg(feature = "NSPathControlItem")]
-        #[method(clickedPathItem)]
+        #[unsafe(method(clickedPathItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn clickedPathItem(&self) -> Option<Retained<NSPathControlItem>>;
 
         #[cfg(feature = "NSPathControlItem")]
-        #[method(pathItems)]
+        #[unsafe(method(pathItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn pathItems(&self) -> Retained<NSArray<NSPathControlItem>>;
 
         #[cfg(feature = "NSPathControlItem")]
         /// Setter for [`pathItems`][Self::pathItems].
-        #[method(setPathItems:)]
+        #[unsafe(method(setPathItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPathItems(&self, path_items: &NSArray<NSPathControlItem>);
 
         #[cfg(feature = "NSColor")]
-        #[method(backgroundColor)]
+        #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
-        #[method(setBackgroundColor:)]
+        #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -175,7 +175,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -183,7 +183,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSDragging")]
-        #[method(setDraggingSourceOperationMask:forLocal:)]
+        #[unsafe(method(setDraggingSourceOperationMask:forLocal:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
             &self,
@@ -192,13 +192,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSMenu")]
-        #[method(menu)]
+        #[unsafe(method(menu))]
         #[unsafe(method_family = none)]
         pub unsafe fn menu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
         /// Setter for [`menu`][Self::menu].
-        #[method(setMenu:)]
+        #[unsafe(method(setMenu:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMenu(&self, menu: Option<&NSMenu>);
     }
@@ -208,11 +208,11 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSPathControl {
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -225,7 +225,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSPathControl {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -235,7 +235,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSPathControl {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -252,7 +252,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method(pathControl:shouldDragItem:withPasteboard:)]
+        #[unsafe(method(pathControl:shouldDragItem:withPasteboard:))]
         #[unsafe(method_family = none)]
         unsafe fn pathControl_shouldDragItem_withPasteboard(
             &self,
@@ -272,7 +272,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method(pathControl:shouldDragPathComponentCell:withPasteboard:)]
+        #[unsafe(method(pathControl:shouldDragPathComponentCell:withPasteboard:))]
         #[unsafe(method_family = none)]
         unsafe fn pathControl_shouldDragPathComponentCell_withPasteboard(
             &self,
@@ -288,7 +288,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method(pathControl:validateDrop:)]
+        #[unsafe(method(pathControl:validateDrop:))]
         #[unsafe(method_family = none)]
         unsafe fn pathControl_validateDrop(
             &self,
@@ -303,7 +303,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method(pathControl:acceptDrop:)]
+        #[unsafe(method(pathControl:acceptDrop:))]
         #[unsafe(method_family = none)]
         unsafe fn pathControl_acceptDrop(
             &self,
@@ -321,7 +321,7 @@ extern_protocol!(
             feature = "NSWindow"
         ))]
         #[optional]
-        #[method(pathControl:willDisplayOpenPanel:)]
+        #[unsafe(method(pathControl:willDisplayOpenPanel:))]
         #[unsafe(method_family = none)]
         unsafe fn pathControl_willDisplayOpenPanel(
             &self,
@@ -336,7 +336,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method(pathControl:willPopUpMenu:)]
+        #[unsafe(method(pathControl:willPopUpMenu:))]
         #[unsafe(method_family = none)]
         unsafe fn pathControl_willPopUpMenu(&self, path_control: &NSPathControl, menu: &NSMenu);
     }
@@ -353,7 +353,7 @@ extern_methods!(
             feature = "NSTextFieldCell"
         ))]
         #[deprecated = "Use the clickedPathItem property instead"]
-        #[method(clickedPathComponentCell)]
+        #[unsafe(method(clickedPathComponentCell))]
         #[unsafe(method_family = none)]
         pub unsafe fn clickedPathComponentCell(&self) -> Option<Retained<NSPathComponentCell>>;
 
@@ -364,7 +364,7 @@ extern_methods!(
             feature = "NSTextFieldCell"
         ))]
         #[deprecated = "Use the pathItems property instead"]
-        #[method(pathComponentCells)]
+        #[unsafe(method(pathComponentCells))]
         #[unsafe(method_family = none)]
         pub unsafe fn pathComponentCells(&self) -> Retained<NSArray<NSPathComponentCell>>;
 
@@ -375,7 +375,7 @@ extern_methods!(
             feature = "NSTextFieldCell"
         ))]
         #[deprecated = "Use the pathItems property instead"]
-        #[method(setPathComponentCells:)]
+        #[unsafe(method(setPathComponentCells:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPathComponentCells(&self, cells: &NSArray<NSPathComponentCell>);
     }

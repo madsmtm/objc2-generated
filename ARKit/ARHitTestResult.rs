@@ -71,14 +71,14 @@ extern_methods!(
     unsafe impl ARHitTestResult {
         /// The type of the hit-test result.
         #[deprecated = "Use raycasting"]
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> ARHitTestResultType;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The distance from the camera to the intersection in meters.
         #[deprecated = "Use raycasting"]
-        #[method(distance)]
+        #[unsafe(method(distance))]
         #[unsafe(method_family = none)]
         pub unsafe fn distance(&self) -> CGFloat;
 
@@ -88,18 +88,18 @@ extern_methods!(
         ///
         /// An anchor will only be provided for existing plane result types.
         #[deprecated = "Use raycasting"]
-        #[method(anchor)]
+        #[unsafe(method(anchor))]
         #[unsafe(method_family = none)]
         pub unsafe fn anchor(&self) -> Option<Retained<ARAnchor>>;
 
         /// Unavailable
         #[deprecated = "Use raycasting"]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Use raycasting"]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

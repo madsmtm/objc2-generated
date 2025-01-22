@@ -30,23 +30,23 @@ unsafe impl NSObjectProtocol for HMZone {}
 
 extern_methods!(
     unsafe impl HMZone {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Name of the zone.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HMRoom")]
         /// Array of HMRoom objects that correspond to the rooms contained in this zone.
-        #[method(rooms)]
+        #[unsafe(method(rooms))]
         #[unsafe(method_family = none)]
         pub unsafe fn rooms(&self) -> Retained<NSArray<HMRoom>>;
 
         /// A unique identifier for the zone.
-        #[method(uniqueIdentifier)]
+        #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
@@ -60,7 +60,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(updateName:completionHandler:)]
+        #[unsafe(method(updateName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateName_completionHandler(
             &self,
@@ -82,7 +82,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(addRoom:completionHandler:)]
+        #[unsafe(method(addRoom:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRoom_completionHandler(
             &self,
@@ -100,7 +100,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(removeRoom:completionHandler:)]
+        #[unsafe(method(removeRoom:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRoom_completionHandler(
             &self,
@@ -113,7 +113,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMZone {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

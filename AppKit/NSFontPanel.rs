@@ -52,13 +52,13 @@ extern_protocol!(
     pub unsafe trait NSFontChanging: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSFontManager")]
         #[optional]
-        #[method(changeFont:)]
+        #[unsafe(method(changeFont:))]
         #[unsafe(method_family = none)]
         unsafe fn changeFont(&self, sender: Option<&NSFontManager>);
 
         #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
         #[optional]
-        #[method(validModesForFontPanel:)]
+        #[unsafe(method(validModesForFontPanel:))]
         #[unsafe(method_family = none)]
         unsafe fn validModesForFontPanel(&self, font_panel: &NSFontPanel) -> NSFontPanelModeMask;
     }
@@ -137,54 +137,54 @@ unsafe impl NSUserInterfaceValidations for NSFontPanel {}
 extern_methods!(
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSFontPanel {
-        #[method(sharedFontPanel)]
+        #[unsafe(method(sharedFontPanel))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedFontPanel(mtm: MainThreadMarker) -> Retained<NSFontPanel>;
 
-        #[method(sharedFontPanelExists)]
+        #[unsafe(method(sharedFontPanelExists))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedFontPanelExists(mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "NSView")]
-        #[method(accessoryView)]
+        #[unsafe(method(accessoryView))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
         /// Setter for [`accessoryView`][Self::accessoryView].
-        #[method(setAccessoryView:)]
+        #[unsafe(method(setAccessoryView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[cfg(feature = "NSFont")]
-        #[method(setPanelFont:isMultiple:)]
+        #[unsafe(method(setPanelFont:isMultiple:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPanelFont_isMultiple(&self, font_obj: &NSFont, flag: bool);
 
         #[cfg(feature = "NSFont")]
-        #[method(panelConvertFont:)]
+        #[unsafe(method(panelConvertFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn panelConvertFont(&self, font_obj: &NSFont) -> Retained<NSFont>;
 
-        #[method(worksWhenModal)]
+        #[unsafe(method(worksWhenModal))]
         #[unsafe(method_family = none)]
         pub unsafe fn worksWhenModal(&self) -> bool;
 
         /// Setter for [`worksWhenModal`][Self::worksWhenModal].
-        #[method(setWorksWhenModal:)]
+        #[unsafe(method(setWorksWhenModal:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWorksWhenModal(&self, works_when_modal: bool);
 
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
-        #[method(reloadDefaultFontFamilies)]
+        #[unsafe(method(reloadDefaultFontFamilies))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadDefaultFontFamilies(&self);
     }
@@ -195,7 +195,7 @@ extern_methods!(
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSFontPanel {
         #[cfg(feature = "NSGraphics")]
-        #[method(initWithContentRect:styleMask:backing:defer:)]
+        #[unsafe(method(initWithContentRect:styleMask:backing:defer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Allocated<Self>,
@@ -206,7 +206,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSGraphics", feature = "NSScreen"))]
-        #[method(initWithContentRect:styleMask:backing:defer:screen:)]
+        #[unsafe(method(initWithContentRect:styleMask:backing:defer:screen:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Allocated<Self>,
@@ -217,13 +217,13 @@ extern_methods!(
             screen: Option<&NSScreen>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSViewController")]
         /// Convenience method for creating an autoreleased titled window with the given contentViewController. A basic NSWindow with the following attributes is made: titled, closable, resizable, miniaturizable. The window's title is automatically bound to the contentViewController's title. The size of the window can easily be controlled by utilizing autolayout and applying size constraints to the view (or its subviews). The window has isReleasedWhenClosed set to NO, and it must be explicitly retained to keep the window instance alive. To have it automatically be freed when it is closed, do the following: [window retain] and [window setReleasedWhenClosed:YES].
-        #[method(windowWithContentViewController:)]
+        #[unsafe(method(windowWithContentViewController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
@@ -235,7 +235,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSFontPanel {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -245,7 +245,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSFontPanel {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

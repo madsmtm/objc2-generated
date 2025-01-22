@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for NSUserScriptTask {}
 extern_methods!(
     unsafe impl NSUserScriptTask {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method(initWithURL:error:_)]
+        #[unsafe(method(initWithURL:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
@@ -30,12 +30,12 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSURL")]
-        #[method(scriptURL)]
+        #[unsafe(method(scriptURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn scriptURL(&self) -> Retained<NSURL>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        #[method(executeWithCompletionHandler:)]
+        #[unsafe(method(executeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithCompletionHandler(
             &self,
@@ -47,11 +47,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUserScriptTask {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -73,35 +73,35 @@ unsafe impl NSObjectProtocol for NSUserUnixTask {}
 extern_methods!(
     unsafe impl NSUserUnixTask {
         #[cfg(feature = "NSFileHandle")]
-        #[method(standardInput)]
+        #[unsafe(method(standardInput))]
         #[unsafe(method_family = none)]
         pub unsafe fn standardInput(&self) -> Option<Retained<NSFileHandle>>;
 
         #[cfg(feature = "NSFileHandle")]
         /// Setter for [`standardInput`][Self::standardInput].
-        #[method(setStandardInput:)]
+        #[unsafe(method(setStandardInput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardInput(&self, standard_input: Option<&NSFileHandle>);
 
         #[cfg(feature = "NSFileHandle")]
-        #[method(standardOutput)]
+        #[unsafe(method(standardOutput))]
         #[unsafe(method_family = none)]
         pub unsafe fn standardOutput(&self) -> Option<Retained<NSFileHandle>>;
 
         #[cfg(feature = "NSFileHandle")]
         /// Setter for [`standardOutput`][Self::standardOutput].
-        #[method(setStandardOutput:)]
+        #[unsafe(method(setStandardOutput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardOutput(&self, standard_output: Option<&NSFileHandle>);
 
         #[cfg(feature = "NSFileHandle")]
-        #[method(standardError)]
+        #[unsafe(method(standardError))]
         #[unsafe(method_family = none)]
         pub unsafe fn standardError(&self) -> Option<Retained<NSFileHandle>>;
 
         #[cfg(feature = "NSFileHandle")]
         /// Setter for [`standardError`][Self::standardError].
-        #[method(setStandardError:)]
+        #[unsafe(method(setStandardError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardError(&self, standard_error: Option<&NSFileHandle>);
 
@@ -111,7 +111,7 @@ extern_methods!(
             feature = "NSString",
             feature = "block2"
         ))]
-        #[method(executeWithArguments:completionHandler:)]
+        #[unsafe(method(executeWithArguments:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithArguments_completionHandler(
             &self,
@@ -125,7 +125,7 @@ extern_methods!(
     /// Methods declared on superclass `NSUserScriptTask`
     unsafe impl NSUserUnixTask {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method(initWithURL:error:_)]
+        #[unsafe(method(initWithURL:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
@@ -137,11 +137,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUserUnixTask {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -172,7 +172,7 @@ extern_methods!(
             feature = "NSError",
             feature = "block2"
         ))]
-        #[method(executeWithAppleEvent:completionHandler:)]
+        #[unsafe(method(executeWithAppleEvent:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithAppleEvent_completionHandler(
             &self,
@@ -186,7 +186,7 @@ extern_methods!(
     /// Methods declared on superclass `NSUserScriptTask`
     unsafe impl NSUserAppleScriptTask {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method(initWithURL:error:_)]
+        #[unsafe(method(initWithURL:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
@@ -198,11 +198,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUserAppleScriptTask {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -225,18 +225,18 @@ unsafe impl NSObjectProtocol for NSUserAutomatorTask {}
 extern_methods!(
     unsafe impl NSUserAutomatorTask {
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(variables)]
+        #[unsafe(method(variables))]
         #[unsafe(method_family = none)]
         pub unsafe fn variables(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`variables`][Self::variables].
-        #[method(setVariables:)]
+        #[unsafe(method(setVariables:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVariables(&self, variables: Option<&NSDictionary<NSString, AnyObject>>);
 
         #[cfg(all(feature = "NSError", feature = "NSObject", feature = "block2"))]
-        #[method(executeWithInput:completionHandler:)]
+        #[unsafe(method(executeWithInput:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithInput_completionHandler(
             &self,
@@ -250,7 +250,7 @@ extern_methods!(
     /// Methods declared on superclass `NSUserScriptTask`
     unsafe impl NSUserAutomatorTask {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method(initWithURL:error:_)]
+        #[unsafe(method(initWithURL:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
@@ -262,11 +262,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUserAutomatorTask {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

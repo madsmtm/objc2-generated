@@ -93,18 +93,18 @@ unsafe impl NSSecureCoding for NSTextTab {}
 
 extern_methods!(
     unsafe impl NSTextTab {
-        #[method(columnTerminatorsForLocale:)]
+        #[unsafe(method(columnTerminatorsForLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn columnTerminatorsForLocale(
             a_locale: Option<&NSLocale>,
         ) -> Retained<NSCharacterSet>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(location)]
+        #[unsafe(method(location))]
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> CGFloat;
 
-        #[method(options)]
+        #[unsafe(method(options))]
         #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> Retained<NSDictionary<NSTextTabOptionKey, AnyObject>>;
     }
@@ -113,11 +113,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextTab {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -150,98 +150,98 @@ unsafe impl NSSecureCoding for NSParagraphStyle {}
 
 extern_methods!(
     unsafe impl NSParagraphStyle {
-        #[method(defaultParagraphStyle)]
+        #[unsafe(method(defaultParagraphStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultParagraphStyle() -> Retained<NSParagraphStyle>;
 
         #[cfg(feature = "NSText")]
-        #[method(defaultWritingDirectionForLanguage:)]
+        #[unsafe(method(defaultWritingDirectionForLanguage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultWritingDirectionForLanguage(
             language_name: Option<&NSString>,
         ) -> NSWritingDirection;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(lineSpacing)]
+        #[unsafe(method(lineSpacing))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(paragraphSpacing)]
+        #[unsafe(method(paragraphSpacing))]
         #[unsafe(method_family = none)]
         pub unsafe fn paragraphSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(headIndent)]
+        #[unsafe(method(headIndent))]
         #[unsafe(method_family = none)]
         pub unsafe fn headIndent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(tailIndent)]
+        #[unsafe(method(tailIndent))]
         #[unsafe(method_family = none)]
         pub unsafe fn tailIndent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(firstLineHeadIndent)]
+        #[unsafe(method(firstLineHeadIndent))]
         #[unsafe(method_family = none)]
         pub unsafe fn firstLineHeadIndent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(minimumLineHeight)]
+        #[unsafe(method(minimumLineHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumLineHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(maximumLineHeight)]
+        #[unsafe(method(maximumLineHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumLineHeight(&self) -> CGFloat;
 
-        #[method(lineBreakMode)]
+        #[unsafe(method(lineBreakMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
         #[cfg(feature = "NSText")]
-        #[method(baseWritingDirection)]
+        #[unsafe(method(baseWritingDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(lineHeightMultiple)]
+        #[unsafe(method(lineHeightMultiple))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineHeightMultiple(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(paragraphSpacingBefore)]
+        #[unsafe(method(paragraphSpacingBefore))]
         #[unsafe(method_family = none)]
         pub unsafe fn paragraphSpacingBefore(&self) -> CGFloat;
 
-        #[method(hyphenationFactor)]
+        #[unsafe(method(hyphenationFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn hyphenationFactor(&self) -> c_float;
 
-        #[method(usesDefaultHyphenation)]
+        #[unsafe(method(usesDefaultHyphenation))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesDefaultHyphenation(&self) -> bool;
 
-        #[method(tabStops)]
+        #[unsafe(method(tabStops))]
         #[unsafe(method_family = none)]
         pub unsafe fn tabStops(&self) -> Retained<NSArray<NSTextTab>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(defaultTabInterval)]
+        #[unsafe(method(defaultTabInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultTabInterval(&self) -> CGFloat;
 
         #[cfg(feature = "NSTextList")]
-        #[method(textLists)]
+        #[unsafe(method(textLists))]
         #[unsafe(method_family = none)]
         pub unsafe fn textLists(&self) -> Retained<NSArray<NSTextList>>;
 
-        #[method(allowsDefaultTighteningForTruncation)]
+        #[unsafe(method(allowsDefaultTighteningForTruncation))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsDefaultTighteningForTruncation(&self) -> bool;
 
-        #[method(lineBreakStrategy)]
+        #[unsafe(method(lineBreakStrategy))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineBreakStrategy(&self) -> NSLineBreakStrategy;
     }
@@ -250,11 +250,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSParagraphStyle {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -288,203 +288,203 @@ unsafe impl NSSecureCoding for NSMutableParagraphStyle {}
 extern_methods!(
     unsafe impl NSMutableParagraphStyle {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(lineSpacing)]
+        #[unsafe(method(lineSpacing))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`lineSpacing`][Self::lineSpacing].
-        #[method(setLineSpacing:)]
+        #[unsafe(method(setLineSpacing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineSpacing(&self, line_spacing: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(paragraphSpacing)]
+        #[unsafe(method(paragraphSpacing))]
         #[unsafe(method_family = none)]
         pub unsafe fn paragraphSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`paragraphSpacing`][Self::paragraphSpacing].
-        #[method(setParagraphSpacing:)]
+        #[unsafe(method(setParagraphSpacing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParagraphSpacing(&self, paragraph_spacing: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(firstLineHeadIndent)]
+        #[unsafe(method(firstLineHeadIndent))]
         #[unsafe(method_family = none)]
         pub unsafe fn firstLineHeadIndent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`firstLineHeadIndent`][Self::firstLineHeadIndent].
-        #[method(setFirstLineHeadIndent:)]
+        #[unsafe(method(setFirstLineHeadIndent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFirstLineHeadIndent(&self, first_line_head_indent: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(headIndent)]
+        #[unsafe(method(headIndent))]
         #[unsafe(method_family = none)]
         pub unsafe fn headIndent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`headIndent`][Self::headIndent].
-        #[method(setHeadIndent:)]
+        #[unsafe(method(setHeadIndent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeadIndent(&self, head_indent: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(tailIndent)]
+        #[unsafe(method(tailIndent))]
         #[unsafe(method_family = none)]
         pub unsafe fn tailIndent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`tailIndent`][Self::tailIndent].
-        #[method(setTailIndent:)]
+        #[unsafe(method(setTailIndent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTailIndent(&self, tail_indent: CGFloat);
 
-        #[method(lineBreakMode)]
+        #[unsafe(method(lineBreakMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
         /// Setter for [`lineBreakMode`][Self::lineBreakMode].
-        #[method(setLineBreakMode:)]
+        #[unsafe(method(setLineBreakMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(minimumLineHeight)]
+        #[unsafe(method(minimumLineHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumLineHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumLineHeight`][Self::minimumLineHeight].
-        #[method(setMinimumLineHeight:)]
+        #[unsafe(method(setMinimumLineHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumLineHeight(&self, minimum_line_height: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(maximumLineHeight)]
+        #[unsafe(method(maximumLineHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumLineHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumLineHeight`][Self::maximumLineHeight].
-        #[method(setMaximumLineHeight:)]
+        #[unsafe(method(setMaximumLineHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumLineHeight(&self, maximum_line_height: CGFloat);
 
         #[cfg(feature = "NSText")]
-        #[method(baseWritingDirection)]
+        #[unsafe(method(baseWritingDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
         #[cfg(feature = "NSText")]
         /// Setter for [`baseWritingDirection`][Self::baseWritingDirection].
-        #[method(setBaseWritingDirection:)]
+        #[unsafe(method(setBaseWritingDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBaseWritingDirection(&self, base_writing_direction: NSWritingDirection);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(lineHeightMultiple)]
+        #[unsafe(method(lineHeightMultiple))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineHeightMultiple(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`lineHeightMultiple`][Self::lineHeightMultiple].
-        #[method(setLineHeightMultiple:)]
+        #[unsafe(method(setLineHeightMultiple:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineHeightMultiple(&self, line_height_multiple: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(paragraphSpacingBefore)]
+        #[unsafe(method(paragraphSpacingBefore))]
         #[unsafe(method_family = none)]
         pub unsafe fn paragraphSpacingBefore(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`paragraphSpacingBefore`][Self::paragraphSpacingBefore].
-        #[method(setParagraphSpacingBefore:)]
+        #[unsafe(method(setParagraphSpacingBefore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParagraphSpacingBefore(&self, paragraph_spacing_before: CGFloat);
 
-        #[method(hyphenationFactor)]
+        #[unsafe(method(hyphenationFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn hyphenationFactor(&self) -> c_float;
 
         /// Setter for [`hyphenationFactor`][Self::hyphenationFactor].
-        #[method(setHyphenationFactor:)]
+        #[unsafe(method(setHyphenationFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHyphenationFactor(&self, hyphenation_factor: c_float);
 
-        #[method(usesDefaultHyphenation)]
+        #[unsafe(method(usesDefaultHyphenation))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesDefaultHyphenation(&self) -> bool;
 
         /// Setter for [`usesDefaultHyphenation`][Self::usesDefaultHyphenation].
-        #[method(setUsesDefaultHyphenation:)]
+        #[unsafe(method(setUsesDefaultHyphenation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesDefaultHyphenation(&self, uses_default_hyphenation: bool);
 
-        #[method(tabStops)]
+        #[unsafe(method(tabStops))]
         #[unsafe(method_family = none)]
         pub unsafe fn tabStops(&self) -> Retained<NSArray<NSTextTab>>;
 
         /// Setter for [`tabStops`][Self::tabStops].
-        #[method(setTabStops:)]
+        #[unsafe(method(setTabStops:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTabStops(&self, tab_stops: Option<&NSArray<NSTextTab>>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(defaultTabInterval)]
+        #[unsafe(method(defaultTabInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultTabInterval(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`defaultTabInterval`][Self::defaultTabInterval].
-        #[method(setDefaultTabInterval:)]
+        #[unsafe(method(setDefaultTabInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultTabInterval(&self, default_tab_interval: CGFloat);
 
-        #[method(allowsDefaultTighteningForTruncation)]
+        #[unsafe(method(allowsDefaultTighteningForTruncation))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsDefaultTighteningForTruncation(&self) -> bool;
 
         /// Setter for [`allowsDefaultTighteningForTruncation`][Self::allowsDefaultTighteningForTruncation].
-        #[method(setAllowsDefaultTighteningForTruncation:)]
+        #[unsafe(method(setAllowsDefaultTighteningForTruncation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsDefaultTighteningForTruncation(
             &self,
             allows_default_tightening_for_truncation: bool,
         );
 
-        #[method(lineBreakStrategy)]
+        #[unsafe(method(lineBreakStrategy))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineBreakStrategy(&self) -> NSLineBreakStrategy;
 
         /// Setter for [`lineBreakStrategy`][Self::lineBreakStrategy].
-        #[method(setLineBreakStrategy:)]
+        #[unsafe(method(setLineBreakStrategy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineBreakStrategy(&self, line_break_strategy: NSLineBreakStrategy);
 
         #[cfg(feature = "NSTextList")]
-        #[method(textLists)]
+        #[unsafe(method(textLists))]
         #[unsafe(method_family = none)]
         pub unsafe fn textLists(&self) -> Retained<NSArray<NSTextList>>;
 
         #[cfg(feature = "NSTextList")]
         /// Setter for [`textLists`][Self::textLists].
-        #[method(setTextLists:)]
+        #[unsafe(method(setTextLists:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextLists(&self, text_lists: &NSArray<NSTextList>);
 
-        #[method(addTabStop:)]
+        #[unsafe(method(addTabStop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTabStop(&self, an_object: &NSTextTab);
 
-        #[method(removeTabStop:)]
+        #[unsafe(method(removeTabStop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTabStop(&self, an_object: &NSTextTab);
 
-        #[method(setParagraphStyle:)]
+        #[unsafe(method(setParagraphStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParagraphStyle(&self, obj: &NSParagraphStyle);
     }
@@ -493,11 +493,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMutableParagraphStyle {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -506,7 +506,7 @@ extern_methods!(
 extern_methods!(
     unsafe impl NSTextTab {
         #[cfg(all(feature = "NSText", feature = "objc2-core-foundation"))]
-        #[method(initWithTextAlignment:location:options:)]
+        #[unsafe(method(initWithTextAlignment:location:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTextAlignment_location_options(
             this: Allocated<Self>,
@@ -516,7 +516,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSText")]
-        #[method(alignment)]
+        #[unsafe(method(alignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
     }
@@ -525,7 +525,7 @@ extern_methods!(
 extern_methods!(
     unsafe impl NSParagraphStyle {
         #[cfg(feature = "NSText")]
-        #[method(alignment)]
+        #[unsafe(method(alignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
     }
@@ -534,13 +534,13 @@ extern_methods!(
 extern_methods!(
     unsafe impl NSMutableParagraphStyle {
         #[cfg(feature = "NSText")]
-        #[method(alignment)]
+        #[unsafe(method(alignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
 
         #[cfg(feature = "NSText")]
         /// Setter for [`alignment`][Self::alignment].
-        #[method(setAlignment:)]
+        #[unsafe(method(setAlignment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
     }

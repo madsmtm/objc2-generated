@@ -34,13 +34,13 @@ unsafe impl NSSecureCoding for HKQuantity {}
 
 extern_methods!(
     unsafe impl HKQuantity {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKUnit")]
         /// Returns a new object representing a quantity measurement with the given unit.
-        #[method(quantityWithUnit:doubleValue:)]
+        #[unsafe(method(quantityWithUnit:doubleValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn quantityWithUnit_doubleValue(
             unit: &HKUnit,
@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "HKUnit")]
         /// Returns yes if the receiver's value can be converted to a value of the given unit.
-        #[method(isCompatibleWithUnit:)]
+        #[unsafe(method(isCompatibleWithUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCompatibleWithUnit(&self, unit: &HKUnit) -> bool;
 
@@ -57,7 +57,7 @@ extern_methods!(
         /// Returns the quantity value converted to the given unit.
         ///
         /// Throws an exception if the receiver's value cannot be converted to one of the requested unit.
-        #[method(doubleValueForUnit:)]
+        #[unsafe(method(doubleValueForUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn doubleValueForUnit(&self, unit: &HKUnit) -> c_double;
 
@@ -65,7 +65,7 @@ extern_methods!(
         /// less than a given quantity.
         ///
         /// Throws an exception if the unit of the given quantity is not compatible with the receiver's unit.
-        #[method(compare:)]
+        #[unsafe(method(compare:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compare(&self, quantity: &HKQuantity) -> NSComparisonResult;
     }
@@ -74,7 +74,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKQuantity {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

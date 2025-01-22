@@ -28,24 +28,24 @@ unsafe impl NSSecureCoding for SFSpeechRecognitionMetadata {}
 
 extern_methods!(
     unsafe impl SFSpeechRecognitionMetadata {
-        #[method(speakingRate)]
+        #[unsafe(method(speakingRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn speakingRate(&self) -> c_double;
 
-        #[method(averagePauseDuration)]
+        #[unsafe(method(averagePauseDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn averagePauseDuration(&self) -> NSTimeInterval;
 
-        #[method(speechStartTimestamp)]
+        #[unsafe(method(speechStartTimestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn speechStartTimestamp(&self) -> NSTimeInterval;
 
-        #[method(speechDuration)]
+        #[unsafe(method(speechDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn speechDuration(&self) -> NSTimeInterval;
 
         #[cfg(feature = "SFVoiceAnalytics")]
-        #[method(voiceAnalytics)]
+        #[unsafe(method(voiceAnalytics))]
         #[unsafe(method_family = none)]
         pub unsafe fn voiceAnalytics(&self) -> Option<Retained<SFVoiceAnalytics>>;
     }
@@ -54,11 +54,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechRecognitionMetadata {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

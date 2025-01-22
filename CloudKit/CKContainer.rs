@@ -41,11 +41,11 @@ unsafe impl NSObjectProtocol for CKContainer {}
 
 extern_methods!(
     unsafe impl CKContainer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -59,7 +59,7 @@ extern_methods!(
         /// On all OSes, if an
         /// `com.apple.developer.associated-application-identifier`entitlement is present, its value will be preferred over the
         /// `application-identifier`variants.
-        #[method(defaultContainer)]
+        #[unsafe(method(defaultContainer))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultContainer() -> Retained<CKContainer>;
 
@@ -69,18 +69,18 @@ extern_methods!(
         /// If the application is in production mode (aka,
         /// `com.apple.developer.icloud-container-environment`is set to Production in your entitlements plist, and you have no override in
         /// `com.apple.developer.icloud-container-development-container-identifiers),`then the production environment is used.
-        #[method(containerWithIdentifier:)]
+        #[unsafe(method(containerWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containerWithIdentifier(
             container_identifier: &NSString,
         ) -> Retained<CKContainer>;
 
-        #[method(containerIdentifier)]
+        #[unsafe(method(containerIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn containerIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CKOperation")]
-        #[method(addOperation:)]
+        #[unsafe(method(addOperation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addOperation(&self, operation: &CKOperation);
     }
@@ -104,17 +104,17 @@ extern_methods!(
     /// - Are counted towards the originating owner's iCloud account storage quota.
     unsafe impl CKContainer {
         #[cfg(feature = "CKDatabase")]
-        #[method(privateCloudDatabase)]
+        #[unsafe(method(privateCloudDatabase))]
         #[unsafe(method_family = none)]
         pub unsafe fn privateCloudDatabase(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKDatabase")]
-        #[method(publicCloudDatabase)]
+        #[unsafe(method(publicCloudDatabase))]
         #[unsafe(method_family = none)]
         pub unsafe fn publicCloudDatabase(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKDatabase")]
-        #[method(sharedCloudDatabase)]
+        #[unsafe(method(sharedCloudDatabase))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedCloudDatabase(&self) -> Retained<CKDatabase>;
 
@@ -123,7 +123,7 @@ extern_methods!(
         ///
         ///
         /// Returns: a database that's pointer-equal to one of the above properties
-        #[method(databaseWithDatabaseScope:)]
+        #[unsafe(method(databaseWithDatabaseScope:))]
         #[unsafe(method_family = none)]
         pub unsafe fn databaseWithDatabaseScope(
             &self,
@@ -175,7 +175,7 @@ extern_methods!(
     /// AccountStatus
     unsafe impl CKContainer {
         #[cfg(feature = "block2")]
-        #[method(accountStatusWithCompletionHandler:)]
+        #[unsafe(method(accountStatusWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn accountStatusWithCompletionHandler(
             &self,
@@ -245,7 +245,7 @@ extern_methods!(
     unsafe impl CKContainer {
         #[cfg(feature = "block2")]
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        #[method(statusForApplicationPermission:completionHandler:)]
+        #[unsafe(method(statusForApplicationPermission:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn statusForApplicationPermission_completionHandler(
             &self,
@@ -255,7 +255,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        #[method(requestApplicationPermission:completionHandler:)]
+        #[unsafe(method(requestApplicationPermission:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestApplicationPermission_completionHandler(
             &self,
@@ -274,7 +274,7 @@ extern_methods!(
         ///
         /// This work is treated as having
         /// `NSQualityOfServiceUserInitiated`quality of service.
-        #[method(fetchUserRecordIDWithCompletionHandler:)]
+        #[unsafe(method(fetchUserRecordIDWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchUserRecordIDWithCompletionHandler(
             &self,
@@ -288,7 +288,7 @@ extern_methods!(
         /// `CKDiscoverAllUserIdentitiesOperation`is the more configurable,
         /// `CKOperation`-based alternative to this methods
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        #[method(discoverAllIdentitiesWithCompletionHandler:)]
+        #[unsafe(method(discoverAllIdentitiesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoverAllIdentitiesWithCompletionHandler(
             &self,
@@ -303,7 +303,7 @@ extern_methods!(
         /// `userInfo.``CKDiscoverUserIdentitiesOperation`is the more configurable,
         /// `CKOperation`-based alternative to this method
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        #[method(discoverUserIdentityWithEmailAddress:completionHandler:)]
+        #[unsafe(method(discoverUserIdentityWithEmailAddress:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoverUserIdentityWithEmailAddress_completionHandler(
             &self,
@@ -319,7 +319,7 @@ extern_methods!(
         /// `userInfo.``CKDiscoverUserIdentitiesOperation`is the more configurable,
         /// `CKOperation`-based alternative to this method
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        #[method(discoverUserIdentityWithPhoneNumber:completionHandler:)]
+        #[unsafe(method(discoverUserIdentityWithPhoneNumber:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoverUserIdentityWithPhoneNumber_completionHandler(
             &self,
@@ -335,7 +335,7 @@ extern_methods!(
         /// `userInfo.``CKDiscoverUserIdentitiesOperation`is the more configurable,
         /// `CKOperation`-based alternative to this method
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        #[method(discoverUserIdentityWithUserRecordID:completionHandler:)]
+        #[unsafe(method(discoverUserIdentityWithUserRecordID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoverUserIdentityWithUserRecordID_completionHandler(
             &self,
@@ -354,7 +354,7 @@ extern_methods!(
         ///
         /// `CKFetchShareParticipantsOperation`is the more configurable,
         /// `CKOperation`-based alternative to these methods.
-        #[method(fetchShareParticipantWithEmailAddress:completionHandler:)]
+        #[unsafe(method(fetchShareParticipantWithEmailAddress:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchShareParticipantWithEmailAddress_completionHandler(
             &self,
@@ -363,7 +363,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKShareParticipant", feature = "block2"))]
-        #[method(fetchShareParticipantWithPhoneNumber:completionHandler:)]
+        #[unsafe(method(fetchShareParticipantWithPhoneNumber:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchShareParticipantWithPhoneNumber_completionHandler(
             &self,
@@ -376,7 +376,7 @@ extern_methods!(
             feature = "CKShareParticipant",
             feature = "block2"
         ))]
-        #[method(fetchShareParticipantWithUserRecordID:completionHandler:)]
+        #[unsafe(method(fetchShareParticipantWithUserRecordID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchShareParticipantWithUserRecordID_completionHandler(
             &self,
@@ -385,7 +385,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKShareMetadata", feature = "block2"))]
-        #[method(fetchShareMetadataWithURL:completionHandler:)]
+        #[unsafe(method(fetchShareMetadataWithURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchShareMetadataWithURL_completionHandler(
             &self,
@@ -399,7 +399,7 @@ extern_methods!(
             feature = "CKShareMetadata",
             feature = "block2"
         ))]
-        #[method(acceptShareMetadata:completionHandler:)]
+        #[unsafe(method(acceptShareMetadata:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn acceptShareMetadata_completionHandler(
             &self,
@@ -417,7 +417,7 @@ extern_methods!(
         /// Remember to set the callback blocks before starting the operation.
         /// If an operation has already completed against the server, and is subsequently resumed, that operation will replay all of its callbacks from the start of the operation, but the request will not be re-sent to the server.
         /// If a long lived operation is cancelled or finishes completely it is no longer returned by these calls.
-        #[method(fetchAllLongLivedOperationIDsWithCompletionHandler:)]
+        #[unsafe(method(fetchAllLongLivedOperationIDsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllLongLivedOperationIDsWithCompletionHandler(
             &self,
@@ -425,7 +425,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKOperation", feature = "block2"))]
-        #[method(fetchLongLivedOperationWithID:completionHandler:)]
+        #[unsafe(method(fetchLongLivedOperationWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchLongLivedOperationWithID_completionHandler(
             &self,

@@ -63,12 +63,12 @@ unsafe impl NSObjectProtocol for NSNotificationQueue {}
 
 extern_methods!(
     unsafe impl NSNotificationQueue {
-        #[method(defaultQueue)]
+        #[unsafe(method(defaultQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultQueue() -> Retained<NSNotificationQueue>;
 
         #[cfg(feature = "NSNotification")]
-        #[method(initWithNotificationCenter:)]
+        #[unsafe(method(initWithNotificationCenter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNotificationCenter(
             this: Allocated<Self>,
@@ -76,7 +76,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSNotification")]
-        #[method(enqueueNotification:postingStyle:)]
+        #[unsafe(method(enqueueNotification:postingStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueNotification_postingStyle(
             &self,
@@ -90,7 +90,7 @@ extern_methods!(
             feature = "NSObjCRuntime",
             feature = "NSString"
         ))]
-        #[method(enqueueNotification:postingStyle:coalesceMask:forModes:)]
+        #[unsafe(method(enqueueNotification:postingStyle:coalesceMask:forModes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueNotification_postingStyle_coalesceMask_forModes(
             &self,
@@ -101,7 +101,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSNotification")]
-        #[method(dequeueNotificationsMatching:coalesceMask:)]
+        #[unsafe(method(dequeueNotificationsMatching:coalesceMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dequeueNotificationsMatching_coalesceMask(
             &self,
@@ -114,11 +114,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNotificationQueue {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

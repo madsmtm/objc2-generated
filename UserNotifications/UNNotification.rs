@@ -27,16 +27,16 @@ unsafe impl NSSecureCoding for UNNotification {}
 
 extern_methods!(
     unsafe impl UNNotification {
-        #[method(date)]
+        #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "UNNotificationRequest")]
-        #[method(request)]
+        #[unsafe(method(request))]
         #[unsafe(method_family = none)]
         pub unsafe fn request(&self) -> Retained<UNNotificationRequest>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -45,7 +45,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotification {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

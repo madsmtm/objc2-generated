@@ -64,7 +64,7 @@ extern_protocol!(
             feature = "WebScriptObject"
         ))]
         #[deprecated]
-        #[method(acceptNode:)]
+        #[unsafe(method(acceptNode:))]
         #[unsafe(method_family = none)]
         unsafe fn acceptNode(&self, n: Option<&DOMNode>) -> c_short;
     }

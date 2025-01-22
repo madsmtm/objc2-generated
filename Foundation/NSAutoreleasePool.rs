@@ -17,15 +17,15 @@ unsafe impl NSObjectProtocol for NSAutoreleasePool {}
 
 extern_methods!(
     unsafe impl NSAutoreleasePool {
-        #[method(addObject:)]
+        #[unsafe(method(addObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObject_class(an_object: &AnyObject);
 
-        #[method(addObject:)]
+        #[unsafe(method(addObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObject(&self, an_object: &AnyObject);
 
-        #[method(drain)]
+        #[unsafe(method(drain))]
         #[unsafe(method_family = none)]
         pub unsafe fn drain(&self);
     }
@@ -34,11 +34,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAutoreleasePool {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

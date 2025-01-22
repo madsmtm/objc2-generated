@@ -32,7 +32,7 @@ extern_methods!(
         /// This property does not indicate whether biometry is available or not. It always reads the type of biometry
         /// supported by device hardware. You should check
         /// `isUsable`property to see if it is available for use.
-        #[method(biometryType)]
+        #[unsafe(method(biometryType))]
         #[unsafe(method_family = none)]
         pub unsafe fn biometryType(&self) -> LABiometryType;
 
@@ -40,7 +40,7 @@ extern_methods!(
         ///
         /// Even if biometry is enrolled, it does not necessarily mean that it can be used. You should check
         /// `isUsable`property to see if it is available for use.
-        #[method(isEnrolled)]
+        #[unsafe(method(isEnrolled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnrolled(&self) -> bool;
 
@@ -49,7 +49,7 @@ extern_methods!(
         /// The system might lock the user out of biometry for various reasons. For example, with Face ID, the user is
         /// locked out after 5 failed match attempts in row. To recover from bio lockout, users need to enter their passcode
         /// (e.g. during device ulock).
-        #[method(isLockedOut)]
+        #[unsafe(method(isLockedOut))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLockedOut(&self) -> bool;
 
@@ -59,7 +59,7 @@ extern_methods!(
         /// It does not directly map to the enrolled templates, e.g. if a finger is added to Touch ID enrollement and then
         /// removed, the final state would be different.
         /// It also returns different values to different apps to prevent tracking of user identity.
-        #[method(stateHash)]
+        #[unsafe(method(stateHash))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateHash(&self) -> Retained<NSData>;
 
@@ -68,7 +68,7 @@ extern_methods!(
         /// Currently, the only example of this is a Clamshell Mode on macOS. The user will be not able to use Touch ID
         /// if the MacBook lid is closed while connected to external monitor and keyboard, unless the external keyboard
         /// has Touch ID.
-        #[method(builtInSensorInaccessible)]
+        #[unsafe(method(builtInSensorInaccessible))]
         #[unsafe(method_family = none)]
         pub unsafe fn builtInSensorInaccessible(&self) -> bool;
     }
@@ -79,12 +79,12 @@ extern_methods!(
     #[cfg(feature = "LAEnvironmentMechanism")]
     unsafe impl LAEnvironmentMechanismBiometry {
         /// Clients should only consume environment mechanisms..
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The Clients should only consume environment mechanisms..
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

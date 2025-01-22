@@ -73,16 +73,16 @@ unsafe impl NSUserInterfaceItemIdentification for NSTextFieldCell {}
 extern_methods!(
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSTextFieldCell {
-        #[method(initTextCell:)]
+        #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method(initImageCell:)]
+        #[unsafe(method(initImageCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
@@ -90,81 +90,81 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSColor")]
-        #[method(backgroundColor)]
+        #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
-        #[method(setBackgroundColor:)]
+        #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
-        #[method(drawsBackground)]
+        #[unsafe(method(drawsBackground))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
         /// Setter for [`drawsBackground`][Self::drawsBackground].
-        #[method(setDrawsBackground:)]
+        #[unsafe(method(setDrawsBackground:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "NSColor")]
-        #[method(textColor)]
+        #[unsafe(method(textColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn textColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`textColor`][Self::textColor].
-        #[method(setTextColor:)]
+        #[unsafe(method(setTextColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextColor(&self, text_color: Option<&NSColor>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-        #[method(setUpFieldEditorAttributes:)]
+        #[unsafe(method(setUpFieldEditorAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpFieldEditorAttributes(&self, text_obj: &NSText) -> Retained<NSText>;
 
-        #[method(bezelStyle)]
+        #[unsafe(method(bezelStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn bezelStyle(&self) -> NSTextFieldBezelStyle;
 
         /// Setter for [`bezelStyle`][Self::bezelStyle].
-        #[method(setBezelStyle:)]
+        #[unsafe(method(setBezelStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBezelStyle(&self, bezel_style: NSTextFieldBezelStyle);
 
-        #[method(placeholderString)]
+        #[unsafe(method(placeholderString))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderString(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`placeholderString`][Self::placeholderString].
-        #[method(setPlaceholderString:)]
+        #[unsafe(method(setPlaceholderString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
-        #[method(placeholderAttributedString)]
+        #[unsafe(method(placeholderAttributedString))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderAttributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`placeholderAttributedString`][Self::placeholderAttributedString].
-        #[method(setPlaceholderAttributedString:)]
+        #[unsafe(method(setPlaceholderAttributedString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
             placeholder_attributed_string: Option<&NSAttributedString>,
         );
 
-        #[method(setWantsNotificationForMarkedText:)]
+        #[unsafe(method(setWantsNotificationForMarkedText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWantsNotificationForMarkedText(&self, flag: bool);
 
-        #[method(allowedInputSourceLocales)]
+        #[unsafe(method(allowedInputSourceLocales))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedInputSourceLocales(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`allowedInputSourceLocales`][Self::allowedInputSourceLocales].
-        #[method(setAllowedInputSourceLocales:)]
+        #[unsafe(method(setAllowedInputSourceLocales:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedInputSourceLocales(
             &self,
@@ -177,7 +177,7 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSTextFieldCell {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -187,7 +187,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSTextFieldCell {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

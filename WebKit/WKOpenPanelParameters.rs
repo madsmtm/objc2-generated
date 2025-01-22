@@ -20,12 +20,12 @@ unsafe impl NSObjectProtocol for WKOpenPanelParameters {}
 extern_methods!(
     unsafe impl WKOpenPanelParameters {
         /// Whether the file upload control supports multiple files.
-        #[method(allowsMultipleSelection)]
+        #[unsafe(method(allowsMultipleSelection))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsMultipleSelection(&self) -> bool;
 
         /// Whether the file upload control supports selecting directories.
-        #[method(allowsDirectories)]
+        #[unsafe(method(allowsDirectories))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsDirectories(&self) -> bool;
     }
@@ -34,11 +34,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKOpenPanelParameters {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

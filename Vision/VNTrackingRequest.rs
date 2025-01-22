@@ -57,42 +57,42 @@ extern_methods!(
     unsafe impl VNTrackingRequest {
         #[cfg(feature = "VNObservation")]
         /// The observation object that defines a region to track. Providing an observation not returned from a tracker (e.g. user-defined, or from a detector) begins a new tracker for the sequence. Providing an observation that was returned from a tracker continues the use of that tracker, to track the region to the next frame. In general, unless documented in the request's documentation, the rectangle must be defined in normalized coordinates (both dimensions normalized to [0,1] with the origin at the lower-left corner).
-        #[method(inputObservation)]
+        #[unsafe(method(inputObservation))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputObservation(&self) -> Retained<VNDetectedObjectObservation>;
 
         #[cfg(feature = "VNObservation")]
         /// Setter for [`inputObservation`][Self::inputObservation].
-        #[method(setInputObservation:)]
+        #[unsafe(method(setInputObservation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputObservation(&self, input_observation: &VNDetectedObjectObservation);
 
         /// Tracking level allows tuning tracking algorithm to prefer speed (VNRequestTrackingLevelFast) vs. tracking object location accuracy (VNRequestTrackingLevelAccurate). This property has no effect on general purpose object tracker (VNTrackObjectRequest) revision 2 (VNTrackObjectRequestRevision2)
-        #[method(trackingLevel)]
+        #[unsafe(method(trackingLevel))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackingLevel(&self) -> VNRequestTrackingLevel;
 
         /// Setter for [`trackingLevel`][Self::trackingLevel].
-        #[method(setTrackingLevel:)]
+        #[unsafe(method(setTrackingLevel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrackingLevel(&self, tracking_level: VNRequestTrackingLevel);
 
         /// This property allows marking the last frame for tracking using current tracker. If set to YES, the results for this frame will be processed and returned and the current tracker will be released to the pool of available trackers
-        #[method(isLastFrame)]
+        #[unsafe(method(isLastFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLastFrame(&self) -> bool;
 
         /// Setter for [`isLastFrame`][Self::isLastFrame].
-        #[method(setLastFrame:)]
+        #[unsafe(method(setLastFrame:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLastFrame(&self, last_frame: bool);
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method(initWithCompletionHandler:)]
+        #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -105,7 +105,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNTrackingRequest {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

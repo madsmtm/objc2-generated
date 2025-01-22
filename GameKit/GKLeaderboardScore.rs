@@ -19,40 +19,40 @@ unsafe impl NSObjectProtocol for GKLeaderboardScore {}
 extern_methods!(
     unsafe impl GKLeaderboardScore {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-        #[method(player)]
+        #[unsafe(method(player))]
         #[unsafe(method_family = none)]
         pub unsafe fn player(&self) -> Retained<GKPlayer>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// Setter for [`player`][Self::player].
-        #[method(setPlayer:)]
+        #[unsafe(method(setPlayer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlayer(&self, player: &GKPlayer);
 
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> NSInteger;
 
         /// Setter for [`value`][Self::value].
-        #[method(setValue:)]
+        #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: NSInteger);
 
-        #[method(context)]
+        #[unsafe(method(context))]
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> NSUInteger;
 
         /// Setter for [`context`][Self::context].
-        #[method(setContext:)]
+        #[unsafe(method(setContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContext(&self, context: NSUInteger);
 
-        #[method(leaderboardID)]
+        #[unsafe(method(leaderboardID))]
         #[unsafe(method_family = none)]
         pub unsafe fn leaderboardID(&self) -> Retained<NSString>;
 
         /// Setter for [`leaderboardID`][Self::leaderboardID].
-        #[method(setLeaderboardID:)]
+        #[unsafe(method(setLeaderboardID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeaderboardID(&self, leaderboard_id: &NSString);
     }
@@ -61,11 +61,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKLeaderboardScore {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

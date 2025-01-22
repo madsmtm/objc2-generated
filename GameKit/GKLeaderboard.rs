@@ -89,44 +89,44 @@ unsafe impl NSObjectProtocol for GKLeaderboard {}
 extern_methods!(
     unsafe impl GKLeaderboard {
         /// Localized title
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// set when leaderboards have been designated a game group; set when loadLeaderboardsWithCompletionHandler has been called for leaderboards that support game groups
-        #[method(groupIdentifier)]
+        #[unsafe(method(groupIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn groupIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Leaderboard ID defined in App Store Connect that this instance is associated with
-        #[method(baseLeaderboardID)]
+        #[unsafe(method(baseLeaderboardID))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseLeaderboardID(&self) -> Retained<NSString>;
 
         /// Type of leaderboard
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> GKLeaderboardType;
 
         /// Date and time this instance started accepting score submissions (only applicable to recurring leaderboards)
-        #[method(startDate)]
+        #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
         /// Date and time the next instance will start accepting score submissions (only applicable to recurring leaderboards)
-        #[method(nextStartDate)]
+        #[unsafe(method(nextStartDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextStartDate(&self) -> Option<Retained<NSDate>>;
 
         /// Duration from startDate during which this leaderboard instance accepts score submissions (only applicable to recurring leaderboards)
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         #[cfg(feature = "block2")]
         /// Loads classic and recurring leaderboards associated with the supplied App Store Connect leaderboard IDs.
         /// If leaderboardIDs is nil, this loads all classic and recurring leaderboards for this game.
-        #[method(loadLeaderboardsWithIDs:completionHandler:)]
+        #[unsafe(method(loadLeaderboardsWithIDs:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardsWithIDs_completionHandler(
             leaderboard_i_ds: Option<&NSArray<NSString>>,
@@ -135,7 +135,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Loads the occurrence preceding this occurrence for a recurring leaderboard in which the local player submitted a score. If no previous occurrence is found that the player submitted a score to, then the most recent previous occurrence is returned.
-        #[method(loadPreviousOccurrenceWithCompletionHandler:)]
+        #[unsafe(method(loadPreviousOccurrenceWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadPreviousOccurrenceWithCompletionHandler(
             &self,
@@ -148,7 +148,7 @@ extern_methods!(
         /// context - developer supplied metadata associated with the player's score
         /// player - the player for whom this score is being submitted
         /// leaderboardIDs - one or more leaderboard IDs defined in App Store Connect
-        #[method(submitScore:context:player:leaderboardIDs:completionHandler:)]
+        #[unsafe(method(submitScore:context:player:leaderboardIDs:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn submitScore_context_player_leaderboardIDs_completionHandler(
             score: NSInteger,
@@ -163,7 +163,7 @@ extern_methods!(
         /// score - earned by the player
         /// context - developer supplied metadata associated with the player's score
         /// player - the player for whom this score is being submitted
-        #[method(submitScore:context:player:completionHandler:)]
+        #[unsafe(method(submitScore:context:player:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn submitScore_context_player_completionHandler(
             &self,
@@ -182,7 +182,7 @@ extern_methods!(
         /// localPlayerEntry - entry for the local player
         /// entries - requested entries matching supplied parameters
         /// totalPlayerCount - total player count matching specified scope
-        #[method(loadEntriesForPlayerScope:timeScope:range:completionHandler:)]
+        #[unsafe(method(loadEntriesForPlayerScope:timeScope:range:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadEntriesForPlayerScope_timeScope_range_completionHandler(
             &self,
@@ -211,7 +211,7 @@ extern_methods!(
         /// Upon completion, will return:
         /// localPlayerEntry - entry for the local player
         /// entries - requested entries matching supplied parameters
-        #[method(loadEntriesForPlayers:timeScope:completionHandler:)]
+        #[unsafe(method(loadEntriesForPlayers:timeScope:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadEntriesForPlayers_timeScope_completionHandler(
             &self,
@@ -228,18 +228,18 @@ extern_methods!(
     /// Deprecated
     unsafe impl GKLeaderboard {
         #[deprecated]
-        #[method(category)]
+        #[unsafe(method(category))]
         #[unsafe(method_family = none)]
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`category`][Self::category].
         #[deprecated]
-        #[method(setCategory:)]
+        #[unsafe(method(setCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
 
         #[deprecated]
-        #[method(initWithPlayerIDs:)]
+        #[unsafe(method(initWithPlayerIDs:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlayerIDs(
             this: Allocated<Self>,
@@ -248,7 +248,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[deprecated]
-        #[method(loadCategoriesWithCompletionHandler:)]
+        #[unsafe(method(loadCategoriesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadCategoriesWithCompletionHandler(
             completion_handler: Option<
@@ -260,7 +260,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[deprecated]
-        #[method(setDefaultLeaderboard:withCompletionHandler:)]
+        #[unsafe(method(setDefaultLeaderboard:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultLeaderboard_withCompletionHandler(
             leaderboard_identifier: Option<&NSString>,
@@ -268,75 +268,75 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method(timeScope)]
+        #[unsafe(method(timeScope))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeScope(&self) -> GKLeaderboardTimeScope;
 
         /// Setter for [`timeScope`][Self::timeScope].
         #[deprecated]
-        #[method(setTimeScope:)]
+        #[unsafe(method(setTimeScope:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeScope(&self, time_scope: GKLeaderboardTimeScope);
 
         /// Filter on friends. Does not apply to leaderboard initialized with players.
         #[deprecated]
-        #[method(playerScope)]
+        #[unsafe(method(playerScope))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerScope(&self) -> GKLeaderboardPlayerScope;
 
         /// Setter for [`playerScope`][Self::playerScope].
         #[deprecated]
-        #[method(setPlayerScope:)]
+        #[unsafe(method(setPlayerScope:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlayerScope(&self, player_scope: GKLeaderboardPlayerScope);
 
         /// leaderboardID. If nil, fetch the aggregate leaderboard.
         #[deprecated]
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identifier`][Self::identifier].
         #[deprecated]
-        #[method(setIdentifier:)]
+        #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
 
         /// Leaderboards start at index 1 and the length should be less than 100. Does not apply to leaderboards initialized with players.  Exception will be thrown if developer tries to set an invalid range.
         #[deprecated]
-        #[method(range)]
+        #[unsafe(method(range))]
         #[unsafe(method_family = none)]
         pub unsafe fn range(&self) -> NSRange;
 
         /// Setter for [`range`][Self::range].
         #[deprecated]
-        #[method(setRange:)]
+        #[unsafe(method(setRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRange(&self, range: NSRange);
 
         #[cfg(feature = "GKScore")]
         /// Scores are not valid until loadScores: has completed.
         #[deprecated]
-        #[method(scores)]
+        #[unsafe(method(scores))]
         #[unsafe(method_family = none)]
         pub unsafe fn scores(&self) -> Option<Retained<NSArray<GKScore>>>;
 
         /// The maxRange which represents the size of the leaderboard is not valid until loadScores: has completed.
         #[deprecated]
-        #[method(maxRange)]
+        #[unsafe(method(maxRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxRange(&self) -> NSUInteger;
 
         #[cfg(feature = "GKScore")]
         /// The local player's score
         #[deprecated]
-        #[method(localPlayerScore)]
+        #[unsafe(method(localPlayerScore))]
         #[unsafe(method_family = none)]
         pub unsafe fn localPlayerScore(&self) -> Option<Retained<GKScore>>;
 
         /// This property is true if the leaderboard is currently loading
         #[deprecated]
-        #[method(isLoading)]
+        #[unsafe(method(isLoading))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLoading(&self) -> bool;
 
@@ -344,7 +344,7 @@ extern_methods!(
         /// Specify an array of GKPlayers. For example, the players who are in a match together
         /// Defaults to AllTime score, if you want to change the timeScope, set the property before loading the scores. Range and playerScope are not applicable. players may not be nil.
         #[deprecated]
-        #[method(initWithPlayers:)]
+        #[unsafe(method(initWithPlayers:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlayers(
             this: Allocated<Self>,
@@ -357,7 +357,7 @@ extern_methods!(
         /// 1. Communications problem
         /// 2. Unauthenticated player
         #[deprecated]
-        #[method(loadScoresWithCompletionHandler:)]
+        #[unsafe(method(loadScoresWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadScoresWithCompletionHandler(
             &self,
@@ -371,7 +371,7 @@ extern_methods!(
         /// 2. Unauthenticated player
         /// 3. Leaderboard not present
         #[deprecated]
-        #[method(loadLeaderboardsWithCompletionHandler:)]
+        #[unsafe(method(loadLeaderboardsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardsWithCompletionHandler(
             completion_handler: Option<
@@ -386,7 +386,7 @@ extern_methods!(
     unsafe impl GKLeaderboard {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
-        #[method(loadImageWithCompletionHandler:)]
+        #[unsafe(method(loadImageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,

@@ -31,25 +31,25 @@ extern_methods!(
     unsafe impl DOMRect {
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method(top)]
+        #[unsafe(method(top))]
         #[unsafe(method_family = none)]
         pub unsafe fn top(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method(right)]
+        #[unsafe(method(right))]
         #[unsafe(method_family = none)]
         pub unsafe fn right(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method(bottom)]
+        #[unsafe(method(bottom))]
         #[unsafe(method_family = none)]
         pub unsafe fn bottom(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method(left)]
+        #[unsafe(method(left))]
         #[unsafe(method_family = none)]
         pub unsafe fn left(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
     }
@@ -60,7 +60,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRect {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -70,7 +70,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRect {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

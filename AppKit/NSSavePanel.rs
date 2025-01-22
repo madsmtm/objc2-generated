@@ -84,13 +84,13 @@ extern_methods!(
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSSavePanel {
         /// Creates a new instance of the NSSavePanel. This class is not a singleton.
-        #[method(savePanel)]
+        #[unsafe(method(savePanel))]
         #[unsafe(method_family = none)]
         pub unsafe fn savePanel(mtm: MainThreadMarker) -> Retained<NSSavePanel>;
 
         /// `NSSavePanel`: Returns the URL to save the file at. A file may already exist at `url` if the user choose to overwrite it.
         /// `NSOpenPanel`: Returns the single filename selected by the user. Note: if -allowsMultipleSelection is set, you should use the -URLs on NSOpenPanel instead.
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
@@ -100,24 +100,24 @@ extern_methods!(
         /// The panel's current state such as the root directory and the current directory are saved and restored relative to the identifier.
         /// - Note: When the identifier is changed, the properties that depend on the identifier are updated from user defaults. Properties that have a null value in user defaults are not changed (and keep their existing value).
         /// - Note: Can only be set during the configuration phase.
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSUserInterfaceItemIdentifier>>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         /// Setter for [`identifier`][Self::identifier].
-        #[method(setIdentifier:)]
+        #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSUserInterfaceItemIdentifier>);
 
         /// `NSSavePanel`/`NSOpenPanel`: Sets and returns the directory that is displayed. Set to `nil` to display the default directory. This method will not block to resolve the URL, and the directory will asyncronously be set, if required.
         /// - Note: Can only be set during the configuration phase.
-        #[method(directoryURL)]
+        #[unsafe(method(directoryURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn directoryURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`directoryURL`][Self::directoryURL].
-        #[method(setDirectoryURL:)]
+        #[unsafe(method(setDirectoryURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirectoryURL(&self, directory_url: Option<&NSURL>);
 
@@ -129,25 +129,25 @@ extern_methods!(
         /// `NSOpenPanel`: This property determines which files should be enabled in the open panel. Using the deprecated methods to show the open panel (the ones that take a "types:" parameter) will overwrite this value, and should not be used. `allowedContentTypes` can be changed while the panel is running (ie: from an accessory view). This is also known as the "enabled file types". Set to `
         /// @
         /// []` to specify that all files should be enabled.
-        #[method(allowedContentTypes)]
+        #[unsafe(method(allowedContentTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedContentTypes(&self) -> Retained<NSArray<UTType>>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[cfg(target_vendor = "apple")]
         /// Setter for [`allowedContentTypes`][Self::allowedContentTypes].
-        #[method(setAllowedContentTypes:)]
+        #[unsafe(method(setAllowedContentTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedContentTypes(&self, allowed_content_types: &NSArray<UTType>);
 
         /// `NSSavePanel`: Returns a BOOL value that indicates whether the panel allows the user to save files with an extension that is not in the list of `allowedFileTypes`.
         /// `NSOpenPanel`: Not used.
-        #[method(allowsOtherFileTypes)]
+        #[unsafe(method(allowsOtherFileTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsOtherFileTypes(&self) -> bool;
 
         /// Setter for [`allowsOtherFileTypes`][Self::allowsOtherFileTypes].
-        #[method(setAllowsOtherFileTypes:)]
+        #[unsafe(method(setAllowsOtherFileTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsOtherFileTypes(&self, allows_other_file_types: bool);
 
@@ -156,31 +156,31 @@ extern_methods!(
         /// `NSSavePanel`:The current type. If set to `nil`, resets to the first allowed content type. Returns `nil` if `allowedContentTypes` is empty.
         /// `NSOpenPanel`: Not used.
         /// - Note: Asserts that `currentContentType` conforms to `UTTypeData` or `UTTypeDirectory`.
-        #[method(currentContentType)]
+        #[unsafe(method(currentContentType))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentContentType(&self) -> Option<Retained<UTType>>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[cfg(target_vendor = "apple")]
         /// Setter for [`currentContentType`][Self::currentContentType].
-        #[method(setCurrentContentType:)]
+        #[unsafe(method(setCurrentContentType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentContentType(&self, current_content_type: Option<&UTType>);
 
         #[cfg(feature = "NSView")]
         /// Sets and returns the accessory view shown in the panel. For applications that link on SnowLeopard and higher, the accessoryView's frame will be observed, and any changes the programmer makes to the frame will automatically be reflected in the panel (including animated changes to the frame height).
-        #[method(accessoryView)]
+        #[unsafe(method(accessoryView))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
         /// Setter for [`accessoryView`][Self::accessoryView].
-        #[method(setAccessoryView:)]
+        #[unsafe(method(setAccessoryView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         /// `NSSavePanel`/`NSOpenPanel`: Sets and returns the delegate.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -188,7 +188,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -198,50 +198,50 @@ extern_methods!(
         /// `NSSavePanel`: Returns `YES` if the panel is expanded. Defaults to `NO`. Persists in the user defaults.
         /// - Note: Can only be set during the configuration phase.
         /// `NSOpenPanel`: Not used.
-        #[method(isExpanded)]
+        #[unsafe(method(isExpanded))]
         #[unsafe(method_family = none)]
         pub unsafe fn isExpanded(&self) -> bool;
 
         /// `NSSavePanel`/`NSOpenPanel`: Set to `YES` to show the "New Folder" button. Default is `YES`.
-        #[method(canCreateDirectories)]
+        #[unsafe(method(canCreateDirectories))]
         #[unsafe(method_family = none)]
         pub unsafe fn canCreateDirectories(&self) -> bool;
 
         /// Setter for [`canCreateDirectories`][Self::canCreateDirectories].
-        #[method(setCanCreateDirectories:)]
+        #[unsafe(method(setCanCreateDirectories:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCanCreateDirectories(&self, can_create_directories: bool);
 
         /// `NSSavePanel`: Set to `YES` to show the "Hide Extension" menu item.
         /// `NSOpenPanel`: Not used.
-        #[method(canSelectHiddenExtension)]
+        #[unsafe(method(canSelectHiddenExtension))]
         #[unsafe(method_family = none)]
         pub unsafe fn canSelectHiddenExtension(&self) -> bool;
 
         /// Setter for [`canSelectHiddenExtension`][Self::canSelectHiddenExtension].
-        #[method(setCanSelectHiddenExtension:)]
+        #[unsafe(method(setCanSelectHiddenExtension:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCanSelectHiddenExtension(&self, can_select_hidden_extension: bool);
 
         /// `NSSavePanel`: Set to `YES` if the filename extension should be hidden. Otherwise, `NO` if the filename extension should be shown. Default is `YES`.
         /// - Note: Can only be set during the configuration phase.
         /// `NSOpenPanel`: Not used.
-        #[method(isExtensionHidden)]
+        #[unsafe(method(isExtensionHidden))]
         #[unsafe(method_family = none)]
         pub unsafe fn isExtensionHidden(&self) -> bool;
 
         /// Setter for [`isExtensionHidden`][Self::isExtensionHidden].
-        #[method(setExtensionHidden:)]
+        #[unsafe(method(setExtensionHidden:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtensionHidden(&self, extension_hidden: bool);
 
         /// `NSSavePanel`/`NSOpenPanel`: If set to `YES`, the user can navigate into file packages as if they were directories. Default is `NO`.
-        #[method(treatsFilePackagesAsDirectories)]
+        #[unsafe(method(treatsFilePackagesAsDirectories))]
         #[unsafe(method_family = none)]
         pub unsafe fn treatsFilePackagesAsDirectories(&self) -> bool;
 
         /// Setter for [`treatsFilePackagesAsDirectories`][Self::treatsFilePackagesAsDirectories].
-        #[method(setTreatsFilePackagesAsDirectories:)]
+        #[unsafe(method(setTreatsFilePackagesAsDirectories:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTreatsFilePackagesAsDirectories(
             &self,
@@ -249,34 +249,34 @@ extern_methods!(
         );
 
         /// `NSSavePanel`/`NSOpenPanel`: Sets the text shown on the Open or Save button. If set to an empty string, it will show a localized "Open" for the NSOpenPanel and "Save" for the NSSavePanel. The default value will be the correct localized prompt for the open or save panel, as appropriate.
-        #[method(prompt)]
+        #[unsafe(method(prompt))]
         #[unsafe(method_family = none)]
         pub unsafe fn prompt(&self) -> Retained<NSString>;
 
         /// Setter for [`prompt`][Self::prompt].
-        #[method(setPrompt:)]
+        #[unsafe(method(setPrompt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrompt(&self, prompt: Option<&NSString>);
 
         /// `NSSavePanel`/`NSOpenPanel`: Sets and returns the title for the panel shown at the top of the window.
         /// - Note: The open and save panel does not currently have a titlebar. So the title is not displayed.
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         /// `NSSavePanel`: Sets and returns the text shown to the left of the "name field". Default value is a localized "Save As:" string.
         /// `NSOpenPanel`: Not used.
-        #[method(nameFieldLabel)]
+        #[unsafe(method(nameFieldLabel))]
         #[unsafe(method_family = none)]
         pub unsafe fn nameFieldLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`nameFieldLabel`][Self::nameFieldLabel].
-        #[method(setNameFieldLabel:)]
+        #[unsafe(method(setNameFieldLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNameFieldLabel(&self, name_field_label: Option<&NSString>);
 
@@ -285,54 +285,54 @@ extern_methods!(
         /// - Note: If `[panel isExtensionHidden]` is set to `YES`, the extension will be hidden.
         /// - Note: Can only be set during the configuration phase.
         /// `NSOpenPanel`: Not used.
-        #[method(nameFieldStringValue)]
+        #[unsafe(method(nameFieldStringValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn nameFieldStringValue(&self) -> Retained<NSString>;
 
         /// Setter for [`nameFieldStringValue`][Self::nameFieldStringValue].
-        #[method(setNameFieldStringValue:)]
+        #[unsafe(method(setNameFieldStringValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNameFieldStringValue(&self, name_field_string_value: &NSString);
 
         /// `NSSavePanel`/`NSOpenPanel`: Sets and returns the message shown under title of the panel.
-        #[method(message)]
+        #[unsafe(method(message))]
         #[unsafe(method_family = none)]
         pub unsafe fn message(&self) -> Retained<NSString>;
 
         /// Setter for [`message`][Self::message].
-        #[method(setMessage:)]
+        #[unsafe(method(setMessage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
 
         /// `NSSavePanel`/`NSOpenPanel`: If `showsHiddenFiles` is set to `YES`, files that are normally hidden from the user are displayed. This method was published in Mac OS 10.6, but has existed since Mac OS 10.4. This property is KVO compliant. The user may invoke the keyboard shortcut (cmd-shift-.) to show or hide hidden files. Any user interface shown in an an accessory view should be updated by using key value observing (KVO) to watch for changes of this property. Alternatively, the user interface can be directly bound to this property. The default value is `NO`.
-        #[method(showsHiddenFiles)]
+        #[unsafe(method(showsHiddenFiles))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsHiddenFiles(&self) -> bool;
 
         /// Setter for [`showsHiddenFiles`][Self::showsHiddenFiles].
-        #[method(setShowsHiddenFiles:)]
+        #[unsafe(method(setShowsHiddenFiles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsHiddenFiles(&self, shows_hidden_files: bool);
 
         /// `NSSavePanel`: Shows or hides the "Tags" field in the receiver. By passing `YES`, you become responsible for setting Tag names on the resulting file after saving is complete. Default is `YES`.
         /// `NSOpenPanel`: Not used.
-        #[method(showsTagField)]
+        #[unsafe(method(showsTagField))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsTagField(&self) -> bool;
 
         /// Setter for [`showsTagField`][Self::showsTagField].
-        #[method(setShowsTagField:)]
+        #[unsafe(method(setShowsTagField:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsTagField(&self, shows_tag_field: bool);
 
         /// `NSSavePanel`: When -showsTagField returns YES, set any initial Tag names to be displayed, if necessary, prior to displaying the receiver. Also, if the user clicks "Save", take the result of -tagNames, and set them on the resulting file after saving is complete. Tag names are NSStrings, arrays of which can be used directly with the NSURLTagNamesKey API for getting and setting tags on files. Passing `nil` or an empty array to -setTagNames: will result in no initial Tag names appearing in the receiver. When -showsTagField returns YES, -tagNames always returns a non-nil array, and when NO, -tagNames always returns `nil`.
         /// `NSOpenPanel`: Not used.
-        #[method(tagNames)]
+        #[unsafe(method(tagNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn tagNames(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`tagNames`][Self::tagNames].
-        #[method(setTagNames:)]
+        #[unsafe(method(setTagNames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTagNames(&self, tag_names: Option<&NSArray<NSString>>);
 
@@ -341,31 +341,31 @@ extern_methods!(
         /// - Note: If
         /// `allowedContentTypes`is empty, the control is not displayed.
         /// `NSOpenPanel`: Not used.
-        #[method(showsContentTypes)]
+        #[unsafe(method(showsContentTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsContentTypes(&self) -> bool;
 
         /// Setter for [`showsContentTypes`][Self::showsContentTypes].
-        #[method(setShowsContentTypes:)]
+        #[unsafe(method(setShowsContentTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsContentTypes(&self, shows_content_types: bool);
 
         /// Refreshes the open or save panel's contents.
-        #[method(validateVisibleColumns)]
+        #[unsafe(method(validateVisibleColumns))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateVisibleColumns(&self);
 
-        #[method(ok:)]
+        #[unsafe(method(ok:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ok(&self, sender: Option<&AnyObject>);
 
-        #[method(cancel:)]
+        #[unsafe(method(cancel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self, sender: Option<&AnyObject>);
 
         #[cfg(all(feature = "NSApplication", feature = "block2"))]
         /// `NSSavePanel`/`NSOpenPanel`: Presents the panel as a sheet modal to `window` and returns immediately. Configure the panel before calling this method. The completion handler block will be called after the user has closed the panel, however, the open/save panel sheet may still be on screen. If you require the sheet to be offscreen (for example, to show an alert), first call `[savePanel orderOut:nil]` to close it. The `result` will be `NSModalResponseOK`, `NSModalResponseCancel`, or if the panel fails to display, `NSModalResponseAbort`.
-        #[method(beginSheetModalForWindow:completionHandler:)]
+        #[unsafe(method(beginSheetModalForWindow:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginSheetModalForWindow_completionHandler(
             &self,
@@ -375,7 +375,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSApplication", feature = "block2"))]
         /// `NSSavePanel`/`NSOpenPanel`: Presents the panel as a modeless window and returns immediately. Configure the panel before calling this method. The completion handler block will be called after the user has closed the panel. The `result` will be `NSModalResponseOK`, `NSModalResponseCancel`, or if the panel fails to display, `NSModalResponseAbort`.
-        #[method(beginWithCompletionHandler:)]
+        #[unsafe(method(beginWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginWithCompletionHandler(
             &self,
@@ -385,7 +385,7 @@ extern_methods!(
         #[cfg(feature = "NSApplication")]
         /// `NSSavePanel`/`NSOpenPanel`: Presents the panel as an application modal window. Returns after the user has closed the panel.
         /// - Returns: `NSModalResponseOK`, `NSModalResponseCancel` or if the panel fails to display, `NSModalResponseAbort`.
-        #[method(runModal)]
+        #[unsafe(method(runModal))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModal(&self) -> NSModalResponse;
     }
@@ -396,7 +396,7 @@ extern_methods!(
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSSavePanel {
         #[cfg(feature = "NSGraphics")]
-        #[method(initWithContentRect:styleMask:backing:defer:)]
+        #[unsafe(method(initWithContentRect:styleMask:backing:defer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Allocated<Self>,
@@ -407,7 +407,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSGraphics", feature = "NSScreen"))]
-        #[method(initWithContentRect:styleMask:backing:defer:screen:)]
+        #[unsafe(method(initWithContentRect:styleMask:backing:defer:screen:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Allocated<Self>,
@@ -418,13 +418,13 @@ extern_methods!(
             screen: Option<&NSScreen>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSViewController")]
         /// Convenience method for creating an autoreleased titled window with the given contentViewController. A basic NSWindow with the following attributes is made: titled, closable, resizable, miniaturizable. The window's title is automatically bound to the contentViewController's title. The size of the window can easily be controlled by utilizing autolayout and applying size constraints to the view (or its subviews). The window has isReleasedWhenClosed set to NO, and it must be explicitly retained to keep the window instance alive. To have it automatically be freed when it is closed, do the following: [window retain] and [window setReleasedWhenClosed:YES].
-        #[method(windowWithContentViewController:)]
+        #[unsafe(method(windowWithContentViewController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
@@ -436,7 +436,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSSavePanel {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -446,7 +446,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSSavePanel {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -459,7 +459,7 @@ extern_protocol!(
         /// `NSSavePanel`: This method is not sent. All urls are always disabled.
         /// `NSOpenPanel`: Return `YES` to allow the `url` to be enabled in the panel. Delegate implementations should be fast to avoid stalling the UI. Applications linked on Mac OS 10.7 and later should be prepared to handle non-file URL schemes.
         #[optional]
-        #[method(panel:shouldEnableURL:)]
+        #[unsafe(method(panel:shouldEnableURL:))]
         #[unsafe(method_family = none)]
         unsafe fn panel_shouldEnableURL(&self, sender: &AnyObject, url: &NSURL) -> bool;
 
@@ -469,7 +469,7 @@ extern_protocol!(
         /// `NSOpenPanel`: Sent once for each selected filename (or directory) when the user chooses the Open button. Return `YES` if the `url` is acceptable to open. Return `NO` and return by reference `outError` with a user displayable message for why the `url` is not valid for opening. If a recovery option is provided by the error, and recovery succeeded, the panel will attempt to close again.
         /// - Note: Implement this delegate method instead of  `panel:shouldEnableURL:` if the processing of the selected item takes a long time.
         #[optional]
-        #[method(panel:validateURL:error:_)]
+        #[unsafe(method(panel:validateURL:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn panel_validateURL_error(
             &self,
@@ -479,13 +479,13 @@ extern_protocol!(
 
         /// Optional — Sent when the user selected the directory located at `url`. `url` may be `nil`. if the current directory can't be represented by an NSURL object (ie: the media sidebar directory, or the "Computer").
         #[optional]
-        #[method(panel:didChangeToDirectoryURL:)]
+        #[unsafe(method(panel:didChangeToDirectoryURL:))]
         #[unsafe(method_family = none)]
         unsafe fn panel_didChangeToDirectoryURL(&self, sender: &AnyObject, url: Option<&NSURL>);
 
         /// Optional — Filename customization for the NSSavePanel. Allows the delegate to customize the filename entered by the user, before the extension is appended, and before the user is potentially asked to replace a file.
         #[optional]
-        #[method(panel:userEnteredFilename:confirmed:)]
+        #[unsafe(method(panel:userEnteredFilename:confirmed:))]
         #[unsafe(method_family = none)]
         unsafe fn panel_userEnteredFilename_confirmed(
             &self,
@@ -496,13 +496,13 @@ extern_protocol!(
 
         /// Optional — Sent when the user clicks the disclosure triangle to expand or collapse the file browser while in NSOpenPanel.
         #[optional]
-        #[method(panel:willExpand:)]
+        #[unsafe(method(panel:willExpand:))]
         #[unsafe(method_family = none)]
         unsafe fn panel_willExpand(&self, sender: &AnyObject, expanding: bool);
 
         /// Optional — Sent when the user has changed the selection.
         #[optional]
-        #[method(panelSelectionDidChange:)]
+        #[unsafe(method(panelSelectionDidChange:))]
         #[unsafe(method_family = none)]
         unsafe fn panelSelectionDidChange(&self, sender: Option<&AnyObject>);
 
@@ -511,7 +511,7 @@ extern_protocol!(
         /// `NSSavePanel`: Optional — Sent when the content type popup is displayed and the save panel needs the display name for a type. If `nil` is returned, the save panel will display type's `localizedDescription`.
         /// `NSOpenPanel`: Not sent.
         #[optional]
-        #[method(panel:displayNameForType:)]
+        #[unsafe(method(panel:displayNameForType:))]
         #[unsafe(method_family = none)]
         unsafe fn panel_displayNameForType(
             &self,
@@ -524,7 +524,7 @@ extern_protocol!(
         /// `NSSavePanel`: Optional — Sent when the user changes the current type.
         /// `NSOpenPanel`: Not sent.
         #[optional]
-        #[method(panel:didSelectType:)]
+        #[unsafe(method(panel:didSelectType:))]
         #[unsafe(method_family = none)]
         unsafe fn panel_didSelectType(&self, sender: &AnyObject, r#type: Option<&UTType>);
     }
@@ -535,32 +535,32 @@ extern_methods!(
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSSavePanel {
         #[deprecated = "Use -URL instead"]
-        #[method(filename)]
+        #[unsafe(method(filename))]
         #[unsafe(method_family = none)]
         pub unsafe fn filename(&self) -> Retained<NSString>;
 
         #[deprecated = "Use -directoryURL instead"]
-        #[method(directory)]
+        #[unsafe(method(directory))]
         #[unsafe(method_family = none)]
         pub unsafe fn directory(&self) -> Retained<NSString>;
 
         #[deprecated = "Use -setDirectoryURL: instead"]
-        #[method(setDirectory:)]
+        #[unsafe(method(setDirectory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirectory(&self, path: Option<&NSString>);
 
         #[deprecated = "Use -allowedContentTypes instead"]
-        #[method(requiredFileType)]
+        #[unsafe(method(requiredFileType))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiredFileType(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Use -allowedContentTypes: instead"]
-        #[method(setRequiredFileType:)]
+        #[unsafe(method(setRequiredFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiredFileType(&self, r#type: Option<&NSString>);
 
         #[deprecated = "Use beginSheetModalForWindow:completionHandler: instead. The following parameters are replaced by properties: 'path' is replaced by 'directoryURL' and 'name' by 'nameFieldStringValue'."]
-        #[method(beginSheetForDirectory:file:modalForWindow:modalDelegate:didEndSelector:contextInfo:)]
+        #[unsafe(method(beginSheetForDirectory:file:modalForWindow:modalDelegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginSheetForDirectory_file_modalForWindow_modalDelegate_didEndSelector_contextInfo(
             &self,
@@ -573,7 +573,7 @@ extern_methods!(
         );
 
         #[deprecated = "Use -runModal instead. The following parameters are replaced by properties: 'path' is replaced by 'directoryURL' and 'name' by 'nameFieldStringValue'."]
-        #[method(runModalForDirectory:file:)]
+        #[unsafe(method(runModalForDirectory:file:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModalForDirectory_file(
             &self,
@@ -582,20 +582,20 @@ extern_methods!(
         ) -> NSInteger;
 
         #[deprecated = "Default implementation does nothing."]
-        #[method(selectText:)]
+        #[unsafe(method(selectText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectText(&self, sender: Option<&AnyObject>);
 
         /// `NSSavePanel`: An array of NSStrings specifying the file types the user can save the file as. The file type can be a common file extension, or a UTI. A nil value indicates that any file type can be used. If the array is not nil and the array contains no items, an exception will be raised. If no extension is given by the user, the first item in the allowedFileTypes will be used as the extension for the save panel. If the user specifies a type not in the array, and 'allowsOtherFileTypes' is YES, they will be presented with another dialog when prompted to save. The default value is 'nil'.
         /// `NSOpenPanel`: On versions less than 10.6, this property is ignored. For applications that link against 10.6 and higher, this property will determine which files should be enabled in the open panel. Using the deprecated methods to show the open panel (the ones that take a "types:" parameter) will overwrite this value, and should not be used. The allowedFileTypes can be changed while the panel is running (ie: from an accessory view). The file type can be a common file extension, or a UTI. This is also known as the "enabled file types". A nil value indicates that all files should be enabled.
         #[deprecated = "Use -allowedContentTypes instead"]
-        #[method(allowedFileTypes)]
+        #[unsafe(method(allowedFileTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedFileTypes(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`allowedFileTypes`][Self::allowedFileTypes].
         #[deprecated = "Use -allowedContentTypes instead"]
-        #[method(setAllowedFileTypes:)]
+        #[unsafe(method(setAllowedFileTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedFileTypes(&self, allowed_file_types: Option<&NSArray<NSString>>);
     }

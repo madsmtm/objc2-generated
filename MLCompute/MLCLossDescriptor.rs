@@ -30,20 +30,20 @@ extern_methods!(
         #[cfg(feature = "MLCTypes")]
         /// Specifies the loss function.
         #[deprecated]
-        #[method(lossType)]
+        #[unsafe(method(lossType))]
         #[unsafe(method_family = none)]
         pub unsafe fn lossType(&self) -> MLCLossType;
 
         #[cfg(feature = "MLCTypes")]
         /// The reduction operation performed by the loss function.
         #[deprecated]
-        #[method(reductionType)]
+        #[unsafe(method(reductionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn reductionType(&self) -> MLCReductionType;
 
         /// The scale factor to apply to each element of a result.  The default value is 1.0.
         #[deprecated]
-        #[method(weight)]
+        #[unsafe(method(weight))]
         #[unsafe(method_family = none)]
         pub unsafe fn weight(&self) -> c_float;
 
@@ -52,7 +52,7 @@ extern_methods!(
         /// This parameter is valid only for the loss functions of the following type(s):
         /// MLCLossTypeSoftmaxCrossEntropy and MLCLossTypeSigmoidCrossEntropy.
         #[deprecated]
-        #[method(labelSmoothing)]
+        #[unsafe(method(labelSmoothing))]
         #[unsafe(method_family = none)]
         pub unsafe fn labelSmoothing(&self) -> c_float;
 
@@ -60,7 +60,7 @@ extern_methods!(
         ///
         /// This parameter is valid only for the loss function MLCLossTypeSoftmaxCrossEntropy.
         #[deprecated]
-        #[method(classCount)]
+        #[unsafe(method(classCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn classCount(&self) -> NSUInteger;
 
@@ -68,7 +68,7 @@ extern_methods!(
         ///
         /// This parameter is valid only for the loss function MLCLossTypeLog.
         #[deprecated]
-        #[method(epsilon)]
+        #[unsafe(method(epsilon))]
         #[unsafe(method_family = none)]
         pub unsafe fn epsilon(&self) -> c_float;
 
@@ -76,17 +76,17 @@ extern_methods!(
         ///
         /// This parameter is valid only for the loss function MLCLossTypeHuber.
         #[deprecated]
-        #[method(delta)]
+        #[unsafe(method(delta))]
         #[unsafe(method_family = none)]
         pub unsafe fn delta(&self) -> c_float;
 
         #[deprecated]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -99,7 +99,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCLossDescriptor object
         #[deprecated]
-        #[method(descriptorWithType:reductionType:)]
+        #[unsafe(method(descriptorWithType:reductionType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithType_reductionType(
             loss_type: MLCLossType,
@@ -117,7 +117,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCLossDescriptor object
         #[deprecated]
-        #[method(descriptorWithType:reductionType:weight:)]
+        #[unsafe(method(descriptorWithType:reductionType:weight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithType_reductionType_weight(
             loss_type: MLCLossType,
@@ -140,7 +140,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCLossDescriptor object
         #[deprecated]
-        #[method(descriptorWithType:reductionType:weight:labelSmoothing:classCount:)]
+        #[unsafe(method(descriptorWithType:reductionType:weight:labelSmoothing:classCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithType_reductionType_weight_labelSmoothing_classCount(
             loss_type: MLCLossType,
@@ -169,7 +169,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCLossDescriptor object
         #[deprecated]
-        #[method(descriptorWithType:reductionType:weight:labelSmoothing:classCount:epsilon:delta:)]
+        #[unsafe(method(descriptorWithType:reductionType:weight:labelSmoothing:classCount:epsilon:delta:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithType_reductionType_weight_labelSmoothing_classCount_epsilon_delta(
             loss_type: MLCLossType,

@@ -26,72 +26,72 @@ unsafe impl NSObjectProtocol for NSUserInterfaceCompressionOptions {}
 
 extern_methods!(
     unsafe impl NSUserInterfaceCompressionOptions {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[method(initWithIdentifier:)]
+        #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSString,
         ) -> Retained<Self>;
 
-        #[method(initWithCompressionOptions:)]
+        #[unsafe(method(initWithCompressionOptions:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompressionOptions(
             this: Allocated<Self>,
             options: &NSSet<NSUserInterfaceCompressionOptions>,
         ) -> Retained<Self>;
 
-        #[method(containsOptions:)]
+        #[unsafe(method(containsOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsOptions(&self, options: &NSUserInterfaceCompressionOptions) -> bool;
 
-        #[method(intersectsOptions:)]
+        #[unsafe(method(intersectsOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn intersectsOptions(&self, options: &NSUserInterfaceCompressionOptions)
             -> bool;
 
-        #[method(isEmpty)]
+        #[unsafe(method(isEmpty))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEmpty(&self) -> bool;
 
-        #[method(optionsByAddingOptions:)]
+        #[unsafe(method(optionsByAddingOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn optionsByAddingOptions(
             &self,
             options: &NSUserInterfaceCompressionOptions,
         ) -> Retained<NSUserInterfaceCompressionOptions>;
 
-        #[method(optionsByRemovingOptions:)]
+        #[unsafe(method(optionsByRemovingOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn optionsByRemovingOptions(
             &self,
             options: &NSUserInterfaceCompressionOptions,
         ) -> Retained<NSUserInterfaceCompressionOptions>;
 
-        #[method(hideImagesOption)]
+        #[unsafe(method(hideImagesOption))]
         #[unsafe(method_family = none)]
         pub unsafe fn hideImagesOption() -> Retained<NSUserInterfaceCompressionOptions>;
 
-        #[method(hideTextOption)]
+        #[unsafe(method(hideTextOption))]
         #[unsafe(method_family = none)]
         pub unsafe fn hideTextOption() -> Retained<NSUserInterfaceCompressionOptions>;
 
-        #[method(reduceMetricsOption)]
+        #[unsafe(method(reduceMetricsOption))]
         #[unsafe(method_family = none)]
         pub unsafe fn reduceMetricsOption() -> Retained<NSUserInterfaceCompressionOptions>;
 
-        #[method(breakEqualWidthsOption)]
+        #[unsafe(method(breakEqualWidthsOption))]
         #[unsafe(method_family = none)]
         pub unsafe fn breakEqualWidthsOption() -> Retained<NSUserInterfaceCompressionOptions>;
 
-        #[method(standardOptions)]
+        #[unsafe(method(standardOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn standardOptions() -> Retained<NSUserInterfaceCompressionOptions>;
     }
@@ -100,7 +100,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUserInterfaceCompressionOptions {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -109,21 +109,21 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacecompression?language=objc)
     pub unsafe trait NSUserInterfaceCompression {
-        #[method(compressWithPrioritizedCompressionOptions:)]
+        #[unsafe(method(compressWithPrioritizedCompressionOptions:))]
         #[unsafe(method_family = none)]
         unsafe fn compressWithPrioritizedCompressionOptions(
             &self,
             prioritized_options: &NSArray<NSUserInterfaceCompressionOptions>,
         );
 
-        #[method(minimumSizeWithPrioritizedCompressionOptions:)]
+        #[unsafe(method(minimumSizeWithPrioritizedCompressionOptions:))]
         #[unsafe(method_family = none)]
         unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
             prioritized_options: &NSArray<NSUserInterfaceCompressionOptions>,
         ) -> NSSize;
 
-        #[method(activeCompressionOptions)]
+        #[unsafe(method(activeCompressionOptions))]
         #[unsafe(method_family = none)]
         unsafe fn activeCompressionOptions(&self) -> Retained<NSUserInterfaceCompressionOptions>;
     }

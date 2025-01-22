@@ -23,77 +23,77 @@ unsafe impl NSObjectProtocol for SCNTransaction {}
 
 extern_methods!(
     unsafe impl SCNTransaction {
-        #[method(begin)]
+        #[unsafe(method(begin))]
         #[unsafe(method_family = none)]
         pub unsafe fn begin();
 
-        #[method(commit)]
+        #[unsafe(method(commit))]
         #[unsafe(method_family = none)]
         pub unsafe fn commit();
 
-        #[method(flush)]
+        #[unsafe(method(flush))]
         #[unsafe(method_family = none)]
         pub unsafe fn flush();
 
-        #[method(lock)]
+        #[unsafe(method(lock))]
         #[unsafe(method_family = none)]
         pub unsafe fn lock();
 
-        #[method(unlock)]
+        #[unsafe(method(unlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn unlock();
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(animationDuration)]
+        #[unsafe(method(animationDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationDuration() -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`animationDuration`][Self::animationDuration].
-        #[method(setAnimationDuration:)]
+        #[unsafe(method(setAnimationDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationDuration(animation_duration: CFTimeInterval);
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
-        #[method(animationTimingFunction)]
+        #[unsafe(method(animationTimingFunction))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationTimingFunction() -> Option<Retained<CAMediaTimingFunction>>;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`animationTimingFunction`][Self::animationTimingFunction].
-        #[method(setAnimationTimingFunction:)]
+        #[unsafe(method(setAnimationTimingFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationTimingFunction(
             animation_timing_function: Option<&CAMediaTimingFunction>,
         );
 
-        #[method(disableActions)]
+        #[unsafe(method(disableActions))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableActions() -> bool;
 
         /// Setter for [`disableActions`][Self::disableActions].
-        #[method(setDisableActions:)]
+        #[unsafe(method(setDisableActions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisableActions(disable_actions: bool);
 
         #[cfg(feature = "block2")]
-        #[method(completionBlock)]
+        #[unsafe(method(completionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionBlock() -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionBlock`][Self::completionBlock].
-        #[method(setCompletionBlock:)]
+        #[unsafe(method(setCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionBlock(completion_block: Option<&block2::Block<dyn Fn()>>);
 
-        #[method(valueForKey:)]
+        #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
 
-        #[method(setValue:forKey:)]
+        #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(value: Option<&AnyObject>, key: &NSString);
     }
@@ -102,11 +102,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNTransaction {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

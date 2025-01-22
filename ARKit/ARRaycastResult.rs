@@ -26,13 +26,13 @@ extern_methods!(
     unsafe impl ARRaycastResult {
         #[cfg(feature = "ARRaycastQuery")]
         /// Type of the target where the ray terminated.
-        #[method(target)]
+        #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> ARRaycastTarget;
 
         #[cfg(feature = "ARRaycastQuery")]
         /// Alignment of the target.
-        #[method(targetAlignment)]
+        #[unsafe(method(targetAlignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetAlignment(&self) -> ARRaycastTargetAlignment;
 
@@ -42,15 +42,15 @@ extern_methods!(
         ///
         /// In case of an existing plane target, an anchor will always be provided. In case of an estimated plane target,
         /// an anchor may be provided if the ray hit an existing plane.
-        #[method(anchor)]
+        #[unsafe(method(anchor))]
         #[unsafe(method_family = none)]
         pub unsafe fn anchor(&self) -> Option<Retained<ARAnchor>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(&self) -> Retained<Self>;
     }
@@ -61,7 +61,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl ARRaycastResult {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new_class() -> Retained<Self>;
     }

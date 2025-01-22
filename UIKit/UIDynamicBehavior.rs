@@ -35,36 +35,36 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicitem?language=objc)
     pub unsafe trait UIDynamicItem: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(center)]
+        #[unsafe(method(center))]
         #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
-        #[method(setCenter:)]
+        #[unsafe(method(setCenter:))]
         #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(bounds)]
+        #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
         unsafe fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(transform)]
+        #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         unsafe fn transform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`transform`][Self::transform].
-        #[method(setTransform:)]
+        #[unsafe(method(setTransform:))]
         #[unsafe(method_family = none)]
         unsafe fn setTransform(&self, transform: CGAffineTransform);
 
         /// The collision type represents how the dynamics system will evaluate collisions with
         /// respect to the dynamic item. defaults to UIDynamicItemCollisionBoundsTypeRectangle
         #[optional]
-        #[method(collisionBoundsType)]
+        #[unsafe(method(collisionBoundsType))]
         #[unsafe(method_family = none)]
         unsafe fn collisionBoundsType(&self) -> UIDynamicItemCollisionBoundsType;
 
@@ -72,7 +72,7 @@ extern_protocol!(
         /// The path must represent a convex polygon with counter clockwise winding and no self intersection.
         /// The point (0,0) in the path corresponds to the dynamic item's center.
         #[optional]
-        #[method(collisionBoundingPath)]
+        #[unsafe(method(collisionBoundingPath))]
         #[unsafe(method_family = none)]
         unsafe fn collisionBoundingPath(&self) -> Retained<UIBezierPath>;
     }
@@ -92,14 +92,14 @@ unsafe impl UIDynamicItem for UIDynamicItemGroup {}
 
 extern_methods!(
     unsafe impl UIDynamicItemGroup {
-        #[method(initWithItems:)]
+        #[unsafe(method(initWithItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
             items: &NSArray<ProtocolObject<dyn UIDynamicItem>>,
         ) -> Retained<Self>;
 
-        #[method(items)]
+        #[unsafe(method(items))]
         #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
     }
@@ -108,11 +108,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDynamicItemGroup {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -130,36 +130,36 @@ unsafe impl NSObjectProtocol for UIDynamicBehavior {}
 
 extern_methods!(
     unsafe impl UIDynamicBehavior {
-        #[method(addChildBehavior:)]
+        #[unsafe(method(addChildBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addChildBehavior(&self, behavior: &UIDynamicBehavior);
 
-        #[method(removeChildBehavior:)]
+        #[unsafe(method(removeChildBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeChildBehavior(&self, behavior: &UIDynamicBehavior);
 
-        #[method(childBehaviors)]
+        #[unsafe(method(childBehaviors))]
         #[unsafe(method_family = none)]
         pub unsafe fn childBehaviors(&self) -> Retained<NSArray<UIDynamicBehavior>>;
 
         #[cfg(feature = "block2")]
-        #[method(action)]
+        #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`action`][Self::action].
-        #[method(setAction:)]
+        #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<&block2::Block<dyn Fn()>>);
 
         #[cfg(feature = "UIDynamicAnimator")]
-        #[method(willMoveToAnimator:)]
+        #[unsafe(method(willMoveToAnimator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn willMoveToAnimator(&self, dynamic_animator: Option<&UIDynamicAnimator>);
 
         #[cfg(feature = "UIDynamicAnimator")]
-        #[method(dynamicAnimator)]
+        #[unsafe(method(dynamicAnimator))]
         #[unsafe(method_family = none)]
         pub unsafe fn dynamicAnimator(&self) -> Option<Retained<UIDynamicAnimator>>;
     }
@@ -168,11 +168,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDynamicBehavior {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

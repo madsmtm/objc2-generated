@@ -41,14 +41,14 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on
         ///
         /// Returns: A valid MPSNNReshape object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -68,7 +68,7 @@ extern_methods!(
         /// Parameter `reshapedHeight`: The height of the resulting reshaped image.
         ///
         /// Parameter `reshapedFeatureChannels`: The number of feature channels in the resulting reshaped image.
-        #[method(encodeToCommandBuffer:sourceImage:reshapedWidth:reshapedHeight:reshapedFeatureChannels:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceImage:reshapedWidth:reshapedHeight:reshapedFeatureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_reshapedWidth_reshapedHeight_reshapedFeatureChannels(
             &self,
@@ -96,7 +96,7 @@ extern_methods!(
         /// Parameter `reshapedHeight`: The height of the resulting reshaped image.
         ///
         /// Parameter `reshapedFeatureChannels`: The number of feature channels in the resulting reshaped image.
-        #[method(encodeToCommandBuffer:sourceImage:destinationState:destinationStateIsTemporary:reshapedWidth:reshapedHeight:reshapedFeatureChannels:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceImage:destinationState:destinationStateIsTemporary:reshapedWidth:reshapedHeight:reshapedFeatureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_destinationState_destinationStateIsTemporary_reshapedWidth_reshapedHeight_reshapedFeatureChannels(
             &self,
@@ -121,7 +121,7 @@ extern_methods!(
         /// Parameter `reshapedHeight`: The height of the resulting reshaped images.
         ///
         /// Parameter `reshapedFeatureChannels`: The number of feature channels in each of the resulting reshaped images.
-        #[method(encodeBatchToCommandBuffer:sourceImages:reshapedWidth:reshapedHeight:reshapedFeatureChannels:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:reshapedWidth:reshapedHeight:reshapedFeatureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_reshapedWidth_reshapedHeight_reshapedFeatureChannels(
             &self,
@@ -149,7 +149,7 @@ extern_methods!(
         /// Parameter `reshapedHeight`: The height of the resulting reshaped images.
         ///
         /// Parameter `reshapedFeatureChannels`: The number of feature channels in each of the resulting reshaped images.
-        #[method(encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:reshapedWidth:reshapedHeight:reshapedFeatureChannels:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:reshapedWidth:reshapedHeight:reshapedFeatureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationStates_destinationStateIsTemporary_reshapedWidth_reshapedHeight_reshapedFeatureChannels(
             &self,
@@ -176,7 +176,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -189,11 +189,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNReshape {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -238,7 +238,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNNReshapeGradient object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -258,7 +258,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -280,7 +280,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -293,11 +293,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNReshapeGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -344,13 +344,13 @@ extern_methods!(
         /// channel dimension, before the feature channels starting from feature channel
         /// index
         /// sourceFeatureChannelOffset.Default: { 0, 0, 0 }
-        #[method(paddingSizeBefore)]
+        #[unsafe(method(paddingSizeBefore))]
         #[unsafe(method_family = none)]
         pub unsafe fn paddingSizeBefore(&self) -> MPSImageCoordinate;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`paddingSizeBefore`][Self::paddingSizeBefore].
-        #[method(setPaddingSizeBefore:)]
+        #[unsafe(method(setPaddingSizeBefore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingSizeBefore(&self, padding_size_before: MPSImageCoordinate);
 
@@ -369,13 +369,13 @@ extern_methods!(
         /// sourceFeatureChannelMaxCount,naturally
         /// clipped to fit the feature channels in the provided source image.
         /// Default: { 0, 0, 0 }
-        #[method(paddingSizeAfter)]
+        #[unsafe(method(paddingSizeAfter))]
         #[unsafe(method_family = none)]
         pub unsafe fn paddingSizeAfter(&self) -> MPSImageCoordinate;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`paddingSizeAfter`][Self::paddingSizeAfter].
-        #[method(setPaddingSizeAfter:)]
+        #[unsafe(method(setPaddingSizeAfter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingSizeAfter(&self, padding_size_after: MPSImageCoordinate);
 
@@ -384,12 +384,12 @@ extern_methods!(
         /// NOTE: this value is ignored if the filter is initialized with a per-channel fill value
         /// using
         /// initWithDevice:paddingSizeBefore:paddingSizeAfter:fillValueArray:.
-        #[method(fillValue)]
+        #[unsafe(method(fillValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn fillValue(&self) -> c_float;
 
         /// Setter for [`fillValue`][Self::fillValue].
-        #[method(setFillValue:)]
+        #[unsafe(method(setFillValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFillValue(&self, fill_value: c_float);
 
@@ -398,7 +398,7 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on.
         ///
         /// Returns: A valid MPSNNPad object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -415,7 +415,7 @@ extern_methods!(
         /// Parameter `paddingSizeAfter`: The amount of padding to add after the source image - see details above.
         ///
         /// Returns: A valid MPSNNPad object or nil, if failure.
-        #[method(initWithDevice:paddingSizeBefore:paddingSizeAfter:)]
+        #[unsafe(method(initWithDevice:paddingSizeBefore:paddingSizeAfter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_paddingSizeBefore_paddingSizeAfter(
             this: Allocated<Self>,
@@ -441,7 +441,7 @@ extern_methods!(
         /// result in undefined behavior. Passing in nil is fine.
         ///
         /// Returns: A valid MPSNNPad object or nil, if failure.
-        #[method(initWithDevice:paddingSizeBefore:paddingSizeAfter:fillValueArray:)]
+        #[unsafe(method(initWithDevice:paddingSizeBefore:paddingSizeAfter:fillValueArray:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_paddingSizeBefore_paddingSizeAfter_fillValueArray(
             this: Allocated<Self>,
@@ -460,7 +460,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSNNPad
         ///
         /// Returns: A new MPSNNPad object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -482,7 +482,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -495,11 +495,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNPad {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -612,7 +612,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNNPadGradient object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -628,7 +628,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSNNPadGradient.
         ///
         /// Returns: A new MPSNNPadGradient object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -650,7 +650,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -663,11 +663,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNPadGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -26,19 +26,19 @@ extern_category!(
         /// Bridge with SCNAnimation
         ///
         /// Initializes a CoreAnimation animation from a SCNAnimation
-        #[method(animationWithSCNAnimation:)]
+        #[unsafe(method(animationWithSCNAnimation:))]
         #[unsafe(method_family = none)]
         unsafe fn animationWithSCNAnimation(animation: &SCNAnimation) -> Retained<CAAnimation>;
 
         /// Determines whether the receiver is evaluated using the scene time or the system time. Defaults to NO.
         ///
         /// A scene-time based animation is evaluated using the "sceneTime" value of the renderer that renders the scene.
-        #[method(usesSceneTimeBase)]
+        #[unsafe(method(usesSceneTimeBase))]
         #[unsafe(method_family = none)]
         unsafe fn usesSceneTimeBase(&self) -> bool;
 
         /// Setter for [`usesSceneTimeBase`][Self::usesSceneTimeBase].
-        #[method(setUsesSceneTimeBase:)]
+        #[unsafe(method(setUsesSceneTimeBase:))]
         #[unsafe(method_family = none)]
         unsafe fn setUsesSceneTimeBase(&self, uses_scene_time_base: bool);
 
@@ -46,13 +46,13 @@ extern_category!(
         /// Determines the receiver's fade-in duration.
         ///
         /// When the fadeInDuration is greater than zero, the effect of the animation progressively increase from 0% to 100% during the specified duration.
-        #[method(fadeInDuration)]
+        #[unsafe(method(fadeInDuration))]
         #[unsafe(method_family = none)]
         unsafe fn fadeInDuration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`fadeInDuration`][Self::fadeInDuration].
-        #[method(setFadeInDuration:)]
+        #[unsafe(method(setFadeInDuration:))]
         #[unsafe(method_family = none)]
         unsafe fn setFadeInDuration(&self, fade_in_duration: CGFloat);
 
@@ -60,25 +60,25 @@ extern_category!(
         /// Determines the receiver's fade-out duration.
         ///
         /// When the fadeOutDuration is greater than zero, the effect of the animation progressively decrease from 100% to 0% at the end of the animation duration.
-        #[method(fadeOutDuration)]
+        #[unsafe(method(fadeOutDuration))]
         #[unsafe(method_family = none)]
         unsafe fn fadeOutDuration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`fadeOutDuration`][Self::fadeOutDuration].
-        #[method(setFadeOutDuration:)]
+        #[unsafe(method(setFadeOutDuration:))]
         #[unsafe(method_family = none)]
         unsafe fn setFadeOutDuration(&self, fade_out_duration: CGFloat);
 
         #[cfg(feature = "SCNAnimation")]
         /// Specifies the animation events attached to the receiver.
-        #[method(animationEvents)]
+        #[unsafe(method(animationEvents))]
         #[unsafe(method_family = none)]
         unsafe fn animationEvents(&self) -> Option<Retained<NSArray<SCNAnimationEvent>>>;
 
         #[cfg(feature = "SCNAnimation")]
         /// Setter for [`animationEvents`][Self::animationEvents].
-        #[method(setAnimationEvents:)]
+        #[unsafe(method(setAnimationEvents:))]
         #[unsafe(method_family = none)]
         unsafe fn setAnimationEvents(&self, animation_events: Option<&NSArray<SCNAnimationEvent>>);
     }

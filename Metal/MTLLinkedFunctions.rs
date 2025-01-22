@@ -29,32 +29,32 @@ unsafe impl NSObjectProtocol for MTLLinkedFunctions {}
 extern_methods!(
     unsafe impl MTLLinkedFunctions {
         /// Create an autoreleased MTLLinkedFunctions object.
-        #[method(linkedFunctions)]
+        #[unsafe(method(linkedFunctions))]
         #[unsafe(method_family = none)]
         pub fn linkedFunctions() -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLibrary")]
         /// The array of functions to be AIR linked.
-        #[method(functions)]
+        #[unsafe(method(functions))]
         #[unsafe(method_family = none)]
         pub fn functions(&self) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`functions`][Self::functions].
-        #[method(setFunctions:)]
+        #[unsafe(method(setFunctions:))]
         #[unsafe(method_family = none)]
         pub fn setFunctions(&self, functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>);
 
         #[cfg(feature = "MTLLibrary")]
         /// The array of functions compiled to binary to be linked.
-        #[method(binaryFunctions)]
+        #[unsafe(method(binaryFunctions))]
         #[unsafe(method_family = none)]
         pub fn binaryFunctions(&self)
             -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`binaryFunctions`][Self::binaryFunctions].
-        #[method(setBinaryFunctions:)]
+        #[unsafe(method(setBinaryFunctions:))]
         #[unsafe(method_family = none)]
         pub fn setBinaryFunctions(
             &self,
@@ -63,7 +63,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLLibrary")]
         /// Groups of functions, grouped to match callsites in the shader code.
-        #[method(groups)]
+        #[unsafe(method(groups))]
         #[unsafe(method_family = none)]
         pub fn groups(
             &self,
@@ -71,7 +71,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`groups`][Self::groups].
-        #[method(setGroups:)]
+        #[unsafe(method(setGroups:))]
         #[unsafe(method_family = none)]
         pub fn setGroups(
             &self,
@@ -83,7 +83,7 @@ extern_methods!(
         ///
         /// These functions are not exported by the pipeline state as MTLFunctionHandle objects.
         /// Function pointer support is not required to link private functions.
-        #[method(privateFunctions)]
+        #[unsafe(method(privateFunctions))]
         #[unsafe(method_family = none)]
         pub fn privateFunctions(
             &self,
@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`privateFunctions`][Self::privateFunctions].
-        #[method(setPrivateFunctions:)]
+        #[unsafe(method(setPrivateFunctions:))]
         #[unsafe(method_family = none)]
         pub fn setPrivateFunctions(
             &self,
@@ -103,11 +103,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLLinkedFunctions {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }

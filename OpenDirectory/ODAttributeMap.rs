@@ -18,42 +18,42 @@ unsafe impl NSObjectProtocol for ODAttributeMap {}
 
 extern_methods!(
     unsafe impl ODAttributeMap {
-        #[method(customQueryFunction)]
+        #[unsafe(method(customQueryFunction))]
         #[unsafe(method_family = none)]
         pub unsafe fn customQueryFunction(&self) -> Retained<NSString>;
 
         /// Setter for [`customQueryFunction`][Self::customQueryFunction].
-        #[method(setCustomQueryFunction:)]
+        #[unsafe(method(setCustomQueryFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomQueryFunction(&self, custom_query_function: Option<&NSString>);
 
-        #[method(customTranslationFunction)]
+        #[unsafe(method(customTranslationFunction))]
         #[unsafe(method_family = none)]
         pub unsafe fn customTranslationFunction(&self) -> Retained<NSString>;
 
         /// Setter for [`customTranslationFunction`][Self::customTranslationFunction].
-        #[method(setCustomTranslationFunction:)]
+        #[unsafe(method(setCustomTranslationFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomTranslationFunction(
             &self,
             custom_translation_function: Option<&NSString>,
         );
 
-        #[method(customAttributes)]
+        #[unsafe(method(customAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn customAttributes(&self) -> Retained<NSArray>;
 
         /// Setter for [`customAttributes`][Self::customAttributes].
-        #[method(setCustomAttributes:)]
+        #[unsafe(method(setCustomAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomAttributes(&self, custom_attributes: Option<&NSArray>);
 
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
         /// Setter for [`value`][Self::value].
-        #[method(setValue:)]
+        #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);
 
@@ -61,7 +61,7 @@ extern_methods!(
         ///
         ///
         /// Returns an initialized and autoreleased ODAttributeMap object with the given value mapped.
-        #[method(attributeMapWithValue:)]
+        #[unsafe(method(attributeMapWithValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeMapWithValue(value: Option<&NSString>) -> Option<Retained<Self>>;
 
@@ -69,7 +69,7 @@ extern_methods!(
         ///
         ///
         /// Returns an initialized and autoreleased ODAttributeMap object with the given static value.
-        #[method(attributeMapWithStaticValue:)]
+        #[unsafe(method(attributeMapWithStaticValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeMapWithStaticValue(
             static_value: Option<&NSString>,
@@ -79,7 +79,7 @@ extern_methods!(
         ///
         ///
         /// Sets a static value that will always be returned for this mapping, i.e., "20".
-        #[method(setStaticValue:)]
+        #[unsafe(method(setStaticValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStaticValue(&self, static_value: Option<&NSString>);
 
@@ -89,7 +89,7 @@ extern_methods!(
         /// Value should be using the syntax '$native$' for all substited values.  For example,
         /// to form a home directory using the "cn" of an LDAP record, substitution could be done
         /// with "/home/$cn$".
-        #[method(setVariableSubstitution:)]
+        #[unsafe(method(setVariableSubstitution:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVariableSubstitution(&self, variable_substitution: Option<&NSString>);
     }
@@ -98,11 +98,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ODAttributeMap {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

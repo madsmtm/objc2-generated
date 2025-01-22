@@ -69,7 +69,7 @@ extern_protocol!(
         /// started/completed.
         ///
         /// Parameter `scratchBufferOffset`: Offset into the scratch buffer
-        #[method(buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:)]
+        #[unsafe(method(buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:))]
         #[unsafe(method_family = none)]
         fn buildAccelerationStructure_descriptor_scratchBuffer_scratchBufferOffset(
             &self,
@@ -114,7 +114,7 @@ extern_protocol!(
         /// after the refit has started/completed.
         ///
         /// Parameter `scratchBufferOffset`: Offset into the scratch buffer.
-        #[method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:)]
+        #[unsafe(method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset(
             &self,
@@ -164,7 +164,7 @@ extern_protocol!(
         /// Parameter `scratchBufferOffset`: Offset into the scratch buffer.
         ///
         /// Parameter `options`: Options specifying the elements of the acceleration structure to refit.
-        #[method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:)]
+        #[unsafe(method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:))]
         #[unsafe(method_family = none)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options(
             &self,
@@ -195,7 +195,7 @@ extern_protocol!(
         /// Parameter `sourceAccelerationStructure`: Acceleration structure to copy from
         ///
         /// Parameter `destinationAccelerationStructure`: Acceleration structure to copy to
-        #[method(copyAccelerationStructure:toAccelerationStructure:)]
+        #[unsafe(method(copyAccelerationStructure:toAccelerationStructure:))]
         #[unsafe(method_family = none)]
         unsafe fn copyAccelerationStructure_toAccelerationStructure(
             &self,
@@ -223,7 +223,7 @@ extern_protocol!(
         /// unsigned integer representing the compacted size in bytes.
         ///
         /// Parameter `offset`: Offset into the size buffer
-        #[method(writeCompactedAccelerationStructureSize:toBuffer:offset:)]
+        #[unsafe(method(writeCompactedAccelerationStructureSize:toBuffer:offset:))]
         #[unsafe(method_family = none)]
         fn writeCompactedAccelerationStructureSize_toBuffer_offset(
             &self,
@@ -257,7 +257,7 @@ extern_protocol!(
         ///
         /// Parameter `sizeDataType`: Data type of the size to write into the buffer. Must be either
         /// MTLDataTypeUInt (32 bit) or MTLDataTypeULong (64 bit)
-        #[method(writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:)]
+        #[unsafe(method(writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:))]
         #[unsafe(method_family = none)]
         unsafe fn writeCompactedAccelerationStructureSize_toBuffer_offset_sizeDataType(
             &self,
@@ -283,7 +283,7 @@ extern_protocol!(
         /// Parameter `sourceAccelerationStructure`: Acceleration structure to copy and compact
         ///
         /// Parameter `destinationAccelerationStructure`: Acceleration structure to copy to
-        #[method(copyAndCompactAccelerationStructure:toAccelerationStructure:)]
+        #[unsafe(method(copyAndCompactAccelerationStructure:toAccelerationStructure:))]
         #[unsafe(method_family = none)]
         fn copyAndCompactAccelerationStructure_toAccelerationStructure(
             &self,
@@ -296,7 +296,7 @@ extern_protocol!(
         ///
         /// The fence is updated at build submission to maintain global order and prevent deadlock.
         /// Drivers may delay fence updates until the end of the encoder. Drivers may also wait on fences at the beginning of an encoder. It is therefore illegal to wait on a fence after it has been updated in the same encoder.
-        #[method(updateFence:)]
+        #[unsafe(method(updateFence:))]
         #[unsafe(method_family = none)]
         unsafe fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
@@ -305,7 +305,7 @@ extern_protocol!(
         ///
         /// The fence is evaluated at build submission to maintain global order and prevent deadlock.
         /// Drivers may delay fence updates until the end of the encoder. Drivers may also wait on fences at the beginning of an encoder. It is therefore illegal to wait on a fence after it has been updated in the same encoder.
-        #[method(waitForFence:)]
+        #[unsafe(method(waitForFence:))]
         #[unsafe(method_family = none)]
         unsafe fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
@@ -316,7 +316,7 @@ extern_protocol!(
         /// For tracked MTLResources, this method protects against data hazards. This method must be called before encoding any acceleration structure commands which may access the resource through an argument buffer.
         ///
         /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
-        #[method(useResource:usage:)]
+        #[unsafe(method(useResource:usage:))]
         #[unsafe(method_family = none)]
         unsafe fn useResource_usage(
             &self,
@@ -330,7 +330,7 @@ extern_protocol!(
         /// For tracked MTL Resources, this method protects against data hazards. This method must be called before encoding any acceleration structure commands which may access the resources through an argument buffer.
         ///
         /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
-        #[method(useResources:count:usage:)]
+        #[unsafe(method(useResources:count:usage:))]
         #[unsafe(method_family = none)]
         unsafe fn useResources_count_usage(
             &self,
@@ -345,7 +345,7 @@ extern_protocol!(
         /// For tracked MTLHeaps, this method protects against data hazards. This method must be called before encoding any acceleration structure commands which may access the resources allocated from the heap through an argument buffer. This method may cause all of the color attachments allocated from the heap to become decompressed. Therefore, it is recommended that the useResource:usage: or useResources:count:usage: methods be used for color attachments instead, with a minimal (i.e. read-only) usage.
         ///
         /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
-        #[method(useHeap:)]
+        #[unsafe(method(useHeap:))]
         #[unsafe(method_family = none)]
         unsafe fn useHeap(&self, heap: &ProtocolObject<dyn MTLHeap>);
 
@@ -355,7 +355,7 @@ extern_protocol!(
         /// For tracked MTLHeaps, this method protects against data hazards. This method must be called before encoding any acceleration structure commands which may access the resources allocated from the heaps through an argument buffer. This method may cause all of the color attachments allocated from the heaps to become decompressed. Therefore, it is recommended that the useResource:usage: or useResources:count:usage: methods be used for color attachments instead, with a minimal (i.e. read-only) usage.
         ///
         /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
-        #[method(useHeaps:count:)]
+        #[unsafe(method(useHeaps:count:))]
         #[unsafe(method_family = none)]
         unsafe fn useHeaps_count(
             &self,
@@ -379,7 +379,7 @@ extern_protocol!(
         /// In general, passing YES will lead to more repeatable counter results but
         /// may negatively impact performance.  Passing NO will generally be higher performance
         /// but counter results may not be repeatable.
-        #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
+        #[unsafe(method(sampleCountersInBuffer:atSampleIndex:withBarrier:))]
         #[unsafe(method_family = none)]
         unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,
@@ -413,7 +413,7 @@ extern_methods!(
         /// the sample buffer.  If no sample buffer is provided, no samples will be taken.
         /// If any of the sample indices are specified as MTLCounterDontSample, no sample
         /// will be taken for that action.
-        #[method(sampleBuffer)]
+        #[unsafe(method(sampleBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleBuffer(
             &self,
@@ -421,7 +421,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLCounters")]
         /// Setter for [`sampleBuffer`][Self::sampleBuffer].
-        #[method(setSampleBuffer:)]
+        #[unsafe(method(setSampleBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSampleBuffer(
             &self,
@@ -435,12 +435,12 @@ extern_methods!(
         /// On devices where MTLCounterSamplingPointAtStageBoundary is unsupported,
         /// this sample index is invalid and must be set to MTLCounterDontSample or creation of an
         /// acceleration structure pass will fail.
-        #[method(startOfEncoderSampleIndex)]
+        #[unsafe(method(startOfEncoderSampleIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn startOfEncoderSampleIndex(&self) -> NSUInteger;
 
         /// Setter for [`startOfEncoderSampleIndex`][Self::startOfEncoderSampleIndex].
-        #[method(setStartOfEncoderSampleIndex:)]
+        #[unsafe(method(setStartOfEncoderSampleIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartOfEncoderSampleIndex(
             &self,
@@ -454,12 +454,12 @@ extern_methods!(
         /// On devices where MTLCounterSamplingPointAtStageBoundary is unsupported,
         /// this sample index is invalid and must be set to MTLCounterDontSample or creation of an
         /// acceleration structure pass will fail.
-        #[method(endOfEncoderSampleIndex)]
+        #[unsafe(method(endOfEncoderSampleIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn endOfEncoderSampleIndex(&self) -> NSUInteger;
 
         /// Setter for [`endOfEncoderSampleIndex`][Self::endOfEncoderSampleIndex].
-        #[method(setEndOfEncoderSampleIndex:)]
+        #[unsafe(method(setEndOfEncoderSampleIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
     }
@@ -468,11 +468,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -489,14 +489,14 @@ unsafe impl NSObjectProtocol for MTLAccelerationStructurePassSampleBufferAttachm
 
 extern_methods!(
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
-        #[method(objectAtIndexedSubscript:)]
+        #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
         ) -> Retained<MTLAccelerationStructurePassSampleBufferAttachmentDescriptor>;
 
-        #[method(setObject:atIndexedSubscript:)]
+        #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -509,11 +509,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -539,13 +539,13 @@ unsafe impl NSObjectProtocol for MTLAccelerationStructurePassDescriptor {}
 extern_methods!(
     unsafe impl MTLAccelerationStructurePassDescriptor {
         /// Create an autoreleased default acceleration structure pass descriptor
-        #[method(accelerationStructurePassDescriptor)]
+        #[unsafe(method(accelerationStructurePassDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn accelerationStructurePassDescriptor(
         ) -> Retained<MTLAccelerationStructurePassDescriptor>;
 
         /// An array of sample buffers and associated sample indices.
-        #[method(sampleBufferAttachments)]
+        #[unsafe(method(sampleBufferAttachments))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleBufferAttachments(
             &self,
@@ -556,11 +556,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructurePassDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

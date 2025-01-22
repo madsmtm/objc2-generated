@@ -31,7 +31,7 @@ extern_methods!(
         /// stateMultiArray[0] = 2.0
         /// }
         /// ```
-        #[method(newState)]
+        #[unsafe(method(newState))]
         #[unsafe(method_family = new)]
         pub unsafe fn newState(&self) -> Retained<MLState>;
 
@@ -49,7 +49,7 @@ extern_methods!(
         /// - inputFeatures: The input features as declared in the model description.
         /// - state: The state object created by `newState()` method.
         /// - error: The output parameter to receive an error information on failure.
-        #[method(predictionFromFeatures:usingState:error:_)]
+        #[unsafe(method(predictionFromFeatures:usingState:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn predictionFromFeatures_usingState_error(
             &self,
@@ -76,7 +76,7 @@ extern_methods!(
         /// - state: The state object created by `newState()` method.
         /// - options: The prediction options.
         /// - error: The output parameter to receive an error information on failure.
-        #[method(predictionFromFeatures:usingState:options:error:_)]
+        #[unsafe(method(predictionFromFeatures:usingState:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn predictionFromFeatures_usingState_options_error(
             &self,
@@ -107,7 +107,7 @@ extern_methods!(
         /// - state: The state object created by `newState()` method.
         /// - options: Prediction options to modify how the prediction is run.
         /// - completionHandler: A block that will be invoked once the prediction has completed successfully or unsuccessfully. On success, it is invoked with a valid model output. On failure, it is invoked with a nil output and NSError
-        #[method(predictionFromFeatures:usingState:options:completionHandler:)]
+        #[unsafe(method(predictionFromFeatures:usingState:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predictionFromFeatures_usingState_options_completionHandler(
             &self,

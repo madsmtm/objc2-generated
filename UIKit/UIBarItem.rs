@@ -24,87 +24,87 @@ unsafe impl UIAppearance for UIBarItem {}
 
 extern_methods!(
     unsafe impl UIBarItem {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "UIImage")]
-        #[method(image)]
+        #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`image`][Self::image].
-        #[method(setImage:)]
+        #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
-        #[method(landscapeImagePhone)]
+        #[unsafe(method(landscapeImagePhone))]
         #[unsafe(method_family = none)]
         pub unsafe fn landscapeImagePhone(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`landscapeImagePhone`][Self::landscapeImagePhone].
-        #[method(setLandscapeImagePhone:)]
+        #[unsafe(method(setLandscapeImagePhone:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLandscapeImagePhone(&self, landscape_image_phone: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
-        #[method(largeContentSizeImage)]
+        #[unsafe(method(largeContentSizeImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn largeContentSizeImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`largeContentSizeImage`][Self::largeContentSizeImage].
-        #[method(setLargeContentSizeImage:)]
+        #[unsafe(method(setLargeContentSizeImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLargeContentSizeImage(&self, large_content_size_image: Option<&UIImage>);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method(imageInsets)]
+        #[unsafe(method(imageInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`imageInsets`][Self::imageInsets].
-        #[method(setImageInsets:)]
+        #[unsafe(method(setImageInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageInsets(&self, image_insets: UIEdgeInsets);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method(landscapeImagePhoneInsets)]
+        #[unsafe(method(landscapeImagePhoneInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn landscapeImagePhoneInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`landscapeImagePhoneInsets`][Self::landscapeImagePhoneInsets].
-        #[method(setLandscapeImagePhoneInsets:)]
+        #[unsafe(method(setLandscapeImagePhoneInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLandscapeImagePhoneInsets(
             &self,
@@ -112,30 +112,30 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method(largeContentSizeImageInsets)]
+        #[unsafe(method(largeContentSizeImageInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn largeContentSizeImageInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`largeContentSizeImageInsets`][Self::largeContentSizeImageInsets].
-        #[method(setLargeContentSizeImageInsets:)]
+        #[unsafe(method(setLargeContentSizeImageInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLargeContentSizeImageInsets(
             &self,
             large_content_size_image_insets: UIEdgeInsets,
         );
 
-        #[method(tag)]
+        #[unsafe(method(tag))]
         #[unsafe(method_family = none)]
         pub unsafe fn tag(&self) -> NSInteger;
 
         /// Setter for [`tag`][Self::tag].
-        #[method(setTag:)]
+        #[unsafe(method(setTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTag(&self, tag: NSInteger);
 
         #[cfg(feature = "UIControl")]
-        #[method(setTitleTextAttributes:forState:)]
+        #[unsafe(method(setTitleTextAttributes:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleTextAttributes_forState(
             &self,
@@ -144,7 +144,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIControl")]
-        #[method(titleTextAttributesForState:)]
+        #[unsafe(method(titleTextAttributesForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleTextAttributesForState(
             &self,
@@ -156,7 +156,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIBarItem {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

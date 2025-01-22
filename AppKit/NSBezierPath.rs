@@ -126,20 +126,20 @@ unsafe impl NSSecureCoding for NSBezierPath {}
 
 extern_methods!(
     unsafe impl NSBezierPath {
-        #[method(bezierPath)]
+        #[unsafe(method(bezierPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn bezierPath() -> Retained<NSBezierPath>;
 
-        #[method(bezierPathWithRect:)]
+        #[unsafe(method(bezierPathWithRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn bezierPathWithRect(rect: NSRect) -> Retained<NSBezierPath>;
 
-        #[method(bezierPathWithOvalInRect:)]
+        #[unsafe(method(bezierPathWithOvalInRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn bezierPathWithOvalInRect(rect: NSRect) -> Retained<NSBezierPath>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(bezierPathWithRoundedRect:xRadius:yRadius:)]
+        #[unsafe(method(bezierPathWithRoundedRect:xRadius:yRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn bezierPathWithRoundedRect_xRadius_yRadius(
             rect: NSRect,
@@ -149,112 +149,112 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[method(bezierPathWithCGPath:)]
+        #[unsafe(method(bezierPathWithCGPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn bezierPathWithCGPath(cg_path: &CGPath) -> Retained<NSBezierPath>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[method(CGPath)]
+        #[unsafe(method(CGPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn CGPath(&self) -> Retained<CGPath>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         /// Setter for [`CGPath`][Self::CGPath].
-        #[method(setCGPath:)]
+        #[unsafe(method(setCGPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCGPath(&self, cg_path: &CGPath);
 
-        #[method(fillRect:)]
+        #[unsafe(method(fillRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fillRect(rect: NSRect);
 
-        #[method(strokeRect:)]
+        #[unsafe(method(strokeRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeRect(rect: NSRect);
 
-        #[method(clipRect:)]
+        #[unsafe(method(clipRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn clipRect(rect: NSRect);
 
-        #[method(strokeLineFromPoint:toPoint:)]
+        #[unsafe(method(strokeLineFromPoint:toPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeLineFromPoint_toPoint(point1: NSPoint, point2: NSPoint);
 
-        #[method(drawPackedGlyphs:atPoint:)]
+        #[unsafe(method(drawPackedGlyphs:atPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawPackedGlyphs_atPoint(packed_glyphs: NonNull<c_char>, point: NSPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(defaultMiterLimit)]
+        #[unsafe(method(defaultMiterLimit))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultMiterLimit() -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`defaultMiterLimit`][Self::defaultMiterLimit].
-        #[method(setDefaultMiterLimit:)]
+        #[unsafe(method(setDefaultMiterLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultMiterLimit(default_miter_limit: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(defaultFlatness)]
+        #[unsafe(method(defaultFlatness))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultFlatness() -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`defaultFlatness`][Self::defaultFlatness].
-        #[method(setDefaultFlatness:)]
+        #[unsafe(method(setDefaultFlatness:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultFlatness(default_flatness: CGFloat);
 
-        #[method(defaultWindingRule)]
+        #[unsafe(method(defaultWindingRule))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultWindingRule() -> NSWindingRule;
 
         /// Setter for [`defaultWindingRule`][Self::defaultWindingRule].
-        #[method(setDefaultWindingRule:)]
+        #[unsafe(method(setDefaultWindingRule:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultWindingRule(default_winding_rule: NSWindingRule);
 
-        #[method(defaultLineCapStyle)]
+        #[unsafe(method(defaultLineCapStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultLineCapStyle() -> NSLineCapStyle;
 
         /// Setter for [`defaultLineCapStyle`][Self::defaultLineCapStyle].
-        #[method(setDefaultLineCapStyle:)]
+        #[unsafe(method(setDefaultLineCapStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultLineCapStyle(default_line_cap_style: NSLineCapStyle);
 
-        #[method(defaultLineJoinStyle)]
+        #[unsafe(method(defaultLineJoinStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultLineJoinStyle() -> NSLineJoinStyle;
 
         /// Setter for [`defaultLineJoinStyle`][Self::defaultLineJoinStyle].
-        #[method(setDefaultLineJoinStyle:)]
+        #[unsafe(method(setDefaultLineJoinStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultLineJoinStyle(default_line_join_style: NSLineJoinStyle);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(defaultLineWidth)]
+        #[unsafe(method(defaultLineWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultLineWidth() -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`defaultLineWidth`][Self::defaultLineWidth].
-        #[method(setDefaultLineWidth:)]
+        #[unsafe(method(setDefaultLineWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultLineWidth(default_line_width: CGFloat);
 
-        #[method(moveToPoint:)]
+        #[unsafe(method(moveToPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveToPoint(&self, point: NSPoint);
 
-        #[method(lineToPoint:)]
+        #[unsafe(method(lineToPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineToPoint(&self, point: NSPoint);
 
-        #[method(curveToPoint:controlPoint1:controlPoint2:)]
+        #[unsafe(method(curveToPoint:controlPoint1:controlPoint2:))]
         #[unsafe(method_family = none)]
         pub unsafe fn curveToPoint_controlPoint1_controlPoint2(
             &self,
@@ -263,27 +263,27 @@ extern_methods!(
             control_point2: NSPoint,
         );
 
-        #[method(curveToPoint:controlPoint:)]
+        #[unsafe(method(curveToPoint:controlPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn curveToPoint_controlPoint(&self, end_point: NSPoint, control_point: NSPoint);
 
-        #[method(closePath)]
+        #[unsafe(method(closePath))]
         #[unsafe(method_family = none)]
         pub unsafe fn closePath(&self);
 
-        #[method(removeAllPoints)]
+        #[unsafe(method(removeAllPoints))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllPoints(&self);
 
-        #[method(relativeMoveToPoint:)]
+        #[unsafe(method(relativeMoveToPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn relativeMoveToPoint(&self, point: NSPoint);
 
-        #[method(relativeLineToPoint:)]
+        #[unsafe(method(relativeLineToPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn relativeLineToPoint(&self, point: NSPoint);
 
-        #[method(relativeCurveToPoint:controlPoint1:controlPoint2:)]
+        #[unsafe(method(relativeCurveToPoint:controlPoint1:controlPoint2:))]
         #[unsafe(method_family = none)]
         pub unsafe fn relativeCurveToPoint_controlPoint1_controlPoint2(
             &self,
@@ -292,7 +292,7 @@ extern_methods!(
             control_point2: NSPoint,
         );
 
-        #[method(relativeCurveToPoint:controlPoint:)]
+        #[unsafe(method(relativeCurveToPoint:controlPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn relativeCurveToPoint_controlPoint(
             &self,
@@ -301,67 +301,67 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(lineWidth)]
+        #[unsafe(method(lineWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`lineWidth`][Self::lineWidth].
-        #[method(setLineWidth:)]
+        #[unsafe(method(setLineWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
-        #[method(lineCapStyle)]
+        #[unsafe(method(lineCapStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineCapStyle(&self) -> NSLineCapStyle;
 
         /// Setter for [`lineCapStyle`][Self::lineCapStyle].
-        #[method(setLineCapStyle:)]
+        #[unsafe(method(setLineCapStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineCapStyle(&self, line_cap_style: NSLineCapStyle);
 
-        #[method(lineJoinStyle)]
+        #[unsafe(method(lineJoinStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineJoinStyle(&self) -> NSLineJoinStyle;
 
         /// Setter for [`lineJoinStyle`][Self::lineJoinStyle].
-        #[method(setLineJoinStyle:)]
+        #[unsafe(method(setLineJoinStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineJoinStyle(&self, line_join_style: NSLineJoinStyle);
 
-        #[method(windingRule)]
+        #[unsafe(method(windingRule))]
         #[unsafe(method_family = none)]
         pub unsafe fn windingRule(&self) -> NSWindingRule;
 
         /// Setter for [`windingRule`][Self::windingRule].
-        #[method(setWindingRule:)]
+        #[unsafe(method(setWindingRule:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWindingRule(&self, winding_rule: NSWindingRule);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(miterLimit)]
+        #[unsafe(method(miterLimit))]
         #[unsafe(method_family = none)]
         pub unsafe fn miterLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`miterLimit`][Self::miterLimit].
-        #[method(setMiterLimit:)]
+        #[unsafe(method(setMiterLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(flatness)]
+        #[unsafe(method(flatness))]
         #[unsafe(method_family = none)]
         pub unsafe fn flatness(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`flatness`][Self::flatness].
-        #[method(setFlatness:)]
+        #[unsafe(method(setFlatness:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFlatness(&self, flatness: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(getLineDash:count:phase:)]
+        #[unsafe(method(getLineDash:count:phase:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getLineDash_count_phase(
             &self,
@@ -371,7 +371,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(setLineDash:count:phase:)]
+        #[unsafe(method(setLineDash:count:phase:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineDash_count_phase(
             &self,
@@ -380,55 +380,55 @@ extern_methods!(
             phase: CGFloat,
         );
 
-        #[method(stroke)]
+        #[unsafe(method(stroke))]
         #[unsafe(method_family = none)]
         pub unsafe fn stroke(&self);
 
-        #[method(fill)]
+        #[unsafe(method(fill))]
         #[unsafe(method_family = none)]
         pub unsafe fn fill(&self);
 
-        #[method(addClip)]
+        #[unsafe(method(addClip))]
         #[unsafe(method_family = none)]
         pub unsafe fn addClip(&self);
 
-        #[method(setClip)]
+        #[unsafe(method(setClip))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClip(&self);
 
-        #[method(bezierPathByFlatteningPath)]
+        #[unsafe(method(bezierPathByFlatteningPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn bezierPathByFlatteningPath(&self) -> Retained<NSBezierPath>;
 
-        #[method(bezierPathByReversingPath)]
+        #[unsafe(method(bezierPathByReversingPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn bezierPathByReversingPath(&self) -> Retained<NSBezierPath>;
 
-        #[method(transformUsingAffineTransform:)]
+        #[unsafe(method(transformUsingAffineTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn transformUsingAffineTransform(&self, transform: &NSAffineTransform);
 
-        #[method(isEmpty)]
+        #[unsafe(method(isEmpty))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEmpty(&self) -> bool;
 
-        #[method(currentPoint)]
+        #[unsafe(method(currentPoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentPoint(&self) -> NSPoint;
 
-        #[method(controlPointBounds)]
+        #[unsafe(method(controlPointBounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn controlPointBounds(&self) -> NSRect;
 
-        #[method(bounds)]
+        #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn bounds(&self) -> NSRect;
 
-        #[method(elementCount)]
+        #[unsafe(method(elementCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementCount(&self) -> NSInteger;
 
-        #[method(elementAtIndex:associatedPoints:)]
+        #[unsafe(method(elementAtIndex:associatedPoints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementAtIndex_associatedPoints(
             &self,
@@ -436,23 +436,23 @@ extern_methods!(
             points: NSPointArray,
         ) -> NSBezierPathElement;
 
-        #[method(elementAtIndex:)]
+        #[unsafe(method(elementAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementAtIndex(&self, index: NSInteger) -> NSBezierPathElement;
 
-        #[method(setAssociatedPoints:atIndex:)]
+        #[unsafe(method(setAssociatedPoints:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAssociatedPoints_atIndex(&self, points: NSPointArray, index: NSInteger);
 
-        #[method(appendBezierPath:)]
+        #[unsafe(method(appendBezierPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPath(&self, path: &NSBezierPath);
 
-        #[method(appendBezierPathWithRect:)]
+        #[unsafe(method(appendBezierPathWithRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithRect(&self, rect: NSRect);
 
-        #[method(appendBezierPathWithPoints:count:)]
+        #[unsafe(method(appendBezierPathWithPoints:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithPoints_count(
             &self,
@@ -460,12 +460,12 @@ extern_methods!(
             count: NSInteger,
         );
 
-        #[method(appendBezierPathWithOvalInRect:)]
+        #[unsafe(method(appendBezierPathWithOvalInRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithOvalInRect(&self, rect: NSRect);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(appendBezierPathWithArcWithCenter:radius:startAngle:endAngle:clockwise:)]
+        #[unsafe(method(appendBezierPathWithArcWithCenter:radius:startAngle:endAngle:clockwise:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithArcWithCenter_radius_startAngle_endAngle_clockwise(
             &self,
@@ -477,7 +477,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(appendBezierPathWithArcWithCenter:radius:startAngle:endAngle:)]
+        #[unsafe(method(appendBezierPathWithArcWithCenter:radius:startAngle:endAngle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithArcWithCenter_radius_startAngle_endAngle(
             &self,
@@ -488,7 +488,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(appendBezierPathWithArcFromPoint:toPoint:radius:)]
+        #[unsafe(method(appendBezierPathWithArcFromPoint:toPoint:radius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithArcFromPoint_toPoint_radius(
             &self,
@@ -499,13 +499,13 @@ extern_methods!(
 
         #[cfg(all(feature = "NSFont", feature = "objc2-core-graphics"))]
         #[cfg(target_vendor = "apple")]
-        #[method(appendBezierPathWithCGGlyph:inFont:)]
+        #[unsafe(method(appendBezierPathWithCGGlyph:inFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithCGGlyph_inFont(&self, glyph: CGGlyph, font: &NSFont);
 
         #[cfg(all(feature = "NSFont", feature = "objc2-core-graphics"))]
         #[cfg(target_vendor = "apple")]
-        #[method(appendBezierPathWithCGGlyphs:count:inFont:)]
+        #[unsafe(method(appendBezierPathWithCGGlyphs:count:inFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithCGGlyphs_count_inFont(
             &self,
@@ -515,7 +515,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(appendBezierPathWithRoundedRect:xRadius:yRadius:)]
+        #[unsafe(method(appendBezierPathWithRoundedRect:xRadius:yRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithRoundedRect_xRadius_yRadius(
             &self,
@@ -524,7 +524,7 @@ extern_methods!(
             y_radius: CGFloat,
         );
 
-        #[method(containsPoint:)]
+        #[unsafe(method(containsPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsPoint(&self, point: NSPoint) -> bool;
     }
@@ -533,11 +533,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSBezierPath {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -547,24 +547,24 @@ extern_methods!(
     /// NSBezierPathDeprecated
     unsafe impl NSBezierPath {
         #[deprecated]
-        #[method(cachesBezierPath)]
+        #[unsafe(method(cachesBezierPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn cachesBezierPath(&self) -> bool;
 
         #[deprecated]
-        #[method(setCachesBezierPath:)]
+        #[unsafe(method(setCachesBezierPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCachesBezierPath(&self, flag: bool);
 
         #[cfg(feature = "NSFont")]
         #[deprecated = "Use -appendBezierPathWithCGGlyph:inFont: instead"]
-        #[method(appendBezierPathWithGlyph:inFont:)]
+        #[unsafe(method(appendBezierPathWithGlyph:inFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithGlyph_inFont(&self, glyph: NSGlyph, font: &NSFont);
 
         #[cfg(feature = "NSFont")]
         #[deprecated = "Use -appendBezierPathWithCGGlyphs:count:inFont: instead"]
-        #[method(appendBezierPathWithGlyphs:count:inFont:)]
+        #[unsafe(method(appendBezierPathWithGlyphs:count:inFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithGlyphs_count_inFont(
             &self,
@@ -574,7 +574,7 @@ extern_methods!(
         );
 
         #[deprecated = "Use -appendBezierPathWithCGGlyphs:count:inFont: instead"]
-        #[method(appendBezierPathWithPackedGlyphs:)]
+        #[unsafe(method(appendBezierPathWithPackedGlyphs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithPackedGlyphs(&self, packed_glyphs: NonNull<c_char>);
     }

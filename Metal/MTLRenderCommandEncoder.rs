@@ -361,7 +361,7 @@ extern_protocol!(
     pub unsafe trait MTLRenderCommandEncoder: MTLCommandEncoder {
         #[cfg(feature = "MTLRenderPipeline")]
         /// Sets the current render pipeline state object.
-        #[method(setRenderPipelineState:)]
+        #[unsafe(method(setRenderPipelineState:))]
         #[unsafe(method_family = none)]
         fn setRenderPipelineState(
             &self,
@@ -369,7 +369,7 @@ extern_protocol!(
         );
 
         /// Set the data (by copy) for a given vertex buffer binding point.  This will remove any existing MTLBuffer from the binding point.
-        #[method(setVertexBytes:length:atIndex:)]
+        #[unsafe(method(setVertexBytes:length:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexBytes_length_atIndex(
             &self,
@@ -384,7 +384,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a global buffer for all vertex shaders at the given bind point index.
-        #[method(setVertexBuffer:offset:atIndex:)]
+        #[unsafe(method(setVertexBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexBuffer_offset_atIndex(
             &self,
@@ -394,7 +394,7 @@ extern_protocol!(
         );
 
         /// Set the offset within the current global buffer for all vertex shaders at the given bind point index.
-        #[method(setVertexBufferOffset:atIndex:)]
+        #[unsafe(method(setVertexBufferOffset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
@@ -404,7 +404,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set an array of global buffers for all vertex shaders with the given bind point range.
-        #[method(setVertexBuffers:offsets:withRange:)]
+        #[unsafe(method(setVertexBuffers:offsets:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexBuffers_offsets_withRange(
             &self,
@@ -421,7 +421,7 @@ extern_protocol!(
         /// sets vertex buffer at specified index with provided offset and stride. Only
         /// call this when the buffer-index is part of the vertexDescriptor and has set
         /// its stride to `MTLBufferLayoutStrideDynamic`
-        #[method(setVertexBuffer:offset:attributeStride:atIndex:)]
+        #[unsafe(method(setVertexBuffer:offset:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexBuffer_offset_attributeStride_atIndex(
             &self,
@@ -441,7 +441,7 @@ extern_protocol!(
         /// only call this when at least one buffer is part of the
         /// vertexDescriptor, other buffers must set their value relative to the
         /// `attributeStrides` array to `MTLAttributeStrideStatic`
-        #[method(setVertexBuffers:offsets:attributeStrides:withRange:)]
+        #[unsafe(method(setVertexBuffers:offsets:attributeStrides:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexBuffers_offsets_attributeStrides_withRange(
             &self,
@@ -453,7 +453,7 @@ extern_protocol!(
 
         /// only call this when the buffer-index is part of the vertexDescriptor and
         /// has set its stride to `MTLBufferLayoutStrideDynamic`
-        #[method(setVertexBufferOffset:attributeStride:atIndex:)]
+        #[unsafe(method(setVertexBufferOffset:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexBufferOffset_attributeStride_atIndex(
             &self,
@@ -464,7 +464,7 @@ extern_protocol!(
 
         /// only call this when the buffer-index is part of the vertexDescriptor and
         /// has set its stride to `MTLBufferLayoutStrideDynamic`
-        #[method(setVertexBytes:length:attributeStride:atIndex:)]
+        #[unsafe(method(setVertexBytes:length:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexBytes_length_attributeStride_atIndex(
             &self,
@@ -480,7 +480,7 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set a global texture for all vertex shaders at the given bind point index.
-        #[method(setVertexTexture:atIndex:)]
+        #[unsafe(method(setVertexTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexTexture_atIndex(
             &self,
@@ -494,7 +494,7 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set an array of global textures for all vertex shaders with the given bind point range.
-        #[method(setVertexTextures:withRange:)]
+        #[unsafe(method(setVertexTextures:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexTextures_withRange(
             &self,
@@ -504,7 +504,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set a global sampler for all vertex shaders at the given bind point index.
-        #[method(setVertexSamplerState:atIndex:)]
+        #[unsafe(method(setVertexSamplerState:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexSamplerState_atIndex(
             &self,
@@ -514,7 +514,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set an array of global samplers for all vertex shaders with the given bind point range.
-        #[method(setVertexSamplerStates:withRange:)]
+        #[unsafe(method(setVertexSamplerStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexSamplerStates_withRange(
             &self,
@@ -524,7 +524,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set a global sampler for all vertex shaders at the given bind point index.
-        #[method(setVertexSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
+        #[unsafe(method(setVertexSamplerState:lodMinClamp:lodMaxClamp:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
@@ -536,7 +536,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set an array of global samplers for all vertex shaders with the given bind point range.
-        #[method(setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
+        #[unsafe(method(setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
@@ -552,7 +552,7 @@ extern_protocol!(
             feature = "MTLVisibleFunctionTable"
         ))]
         /// Set a global visible function table for all vertex shaders at the given buffer bind point index.
-        #[method(setVertexVisibleFunctionTable:atBufferIndex:)]
+        #[unsafe(method(setVertexVisibleFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexVisibleFunctionTable_atBufferIndex(
             &self,
@@ -566,7 +566,7 @@ extern_protocol!(
             feature = "MTLVisibleFunctionTable"
         ))]
         /// Set an array of global visible function tables for all vertex shaders with the given buffer bind point range.
-        #[method(setVertexVisibleFunctionTables:withBufferRange:)]
+        #[unsafe(method(setVertexVisibleFunctionTables:withBufferRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexVisibleFunctionTables_withBufferRange(
             &self,
@@ -580,7 +580,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a global intersection function table for all vertex shaders at the given buffer bind point index.
-        #[method(setVertexIntersectionFunctionTable:atBufferIndex:)]
+        #[unsafe(method(setVertexIntersectionFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexIntersectionFunctionTable_atBufferIndex(
             &self,
@@ -594,7 +594,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set an array of global intersection function tables for all vertex shaders with the given buffer bind point range.
-        #[method(setVertexIntersectionFunctionTables:withBufferRange:)]
+        #[unsafe(method(setVertexIntersectionFunctionTables:withBufferRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexIntersectionFunctionTables_withBufferRange(
             &self,
@@ -610,7 +610,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a global acceleration structure for all vertex shaders at the given buffer bind point index.
-        #[method(setVertexAccelerationStructure:atBufferIndex:)]
+        #[unsafe(method(setVertexAccelerationStructure:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexAccelerationStructure_atBufferIndex(
             &self,
@@ -619,17 +619,17 @@ extern_protocol!(
         );
 
         /// Set the viewport, which is used to transform vertexes from normalized device coordinates to window coordinates.  Fragments that lie outside of the viewport are clipped, and optionally clamped for fragments outside of znear/zfar.
-        #[method(setViewport:)]
+        #[unsafe(method(setViewport:))]
         #[unsafe(method_family = none)]
         fn setViewport(&self, viewport: MTLViewport);
 
         /// Specifies an array of viewports, which are used to transform vertices from normalized device coordinates to window coordinates based on [[ viewport_array_index ]] value specified in the vertex shader.
-        #[method(setViewports:count:)]
+        #[unsafe(method(setViewports:count:))]
         #[unsafe(method_family = none)]
         unsafe fn setViewports_count(&self, viewports: NonNull<MTLViewport>, count: NSUInteger);
 
         /// The winding order of front-facing primitives.
-        #[method(setFrontFacingWinding:)]
+        #[unsafe(method(setFrontFacingWinding:))]
         #[unsafe(method_family = none)]
         fn setFrontFacingWinding(&self, front_facing_winding: MTLWinding);
 
@@ -640,7 +640,7 @@ extern_protocol!(
         /// Parameter `viewMappings`: an array of mapping elements.
         ///
         /// Each mapping element describes how to route the corresponding amplification ID to a specific viewport and render target array index by using offsets from the base array index provided by the [[render_target_array_index]] and/or [[viewport_array_index]] output attributes in the vertex shader. This allows a modicum of programmability for each amplified vertex to be routed to a different [[render_target_array_index]] and [[viewport_array_index]] even though these attribytes cannot be amplified themselves.
-        #[method(setVertexAmplificationCount:viewMappings:)]
+        #[unsafe(method(setVertexAmplificationCount:viewMappings:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexAmplificationCount_viewMappings(
             &self,
@@ -649,17 +649,17 @@ extern_protocol!(
         );
 
         /// Controls if primitives are culled when front facing, back facing, or not culled at all.
-        #[method(setCullMode:)]
+        #[unsafe(method(setCullMode:))]
         #[unsafe(method_family = none)]
         fn setCullMode(&self, cull_mode: MTLCullMode);
 
         /// Controls what is done with fragments outside of the near or far planes.
-        #[method(setDepthClipMode:)]
+        #[unsafe(method(setDepthClipMode:))]
         #[unsafe(method_family = none)]
         fn setDepthClipMode(&self, depth_clip_mode: MTLDepthClipMode);
 
         /// Depth Bias.
-        #[method(setDepthBias:slopeScale:clamp:)]
+        #[unsafe(method(setDepthBias:slopeScale:clamp:))]
         #[unsafe(method_family = none)]
         fn setDepthBias_slopeScale_clamp(
             &self,
@@ -669,12 +669,12 @@ extern_protocol!(
         );
 
         /// Specifies a rectangle for a fragment scissor test.  All fragments outside of this rectangle are discarded.
-        #[method(setScissorRect:)]
+        #[unsafe(method(setScissorRect:))]
         #[unsafe(method_family = none)]
         fn setScissorRect(&self, rect: MTLScissorRect);
 
         /// Specifies an array of rectangles for a fragment scissor test. The specific rectangle used is based on the [[ viewport_array_index ]] value output by the vertex shader. Fragments that lie outside the scissor rectangle are discarded.
-        #[method(setScissorRects:count:)]
+        #[unsafe(method(setScissorRects:count:))]
         #[unsafe(method_family = none)]
         unsafe fn setScissorRects_count(
             &self,
@@ -683,12 +683,12 @@ extern_protocol!(
         );
 
         /// Set how to rasterize triangle and triangle strip primitives.
-        #[method(setTriangleFillMode:)]
+        #[unsafe(method(setTriangleFillMode:))]
         #[unsafe(method_family = none)]
         fn setTriangleFillMode(&self, fill_mode: MTLTriangleFillMode);
 
         /// Set the data (by copy) for a given fragment buffer binding point.  This will remove any existing MTLBuffer from the binding point.
-        #[method(setFragmentBytes:length:atIndex:)]
+        #[unsafe(method(setFragmentBytes:length:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentBytes_length_atIndex(
             &self,
@@ -703,7 +703,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a global buffer for all fragment shaders at the given bind point index.
-        #[method(setFragmentBuffer:offset:atIndex:)]
+        #[unsafe(method(setFragmentBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentBuffer_offset_atIndex(
             &self,
@@ -713,7 +713,7 @@ extern_protocol!(
         );
 
         /// Set the offset within the current global buffer for all fragment shaders at the given bind point index.
-        #[method(setFragmentBufferOffset:atIndex:)]
+        #[unsafe(method(setFragmentBufferOffset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
@@ -723,7 +723,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set an array of global buffers for all fragment shaders with the given bind point range.
-        #[method(setFragmentBuffers:offsets:withRange:)]
+        #[unsafe(method(setFragmentBuffers:offsets:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentBuffers_offsets_withRange(
             &self,
@@ -738,7 +738,7 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set a global texture for all fragment shaders at the given bind point index.
-        #[method(setFragmentTexture:atIndex:)]
+        #[unsafe(method(setFragmentTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentTexture_atIndex(
             &self,
@@ -752,7 +752,7 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set an array of global textures for all fragment shaders with the given bind point range.
-        #[method(setFragmentTextures:withRange:)]
+        #[unsafe(method(setFragmentTextures:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentTextures_withRange(
             &self,
@@ -762,7 +762,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set a global sampler for all fragment shaders at the given bind point index.
-        #[method(setFragmentSamplerState:atIndex:)]
+        #[unsafe(method(setFragmentSamplerState:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentSamplerState_atIndex(
             &self,
@@ -772,7 +772,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set an array of global samplers for all fragment shaders with the given bind point range.
-        #[method(setFragmentSamplerStates:withRange:)]
+        #[unsafe(method(setFragmentSamplerStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentSamplerStates_withRange(
             &self,
@@ -782,7 +782,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set a global sampler for all fragment shaders at the given bind point index.
-        #[method(setFragmentSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
+        #[unsafe(method(setFragmentSamplerState:lodMinClamp:lodMaxClamp:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
@@ -794,7 +794,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set an array of global samplers for all fragment shaders with the given bind point range.
-        #[method(setFragmentSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
+        #[unsafe(method(setFragmentSamplerStates:lodMinClamps:lodMaxClamps:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
@@ -810,7 +810,7 @@ extern_protocol!(
             feature = "MTLVisibleFunctionTable"
         ))]
         /// Set a global visible function table for all fragment shaders at the given buffer bind point index.
-        #[method(setFragmentVisibleFunctionTable:atBufferIndex:)]
+        #[unsafe(method(setFragmentVisibleFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentVisibleFunctionTable_atBufferIndex(
             &self,
@@ -824,7 +824,7 @@ extern_protocol!(
             feature = "MTLVisibleFunctionTable"
         ))]
         /// Set an array of global visible function tables for all fragment shaders with the given buffer bind point range.
-        #[method(setFragmentVisibleFunctionTables:withBufferRange:)]
+        #[unsafe(method(setFragmentVisibleFunctionTables:withBufferRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentVisibleFunctionTables_withBufferRange(
             &self,
@@ -838,7 +838,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a global intersection function table for all fragment shaders at the given buffer bind point index.
-        #[method(setFragmentIntersectionFunctionTable:atBufferIndex:)]
+        #[unsafe(method(setFragmentIntersectionFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentIntersectionFunctionTable_atBufferIndex(
             &self,
@@ -852,7 +852,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set an array of global intersection function tables for all fragment shaders with the given buffer bind point range.
-        #[method(setFragmentIntersectionFunctionTables:withBufferRange:)]
+        #[unsafe(method(setFragmentIntersectionFunctionTables:withBufferRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentIntersectionFunctionTables_withBufferRange(
             &self,
@@ -868,7 +868,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a global acceleration structure for all fragment shaders at the given buffer bind point index.
-        #[method(setFragmentAccelerationStructure:atBufferIndex:)]
+        #[unsafe(method(setFragmentAccelerationStructure:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentAccelerationStructure_atBufferIndex(
             &self,
@@ -877,7 +877,7 @@ extern_protocol!(
         );
 
         /// Set the constant blend color used across all blending on all render targets
-        #[method(setBlendColorRed:green:blue:alpha:)]
+        #[unsafe(method(setBlendColorRed:green:blue:alpha:))]
         #[unsafe(method_family = none)]
         fn setBlendColorRed_green_blue_alpha(
             &self,
@@ -889,7 +889,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLDepthStencil")]
         /// Set the DepthStencil state object.
-        #[method(setDepthStencilState:)]
+        #[unsafe(method(setDepthStencilState:))]
         #[unsafe(method_family = none)]
         fn setDepthStencilState(
             &self,
@@ -897,12 +897,12 @@ extern_protocol!(
         );
 
         /// Set the stencil reference value for both the back and front stencil buffers.
-        #[method(setStencilReferenceValue:)]
+        #[unsafe(method(setStencilReferenceValue:))]
         #[unsafe(method_family = none)]
         fn setStencilReferenceValue(&self, reference_value: u32);
 
         /// Set the stencil reference value for the back and front stencil buffers independently.
-        #[method(setStencilFrontReferenceValue:backReferenceValue:)]
+        #[unsafe(method(setStencilFrontReferenceValue:backReferenceValue:))]
         #[unsafe(method_family = none)]
         fn setStencilFrontReferenceValue_backReferenceValue(
             &self,
@@ -915,7 +915,7 @@ extern_protocol!(
         /// Parameter `mode`: Controls if the counter is disabled or moniters passing samples.
         ///
         /// Parameter `offset`: The offset relative to the occlusion query buffer provided when the command encoder was created.  offset must be a multiple of 8.
-        #[method(setVisibilityResultMode:offset:)]
+        #[unsafe(method(setVisibilityResultMode:offset:))]
         #[unsafe(method_family = none)]
         fn setVisibilityResultMode_offset(&self, mode: MTLVisibilityResultMode, offset: NSUInteger);
 
@@ -926,7 +926,7 @@ extern_protocol!(
         /// Parameter `storeAction`: The desired store action for the given color attachment.  This may be set to any value other than MTLStoreActionUnknown.
         ///
         /// Parameter `colorAttachmentIndex`: The index of the color attachment
-        #[method(setColorStoreAction:atIndex:)]
+        #[unsafe(method(setColorStoreAction:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setColorStoreAction_atIndex(
             &self,
@@ -937,14 +937,14 @@ extern_protocol!(
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for the depth attachment was set to MTLStoreActionUnknown when the render command encoder was created,
         /// setDepthStoreAction: must be used to finalize the store action before endEncoding is called.
-        #[method(setDepthStoreAction:)]
+        #[unsafe(method(setDepthStoreAction:))]
         #[unsafe(method_family = none)]
         unsafe fn setDepthStoreAction(&self, store_action: MTLStoreAction);
 
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for the stencil attachment was set to MTLStoreActionUnknown when the render command encoder was created,
         /// setStencilStoreAction: must be used to finalize the store action before endEncoding is called.
-        #[method(setStencilStoreAction:)]
+        #[unsafe(method(setStencilStoreAction:))]
         #[unsafe(method_family = none)]
         unsafe fn setStencilStoreAction(&self, store_action: MTLStoreAction);
 
@@ -955,7 +955,7 @@ extern_protocol!(
         /// Parameter `storeActionOptions`: The desired store action options for the given color attachment.
         ///
         /// Parameter `colorAttachmentIndex`: The index of the color attachment
-        #[method(setColorStoreActionOptions:atIndex:)]
+        #[unsafe(method(setColorStoreActionOptions:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setColorStoreActionOptions_atIndex(
             &self,
@@ -966,19 +966,19 @@ extern_protocol!(
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for the depth attachment was set to MTLStoreActionUnknown when the render command encoder was created,
         /// setDepthStoreActionOptions: may be used to finalize the store action options before endEncoding is called.
-        #[method(setDepthStoreActionOptions:)]
+        #[unsafe(method(setDepthStoreActionOptions:))]
         #[unsafe(method_family = none)]
         unsafe fn setDepthStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
 
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for the stencil attachment was set to MTLStoreActionUnknown when the render command encoder was created,
         /// setStencilStoreActionOptions: may be used to finalize the store action options before endEncoding is called.
-        #[method(setStencilStoreActionOptions:)]
+        #[unsafe(method(setStencilStoreActionOptions:))]
         #[unsafe(method_family = none)]
         unsafe fn setStencilStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
 
         /// Set the data (by copy) for a given object shader buffer binding point.  This will remove any existing MTLBuffer from the binding point.
-        #[method(setObjectBytes:length:atIndex:)]
+        #[unsafe(method(setObjectBytes:length:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setObjectBytes_length_atIndex(
             &self,
@@ -993,7 +993,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a global buffer for all object shaders at the given bind point index.
-        #[method(setObjectBuffer:offset:atIndex:)]
+        #[unsafe(method(setObjectBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setObjectBuffer_offset_atIndex(
             &self,
@@ -1003,7 +1003,7 @@ extern_protocol!(
         );
 
         /// Set the offset within the current global buffer for all object shaders at the given bind point index.
-        #[method(setObjectBufferOffset:atIndex:)]
+        #[unsafe(method(setObjectBufferOffset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setObjectBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
@@ -1013,7 +1013,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set an array of global buffers for all object shaders with the given bind point range.
-        #[method(setObjectBuffers:offsets:withRange:)]
+        #[unsafe(method(setObjectBuffers:offsets:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setObjectBuffers_offsets_withRange(
             &self,
@@ -1028,7 +1028,7 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set a global texture for all object shaders at the given bind point index.
-        #[method(setObjectTexture:atIndex:)]
+        #[unsafe(method(setObjectTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setObjectTexture_atIndex(
             &self,
@@ -1042,7 +1042,7 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set an array of global textures for all object shaders with the given bind point range.
-        #[method(setObjectTextures:withRange:)]
+        #[unsafe(method(setObjectTextures:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setObjectTextures_withRange(
             &self,
@@ -1052,7 +1052,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set a global sampler for all object shaders at the given bind point index.
-        #[method(setObjectSamplerState:atIndex:)]
+        #[unsafe(method(setObjectSamplerState:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setObjectSamplerState_atIndex(
             &self,
@@ -1062,7 +1062,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set an array of global samplers for all object shaders with the given bind point range.
-        #[method(setObjectSamplerStates:withRange:)]
+        #[unsafe(method(setObjectSamplerStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setObjectSamplerStates_withRange(
             &self,
@@ -1072,7 +1072,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set a global sampler for all object shaders at the given bind point index.
-        #[method(setObjectSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
+        #[unsafe(method(setObjectSamplerState:lodMinClamp:lodMaxClamp:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setObjectSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
@@ -1084,7 +1084,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set an array of global samplers for all object shaders with the given bind point range.
-        #[method(setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
+        #[unsafe(method(setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setObjectSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
@@ -1095,7 +1095,7 @@ extern_protocol!(
         );
 
         /// Set the threadgroup memory byte length at the binding point specified by the index for all object shaders.
-        #[method(setObjectThreadgroupMemoryLength:atIndex:)]
+        #[unsafe(method(setObjectThreadgroupMemoryLength:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setObjectThreadgroupMemoryLength_atIndex(
             &self,
@@ -1104,7 +1104,7 @@ extern_protocol!(
         );
 
         /// Set the data (by copy) for a given mesh shader buffer binding point.  This will remove any existing MTLBuffer from the binding point.
-        #[method(setMeshBytes:length:atIndex:)]
+        #[unsafe(method(setMeshBytes:length:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setMeshBytes_length_atIndex(
             &self,
@@ -1119,7 +1119,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a global buffer for all mesh shaders at the given bind point index.
-        #[method(setMeshBuffer:offset:atIndex:)]
+        #[unsafe(method(setMeshBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setMeshBuffer_offset_atIndex(
             &self,
@@ -1129,7 +1129,7 @@ extern_protocol!(
         );
 
         /// Set the offset within the current global buffer for all mesh shaders at the given bind point index.
-        #[method(setMeshBufferOffset:atIndex:)]
+        #[unsafe(method(setMeshBufferOffset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setMeshBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
@@ -1139,7 +1139,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set an array of global buffers for all mesh shaders with the given bind point range.
-        #[method(setMeshBuffers:offsets:withRange:)]
+        #[unsafe(method(setMeshBuffers:offsets:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setMeshBuffers_offsets_withRange(
             &self,
@@ -1154,7 +1154,7 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set a global texture for all mesh shaders at the given bind point index.
-        #[method(setMeshTexture:atIndex:)]
+        #[unsafe(method(setMeshTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setMeshTexture_atIndex(
             &self,
@@ -1168,7 +1168,7 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set an array of global textures for all mesh shaders with the given bind point range.
-        #[method(setMeshTextures:withRange:)]
+        #[unsafe(method(setMeshTextures:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setMeshTextures_withRange(
             &self,
@@ -1178,7 +1178,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set a global sampler for all mesh shaders at the given bind point index.
-        #[method(setMeshSamplerState:atIndex:)]
+        #[unsafe(method(setMeshSamplerState:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setMeshSamplerState_atIndex(
             &self,
@@ -1188,7 +1188,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set an array of global samplers for all mesh shaders with the given bind point range.
-        #[method(setMeshSamplerStates:withRange:)]
+        #[unsafe(method(setMeshSamplerStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setMeshSamplerStates_withRange(
             &self,
@@ -1198,7 +1198,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set a global sampler for all mesh shaders at the given bind point index.
-        #[method(setMeshSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
+        #[unsafe(method(setMeshSamplerState:lodMinClamp:lodMaxClamp:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setMeshSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
@@ -1210,7 +1210,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set an array of global samplers for all mesh shaders with the given bind point range.
-        #[method(setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
+        #[unsafe(method(setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setMeshSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
@@ -1230,7 +1230,7 @@ extern_protocol!(
         /// Parameter `threadsPerObjectThreadgroup`: The number of threads in one object shader threadgroup. Ignored if object shader is not present.
         ///
         /// Parameter `threadsPerMeshThreadgroup`: The number of threads in one mesh shader threadgroup.
-        #[method(drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
+        #[unsafe(method(drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:))]
         #[unsafe(method_family = none)]
         unsafe fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
@@ -1251,7 +1251,7 @@ extern_protocol!(
         /// Parameter `threadsPerObjectThreadgroup`: The number of threads in one object shader threadgroup. Ignored if object shader is not present.
         ///
         /// Parameter `threadsPerMeshThreadgroup`: The number of threads in one mesh shader threadgroup.
-        #[method(drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
+        #[unsafe(method(drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:))]
         #[unsafe(method_family = none)]
         unsafe fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
@@ -1279,7 +1279,7 @@ extern_protocol!(
         /// Parameter `threadsPerObjectThreadgroup`: The number of threads in one object shader threadgroup. Ignored if object shader is not present.
         ///
         /// Parameter `threadsPerMeshThreadgroup`: The number of threads in one mesh shader threadgroup.
-        #[method(drawMeshThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:)]
+        #[unsafe(method(drawMeshThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:))]
         #[unsafe(method_family = none)]
         unsafe fn drawMeshThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
@@ -1298,7 +1298,7 @@ extern_protocol!(
         /// Parameter `vertexCount`: For each instance, the number of indexes to draw
         ///
         /// Parameter `instanceCount`: The number of instances drawn.
-        #[method(drawPrimitives:vertexStart:vertexCount:instanceCount:)]
+        #[unsafe(method(drawPrimitives:vertexStart:vertexCount:instanceCount:))]
         #[unsafe(method_family = none)]
         unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount(
             &self,
@@ -1315,7 +1315,7 @@ extern_protocol!(
         /// Parameter `vertexStart`: For each instance, the first index to draw
         ///
         /// Parameter `vertexCount`: For each instance, the number of indexes to draw
-        #[method(drawPrimitives:vertexStart:vertexCount:)]
+        #[unsafe(method(drawPrimitives:vertexStart:vertexCount:))]
         #[unsafe(method_family = none)]
         unsafe fn drawPrimitives_vertexStart_vertexCount(
             &self,
@@ -1345,7 +1345,7 @@ extern_protocol!(
         /// _indexBufferOffset_must be a multiple of the index size.
         ///
         /// Parameter `instanceCount`: The number of instances drawn.
-        #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:)]
+        #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:))]
         #[unsafe(method_family = none)]
         unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount(
             &self,
@@ -1376,7 +1376,7 @@ extern_protocol!(
         /// Parameter `indexBufferOffset`: Byte offset within
         /// _indexBuffer_to start reading indexes from.
         /// _indexBufferOffset_must be a multiple of the index size.
-        #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:)]
+        #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset(
             &self,
@@ -1398,7 +1398,7 @@ extern_protocol!(
         /// Parameter `instanceCount`: The number of instances drawn.
         ///
         /// Parameter `baseInstance`: Offset for instance_id.
-        #[method(drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:)]
+        #[unsafe(method(drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:))]
         #[unsafe(method_family = none)]
         unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(
             &self,
@@ -1434,7 +1434,7 @@ extern_protocol!(
         /// Parameter `baseVertex`: Offset for vertex_id. NOTE: this can be negative
         ///
         /// Parameter `baseInstance`: Offset for instance_id.
-        #[method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:)]
+        #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:))]
         #[unsafe(method_family = none)]
         unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(
             &self,
@@ -1462,7 +1462,7 @@ extern_protocol!(
         /// Parameter `indirectBufferOffset`: Byte offset within
         /// _indirectBuffer_to start reading indexes from.
         /// _indirectBufferOffset_must be a multiple of 4.
-        #[method(drawPrimitives:indirectBuffer:indirectBufferOffset:)]
+        #[unsafe(method(drawPrimitives:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn drawPrimitives_indirectBuffer_indirectBufferOffset(
             &self,
@@ -1494,7 +1494,7 @@ extern_protocol!(
         /// Parameter `indirectBufferOffset`: Byte offset within
         /// _indirectBuffer_to start reading indexes from.
         /// _indirectBufferOffset_must be a multiple of 4.
-        #[method(drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:)]
+        #[unsafe(method(drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn drawIndexedPrimitives_indexType_indexBuffer_indexBufferOffset_indirectBuffer_indirectBufferOffset(
             &self,
@@ -1508,7 +1508,7 @@ extern_protocol!(
 
         /// Ensure that following fragment shaders can read textures written by previous draw calls (in particular the framebuffer)
         #[deprecated]
-        #[method(textureBarrier)]
+        #[unsafe(method(textureBarrier))]
         #[unsafe(method_family = none)]
         unsafe fn textureBarrier(&self);
 
@@ -1521,7 +1521,7 @@ extern_protocol!(
         /// </st
         /// >, this method will update the fence when the given stage(s) complete, allowing for commands to overlap in execution.
         /// On iOS, render command encoder fence updates are always delayed until the end of the encoder.
-        #[method(updateFence:afterStages:)]
+        #[unsafe(method(updateFence:afterStages:))]
         #[unsafe(method_family = none)]
         fn updateFence_afterStages(
             &self,
@@ -1538,7 +1538,7 @@ extern_protocol!(
         /// </st
         /// >, this method will only block commands assoicated with the given stage(s), allowing for commands to overlap in execution.
         /// On iOS, render command encoder fence waits always occur the beginning of the encoder.
-        #[method(waitForFence:beforeStages:)]
+        #[unsafe(method(waitForFence:beforeStages:))]
         #[unsafe(method_family = none)]
         fn waitForFence_beforeStages(
             &self,
@@ -1551,7 +1551,7 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
-        #[method(setTessellationFactorBuffer:offset:instanceStride:)]
+        #[unsafe(method(setTessellationFactorBuffer:offset:instanceStride:))]
         #[unsafe(method_family = none)]
         unsafe fn setTessellationFactorBuffer_offset_instanceStride(
             &self,
@@ -1560,7 +1560,7 @@ extern_protocol!(
             instance_stride: NSUInteger,
         );
 
-        #[method(setTessellationFactorScale:)]
+        #[unsafe(method(setTessellationFactorScale:))]
         #[unsafe(method_family = none)]
         unsafe fn setTessellationFactorScale(&self, scale: c_float);
 
@@ -1569,7 +1569,7 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
-        #[method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:)]
+        #[unsafe(method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:))]
         #[unsafe(method_family = none)]
         unsafe fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance(
             &self,
@@ -1587,7 +1587,7 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
-        #[method(drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:)]
+        #[unsafe(method(drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn drawPatches_patchIndexBuffer_patchIndexBufferOffset_indirectBuffer_indirectBufferOffset(
             &self,
@@ -1603,7 +1603,7 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
-        #[method(drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:)]
+        #[unsafe(method(drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:))]
         #[unsafe(method_family = none)]
         unsafe fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance(
             &self,
@@ -1623,7 +1623,7 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
-        #[method(drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:)]
+        #[unsafe(method(drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn drawIndexedPatches_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_indirectBuffer_indirectBufferOffset(
             &self,
@@ -1637,17 +1637,17 @@ extern_protocol!(
         );
 
         /// The width of the tile for this render pass.
-        #[method(tileWidth)]
+        #[unsafe(method(tileWidth))]
         #[unsafe(method_family = none)]
         unsafe fn tileWidth(&self) -> NSUInteger;
 
         /// The height of the tile for this render pass.
-        #[method(tileHeight)]
+        #[unsafe(method(tileHeight))]
         #[unsafe(method_family = none)]
         unsafe fn tileHeight(&self) -> NSUInteger;
 
         /// Set the data (by copy) for a given tile buffer binding point.  This will remove any existing MTLBuffer from the binding point.
-        #[method(setTileBytes:length:atIndex:)]
+        #[unsafe(method(setTileBytes:length:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileBytes_length_atIndex(
             &self,
@@ -1662,7 +1662,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a global buffer for all tile shaders at the given bind point index.
-        #[method(setTileBuffer:offset:atIndex:)]
+        #[unsafe(method(setTileBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileBuffer_offset_atIndex(
             &self,
@@ -1672,7 +1672,7 @@ extern_protocol!(
         );
 
         /// Set the offset within the current global buffer for all tile shaders at the given bind point index.
-        #[method(setTileBufferOffset:atIndex:)]
+        #[unsafe(method(setTileBufferOffset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
@@ -1682,7 +1682,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set an array of global buffers for all tile shaders with the given bind point range.
-        #[method(setTileBuffers:offsets:withRange:)]
+        #[unsafe(method(setTileBuffers:offsets:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileBuffers_offsets_withRange(
             &self,
@@ -1697,7 +1697,7 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set a global texture for all tile shaders at the given bind point index.
-        #[method(setTileTexture:atIndex:)]
+        #[unsafe(method(setTileTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileTexture_atIndex(
             &self,
@@ -1711,7 +1711,7 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set an array of global textures for all tile shaders with the given bind point range.
-        #[method(setTileTextures:withRange:)]
+        #[unsafe(method(setTileTextures:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileTextures_withRange(
             &self,
@@ -1721,7 +1721,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set a global sampler for all tile shaders at the given bind point index.
-        #[method(setTileSamplerState:atIndex:)]
+        #[unsafe(method(setTileSamplerState:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileSamplerState_atIndex(
             &self,
@@ -1731,7 +1731,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set an array of global samplers for all fragment shaders with the given bind point range.
-        #[method(setTileSamplerStates:withRange:)]
+        #[unsafe(method(setTileSamplerStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileSamplerStates_withRange(
             &self,
@@ -1741,7 +1741,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set a global sampler for all tile shaders at the given bind point index.
-        #[method(setTileSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
+        #[unsafe(method(setTileSamplerState:lodMinClamp:lodMaxClamp:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
@@ -1753,7 +1753,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set an array of global samplers for all tile shaders with the given bind point range.
-        #[method(setTileSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
+        #[unsafe(method(setTileSamplerStates:lodMinClamps:lodMaxClamps:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
@@ -1769,7 +1769,7 @@ extern_protocol!(
             feature = "MTLVisibleFunctionTable"
         ))]
         /// Set a global visible function table for all tile shaders at the given buffer bind point index.
-        #[method(setTileVisibleFunctionTable:atBufferIndex:)]
+        #[unsafe(method(setTileVisibleFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileVisibleFunctionTable_atBufferIndex(
             &self,
@@ -1783,7 +1783,7 @@ extern_protocol!(
             feature = "MTLVisibleFunctionTable"
         ))]
         /// Set an array of global visible function tables for all tile shaders with the given buffer bind point range.
-        #[method(setTileVisibleFunctionTables:withBufferRange:)]
+        #[unsafe(method(setTileVisibleFunctionTables:withBufferRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileVisibleFunctionTables_withBufferRange(
             &self,
@@ -1797,7 +1797,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a global intersection function table for all tile shaders at the given buffer bind point index.
-        #[method(setTileIntersectionFunctionTable:atBufferIndex:)]
+        #[unsafe(method(setTileIntersectionFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileIntersectionFunctionTable_atBufferIndex(
             &self,
@@ -1811,7 +1811,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set an array of global intersection function tables for all tile shaders with the given buffer bind point range.
-        #[method(setTileIntersectionFunctionTables:withBufferRange:)]
+        #[unsafe(method(setTileIntersectionFunctionTables:withBufferRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileIntersectionFunctionTables_withBufferRange(
             &self,
@@ -1827,7 +1827,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a global acceleration structure for all tile shaders at the given buffer bind point index.
-        #[method(setTileAccelerationStructure:atBufferIndex:)]
+        #[unsafe(method(setTileAccelerationStructure:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileAccelerationStructure_atBufferIndex(
             &self,
@@ -1837,12 +1837,12 @@ extern_protocol!(
 
         #[cfg(feature = "MTLTypes")]
         /// dispatch threads to perform a mid-render compute operation.
-        #[method(dispatchThreadsPerTile:)]
+        #[unsafe(method(dispatchThreadsPerTile:))]
         #[unsafe(method_family = none)]
         unsafe fn dispatchThreadsPerTile(&self, threads_per_tile: MTLSize);
 
         /// Set the size of the threadgroup memory argument at the given bind point index and offset.
-        #[method(setThreadgroupMemoryLength:offset:atIndex:)]
+        #[unsafe(method(setThreadgroupMemoryLength:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setThreadgroupMemoryLength_offset_atIndex(
             &self,
@@ -1859,7 +1859,7 @@ extern_protocol!(
         /// Note that calling useResource does not retain the resource. It is the responsiblity of the user to retain the resource until
         /// the command buffer has been executed.
         #[deprecated]
-        #[method(useResource:usage:)]
+        #[unsafe(method(useResource:usage:))]
         #[unsafe(method_family = none)]
         fn useResource_usage(
             &self,
@@ -1875,7 +1875,7 @@ extern_protocol!(
         /// Note that calling useResources does not retain the resources. It is the responsiblity of the user to retain the resources until
         /// the command buffer has been executed.
         #[deprecated]
-        #[method(useResources:count:usage:)]
+        #[unsafe(method(useResources:count:usage:))]
         #[unsafe(method_family = none)]
         unsafe fn useResources_count_usage(
             &self,
@@ -1891,7 +1891,7 @@ extern_protocol!(
         ///
         /// Note that calling useResource does not retain the resource. It is the responsiblity of the user to retain the resource until
         /// the command buffer has been executed.
-        #[method(useResource:usage:stages:)]
+        #[unsafe(method(useResource:usage:stages:))]
         #[unsafe(method_family = none)]
         fn useResource_usage_stages(
             &self,
@@ -1907,7 +1907,7 @@ extern_protocol!(
         ///
         /// Note that calling useResources does not retain the resources. It is the responsiblity of the user to retain the resources until
         /// the command buffer has been executed.
-        #[method(useResources:count:usage:stages:)]
+        #[unsafe(method(useResources:count:usage:stages:))]
         #[unsafe(method_family = none)]
         unsafe fn useResources_count_usage_stages(
             &self,
@@ -1922,7 +1922,7 @@ extern_protocol!(
         ///
         /// This method does not protect against data hazards; these hazards must be addressed using an MTLFence. This method must be called before encoding any draw commands which may access the resources allocated from the heap through an argument buffer. This method may cause all of the color attachments allocated from the heap to become decompressed. Therefore, it is recommended that the useResource:usage: or useResources:count:usage: methods be used for color attachments instead, with a minimal (i.e. read-only) usage.
         #[deprecated]
-        #[method(useHeap:)]
+        #[unsafe(method(useHeap:))]
         #[unsafe(method_family = none)]
         fn useHeap(&self, heap: &ProtocolObject<dyn MTLHeap>);
 
@@ -1931,7 +1931,7 @@ extern_protocol!(
         ///
         /// This method does not protect against data hazards; these hazards must be addressed using an MTLFence. This method must be called before encoding any draw commands which may access the resources allocated from the heaps through an argument buffer. This method may cause all of the color attachments allocated from the heaps to become decompressed. Therefore, it is recommended that the useResource:usage: or useResources:count:usage: methods be used for color attachments instead, with a minimal (i.e. read-only) usage.
         #[deprecated]
-        #[method(useHeaps:count:)]
+        #[unsafe(method(useHeaps:count:))]
         #[unsafe(method_family = none)]
         unsafe fn useHeaps_count(
             &self,
@@ -1943,7 +1943,7 @@ extern_protocol!(
         /// Declare that the resources allocated from a heap may be accessed by the render pass through an argument buffer
         ///
         /// If the heap is tracked, this method protects against hazard tracking; these hazards must be addressed using an MTLFence. This method must be called before encoding any draw commands which may access the resources allocated from the heap through an argument buffer. This method may cause all of the color attachments allocated from the heap to become decompressed. Therefore, it is recommended that the useResource:usage: or useResources:count:usage: methods be used for color attachments instead, with a minimal (i.e. read-only) usage.
-        #[method(useHeap:stages:)]
+        #[unsafe(method(useHeap:stages:))]
         #[unsafe(method_family = none)]
         fn useHeap_stages(&self, heap: &ProtocolObject<dyn MTLHeap>, stages: MTLRenderStages);
 
@@ -1951,7 +1951,7 @@ extern_protocol!(
         /// Declare that the resources allocated from an array of heaps may be accessed by the render pass through an argument buffer
         ///
         /// This method does not protect against data hazards; these hazards must be addressed using an MTLFence. This method must be called before encoding any draw commands which may access the resources allocated from the heaps through an argument buffer. This method may cause all of the color attachments allocated from the heaps to become decompressed. Therefore, it is recommended that the useResource:usage: or useResources:count:usage: methods be used for color attachments instead, with a minimal (i.e. read-only) usage.
-        #[method(useHeaps:count:stages:)]
+        #[unsafe(method(useHeaps:count:stages:))]
         #[unsafe(method_family = none)]
         unsafe fn useHeaps_count_stages(
             &self,
@@ -1968,7 +1968,7 @@ extern_protocol!(
         /// Execute commands in the buffer within the range specified.
         ///
         /// The same indirect command buffer may be executed any number of times within the same encoder.
-        #[method(executeCommandsInBuffer:withRange:)]
+        #[unsafe(method(executeCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_withRange(
             &self,
@@ -1989,7 +1989,7 @@ extern_protocol!(
         /// Parameter `indirectBufferOffset`: The byte offset within indirectBuffer where the execution range parameter is located. Must be a multiple of 4 bytes.
         ///
         /// The same indirect command buffer may be executed any number of times within the same encoder.
-        #[method(executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:)]
+        #[unsafe(method(executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(
             &self,
@@ -2001,7 +2001,7 @@ extern_protocol!(
         /// Make stores to memory encoded before the barrier coherent with loads from memory encoded after the barrier.
         ///
         /// The barrier makes stores coherent that 1) are to a resource with a type in the given scope, and 2) happen at (or before) the stage given by afterStages. Only affects loads that happen at (or after) the stage given by beforeStages.
-        #[method(memoryBarrierWithScope:afterStages:beforeStages:)]
+        #[unsafe(method(memoryBarrierWithScope:afterStages:beforeStages:))]
         #[unsafe(method_family = none)]
         unsafe fn memoryBarrierWithScope_afterStages_beforeStages(
             &self,
@@ -2014,7 +2014,7 @@ extern_protocol!(
         /// Make stores to memory encoded before the barrier coherent with loads from memory encoded after the barrier.
         ///
         /// The barrier makes stores coherent that 1) are to resources in given array, and 2) happen at (or before) the stage given by afterStages. Only affects loads that happen at (or after) the stage give by beforeStages.
-        #[method(memoryBarrierWithResources:count:afterStages:beforeStages:)]
+        #[unsafe(method(memoryBarrierWithResources:count:afterStages:beforeStages:))]
         #[unsafe(method_family = none)]
         unsafe fn memoryBarrierWithResources_count_afterStages_beforeStages(
             &self,
@@ -2040,7 +2040,7 @@ extern_protocol!(
         /// In general, passing YES will lead to more repeatable counter results but
         /// may negatively impact performance.  Passing NO will generally be higher performance
         /// but counter results may not be repeatable.
-        #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
+        #[unsafe(method(sampleCountersInBuffer:atSampleIndex:withBarrier:))]
         #[unsafe(method_family = none)]
         unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,

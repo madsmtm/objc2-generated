@@ -15,19 +15,19 @@ extern_protocol!(
     pub unsafe trait ASCredentialIdentity: NSObjectProtocol {
         #[cfg(feature = "ASCredentialServiceIdentifier")]
         /// Get the service identifier.
-        #[method(serviceIdentifier)]
+        #[unsafe(method(serviceIdentifier))]
         #[unsafe(method_family = none)]
         unsafe fn serviceIdentifier(&self) -> Retained<ASCredentialServiceIdentifier>;
 
         /// Get the user.
-        #[method(user)]
+        #[unsafe(method(user))]
         #[unsafe(method_family = none)]
         unsafe fn user(&self) -> Retained<NSString>;
 
         /// Get the record identifier.
         ///
         /// You can utilize the record identifier to uniquely identify the credential identity in your local database.
-        #[method(recordIdentifier)]
+        #[unsafe(method(recordIdentifier))]
         #[unsafe(method_family = none)]
         unsafe fn recordIdentifier(&self) -> Option<Retained<NSString>>;
 
@@ -37,12 +37,12 @@ extern_protocol!(
         /// if two identities have the same service identifier. A credential identity with a larger rank value
         /// precedes one with a smaller value if both credential identities have the same service identifier.
         /// The default value of this property is 0.
-        #[method(rank)]
+        #[unsafe(method(rank))]
         #[unsafe(method_family = none)]
         unsafe fn rank(&self) -> NSInteger;
 
         /// Setter for [`rank`][Self::rank].
-        #[method(setRank:)]
+        #[unsafe(method(setRank:))]
         #[unsafe(method_family = none)]
         unsafe fn setRank(&self, rank: NSInteger);
     }

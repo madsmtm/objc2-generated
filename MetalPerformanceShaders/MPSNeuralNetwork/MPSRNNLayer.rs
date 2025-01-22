@@ -71,22 +71,22 @@ unsafe impl NSObjectProtocol for MPSRNNDescriptor {}
 extern_methods!(
     unsafe impl MPSRNNDescriptor {
         /// The number of feature channels per pixel in the input image or number of rows in the input matrix.
-        #[method(inputFeatureChannels)]
+        #[unsafe(method(inputFeatureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputFeatureChannels(&self) -> NSUInteger;
 
         /// Setter for [`inputFeatureChannels`][Self::inputFeatureChannels].
-        #[method(setInputFeatureChannels:)]
+        #[unsafe(method(setInputFeatureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputFeatureChannels(&self, input_feature_channels: NSUInteger);
 
         /// The number of feature channels per pixel in the destination image or number of rows in the destination matrix.
-        #[method(outputFeatureChannels)]
+        #[unsafe(method(outputFeatureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputFeatureChannels(&self) -> NSUInteger;
 
         /// Setter for [`outputFeatureChannels`][Self::outputFeatureChannels].
-        #[method(setOutputFeatureChannels:)]
+        #[unsafe(method(setOutputFeatureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputFeatureChannels(&self, output_feature_channels: NSUInteger);
 
@@ -94,12 +94,12 @@ extern_methods!(
         /// even if said weights are specified as nil.
         /// For example 'W_ij * x_j' is replaced by 'x_j' in formulae defined in
         /// MPSRNNSingleGateDescriptor.Defaults to NO.
-        #[method(useLayerInputUnitTransformMode)]
+        #[unsafe(method(useLayerInputUnitTransformMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn useLayerInputUnitTransformMode(&self) -> bool;
 
         /// Setter for [`useLayerInputUnitTransformMode`][Self::useLayerInputUnitTransformMode].
-        #[method(setUseLayerInputUnitTransformMode:)]
+        #[unsafe(method(setUseLayerInputUnitTransformMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUseLayerInputUnitTransformMode(
             &self,
@@ -113,12 +113,12 @@ extern_methods!(
         /// MPSRNNImageInferenceLayerignores this property and the convolution operations always
         /// convert FP32 weights into FP16 for better performance.
         /// Defaults to NO.
-        #[method(useFloat32Weights)]
+        #[unsafe(method(useFloat32Weights))]
         #[unsafe(method_family = none)]
         pub unsafe fn useFloat32Weights(&self) -> bool;
 
         /// Setter for [`useFloat32Weights`][Self::useFloat32Weights].
-        #[method(setUseFloat32Weights:)]
+        #[unsafe(method(setUseFloat32Weights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUseFloat32Weights(&self, use_float32_weights: bool);
 
@@ -136,12 +136,12 @@ extern_methods!(
         /// See: MPSRNNImageInferenceLayer and
         ///
         /// See: MPSRNNMatrixInferenceLayer.
-        #[method(layerSequenceDirection)]
+        #[unsafe(method(layerSequenceDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerSequenceDirection(&self) -> MPSRNNSequenceDirection;
 
         /// Setter for [`layerSequenceDirection`][Self::layerSequenceDirection].
-        #[method(setLayerSequenceDirection:)]
+        #[unsafe(method(setLayerSequenceDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLayerSequenceDirection(
             &self,
@@ -153,11 +153,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSRNNDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -208,7 +208,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'W_ij', bias 'b_i' and neuron 'gi' from the simple RNN layer formula.
         /// If nil then assumed zero weights, bias and no neuron (identity mapping). Defaults to nil.
-        #[method(inputWeights)]
+        #[unsafe(method(inputWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputWeights(
             &self,
@@ -216,7 +216,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`inputWeights`][Self::inputWeights].
-        #[method(setInputWeights:)]
+        #[unsafe(method(setInputWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputWeights(
             &self,
@@ -226,7 +226,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'U_ij' from the simple RNN layer formula.
         /// If nil then assumed zero weights. Defaults to nil.
-        #[method(recurrentWeights)]
+        #[unsafe(method(recurrentWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn recurrentWeights(
             &self,
@@ -234,7 +234,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`recurrentWeights`][Self::recurrentWeights].
-        #[method(setRecurrentWeights:)]
+        #[unsafe(method(setRecurrentWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecurrentWeights(
             &self,
@@ -248,7 +248,7 @@ extern_methods!(
         /// Parameter `outputFeatureChannels`: The number of feature channels in the output image/matrix. Must be >= 1.
         ///
         /// Returns: A valid MPSRNNSingleGateDescriptor object or nil, if failure.
-        #[method(createRNNSingleGateDescriptorWithInputFeatureChannels:outputFeatureChannels:)]
+        #[unsafe(method(createRNNSingleGateDescriptorWithInputFeatureChannels:outputFeatureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createRNNSingleGateDescriptorWithInputFeatureChannels_outputFeatureChannels(
             input_feature_channels: NSUInteger,
@@ -260,11 +260,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSRNNSingleGateDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -332,7 +332,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Wz_ij', bias 'bz_i' and neuron 'gz' from the GRU formula.
         /// If nil then assumed zero weights, bias and no neuron (identity mapping). Defaults to nil.
-        #[method(inputGateInputWeights)]
+        #[unsafe(method(inputGateInputWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputGateInputWeights(
             &self,
@@ -340,7 +340,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`inputGateInputWeights`][Self::inputGateInputWeights].
-        #[method(setInputGateInputWeights:)]
+        #[unsafe(method(setInputGateInputWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputGateInputWeights(
             &self,
@@ -350,7 +350,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Uz_ij' from the GRU formula.
         /// If nil then assumed zero weights. Defaults to nil.
-        #[method(inputGateRecurrentWeights)]
+        #[unsafe(method(inputGateRecurrentWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputGateRecurrentWeights(
             &self,
@@ -358,7 +358,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`inputGateRecurrentWeights`][Self::inputGateRecurrentWeights].
-        #[method(setInputGateRecurrentWeights:)]
+        #[unsafe(method(setInputGateRecurrentWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputGateRecurrentWeights(
             &self,
@@ -368,7 +368,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Wr_ij', bias 'br_i' and neuron 'gr' from the GRU formula.
         /// If nil then assumed zero weights, bias and no neuron (identity mapping).Defaults to nil.
-        #[method(recurrentGateInputWeights)]
+        #[unsafe(method(recurrentGateInputWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn recurrentGateInputWeights(
             &self,
@@ -376,7 +376,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`recurrentGateInputWeights`][Self::recurrentGateInputWeights].
-        #[method(setRecurrentGateInputWeights:)]
+        #[unsafe(method(setRecurrentGateInputWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecurrentGateInputWeights(
             &self,
@@ -386,7 +386,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Ur_ij' from the GRU formula.
         /// If nil then assumed zero weights.Defaults to nil.
-        #[method(recurrentGateRecurrentWeights)]
+        #[unsafe(method(recurrentGateRecurrentWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn recurrentGateRecurrentWeights(
             &self,
@@ -394,7 +394,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`recurrentGateRecurrentWeights`][Self::recurrentGateRecurrentWeights].
-        #[method(setRecurrentGateRecurrentWeights:)]
+        #[unsafe(method(setRecurrentGateRecurrentWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecurrentGateRecurrentWeights(
             &self,
@@ -406,7 +406,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Wh_ij', bias 'bh_i' and neuron 'gh' from the GRU formula.
         /// If nil then assumed zero weights, bias and no neuron (identity mapping).Defaults to nil.
-        #[method(outputGateInputWeights)]
+        #[unsafe(method(outputGateInputWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputGateInputWeights(
             &self,
@@ -414,7 +414,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`outputGateInputWeights`][Self::outputGateInputWeights].
-        #[method(setOutputGateInputWeights:)]
+        #[unsafe(method(setOutputGateInputWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputGateInputWeights(
             &self,
@@ -424,7 +424,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Uh_ij' from the GRU formula.
         /// If nil then assumed zero weights. Defaults to nil.
-        #[method(outputGateRecurrentWeights)]
+        #[unsafe(method(outputGateRecurrentWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputGateRecurrentWeights(
             &self,
@@ -432,7 +432,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`outputGateRecurrentWeights`][Self::outputGateRecurrentWeights].
-        #[method(setOutputGateRecurrentWeights:)]
+        #[unsafe(method(setOutputGateRecurrentWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputGateRecurrentWeights(
             &self,
@@ -442,7 +442,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Vh_ij' - can be used to implement the "Minimally Gated Unit".
         /// If nil then assumed zero weights. Defaults to nil.
-        #[method(outputGateInputGateWeights)]
+        #[unsafe(method(outputGateInputGateWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputGateInputGateWeights(
             &self,
@@ -450,7 +450,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`outputGateInputGateWeights`][Self::outputGateInputGateWeights].
-        #[method(setOutputGateInputGateWeights:)]
+        #[unsafe(method(setOutputGateInputGateWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputGateInputGateWeights(
             &self,
@@ -460,24 +460,24 @@ extern_methods!(
         );
 
         /// The p-norm gating norm value as specified by the GRU formulae. Defaults to 1.0f.
-        #[method(gatePnormValue)]
+        #[unsafe(method(gatePnormValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn gatePnormValue(&self) -> c_float;
 
         /// Setter for [`gatePnormValue`][Self::gatePnormValue].
-        #[method(setGatePnormValue:)]
+        #[unsafe(method(setGatePnormValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGatePnormValue(&self, gate_pnorm_value: c_float);
 
         /// If YES then the GRU-block output formula is changed to:
         /// h1_i = ( 1 - z_i ^ p)^(1/p) h0_i + z_i h_i.
         /// Defaults to NO.
-        #[method(flipOutputGates)]
+        #[unsafe(method(flipOutputGates))]
         #[unsafe(method_family = none)]
         pub unsafe fn flipOutputGates(&self) -> bool;
 
         /// Setter for [`flipOutputGates`][Self::flipOutputGates].
-        #[method(setFlipOutputGates:)]
+        #[unsafe(method(setFlipOutputGates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFlipOutputGates(&self, flip_output_gates: bool);
 
@@ -488,7 +488,7 @@ extern_methods!(
         /// Parameter `outputFeatureChannels`: The number of feature channels in the output image/matrix. Must be >= 1.
         ///
         /// Returns: A valid MPSGRUDescriptor object or nil, if failure.
-        #[method(createGRUDescriptorWithInputFeatureChannels:outputFeatureChannels:)]
+        #[unsafe(method(createGRUDescriptorWithInputFeatureChannels:outputFeatureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createGRUDescriptorWithInputFeatureChannels_outputFeatureChannels(
             input_feature_channels: NSUInteger,
@@ -500,11 +500,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSGRUDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -577,19 +577,19 @@ extern_methods!(
         /// vectors of length the number of features in memory cells, that will be multiplied pointwise
         /// with the peephole matrix or image in order to achieve the diagonal (nonmixing) update.
         /// Defaults to NO.
-        #[method(memoryWeightsAreDiagonal)]
+        #[unsafe(method(memoryWeightsAreDiagonal))]
         #[unsafe(method_family = none)]
         pub unsafe fn memoryWeightsAreDiagonal(&self) -> bool;
 
         /// Setter for [`memoryWeightsAreDiagonal`][Self::memoryWeightsAreDiagonal].
-        #[method(setMemoryWeightsAreDiagonal:)]
+        #[unsafe(method(setMemoryWeightsAreDiagonal:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMemoryWeightsAreDiagonal(&self, memory_weights_are_diagonal: bool);
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Wi_ij', bias 'bi_i' and neuron 'gi' from the LSTM formula.
         /// If nil then assumed zero weights, bias and no neuron (identity mapping). Defaults to nil.
-        #[method(inputGateInputWeights)]
+        #[unsafe(method(inputGateInputWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputGateInputWeights(
             &self,
@@ -597,7 +597,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`inputGateInputWeights`][Self::inputGateInputWeights].
-        #[method(setInputGateInputWeights:)]
+        #[unsafe(method(setInputGateInputWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputGateInputWeights(
             &self,
@@ -607,7 +607,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Ui_ij' from the LSTM formula.
         /// If nil then assumed zero weights. Defaults to nil.
-        #[method(inputGateRecurrentWeights)]
+        #[unsafe(method(inputGateRecurrentWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputGateRecurrentWeights(
             &self,
@@ -615,7 +615,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`inputGateRecurrentWeights`][Self::inputGateRecurrentWeights].
-        #[method(setInputGateRecurrentWeights:)]
+        #[unsafe(method(setInputGateRecurrentWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputGateRecurrentWeights(
             &self,
@@ -627,7 +627,7 @@ extern_methods!(
         /// if YES == memoryWeightsAreDiagonal, then the number of weights used is the number of features
         /// in the memory cell image/matrix.
         /// If nil then assumed zero weights. Defaults to nil.
-        #[method(inputGateMemoryWeights)]
+        #[unsafe(method(inputGateMemoryWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputGateMemoryWeights(
             &self,
@@ -635,7 +635,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`inputGateMemoryWeights`][Self::inputGateMemoryWeights].
-        #[method(setInputGateMemoryWeights:)]
+        #[unsafe(method(setInputGateMemoryWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputGateMemoryWeights(
             &self,
@@ -645,7 +645,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Wf_ij', bias 'bf_i' and neuron 'gf' from the LSTM formula.
         /// If nil then assumed zero weights, bias and no neuron (identity mapping).Defaults to nil.
-        #[method(forgetGateInputWeights)]
+        #[unsafe(method(forgetGateInputWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn forgetGateInputWeights(
             &self,
@@ -653,7 +653,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`forgetGateInputWeights`][Self::forgetGateInputWeights].
-        #[method(setForgetGateInputWeights:)]
+        #[unsafe(method(setForgetGateInputWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setForgetGateInputWeights(
             &self,
@@ -663,7 +663,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Uf_ij' from the LSTM formula.
         /// If nil then assumed zero weights. Defaults to nil.
-        #[method(forgetGateRecurrentWeights)]
+        #[unsafe(method(forgetGateRecurrentWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn forgetGateRecurrentWeights(
             &self,
@@ -671,7 +671,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`forgetGateRecurrentWeights`][Self::forgetGateRecurrentWeights].
-        #[method(setForgetGateRecurrentWeights:)]
+        #[unsafe(method(setForgetGateRecurrentWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setForgetGateRecurrentWeights(
             &self,
@@ -683,7 +683,7 @@ extern_methods!(
         /// if YES == memoryWeightsAreDiagonal, then the number of weights used is the number of features
         /// in the memory cell image/matrix.
         /// If nil then assumed zero weights. Defaults to nil.
-        #[method(forgetGateMemoryWeights)]
+        #[unsafe(method(forgetGateMemoryWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn forgetGateMemoryWeights(
             &self,
@@ -691,7 +691,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`forgetGateMemoryWeights`][Self::forgetGateMemoryWeights].
-        #[method(setForgetGateMemoryWeights:)]
+        #[unsafe(method(setForgetGateMemoryWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setForgetGateMemoryWeights(
             &self,
@@ -701,7 +701,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Wo_ij', bias 'bo_i' and neuron 'go' from the LSTM formula.
         /// If nil then assumed zero weights, bias and no neuron (identity mapping). Defaults to nil.
-        #[method(outputGateInputWeights)]
+        #[unsafe(method(outputGateInputWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputGateInputWeights(
             &self,
@@ -709,7 +709,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`outputGateInputWeights`][Self::outputGateInputWeights].
-        #[method(setOutputGateInputWeights:)]
+        #[unsafe(method(setOutputGateInputWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputGateInputWeights(
             &self,
@@ -719,7 +719,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Uo_ij' from the LSTM formula.
         /// If nil then assumed zero weights. Defaults to nil.
-        #[method(outputGateRecurrentWeights)]
+        #[unsafe(method(outputGateRecurrentWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputGateRecurrentWeights(
             &self,
@@ -727,7 +727,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`outputGateRecurrentWeights`][Self::outputGateRecurrentWeights].
-        #[method(setOutputGateRecurrentWeights:)]
+        #[unsafe(method(setOutputGateRecurrentWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputGateRecurrentWeights(
             &self,
@@ -739,7 +739,7 @@ extern_methods!(
         /// if YES == memoryWeightsAreDiagonal, then the number of weights used is the number of features
         /// in the memory cell image/matrix.
         /// If nil then assumed zero weights. Defaults to nil.
-        #[method(outputGateMemoryWeights)]
+        #[unsafe(method(outputGateMemoryWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputGateMemoryWeights(
             &self,
@@ -747,7 +747,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`outputGateMemoryWeights`][Self::outputGateMemoryWeights].
-        #[method(setOutputGateMemoryWeights:)]
+        #[unsafe(method(setOutputGateMemoryWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputGateMemoryWeights(
             &self,
@@ -757,7 +757,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Wc_ij', bias 'bc_i' and neuron 'gc' from the LSTM formula.
         /// If nil then assumed zero weights, bias and no neuron (identity mapping). Defaults to nil.
-        #[method(cellGateInputWeights)]
+        #[unsafe(method(cellGateInputWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn cellGateInputWeights(
             &self,
@@ -765,7 +765,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`cellGateInputWeights`][Self::cellGateInputWeights].
-        #[method(setCellGateInputWeights:)]
+        #[unsafe(method(setCellGateInputWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellGateInputWeights(
             &self,
@@ -775,7 +775,7 @@ extern_methods!(
         #[cfg(feature = "MPSCNNConvolution")]
         /// Contains weights 'Uc_ij' from the LSTM formula.
         /// If nil then assumed zero weights. Defaults to nil.
-        #[method(cellGateRecurrentWeights)]
+        #[unsafe(method(cellGateRecurrentWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn cellGateRecurrentWeights(
             &self,
@@ -783,7 +783,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`cellGateRecurrentWeights`][Self::cellGateRecurrentWeights].
-        #[method(setCellGateRecurrentWeights:)]
+        #[unsafe(method(setCellGateRecurrentWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellGateRecurrentWeights(
             &self,
@@ -795,7 +795,7 @@ extern_methods!(
         /// if YES == memoryWeightsAreDiagonal, then the number of weights used is the number of features
         /// in the memory cell image/matrix.
         /// If nil then assumed zero weights. Defaults to nil.
-        #[method(cellGateMemoryWeights)]
+        #[unsafe(method(cellGateMemoryWeights))]
         #[unsafe(method_family = none)]
         pub unsafe fn cellGateMemoryWeights(
             &self,
@@ -803,7 +803,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNConvolution")]
         /// Setter for [`cellGateMemoryWeights`][Self::cellGateMemoryWeights].
-        #[method(setCellGateMemoryWeights:)]
+        #[unsafe(method(setCellGateMemoryWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellGateMemoryWeights(
             &self,
@@ -813,13 +813,13 @@ extern_methods!(
         #[cfg(feature = "MPSCNNNeuronType")]
         /// Neuron type definition for 'gh', see
         /// MPSCNNNeuronType.Defaults to MPSCNNNeuronTypeTanH.
-        #[method(cellToOutputNeuronType)]
+        #[unsafe(method(cellToOutputNeuronType))]
         #[unsafe(method_family = none)]
         pub unsafe fn cellToOutputNeuronType(&self) -> MPSCNNNeuronType;
 
         #[cfg(feature = "MPSCNNNeuronType")]
         /// Setter for [`cellToOutputNeuronType`][Self::cellToOutputNeuronType].
-        #[method(setCellToOutputNeuronType:)]
+        #[unsafe(method(setCellToOutputNeuronType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellToOutputNeuronType(
             &self,
@@ -827,32 +827,32 @@ extern_methods!(
         );
 
         /// Neuron parameter A for 'gh'. Defaults to 1.0f.
-        #[method(cellToOutputNeuronParamA)]
+        #[unsafe(method(cellToOutputNeuronParamA))]
         #[unsafe(method_family = none)]
         pub unsafe fn cellToOutputNeuronParamA(&self) -> c_float;
 
         /// Setter for [`cellToOutputNeuronParamA`][Self::cellToOutputNeuronParamA].
-        #[method(setCellToOutputNeuronParamA:)]
+        #[unsafe(method(setCellToOutputNeuronParamA:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellToOutputNeuronParamA(&self, cell_to_output_neuron_param_a: c_float);
 
         /// Neuron parameter B for 'gh'. Defaults to 1.0f.
-        #[method(cellToOutputNeuronParamB)]
+        #[unsafe(method(cellToOutputNeuronParamB))]
         #[unsafe(method_family = none)]
         pub unsafe fn cellToOutputNeuronParamB(&self) -> c_float;
 
         /// Setter for [`cellToOutputNeuronParamB`][Self::cellToOutputNeuronParamB].
-        #[method(setCellToOutputNeuronParamB:)]
+        #[unsafe(method(setCellToOutputNeuronParamB:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellToOutputNeuronParamB(&self, cell_to_output_neuron_param_b: c_float);
 
         /// Neuron parameter C for 'gh'. Defaults to 1.0f.
-        #[method(cellToOutputNeuronParamC)]
+        #[unsafe(method(cellToOutputNeuronParamC))]
         #[unsafe(method_family = none)]
         pub unsafe fn cellToOutputNeuronParamC(&self) -> c_float;
 
         /// Setter for [`cellToOutputNeuronParamC`][Self::cellToOutputNeuronParamC].
-        #[method(setCellToOutputNeuronParamC:)]
+        #[unsafe(method(setCellToOutputNeuronParamC:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellToOutputNeuronParamC(&self, cell_to_output_neuron_param_c: c_float);
 
@@ -863,7 +863,7 @@ extern_methods!(
         /// Parameter `outputFeatureChannels`: The number of feature channels in the output image/matrix. Must be >= 1.
         ///
         /// Returns: A valid MPSNNLSTMDescriptor object or nil, if failure.
-        #[method(createLSTMDescriptorWithInputFeatureChannels:outputFeatureChannels:)]
+        #[unsafe(method(createLSTMDescriptorWithInputFeatureChannels:outputFeatureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createLSTMDescriptorWithInputFeatureChannels_outputFeatureChannels(
             input_feature_channels: NSUInteger,
@@ -875,11 +875,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSLSTMDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -911,7 +911,7 @@ extern_methods!(
         /// See: numberOfLayers - 1 }
         ///
         /// Returns: For valid layerIndex the recurrent output image data, otherwise nil.
-        #[method(getRecurrentOutputImageForLayerIndex:)]
+        #[unsafe(method(getRecurrentOutputImageForLayerIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRecurrentOutputImageForLayerIndex(
             &self,
@@ -926,7 +926,7 @@ extern_methods!(
         /// See: numberOfLayers - 1 }
         ///
         /// Returns: For valid layerIndex the memory cell image data, otherwise nil.
-        #[method(getMemoryCellImageForLayerIndex:)]
+        #[unsafe(method(getMemoryCellImageForLayerIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getMemoryCellImageForLayerIndex(
             &self,
@@ -944,7 +944,7 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `bufferSize`: The size of the buffer in bytes
-        #[method(temporaryStateWithCommandBuffer:bufferSize:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:bufferSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -956,7 +956,7 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `descriptor`: A descriptor for the new temporary texture
-        #[method(temporaryStateWithCommandBuffer:textureDescriptor:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:textureDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -966,13 +966,13 @@ extern_methods!(
         /// Create a new autoreleased temporary state object without underlying resource
         ///
         /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
-        #[method(temporaryStateWithCommandBuffer:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:bufferSize:)]
+        #[unsafe(method(initWithDevice:bufferSize:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_bufferSize(
             this: Allocated<Self>,
@@ -980,7 +980,7 @@ extern_methods!(
             buffer_size: usize,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:textureDescriptor:)]
+        #[unsafe(method(initWithDevice:textureDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_textureDescriptor(
             this: Allocated<Self>,
@@ -991,14 +991,14 @@ extern_methods!(
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
-        #[method(initWithResource:)]
+        #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
@@ -1008,7 +1008,7 @@ extern_methods!(
         /// This occurs when -resource or -resourceAtIndex: is called.
         ///
         /// Parameter `resourceList`: The list of resources to create.
-        #[method(initWithDevice:resourceList:)]
+        #[unsafe(method(initWithDevice:resourceList:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
@@ -1019,7 +1019,7 @@ extern_methods!(
         /// Initialize a temporary state to hold a number of textures and buffers
         ///
         /// The textures occur first in sequence
-        #[method(temporaryStateWithCommandBuffer:resourceList:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:resourceList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1032,7 +1032,7 @@ extern_methods!(
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
-        #[method(initWithResources:)]
+        #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
@@ -1045,7 +1045,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSRNNRecurrentImageState {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1100,19 +1100,19 @@ extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSRNNImageInferenceLayer {
         /// The number of feature channels per pixel in the input image.
-        #[method(inputFeatureChannels)]
+        #[unsafe(method(inputFeatureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputFeatureChannels(&self) -> NSUInteger;
 
         /// The number of feature channels per pixel in the output image.
-        #[method(outputFeatureChannels)]
+        #[unsafe(method(outputFeatureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputFeatureChannels(&self) -> NSUInteger;
 
         /// Number of layers in the filter-stack. This will be one when using initWithDevice:rnnDescriptor to initialize
         /// this filter and the number of entries in the array 'rnnDescriptors' when initializing this filter with
         /// initWithDevice:rnnDescriptors.
-        #[method(numberOfLayers)]
+        #[unsafe(method(numberOfLayers))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfLayers(&self) -> NSUInteger;
 
@@ -1121,12 +1121,12 @@ extern_methods!(
         /// Defaults to NO. For reference
         ///
         /// See: MPSState.
-        #[method(recurrentOutputIsTemporary)]
+        #[unsafe(method(recurrentOutputIsTemporary))]
         #[unsafe(method_family = none)]
         pub unsafe fn recurrentOutputIsTemporary(&self) -> bool;
 
         /// Setter for [`recurrentOutputIsTemporary`][Self::recurrentOutputIsTemporary].
-        #[method(setRecurrentOutputIsTemporary:)]
+        #[unsafe(method(setRecurrentOutputIsTemporary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecurrentOutputIsTemporary(&self, recurrent_output_is_temporary: bool);
 
@@ -1134,24 +1134,24 @@ extern_methods!(
         /// encodeSequenceToCommandBufferreturn every recurrent state
         /// in the array: recurrentOutputStates.
         /// Defaults to NO.
-        #[method(storeAllIntermediateStates)]
+        #[unsafe(method(storeAllIntermediateStates))]
         #[unsafe(method_family = none)]
         pub unsafe fn storeAllIntermediateStates(&self) -> bool;
 
         /// Setter for [`storeAllIntermediateStates`][Self::storeAllIntermediateStates].
-        #[method(setStoreAllIntermediateStates:)]
+        #[unsafe(method(setStoreAllIntermediateStates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStoreAllIntermediateStates(&self, store_all_intermediate_states: bool);
 
         /// Defines how to combine the output-results, when encoding bidirectional layers using
         /// encodeBidirectionalSequenceToCommandBuffer.Defaults to
         /// MPSRNNBidirectionalCombineModeNone.
-        #[method(bidirectionalCombineMode)]
+        #[unsafe(method(bidirectionalCombineMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn bidirectionalCombineMode(&self) -> MPSRNNBidirectionalCombineMode;
 
         /// Setter for [`bidirectionalCombineMode`][Self::bidirectionalCombineMode].
-        #[method(setBidirectionalCombineMode:)]
+        #[unsafe(method(setBidirectionalCombineMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBidirectionalCombineMode(
             &self,
@@ -1165,7 +1165,7 @@ extern_methods!(
         /// Parameter `rnnDescriptor`: The descriptor that defines the RNN layer
         ///
         /// Returns: A valid MPSRNNImageInferenceLayer object or nil, if failure.
-        #[method(initWithDevice:rnnDescriptor:)]
+        #[unsafe(method(initWithDevice:rnnDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_rnnDescriptor(
             this: Allocated<Self>,
@@ -1182,7 +1182,7 @@ extern_methods!(
         /// All entries in the array must be valid MPSRNNDescriptors.
         ///
         /// Returns: A valid MPSRNNImageInferenceLayer object or nil, if failure.
-        #[method(initWithDevice:rnnDescriptors:)]
+        #[unsafe(method(initWithDevice:rnnDescriptors:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_rnnDescriptors(
             this: Allocated<Self>,
@@ -1190,7 +1190,7 @@ extern_methods!(
             rnn_descriptors: &NSArray<MPSRNNDescriptor>,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1258,7 +1258,7 @@ extern_methods!(
         ///                                                                 recurrentInputState: recurrent0
         ///                                                                recurrentOutputState: nil];
         /// ```
-        #[method(encodeSequenceToCommandBuffer:sourceImages:destinationImages:recurrentInputState:recurrentOutputStates:)]
+        #[unsafe(method(encodeSequenceToCommandBuffer:sourceImages:destinationImages:recurrentInputState:recurrentOutputStates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeSequenceToCommandBuffer_sourceImages_destinationImages_recurrentInputState_recurrentOutputStates(
             &self,
@@ -1295,7 +1295,7 @@ extern_methods!(
         /// Parameter `destinationBackwardImages`: If bidirectionalCombineMode is MPSRNNBidirectionalCombineModeNone, then must be a valid MPSImage
         /// that will be  overwritten by result from backward input image. Otherwise this parameter is ignored
         /// and can be nil. destinationBackwardImages may not alias to any of the source images.
-        #[method(encodeBidirectionalSequenceToCommandBuffer:sourceSequence:destinationForwardImages:destinationBackwardImages:)]
+        #[unsafe(method(encodeBidirectionalSequenceToCommandBuffer:sourceSequence:destinationForwardImages:destinationBackwardImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBidirectionalSequenceToCommandBuffer_sourceSequence_destinationForwardImages_destinationBackwardImages(
             &self,
@@ -1314,7 +1314,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSRNNImageInferenceLayer
         ///
         /// Returns: A new MPSRNNImageInferenceLayer object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1334,7 +1334,7 @@ extern_methods!(
         /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(copyWithZone:device:)]
+        #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -1356,7 +1356,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1369,11 +1369,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSRNNImageInferenceLayer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1405,7 +1405,7 @@ extern_methods!(
         /// See: numberOfLayers - 1 }
         ///
         /// Returns: For valid layerIndex the recurrent output matrix data, otherwise nil.
-        #[method(getRecurrentOutputMatrixForLayerIndex:)]
+        #[unsafe(method(getRecurrentOutputMatrixForLayerIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRecurrentOutputMatrixForLayerIndex(
             &self,
@@ -1420,7 +1420,7 @@ extern_methods!(
         /// See: numberOfLayers - 1 }
         ///
         /// Returns: For valid layerIndex the memory cell image matrix, otherwise nil.
-        #[method(getMemoryCellMatrixForLayerIndex:)]
+        #[unsafe(method(getMemoryCellMatrixForLayerIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getMemoryCellMatrixForLayerIndex(
             &self,
@@ -1438,7 +1438,7 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `bufferSize`: The size of the buffer in bytes
-        #[method(temporaryStateWithCommandBuffer:bufferSize:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:bufferSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1450,7 +1450,7 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `descriptor`: A descriptor for the new temporary texture
-        #[method(temporaryStateWithCommandBuffer:textureDescriptor:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:textureDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1460,13 +1460,13 @@ extern_methods!(
         /// Create a new autoreleased temporary state object without underlying resource
         ///
         /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
-        #[method(temporaryStateWithCommandBuffer:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:bufferSize:)]
+        #[unsafe(method(initWithDevice:bufferSize:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_bufferSize(
             this: Allocated<Self>,
@@ -1474,7 +1474,7 @@ extern_methods!(
             buffer_size: usize,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:textureDescriptor:)]
+        #[unsafe(method(initWithDevice:textureDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_textureDescriptor(
             this: Allocated<Self>,
@@ -1485,14 +1485,14 @@ extern_methods!(
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
-        #[method(initWithResource:)]
+        #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
@@ -1502,7 +1502,7 @@ extern_methods!(
         /// This occurs when -resource or -resourceAtIndex: is called.
         ///
         /// Parameter `resourceList`: The list of resources to create.
-        #[method(initWithDevice:resourceList:)]
+        #[unsafe(method(initWithDevice:resourceList:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
@@ -1513,7 +1513,7 @@ extern_methods!(
         /// Initialize a temporary state to hold a number of textures and buffers
         ///
         /// The textures occur first in sequence
-        #[method(temporaryStateWithCommandBuffer:resourceList:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:resourceList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1526,7 +1526,7 @@ extern_methods!(
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
-        #[method(initWithResources:)]
+        #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
@@ -1539,7 +1539,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSRNNRecurrentMatrixState {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1624,19 +1624,19 @@ extern_methods!(
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSRNNMatrixInferenceLayer {
         /// The number of feature channels input vector/matrix.
-        #[method(inputFeatureChannels)]
+        #[unsafe(method(inputFeatureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputFeatureChannels(&self) -> NSUInteger;
 
         /// The number of feature channels in the output vector/matrix.
-        #[method(outputFeatureChannels)]
+        #[unsafe(method(outputFeatureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputFeatureChannels(&self) -> NSUInteger;
 
         /// Number of layers in the filter-stack. This will be one when using initWithDevice:rnnDescriptor to initialize
         /// this filter and the number of entries in the array 'rnnDescriptors' when initializing this filter with
         /// initWithDevice:rnnDescriptors.
-        #[method(numberOfLayers)]
+        #[unsafe(method(numberOfLayers))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfLayers(&self) -> NSUInteger;
 
@@ -1645,12 +1645,12 @@ extern_methods!(
         /// Defaults to NO. For reference
         ///
         /// See: MPSState.
-        #[method(recurrentOutputIsTemporary)]
+        #[unsafe(method(recurrentOutputIsTemporary))]
         #[unsafe(method_family = none)]
         pub unsafe fn recurrentOutputIsTemporary(&self) -> bool;
 
         /// Setter for [`recurrentOutputIsTemporary`][Self::recurrentOutputIsTemporary].
-        #[method(setRecurrentOutputIsTemporary:)]
+        #[unsafe(method(setRecurrentOutputIsTemporary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecurrentOutputIsTemporary(&self, recurrent_output_is_temporary: bool);
 
@@ -1658,24 +1658,24 @@ extern_methods!(
         /// encodeSequenceToCommandBufferreturn every recurrent state
         /// in the array: recurrentOutputStates.
         /// Defaults to NO.
-        #[method(storeAllIntermediateStates)]
+        #[unsafe(method(storeAllIntermediateStates))]
         #[unsafe(method_family = none)]
         pub unsafe fn storeAllIntermediateStates(&self) -> bool;
 
         /// Setter for [`storeAllIntermediateStates`][Self::storeAllIntermediateStates].
-        #[method(setStoreAllIntermediateStates:)]
+        #[unsafe(method(setStoreAllIntermediateStates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStoreAllIntermediateStates(&self, store_all_intermediate_states: bool);
 
         /// Defines how to combine the output-results, when encoding bidirectional layers using
         /// encodeBidirectionalSequenceToCommandBuffer.Defaults to
         /// MPSRNNBidirectionalCombineModeNone.
-        #[method(bidirectionalCombineMode)]
+        #[unsafe(method(bidirectionalCombineMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn bidirectionalCombineMode(&self) -> MPSRNNBidirectionalCombineMode;
 
         /// Setter for [`bidirectionalCombineMode`][Self::bidirectionalCombineMode].
-        #[method(setBidirectionalCombineMode:)]
+        #[unsafe(method(setBidirectionalCombineMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBidirectionalCombineMode(
             &self,
@@ -1689,7 +1689,7 @@ extern_methods!(
         /// Parameter `rnnDescriptor`: The descriptor that defines the RNN layer
         ///
         /// Returns: A valid MPSRNNMatrixInferenceLayer object or nil, if failure.
-        #[method(initWithDevice:rnnDescriptor:)]
+        #[unsafe(method(initWithDevice:rnnDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_rnnDescriptor(
             this: Allocated<Self>,
@@ -1706,7 +1706,7 @@ extern_methods!(
         /// All entries in the array must be valid MPSRNNDescriptors.
         ///
         /// Returns: A valid MPSRNNMatrixInferenceLayer object or nil, if failure.
-        #[method(initWithDevice:rnnDescriptors:)]
+        #[unsafe(method(initWithDevice:rnnDescriptors:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_rnnDescriptors(
             this: Allocated<Self>,
@@ -1714,7 +1714,7 @@ extern_methods!(
             rnn_descriptors: &NSArray<MPSRNNDescriptor>,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1789,7 +1789,7 @@ extern_methods!(
         ///                                                                 recurrentInputState: recurrent0
         ///                                                                recurrentOutputState: nil];
         /// ```
-        #[method(encodeSequenceToCommandBuffer:sourceMatrices:sourceOffsets:destinationMatrices:destinationOffsets:recurrentInputState:recurrentOutputStates:)]
+        #[unsafe(method(encodeSequenceToCommandBuffer:sourceMatrices:sourceOffsets:destinationMatrices:destinationOffsets:recurrentInputState:recurrentOutputStates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeSequenceToCommandBuffer_sourceMatrices_sourceOffsets_destinationMatrices_destinationOffsets_recurrentInputState_recurrentOutputStates(
             &self,
@@ -1803,7 +1803,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSMatrix", feature = "MPSState"))]
-        #[method(encodeSequenceToCommandBuffer:sourceMatrices:destinationMatrices:recurrentInputState:recurrentOutputStates:)]
+        #[unsafe(method(encodeSequenceToCommandBuffer:sourceMatrices:destinationMatrices:recurrentInputState:recurrentOutputStates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeSequenceToCommandBuffer_sourceMatrices_destinationMatrices_recurrentInputState_recurrentOutputStates(
             &self,
@@ -1840,7 +1840,7 @@ extern_methods!(
         /// Parameter `destinationBackwardMatrices`: If bidirectionalCombineMode is MPSRNNBidirectionalCombineModeNone, then must be an array of valid MPSMatrices
         /// that will be overwritten by result from backward input matrices. Otherwise this parameter is ignored
         /// and can be nil. destinationBackwardMatrices may not alias to any of the source matrices.
-        #[method(encodeBidirectionalSequenceToCommandBuffer:sourceSequence:destinationForwardMatrices:destinationBackwardMatrices:)]
+        #[unsafe(method(encodeBidirectionalSequenceToCommandBuffer:sourceSequence:destinationForwardMatrices:destinationBackwardMatrices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBidirectionalSequenceToCommandBuffer_sourceSequence_destinationForwardMatrices_destinationBackwardMatrices(
             &self,
@@ -1859,7 +1859,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSRNNMatrixInferenceLayer
         ///
         /// Returns: A new MPSRNNMatrixInferenceLayer object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1879,7 +1879,7 @@ extern_methods!(
         /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(copyWithZone:device:)]
+        #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -1901,7 +1901,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1914,11 +1914,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSRNNMatrixInferenceLayer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1953,7 +1953,7 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `bufferSize`: The size of the buffer in bytes
-        #[method(temporaryStateWithCommandBuffer:bufferSize:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:bufferSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1965,7 +1965,7 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `descriptor`: A descriptor for the new temporary texture
-        #[method(temporaryStateWithCommandBuffer:textureDescriptor:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:textureDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1975,13 +1975,13 @@ extern_methods!(
         /// Create a new autoreleased temporary state object without underlying resource
         ///
         /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
-        #[method(temporaryStateWithCommandBuffer:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:bufferSize:)]
+        #[unsafe(method(initWithDevice:bufferSize:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_bufferSize(
             this: Allocated<Self>,
@@ -1989,7 +1989,7 @@ extern_methods!(
             buffer_size: usize,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:textureDescriptor:)]
+        #[unsafe(method(initWithDevice:textureDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_textureDescriptor(
             this: Allocated<Self>,
@@ -2000,14 +2000,14 @@ extern_methods!(
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
-        #[method(initWithResource:)]
+        #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
@@ -2017,7 +2017,7 @@ extern_methods!(
         /// This occurs when -resource or -resourceAtIndex: is called.
         ///
         /// Parameter `resourceList`: The list of resources to create.
-        #[method(initWithDevice:resourceList:)]
+        #[unsafe(method(initWithDevice:resourceList:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
@@ -2028,7 +2028,7 @@ extern_methods!(
         /// Initialize a temporary state to hold a number of textures and buffers
         ///
         /// The textures occur first in sequence
-        #[method(temporaryStateWithCommandBuffer:resourceList:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:resourceList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -2041,7 +2041,7 @@ extern_methods!(
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
-        #[method(initWithResources:)]
+        #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
@@ -2054,7 +2054,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSRNNMatrixTrainingState {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2201,12 +2201,12 @@ extern_methods!(
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSRNNMatrixTrainingLayer {
         /// The number of feature channels input vector/matrix.
-        #[method(inputFeatureChannels)]
+        #[unsafe(method(inputFeatureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputFeatureChannels(&self) -> NSUInteger;
 
         /// The number of feature channels in the output vector/matrix.
-        #[method(outputFeatureChannels)]
+        #[unsafe(method(outputFeatureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputFeatureChannels(&self) -> NSUInteger;
 
@@ -2215,12 +2215,12 @@ extern_methods!(
         /// encodeGradientSequenceToCommandBufferreturn every recurrent state
         /// in the array: recurrentOutputStates.
         /// Defaults to NO.
-        #[method(storeAllIntermediateStates)]
+        #[unsafe(method(storeAllIntermediateStates))]
         #[unsafe(method_family = none)]
         pub unsafe fn storeAllIntermediateStates(&self) -> bool;
 
         /// Setter for [`storeAllIntermediateStates`][Self::storeAllIntermediateStates].
-        #[method(setStoreAllIntermediateStates:)]
+        #[unsafe(method(setStoreAllIntermediateStates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStoreAllIntermediateStates(&self, store_all_intermediate_states: bool);
 
@@ -2229,12 +2229,12 @@ extern_methods!(
         /// Defaults to NO. For reference
         ///
         /// See: MPSState.
-        #[method(recurrentOutputIsTemporary)]
+        #[unsafe(method(recurrentOutputIsTemporary))]
         #[unsafe(method_family = none)]
         pub unsafe fn recurrentOutputIsTemporary(&self) -> bool;
 
         /// Setter for [`recurrentOutputIsTemporary`][Self::recurrentOutputIsTemporary].
-        #[method(setRecurrentOutputIsTemporary:)]
+        #[unsafe(method(setRecurrentOutputIsTemporary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecurrentOutputIsTemporary(&self, recurrent_output_is_temporary: bool);
 
@@ -2243,24 +2243,24 @@ extern_methods!(
         /// Defaults to NO. For reference
         ///
         /// See: MPSState.
-        #[method(trainingStateIsTemporary)]
+        #[unsafe(method(trainingStateIsTemporary))]
         #[unsafe(method_family = none)]
         pub unsafe fn trainingStateIsTemporary(&self) -> bool;
 
         /// Setter for [`trainingStateIsTemporary`][Self::trainingStateIsTemporary].
-        #[method(setTrainingStateIsTemporary:)]
+        #[unsafe(method(setTrainingStateIsTemporary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrainingStateIsTemporary(&self, training_state_is_temporary: bool);
 
         /// If yes then the computed weight gradients are accumulated on top of existing values in
         /// calls to the gradient computation functions: encodeGradientSequenceToCommandBuffer.
         /// Defaults to NO.
-        #[method(accumulateWeightGradients)]
+        #[unsafe(method(accumulateWeightGradients))]
         #[unsafe(method_family = none)]
         pub unsafe fn accumulateWeightGradients(&self) -> bool;
 
         /// Setter for [`accumulateWeightGradients`][Self::accumulateWeightGradients].
-        #[method(setAccumulateWeightGradients:)]
+        #[unsafe(method(setAccumulateWeightGradients:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccumulateWeightGradients(&self, accumulate_weight_gradients: bool);
 
@@ -2282,7 +2282,7 @@ extern_methods!(
         /// the datasources in rnnDescriptor.
         ///
         /// Returns: A valid MPSRNNMatrixTrainingLayer object or nil, if failure.
-        #[method(initWithDevice:rnnDescriptor:trainableWeights:)]
+        #[unsafe(method(initWithDevice:rnnDescriptor:trainableWeights:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_rnnDescriptor_trainableWeights(
             this: Allocated<Self>,
@@ -2303,7 +2303,7 @@ extern_methods!(
         /// Parameter `matricesOut`: An array where the newly created matrices will be stored, will be initialized to zero.
         ///
         /// Parameter `dataType`: Datatype for the entries - currently MPSDataTypeFloat32 and MPSDataTypeFloat16 are supported.
-        #[method(createWeightGradientMatrices:dataType:)]
+        #[unsafe(method(createWeightGradientMatrices:dataType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createWeightGradientMatrices_dataType(
             &self,
@@ -2322,7 +2322,7 @@ extern_methods!(
         /// Parameter `dataType`: Datatype for the entries - currently MPSDataTypeFloat32 and MPSDataTypeFloat16 are supported.
         ///
         /// Parameter `commandBuffer`: The command buffer that the temporary matrices will live on.
-        #[method(createTemporaryWeightGradientMatrices:dataType:commandBuffer:)]
+        #[unsafe(method(createTemporaryWeightGradientMatrices:dataType:commandBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createTemporaryWeightGradientMatrices_dataType_commandBuffer(
             &self,
@@ -2338,11 +2338,11 @@ extern_methods!(
         /// See: initWithDevice.
         ///
         /// Parameter `matricesOut`: An array where the newly created matrices will be stored, will be initialized to zero.
-        #[method(createWeightMatrices:)]
+        #[unsafe(method(createWeightMatrices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createWeightMatrices(&self, matrices_out: &NSMutableArray<MPSMatrix>);
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -2373,7 +2373,7 @@ extern_methods!(
         /// otherwise the copy is done from 'matrix' to 'weights'.
         ///
         /// Parameter `matrixOffset`: A (valid) offset into matrix to be applied to the copy operation.
-        #[method(encodeCopyWeightsToCommandBuffer:weights:matrixId:matrix:copyFromWeightsToMatrix:matrixOffset:)]
+        #[unsafe(method(encodeCopyWeightsToCommandBuffer:weights:matrixId:matrix:copyFromWeightsToMatrix:matrixOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeCopyWeightsToCommandBuffer_weights_matrixId_matrix_copyFromWeightsToMatrix_matrixOffset(
             &self,
@@ -2420,7 +2420,7 @@ extern_methods!(
         /// See: initWithDevice or
         ///
         /// See: createWeightMatrices.
-        #[method(encodeForwardSequenceToCommandBuffer:sourceMatrices:sourceOffsets:destinationMatrices:destinationOffsets:trainingStates:recurrentInputState:recurrentOutputStates:weights:)]
+        #[unsafe(method(encodeForwardSequenceToCommandBuffer:sourceMatrices:sourceOffsets:destinationMatrices:destinationOffsets:trainingStates:recurrentInputState:recurrentOutputStates:weights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeForwardSequenceToCommandBuffer_sourceMatrices_sourceOffsets_destinationMatrices_destinationOffsets_trainingStates_recurrentInputState_recurrentOutputStates_weights(
             &self,
@@ -2454,7 +2454,7 @@ extern_methods!(
         /// See: initWithDevice or
         ///
         /// See: createWeightMatrices.
-        #[method(encodeForwardSequenceToCommandBuffer:sourceMatrices:destinationMatrices:trainingStates:weights:)]
+        #[unsafe(method(encodeForwardSequenceToCommandBuffer:sourceMatrices:destinationMatrices:trainingStates:weights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeForwardSequenceToCommandBuffer_sourceMatrices_destinationMatrices_trainingStates_weights(
             &self,
@@ -2517,7 +2517,7 @@ extern_methods!(
         /// See: initWithDevice or
         ///
         /// See: createWeightMatrices.
-        #[method(encodeGradientSequenceToCommandBuffer:forwardSources:forwardSourceOffsets:sourceGradients:sourceGradientOffsets:destinationGradients:destinationOffsets:weightGradients:trainingStates:recurrentInputState:recurrentOutputStates:weights:)]
+        #[unsafe(method(encodeGradientSequenceToCommandBuffer:forwardSources:forwardSourceOffsets:sourceGradients:sourceGradientOffsets:destinationGradients:destinationOffsets:weightGradients:trainingStates:recurrentInputState:recurrentOutputStates:weights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeGradientSequenceToCommandBuffer_forwardSources_forwardSourceOffsets_sourceGradients_sourceGradientOffsets_destinationGradients_destinationOffsets_weightGradients_trainingStates_recurrentInputState_recurrentOutputStates_weights(
             &self,
@@ -2570,7 +2570,7 @@ extern_methods!(
         /// See: initWithDevice or
         ///
         /// See: createWeightMatrices.
-        #[method(encodeGradientSequenceToCommandBuffer:forwardSources:sourceGradients:destinationGradients:weightGradients:trainingStates:weights:)]
+        #[unsafe(method(encodeGradientSequenceToCommandBuffer:forwardSources:sourceGradients:destinationGradients:weightGradients:trainingStates:weights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeGradientSequenceToCommandBuffer_forwardSources_sourceGradients_destinationGradients_weightGradients_trainingStates_weights(
             &self,
@@ -2592,7 +2592,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSRNNMatrixTrainingLayer
         ///
         /// Returns: A new MPSRNNMatrixTrainingLayer object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -2612,7 +2612,7 @@ extern_methods!(
         /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(copyWithZone:device:)]
+        #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -2634,7 +2634,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -2647,11 +2647,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSRNNMatrixTrainingLayer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -23,18 +23,18 @@ unsafe impl NSSecureCoding for MEAddressAnnotation {}
 
 extern_methods!(
     unsafe impl MEAddressAnnotation {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// An annotation to denote a recipeint email address has an error when composing a mail message.
         ///
         /// Parameter `localizedDescription`: - A localized string with a brief description of the error that may be presented to the user.
-        #[method(errorWithLocalizedDescription:)]
+        #[unsafe(method(errorWithLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorWithLocalizedDescription(
             localized_description: &NSString,
@@ -43,7 +43,7 @@ extern_methods!(
         /// An annotation to warn about a recipeint email address when composing a mail message.
         ///
         /// Parameter `localizedDescription`: - A localized string with a brief description of the warning may be presented to the user. .
-        #[method(warningWithLocalizedDescription:)]
+        #[unsafe(method(warningWithLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn warningWithLocalizedDescription(
             localized_description: &NSString,
@@ -52,7 +52,7 @@ extern_methods!(
         /// An annotation to  denote a valid recipeint email address when composing a mail message.
         ///
         /// Parameter `localizedDescription`: - A localized string with a brief description that may be presented to the user. .
-        #[method(successWithLocalizedDescription:)]
+        #[unsafe(method(successWithLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn successWithLocalizedDescription(
             localized_description: &NSString,

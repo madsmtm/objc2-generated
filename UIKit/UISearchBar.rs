@@ -62,12 +62,12 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilooktodictatecapable?language=objc)
     pub unsafe trait UILookToDictateCapable: NSObjectProtocol {
         /// Enable or disable 'Look To Dictate' on the receiver.
-        #[method(isLookToDictateEnabled)]
+        #[unsafe(method(isLookToDictateEnabled))]
         #[unsafe(method_family = none)]
         unsafe fn isLookToDictateEnabled(&self) -> bool;
 
         /// Setter for [`isLookToDictateEnabled`][Self::isLookToDictateEnabled].
-        #[method(setLookToDictateEnabled:)]
+        #[unsafe(method(setLookToDictateEnabled:))]
         #[unsafe(method_family = none)]
         unsafe fn setLookToDictateEnabled(&self, look_to_dictate_enabled: bool);
     }
@@ -147,16 +147,16 @@ unsafe impl UITraitEnvironment for UISearchBar {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISearchBar {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -164,64 +164,64 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIInterface")]
-        #[method(barStyle)]
+        #[unsafe(method(barStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn barStyle(&self) -> UIBarStyle;
 
         #[cfg(feature = "UIInterface")]
         /// Setter for [`barStyle`][Self::barStyle].
-        #[method(setBarStyle:)]
+        #[unsafe(method(setBarStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBarStyle(&self, bar_style: UIBarStyle);
 
         #[cfg(feature = "UIBarCommon")]
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UISearchBarDelegate>>>;
 
         #[cfg(feature = "UIBarCommon")]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UISearchBarDelegate>>,
         );
 
-        #[method(text)]
+        #[unsafe(method(text))]
         #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
-        #[method(setText:)]
+        #[unsafe(method(setText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
-        #[method(prompt)]
+        #[unsafe(method(prompt))]
         #[unsafe(method_family = none)]
         pub unsafe fn prompt(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`prompt`][Self::prompt].
-        #[method(setPrompt:)]
+        #[unsafe(method(setPrompt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrompt(&self, prompt: Option<&NSString>);
 
-        #[method(placeholder)]
+        #[unsafe(method(placeholder))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholder(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`placeholder`][Self::placeholder].
-        #[method(setPlaceholder:)]
+        #[unsafe(method(setPlaceholder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlaceholder(&self, placeholder: Option<&NSString>);
 
-        #[method(showsBookmarkButton)]
+        #[unsafe(method(showsBookmarkButton))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsBookmarkButton(&self) -> bool;
 
         /// Setter for [`showsBookmarkButton`][Self::showsBookmarkButton].
-        #[method(setShowsBookmarkButton:)]
+        #[unsafe(method(setShowsBookmarkButton:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsBookmarkButton(&self, shows_bookmark_button: bool);
 
@@ -230,38 +230,38 @@ extern_methods!(
             feature = "UISearchTextField",
             feature = "UITextField"
         ))]
-        #[method(searchTextField)]
+        #[unsafe(method(searchTextField))]
         #[unsafe(method_family = none)]
         pub unsafe fn searchTextField(&self) -> Retained<UISearchTextField>;
 
-        #[method(showsCancelButton)]
+        #[unsafe(method(showsCancelButton))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsCancelButton(&self) -> bool;
 
         /// Setter for [`showsCancelButton`][Self::showsCancelButton].
-        #[method(setShowsCancelButton:)]
+        #[unsafe(method(setShowsCancelButton:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsCancelButton(&self, shows_cancel_button: bool);
 
-        #[method(showsSearchResultsButton)]
+        #[unsafe(method(showsSearchResultsButton))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsSearchResultsButton(&self) -> bool;
 
         /// Setter for [`showsSearchResultsButton`][Self::showsSearchResultsButton].
-        #[method(setShowsSearchResultsButton:)]
+        #[unsafe(method(setShowsSearchResultsButton:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsSearchResultsButton(&self, shows_search_results_button: bool);
 
-        #[method(isSearchResultsButtonSelected)]
+        #[unsafe(method(isSearchResultsButtonSelected))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSearchResultsButtonSelected(&self) -> bool;
 
         /// Setter for [`isSearchResultsButtonSelected`][Self::isSearchResultsButtonSelected].
-        #[method(setSearchResultsButtonSelected:)]
+        #[unsafe(method(setSearchResultsButtonSelected:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchResultsButtonSelected(&self, search_results_button_selected: bool);
 
-        #[method(setShowsCancelButton:animated:)]
+        #[unsafe(method(setShowsCancelButton:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsCancelButton_animated(
             &self,
@@ -273,121 +273,121 @@ extern_methods!(
         /// Use this method to modify the contents of the Unified Content Bar, shown on top of the keyboard when search is engaged.
         /// You may modify the returned inputAssistantItem to add to or replace the existing items on the bar.
         /// Modifications made to the returned UITextInputAssistantItem are reflected automatically.
-        #[method(inputAssistantItem)]
+        #[unsafe(method(inputAssistantItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputAssistantItem(&self) -> Retained<UITextInputAssistantItem>;
 
         #[cfg(feature = "UIColor")]
-        #[method(tintColor)]
+        #[unsafe(method(tintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tintColor`][Self::tintColor].
-        #[method(setTintColor:)]
+        #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
-        #[method(barTintColor)]
+        #[unsafe(method(barTintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn barTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`barTintColor`][Self::barTintColor].
-        #[method(setBarTintColor:)]
+        #[unsafe(method(setBarTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBarTintColor(&self, bar_tint_color: Option<&UIColor>);
 
-        #[method(searchBarStyle)]
+        #[unsafe(method(searchBarStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn searchBarStyle(&self) -> UISearchBarStyle;
 
         /// Setter for [`searchBarStyle`][Self::searchBarStyle].
-        #[method(setSearchBarStyle:)]
+        #[unsafe(method(setSearchBarStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchBarStyle(&self, search_bar_style: UISearchBarStyle);
 
-        #[method(isTranslucent)]
+        #[unsafe(method(isTranslucent))]
         #[unsafe(method_family = none)]
         pub unsafe fn isTranslucent(&self) -> bool;
 
         /// Setter for [`isTranslucent`][Self::isTranslucent].
-        #[method(setTranslucent:)]
+        #[unsafe(method(setTranslucent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTranslucent(&self, translucent: bool);
 
-        #[method(scopeButtonTitles)]
+        #[unsafe(method(scopeButtonTitles))]
         #[unsafe(method_family = none)]
         pub unsafe fn scopeButtonTitles(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`scopeButtonTitles`][Self::scopeButtonTitles].
-        #[method(setScopeButtonTitles:)]
+        #[unsafe(method(setScopeButtonTitles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScopeButtonTitles(&self, scope_button_titles: Option<&NSArray<NSString>>);
 
-        #[method(selectedScopeButtonIndex)]
+        #[unsafe(method(selectedScopeButtonIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedScopeButtonIndex(&self) -> NSInteger;
 
         /// Setter for [`selectedScopeButtonIndex`][Self::selectedScopeButtonIndex].
-        #[method(setSelectedScopeButtonIndex:)]
+        #[unsafe(method(setSelectedScopeButtonIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedScopeButtonIndex(&self, selected_scope_button_index: NSInteger);
 
-        #[method(showsScopeBar)]
+        #[unsafe(method(showsScopeBar))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsScopeBar(&self) -> bool;
 
         /// Setter for [`showsScopeBar`][Self::showsScopeBar].
-        #[method(setShowsScopeBar:)]
+        #[unsafe(method(setShowsScopeBar:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsScopeBar(&self, shows_scope_bar: bool);
 
-        #[method(setShowsScopeBar:animated:)]
+        #[unsafe(method(setShowsScopeBar:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsScopeBar_animated(&self, show: bool, animate: bool);
 
-        #[method(inputAccessoryView)]
+        #[unsafe(method(inputAccessoryView))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputAccessoryView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`inputAccessoryView`][Self::inputAccessoryView].
-        #[method(setInputAccessoryView:)]
+        #[unsafe(method(setInputAccessoryView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputAccessoryView(&self, input_accessory_view: Option<&UIView>);
 
         /// When set to false, user interaction will be prevented and the search bar will take on a disabled appearance
         /// If the search bar is associated with a UINavigationItem with `UINavigationItemSearchBarPlacementInline`,
         /// then the minimized (icon-only) UISearchBar will not grow to the text field while `enabled` is false.
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(feature = "UIImage")]
-        #[method(backgroundImage)]
+        #[unsafe(method(backgroundImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`backgroundImage`][Self::backgroundImage].
-        #[method(setBackgroundImage:)]
+        #[unsafe(method(setBackgroundImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImage(&self, background_image: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
-        #[method(scopeBarBackgroundImage)]
+        #[unsafe(method(scopeBarBackgroundImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn scopeBarBackgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`scopeBarBackgroundImage`][Self::scopeBarBackgroundImage].
-        #[method(setScopeBarBackgroundImage:)]
+        #[unsafe(method(setScopeBarBackgroundImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScopeBarBackgroundImage(
             &self,
@@ -395,7 +395,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method(setBackgroundImage:forBarPosition:barMetrics:)]
+        #[unsafe(method(setBackgroundImage:forBarPosition:barMetrics:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImage_forBarPosition_barMetrics(
             &self,
@@ -405,7 +405,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method(backgroundImageForBarPosition:barMetrics:)]
+        #[unsafe(method(backgroundImageForBarPosition:barMetrics:))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundImageForBarPosition_barMetrics(
             &self,
@@ -414,7 +414,7 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
-        #[method(setSearchFieldBackgroundImage:forState:)]
+        #[unsafe(method(setSearchFieldBackgroundImage:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchFieldBackgroundImage_forState(
             &self,
@@ -423,7 +423,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
-        #[method(searchFieldBackgroundImageForState:)]
+        #[unsafe(method(searchFieldBackgroundImageForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn searchFieldBackgroundImageForState(
             &self,
@@ -431,7 +431,7 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
-        #[method(setImage:forSearchBarIcon:state:)]
+        #[unsafe(method(setImage:forSearchBarIcon:state:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImage_forSearchBarIcon_state(
             &self,
@@ -441,7 +441,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
-        #[method(imageForSearchBarIcon:state:)]
+        #[unsafe(method(imageForSearchBarIcon:state:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageForSearchBarIcon_state(
             &self,
@@ -450,7 +450,7 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
-        #[method(setScopeBarButtonBackgroundImage:forState:)]
+        #[unsafe(method(setScopeBarButtonBackgroundImage:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScopeBarButtonBackgroundImage_forState(
             &self,
@@ -459,7 +459,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
-        #[method(scopeBarButtonBackgroundImageForState:)]
+        #[unsafe(method(scopeBarButtonBackgroundImageForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scopeBarButtonBackgroundImageForState(
             &self,
@@ -467,7 +467,7 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
-        #[method(setScopeBarButtonDividerImage:forLeftSegmentState:rightSegmentState:)]
+        #[unsafe(method(setScopeBarButtonDividerImage:forLeftSegmentState:rightSegmentState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScopeBarButtonDividerImage_forLeftSegmentState_rightSegmentState(
             &self,
@@ -477,7 +477,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
-        #[method(scopeBarButtonDividerImageForLeftSegmentState:rightSegmentState:)]
+        #[unsafe(method(scopeBarButtonDividerImageForLeftSegmentState:rightSegmentState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scopeBarButtonDividerImageForLeftSegmentState_rightSegmentState(
             &self,
@@ -486,7 +486,7 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIControl")]
-        #[method(setScopeBarButtonTitleTextAttributes:forState:)]
+        #[unsafe(method(setScopeBarButtonTitleTextAttributes:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScopeBarButtonTitleTextAttributes_forState(
             &self,
@@ -495,7 +495,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIControl")]
-        #[method(scopeBarButtonTitleTextAttributesForState:)]
+        #[unsafe(method(scopeBarButtonTitleTextAttributesForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scopeBarButtonTitleTextAttributesForState(
             &self,
@@ -503,13 +503,13 @@ extern_methods!(
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method(searchFieldBackgroundPositionAdjustment)]
+        #[unsafe(method(searchFieldBackgroundPositionAdjustment))]
         #[unsafe(method_family = none)]
         pub unsafe fn searchFieldBackgroundPositionAdjustment(&self) -> UIOffset;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`searchFieldBackgroundPositionAdjustment`][Self::searchFieldBackgroundPositionAdjustment].
-        #[method(setSearchFieldBackgroundPositionAdjustment:)]
+        #[unsafe(method(setSearchFieldBackgroundPositionAdjustment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchFieldBackgroundPositionAdjustment(
             &self,
@@ -517,13 +517,13 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method(searchTextPositionAdjustment)]
+        #[unsafe(method(searchTextPositionAdjustment))]
         #[unsafe(method_family = none)]
         pub unsafe fn searchTextPositionAdjustment(&self) -> UIOffset;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`searchTextPositionAdjustment`][Self::searchTextPositionAdjustment].
-        #[method(setSearchTextPositionAdjustment:)]
+        #[unsafe(method(setSearchTextPositionAdjustment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchTextPositionAdjustment(
             &self,
@@ -531,7 +531,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method(setPositionAdjustment:forSearchBarIcon:)]
+        #[unsafe(method(setPositionAdjustment:forSearchBarIcon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPositionAdjustment_forSearchBarIcon(
             &self,
@@ -540,16 +540,16 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method(positionAdjustmentForSearchBarIcon:)]
+        #[unsafe(method(positionAdjustmentForSearchBarIcon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn positionAdjustmentForSearchBarIcon(&self, icon: UISearchBarIcon) -> UIOffset;
 
-        #[method(isLookToDictateEnabled)]
+        #[unsafe(method(isLookToDictateEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLookToDictateEnabled(&self) -> bool;
 
         /// Setter for [`isLookToDictateEnabled`][Self::isLookToDictateEnabled].
-        #[method(setLookToDictateEnabled:)]
+        #[unsafe(method(setLookToDictateEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLookToDictateEnabled(&self, look_to_dictate_enabled: bool);
     }
@@ -559,7 +559,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISearchBar {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -571,37 +571,37 @@ extern_protocol!(
     pub unsafe trait UISearchBarDelegate: UIBarPositioningDelegate + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(searchBarShouldBeginEditing:)]
+        #[unsafe(method(searchBarShouldBeginEditing:))]
         #[unsafe(method_family = none)]
         unsafe fn searchBarShouldBeginEditing(&self, search_bar: &UISearchBar) -> bool;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(searchBarTextDidBeginEditing:)]
+        #[unsafe(method(searchBarTextDidBeginEditing:))]
         #[unsafe(method_family = none)]
         unsafe fn searchBarTextDidBeginEditing(&self, search_bar: &UISearchBar);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(searchBarShouldEndEditing:)]
+        #[unsafe(method(searchBarShouldEndEditing:))]
         #[unsafe(method_family = none)]
         unsafe fn searchBarShouldEndEditing(&self, search_bar: &UISearchBar) -> bool;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(searchBarTextDidEndEditing:)]
+        #[unsafe(method(searchBarTextDidEndEditing:))]
         #[unsafe(method_family = none)]
         unsafe fn searchBarTextDidEndEditing(&self, search_bar: &UISearchBar);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(searchBar:textDidChange:)]
+        #[unsafe(method(searchBar:textDidChange:))]
         #[unsafe(method_family = none)]
         unsafe fn searchBar_textDidChange(&self, search_bar: &UISearchBar, search_text: &NSString);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(searchBar:shouldChangeTextInRange:replacementText:)]
+        #[unsafe(method(searchBar:shouldChangeTextInRange:replacementText:))]
         #[unsafe(method_family = none)]
         unsafe fn searchBar_shouldChangeTextInRange_replacementText(
             &self,
@@ -612,31 +612,31 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(searchBarSearchButtonClicked:)]
+        #[unsafe(method(searchBarSearchButtonClicked:))]
         #[unsafe(method_family = none)]
         unsafe fn searchBarSearchButtonClicked(&self, search_bar: &UISearchBar);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(searchBarBookmarkButtonClicked:)]
+        #[unsafe(method(searchBarBookmarkButtonClicked:))]
         #[unsafe(method_family = none)]
         unsafe fn searchBarBookmarkButtonClicked(&self, search_bar: &UISearchBar);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(searchBarCancelButtonClicked:)]
+        #[unsafe(method(searchBarCancelButtonClicked:))]
         #[unsafe(method_family = none)]
         unsafe fn searchBarCancelButtonClicked(&self, search_bar: &UISearchBar);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(searchBarResultsListButtonClicked:)]
+        #[unsafe(method(searchBarResultsListButtonClicked:))]
         #[unsafe(method_family = none)]
         unsafe fn searchBarResultsListButtonClicked(&self, search_bar: &UISearchBar);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(searchBar:selectedScopeButtonIndexDidChange:)]
+        #[unsafe(method(searchBar:selectedScopeButtonIndexDidChange:))]
         #[unsafe(method_family = none)]
         unsafe fn searchBar_selectedScopeButtonIndexDidChange(
             &self,

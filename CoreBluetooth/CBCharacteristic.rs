@@ -72,34 +72,34 @@ extern_methods!(
     unsafe impl CBCharacteristic {
         #[cfg(feature = "CBService")]
         /// A back-pointer to the service this characteristic belongs to.
-        #[method(service)]
+        #[unsafe(method(service))]
         #[unsafe(method_family = none)]
         pub unsafe fn service(&self) -> Option<Retained<CBService>>;
 
         /// The properties of the characteristic.
-        #[method(properties)]
+        #[unsafe(method(properties))]
         #[unsafe(method_family = none)]
         pub unsafe fn properties(&self) -> CBCharacteristicProperties;
 
         /// The value of the characteristic.
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "CBDescriptor")]
         /// A list of the CBDescriptors that have so far been discovered in this characteristic.
-        #[method(descriptors)]
+        #[unsafe(method(descriptors))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptors(&self) -> Option<Retained<NSArray<CBDescriptor>>>;
 
         /// Whether the characteristic is currently broadcasted or not.
         #[deprecated]
-        #[method(isBroadcasted)]
+        #[unsafe(method(isBroadcasted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBroadcasted(&self) -> bool;
 
         /// Whether the characteristic is currently notifying or not.
-        #[method(isNotifying)]
+        #[unsafe(method(isNotifying))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNotifying(&self) -> bool;
     }
@@ -109,7 +109,7 @@ extern_methods!(
     /// Methods declared on superclass `CBAttribute`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBCharacteristic {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -119,7 +119,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBCharacteristic {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -200,47 +200,47 @@ extern_methods!(
         ///
         ///
         /// See: CBAttributePermissions
-        #[method(permissions)]
+        #[unsafe(method(permissions))]
         #[unsafe(method_family = none)]
         pub unsafe fn permissions(&self) -> CBAttributePermissions;
 
         /// Setter for [`permissions`][Self::permissions].
-        #[method(setPermissions:)]
+        #[unsafe(method(setPermissions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPermissions(&self, permissions: CBAttributePermissions);
 
         #[cfg(all(feature = "CBCentral", feature = "CBPeer"))]
         /// For notifying characteristics, the set of currently subscribed centrals.
-        #[method(subscribedCentrals)]
+        #[unsafe(method(subscribedCentrals))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscribedCentrals(&self) -> Option<Retained<NSArray<CBCentral>>>;
 
-        #[method(properties)]
+        #[unsafe(method(properties))]
         #[unsafe(method_family = none)]
         pub unsafe fn properties(&self) -> CBCharacteristicProperties;
 
         /// Setter for [`properties`][Self::properties].
-        #[method(setProperties:)]
+        #[unsafe(method(setProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProperties(&self, properties: CBCharacteristicProperties);
 
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`value`][Self::value].
-        #[method(setValue:)]
+        #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: Option<&NSData>);
 
         #[cfg(feature = "CBDescriptor")]
-        #[method(descriptors)]
+        #[unsafe(method(descriptors))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptors(&self) -> Option<Retained<NSArray<CBDescriptor>>>;
 
         #[cfg(feature = "CBDescriptor")]
         /// Setter for [`descriptors`][Self::descriptors].
-        #[method(setDescriptors:)]
+        #[unsafe(method(setDescriptors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDescriptors(&self, descriptors: Option<&NSArray<CBDescriptor>>);
 
@@ -259,7 +259,7 @@ extern_methods!(
         ///
         ///
         /// Returns an initialized characteristic.
-        #[method(initWithType:properties:value:permissions:)]
+        #[unsafe(method(initWithType:properties:value:permissions:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_properties_value_permissions(
             this: Allocated<Self>,
@@ -275,7 +275,7 @@ extern_methods!(
     /// Methods declared on superclass `CBAttribute`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableCharacteristic {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -285,7 +285,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableCharacteristic {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

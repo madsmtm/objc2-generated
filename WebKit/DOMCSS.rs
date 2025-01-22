@@ -14,979 +14,979 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSStyleDeclaration {
-        #[method(azimuth)]
+        #[unsafe(method(azimuth))]
         #[unsafe(method_family = none)]
         pub unsafe fn azimuth(&self) -> Option<Retained<NSString>>;
 
-        #[method(setAzimuth:)]
+        #[unsafe(method(setAzimuth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAzimuth(&self, azimuth: Option<&NSString>);
 
-        #[method(background)]
+        #[unsafe(method(background))]
         #[unsafe(method_family = none)]
         pub unsafe fn background(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBackground:)]
+        #[unsafe(method(setBackground:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackground(&self, background: Option<&NSString>);
 
-        #[method(backgroundAttachment)]
+        #[unsafe(method(backgroundAttachment))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundAttachment(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBackgroundAttachment:)]
+        #[unsafe(method(setBackgroundAttachment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundAttachment(&self, background_attachment: Option<&NSString>);
 
-        #[method(backgroundColor)]
+        #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBackgroundColor:)]
+        #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSString>);
 
-        #[method(backgroundImage)]
+        #[unsafe(method(backgroundImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundImage(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBackgroundImage:)]
+        #[unsafe(method(setBackgroundImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImage(&self, background_image: Option<&NSString>);
 
-        #[method(backgroundPosition)]
+        #[unsafe(method(backgroundPosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundPosition(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBackgroundPosition:)]
+        #[unsafe(method(setBackgroundPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundPosition(&self, background_position: Option<&NSString>);
 
-        #[method(backgroundRepeat)]
+        #[unsafe(method(backgroundRepeat))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundRepeat(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBackgroundRepeat:)]
+        #[unsafe(method(setBackgroundRepeat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundRepeat(&self, background_repeat: Option<&NSString>);
 
-        #[method(border)]
+        #[unsafe(method(border))]
         #[unsafe(method_family = none)]
         pub unsafe fn border(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorder:)]
+        #[unsafe(method(setBorder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorder(&self, border: Option<&NSString>);
 
-        #[method(borderCollapse)]
+        #[unsafe(method(borderCollapse))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderCollapse(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderCollapse:)]
+        #[unsafe(method(setBorderCollapse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderCollapse(&self, border_collapse: Option<&NSString>);
 
-        #[method(borderColor)]
+        #[unsafe(method(borderColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderColor(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderColor:)]
+        #[unsafe(method(setBorderColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderColor(&self, border_color: Option<&NSString>);
 
-        #[method(borderSpacing)]
+        #[unsafe(method(borderSpacing))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderSpacing(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderSpacing:)]
+        #[unsafe(method(setBorderSpacing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderSpacing(&self, border_spacing: Option<&NSString>);
 
-        #[method(borderStyle)]
+        #[unsafe(method(borderStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderStyle(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderStyle:)]
+        #[unsafe(method(setBorderStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderStyle(&self, border_style: Option<&NSString>);
 
-        #[method(borderTop)]
+        #[unsafe(method(borderTop))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderTop(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderTop:)]
+        #[unsafe(method(setBorderTop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderTop(&self, border_top: Option<&NSString>);
 
-        #[method(borderRight)]
+        #[unsafe(method(borderRight))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderRight(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderRight:)]
+        #[unsafe(method(setBorderRight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderRight(&self, border_right: Option<&NSString>);
 
-        #[method(borderBottom)]
+        #[unsafe(method(borderBottom))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderBottom(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderBottom:)]
+        #[unsafe(method(setBorderBottom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderBottom(&self, border_bottom: Option<&NSString>);
 
-        #[method(borderLeft)]
+        #[unsafe(method(borderLeft))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderLeft(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderLeft:)]
+        #[unsafe(method(setBorderLeft:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderLeft(&self, border_left: Option<&NSString>);
 
-        #[method(borderTopColor)]
+        #[unsafe(method(borderTopColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderTopColor(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderTopColor:)]
+        #[unsafe(method(setBorderTopColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderTopColor(&self, border_top_color: Option<&NSString>);
 
-        #[method(borderRightColor)]
+        #[unsafe(method(borderRightColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderRightColor(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderRightColor:)]
+        #[unsafe(method(setBorderRightColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderRightColor(&self, border_right_color: Option<&NSString>);
 
-        #[method(borderBottomColor)]
+        #[unsafe(method(borderBottomColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderBottomColor(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderBottomColor:)]
+        #[unsafe(method(setBorderBottomColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderBottomColor(&self, border_bottom_color: Option<&NSString>);
 
-        #[method(borderLeftColor)]
+        #[unsafe(method(borderLeftColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderLeftColor(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderLeftColor:)]
+        #[unsafe(method(setBorderLeftColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderLeftColor(&self, border_left_color: Option<&NSString>);
 
-        #[method(borderTopStyle)]
+        #[unsafe(method(borderTopStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderTopStyle(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderTopStyle:)]
+        #[unsafe(method(setBorderTopStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderTopStyle(&self, border_top_style: Option<&NSString>);
 
-        #[method(borderRightStyle)]
+        #[unsafe(method(borderRightStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderRightStyle(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderRightStyle:)]
+        #[unsafe(method(setBorderRightStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderRightStyle(&self, border_right_style: Option<&NSString>);
 
-        #[method(borderBottomStyle)]
+        #[unsafe(method(borderBottomStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderBottomStyle(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderBottomStyle:)]
+        #[unsafe(method(setBorderBottomStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderBottomStyle(&self, border_bottom_style: Option<&NSString>);
 
-        #[method(borderLeftStyle)]
+        #[unsafe(method(borderLeftStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderLeftStyle(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderLeftStyle:)]
+        #[unsafe(method(setBorderLeftStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderLeftStyle(&self, border_left_style: Option<&NSString>);
 
-        #[method(borderTopWidth)]
+        #[unsafe(method(borderTopWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderTopWidth(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderTopWidth:)]
+        #[unsafe(method(setBorderTopWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderTopWidth(&self, border_top_width: Option<&NSString>);
 
-        #[method(borderRightWidth)]
+        #[unsafe(method(borderRightWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderRightWidth(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderRightWidth:)]
+        #[unsafe(method(setBorderRightWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderRightWidth(&self, border_right_width: Option<&NSString>);
 
-        #[method(borderBottomWidth)]
+        #[unsafe(method(borderBottomWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderBottomWidth(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderBottomWidth:)]
+        #[unsafe(method(setBorderBottomWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderBottomWidth(&self, border_bottom_width: Option<&NSString>);
 
-        #[method(borderLeftWidth)]
+        #[unsafe(method(borderLeftWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderLeftWidth(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderLeftWidth:)]
+        #[unsafe(method(setBorderLeftWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderLeftWidth(&self, border_left_width: Option<&NSString>);
 
-        #[method(borderWidth)]
+        #[unsafe(method(borderWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderWidth(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBorderWidth:)]
+        #[unsafe(method(setBorderWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderWidth(&self, border_width: Option<&NSString>);
 
-        #[method(bottom)]
+        #[unsafe(method(bottom))]
         #[unsafe(method_family = none)]
         pub unsafe fn bottom(&self) -> Option<Retained<NSString>>;
 
-        #[method(setBottom:)]
+        #[unsafe(method(setBottom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBottom(&self, bottom: Option<&NSString>);
 
-        #[method(captionSide)]
+        #[unsafe(method(captionSide))]
         #[unsafe(method_family = none)]
         pub unsafe fn captionSide(&self) -> Option<Retained<NSString>>;
 
-        #[method(setCaptionSide:)]
+        #[unsafe(method(setCaptionSide:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCaptionSide(&self, caption_side: Option<&NSString>);
 
-        #[method(clear)]
+        #[unsafe(method(clear))]
         #[unsafe(method_family = none)]
         pub unsafe fn clear(&self) -> Option<Retained<NSString>>;
 
-        #[method(setClear:)]
+        #[unsafe(method(setClear:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClear(&self, clear: Option<&NSString>);
 
-        #[method(clip)]
+        #[unsafe(method(clip))]
         #[unsafe(method_family = none)]
         pub unsafe fn clip(&self) -> Option<Retained<NSString>>;
 
-        #[method(setClip:)]
+        #[unsafe(method(setClip:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClip(&self, clip: Option<&NSString>);
 
-        #[method(color)]
+        #[unsafe(method(color))]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Option<Retained<NSString>>;
 
-        #[method(setColor:)]
+        #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: Option<&NSString>);
 
-        #[method(content)]
+        #[unsafe(method(content))]
         #[unsafe(method_family = none)]
         pub unsafe fn content(&self) -> Option<Retained<NSString>>;
 
-        #[method(setContent:)]
+        #[unsafe(method(setContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContent(&self, content: Option<&NSString>);
 
-        #[method(counterIncrement)]
+        #[unsafe(method(counterIncrement))]
         #[unsafe(method_family = none)]
         pub unsafe fn counterIncrement(&self) -> Option<Retained<NSString>>;
 
-        #[method(setCounterIncrement:)]
+        #[unsafe(method(setCounterIncrement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCounterIncrement(&self, counter_increment: Option<&NSString>);
 
-        #[method(counterReset)]
+        #[unsafe(method(counterReset))]
         #[unsafe(method_family = none)]
         pub unsafe fn counterReset(&self) -> Option<Retained<NSString>>;
 
-        #[method(setCounterReset:)]
+        #[unsafe(method(setCounterReset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCounterReset(&self, counter_reset: Option<&NSString>);
 
-        #[method(cue)]
+        #[unsafe(method(cue))]
         #[unsafe(method_family = none)]
         pub unsafe fn cue(&self) -> Option<Retained<NSString>>;
 
-        #[method(setCue:)]
+        #[unsafe(method(setCue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCue(&self, cue: Option<&NSString>);
 
-        #[method(cueAfter)]
+        #[unsafe(method(cueAfter))]
         #[unsafe(method_family = none)]
         pub unsafe fn cueAfter(&self) -> Option<Retained<NSString>>;
 
-        #[method(setCueAfter:)]
+        #[unsafe(method(setCueAfter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCueAfter(&self, cue_after: Option<&NSString>);
 
-        #[method(cueBefore)]
+        #[unsafe(method(cueBefore))]
         #[unsafe(method_family = none)]
         pub unsafe fn cueBefore(&self) -> Option<Retained<NSString>>;
 
-        #[method(setCueBefore:)]
+        #[unsafe(method(setCueBefore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCueBefore(&self, cue_before: Option<&NSString>);
 
-        #[method(cursor)]
+        #[unsafe(method(cursor))]
         #[unsafe(method_family = none)]
         pub unsafe fn cursor(&self) -> Option<Retained<NSString>>;
 
-        #[method(setCursor:)]
+        #[unsafe(method(setCursor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCursor(&self, cursor: Option<&NSString>);
 
-        #[method(direction)]
+        #[unsafe(method(direction))]
         #[unsafe(method_family = none)]
         pub unsafe fn direction(&self) -> Option<Retained<NSString>>;
 
-        #[method(setDirection:)]
+        #[unsafe(method(setDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirection(&self, direction: Option<&NSString>);
 
-        #[method(display)]
+        #[unsafe(method(display))]
         #[unsafe(method_family = none)]
         pub unsafe fn display(&self) -> Option<Retained<NSString>>;
 
-        #[method(setDisplay:)]
+        #[unsafe(method(setDisplay:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplay(&self, display: Option<&NSString>);
 
-        #[method(elevation)]
+        #[unsafe(method(elevation))]
         #[unsafe(method_family = none)]
         pub unsafe fn elevation(&self) -> Option<Retained<NSString>>;
 
-        #[method(setElevation:)]
+        #[unsafe(method(setElevation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setElevation(&self, elevation: Option<&NSString>);
 
-        #[method(emptyCells)]
+        #[unsafe(method(emptyCells))]
         #[unsafe(method_family = none)]
         pub unsafe fn emptyCells(&self) -> Option<Retained<NSString>>;
 
-        #[method(setEmptyCells:)]
+        #[unsafe(method(setEmptyCells:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmptyCells(&self, empty_cells: Option<&NSString>);
 
-        #[method(cssFloat)]
+        #[unsafe(method(cssFloat))]
         #[unsafe(method_family = none)]
         pub unsafe fn cssFloat(&self) -> Option<Retained<NSString>>;
 
-        #[method(setCssFloat:)]
+        #[unsafe(method(setCssFloat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCssFloat(&self, css_float: Option<&NSString>);
 
-        #[method(font)]
+        #[unsafe(method(font))]
         #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Option<Retained<NSString>>;
 
-        #[method(setFont:)]
+        #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: Option<&NSString>);
 
-        #[method(fontFamily)]
+        #[unsafe(method(fontFamily))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontFamily(&self) -> Option<Retained<NSString>>;
 
-        #[method(setFontFamily:)]
+        #[unsafe(method(setFontFamily:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontFamily(&self, font_family: Option<&NSString>);
 
-        #[method(fontSize)]
+        #[unsafe(method(fontSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontSize(&self) -> Option<Retained<NSString>>;
 
-        #[method(setFontSize:)]
+        #[unsafe(method(setFontSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontSize(&self, font_size: Option<&NSString>);
 
-        #[method(fontSizeAdjust)]
+        #[unsafe(method(fontSizeAdjust))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontSizeAdjust(&self) -> Option<Retained<NSString>>;
 
-        #[method(setFontSizeAdjust:)]
+        #[unsafe(method(setFontSizeAdjust:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontSizeAdjust(&self, font_size_adjust: Option<&NSString>);
 
-        #[method(fontStretch)]
+        #[unsafe(method(fontStretch))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontStretch(&self) -> Option<Retained<NSString>>;
 
-        #[method(setFontStretch:)]
+        #[unsafe(method(setFontStretch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontStretch(&self, font_stretch: Option<&NSString>);
 
-        #[method(fontStyle)]
+        #[unsafe(method(fontStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontStyle(&self) -> Option<Retained<NSString>>;
 
-        #[method(setFontStyle:)]
+        #[unsafe(method(setFontStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontStyle(&self, font_style: Option<&NSString>);
 
-        #[method(fontVariant)]
+        #[unsafe(method(fontVariant))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontVariant(&self) -> Option<Retained<NSString>>;
 
-        #[method(setFontVariant:)]
+        #[unsafe(method(setFontVariant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontVariant(&self, font_variant: Option<&NSString>);
 
-        #[method(fontWeight)]
+        #[unsafe(method(fontWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontWeight(&self) -> Option<Retained<NSString>>;
 
-        #[method(setFontWeight:)]
+        #[unsafe(method(setFontWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontWeight(&self, font_weight: Option<&NSString>);
 
-        #[method(height)]
+        #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> Option<Retained<NSString>>;
 
-        #[method(setHeight:)]
+        #[unsafe(method(setHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeight(&self, height: Option<&NSString>);
 
-        #[method(left)]
+        #[unsafe(method(left))]
         #[unsafe(method_family = none)]
         pub unsafe fn left(&self) -> Option<Retained<NSString>>;
 
-        #[method(setLeft:)]
+        #[unsafe(method(setLeft:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeft(&self, left: Option<&NSString>);
 
-        #[method(letterSpacing)]
+        #[unsafe(method(letterSpacing))]
         #[unsafe(method_family = none)]
         pub unsafe fn letterSpacing(&self) -> Option<Retained<NSString>>;
 
-        #[method(setLetterSpacing:)]
+        #[unsafe(method(setLetterSpacing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLetterSpacing(&self, letter_spacing: Option<&NSString>);
 
-        #[method(lineHeight)]
+        #[unsafe(method(lineHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineHeight(&self) -> Option<Retained<NSString>>;
 
-        #[method(setLineHeight:)]
+        #[unsafe(method(setLineHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineHeight(&self, line_height: Option<&NSString>);
 
-        #[method(listStyle)]
+        #[unsafe(method(listStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn listStyle(&self) -> Option<Retained<NSString>>;
 
-        #[method(setListStyle:)]
+        #[unsafe(method(setListStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListStyle(&self, list_style: Option<&NSString>);
 
-        #[method(listStyleImage)]
+        #[unsafe(method(listStyleImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn listStyleImage(&self) -> Option<Retained<NSString>>;
 
-        #[method(setListStyleImage:)]
+        #[unsafe(method(setListStyleImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListStyleImage(&self, list_style_image: Option<&NSString>);
 
-        #[method(listStylePosition)]
+        #[unsafe(method(listStylePosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn listStylePosition(&self) -> Option<Retained<NSString>>;
 
-        #[method(setListStylePosition:)]
+        #[unsafe(method(setListStylePosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListStylePosition(&self, list_style_position: Option<&NSString>);
 
-        #[method(listStyleType)]
+        #[unsafe(method(listStyleType))]
         #[unsafe(method_family = none)]
         pub unsafe fn listStyleType(&self) -> Option<Retained<NSString>>;
 
-        #[method(setListStyleType:)]
+        #[unsafe(method(setListStyleType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListStyleType(&self, list_style_type: Option<&NSString>);
 
-        #[method(margin)]
+        #[unsafe(method(margin))]
         #[unsafe(method_family = none)]
         pub unsafe fn margin(&self) -> Option<Retained<NSString>>;
 
-        #[method(setMargin:)]
+        #[unsafe(method(setMargin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMargin(&self, margin: Option<&NSString>);
 
-        #[method(marginTop)]
+        #[unsafe(method(marginTop))]
         #[unsafe(method_family = none)]
         pub unsafe fn marginTop(&self) -> Option<Retained<NSString>>;
 
-        #[method(setMarginTop:)]
+        #[unsafe(method(setMarginTop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarginTop(&self, margin_top: Option<&NSString>);
 
-        #[method(marginRight)]
+        #[unsafe(method(marginRight))]
         #[unsafe(method_family = none)]
         pub unsafe fn marginRight(&self) -> Option<Retained<NSString>>;
 
-        #[method(setMarginRight:)]
+        #[unsafe(method(setMarginRight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarginRight(&self, margin_right: Option<&NSString>);
 
-        #[method(marginBottom)]
+        #[unsafe(method(marginBottom))]
         #[unsafe(method_family = none)]
         pub unsafe fn marginBottom(&self) -> Option<Retained<NSString>>;
 
-        #[method(setMarginBottom:)]
+        #[unsafe(method(setMarginBottom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarginBottom(&self, margin_bottom: Option<&NSString>);
 
-        #[method(marginLeft)]
+        #[unsafe(method(marginLeft))]
         #[unsafe(method_family = none)]
         pub unsafe fn marginLeft(&self) -> Option<Retained<NSString>>;
 
-        #[method(setMarginLeft:)]
+        #[unsafe(method(setMarginLeft:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarginLeft(&self, margin_left: Option<&NSString>);
 
-        #[method(markerOffset)]
+        #[unsafe(method(markerOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn markerOffset(&self) -> Option<Retained<NSString>>;
 
-        #[method(setMarkerOffset:)]
+        #[unsafe(method(setMarkerOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarkerOffset(&self, marker_offset: Option<&NSString>);
 
-        #[method(marks)]
+        #[unsafe(method(marks))]
         #[unsafe(method_family = none)]
         pub unsafe fn marks(&self) -> Option<Retained<NSString>>;
 
-        #[method(setMarks:)]
+        #[unsafe(method(setMarks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarks(&self, marks: Option<&NSString>);
 
-        #[method(maxHeight)]
+        #[unsafe(method(maxHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxHeight(&self) -> Option<Retained<NSString>>;
 
-        #[method(setMaxHeight:)]
+        #[unsafe(method(setMaxHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxHeight(&self, max_height: Option<&NSString>);
 
-        #[method(maxWidth)]
+        #[unsafe(method(maxWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxWidth(&self) -> Option<Retained<NSString>>;
 
-        #[method(setMaxWidth:)]
+        #[unsafe(method(setMaxWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxWidth(&self, max_width: Option<&NSString>);
 
-        #[method(minHeight)]
+        #[unsafe(method(minHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn minHeight(&self) -> Option<Retained<NSString>>;
 
-        #[method(setMinHeight:)]
+        #[unsafe(method(setMinHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinHeight(&self, min_height: Option<&NSString>);
 
-        #[method(minWidth)]
+        #[unsafe(method(minWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn minWidth(&self) -> Option<Retained<NSString>>;
 
-        #[method(setMinWidth:)]
+        #[unsafe(method(setMinWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinWidth(&self, min_width: Option<&NSString>);
 
-        #[method(orphans)]
+        #[unsafe(method(orphans))]
         #[unsafe(method_family = none)]
         pub unsafe fn orphans(&self) -> Option<Retained<NSString>>;
 
-        #[method(setOrphans:)]
+        #[unsafe(method(setOrphans:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrphans(&self, orphans: Option<&NSString>);
 
-        #[method(outline)]
+        #[unsafe(method(outline))]
         #[unsafe(method_family = none)]
         pub unsafe fn outline(&self) -> Option<Retained<NSString>>;
 
-        #[method(setOutline:)]
+        #[unsafe(method(setOutline:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutline(&self, outline: Option<&NSString>);
 
-        #[method(outlineColor)]
+        #[unsafe(method(outlineColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn outlineColor(&self) -> Option<Retained<NSString>>;
 
-        #[method(setOutlineColor:)]
+        #[unsafe(method(setOutlineColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutlineColor(&self, outline_color: Option<&NSString>);
 
-        #[method(outlineStyle)]
+        #[unsafe(method(outlineStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn outlineStyle(&self) -> Option<Retained<NSString>>;
 
-        #[method(setOutlineStyle:)]
+        #[unsafe(method(setOutlineStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutlineStyle(&self, outline_style: Option<&NSString>);
 
-        #[method(outlineWidth)]
+        #[unsafe(method(outlineWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn outlineWidth(&self) -> Option<Retained<NSString>>;
 
-        #[method(setOutlineWidth:)]
+        #[unsafe(method(setOutlineWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutlineWidth(&self, outline_width: Option<&NSString>);
 
-        #[method(overflow)]
+        #[unsafe(method(overflow))]
         #[unsafe(method_family = none)]
         pub unsafe fn overflow(&self) -> Option<Retained<NSString>>;
 
-        #[method(setOverflow:)]
+        #[unsafe(method(setOverflow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverflow(&self, overflow: Option<&NSString>);
 
-        #[method(padding)]
+        #[unsafe(method(padding))]
         #[unsafe(method_family = none)]
         pub unsafe fn padding(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPadding:)]
+        #[unsafe(method(setPadding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPadding(&self, padding: Option<&NSString>);
 
-        #[method(paddingTop)]
+        #[unsafe(method(paddingTop))]
         #[unsafe(method_family = none)]
         pub unsafe fn paddingTop(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPaddingTop:)]
+        #[unsafe(method(setPaddingTop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingTop(&self, padding_top: Option<&NSString>);
 
-        #[method(paddingRight)]
+        #[unsafe(method(paddingRight))]
         #[unsafe(method_family = none)]
         pub unsafe fn paddingRight(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPaddingRight:)]
+        #[unsafe(method(setPaddingRight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingRight(&self, padding_right: Option<&NSString>);
 
-        #[method(paddingBottom)]
+        #[unsafe(method(paddingBottom))]
         #[unsafe(method_family = none)]
         pub unsafe fn paddingBottom(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPaddingBottom:)]
+        #[unsafe(method(setPaddingBottom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingBottom(&self, padding_bottom: Option<&NSString>);
 
-        #[method(paddingLeft)]
+        #[unsafe(method(paddingLeft))]
         #[unsafe(method_family = none)]
         pub unsafe fn paddingLeft(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPaddingLeft:)]
+        #[unsafe(method(setPaddingLeft:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingLeft(&self, padding_left: Option<&NSString>);
 
-        #[method(page)]
+        #[unsafe(method(page))]
         #[unsafe(method_family = none)]
         pub unsafe fn page(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPage:)]
+        #[unsafe(method(setPage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPage(&self, page: Option<&NSString>);
 
-        #[method(pageBreakAfter)]
+        #[unsafe(method(pageBreakAfter))]
         #[unsafe(method_family = none)]
         pub unsafe fn pageBreakAfter(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPageBreakAfter:)]
+        #[unsafe(method(setPageBreakAfter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPageBreakAfter(&self, page_break_after: Option<&NSString>);
 
-        #[method(pageBreakBefore)]
+        #[unsafe(method(pageBreakBefore))]
         #[unsafe(method_family = none)]
         pub unsafe fn pageBreakBefore(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPageBreakBefore:)]
+        #[unsafe(method(setPageBreakBefore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPageBreakBefore(&self, page_break_before: Option<&NSString>);
 
-        #[method(pageBreakInside)]
+        #[unsafe(method(pageBreakInside))]
         #[unsafe(method_family = none)]
         pub unsafe fn pageBreakInside(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPageBreakInside:)]
+        #[unsafe(method(setPageBreakInside:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPageBreakInside(&self, page_break_inside: Option<&NSString>);
 
-        #[method(pause)]
+        #[unsafe(method(pause))]
         #[unsafe(method_family = none)]
         pub unsafe fn pause(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPause:)]
+        #[unsafe(method(setPause:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPause(&self, pause: Option<&NSString>);
 
-        #[method(pauseAfter)]
+        #[unsafe(method(pauseAfter))]
         #[unsafe(method_family = none)]
         pub unsafe fn pauseAfter(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPauseAfter:)]
+        #[unsafe(method(setPauseAfter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPauseAfter(&self, pause_after: Option<&NSString>);
 
-        #[method(pauseBefore)]
+        #[unsafe(method(pauseBefore))]
         #[unsafe(method_family = none)]
         pub unsafe fn pauseBefore(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPauseBefore:)]
+        #[unsafe(method(setPauseBefore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPauseBefore(&self, pause_before: Option<&NSString>);
 
-        #[method(pitch)]
+        #[unsafe(method(pitch))]
         #[unsafe(method_family = none)]
         pub unsafe fn pitch(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPitch:)]
+        #[unsafe(method(setPitch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPitch(&self, pitch: Option<&NSString>);
 
-        #[method(pitchRange)]
+        #[unsafe(method(pitchRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn pitchRange(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPitchRange:)]
+        #[unsafe(method(setPitchRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPitchRange(&self, pitch_range: Option<&NSString>);
 
-        #[method(playDuring)]
+        #[unsafe(method(playDuring))]
         #[unsafe(method_family = none)]
         pub unsafe fn playDuring(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPlayDuring:)]
+        #[unsafe(method(setPlayDuring:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlayDuring(&self, play_during: Option<&NSString>);
 
-        #[method(position)]
+        #[unsafe(method(position))]
         #[unsafe(method_family = none)]
         pub unsafe fn position(&self) -> Option<Retained<NSString>>;
 
-        #[method(setPosition:)]
+        #[unsafe(method(setPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPosition(&self, position: Option<&NSString>);
 
-        #[method(quotes)]
+        #[unsafe(method(quotes))]
         #[unsafe(method_family = none)]
         pub unsafe fn quotes(&self) -> Option<Retained<NSString>>;
 
-        #[method(setQuotes:)]
+        #[unsafe(method(setQuotes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQuotes(&self, quotes: Option<&NSString>);
 
-        #[method(richness)]
+        #[unsafe(method(richness))]
         #[unsafe(method_family = none)]
         pub unsafe fn richness(&self) -> Option<Retained<NSString>>;
 
-        #[method(setRichness:)]
+        #[unsafe(method(setRichness:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRichness(&self, richness: Option<&NSString>);
 
-        #[method(right)]
+        #[unsafe(method(right))]
         #[unsafe(method_family = none)]
         pub unsafe fn right(&self) -> Option<Retained<NSString>>;
 
-        #[method(setRight:)]
+        #[unsafe(method(setRight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRight(&self, right: Option<&NSString>);
 
-        #[method(size)]
+        #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> Option<Retained<NSString>>;
 
-        #[method(setSize:)]
+        #[unsafe(method(setSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSize(&self, size: Option<&NSString>);
 
-        #[method(speak)]
+        #[unsafe(method(speak))]
         #[unsafe(method_family = none)]
         pub unsafe fn speak(&self) -> Option<Retained<NSString>>;
 
-        #[method(setSpeak:)]
+        #[unsafe(method(setSpeak:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeak(&self, speak: Option<&NSString>);
 
-        #[method(speakHeader)]
+        #[unsafe(method(speakHeader))]
         #[unsafe(method_family = none)]
         pub unsafe fn speakHeader(&self) -> Option<Retained<NSString>>;
 
-        #[method(setSpeakHeader:)]
+        #[unsafe(method(setSpeakHeader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeakHeader(&self, speak_header: Option<&NSString>);
 
-        #[method(speakNumeral)]
+        #[unsafe(method(speakNumeral))]
         #[unsafe(method_family = none)]
         pub unsafe fn speakNumeral(&self) -> Option<Retained<NSString>>;
 
-        #[method(setSpeakNumeral:)]
+        #[unsafe(method(setSpeakNumeral:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeakNumeral(&self, speak_numeral: Option<&NSString>);
 
-        #[method(speakPunctuation)]
+        #[unsafe(method(speakPunctuation))]
         #[unsafe(method_family = none)]
         pub unsafe fn speakPunctuation(&self) -> Option<Retained<NSString>>;
 
-        #[method(setSpeakPunctuation:)]
+        #[unsafe(method(setSpeakPunctuation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeakPunctuation(&self, speak_punctuation: Option<&NSString>);
 
-        #[method(speechRate)]
+        #[unsafe(method(speechRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn speechRate(&self) -> Option<Retained<NSString>>;
 
-        #[method(setSpeechRate:)]
+        #[unsafe(method(setSpeechRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeechRate(&self, speech_rate: Option<&NSString>);
 
-        #[method(stress)]
+        #[unsafe(method(stress))]
         #[unsafe(method_family = none)]
         pub unsafe fn stress(&self) -> Option<Retained<NSString>>;
 
-        #[method(setStress:)]
+        #[unsafe(method(setStress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStress(&self, stress: Option<&NSString>);
 
-        #[method(tableLayout)]
+        #[unsafe(method(tableLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn tableLayout(&self) -> Option<Retained<NSString>>;
 
-        #[method(setTableLayout:)]
+        #[unsafe(method(setTableLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTableLayout(&self, table_layout: Option<&NSString>);
 
-        #[method(textAlign)]
+        #[unsafe(method(textAlign))]
         #[unsafe(method_family = none)]
         pub unsafe fn textAlign(&self) -> Option<Retained<NSString>>;
 
-        #[method(setTextAlign:)]
+        #[unsafe(method(setTextAlign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAlign(&self, text_align: Option<&NSString>);
 
-        #[method(textDecoration)]
+        #[unsafe(method(textDecoration))]
         #[unsafe(method_family = none)]
         pub unsafe fn textDecoration(&self) -> Option<Retained<NSString>>;
 
-        #[method(setTextDecoration:)]
+        #[unsafe(method(setTextDecoration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextDecoration(&self, text_decoration: Option<&NSString>);
 
-        #[method(textIndent)]
+        #[unsafe(method(textIndent))]
         #[unsafe(method_family = none)]
         pub unsafe fn textIndent(&self) -> Option<Retained<NSString>>;
 
-        #[method(setTextIndent:)]
+        #[unsafe(method(setTextIndent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextIndent(&self, text_indent: Option<&NSString>);
 
-        #[method(textShadow)]
+        #[unsafe(method(textShadow))]
         #[unsafe(method_family = none)]
         pub unsafe fn textShadow(&self) -> Option<Retained<NSString>>;
 
-        #[method(setTextShadow:)]
+        #[unsafe(method(setTextShadow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextShadow(&self, text_shadow: Option<&NSString>);
 
-        #[method(textTransform)]
+        #[unsafe(method(textTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn textTransform(&self) -> Option<Retained<NSString>>;
 
-        #[method(setTextTransform:)]
+        #[unsafe(method(setTextTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextTransform(&self, text_transform: Option<&NSString>);
 
-        #[method(top)]
+        #[unsafe(method(top))]
         #[unsafe(method_family = none)]
         pub unsafe fn top(&self) -> Option<Retained<NSString>>;
 
-        #[method(setTop:)]
+        #[unsafe(method(setTop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTop(&self, top: Option<&NSString>);
 
-        #[method(unicodeBidi)]
+        #[unsafe(method(unicodeBidi))]
         #[unsafe(method_family = none)]
         pub unsafe fn unicodeBidi(&self) -> Option<Retained<NSString>>;
 
-        #[method(setUnicodeBidi:)]
+        #[unsafe(method(setUnicodeBidi:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUnicodeBidi(&self, unicode_bidi: Option<&NSString>);
 
-        #[method(verticalAlign)]
+        #[unsafe(method(verticalAlign))]
         #[unsafe(method_family = none)]
         pub unsafe fn verticalAlign(&self) -> Option<Retained<NSString>>;
 
-        #[method(setVerticalAlign:)]
+        #[unsafe(method(setVerticalAlign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVerticalAlign(&self, vertical_align: Option<&NSString>);
 
-        #[method(visibility)]
+        #[unsafe(method(visibility))]
         #[unsafe(method_family = none)]
         pub unsafe fn visibility(&self) -> Option<Retained<NSString>>;
 
-        #[method(setVisibility:)]
+        #[unsafe(method(setVisibility:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVisibility(&self, visibility: Option<&NSString>);
 
-        #[method(voiceFamily)]
+        #[unsafe(method(voiceFamily))]
         #[unsafe(method_family = none)]
         pub unsafe fn voiceFamily(&self) -> Option<Retained<NSString>>;
 
-        #[method(setVoiceFamily:)]
+        #[unsafe(method(setVoiceFamily:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVoiceFamily(&self, voice_family: Option<&NSString>);
 
-        #[method(volume)]
+        #[unsafe(method(volume))]
         #[unsafe(method_family = none)]
         pub unsafe fn volume(&self) -> Option<Retained<NSString>>;
 
-        #[method(setVolume:)]
+        #[unsafe(method(setVolume:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVolume(&self, volume: Option<&NSString>);
 
-        #[method(whiteSpace)]
+        #[unsafe(method(whiteSpace))]
         #[unsafe(method_family = none)]
         pub unsafe fn whiteSpace(&self) -> Option<Retained<NSString>>;
 
-        #[method(setWhiteSpace:)]
+        #[unsafe(method(setWhiteSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWhiteSpace(&self, white_space: Option<&NSString>);
 
-        #[method(widows)]
+        #[unsafe(method(widows))]
         #[unsafe(method_family = none)]
         pub unsafe fn widows(&self) -> Option<Retained<NSString>>;
 
-        #[method(setWidows:)]
+        #[unsafe(method(setWidows:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidows(&self, widows: Option<&NSString>);
 
-        #[method(width)]
+        #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> Option<Retained<NSString>>;
 
-        #[method(setWidth:)]
+        #[unsafe(method(setWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: Option<&NSString>);
 
-        #[method(wordSpacing)]
+        #[unsafe(method(wordSpacing))]
         #[unsafe(method_family = none)]
         pub unsafe fn wordSpacing(&self) -> Option<Retained<NSString>>;
 
-        #[method(setWordSpacing:)]
+        #[unsafe(method(setWordSpacing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWordSpacing(&self, word_spacing: Option<&NSString>);
 
-        #[method(zIndex)]
+        #[unsafe(method(zIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn zIndex(&self) -> Option<Retained<NSString>>;
 
-        #[method(setZIndex:)]
+        #[unsafe(method(setZIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZIndex(&self, z_index: Option<&NSString>);
     }

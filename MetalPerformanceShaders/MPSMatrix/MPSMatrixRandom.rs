@@ -54,52 +54,52 @@ unsafe impl NSObjectProtocol for MPSMatrixRandomDistributionDescriptor {}
 extern_methods!(
     unsafe impl MPSMatrixRandomDistributionDescriptor {
         /// The type of distribution.
-        #[method(distributionType)]
+        #[unsafe(method(distributionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn distributionType(&self) -> MPSMatrixRandomDistribution;
 
         /// Setter for [`distributionType`][Self::distributionType].
-        #[method(setDistributionType:)]
+        #[unsafe(method(setDistributionType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDistributionType(&self, distribution_type: MPSMatrixRandomDistribution);
 
         /// For distributions of values bounded below, this value describes the minimum.
-        #[method(minimum)]
+        #[unsafe(method(minimum))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimum(&self) -> c_float;
 
         /// Setter for [`minimum`][Self::minimum].
-        #[method(setMinimum:)]
+        #[unsafe(method(setMinimum:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimum(&self, minimum: c_float);
 
         /// For distributions of values bounded above, this value describes the maximum.
-        #[method(maximum)]
+        #[unsafe(method(maximum))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximum(&self) -> c_float;
 
         /// Setter for [`maximum`][Self::maximum].
-        #[method(setMaximum:)]
+        #[unsafe(method(setMaximum:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximum(&self, maximum: c_float);
 
         /// The value to use for distributions described by their mean.
-        #[method(mean)]
+        #[unsafe(method(mean))]
         #[unsafe(method_family = none)]
         pub unsafe fn mean(&self) -> c_float;
 
         /// Setter for [`mean`][Self::mean].
-        #[method(setMean:)]
+        #[unsafe(method(setMean:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMean(&self, mean: c_float);
 
         /// The value to use for distributions described by their standardDeviation.
-        #[method(standardDeviation)]
+        #[unsafe(method(standardDeviation))]
         #[unsafe(method_family = none)]
         pub unsafe fn standardDeviation(&self) -> c_float;
 
         /// Setter for [`standardDeviation`][Self::standardDeviation].
-        #[method(setStandardDeviation:)]
+        #[unsafe(method(setStandardDeviation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardDeviation(&self, standard_deviation: c_float);
 
@@ -111,7 +111,7 @@ extern_methods!(
         /// Parameter `maximum`: The upper bound of the range.
         ///
         /// Returns: A valid MPSMatrixRandomDistribution object or nil, if failure.
-        #[method(uniformDistributionDescriptorWithMinimum:maximum:)]
+        #[unsafe(method(uniformDistributionDescriptorWithMinimum:maximum:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniformDistributionDescriptorWithMinimum_maximum(
             minimum: c_float,
@@ -125,7 +125,7 @@ extern_methods!(
         /// Parameter `standardDeviation`: The standard deviation of the distribution.
         ///
         /// Returns: A valid MPSMatrixRandomDistribution object or nil if failure.
-        #[method(normalDistributionDescriptorWithMean:standardDeviation:)]
+        #[unsafe(method(normalDistributionDescriptorWithMean:standardDeviation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn normalDistributionDescriptorWithMean_standardDeviation(
             mean: c_float,
@@ -143,7 +143,7 @@ extern_methods!(
         /// Parameter `maximum`: The upper bound of the distribution
         ///
         /// Returns: A valid MPSMatrixRandomDistribution object or nil if failure.
-        #[method(normalDistributionDescriptorWithMean:standardDeviation:minimum:maximum:)]
+        #[unsafe(method(normalDistributionDescriptorWithMean:standardDeviation:minimum:maximum:))]
         #[unsafe(method_family = none)]
         pub unsafe fn normalDistributionDescriptorWithMean_standardDeviation_minimum_maximum(
             mean: c_float,
@@ -155,7 +155,7 @@ extern_methods!(
         /// Make a descriptor for a default distribution.
         ///
         /// Returns: A valid MPSMatrixRandomDistribution object or nil, if failure.
-        #[method(defaultDistributionDescriptor)]
+        #[unsafe(method(defaultDistributionDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultDistributionDescriptor(
         ) -> Retained<MPSMatrixRandomDistributionDescriptor>;
@@ -165,11 +165,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSMatrixRandomDistributionDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -212,38 +212,38 @@ extern_methods!(
         /// MPSDataTypeFloat32
         ///
         /// Default is MPSDataTypeUInt32
-        #[method(destinationDataType)]
+        #[unsafe(method(destinationDataType))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationDataType(&self) -> MPSDataType;
 
         /// The distribution from which to generate random values.
         ///
         /// Default is MPSMatrixRandomDistributionDefault
-        #[method(distributionType)]
+        #[unsafe(method(distributionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn distributionType(&self) -> MPSMatrixRandomDistribution;
 
         /// The starting index in the destination batch.
-        #[method(batchStart)]
+        #[unsafe(method(batchStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn batchStart(&self) -> NSUInteger;
 
         /// Setter for [`batchStart`][Self::batchStart].
-        #[method(setBatchStart:)]
+        #[unsafe(method(setBatchStart:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBatchStart(&self, batch_start: NSUInteger);
 
         /// The size of the batch to process.
-        #[method(batchSize)]
+        #[unsafe(method(batchSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn batchSize(&self) -> NSUInteger;
 
         /// Setter for [`batchSize`][Self::batchSize].
-        #[method(setBatchSize:)]
+        #[unsafe(method(setBatchSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBatchSize(&self, batch_size: NSUInteger);
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -255,7 +255,7 @@ extern_methods!(
         /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
         ///
         /// Parameter `destinationVector`: A valid MPSVector to contain the result.
-        #[method(encodeToCommandBuffer:destinationVector:)]
+        #[unsafe(method(encodeToCommandBuffer:destinationVector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_destinationVector(
             &self,
@@ -268,7 +268,7 @@ extern_methods!(
         /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
         ///
         /// Parameter `destinationMatrix`: A valid MPSMatrix to contain the result.
-        #[method(encodeToCommandBuffer:destinationMatrix:)]
+        #[unsafe(method(encodeToCommandBuffer:destinationMatrix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_destinationMatrix(
             &self,
@@ -290,7 +290,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -310,7 +310,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -324,11 +324,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixRandom {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -371,7 +371,7 @@ extern_methods!(
         /// integer values with an initial seed of 0.
         ///
         /// Parameter `device`: The device the filter will run on
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -388,7 +388,7 @@ extern_methods!(
         /// Parameter `seed`: The seed to initialize the random number generators with.
         ///
         /// Parameter `distributionDescriptor`: A descriptor containing information about the distribution.
-        #[method(initWithDevice:destinationDataType:seed:distributionDescriptor:)]
+        #[unsafe(method(initWithDevice:destinationDataType:seed:distributionDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_destinationDataType_seed_distributionDescriptor(
             this: Allocated<Self>,
@@ -401,7 +401,7 @@ extern_methods!(
         /// Synchronize internal MTGP32 state between GPU and CPU.
         ///
         /// Parameter `commandBuffer`: The command buffer on which to encode the synchronization.
-        #[method(synchronizeStateOnCommandBuffer:)]
+        #[unsafe(method(synchronizeStateOnCommandBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn synchronizeStateOnCommandBuffer(
             &self,
@@ -416,7 +416,7 @@ extern_methods!(
         /// Parameter `destinationDataType`: The data type of the result.
         ///
         /// Parameter `seed`: The seed to initialize the random number generators with.
-        #[method(initWithDevice:destinationDataType:seed:)]
+        #[unsafe(method(initWithDevice:destinationDataType:seed:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_destinationDataType_seed(
             this: Allocated<Self>,
@@ -425,7 +425,7 @@ extern_methods!(
             seed: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -447,7 +447,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -460,11 +460,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixRandomMTGP32 {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -506,7 +506,7 @@ extern_methods!(
         /// integer values with an initial seed of 0.
         ///
         /// Parameter `device`: The device the filter will run on
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -523,7 +523,7 @@ extern_methods!(
         /// Parameter `seed`: The seed to initialize the random number generators with.
         ///
         /// Parameter `distributionDescriptor`: A descriptor containing information about the distribution.
-        #[method(initWithDevice:destinationDataType:seed:distributionDescriptor:)]
+        #[unsafe(method(initWithDevice:destinationDataType:seed:distributionDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_destinationDataType_seed_distributionDescriptor(
             this: Allocated<Self>,
@@ -541,7 +541,7 @@ extern_methods!(
         /// Parameter `destinationDataType`: The data type of the result.
         ///
         /// Parameter `seed`: The seed to initialize the random number generators with.
-        #[method(initWithDevice:destinationDataType:seed:)]
+        #[unsafe(method(initWithDevice:destinationDataType:seed:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_destinationDataType_seed(
             this: Allocated<Self>,
@@ -550,7 +550,7 @@ extern_methods!(
             seed: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -572,7 +572,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -585,11 +585,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixRandomPhilox {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

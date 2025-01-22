@@ -77,7 +77,7 @@ unsafe impl NSUserInterfaceItemIdentification for NSPageController {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSPageController {
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -85,61 +85,61 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSPageControllerDelegate>>,
         );
 
-        #[method(selectedViewController)]
+        #[unsafe(method(selectedViewController))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedViewController(&self) -> Option<Retained<NSViewController>>;
 
-        #[method(transitionStyle)]
+        #[unsafe(method(transitionStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn transitionStyle(&self) -> NSPageControllerTransitionStyle;
 
         /// Setter for [`transitionStyle`][Self::transitionStyle].
-        #[method(setTransitionStyle:)]
+        #[unsafe(method(setTransitionStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransitionStyle(&self, transition_style: NSPageControllerTransitionStyle);
 
-        #[method(arrangedObjects)]
+        #[unsafe(method(arrangedObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn arrangedObjects(&self) -> Retained<NSArray>;
 
         /// Setter for [`arrangedObjects`][Self::arrangedObjects].
-        #[method(setArrangedObjects:)]
+        #[unsafe(method(setArrangedObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setArrangedObjects(&self, arranged_objects: &NSArray);
 
-        #[method(selectedIndex)]
+        #[unsafe(method(selectedIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedIndex(&self) -> NSInteger;
 
         /// Setter for [`selectedIndex`][Self::selectedIndex].
-        #[method(setSelectedIndex:)]
+        #[unsafe(method(setSelectedIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
 
-        #[method(navigateForwardToObject:)]
+        #[unsafe(method(navigateForwardToObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn navigateForwardToObject(&self, object: &AnyObject);
 
-        #[method(completeTransition)]
+        #[unsafe(method(completeTransition))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeTransition(&self);
 
-        #[method(navigateBack:)]
+        #[unsafe(method(navigateBack:))]
         #[unsafe(method_family = none)]
         pub unsafe fn navigateBack(&self, sender: Option<&AnyObject>);
 
-        #[method(navigateForward:)]
+        #[unsafe(method(navigateForward:))]
         #[unsafe(method_family = none)]
         pub unsafe fn navigateForward(&self, sender: Option<&AnyObject>);
 
-        #[method(takeSelectedIndexFrom:)]
+        #[unsafe(method(takeSelectedIndexFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeSelectedIndexFrom(&self, sender: Option<&AnyObject>);
     }
@@ -150,7 +150,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSPageController {
         #[cfg(feature = "NSNib")]
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -158,7 +158,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -171,7 +171,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSPageController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -181,7 +181,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSPageController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -192,7 +192,7 @@ extern_protocol!(
     pub unsafe trait NSPageControllerDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[optional]
-        #[method(pageController:identifierForObject:)]
+        #[unsafe(method(pageController:identifierForObject:))]
         #[unsafe(method_family = none)]
         unsafe fn pageController_identifierForObject(
             &self,
@@ -202,7 +202,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[optional]
-        #[method(pageController:viewControllerForIdentifier:)]
+        #[unsafe(method(pageController:viewControllerForIdentifier:))]
         #[unsafe(method_family = none)]
         unsafe fn pageController_viewControllerForIdentifier(
             &self,
@@ -212,7 +212,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[optional]
-        #[method(pageController:frameForObject:)]
+        #[unsafe(method(pageController:frameForObject:))]
         #[unsafe(method_family = none)]
         unsafe fn pageController_frameForObject(
             &self,
@@ -222,7 +222,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[optional]
-        #[method(pageController:prepareViewController:withObject:)]
+        #[unsafe(method(pageController:prepareViewController:withObject:))]
         #[unsafe(method_family = none)]
         unsafe fn pageController_prepareViewController_withObject(
             &self,
@@ -233,7 +233,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[optional]
-        #[method(pageController:didTransitionToObject:)]
+        #[unsafe(method(pageController:didTransitionToObject:))]
         #[unsafe(method_family = none)]
         unsafe fn pageController_didTransitionToObject(
             &self,
@@ -243,13 +243,13 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[optional]
-        #[method(pageControllerWillStartLiveTransition:)]
+        #[unsafe(method(pageControllerWillStartLiveTransition:))]
         #[unsafe(method_family = none)]
         unsafe fn pageControllerWillStartLiveTransition(&self, page_controller: &NSPageController);
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[optional]
-        #[method(pageControllerDidEndLiveTransition:)]
+        #[unsafe(method(pageControllerDidEndLiveTransition:))]
         #[unsafe(method_family = none)]
         unsafe fn pageControllerDidEndLiveTransition(&self, page_controller: &NSPageController);
     }

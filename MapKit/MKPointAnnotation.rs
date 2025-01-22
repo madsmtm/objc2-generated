@@ -26,12 +26,12 @@ unsafe impl NSObjectProtocol for MKPointAnnotation {}
 extern_methods!(
     #[cfg(feature = "MKShape")]
     unsafe impl MKPointAnnotation {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method(initWithCoordinate:)]
+        #[unsafe(method(initWithCoordinate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate(
             this: Allocated<Self>,
@@ -39,7 +39,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method(initWithCoordinate:title:subtitle:)]
+        #[unsafe(method(initWithCoordinate:title:subtitle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate_title_subtitle(
             this: Allocated<Self>,
@@ -49,13 +49,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method(coordinate)]
+        #[unsafe(method(coordinate))]
         #[unsafe(method_family = none)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "objc2-core-location")]
         /// Setter for [`coordinate`][Self::coordinate].
-        #[method(setCoordinate:)]
+        #[unsafe(method(setCoordinate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCoordinate(&self, coordinate: CLLocationCoordinate2D);
     }
@@ -65,7 +65,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MKShape")]
     unsafe impl MKPointAnnotation {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

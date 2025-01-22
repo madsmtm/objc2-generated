@@ -23,7 +23,7 @@ extern_methods!(
             feature = "ASAuthorizationPasswordRequest",
             feature = "ASAuthorizationRequest"
         ))]
-        #[method(createRequest)]
+        #[unsafe(method(createRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn createRequest(&self) -> Retained<ASAuthorizationPasswordRequest>;
     }
@@ -32,11 +32,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationPasswordProvider {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -34,7 +34,7 @@ extern_methods!(
         /// Parameter `hostTimeInSeconds`: The timestamp value to convert to item time.
         ///
         /// Returns: The equivalent item time.
-        #[method(itemTimeForHostTime:)]
+        #[unsafe(method(itemTimeForHostTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemTimeForHostTime(&self, host_time_in_seconds: CFTimeInterval) -> CMTime;
 
@@ -47,7 +47,7 @@ extern_methods!(
         /// Parameter `machAbsoluteTime`: The Mach host time to convert to item time.
         ///
         /// Returns: The equivalent item time.
-        #[method(itemTimeForMachAbsoluteTime:)]
+        #[unsafe(method(itemTimeForMachAbsoluteTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemTimeForMachAbsoluteTime(&self, mach_absolute_time: i64) -> CMTime;
 
@@ -60,7 +60,7 @@ extern_methods!(
         /// Parameter `timestamp`: The CoreVideo timestamp value to convert to item time.
         ///
         /// Returns: The equivalent item time.
-        #[method(itemTimeForCVTimeStamp:)]
+        #[unsafe(method(itemTimeForCVTimeStamp:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemTimeForCVTimeStamp(&self, timestamp: CVTimeStamp) -> CMTime;
 
@@ -69,12 +69,12 @@ extern_methods!(
         /// The default value is NO, indicating that the output will be used in addition to normal rendering. If you want to render the media data provided by the output yourself instead of allowing it to be rendered as in normally would be by AVPlayer, set suppressesPlayerRendering to YES.
         ///
         /// Whenever any output is added to an AVPlayerItem that has suppressesPlayerRendering set to YES, the media data supplied to the output will not be rendered by AVPlayer. Other media data associated with the item but not provided to such an output is not affected. For example, if an output of class AVPlayerItemVideoOutput with a value of YES for suppressesPlayerRendering is added to an AVPlayerItem, video media for that item will not be rendered by the AVPlayer, while audio media, subtitle media, and other kinds of media, if present, will be rendered.
-        #[method(suppressesPlayerRendering)]
+        #[unsafe(method(suppressesPlayerRendering))]
         #[unsafe(method_family = none)]
         pub unsafe fn suppressesPlayerRendering(&self) -> bool;
 
         /// Setter for [`suppressesPlayerRendering`][Self::suppressesPlayerRendering].
-        #[method(setSuppressesPlayerRendering:)]
+        #[unsafe(method(setSuppressesPlayerRendering:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuppressesPlayerRendering(&self, suppresses_player_rendering: bool);
     }
@@ -83,11 +83,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerItemOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -111,7 +111,7 @@ extern_methods!(
         /// /CVPixelBuffer.h>.
         ///
         /// Returns: An instance of AVPlayerItemVideoOutput.
-        #[method(initWithPixelBufferAttributes:)]
+        #[unsafe(method(initWithPixelBufferAttributes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPixelBufferAttributes(
             this: Allocated<Self>,
@@ -137,7 +137,7 @@ extern_methods!(
         /// - the output settings dictionary is empty
         /// - the settings will yield compressed output
         /// - the settings do not honor the requirements listed above for outputSettings
-        #[method(initWithOutputSettings:)]
+        #[unsafe(method(initWithOutputSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOutputSettings(
             this: Allocated<Self>,
@@ -152,7 +152,7 @@ extern_methods!(
         /// Parameter `itemTime`: The item time to query.
         ///
         /// Returns: A BOOL indicating if there is newer output.
-        #[method(hasNewPixelBufferForItemTime:)]
+        #[unsafe(method(hasNewPixelBufferForItemTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasNewPixelBufferForItemTime(&self, item_time: CMTime) -> bool;
 
@@ -168,7 +168,7 @@ extern_methods!(
         /// Parameter `itemTime`: A CMTime that expresses a desired item time.
         ///
         /// Parameter `itemTimeForDisplay`: A CMTime pointer whose value will contain the true display deadline for the copied pixel buffer. Can be NULL.
-        #[method(copyPixelBufferForItemTime:itemTimeForDisplay:)]
+        #[unsafe(method(copyPixelBufferForItemTime:itemTimeForDisplay:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyPixelBufferForItemTime_itemTimeForDisplay(
             &self,
@@ -181,7 +181,7 @@ extern_methods!(
         /// Parameter `interval`: A wall clock time interval.
         ///
         /// Message this method before you suspend your use of a CADisplayLink. The interval you provide will be used to message your delegate, in advance, that it should resume the display link. If the interval you provide is large, effectively requesting wakeup earlier than the AVPlayerItemVideoOutput is prepared to act, the delegate will be invoked as soon as possible. Do not use this method to force a delegate invocation for each sample.
-        #[method(requestNotificationOfMediaDataChangeWithAdvanceInterval:)]
+        #[unsafe(method(requestNotificationOfMediaDataChangeWithAdvanceInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestNotificationOfMediaDataChangeWithAdvanceInterval(
             &self,
@@ -189,7 +189,7 @@ extern_methods!(
         );
 
         /// The receiver's delegate.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -200,11 +200,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerItemVideoOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -219,7 +219,7 @@ extern_protocol!(
         ///
         /// This method is invoked once after the sender is messaged requestNotificationOfMediaDataChangeWithAdvanceInterval:.
         #[optional]
-        #[method(outputMediaDataWillChange:)]
+        #[unsafe(method(outputMediaDataWillChange:))]
         #[unsafe(method_family = none)]
         unsafe fn outputMediaDataWillChange(&self, sender: &AVPlayerItemOutput);
 
@@ -227,7 +227,7 @@ extern_protocol!(
         ///
         /// This method is invoked after any seeking and change in playback direction. If you are maintaining any queued future samples, copied previously, you may want to discard these after receiving this message.
         #[optional]
-        #[method(outputSequenceWasFlushed:)]
+        #[unsafe(method(outputSequenceWasFlushed:))]
         #[unsafe(method_family = none)]
         unsafe fn outputSequenceWasFlushed(&self, output: &AVPlayerItemOutput);
     }
@@ -251,7 +251,7 @@ extern_methods!(
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -260,12 +260,12 @@ extern_methods!(
         /// Permits advance invocation of the associated delegate, if any.
         ///
         /// If it is possible, an AVPlayerItemLegibleOutput will message its delegate advanceIntervalForDelegateInvocation seconds earlier than otherwise. If the value you provide is large, effectively requesting provision of samples earlier than the AVPlayerItemLegibleOutput is prepared to act on them, the delegate will be invoked as soon as possible.
-        #[method(advanceIntervalForDelegateInvocation)]
+        #[unsafe(method(advanceIntervalForDelegateInvocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn advanceIntervalForDelegateInvocation(&self) -> NSTimeInterval;
 
         /// Setter for [`advanceIntervalForDelegateInvocation`][Self::advanceIntervalForDelegateInvocation].
-        #[method(setAdvanceIntervalForDelegateInvocation:)]
+        #[unsafe(method(setAdvanceIntervalForDelegateInvocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdvanceIntervalForDelegateInvocation(
             &self,
@@ -277,11 +277,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerItemLegibleOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -303,7 +303,7 @@ extern_methods!(
         /// If a media subtype for which there is no legible data in the current player item is included in the media subtypes array, no error will occur.  AVPlayerItemLegibleOutput will not vend closed caption data as CMSampleBuffers, so it is an error to include 'c608' in the media subtypes array.
         ///
         /// This method throws an exception if any media subtype is kCMClosedCaptionFormatType_CEA608 (native representation is not available for media subtype).
-        #[method(initWithMediaSubtypesForNativeRepresentation:)]
+        #[unsafe(method(initWithMediaSubtypesForNativeRepresentation:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMediaSubtypesForNativeRepresentation(
             this: Allocated<Self>,
@@ -342,14 +342,14 @@ extern_methods!(
         /// A string identifier indicating the degree of text styling to be applied to attributed strings vended by the receiver
         ///
         /// Valid values are AVPlayerItemLegibleOutputTextStylingResolutionDefault and AVPlayerItemLegibleOutputTextStylingResolutionSourceAndRulesOnly.  An NSInvalidArgumentException is raised if this property is set to any other value.  The default value is AVPlayerItemLegibleOutputTextStylingResolutionDefault, which indicates that attributed strings vended by the receiver will include the same level of styling information that would be used if AVFoundation were rendering the text via AVPlayerLayer.
-        #[method(textStylingResolution)]
+        #[unsafe(method(textStylingResolution))]
         #[unsafe(method_family = none)]
         pub unsafe fn textStylingResolution(
             &self,
         ) -> Retained<AVPlayerItemLegibleOutputTextStylingResolution>;
 
         /// Setter for [`textStylingResolution`][Self::textStylingResolution].
-        #[method(setTextStylingResolution:)]
+        #[unsafe(method(setTextStylingResolution:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextStylingResolution(
             &self,
@@ -380,7 +380,7 @@ extern_protocol!(
         /// <CoreMedia
         /// /CMTextMarkup.h> for the string attributes that are used in the attributed strings.
         #[optional]
-        #[method(legibleOutput:didOutputAttributedStrings:nativeSampleBuffers:forItemTime:)]
+        #[unsafe(method(legibleOutput:didOutputAttributedStrings:nativeSampleBuffers:forItemTime:))]
         #[unsafe(method_family = none)]
         unsafe fn legibleOutput_didOutputAttributedStrings_nativeSampleBuffers_forItemTime(
             &self,
@@ -401,7 +401,7 @@ extern_protocol!(
         ///
         /// This method is invoked after any seeking and change in playback direction. If you are maintaining any queued future media data, received previously, you may want to discard these after receiving this message.
         #[optional]
-        #[method(outputSequenceWasFlushed:)]
+        #[unsafe(method(outputSequenceWasFlushed:))]
         #[unsafe(method_family = none)]
         unsafe fn outputSequenceWasFlushed(&self, output: &AVPlayerItemOutput);
     }
@@ -428,7 +428,7 @@ extern_methods!(
         /// Parameter `identifiers`: A array of metadata identifiers indicating the metadata items that the output should provide.
         ///
         /// See AVMetadataIdentifiers.h for publicly defined metadata identifiers. Pass nil to receive all of the timed metadata from all enabled AVPlayerItemTracks that carry timed metadata.
-        #[method(initWithIdentifiers:)]
+        #[unsafe(method(initWithIdentifiers:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifiers(
             this: Allocated<Self>,
@@ -438,7 +438,7 @@ extern_methods!(
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -447,12 +447,12 @@ extern_methods!(
         /// Permits advance invocation of the associated delegate, if any.
         ///
         /// If it is possible, an AVPlayerItemMetadataOutput will message its delegate advanceIntervalForDelegateInvocation seconds earlier than otherwise. If the value you provide is large, effectively requesting provision of samples earlier than the AVPlayerItemMetadataOutput is prepared to act on them, the delegate will be invoked as soon as possible.
-        #[method(advanceIntervalForDelegateInvocation)]
+        #[unsafe(method(advanceIntervalForDelegateInvocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn advanceIntervalForDelegateInvocation(&self) -> NSTimeInterval;
 
         /// Setter for [`advanceIntervalForDelegateInvocation`][Self::advanceIntervalForDelegateInvocation].
-        #[method(setAdvanceIntervalForDelegateInvocation:)]
+        #[unsafe(method(setAdvanceIntervalForDelegateInvocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdvanceIntervalForDelegateInvocation(
             &self,
@@ -464,11 +464,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerItemMetadataOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -496,7 +496,7 @@ extern_protocol!(
         /// Note that if the item carries multiple metadata tracks containing metadata with the same metadata identifiers, this method can be invoked for each one separately, each with reference to the associated AVPlayerItemTrack.
         /// Note that the associated AVPlayerItemTrack parameter can be nil which implies that the metadata describes the asset as a whole, not just a single track of the asset.
         #[optional]
-        #[method(metadataOutput:didOutputTimedMetadataGroups:fromPlayerItemTrack:)]
+        #[unsafe(method(metadataOutput:didOutputTimedMetadataGroups:fromPlayerItemTrack:))]
         #[unsafe(method_family = none)]
         unsafe fn metadataOutput_didOutputTimedMetadataGroups_fromPlayerItemTrack(
             &self,
@@ -522,11 +522,11 @@ unsafe impl NSObjectProtocol for AVPlayerItemRenderedLegibleOutput {}
 
 extern_methods!(
     unsafe impl AVPlayerItemRenderedLegibleOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -536,7 +536,7 @@ extern_methods!(
         /// Parameter `videoDisplaySize`: CGSize for the video display area
         ///
         /// This is the only available initializer for AVPlayerItemRenderedLegibleOutput. The client can also choose to reset videoDisplaySize after initialization or during playback. Initializing and resetting videoDisplaySize with a zero height or width will result in an exception being thrown.
-        #[method(initWithVideoDisplaySize:)]
+        #[unsafe(method(initWithVideoDisplaySize:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithVideoDisplaySize(
             this: Allocated<Self>,
@@ -546,7 +546,7 @@ extern_methods!(
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -555,12 +555,12 @@ extern_methods!(
         /// Permits advance invocation of the associated delegate, if any.
         ///
         /// If it is possible, an AVPlayerItemRenderedLegibleOutput will message its delegate advanceIntervalForDelegateInvocation seconds earlier than otherwise. If the value you provide is large, effectively requesting provision of samples earlier than the AVPlayerItemRenderedLegibleOutput is prepared to act on them, the delegate will be invoked as soon as possible.
-        #[method(advanceIntervalForDelegateInvocation)]
+        #[unsafe(method(advanceIntervalForDelegateInvocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn advanceIntervalForDelegateInvocation(&self) -> NSTimeInterval;
 
         /// Setter for [`advanceIntervalForDelegateInvocation`][Self::advanceIntervalForDelegateInvocation].
-        #[method(setAdvanceIntervalForDelegateInvocation:)]
+        #[unsafe(method(setAdvanceIntervalForDelegateInvocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdvanceIntervalForDelegateInvocation(
             &self,
@@ -571,13 +571,13 @@ extern_methods!(
         /// Permits rendering of pixel buffers according to the set width and height
         ///
         /// The client is expected to set videodisplay size during init and may also set it again during playback. The pixel buffers will be rendered according to the set width and height of display area. If this property is set during the presentation time of a vended caption image, a new caption image rendered according to new videoDisplaySize, will be vended out. Setting this property with a zero height or width will result in an exception being thrown and it is client's responsibility to handle it using appropriate catch block.
-        #[method(videoDisplaySize)]
+        #[unsafe(method(videoDisplaySize))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoDisplaySize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`videoDisplaySize`][Self::videoDisplaySize].
-        #[method(setVideoDisplaySize:)]
+        #[unsafe(method(setVideoDisplaySize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoDisplaySize(&self, video_display_size: CGSize);
     }
@@ -599,7 +599,7 @@ extern_protocol!(
         ///
         /// Parameter `itemTime`: The item time at which the caption images should be presented.
         #[optional]
-        #[method(renderedLegibleOutput:didOutputRenderedCaptionImages:forItemTime:)]
+        #[unsafe(method(renderedLegibleOutput:didOutputRenderedCaptionImages:forItemTime:))]
         #[unsafe(method_family = none)]
         unsafe fn renderedLegibleOutput_didOutputRenderedCaptionImages_forItemTime(
             &self,

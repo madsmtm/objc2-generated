@@ -198,7 +198,7 @@ unsafe impl NSObjectProtocol for AVAudioPlayerNode {}
 extern_methods!(
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioPlayerNode {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -217,7 +217,7 @@ extern_methods!(
         ///
         /// It is possible for the completionHandler to be called before rendering begins
         /// or before the buffer is played completely.
-        #[method(scheduleBuffer:completionHandler:)]
+        #[unsafe(method(scheduleBuffer:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleBuffer_completionHandler(
             &self,
@@ -236,7 +236,7 @@ extern_methods!(
         /// the player is stopped. may be nil.
         ///
         /// Schedules the buffer to be played following any previously scheduled commands.
-        #[method(scheduleBuffer:completionCallbackType:completionHandler:)]
+        #[unsafe(method(scheduleBuffer:completionCallbackType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleBuffer_completionCallbackType_completionHandler(
             &self,
@@ -263,7 +263,7 @@ extern_methods!(
         ///
         /// It is possible for the completionHandler to be called before rendering begins
         /// or before the buffer is played completely.
-        #[method(scheduleBuffer:atTime:options:completionHandler:)]
+        #[unsafe(method(scheduleBuffer:atTime:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleBuffer_atTime_options_completionHandler(
             &self,
@@ -286,7 +286,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: called after the buffer has been consumed by the player or has finished playing back or
         /// the player is stopped. may be nil.
-        #[method(scheduleBuffer:atTime:options:completionCallbackType:completionHandler:)]
+        #[unsafe(method(scheduleBuffer:atTime:options:completionCallbackType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleBuffer_atTime_options_completionCallbackType_completionHandler(
             &self,
@@ -313,7 +313,7 @@ extern_methods!(
         ///
         /// It is possible for the completionHandler to be called before rendering begins
         /// or before the file is played completely.
-        #[method(scheduleFile:atTime:completionHandler:)]
+        #[unsafe(method(scheduleFile:atTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleFile_atTime_completionHandler(
             &self,
@@ -333,7 +333,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: called after the file has been consumed by the player or has finished playing back or
         /// the player is stopped. may be nil.
-        #[method(scheduleFile:atTime:completionCallbackType:completionHandler:)]
+        #[unsafe(method(scheduleFile:atTime:completionCallbackType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleFile_atTime_completionCallbackType_completionHandler(
             &self,
@@ -363,7 +363,7 @@ extern_methods!(
         ///
         /// It is possible for the completionHandler to be called before rendering begins
         /// or before the segment is played completely.
-        #[method(scheduleSegment:startingFrame:frameCount:atTime:completionHandler:)]
+        #[unsafe(method(scheduleSegment:startingFrame:frameCount:atTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleSegment_startingFrame_frameCount_atTime_completionHandler(
             &self,
@@ -394,7 +394,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: called after the segment has been consumed by the player or has finished playing back or
         /// the player is stopped. may be nil.
-        #[method(scheduleSegment:startingFrame:frameCount:atTime:completionCallbackType:completionHandler:)]
+        #[unsafe(method(scheduleSegment:startingFrame:frameCount:atTime:completionCallbackType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleSegment_startingFrame_frameCount_atTime_completionCallbackType_completionHandler(
             &self,
@@ -416,7 +416,7 @@ extern_methods!(
         /// Note that pausing or stopping all the players connected to an engine does not pause or stop
         /// the engine or the underlying hardware. The engine must be explicitly paused or stopped for
         /// the hardware to stop.
-        #[method(stop)]
+        #[unsafe(method(stop))]
         #[unsafe(method_family = none)]
         pub unsafe fn stop(&self);
 
@@ -424,14 +424,14 @@ extern_methods!(
         /// Prepares previously scheduled file regions or buffers for playback.
         ///
         /// Parameter `frameCount`: The number of sample frames of data to be prepared before returning.
-        #[method(prepareWithFrameCount:)]
+        #[unsafe(method(prepareWithFrameCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareWithFrameCount(&self, frame_count: AVAudioFrameCount);
 
         /// Start or resume playback immediately.
         ///
         /// equivalent to playAtTime:nil
-        #[method(play)]
+        #[unsafe(method(play))]
         #[unsafe(method_family = none)]
         pub unsafe fn play(&self);
 
@@ -462,7 +462,7 @@ extern_methods!(
         /// [_player playAtTime:startTime];
         /// }
         /// </pre>
-        #[method(playAtTime:)]
+        #[unsafe(method(playAtTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playAtTime(&self, when: Option<&AVAudioTime>);
 
@@ -473,7 +473,7 @@ extern_methods!(
         /// Note that pausing or stopping all the players connected to an engine does not pause or stop
         /// the engine or the underlying hardware. The engine must be explicitly paused or stopped for
         /// the hardware to stop.
-        #[method(pause)]
+        #[unsafe(method(pause))]
         #[unsafe(method_family = none)]
         pub unsafe fn pause(&self);
 
@@ -488,7 +488,7 @@ extern_methods!(
         /// introduction to this class.
         ///
         /// If the player is not playing when this method is called, nil is returned.
-        #[method(nodeTimeForPlayerTime:)]
+        #[unsafe(method(nodeTimeForPlayerTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeTimeForPlayerTime(
             &self,
@@ -506,7 +506,7 @@ extern_methods!(
         /// introduction to this class.
         ///
         /// If the player is not playing when this method is called, nil is returned.
-        #[method(playerTimeForNodeTime:)]
+        #[unsafe(method(playerTimeForNodeTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerTimeForNodeTime(
             &self,
@@ -514,7 +514,7 @@ extern_methods!(
         ) -> Option<Retained<AVAudioTime>>;
 
         /// Indicates whether or not the player is playing.
-        #[method(isPlaying)]
+        #[unsafe(method(isPlaying))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPlaying(&self) -> bool;
     }
@@ -524,7 +524,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioPlayerNode {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -32,49 +32,49 @@ unsafe impl NSSecureCoding for UIBackgroundConfiguration {}
 extern_methods!(
     unsafe impl UIBackgroundConfiguration {
         /// Returns a clear configuration, with no default styling.
-        #[method(clearConfiguration)]
+        #[unsafe(method(clearConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Represents a generic cell background configuration that automatically adopts the style of a containing list when updated for a
         /// new configuration state, by reading the `listEnvironment` trait from the state's trait collection.
         /// Defaults to the background configuration for a cell in a plain-style list.
-        #[method(listCellConfiguration)]
+        #[unsafe(method(listCellConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn listCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Represents a generic header background configuration that automatically adopts the style of a containing list when updated for a
         /// new configuration state, by reading the `listEnvironment` trait from the state's trait collection.
         /// Defaults to the background configuration for a header in a plain-style list.
-        #[method(listHeaderConfiguration)]
+        #[unsafe(method(listHeaderConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn listHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Represents a generic footer background configuration that automatically adopts the style of a containing list when updated for a
         /// new configuration state, by reading the `listEnvironment` trait from the state's trait collection.
         /// Defaults to the background configuration for a footer in a plain-style list.
-        #[method(listFooterConfiguration)]
+        #[unsafe(method(listFooterConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn listFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for an accompanied sidebar list cell.
-        #[method(listAccompaniedSidebarCellConfiguration)]
+        #[unsafe(method(listAccompaniedSidebarCellConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn listAccompaniedSidebarCellConfiguration(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIConfigurationState")]
         /// Returns a copy of the configuration updated for the specified state, by applying the configuration's default values for that state to any properties that have not been customized.
-        #[method(updatedConfigurationForState:)]
+        #[unsafe(method(updatedConfigurationForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updatedConfigurationForState(
             &self,
@@ -84,51 +84,51 @@ extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// A custom view for the background. The custom view must have translatesAutoresizingMaskIntoConstraints
         /// enabled, but may use auto layout constraints internally for layout of subviews.
-        #[method(customView)]
+        #[unsafe(method(customView))]
         #[unsafe(method_family = none)]
         pub unsafe fn customView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Setter for [`customView`][Self::customView].
-        #[method(setCustomView:)]
+        #[unsafe(method(setCustomView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomView(&self, custom_view: Option<&UIView>);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The preferred corner radius (using a continuous corner curve) for the background and stroke. This is also applied to the custom view. Default is 0.
         /// If the view is too small to fit the requested radius, the corner curve and radius will be adjusted to fit.
-        #[method(cornerRadius)]
+        #[unsafe(method(cornerRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn cornerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`cornerRadius`][Self::cornerRadius].
-        #[method(setCornerRadius:)]
+        #[unsafe(method(setCornerRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Insets (or outsets, if negative) for the background and stroke, relative to the edges of the containing view. These also apply to the custom view. Default is NSDirectionalEdgeInsetsZero.
-        #[method(backgroundInsets)]
+        #[unsafe(method(backgroundInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundInsets(&self) -> NSDirectionalEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`backgroundInsets`][Self::backgroundInsets].
-        #[method(setBackgroundInsets:)]
+        #[unsafe(method(setBackgroundInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundInsets(&self, background_insets: NSDirectionalEdgeInsets);
 
         #[cfg(feature = "UIGeometry")]
         /// The edges on which the containing view's layout margins are added to the `backgroundInsets`, effectively making the `backgroundInsets` values relative
         /// to the containing view's layout margins for these edges. Default is NSDirectionalRectEdgeNone.
-        #[method(edgesAddingLayoutMarginsToBackgroundInsets)]
+        #[unsafe(method(edgesAddingLayoutMarginsToBackgroundInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn edgesAddingLayoutMarginsToBackgroundInsets(&self) -> NSDirectionalRectEdge;
 
         #[cfg(feature = "UIGeometry")]
         /// Setter for [`edgesAddingLayoutMarginsToBackgroundInsets`][Self::edgesAddingLayoutMarginsToBackgroundInsets].
-        #[method(setEdgesAddingLayoutMarginsToBackgroundInsets:)]
+        #[unsafe(method(setEdgesAddingLayoutMarginsToBackgroundInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEdgesAddingLayoutMarginsToBackgroundInsets(
             &self,
@@ -137,13 +137,13 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// Configures the color of the background. A nil value uses the view's tint color; use `clearColor` for no color (transparent).
-        #[method(backgroundColor)]
+        #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
-        #[method(setBackgroundColor:)]
+        #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
 
@@ -153,7 +153,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Optional color transformer that is used to resolve the background color. A nil value means the `backgroundColor` is used as-is.
-        #[method(backgroundColorTransformer)]
+        #[unsafe(method(backgroundColorTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColorTransformer(&self) -> UIConfigurationColorTransformer;
 
@@ -163,7 +163,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`backgroundColorTransformer`][Self::backgroundColorTransformer].
-        #[method(setBackgroundColorTransformer:)]
+        #[unsafe(method(setBackgroundColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColorTransformer(
             &self,
@@ -172,7 +172,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// Returns the resolved background color for the specified tint color, based on the `backgroundColor` and `backgroundColorTransformer`.
-        #[method(resolvedBackgroundColorForTintColor:)]
+        #[unsafe(method(resolvedBackgroundColorForTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resolvedBackgroundColorForTintColor(
             &self,
@@ -181,49 +181,49 @@ extern_methods!(
 
         #[cfg(feature = "UIVisualEffect")]
         /// The visual effect to apply to the background. Default is nil.
-        #[method(visualEffect)]
+        #[unsafe(method(visualEffect))]
         #[unsafe(method_family = none)]
         pub unsafe fn visualEffect(&self) -> Option<Retained<UIVisualEffect>>;
 
         #[cfg(feature = "UIVisualEffect")]
         /// Setter for [`visualEffect`][Self::visualEffect].
-        #[method(setVisualEffect:)]
+        #[unsafe(method(setVisualEffect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVisualEffect(&self, visual_effect: Option<&UIVisualEffect>);
 
         #[cfg(feature = "UIImage")]
         /// The image to use. Default is nil.
-        #[method(image)]
+        #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`image`][Self::image].
-        #[method(setImage:)]
+        #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         #[cfg(feature = "UIView")]
         /// The content mode to use when rendering the image. Default is UIViewContentModeScaleToFill.
-        #[method(imageContentMode)]
+        #[unsafe(method(imageContentMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageContentMode(&self) -> UIViewContentMode;
 
         #[cfg(feature = "UIView")]
         /// Setter for [`imageContentMode`][Self::imageContentMode].
-        #[method(setImageContentMode:)]
+        #[unsafe(method(setImageContentMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageContentMode(&self, image_content_mode: UIViewContentMode);
 
         #[cfg(feature = "UIColor")]
         /// Configures the color of the stroke. A nil value uses the view's tint color; use `clearColor` for no color (transparent).
-        #[method(strokeColor)]
+        #[unsafe(method(strokeColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`strokeColor`][Self::strokeColor].
-        #[method(setStrokeColor:)]
+        #[unsafe(method(setStrokeColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeColor(&self, stroke_color: Option<&UIColor>);
 
@@ -233,7 +233,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Optional color transformer that is used to resolve the stroke color. A nil value means the `strokeColor` is used as-is.
-        #[method(strokeColorTransformer)]
+        #[unsafe(method(strokeColorTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeColorTransformer(&self) -> UIConfigurationColorTransformer;
 
@@ -243,7 +243,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`strokeColorTransformer`][Self::strokeColorTransformer].
-        #[method(setStrokeColorTransformer:)]
+        #[unsafe(method(setStrokeColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeColorTransformer(
             &self,
@@ -252,7 +252,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// Returns the resolved stroke color for the specified tint color, based on the `strokeColor` and `strokeColorTransformer`.
-        #[method(resolvedStrokeColorForTintColor:)]
+        #[unsafe(method(resolvedStrokeColorForTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resolvedStrokeColorForTintColor(
             &self,
@@ -261,70 +261,70 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The width of the stroke. Default is 0.
-        #[method(strokeWidth)]
+        #[unsafe(method(strokeWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`strokeWidth`][Self::strokeWidth].
-        #[method(setStrokeWidth:)]
+        #[unsafe(method(setStrokeWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeWidth(&self, stroke_width: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Outset (or inset, if negative) for the stroke, relative to the background (including any backgroundInsets). Default is 0.
         /// The corner radius of the stroke is adjusted for any outset to remain concentric with the background.
-        #[method(strokeOutset)]
+        #[unsafe(method(strokeOutset))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeOutset(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`strokeOutset`][Self::strokeOutset].
-        #[method(setStrokeOutset:)]
+        #[unsafe(method(setStrokeOutset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeOutset(&self, stroke_outset: CGFloat);
 
         #[cfg(feature = "UIShadowProperties")]
         /// Describes a shadow applied by the background.
         /// Defaults to no shadow (i.e. a shadow with an opacity of 0.0).
-        #[method(shadowProperties)]
+        #[unsafe(method(shadowProperties))]
         #[unsafe(method_family = none)]
         pub unsafe fn shadowProperties(&self) -> Retained<UIShadowProperties>;
 
         /// Returns the default configuration for a plain list cell.
         #[deprecated]
-        #[method(listPlainCellConfiguration)]
+        #[unsafe(method(listPlainCellConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn listPlainCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for a grouped list cell.
         #[deprecated]
-        #[method(listGroupedCellConfiguration)]
+        #[unsafe(method(listGroupedCellConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn listGroupedCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for a sidebar list cell.
         #[deprecated]
-        #[method(listSidebarCellConfiguration)]
+        #[unsafe(method(listSidebarCellConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn listSidebarCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for a plain list header or footer.
         #[deprecated = "Use +listHeaderConfiguration or +listFooterConfiguration"]
-        #[method(listPlainHeaderFooterConfiguration)]
+        #[unsafe(method(listPlainHeaderFooterConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn listPlainHeaderFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for a grouped list header or footer.
         #[deprecated = "Use +listHeaderConfiguration or +listFooterConfiguration"]
-        #[method(listGroupedHeaderFooterConfiguration)]
+        #[unsafe(method(listGroupedHeaderFooterConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn listGroupedHeaderFooterConfiguration(mtm: MainThreadMarker)
             -> Retained<Self>;
 
         /// Returns the default configuration for a sidebar list header.
         #[deprecated = "Use +listHeaderConfiguration or +listFooterConfiguration"]
-        #[method(listSidebarHeaderConfiguration)]
+        #[unsafe(method(listSidebarHeaderConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn listSidebarHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
     }

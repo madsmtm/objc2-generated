@@ -56,19 +56,19 @@ extern_methods!(
         /// The local window size
         ///
         /// The local window size.
-        #[method(kernelDiameter)]
+        #[unsafe(method(kernelDiameter))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelDiameter(&self) -> NSUInteger;
 
         /// The regularization parameter
         ///
         /// The parameter used when computing the linear coefficients a and b.
-        #[method(epsilon)]
+        #[unsafe(method(epsilon))]
         #[unsafe(method_family = none)]
         pub unsafe fn epsilon(&self) -> c_float;
 
         /// Setter for [`epsilon`][Self::epsilon].
-        #[method(setEpsilon:)]
+        #[unsafe(method(setEpsilon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEpsilon(&self, epsilon: c_float);
 
@@ -76,12 +76,12 @@ extern_methods!(
         ///
         /// The parameter used to scale the result of the reconstruction operation.
         /// The default value is 1.0f.
-        #[method(reconstructScale)]
+        #[unsafe(method(reconstructScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn reconstructScale(&self) -> c_float;
 
         /// Setter for [`reconstructScale`][Self::reconstructScale].
-        #[method(setReconstructScale:)]
+        #[unsafe(method(setReconstructScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReconstructScale(&self, reconstruct_scale: c_float);
 
@@ -89,12 +89,12 @@ extern_methods!(
         ///
         /// The offset parameter added to the result of the scaled reconstructed value.
         /// The default value is 0.0f.
-        #[method(reconstructOffset)]
+        #[unsafe(method(reconstructOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn reconstructOffset(&self) -> c_float;
 
         /// Setter for [`reconstructOffset`][Self::reconstructOffset].
-        #[method(setReconstructOffset:)]
+        #[unsafe(method(setReconstructOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReconstructOffset(&self, reconstruct_offset: c_float);
 
@@ -105,7 +105,7 @@ extern_methods!(
         /// Parameter `kernelDiameter`: The local window size
         ///
         /// Returns: A valid MPSImageGuidedFilterRegression object or nil, if failure.
-        #[method(initWithDevice:kernelDiameter:)]
+        #[unsafe(method(initWithDevice:kernelDiameter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelDiameter(
             this: Allocated<Self>,
@@ -113,7 +113,7 @@ extern_methods!(
             kernel_diameter: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -133,7 +133,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -161,7 +161,7 @@ extern_methods!(
         ///
         /// Set the MPSKernelOptionsAllowReducedPrecision in the "options" property for this kernel to peform the
         /// computations using half-precision arithmetic.  This can potentially improve performance and/or power usage.
-        #[method(encodeRegressionToCommandBuffer:sourceTexture:guidanceTexture:weightsTexture:destinationCoefficientsTexture:)]
+        #[unsafe(method(encodeRegressionToCommandBuffer:sourceTexture:guidanceTexture:weightsTexture:destinationCoefficientsTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRegressionToCommandBuffer_sourceTexture_guidanceTexture_weightsTexture_destinationCoefficientsTexture(
             &self,
@@ -186,7 +186,7 @@ extern_methods!(
         /// are the coefficients learnt using encodeRegressionToCommandBuffer.
         ///
         /// Final reconstructed value = value * reconstructScale + reconstructOffset
-        #[method(encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTexture:destinationTexture:)]
+        #[unsafe(method(encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTexture:destinationTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeReconstructionToCommandBuffer_guidanceTexture_coefficientsTexture_destinationTexture(
             &self,
@@ -218,7 +218,7 @@ extern_methods!(
         ///
         /// Set the MPSKernelOptionsAllowReducedPrecision in the "options" property for this kernel to peform the
         /// computations using half-precision arithmetic.  This can potentially improve performance and/or power usage.
-        #[method(encodeRegressionToCommandBuffer:sourceTexture:guidanceTexture:weightsTexture:destinationCoefficientsTextureA:destinationCoefficientsTextureB:)]
+        #[unsafe(method(encodeRegressionToCommandBuffer:sourceTexture:guidanceTexture:weightsTexture:destinationCoefficientsTextureA:destinationCoefficientsTextureB:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRegressionToCommandBuffer_sourceTexture_guidanceTexture_weightsTexture_destinationCoefficientsTextureA_destinationCoefficientsTextureB(
             &self,
@@ -244,7 +244,7 @@ extern_methods!(
         /// Parameter `coefficientsTextureB`: Input coefficients B texture generated generated by a previous encodeRegressionToCommandBuffer.
         ///
         /// Parameter `destinationTexture`: Output texture
-        #[method(encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTextureA:coefficientsTextureB:destinationTexture:)]
+        #[unsafe(method(encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTextureA:coefficientsTextureB:destinationTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeReconstructionToCommandBuffer_guidanceTexture_coefficientsTextureA_coefficientsTextureB_destinationTexture(
             &self,
@@ -269,7 +269,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -282,11 +282,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSImageGuidedFilter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

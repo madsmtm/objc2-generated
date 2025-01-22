@@ -68,49 +68,49 @@ unsafe impl NSObjectProtocol for MTLFunctionDescriptor {}
 extern_methods!(
     unsafe impl MTLFunctionDescriptor {
         /// Create an autoreleased function descriptor
-        #[method(functionDescriptor)]
+        #[unsafe(method(functionDescriptor))]
         #[unsafe(method_family = none)]
         pub fn functionDescriptor() -> Retained<MTLFunctionDescriptor>;
 
         /// The name of the `visible` function to find.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub fn setName(&self, name: Option<&NSString>);
 
         /// An optional new name for a `visible` function to allow reuse with different specializations.
-        #[method(specializedName)]
+        #[unsafe(method(specializedName))]
         #[unsafe(method_family = none)]
         pub fn specializedName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`specializedName`][Self::specializedName].
-        #[method(setSpecializedName:)]
+        #[unsafe(method(setSpecializedName:))]
         #[unsafe(method_family = none)]
         pub fn setSpecializedName(&self, specialized_name: Option<&NSString>);
 
         #[cfg(feature = "MTLFunctionConstantValues")]
         /// The set of constant values assigned to the function constants. Compilation fails if you do not provide valid constant values for all required function constants.
-        #[method(constantValues)]
+        #[unsafe(method(constantValues))]
         #[unsafe(method_family = none)]
         pub fn constantValues(&self) -> Option<Retained<MTLFunctionConstantValues>>;
 
         #[cfg(feature = "MTLFunctionConstantValues")]
         /// Setter for [`constantValues`][Self::constantValues].
-        #[method(setConstantValues:)]
+        #[unsafe(method(setConstantValues:))]
         #[unsafe(method_family = none)]
         pub fn setConstantValues(&self, constant_values: Option<&MTLFunctionConstantValues>);
 
         /// The options to use for this new `MTLFunction`.
-        #[method(options)]
+        #[unsafe(method(options))]
         #[unsafe(method_family = none)]
         pub fn options(&self) -> MTLFunctionOptions;
 
         /// Setter for [`options`][Self::options].
-        #[method(setOptions:)]
+        #[unsafe(method(setOptions:))]
         #[unsafe(method_family = none)]
         pub fn setOptions(&self, options: MTLFunctionOptions);
 
@@ -118,7 +118,7 @@ extern_methods!(
         /// The array of archives to be searched.
         ///
         /// Binary archives to be searched for precompiled functions during the compilation of this function.
-        #[method(binaryArchives)]
+        #[unsafe(method(binaryArchives))]
         #[unsafe(method_family = none)]
         pub unsafe fn binaryArchives(
             &self,
@@ -126,7 +126,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLBinaryArchive")]
         /// Setter for [`binaryArchives`][Self::binaryArchives].
-        #[method(setBinaryArchives:)]
+        #[unsafe(method(setBinaryArchives:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBinaryArchives(
             &self,
@@ -138,11 +138,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLFunctionDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -177,11 +177,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLIntersectionFunctionDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

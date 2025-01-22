@@ -17,116 +17,116 @@ unsafe impl NSObjectProtocol for MPRemoteCommandCenter {}
 extern_methods!(
     unsafe impl MPRemoteCommandCenter {
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(pauseCommand)]
+        #[unsafe(method(pauseCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn pauseCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(playCommand)]
+        #[unsafe(method(playCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn playCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(stopCommand)]
+        #[unsafe(method(stopCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(togglePlayPauseCommand)]
+        #[unsafe(method(togglePlayPauseCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn togglePlayPauseCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(enableLanguageOptionCommand)]
+        #[unsafe(method(enableLanguageOptionCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn enableLanguageOptionCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(disableLanguageOptionCommand)]
+        #[unsafe(method(disableLanguageOptionCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableLanguageOptionCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(changePlaybackRateCommand)]
+        #[unsafe(method(changePlaybackRateCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn changePlaybackRateCommand(&self) -> Retained<MPChangePlaybackRateCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(changeRepeatModeCommand)]
+        #[unsafe(method(changeRepeatModeCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeRepeatModeCommand(&self) -> Retained<MPChangeRepeatModeCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(changeShuffleModeCommand)]
+        #[unsafe(method(changeShuffleModeCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeShuffleModeCommand(&self) -> Retained<MPChangeShuffleModeCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(nextTrackCommand)]
+        #[unsafe(method(nextTrackCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextTrackCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(previousTrackCommand)]
+        #[unsafe(method(previousTrackCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn previousTrackCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(skipForwardCommand)]
+        #[unsafe(method(skipForwardCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn skipForwardCommand(&self) -> Retained<MPSkipIntervalCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(skipBackwardCommand)]
+        #[unsafe(method(skipBackwardCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn skipBackwardCommand(&self) -> Retained<MPSkipIntervalCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(seekForwardCommand)]
+        #[unsafe(method(seekForwardCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekForwardCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(seekBackwardCommand)]
+        #[unsafe(method(seekBackwardCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekBackwardCommand(&self) -> Retained<MPRemoteCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(changePlaybackPositionCommand)]
+        #[unsafe(method(changePlaybackPositionCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn changePlaybackPositionCommand(
             &self,
         ) -> Retained<MPChangePlaybackPositionCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(ratingCommand)]
+        #[unsafe(method(ratingCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn ratingCommand(&self) -> Retained<MPRatingCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(likeCommand)]
+        #[unsafe(method(likeCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn likeCommand(&self) -> Retained<MPFeedbackCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(dislikeCommand)]
+        #[unsafe(method(dislikeCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn dislikeCommand(&self) -> Retained<MPFeedbackCommand>;
 
         #[cfg(feature = "MPRemoteCommand")]
-        #[method(bookmarkCommand)]
+        #[unsafe(method(bookmarkCommand))]
         #[unsafe(method_family = none)]
         pub unsafe fn bookmarkCommand(&self) -> Retained<MPFeedbackCommand>;
 
-        #[method(sharedCommandCenter)]
+        #[unsafe(method(sharedCommandCenter))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedCommandCenter() -> Retained<MPRemoteCommandCenter>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

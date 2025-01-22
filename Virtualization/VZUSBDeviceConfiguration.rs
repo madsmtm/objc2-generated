@@ -22,12 +22,12 @@ extern_protocol!(
         ///
         /// Device UUID is auto-generated.
         /// Before restoring the virtual machine, it should be replaced with the uuid of a previously attached device when the virtual machine was saved.
-        #[method(uuid)]
+        #[unsafe(method(uuid))]
         #[unsafe(method_family = none)]
         unsafe fn uuid(&self) -> Retained<NSUUID>;
 
         /// Setter for [`uuid`][Self::uuid].
-        #[method(setUuid:)]
+        #[unsafe(method(setUuid:))]
         #[unsafe(method_family = none)]
         unsafe fn setUuid(&self, uuid: &NSUUID);
     }

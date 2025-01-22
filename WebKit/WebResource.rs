@@ -41,7 +41,7 @@ extern_methods!(
         /// Parameter `frameName`: The frame name of the resource if the resource represents the contents of an entire HTML frame (can be nil).
         ///
         /// Returns: An initialized WebResource.
-        #[method(initWithData:URL:MIMEType:textEncodingName:frameName:)]
+        #[unsafe(method(initWithData:URL:MIMEType:textEncodingName:frameName:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_URL_MIMEType_textEncodingName_frameName(
             this: Allocated<Self>,
@@ -53,27 +53,27 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         /// The data of the resource.
-        #[method(data)]
+        #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         /// The URL of the resource.
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// The MIME type of the resource.
-        #[method(MIMEType)]
+        #[unsafe(method(MIMEType))]
         #[unsafe(method_family = none)]
         pub unsafe fn MIMEType(&self) -> Retained<NSString>;
 
         /// The text encoding name of the resource (can be nil).
-        #[method(textEncodingName)]
+        #[unsafe(method(textEncodingName))]
         #[unsafe(method_family = none)]
         pub unsafe fn textEncodingName(&self) -> Retained<NSString>;
 
         /// The frame name of the resource if the resource represents the contents of an entire HTML frame (can be nil).
-        #[method(frameName)]
+        #[unsafe(method(frameName))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameName(&self) -> Retained<NSString>;
     }
@@ -82,11 +82,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebResource {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

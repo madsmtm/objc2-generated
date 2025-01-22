@@ -25,18 +25,18 @@ extern_methods!(
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UIRotationGestureRecognizer {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(rotation)]
+        #[unsafe(method(rotation))]
         #[unsafe(method_family = none)]
         pub fn rotation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`rotation`][Self::rotation].
-        #[method(setRotation:)]
+        #[unsafe(method(setRotation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRotation(&self, rotation: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(velocity)]
+        #[unsafe(method(velocity))]
         #[unsafe(method_family = none)]
         pub fn velocity(&self) -> CGFloat;
     }
@@ -46,7 +46,7 @@ extern_methods!(
     /// Methods declared on superclass `UIGestureRecognizer`
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UIRotationGestureRecognizer {
-        #[method(initWithTarget:action:)]
+        #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
             this: Allocated<Self>,
@@ -54,11 +54,11 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -71,7 +71,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UIRotationGestureRecognizer {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

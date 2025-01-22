@@ -26,82 +26,82 @@ extern_methods!(
     unsafe impl CXProviderConfiguration {
         /// Localized name of the provider
         #[deprecated = "No longer supported"]
-        #[method(localizedName)]
+        #[unsafe(method(localizedName))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
         /// Name of resource in app's bundle to play as ringtone for incoming call
-        #[method(ringtoneSound)]
+        #[unsafe(method(ringtoneSound))]
         #[unsafe(method_family = none)]
         pub unsafe fn ringtoneSound(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`ringtoneSound`][Self::ringtoneSound].
-        #[method(setRingtoneSound:)]
+        #[unsafe(method(setRingtoneSound:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRingtoneSound(&self, ringtone_sound: Option<&NSString>);
 
-        #[method(iconTemplateImageData)]
+        #[unsafe(method(iconTemplateImageData))]
         #[unsafe(method_family = none)]
         pub unsafe fn iconTemplateImageData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`iconTemplateImageData`][Self::iconTemplateImageData].
-        #[method(setIconTemplateImageData:)]
+        #[unsafe(method(setIconTemplateImageData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIconTemplateImageData(&self, icon_template_image_data: Option<&NSData>);
 
-        #[method(maximumCallGroups)]
+        #[unsafe(method(maximumCallGroups))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumCallGroups(&self) -> NSUInteger;
 
         /// Setter for [`maximumCallGroups`][Self::maximumCallGroups].
-        #[method(setMaximumCallGroups:)]
+        #[unsafe(method(setMaximumCallGroups:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumCallGroups(&self, maximum_call_groups: NSUInteger);
 
-        #[method(maximumCallsPerCallGroup)]
+        #[unsafe(method(maximumCallsPerCallGroup))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumCallsPerCallGroup(&self) -> NSUInteger;
 
         /// Setter for [`maximumCallsPerCallGroup`][Self::maximumCallsPerCallGroup].
-        #[method(setMaximumCallsPerCallGroup:)]
+        #[unsafe(method(setMaximumCallsPerCallGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumCallsPerCallGroup(&self, maximum_calls_per_call_group: NSUInteger);
 
         /// Whether this provider's calls should be included in the system's Recents list at the end of each call.
         /// Default: YES
-        #[method(includesCallsInRecents)]
+        #[unsafe(method(includesCallsInRecents))]
         #[unsafe(method_family = none)]
         pub unsafe fn includesCallsInRecents(&self) -> bool;
 
         /// Setter for [`includesCallsInRecents`][Self::includesCallsInRecents].
-        #[method(setIncludesCallsInRecents:)]
+        #[unsafe(method(setIncludesCallsInRecents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncludesCallsInRecents(&self, includes_calls_in_recents: bool);
 
-        #[method(supportsVideo)]
+        #[unsafe(method(supportsVideo))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsVideo(&self) -> bool;
 
         /// Setter for [`supportsVideo`][Self::supportsVideo].
-        #[method(setSupportsVideo:)]
+        #[unsafe(method(setSupportsVideo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportsVideo(&self, supports_video: bool);
 
-        #[method(supportedHandleTypes)]
+        #[unsafe(method(supportedHandleTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedHandleTypes(&self) -> Retained<NSSet<NSNumber>>;
 
         /// Setter for [`supportedHandleTypes`][Self::supportedHandleTypes].
-        #[method(setSupportedHandleTypes:)]
+        #[unsafe(method(setSupportedHandleTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedHandleTypes(&self, supported_handle_types: &NSSet<NSNumber>);
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated]
-        #[method(initWithLocalizedName:)]
+        #[unsafe(method(initWithLocalizedName:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocalizedName(
             this: Allocated<Self>,
@@ -113,7 +113,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXProviderConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

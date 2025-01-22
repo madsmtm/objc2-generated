@@ -19,11 +19,11 @@ unsafe impl NSObjectProtocol for CP_OBJECT_cp_layer_renderer_configuration {}
 
 extern_methods!(
     unsafe impl CP_OBJECT_cp_layer_renderer_configuration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

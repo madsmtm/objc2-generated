@@ -46,7 +46,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl EXHostViewController {
         /// The connection delegate.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -54,7 +54,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -62,19 +62,19 @@ extern_methods!(
         );
 
         /// A view that’s used when the view controller has no content to display.
-        #[method(placeholderView)]
+        #[unsafe(method(placeholderView))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderView(&self) -> Retained<NSView>;
 
         /// Setter for [`placeholderView`][Self::placeholderView].
-        #[method(setPlaceholderView:)]
+        #[unsafe(method(setPlaceholderView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlaceholderView(&self, placeholder_view: &NSView);
 
         /// Attempts to connect to the extension over XPC.
         ///
         /// - Returns: An object representing the connection.
-        #[method(makeXPCConnectionWithError:_)]
+        #[unsafe(method(makeXPCConnectionWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeXPCConnectionWithError(
             &self,
@@ -87,7 +87,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl EXHostViewController {
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -95,7 +95,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -109,7 +109,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl EXHostViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -120,7 +120,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl EXHostViewController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -145,7 +145,7 @@ extern_protocol!(
         /// - Parameters:
         /// - viewController: The user interface object from the remote process.
         #[optional]
-        #[method(hostViewControllerDidActivate:)]
+        #[unsafe(method(hostViewControllerDidActivate:))]
         #[unsafe(method_family = none)]
         unsafe fn hostViewControllerDidActivate(&self, view_controller: &EXHostViewController);
 
@@ -164,7 +164,7 @@ extern_protocol!(
         /// - error: An error object containing information about why the object
         /// disconnected, or `nil` if it’s disconnecting without error.
         #[optional]
-        #[method(hostViewControllerWillDeactivate:error:)]
+        #[unsafe(method(hostViewControllerWillDeactivate:error:))]
         #[unsafe(method_family = none)]
         unsafe fn hostViewControllerWillDeactivate_error(
             &self,

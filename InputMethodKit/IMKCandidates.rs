@@ -62,7 +62,7 @@ extern_methods!(
         /// Default initializer for the class.
         ///
         /// When an input method allocates an IMKCandidate object it should initialize that object by calling this method passing the IMKServer that will manage the candidates and the initial panel type.
-        #[method(initWithServer:panelType:)]
+        #[unsafe(method(initWithServer:panelType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServer_panelType(
             this: Allocated<Self>,
@@ -71,7 +71,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "IMKServer")]
-        #[method(initWithServer:panelType:styleType:)]
+        #[unsafe(method(initWithServer:panelType:styleType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServer_panelType_styleType(
             this: Allocated<Self>,
@@ -81,47 +81,47 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         /// Return the panel type.
-        #[method(panelType)]
+        #[unsafe(method(panelType))]
         #[unsafe(method_family = none)]
         pub unsafe fn panelType(&self) -> IMKCandidatePanelType;
 
         /// Change the panel type.
-        #[method(setPanelType:)]
+        #[unsafe(method(setPanelType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPanelType(&self, panel_type: IMKCandidatePanelType);
 
         /// If a candidate window type has been provided, show the candidate window. The caller provides a location hint that is used to position the window.
         ///
         /// Input methods call this method when it is appropriate, during text conversion, to display a list of candidates.
-        #[method(show:)]
+        #[unsafe(method(show:))]
         #[unsafe(method_family = none)]
         pub unsafe fn show(&self, location_hint: IMKCandidatesLocationHint);
 
         /// If the candidate window is visible, hide it.
-        #[method(hide)]
+        #[unsafe(method(hide))]
         #[unsafe(method_family = none)]
         pub unsafe fn hide(&self);
 
         /// Utility method returns YES if a candidate display is visible.
-        #[method(isVisible)]
+        #[unsafe(method(isVisible))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVisible(&self) -> bool;
 
         /// Call this method to update the candidates displayed in the candidate window.
         ///
         /// Calling this method will result in a call being made to the IMKInputController's candidates method. Note that the candidate list will be updated, but the window's visible state will not change; that is to say, if the window is hidden it will remain hidden, and vice versa.
-        #[method(updateCandidates)]
+        #[unsafe(method(updateCandidates))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateCandidates(&self);
 
         /// Displays an annotation window whose contents are the annotationString.
         ///
         /// An annotation is additional text that explains or somehow adds to the candidate string in a candidate window. Annotations are displayed in a small borderless window that is aligned with the current candidate panel. An input method calls showAnnotation: when the method [IMKInputController candidateSelectionChanged:] is called, and the candidateString has annotations.
-        #[method(showAnnotation:)]
+        #[unsafe(method(showAnnotation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showAnnotation(&self, annotation_string: Option<&NSAttributedString>);
 
-        #[method(showSublist:subListDelegate:)]
+        #[unsafe(method(showSublist:subListDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showSublist_subListDelegate(
             &self,
@@ -129,7 +129,7 @@ extern_methods!(
             delegate: Option<&AnyObject>,
         );
 
-        #[method(candidateFrame)]
+        #[unsafe(method(candidateFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn candidateFrame(&self) -> NSRect;
 
@@ -144,14 +144,14 @@ extern_methods!(
         /// setSelectionKeysKeylayout (see below).
         ///
         /// The default selection keys are the digits 1 through 9, or in terms of key codes: 18-21,23,22, 26, 28, 25.
-        #[method(setSelectionKeys:)]
+        #[unsafe(method(setSelectionKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionKeys(&self, key_codes: Option<&NSArray>);
 
         /// Returns an NSArray of NSNumbers where each NSNumber is a virtual key code.
         ///
         /// The NSArray is an autoreleased object. Do not release unless it is first retained.
-        #[method(selectionKeys)]
+        #[unsafe(method(selectionKeys))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectionKeys(&self) -> Option<Retained<NSArray>>;
 
@@ -166,12 +166,12 @@ extern_methods!(
         /// NSBackgroundColorDocumentAttribute (value = NSColor).  Set the background color that is drawn behind the candidate text.
         ///
         /// IMKCandidatesSendServerKeyEventFirst (value = NSNumber).  NO (default) gives the candidate window first chance at key events.  YES causes events to first be routed to the current IMKInputController.  In that case, if the event is not handled, it will then be sent to the candidate window.
-        #[method(setAttributes:)]
+        #[unsafe(method(setAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributes(&self, attributes: Option<&NSDictionary>);
 
         /// Returns the attributes dictionary.
-        #[method(attributes)]
+        #[unsafe(method(attributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributes(&self) -> Option<Retained<NSDictionary>>;
 
@@ -182,45 +182,45 @@ extern_methods!(
         /// Setting this flag to NO lets an input method process text input while keeping a dynamically changing candidates display in view throughout the text input process.
         ///
         /// When you set this to NO the candidate display will still be hidden when when a session deactivates.
-        #[method(setDismissesAutomatically:)]
+        #[unsafe(method(setDismissesAutomatically:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDismissesAutomatically(&self, flag: bool);
 
         /// Returns the dismissesAutomatically flag.
-        #[method(dismissesAutomatically)]
+        #[unsafe(method(dismissesAutomatically))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissesAutomatically(&self) -> bool;
 
         /// Returns the currently selected candidate identifer.
         ///
         /// Attempts to determine the identifier for the selected candidate.  If there is no selection the return value will be NSNotFound.
-        #[method(selectedCandidate)]
+        #[unsafe(method(selectedCandidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedCandidate(&self) -> NSInteger;
 
         /// Positions the top-left corner of the candidate window’s frame rectangle at a given point in screen coordinates.
-        #[method(setCandidateFrameTopLeft:)]
+        #[unsafe(method(setCandidateFrameTopLeft:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCandidateFrameTopLeft(&self, point: NSPoint);
 
         /// If the current selection has a child IMKCandidates object that will be shown.
         ///
         /// If there is a failure in showing the child this method will throw an exception.
-        #[method(showChild)]
+        #[unsafe(method(showChild))]
         #[unsafe(method_family = none)]
         pub unsafe fn showChild(&self);
 
         /// If the current selection has a child IMKCandidates that is being shown hide it.
         ///
         /// Typically a client will not need to call this as IMKCandidates automatically hides and shows children.
-        #[method(hideChild)]
+        #[unsafe(method(hideChild))]
         #[unsafe(method_family = none)]
         pub unsafe fn hideChild(&self);
 
         /// Attach an IMKCandidates object to the specified selection.
         ///
         /// The IMKCandidate can be a sublist or an annotation.
-        #[method(attachChild:toCandidate:type:)]
+        #[unsafe(method(attachChild:toCandidate:type:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attachChild_toCandidate_type(
             &self,
@@ -230,14 +230,14 @@ extern_methods!(
         );
 
         /// Detach the IMKCandidates object attached to candidate
-        #[method(detachChild:)]
+        #[unsafe(method(detachChild:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detachChild(&self, candidate_identifier: NSInteger);
 
         /// Set the candidates data directly rather than supplying data via [IMKInputContoller candidates:].
         ///
         /// The elements of the array can be strings or attributed strings.
-        #[method(setCandidateData:)]
+        #[unsafe(method(setCandidateData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCandidateData(&self, candidates_array: Option<&NSArray>);
 
@@ -246,26 +246,26 @@ extern_methods!(
         /// Returns: YES if the candidateIdentifier is valid an the selection was made.  NO if canidateIdentifier is invalid or it was not possible make the selection.
         ///
         /// Parameter `An`: identifier for a candidate.  You can obtain an identifier by mapping a candidate to an identifier via the [IMKCandidates candidateStringIdentifier:].
-        #[method(selectCandidateWithIdentifier:)]
+        #[unsafe(method(selectCandidateWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectCandidateWithIdentifier(&self, candidate_identifier: NSInteger)
             -> bool;
 
-        #[method(selectCandidate:)]
+        #[unsafe(method(selectCandidate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectCandidate(&self, candidate_identifier: NSInteger);
 
         /// Show the candidate window.
         ///
         /// This simply shows the candidates.  No effort is made to position the candidate.  The caller should move the candidate window to an appropriate location prior to showing.
-        #[method(showCandidates)]
+        #[unsafe(method(showCandidates))]
         #[unsafe(method_family = none)]
         pub unsafe fn showCandidates(&self);
 
         /// Map a candidateString to an identifier.
         ///
         /// Beginning with MacOS 10.7, candidate strings are mapped internally to an unique identifier of type NSInteger.  Using identifiers to identify a particular candidate is the first stage of enabling data types other than NSString and NSAttributedString for containing the contents of a candidate.
-        #[method(candidateStringIdentifier:)]
+        #[unsafe(method(candidateStringIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn candidateStringIdentifier(
             &self,
@@ -275,7 +275,7 @@ extern_methods!(
         /// Returns the currently selected candidate string.
         ///
         /// Attempts to determine the string for the selected candidate.  If there is no selection the return value can be nil.  The attributed string is an autoreleased object.
-        #[method(selectedCandidateString)]
+        #[unsafe(method(selectedCandidateString))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedCandidateString(&self) -> Option<Retained<NSAttributedString>>;
 
@@ -284,7 +284,7 @@ extern_methods!(
         /// Maps the lineNumber to a candidate identifier.  Line number 0 corresponds to the candidate in the cell currently in the first (top for vertical) line of the candidate window.  This is convienient for input methods that support selecting a candidate by a number key. Line Number values depend on the column arrangement of your candidate.  If you are displaying a single column candidate window, lines that have been scrolled out of view will have negative values.  For a single row grid line, numbers will correspond to the cell's position in the row (i.e. the first cell will be 0, the second 1, etc).  Finally, for a grid, the line numbers correspond to the grid row.  If the line number is invalid, NSNotFound is returned.
         ///
         /// Parameter `lineNumber`: a number representing a cells position in the candidate window.
-        #[method(candidateIdentifierAtLineNumber:)]
+        #[unsafe(method(candidateIdentifierAtLineNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn candidateIdentifierAtLineNumber(&self, line_number: NSInteger) -> NSInteger;
 
@@ -295,7 +295,7 @@ extern_methods!(
         /// Parameter `candidateIdentifier`: - A valid identifier for a candidate.
         ///
         /// If the cell that contains the candidate is at the top line of the candidate window, the return value will be 0.
-        #[method(lineNumberForCandidateWithIdentifier:)]
+        #[unsafe(method(lineNumberForCandidateWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineNumberForCandidateWithIdentifier(
             &self,
@@ -303,7 +303,7 @@ extern_methods!(
         ) -> NSInteger;
 
         /// Clears the current selection.
-        #[method(clearSelection)]
+        #[unsafe(method(clearSelection))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearSelection(&self);
     }
@@ -313,11 +313,11 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl IMKCandidates {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -330,7 +330,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl IMKCandidates {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

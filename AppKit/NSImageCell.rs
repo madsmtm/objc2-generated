@@ -101,30 +101,30 @@ unsafe impl NSUserInterfaceItemIdentification for NSImageCell {}
 extern_methods!(
     #[cfg(feature = "NSCell")]
     unsafe impl NSImageCell {
-        #[method(imageAlignment)]
+        #[unsafe(method(imageAlignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
 
         /// Setter for [`imageAlignment`][Self::imageAlignment].
-        #[method(setImageAlignment:)]
+        #[unsafe(method(setImageAlignment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageAlignment(&self, image_alignment: NSImageAlignment);
 
-        #[method(imageScaling)]
+        #[unsafe(method(imageScaling))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
         /// Setter for [`imageScaling`][Self::imageScaling].
-        #[method(setImageScaling:)]
+        #[unsafe(method(setImageScaling:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
-        #[method(imageFrameStyle)]
+        #[unsafe(method(imageFrameStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageFrameStyle(&self) -> NSImageFrameStyle;
 
         /// Setter for [`imageFrameStyle`][Self::imageFrameStyle].
-        #[method(setImageFrameStyle:)]
+        #[unsafe(method(setImageFrameStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageFrameStyle(&self, image_frame_style: NSImageFrameStyle);
     }
@@ -134,23 +134,23 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(feature = "NSCell")]
     unsafe impl NSImageCell {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initTextCell:)]
+        #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method(initImageCell:)]
+        #[unsafe(method(initImageCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
@@ -160,7 +160,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSCell")]
     unsafe impl NSImageCell {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

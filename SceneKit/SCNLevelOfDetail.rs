@@ -37,7 +37,7 @@ extern_methods!(
         /// Parameter `geometry`: The geometry for this level of detail. nil is supported and indicates that no geometry should be rendered for this level of detail.
         ///
         /// Parameter `radius`: The maximum radius in screen-space that this level of detail is suitable for. The coverage radius is calculated from the projected bounding sphere and expressed in pixels.
-        #[method(levelOfDetailWithGeometry:screenSpaceRadius:)]
+        #[unsafe(method(levelOfDetailWithGeometry:screenSpaceRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn levelOfDetailWithGeometry_screenSpaceRadius(
             geometry: Option<&SCNGeometry>,
@@ -50,7 +50,7 @@ extern_methods!(
         /// Parameter `geometry`: The geometry for this level of detail. nil is supported and indicates that no geometry should be rendered for this level of detail.
         ///
         /// Parameter `distance`: The minimum distance to the current point of view that this level of detail is suitable for.
-        #[method(levelOfDetailWithGeometry:worldSpaceDistance:)]
+        #[unsafe(method(levelOfDetailWithGeometry:worldSpaceDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn levelOfDetailWithGeometry_worldSpaceDistance(
             geometry: Option<&SCNGeometry>,
@@ -59,19 +59,19 @@ extern_methods!(
 
         #[cfg(feature = "SCNGeometry")]
         /// Returns the geometry of the receiver.
-        #[method(geometry)]
+        #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry(&self) -> Option<Retained<SCNGeometry>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Returns the screen space radius of the receiver if any, 0 otherwise.
-        #[method(screenSpaceRadius)]
+        #[unsafe(method(screenSpaceRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn screenSpaceRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Returns the world space distance of the receiver if any, 0 otherwise.
-        #[method(worldSpaceDistance)]
+        #[unsafe(method(worldSpaceDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn worldSpaceDistance(&self) -> CGFloat;
     }
@@ -80,11 +80,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNLevelOfDetail {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

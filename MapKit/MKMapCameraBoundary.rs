@@ -28,7 +28,7 @@ unsafe impl NSSecureCoding for MKMapCameraBoundary {}
 extern_methods!(
     unsafe impl MKMapCameraBoundary {
         #[cfg(feature = "MKGeometry")]
-        #[method(initWithMapRect:)]
+        #[unsafe(method(initWithMapRect:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMapRect(
             this: Allocated<Self>,
@@ -36,14 +36,14 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
-        #[method(initWithCoordinateRegion:)]
+        #[unsafe(method(initWithCoordinateRegion:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinateRegion(
             this: Allocated<Self>,
             region: MKCoordinateRegion,
         ) -> Option<Retained<Self>>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -51,12 +51,12 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MKGeometry")]
-        #[method(mapRect)]
+        #[unsafe(method(mapRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn mapRect(&self) -> MKMapRect;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
-        #[method(region)]
+        #[unsafe(method(region))]
         #[unsafe(method_family = none)]
         pub unsafe fn region(&self) -> MKCoordinateRegion;
     }
@@ -65,11 +65,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKMapCameraBoundary {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

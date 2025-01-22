@@ -24,7 +24,7 @@ unsafe impl NSObjectProtocol for MKLocalSearch {}
 extern_methods!(
     unsafe impl MKLocalSearch {
         #[cfg(feature = "MKLocalSearchRequest")]
-        #[method(initWithRequest:)]
+        #[unsafe(method(initWithRequest:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRequest(
             this: Allocated<Self>,
@@ -32,7 +32,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MKLocalPointsOfInterestRequest")]
-        #[method(initWithPointsOfInterestRequest:)]
+        #[unsafe(method(initWithPointsOfInterestRequest:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPointsOfInterestRequest(
             this: Allocated<Self>,
@@ -40,18 +40,18 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKLocalSearchResponse", feature = "block2"))]
-        #[method(startWithCompletionHandler:)]
+        #[unsafe(method(startWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(
             &self,
             completion_handler: MKLocalSearchCompletionHandler,
         );
 
-        #[method(cancel)]
+        #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
-        #[method(isSearching)]
+        #[unsafe(method(isSearching))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSearching(&self) -> bool;
     }
@@ -60,11 +60,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKLocalSearch {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

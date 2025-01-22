@@ -86,18 +86,18 @@ extern_methods!(
     #[cfg(feature = "NSNotification")]
     unsafe impl NSDistributedNotificationCenter {
         #[cfg(feature = "NSString")]
-        #[method(notificationCenterForType:)]
+        #[unsafe(method(notificationCenterForType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationCenterForType(
             notification_center_type: &NSDistributedNotificationCenterType,
         ) -> Retained<NSDistributedNotificationCenter>;
 
-        #[method(defaultCenter)]
+        #[unsafe(method(defaultCenter))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultCenter() -> Retained<NSDistributedNotificationCenter>;
 
         #[cfg(feature = "NSString")]
-        #[method(addObserver:selector:name:object:suspensionBehavior:)]
+        #[unsafe(method(addObserver:selector:name:object:suspensionBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserver_selector_name_object_suspensionBehavior(
             &self,
@@ -109,7 +109,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(postNotificationName:object:userInfo:deliverImmediately:)]
+        #[unsafe(method(postNotificationName:object:userInfo:deliverImmediately:))]
         #[unsafe(method_family = none)]
         pub unsafe fn postNotificationName_object_userInfo_deliverImmediately(
             &self,
@@ -120,7 +120,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(postNotificationName:object:userInfo:options:)]
+        #[unsafe(method(postNotificationName:object:userInfo:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn postNotificationName_object_userInfo_options(
             &self,
@@ -130,17 +130,17 @@ extern_methods!(
             options: NSDistributedNotificationOptions,
         );
 
-        #[method(suspended)]
+        #[unsafe(method(suspended))]
         #[unsafe(method_family = none)]
         pub unsafe fn suspended(&self) -> bool;
 
         /// Setter for [`suspended`][Self::suspended].
-        #[method(setSuspended:)]
+        #[unsafe(method(setSuspended:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuspended(&self, suspended: bool);
 
         #[cfg(feature = "NSString")]
-        #[method(addObserver:selector:name:object:)]
+        #[unsafe(method(addObserver:selector:name:object:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserver_selector_name_object(
             &self,
@@ -151,7 +151,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method(postNotificationName:object:)]
+        #[unsafe(method(postNotificationName:object:))]
         #[unsafe(method_family = none)]
         pub unsafe fn postNotificationName_object(
             &self,
@@ -160,7 +160,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(postNotificationName:object:userInfo:)]
+        #[unsafe(method(postNotificationName:object:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn postNotificationName_object_userInfo(
             &self,
@@ -170,7 +170,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method(removeObserver:name:object:)]
+        #[unsafe(method(removeObserver:name:object:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObserver_name_object(
             &self,
@@ -185,11 +185,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSNotification")]
     unsafe impl NSDistributedNotificationCenter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

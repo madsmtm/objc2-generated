@@ -78,24 +78,24 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLOptGroupElement {
         #[deprecated]
-        #[method(disabled)]
+        #[unsafe(method(disabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn disabled(&self) -> bool;
 
         /// Setter for [`disabled`][Self::disabled].
         #[deprecated]
-        #[method(setDisabled:)]
+        #[unsafe(method(setDisabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisabled(&self, disabled: bool);
 
         #[deprecated]
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
         #[deprecated]
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
     }
@@ -112,7 +112,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLOptGroupElement {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -128,7 +128,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLOptGroupElement {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

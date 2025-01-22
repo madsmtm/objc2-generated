@@ -24,14 +24,14 @@ extern_methods!(
     #[cfg(feature = "UIFeedbackGenerator")]
     unsafe impl UISelectionFeedbackGenerator {
         /// call when the selection changes (not on initial selection)
-        #[method(selectionChanged)]
+        #[unsafe(method(selectionChanged))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectionChanged(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// call when the selection changes (not on initial selection)
         /// provide the location in the `view` the change occured at
-        #[method(selectionChangedAtLocation:)]
+        #[unsafe(method(selectionChangedAtLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectionChangedAtLocation(&self, location: CGPoint);
     }
@@ -43,12 +43,12 @@ extern_methods!(
     unsafe impl UISelectionFeedbackGenerator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// initalize the generator with a view to attach it to the provided view as an interaction.
-        #[method(feedbackGeneratorForView:)]
+        #[unsafe(method(feedbackGeneratorForView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
 
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -58,7 +58,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIFeedbackGenerator")]
     unsafe impl UISelectionFeedbackGenerator {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

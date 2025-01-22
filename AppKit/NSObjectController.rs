@@ -34,98 +34,98 @@ unsafe impl NSObjectProtocol for NSObjectController {}
 extern_methods!(
     #[cfg(feature = "NSController")]
     unsafe impl NSObjectController {
-        #[method(initWithContent:)]
+        #[unsafe(method(initWithContent:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(
             this: Allocated<Self>,
             content: Option<&AnyObject>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(content)]
+        #[unsafe(method(content))]
         #[unsafe(method_family = none)]
         pub unsafe fn content(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`content`][Self::content].
-        #[method(setContent:)]
+        #[unsafe(method(setContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContent(&self, content: Option<&AnyObject>);
 
-        #[method(selection)]
+        #[unsafe(method(selection))]
         #[unsafe(method_family = none)]
         pub unsafe fn selection(&self) -> Retained<AnyObject>;
 
-        #[method(selectedObjects)]
+        #[unsafe(method(selectedObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedObjects(&self) -> Retained<NSArray>;
 
-        #[method(automaticallyPreparesContent)]
+        #[unsafe(method(automaticallyPreparesContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticallyPreparesContent(&self) -> bool;
 
         /// Setter for [`automaticallyPreparesContent`][Self::automaticallyPreparesContent].
-        #[method(setAutomaticallyPreparesContent:)]
+        #[unsafe(method(setAutomaticallyPreparesContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyPreparesContent(&self, automatically_prepares_content: bool);
 
-        #[method(prepareContent)]
+        #[unsafe(method(prepareContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareContent(&self);
 
-        #[method(objectClass)]
+        #[unsafe(method(objectClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectClass(&self) -> Option<&'static AnyClass>;
 
         /// Setter for [`objectClass`][Self::objectClass].
-        #[method(setObjectClass:)]
+        #[unsafe(method(setObjectClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectClass(&self, object_class: Option<&AnyClass>);
 
-        #[method(newObject)]
+        #[unsafe(method(newObject))]
         #[unsafe(method_family = new)]
         pub unsafe fn newObject(&self) -> Retained<AnyObject>;
 
-        #[method(addObject:)]
+        #[unsafe(method(addObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObject(&self, object: &AnyObject);
 
-        #[method(removeObject:)]
+        #[unsafe(method(removeObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObject(&self, object: &AnyObject);
 
-        #[method(isEditable)]
+        #[unsafe(method(isEditable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEditable(&self) -> bool;
 
         /// Setter for [`isEditable`][Self::isEditable].
-        #[method(setEditable:)]
+        #[unsafe(method(setEditable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEditable(&self, editable: bool);
 
-        #[method(add:)]
+        #[unsafe(method(add:))]
         #[unsafe(method_family = none)]
         pub unsafe fn add(&self, sender: Option<&AnyObject>);
 
-        #[method(canAdd)]
+        #[unsafe(method(canAdd))]
         #[unsafe(method_family = none)]
         pub unsafe fn canAdd(&self) -> bool;
 
-        #[method(remove:)]
+        #[unsafe(method(remove:))]
         #[unsafe(method_family = none)]
         pub unsafe fn remove(&self, sender: Option<&AnyObject>);
 
-        #[method(canRemove)]
+        #[unsafe(method(canRemove))]
         #[unsafe(method_family = none)]
         pub unsafe fn canRemove(&self) -> bool;
 
         #[cfg(feature = "NSUserInterfaceValidation")]
-        #[method(validateUserInterfaceItem:)]
+        #[unsafe(method(validateUserInterfaceItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateUserInterfaceItem(
             &self,
@@ -138,7 +138,7 @@ extern_methods!(
     /// Methods declared on superclass `NSController`
     #[cfg(feature = "NSController")]
     unsafe impl NSObjectController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -148,7 +148,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSController")]
     unsafe impl NSObjectController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -160,41 +160,41 @@ extern_methods!(
     unsafe impl NSObjectController {
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
-        #[method(managedObjectContext)]
+        #[unsafe(method(managedObjectContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn managedObjectContext(&self) -> Option<Retained<NSManagedObjectContext>>;
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
         /// Setter for [`managedObjectContext`][Self::managedObjectContext].
-        #[method(setManagedObjectContext:)]
+        #[unsafe(method(setManagedObjectContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setManagedObjectContext(
             &self,
             managed_object_context: Option<&NSManagedObjectContext>,
         );
 
-        #[method(entityName)]
+        #[unsafe(method(entityName))]
         #[unsafe(method_family = none)]
         pub unsafe fn entityName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`entityName`][Self::entityName].
-        #[method(setEntityName:)]
+        #[unsafe(method(setEntityName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEntityName(&self, entity_name: Option<&NSString>);
 
-        #[method(fetchPredicate)]
+        #[unsafe(method(fetchPredicate))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchPredicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`fetchPredicate`][Self::fetchPredicate].
-        #[method(setFetchPredicate:)]
+        #[unsafe(method(setFetchPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchPredicate(&self, fetch_predicate: Option<&NSPredicate>);
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
-        #[method(fetchWithRequest:merge:error:_)]
+        #[unsafe(method(fetchWithRequest:merge:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchWithRequest_merge_error(
             &self,
@@ -202,22 +202,22 @@ extern_methods!(
             merge: bool,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method(fetch:)]
+        #[unsafe(method(fetch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetch(&self, sender: Option<&AnyObject>);
 
-        #[method(usesLazyFetching)]
+        #[unsafe(method(usesLazyFetching))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesLazyFetching(&self) -> bool;
 
         /// Setter for [`usesLazyFetching`][Self::usesLazyFetching].
-        #[method(setUsesLazyFetching:)]
+        #[unsafe(method(setUsesLazyFetching:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesLazyFetching(&self, uses_lazy_fetching: bool);
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
-        #[method(defaultFetchRequest)]
+        #[unsafe(method(defaultFetchRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultFetchRequest(&self) -> Retained<NSFetchRequest>;
     }

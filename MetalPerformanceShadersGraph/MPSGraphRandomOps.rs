@@ -85,12 +85,12 @@ extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphRandomOpDescriptor {
         /// The type of distribution to draw samples from. See MPSGraphRandomDistribution.
-        #[method(distribution)]
+        #[unsafe(method(distribution))]
         #[unsafe(method_family = none)]
         pub unsafe fn distribution(&self) -> MPSGraphRandomDistribution;
 
         /// Setter for [`distribution`][Self::distribution].
-        #[method(setDistribution:)]
+        #[unsafe(method(setDistribution:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDistribution(&self, distribution: MPSGraphRandomDistribution);
 
@@ -101,13 +101,13 @@ extern_methods!(
         /// MPSDataTypeFloat32, and MPSDataTypeInt32.
         /// When sampling from the normal or truncated normal distribution, valid types are
         /// MPSDataTypeFloat16 and MPSDataTypeFloat32.
-        #[method(dataType)]
+        #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataType(&self) -> MPSDataType;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Setter for [`dataType`][Self::dataType].
-        #[method(setDataType:)]
+        #[unsafe(method(setDataType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataType(&self, data_type: MPSDataType);
 
@@ -115,12 +115,12 @@ extern_methods!(
         ///
         /// This value is used for Uniform distributions with float data types and Truncated Normal disributions.
         /// Defaults to 0 for uniform distributions and -2 for normal distributions.
-        #[method(min)]
+        #[unsafe(method(min))]
         #[unsafe(method_family = none)]
         pub unsafe fn min(&self) -> c_float;
 
         /// Setter for [`min`][Self::min].
-        #[method(setMin:)]
+        #[unsafe(method(setMin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMin(&self, min: c_float);
 
@@ -128,12 +128,12 @@ extern_methods!(
         ///
         /// This value is used for Uniform distributions with float data types and Truncated Normal disributions.
         /// Defaults to 1 for uniform distributions and 2 for normal distributions.
-        #[method(max)]
+        #[unsafe(method(max))]
         #[unsafe(method_family = none)]
         pub unsafe fn max(&self) -> c_float;
 
         /// Setter for [`max`][Self::max].
-        #[method(setMax:)]
+        #[unsafe(method(setMax:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMax(&self, max: c_float);
 
@@ -141,12 +141,12 @@ extern_methods!(
         ///
         /// This value is used for Uniform with integer data types
         /// Defaults to 0.
-        #[method(minInteger)]
+        #[unsafe(method(minInteger))]
         #[unsafe(method_family = none)]
         pub unsafe fn minInteger(&self) -> NSInteger;
 
         /// Setter for [`minInteger`][Self::minInteger].
-        #[method(setMinInteger:)]
+        #[unsafe(method(setMinInteger:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinInteger(&self, min_integer: NSInteger);
 
@@ -154,12 +154,12 @@ extern_methods!(
         ///
         /// This value is used for Uniform with integer data types
         /// Defaults to INT32_MAX for uniform distributions and 0 for normal distributions.
-        #[method(maxInteger)]
+        #[unsafe(method(maxInteger))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxInteger(&self) -> NSInteger;
 
         /// Setter for [`maxInteger`][Self::maxInteger].
-        #[method(setMaxInteger:)]
+        #[unsafe(method(setMaxInteger:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxInteger(&self, max_integer: NSInteger);
 
@@ -167,12 +167,12 @@ extern_methods!(
         ///
         /// This value is used for Normal and Truncated Normal disributions.
         /// Defaults to 0.
-        #[method(mean)]
+        #[unsafe(method(mean))]
         #[unsafe(method_family = none)]
         pub unsafe fn mean(&self) -> c_float;
 
         /// Setter for [`mean`][Self::mean].
-        #[method(setMean:)]
+        #[unsafe(method(setMean:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMean(&self, mean: c_float);
 
@@ -183,12 +183,12 @@ extern_methods!(
         /// of the Gaussian, not the true standard deviation of the truncated distribution which typically differs from the standard deviation of the
         /// original Normal distribution.
         /// Defaults to 0 for uniform distributions and 1 for normal distributions.
-        #[method(standardDeviation)]
+        #[unsafe(method(standardDeviation))]
         #[unsafe(method_family = none)]
         pub unsafe fn standardDeviation(&self) -> c_float;
 
         /// Setter for [`standardDeviation`][Self::standardDeviation].
-        #[method(setStandardDeviation:)]
+        #[unsafe(method(setStandardDeviation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardDeviation(&self, standard_deviation: c_float);
 
@@ -196,18 +196,18 @@ extern_methods!(
         ///
         /// This value is used for Normal and Truncated Normal disributions. See MPSGraphRandomNormalSamplingMethod.
         /// Defaults to MPSGraphRandomNormalSamplingInvCDF.
-        #[method(samplingMethod)]
+        #[unsafe(method(samplingMethod))]
         #[unsafe(method_family = none)]
         pub unsafe fn samplingMethod(&self) -> MPSGraphRandomNormalSamplingMethod;
 
         /// Setter for [`samplingMethod`][Self::samplingMethod].
-        #[method(setSamplingMethod:)]
+        #[unsafe(method(setSamplingMethod:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSamplingMethod(&self, sampling_method: MPSGraphRandomNormalSamplingMethod);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Class method to initialize a distribution descriptor.
-        #[method(descriptorWithDistribution:dataType:)]
+        #[unsafe(method(descriptorWithDistribution:dataType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithDistribution_dataType(
             distribution: MPSGraphRandomDistribution,
@@ -220,11 +220,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphRandomOpDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -258,7 +258,7 @@ extern_methods!(
         /// - seed: Initial counter and key values will be generated using seed.
         /// - name: Name for the operation
         /// - Returns: An MPSGraphTensor representing a random state, to be passed as an input to a random op.
-        #[method(randomPhiloxStateTensorWithSeed:name:)]
+        #[unsafe(method(randomPhiloxStateTensorWithSeed:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomPhiloxStateTensorWithSeed_name(
             &self,
@@ -277,7 +277,7 @@ extern_methods!(
         /// - key: The value to initialize the key to in Philox algorithm.
         /// - name: Name for the operation
         /// - Returns: An MPSGraphTensor representing a random state, to be passed as an input to a random op.
-        #[method(randomPhiloxStateTensorWithCounterLow:counterHigh:key:name:)]
+        #[unsafe(method(randomPhiloxStateTensorWithCounterLow:counterHigh:key:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomPhiloxStateTensorWithCounterLow_counterHigh_key_name(
             &self,
@@ -302,7 +302,7 @@ extern_methods!(
         /// - descriptor: The descriptor of the distribution. See MPSGraphRandomOpDescriptor.
         /// - name: The name for the operation.
         /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
-        #[method(randomTensorWithShape:descriptor:name:)]
+        #[unsafe(method(randomTensorWithShape:descriptor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomTensorWithShape_descriptor_name(
             &self,
@@ -323,7 +323,7 @@ extern_methods!(
         /// - descriptor: The descriptor of the distribution. See MPSGraphRandomOpDescriptor.
         /// - name: The name for the operation.
         /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
-        #[method(randomTensorWithShapeTensor:descriptor:name:)]
+        #[unsafe(method(randomTensorWithShapeTensor:descriptor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomTensorWithShapeTensor_descriptor_name(
             &self,
@@ -347,7 +347,7 @@ extern_methods!(
         /// - seed: The seed to use to initialize state. All calls with equal seed yield an identical stream of random values.
         /// - name: The name for the operation.
         /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
-        #[method(randomTensorWithShape:descriptor:seed:name:)]
+        #[unsafe(method(randomTensorWithShape:descriptor:seed:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomTensorWithShape_descriptor_seed_name(
             &self,
@@ -369,7 +369,7 @@ extern_methods!(
         /// - seed: The seed to use to initialize state. All calls with equal seed yield an identical stream of random values.
         /// - name: The name for the operation.
         /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
-        #[method(randomTensorWithShapeTensor:descriptor:seed:name:)]
+        #[unsafe(method(randomTensorWithShapeTensor:descriptor:seed:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomTensorWithShapeTensor_descriptor_seed_name(
             &self,
@@ -399,7 +399,7 @@ extern_methods!(
         /// - name: The name for the operation.
         /// - Returns: An array of MPSGraphTensor of size 2. The first MPSGraphTensor is of shape containing random values in the defined range.
         /// The second MPSGraphTensor is the updated state tensor.
-        #[method(randomTensorWithShape:descriptor:stateTensor:name:)]
+        #[unsafe(method(randomTensorWithShape:descriptor:stateTensor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomTensorWithShape_descriptor_stateTensor_name(
             &self,
@@ -426,7 +426,7 @@ extern_methods!(
         /// - name: The name for the operation.
         /// - Returns: An array of MPSGraphTensor of size 2. The first MPSGraphTensor is of shape containing random values in the defined range.
         /// The second MPSGraphTensor is the updated state tensor.
-        #[method(randomTensorWithShapeTensor:descriptor:stateTensor:name:)]
+        #[unsafe(method(randomTensorWithShapeTensor:descriptor:stateTensor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomTensorWithShapeTensor_descriptor_stateTensor_name(
             &self,
@@ -450,7 +450,7 @@ extern_methods!(
         /// - shape: The shape of the tensor generated
         /// - name: The name for the operation.
         /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
-        #[method(randomUniformTensorWithShape:name:)]
+        #[unsafe(method(randomUniformTensorWithShape:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomUniformTensorWithShape_name(
             &self,
@@ -469,7 +469,7 @@ extern_methods!(
         /// - shapeTensor: 1D Int32 or Int64 tensor. The shape of the tensor generated
         /// - name: The name for the operation.
         /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
-        #[method(randomUniformTensorWithShapeTensor:name:)]
+        #[unsafe(method(randomUniformTensorWithShapeTensor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomUniformTensorWithShapeTensor_name(
             &self,
@@ -491,7 +491,7 @@ extern_methods!(
         /// - seed: The seed to use to initialize state. All calls with equal seed yield an identical stream of random values.
         /// - name: The name for the operation.
         /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
-        #[method(randomUniformTensorWithShape:seed:name:)]
+        #[unsafe(method(randomUniformTensorWithShape:seed:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomUniformTensorWithShape_seed_name(
             &self,
@@ -511,7 +511,7 @@ extern_methods!(
         /// - seed: The seed to use to initialize state. All calls with equal seed yield an identical stream of random values.
         /// - name: The name for the operation.
         /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
-        #[method(randomUniformTensorWithShapeTensor:seed:name:)]
+        #[unsafe(method(randomUniformTensorWithShapeTensor:seed:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomUniformTensorWithShapeTensor_seed_name(
             &self,
@@ -539,7 +539,7 @@ extern_methods!(
         /// - name: The name for the operation.
         /// - Returns: An array of MPSGraphTensor of size 2. The first MPSGraphTensor is of shape containing random values in the defined range.
         /// The second MPSGraphTensor is the updated state tensor.
-        #[method(randomUniformTensorWithShape:stateTensor:name:)]
+        #[unsafe(method(randomUniformTensorWithShape:stateTensor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomUniformTensorWithShape_stateTensor_name(
             &self,
@@ -564,7 +564,7 @@ extern_methods!(
         /// - name: The name for the operation.
         /// - Returns: An array of MPSGraphTensor of size 2. The first MPSGraphTensor is of shape containing random values in the defined range.
         /// The second MPSGraphTensor is the updated state tensor.
-        #[method(randomUniformTensorWithShapeTensor:stateTensor:name:)]
+        #[unsafe(method(randomUniformTensorWithShapeTensor:stateTensor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomUniformTensorWithShapeTensor_stateTensor_name(
             &self,
@@ -583,7 +583,7 @@ extern_methods!(
         /// - rate: The rate of values to be set to 0
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method(dropoutTensor:rate:name:)]
+        #[unsafe(method(dropoutTensor:rate:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dropoutTensor_rate_name(
             &self,
@@ -602,7 +602,7 @@ extern_methods!(
         /// - rate: The rate of values to be set to 0
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method(dropoutTensor:rateTensor:name:)]
+        #[unsafe(method(dropoutTensor:rateTensor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dropoutTensor_rateTensor_name(
             &self,

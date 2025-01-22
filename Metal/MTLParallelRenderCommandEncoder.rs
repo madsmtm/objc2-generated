@@ -15,7 +15,7 @@ extern_protocol!(
         /// Return a new autoreleased object that conforms to
         /// <MTLRenderCommandEncoder
         /// > that may be used to encode on a different thread.
-        #[method(renderCommandEncoder)]
+        #[unsafe(method(renderCommandEncoder))]
         #[unsafe(method_family = none)]
         fn renderCommandEncoder(
             &self,
@@ -28,7 +28,7 @@ extern_protocol!(
         /// Parameter `storeAction`: The desired store action for the given color attachment.  This may be set to any value other than MTLStoreActionUnknown.
         ///
         /// Parameter `colorAttachmentIndex`: The index of the color attachment
-        #[method(setColorStoreAction:atIndex:)]
+        #[unsafe(method(setColorStoreAction:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setColorStoreAction_atIndex(
             &self,
@@ -39,14 +39,14 @@ extern_protocol!(
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for the depth attachment was set to MTLStoreActionUnknown when the render command encoder was created,
         /// setDepthStoreAction: must be used to finalize the store action before endEncoding is called.
-        #[method(setDepthStoreAction:)]
+        #[unsafe(method(setDepthStoreAction:))]
         #[unsafe(method_family = none)]
         unsafe fn setDepthStoreAction(&self, store_action: MTLStoreAction);
 
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for the stencil attachment was set to MTLStoreActionUnknown when the render command encoder was created,
         /// setStencilStoreAction: must be used to finalize the store action before endEncoding is called.
-        #[method(setStencilStoreAction:)]
+        #[unsafe(method(setStencilStoreAction:))]
         #[unsafe(method_family = none)]
         unsafe fn setStencilStoreAction(&self, store_action: MTLStoreAction);
 
@@ -57,7 +57,7 @@ extern_protocol!(
         /// Parameter `storeActionOptions`: The desired store action options for the given color attachment.
         ///
         /// Parameter `colorAttachmentIndex`: The index of the color attachment
-        #[method(setColorStoreActionOptions:atIndex:)]
+        #[unsafe(method(setColorStoreActionOptions:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setColorStoreActionOptions_atIndex(
             &self,
@@ -68,14 +68,14 @@ extern_protocol!(
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for the depth attachment was set to MTLStoreActionUnknown when the render command encoder was created,
         /// setDepthStoreActionOptions: may be used to finalize the store action options before endEncoding is called.
-        #[method(setDepthStoreActionOptions:)]
+        #[unsafe(method(setDepthStoreActionOptions:))]
         #[unsafe(method_family = none)]
         unsafe fn setDepthStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
 
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for the stencil attachment was set to MTLStoreActionUnknown when the render command encoder was created,
         /// setStencilStoreActionOptions: may be used to finalize the store action options before endEncoding is called.
-        #[method(setStencilStoreActionOptions:)]
+        #[unsafe(method(setStencilStoreActionOptions:))]
         #[unsafe(method_family = none)]
         unsafe fn setStencilStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
     }

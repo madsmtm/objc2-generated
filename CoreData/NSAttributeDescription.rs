@@ -80,79 +80,79 @@ unsafe impl NSObjectProtocol for NSAttributeDescription {}
 extern_methods!(
     #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSAttributeDescription {
-        #[method(attributeType)]
+        #[unsafe(method(attributeType))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeType(&self) -> NSAttributeType;
 
         /// Setter for [`attributeType`][Self::attributeType].
-        #[method(setAttributeType:)]
+        #[unsafe(method(setAttributeType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributeType(&self, attribute_type: NSAttributeType);
 
-        #[method(attributeValueClassName)]
+        #[unsafe(method(attributeValueClassName))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeValueClassName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`attributeValueClassName`][Self::attributeValueClassName].
-        #[method(setAttributeValueClassName:)]
+        #[unsafe(method(setAttributeValueClassName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributeValueClassName(
             &self,
             attribute_value_class_name: Option<&NSString>,
         );
 
-        #[method(defaultValue)]
+        #[unsafe(method(defaultValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`defaultValue`][Self::defaultValue].
-        #[method(setDefaultValue:)]
+        #[unsafe(method(setDefaultValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultValue(&self, default_value: Option<&AnyObject>);
 
-        #[method(versionHash)]
+        #[unsafe(method(versionHash))]
         #[unsafe(method_family = none)]
         pub unsafe fn versionHash(&self) -> Retained<NSData>;
 
-        #[method(valueTransformerName)]
+        #[unsafe(method(valueTransformerName))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueTransformerName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`valueTransformerName`][Self::valueTransformerName].
-        #[method(setValueTransformerName:)]
+        #[unsafe(method(setValueTransformerName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueTransformerName(&self, value_transformer_name: Option<&NSString>);
 
-        #[method(allowsExternalBinaryDataStorage)]
+        #[unsafe(method(allowsExternalBinaryDataStorage))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsExternalBinaryDataStorage(&self) -> bool;
 
         /// Setter for [`allowsExternalBinaryDataStorage`][Self::allowsExternalBinaryDataStorage].
-        #[method(setAllowsExternalBinaryDataStorage:)]
+        #[unsafe(method(setAllowsExternalBinaryDataStorage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsExternalBinaryDataStorage(
             &self,
             allows_external_binary_data_storage: bool,
         );
 
-        #[method(preservesValueInHistoryOnDeletion)]
+        #[unsafe(method(preservesValueInHistoryOnDeletion))]
         #[unsafe(method_family = none)]
         pub unsafe fn preservesValueInHistoryOnDeletion(&self) -> bool;
 
         /// Setter for [`preservesValueInHistoryOnDeletion`][Self::preservesValueInHistoryOnDeletion].
-        #[method(setPreservesValueInHistoryOnDeletion:)]
+        #[unsafe(method(setPreservesValueInHistoryOnDeletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreservesValueInHistoryOnDeletion(
             &self,
             preserves_value_in_history_on_deletion: bool,
         );
 
-        #[method(allowsCloudEncryption)]
+        #[unsafe(method(allowsCloudEncryption))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsCloudEncryption(&self) -> bool;
 
         /// Setter for [`allowsCloudEncryption`][Self::allowsCloudEncryption].
-        #[method(setAllowsCloudEncryption:)]
+        #[unsafe(method(setAllowsCloudEncryption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCloudEncryption(&self, allows_cloud_encryption: bool);
     }
@@ -162,11 +162,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSAttributeDescription {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

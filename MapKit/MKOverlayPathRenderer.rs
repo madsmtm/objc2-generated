@@ -30,119 +30,119 @@ extern_methods!(
     unsafe impl MKOverlayPathRenderer {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method(fillColor)]
+        #[unsafe(method(fillColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn fillColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`fillColor`][Self::fillColor].
-        #[method(setFillColor:)]
+        #[unsafe(method(setFillColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFillColor(&self, fill_color: Option<&NSColor>);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method(strokeColor)]
+        #[unsafe(method(strokeColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`strokeColor`][Self::strokeColor].
-        #[method(setStrokeColor:)]
+        #[unsafe(method(setStrokeColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeColor(&self, stroke_color: Option<&NSColor>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(lineWidth)]
+        #[unsafe(method(lineWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`lineWidth`][Self::lineWidth].
-        #[method(setLineWidth:)]
+        #[unsafe(method(setLineWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(lineJoin)]
+        #[unsafe(method(lineJoin))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineJoin(&self) -> CGLineJoin;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`lineJoin`][Self::lineJoin].
-        #[method(setLineJoin:)]
+        #[unsafe(method(setLineJoin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineJoin(&self, line_join: CGLineJoin);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(lineCap)]
+        #[unsafe(method(lineCap))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineCap(&self) -> CGLineCap;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`lineCap`][Self::lineCap].
-        #[method(setLineCap:)]
+        #[unsafe(method(setLineCap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineCap(&self, line_cap: CGLineCap);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(miterLimit)]
+        #[unsafe(method(miterLimit))]
         #[unsafe(method_family = none)]
         pub unsafe fn miterLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`miterLimit`][Self::miterLimit].
-        #[method(setMiterLimit:)]
+        #[unsafe(method(setMiterLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(lineDashPhase)]
+        #[unsafe(method(lineDashPhase))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineDashPhase(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`lineDashPhase`][Self::lineDashPhase].
-        #[method(setLineDashPhase:)]
+        #[unsafe(method(setLineDashPhase:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineDashPhase(&self, line_dash_phase: CGFloat);
 
-        #[method(lineDashPattern)]
+        #[unsafe(method(lineDashPattern))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineDashPattern(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`lineDashPattern`][Self::lineDashPattern].
-        #[method(setLineDashPattern:)]
+        #[unsafe(method(setLineDashPattern:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineDashPattern(&self, line_dash_pattern: Option<&NSArray<NSNumber>>);
 
-        #[method(shouldRasterize)]
+        #[unsafe(method(shouldRasterize))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldRasterize(&self) -> bool;
 
         /// Setter for [`shouldRasterize`][Self::shouldRasterize].
-        #[method(setShouldRasterize:)]
+        #[unsafe(method(setShouldRasterize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldRasterize(&self, should_rasterize: bool);
 
-        #[method(createPath)]
+        #[unsafe(method(createPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn createPath(&self);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(path)]
+        #[unsafe(method(path))]
         #[unsafe(method_family = none)]
         pub unsafe fn path(&self) -> Option<Retained<CGPath>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`path`][Self::path].
-        #[method(setPath:)]
+        #[unsafe(method(setPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: Option<&CGPath>);
 
-        #[method(invalidatePath)]
+        #[unsafe(method(invalidatePath))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidatePath(&self);
 
@@ -151,7 +151,7 @@ extern_methods!(
             feature = "objc2-core-foundation",
             feature = "objc2-core-graphics"
         ))]
-        #[method(applyStrokePropertiesToContext:atZoomScale:)]
+        #[unsafe(method(applyStrokePropertiesToContext:atZoomScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyStrokePropertiesToContext_atZoomScale(
             &self,
@@ -164,7 +164,7 @@ extern_methods!(
             feature = "objc2-core-foundation",
             feature = "objc2-core-graphics"
         ))]
-        #[method(applyFillPropertiesToContext:atZoomScale:)]
+        #[unsafe(method(applyFillPropertiesToContext:atZoomScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyFillPropertiesToContext_atZoomScale(
             &self,
@@ -173,12 +173,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(strokePath:inContext:)]
+        #[unsafe(method(strokePath:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokePath_inContext(&self, path: &CGPath, context: &CGContext);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(fillPath:inContext:)]
+        #[unsafe(method(fillPath:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fillPath_inContext(&self, path: &CGPath, context: &CGContext);
     }
@@ -189,7 +189,7 @@ extern_methods!(
     #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl MKOverlayPathRenderer {
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method(initWithOverlay:)]
+        #[unsafe(method(initWithOverlay:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
@@ -202,11 +202,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl MKOverlayPathRenderer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

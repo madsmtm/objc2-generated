@@ -45,7 +45,7 @@ unsafe impl RefEncode for SCNBufferFrequency {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbufferstream?language=objc)
     pub unsafe trait SCNBufferStream: NSObjectProtocol {
-        #[method(writeBytes:length:)]
+        #[unsafe(method(writeBytes:length:))]
         #[unsafe(method_family = none)]
         unsafe fn writeBytes_length(&self, bytes: NonNull<c_void>, length: NSUInteger);
     }
@@ -96,13 +96,13 @@ extern_protocol!(
         ///
         /// When a program is set, it overrides all the rendering parameters such as material settings and shaderModifiers.
         #[optional]
-        #[method(program)]
+        #[unsafe(method(program))]
         #[unsafe(method_family = none)]
         unsafe fn program(&self) -> Option<Retained<SCNProgram>>;
 
         /// Setter for [`program`][Self::program].
         #[optional]
-        #[method(setProgram:)]
+        #[unsafe(method(setProgram:))]
         #[unsafe(method_family = none)]
         unsafe fn setProgram(&self, program: Option<&SCNProgram>);
 
@@ -115,7 +115,7 @@ extern_protocol!(
         ///
         /// This method can only be used with OpenGL and OpenGLES based programs.
         #[optional]
-        #[method(handleBindingOfSymbol:usingBlock:)]
+        #[unsafe(method(handleBindingOfSymbol:usingBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn handleBindingOfSymbol_usingBlock(
             &self,
@@ -132,7 +132,7 @@ extern_protocol!(
         ///
         /// This method can only be used with OpenGL and OpenGLES based programs.
         #[optional]
-        #[method(handleUnbindingOfSymbol:usingBlock:)]
+        #[unsafe(method(handleUnbindingOfSymbol:usingBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn handleUnbindingOfSymbol_usingBlock(
             &self,
@@ -273,7 +273,7 @@ extern_protocol!(
         ///
         /// Custom uniforms can be animated using explicit animations.
         #[optional]
-        #[method(shaderModifiers)]
+        #[unsafe(method(shaderModifiers))]
         #[unsafe(method_family = none)]
         unsafe fn shaderModifiers(
             &self,
@@ -281,7 +281,7 @@ extern_protocol!(
 
         /// Setter for [`shaderModifiers`][Self::shaderModifiers].
         #[optional]
-        #[method(setShaderModifiers:)]
+        #[unsafe(method(setShaderModifiers:))]
         #[unsafe(method_family = none)]
         unsafe fn setShaderModifiers(
             &self,
@@ -292,13 +292,13 @@ extern_protocol!(
         ///
         /// By default SceneKit does not use the most recent language version in order to reduce compilation times. If set to nil the shadable source code is assumed to compile with any language version greater than or equal to Metal 2.0.
         #[optional]
-        #[method(minimumLanguageVersion)]
+        #[unsafe(method(minimumLanguageVersion))]
         #[unsafe(method_family = none)]
         unsafe fn minimumLanguageVersion(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`minimumLanguageVersion`][Self::minimumLanguageVersion].
         #[optional]
-        #[method(setMinimumLanguageVersion:)]
+        #[unsafe(method(setMinimumLanguageVersion:))]
         #[unsafe(method_family = none)]
         unsafe fn setMinimumLanguageVersion(&self, minimum_language_version: Option<&NSNumber>);
     }
@@ -337,37 +337,37 @@ unsafe impl NSSecureCoding for SCNProgram {}
 extern_methods!(
     unsafe impl SCNProgram {
         /// Creates and initialize a program instance.
-        #[method(program)]
+        #[unsafe(method(program))]
         #[unsafe(method_family = none)]
         pub unsafe fn program() -> Retained<Self>;
 
         /// Determines the receiver's vertex shader.
-        #[method(vertexShader)]
+        #[unsafe(method(vertexShader))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexShader(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`vertexShader`][Self::vertexShader].
-        #[method(setVertexShader:)]
+        #[unsafe(method(setVertexShader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVertexShader(&self, vertex_shader: Option<&NSString>);
 
         /// Determines the receiver's fragment shader.
-        #[method(fragmentShader)]
+        #[unsafe(method(fragmentShader))]
         #[unsafe(method_family = none)]
         pub unsafe fn fragmentShader(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`fragmentShader`][Self::fragmentShader].
-        #[method(setFragmentShader:)]
+        #[unsafe(method(setFragmentShader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFragmentShader(&self, fragment_shader: Option<&NSString>);
 
         /// Determines the receiver's tessellation control shader. Tessellation shaders require OpenGL Core Profile.
-        #[method(tessellationControlShader)]
+        #[unsafe(method(tessellationControlShader))]
         #[unsafe(method_family = none)]
         pub unsafe fn tessellationControlShader(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`tessellationControlShader`][Self::tessellationControlShader].
-        #[method(setTessellationControlShader:)]
+        #[unsafe(method(setTessellationControlShader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTessellationControlShader(
             &self,
@@ -375,12 +375,12 @@ extern_methods!(
         );
 
         /// Determines the receiver's tessellation evaluation shader. Tessellation shaders require OpenGL Core Profile.
-        #[method(tessellationEvaluationShader)]
+        #[unsafe(method(tessellationEvaluationShader))]
         #[unsafe(method_family = none)]
         pub unsafe fn tessellationEvaluationShader(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`tessellationEvaluationShader`][Self::tessellationEvaluationShader].
-        #[method(setTessellationEvaluationShader:)]
+        #[unsafe(method(setTessellationEvaluationShader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTessellationEvaluationShader(
             &self,
@@ -388,36 +388,36 @@ extern_methods!(
         );
 
         /// Determines the receiver's geometry shader. Geometry shaders require OpenGL Core Profile.
-        #[method(geometryShader)]
+        #[unsafe(method(geometryShader))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryShader(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`geometryShader`][Self::geometryShader].
-        #[method(setGeometryShader:)]
+        #[unsafe(method(setGeometryShader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGeometryShader(&self, geometry_shader: Option<&NSString>);
 
         /// Determines the receiver's vertex function name.
         ///
         /// The name of the vertex function (for Metal programs).
-        #[method(vertexFunctionName)]
+        #[unsafe(method(vertexFunctionName))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexFunctionName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`vertexFunctionName`][Self::vertexFunctionName].
-        #[method(setVertexFunctionName:)]
+        #[unsafe(method(setVertexFunctionName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVertexFunctionName(&self, vertex_function_name: Option<&NSString>);
 
         /// Determines the receiver's fragment function name.
         ///
         /// The name of the fragment function (for Metal programs).
-        #[method(fragmentFunctionName)]
+        #[unsafe(method(fragmentFunctionName))]
         #[unsafe(method_family = none)]
         pub unsafe fn fragmentFunctionName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`fragmentFunctionName`][Self::fragmentFunctionName].
-        #[method(setFragmentFunctionName:)]
+        #[unsafe(method(setFragmentFunctionName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFragmentFunctionName(&self, fragment_function_name: Option<&NSString>);
 
@@ -431,7 +431,7 @@ extern_methods!(
         /// Parameter `block`: The block that binds the buffer.
         ///
         /// This method can only be used with Metal based programs.
-        #[method(handleBindingOfBufferNamed:frequency:usingBlock:)]
+        #[unsafe(method(handleBindingOfBufferNamed:frequency:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleBindingOfBufferNamed_frequency_usingBlock(
             &self,
@@ -441,12 +441,12 @@ extern_methods!(
         );
 
         /// Determines the receiver's fragment are opaque or not. Defaults to YES.
-        #[method(isOpaque)]
+        #[unsafe(method(isOpaque))]
         #[unsafe(method_family = none)]
         pub unsafe fn isOpaque(&self) -> bool;
 
         /// Setter for [`isOpaque`][Self::isOpaque].
-        #[method(setOpaque:)]
+        #[unsafe(method(setOpaque:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOpaque(&self, opaque: bool);
 
@@ -459,7 +459,7 @@ extern_methods!(
         /// Parameter `options`: An optional dictionary. See the 'Semantic options' above.
         ///
         /// Associates semantics handled by the SceneKit runtime to a symbol from the program. Supported semantics are listed in SCNGeometry.h and SCNNode.h.
-        #[method(setSemantic:forSymbol:options:)]
+        #[unsafe(method(setSemantic:forSymbol:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSemantic_forSymbol_options(
             &self,
@@ -471,17 +471,17 @@ extern_methods!(
         /// Retrieves the SceneKit semantic associated to a symbol from the program source code.
         ///
         /// Parameter `symbol`: A symbol from the program source code.
-        #[method(semanticForSymbol:)]
+        #[unsafe(method(semanticForSymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn semanticForSymbol(&self, symbol: &NSString) -> Option<Retained<NSString>>;
 
         /// Determines the receiver's delegate
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn SCNProgramDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn SCNProgramDelegate>>);
 
@@ -490,14 +490,14 @@ extern_methods!(
         /// Specifies the Metal library to use to locate the function names specified above.
         ///
         /// If set to nil the default library is used. Defaults to nil.
-        #[method(library)]
+        #[unsafe(method(library))]
         #[unsafe(method_family = none)]
         pub unsafe fn library(&self) -> Option<Retained<ProtocolObject<dyn MTLLibrary>>>;
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`library`][Self::library].
-        #[method(setLibrary:)]
+        #[unsafe(method(setLibrary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLibrary(&self, library: Option<&ProtocolObject<dyn MTLLibrary>>);
     }
@@ -506,11 +506,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNProgram {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -535,7 +535,7 @@ extern_protocol!(
         /// Parameter `renderer`: The renderer that is currently rendering the scene.
         #[deprecated = "Use -[SCNShadable handleBindingOfSymbol:usingBlock:] instead"]
         #[optional]
-        #[method(program:bindValueForSymbol:atLocation:programID:renderer:)]
+        #[unsafe(method(program:bindValueForSymbol:atLocation:programID:renderer:))]
         #[unsafe(method_family = none)]
         unsafe fn program_bindValueForSymbol_atLocation_programID_renderer(
             &self,
@@ -560,7 +560,7 @@ extern_protocol!(
         /// Parameter `renderer`: The renderer that is currently rendering the scene.
         #[deprecated = "Use -[SCNShadable handleUnbindingOfSymbol:usingBlock:] instead"]
         #[optional]
-        #[method(program:unbindValueForSymbol:atLocation:programID:renderer:)]
+        #[unsafe(method(program:unbindValueForSymbol:atLocation:programID:renderer:))]
         #[unsafe(method_family = none)]
         unsafe fn program_unbindValueForSymbol_atLocation_programID_renderer(
             &self,
@@ -579,7 +579,7 @@ extern_protocol!(
         ///
         /// Parameter `error`: The compilation error.
         #[optional]
-        #[method(program:handleError:)]
+        #[unsafe(method(program:handleError:))]
         #[unsafe(method_family = none)]
         unsafe fn program_handleError(&self, program: &SCNProgram, error: &NSError);
 
@@ -590,7 +590,7 @@ extern_protocol!(
         /// This is deprecated. Use SCNProgram's opaque property instead.
         #[deprecated = "Use SCNProgram.opaque instead"]
         #[optional]
-        #[method(programIsOpaque:)]
+        #[unsafe(method(programIsOpaque:))]
         #[unsafe(method_family = none)]
         unsafe fn programIsOpaque(&self, program: &SCNProgram) -> bool;
     }

@@ -34,12 +34,12 @@ extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMTimeEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "HMEvent is abstract"]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

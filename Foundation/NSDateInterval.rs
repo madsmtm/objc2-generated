@@ -35,31 +35,31 @@ unsafe impl NSSecureCoding for NSDateInterval {}
 extern_methods!(
     unsafe impl NSDateInterval {
         #[cfg(feature = "NSDate")]
-        #[method(startDate)]
+        #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "NSDate")]
-        #[method(endDate)]
+        #[unsafe(method(endDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "NSDate")]
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSDate")]
-        #[method(initWithStartDate:duration:)]
+        #[unsafe(method(initWithStartDate:duration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStartDate_duration(
             this: Allocated<Self>,
@@ -68,7 +68,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSDate")]
-        #[method(initWithStartDate:endDate:)]
+        #[unsafe(method(initWithStartDate:endDate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStartDate_endDate(
             this: Allocated<Self>,
@@ -77,19 +77,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSObjCRuntime")]
-        #[method(compare:)]
+        #[unsafe(method(compare:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compare(&self, date_interval: &NSDateInterval) -> NSComparisonResult;
 
-        #[method(isEqualToDateInterval:)]
+        #[unsafe(method(isEqualToDateInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToDateInterval(&self, date_interval: &NSDateInterval) -> bool;
 
-        #[method(intersectsDateInterval:)]
+        #[unsafe(method(intersectsDateInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn intersectsDateInterval(&self, date_interval: &NSDateInterval) -> bool;
 
-        #[method(intersectionWithDateInterval:)]
+        #[unsafe(method(intersectionWithDateInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn intersectionWithDateInterval(
             &self,
@@ -97,7 +97,7 @@ extern_methods!(
         ) -> Option<Retained<NSDateInterval>>;
 
         #[cfg(feature = "NSDate")]
-        #[method(containsDate:)]
+        #[unsafe(method(containsDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsDate(&self, date: &NSDate) -> bool;
     }
@@ -106,7 +106,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDateInterval {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

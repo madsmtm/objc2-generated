@@ -34,7 +34,7 @@ extern_methods!(
     unsafe impl NSCachedImageRep {
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[deprecated]
-        #[method(initWithWindow:rect:)]
+        #[unsafe(method(initWithWindow:rect:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindow_rect(
             this: Allocated<Self>,
@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "NSGraphics")]
         #[deprecated]
-        #[method(initWithSize:depth:separate:alpha:)]
+        #[unsafe(method(initWithSize:depth:separate:alpha:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSize_depth_separate_alpha(
             this: Allocated<Self>,
@@ -56,12 +56,12 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[deprecated]
-        #[method(window)]
+        #[unsafe(method(window))]
         #[unsafe(method_family = none)]
         pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Retained<NSWindow>>;
 
         #[deprecated]
-        #[method(rect)]
+        #[unsafe(method(rect))]
         #[unsafe(method_family = none)]
         pub unsafe fn rect(&self) -> NSRect;
     }
@@ -71,11 +71,11 @@ extern_methods!(
     /// Methods declared on superclass `NSImageRep`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCachedImageRep {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -88,7 +88,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCachedImageRep {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

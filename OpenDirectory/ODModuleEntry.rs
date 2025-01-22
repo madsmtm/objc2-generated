@@ -19,44 +19,44 @@ unsafe impl NSObjectProtocol for ODModuleEntry {}
 extern_methods!(
     unsafe impl ODModuleEntry {
         #[cfg(feature = "ODMappings")]
-        #[method(mappings)]
+        #[unsafe(method(mappings))]
         #[unsafe(method_family = none)]
         pub unsafe fn mappings(&self) -> Option<Retained<ODMappings>>;
 
         #[cfg(feature = "ODMappings")]
         /// Setter for [`mappings`][Self::mappings].
-        #[method(setMappings:)]
+        #[unsafe(method(setMappings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMappings(&self, mappings: Option<&ODMappings>);
 
-        #[method(supportedOptions)]
+        #[unsafe(method(supportedOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedOptions(&self) -> Retained<NSArray>;
 
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
-        #[method(xpcServiceName)]
+        #[unsafe(method(xpcServiceName))]
         #[unsafe(method_family = none)]
         pub unsafe fn xpcServiceName(&self) -> Retained<NSString>;
 
         /// Setter for [`xpcServiceName`][Self::xpcServiceName].
-        #[method(setXpcServiceName:)]
+        #[unsafe(method(setXpcServiceName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setXpcServiceName(&self, xpc_service_name: Option<&NSString>);
 
-        #[method(uuidString)]
+        #[unsafe(method(uuidString))]
         #[unsafe(method_family = none)]
         pub unsafe fn uuidString(&self) -> Retained<NSString>;
 
         /// Setter for [`uuidString`][Self::uuidString].
-        #[method(setUuidString:)]
+        #[unsafe(method(setUuidString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUuidString(&self, uuid_string: Option<&NSString>);
 
@@ -64,7 +64,7 @@ extern_methods!(
         ///
         ///
         /// Creates a new module entry with a given name and service.
-        #[method(moduleEntryWithName:xpcServiceName:)]
+        #[unsafe(method(moduleEntryWithName:xpcServiceName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moduleEntryWithName_xpcServiceName(
             name: Option<&NSString>,
@@ -75,7 +75,7 @@ extern_methods!(
         ///
         ///
         /// Options are dictated by the module and can be queried via [module supportedOptions].
-        #[method(setOption:value:)]
+        #[unsafe(method(setOption:value:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOption_value(
             &self,
@@ -87,7 +87,7 @@ extern_methods!(
         ///
         ///
         /// Fetches the current setting for the requested option.
-        #[method(option:)]
+        #[unsafe(method(option:))]
         #[unsafe(method_family = none)]
         pub unsafe fn option(&self, option_name: Option<&NSString>) -> Option<Retained<AnyObject>>;
     }
@@ -96,11 +96,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ODModuleEntry {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

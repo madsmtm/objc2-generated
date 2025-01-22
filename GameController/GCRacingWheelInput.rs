@@ -21,24 +21,24 @@ extern_methods!(
     unsafe impl GCRacingWheelInputState {
         #[cfg(feature = "GCSteeringWheelElement")]
         /// The steering wheel element.
-        #[method(wheel)]
+        #[unsafe(method(wheel))]
         #[unsafe(method_family = none)]
         pub unsafe fn wheel(&self) -> Retained<GCSteeringWheelElement>;
 
         #[cfg(all(feature = "GCButtonElement", feature = "GCPhysicalInputElement"))]
-        #[method(acceleratorPedal)]
+        #[unsafe(method(acceleratorPedal))]
         #[unsafe(method_family = none)]
         pub unsafe fn acceleratorPedal(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GCButtonElement>>>;
 
         #[cfg(all(feature = "GCButtonElement", feature = "GCPhysicalInputElement"))]
-        #[method(brakePedal)]
+        #[unsafe(method(brakePedal))]
         #[unsafe(method_family = none)]
         pub unsafe fn brakePedal(&self) -> Option<Retained<ProtocolObject<dyn GCButtonElement>>>;
 
         #[cfg(all(feature = "GCButtonElement", feature = "GCPhysicalInputElement"))]
-        #[method(clutchPedal)]
+        #[unsafe(method(clutchPedal))]
         #[unsafe(method_family = none)]
         pub unsafe fn clutchPedal(&self) -> Option<Retained<ProtocolObject<dyn GCButtonElement>>>;
 
@@ -50,7 +50,7 @@ extern_methods!(
         /// sequential gear shifting.  Those buttons are can be looked up with the
         /// `GCInputLeftPaddle`and
         /// `GCInputRightPaddle`input names.
-        #[method(shifter)]
+        #[unsafe(method(shifter))]
         #[unsafe(method_family = none)]
         pub unsafe fn shifter(&self) -> Option<Retained<GCGearShifterElement>>;
     }
@@ -59,11 +59,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCRacingWheelInputState {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -91,12 +91,12 @@ extern_methods!(
     unsafe impl GCRacingWheelInput {
         /// Polls the current state vector of the racing wheel input and saves it to a new
         /// instance.
-        #[method(capture)]
+        #[unsafe(method(capture))]
         #[unsafe(method_family = none)]
         pub unsafe fn capture(&self) -> Retained<GCRacingWheelInputState>;
 
         #[cfg(feature = "GCDevicePhysicalInputStateDiff")]
-        #[method(nextInputState)]
+        #[unsafe(method(nextInputState))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextInputState(&self) -> Option<Retained<GCRacingWheelInputState>>;
     }
@@ -105,11 +105,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCRacingWheelInput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

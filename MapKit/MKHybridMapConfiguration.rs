@@ -35,11 +35,11 @@ unsafe impl NSSecureCoding for MKHybridMapConfiguration {}
 extern_methods!(
     #[cfg(feature = "MKMapConfiguration")]
     unsafe impl MKHybridMapConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithElevationStyle:)]
+        #[unsafe(method(initWithElevationStyle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithElevationStyle(
             this: Allocated<Self>,
@@ -47,25 +47,25 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
-        #[method(pointOfInterestFilter)]
+        #[unsafe(method(pointOfInterestFilter))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
-        #[method(setPointOfInterestFilter:)]
+        #[unsafe(method(setPointOfInterestFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
             point_of_interest_filter: Option<&MKPointOfInterestFilter>,
         );
 
-        #[method(showsTraffic)]
+        #[unsafe(method(showsTraffic))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsTraffic(&self) -> bool;
 
         /// Setter for [`showsTraffic`][Self::showsTraffic].
-        #[method(setShowsTraffic:)]
+        #[unsafe(method(setShowsTraffic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsTraffic(&self, shows_traffic: bool);
     }
@@ -75,7 +75,7 @@ extern_methods!(
     /// Methods declared on superclass `MKMapConfiguration`
     #[cfg(feature = "MKMapConfiguration")]
     unsafe impl MKHybridMapConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

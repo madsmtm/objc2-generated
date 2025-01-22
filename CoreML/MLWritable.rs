@@ -9,7 +9,7 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlwritable?language=objc)
     pub unsafe trait MLWritable: NSObjectProtocol {
-        #[method(writeToURL:error:_)]
+        #[unsafe(method(writeToURL:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn writeToURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
     }

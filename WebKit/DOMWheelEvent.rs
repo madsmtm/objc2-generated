@@ -77,26 +77,26 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMWheelEvent {
-        #[method(wheelDeltaX)]
+        #[unsafe(method(wheelDeltaX))]
         #[unsafe(method_family = none)]
         pub unsafe fn wheelDeltaX(&self) -> c_int;
 
-        #[method(wheelDeltaY)]
+        #[unsafe(method(wheelDeltaY))]
         #[unsafe(method_family = none)]
         pub unsafe fn wheelDeltaY(&self) -> c_int;
 
         #[deprecated]
-        #[method(wheelDelta)]
+        #[unsafe(method(wheelDelta))]
         #[unsafe(method_family = none)]
         pub unsafe fn wheelDelta(&self) -> c_int;
 
         #[deprecated]
-        #[method(isHorizontal)]
+        #[unsafe(method(isHorizontal))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHorizontal(&self) -> bool;
 
         #[cfg(feature = "DOMAbstractView")]
-        #[method(initWheelEvent:wheelDeltaY:view:screenX:screenY:clientX:clientY:ctrlKey:altKey:shiftKey:metaKey:)]
+        #[unsafe(method(initWheelEvent:wheelDeltaY:view:screenX:screenY:clientX:clientY:ctrlKey:altKey:shiftKey:metaKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn initWheelEvent_wheelDeltaY_view_screenX_screenY_clientX_clientY_ctrlKey_altKey_shiftKey_metaKey(
             &self,
@@ -126,7 +126,7 @@ extern_methods!(
     ))]
     unsafe impl DOMWheelEvent {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -142,7 +142,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMWheelEvent {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

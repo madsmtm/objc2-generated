@@ -20,11 +20,11 @@ unsafe impl NSObjectProtocol for AVCaptionFormatConformer {}
 
 extern_methods!(
     unsafe impl AVCaptionFormatConformer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -34,7 +34,7 @@ extern_methods!(
         /// Parameter `conversionSettings`: Describes the conversion operation for which the caption is to be conformed.
         ///
         /// Returns: A new instance of AVCaptionFormatConformer configured to perform the specified conversion.
-        #[method(captionFormatConformerWithConversionSettings:)]
+        #[unsafe(method(captionFormatConformerWithConversionSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captionFormatConformerWithConversionSettings(
             conversion_settings: &NSDictionary<AVCaptionSettingsKey, AnyObject>,
@@ -48,7 +48,7 @@ extern_methods!(
         /// Returns: A new instance of AVCaptionFormatConformer configured to perform the specified conversion.
         ///
         /// This method throws an exception if the conversion setting's AVCaptionMediaTypeKey is not equal to AVMediaTypeClosedCaption, or if its AVCaptionMediaSubTypeKey is not equal to kCMClosedCaptionFormatType_CEA608.
-        #[method(initWithConversionSettings:)]
+        #[unsafe(method(initWithConversionSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConversionSettings(
             this: Allocated<Self>,
@@ -62,12 +62,12 @@ extern_methods!(
         /// In the case of conforming to CAE608 format, AVCaption is encoded so that each CAE608 control code (2 bytes) fits into 1 frame duration (1001/30000).
         /// When set to YES and if all the encoded data can not fit inside the canonical caption time range, the caption time range will be extended to fit all the data and will be returned in the conformed AVCaption.
         /// The default value is NO.
-        #[method(conformsCaptionsToTimeRange)]
+        #[unsafe(method(conformsCaptionsToTimeRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn conformsCaptionsToTimeRange(&self) -> bool;
 
         /// Setter for [`conformsCaptionsToTimeRange`][Self::conformsCaptionsToTimeRange].
-        #[method(setConformsCaptionsToTimeRange:)]
+        #[unsafe(method(setConformsCaptionsToTimeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConformsCaptionsToTimeRange(&self, conforms_captions_to_time_range: bool);
 
@@ -79,7 +79,7 @@ extern_methods!(
         /// Parameter `outError`: A pointer where a NSError object may be returned.
         ///
         /// Returns: A format-compliant caption that conforms to a specific format.
-        #[method(conformedCaptionForCaption:error:_)]
+        #[unsafe(method(conformedCaptionForCaption:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn conformedCaptionForCaption_error(
             &self,

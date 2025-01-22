@@ -18,21 +18,21 @@ unsafe impl NSObjectProtocol for AVAudioPlayer {}
 
 extern_methods!(
     unsafe impl AVAudioPlayer {
-        #[method(initWithContentsOfURL:error:_)]
+        #[unsafe(method(initWithContentsOfURL:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method(initWithData:error:_)]
+        #[unsafe(method(initWithData:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_error(
             this: Allocated<Self>,
             data: &NSData,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method(initWithContentsOfURL:fileTypeHint:error:_)]
+        #[unsafe(method(initWithContentsOfURL:fileTypeHint:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_fileTypeHint_error(
             this: Allocated<Self>,
@@ -40,7 +40,7 @@ extern_methods!(
             uti_string: Option<&NSString>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method(initWithData:fileTypeHint:error:_)]
+        #[unsafe(method(initWithData:fileTypeHint:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_fileTypeHint_error(
             this: Allocated<Self>,
@@ -48,48 +48,48 @@ extern_methods!(
             uti_string: Option<&NSString>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method(prepareToPlay)]
+        #[unsafe(method(prepareToPlay))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareToPlay(&self) -> bool;
 
-        #[method(play)]
+        #[unsafe(method(play))]
         #[unsafe(method_family = none)]
         pub unsafe fn play(&self) -> bool;
 
-        #[method(playAtTime:)]
+        #[unsafe(method(playAtTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playAtTime(&self, time: NSTimeInterval) -> bool;
 
-        #[method(pause)]
+        #[unsafe(method(pause))]
         #[unsafe(method_family = none)]
         pub unsafe fn pause(&self);
 
-        #[method(stop)]
+        #[unsafe(method(stop))]
         #[unsafe(method_family = none)]
         pub unsafe fn stop(&self);
 
-        #[method(isPlaying)]
+        #[unsafe(method(isPlaying))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPlaying(&self) -> bool;
 
-        #[method(numberOfChannels)]
+        #[unsafe(method(numberOfChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfChannels(&self) -> NSUInteger;
 
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
-        #[method(currentDevice)]
+        #[unsafe(method(currentDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentDevice(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`currentDevice`][Self::currentDevice].
-        #[method(setCurrentDevice:)]
+        #[unsafe(method(setCurrentDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentDevice(&self, current_device: Option<&NSString>);
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -97,115 +97,115 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn AVAudioPlayerDelegate>>,
         );
 
-        #[method(url)]
+        #[unsafe(method(url))]
         #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
-        #[method(data)]
+        #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
-        #[method(pan)]
+        #[unsafe(method(pan))]
         #[unsafe(method_family = none)]
         pub unsafe fn pan(&self) -> c_float;
 
         /// Setter for [`pan`][Self::pan].
-        #[method(setPan:)]
+        #[unsafe(method(setPan:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPan(&self, pan: c_float);
 
-        #[method(volume)]
+        #[unsafe(method(volume))]
         #[unsafe(method_family = none)]
         pub unsafe fn volume(&self) -> c_float;
 
         /// Setter for [`volume`][Self::volume].
-        #[method(setVolume:)]
+        #[unsafe(method(setVolume:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
-        #[method(setVolume:fadeDuration:)]
+        #[unsafe(method(setVolume:fadeDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVolume_fadeDuration(&self, volume: c_float, duration: NSTimeInterval);
 
-        #[method(enableRate)]
+        #[unsafe(method(enableRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn enableRate(&self) -> bool;
 
         /// Setter for [`enableRate`][Self::enableRate].
-        #[method(setEnableRate:)]
+        #[unsafe(method(setEnableRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnableRate(&self, enable_rate: bool);
 
-        #[method(rate)]
+        #[unsafe(method(rate))]
         #[unsafe(method_family = none)]
         pub unsafe fn rate(&self) -> c_float;
 
         /// Setter for [`rate`][Self::rate].
-        #[method(setRate:)]
+        #[unsafe(method(setRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRate(&self, rate: c_float);
 
-        #[method(currentTime)]
+        #[unsafe(method(currentTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentTime(&self) -> NSTimeInterval;
 
         /// Setter for [`currentTime`][Self::currentTime].
-        #[method(setCurrentTime:)]
+        #[unsafe(method(setCurrentTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentTime(&self, current_time: NSTimeInterval);
 
-        #[method(deviceCurrentTime)]
+        #[unsafe(method(deviceCurrentTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceCurrentTime(&self) -> NSTimeInterval;
 
-        #[method(numberOfLoops)]
+        #[unsafe(method(numberOfLoops))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfLoops(&self) -> NSInteger;
 
         /// Setter for [`numberOfLoops`][Self::numberOfLoops].
-        #[method(setNumberOfLoops:)]
+        #[unsafe(method(setNumberOfLoops:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfLoops(&self, number_of_loops: NSInteger);
 
-        #[method(settings)]
+        #[unsafe(method(settings))]
         #[unsafe(method_family = none)]
         pub unsafe fn settings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "AVAudioFormat")]
-        #[method(format)]
+        #[unsafe(method(format))]
         #[unsafe(method_family = none)]
         pub unsafe fn format(&self) -> Retained<AVAudioFormat>;
 
-        #[method(isMeteringEnabled)]
+        #[unsafe(method(isMeteringEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMeteringEnabled(&self) -> bool;
 
         /// Setter for [`isMeteringEnabled`][Self::isMeteringEnabled].
-        #[method(setMeteringEnabled:)]
+        #[unsafe(method(setMeteringEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMeteringEnabled(&self, metering_enabled: bool);
 
-        #[method(updateMeters)]
+        #[unsafe(method(updateMeters))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateMeters(&self);
 
-        #[method(peakPowerForChannel:)]
+        #[unsafe(method(peakPowerForChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn peakPowerForChannel(&self, channel_number: NSUInteger) -> c_float;
 
-        #[method(averagePowerForChannel:)]
+        #[unsafe(method(averagePowerForChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn averagePowerForChannel(&self, channel_number: NSUInteger) -> c_float;
 
         #[cfg(feature = "AVAudioSessionRoute")]
-        #[method(channelAssignments)]
+        #[unsafe(method(channelAssignments))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelAssignments(
             &self,
@@ -213,7 +213,7 @@ extern_methods!(
 
         #[cfg(feature = "AVAudioSessionRoute")]
         /// Setter for [`channelAssignments`][Self::channelAssignments].
-        #[method(setChannelAssignments:)]
+        #[unsafe(method(setChannelAssignments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChannelAssignments(
             &self,
@@ -225,11 +225,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioPlayer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -239,7 +239,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayerdelegate?language=objc)
     pub unsafe trait AVAudioPlayerDelegate: NSObjectProtocol {
         #[optional]
-        #[method(audioPlayerDidFinishPlaying:successfully:)]
+        #[unsafe(method(audioPlayerDidFinishPlaying:successfully:))]
         #[unsafe(method_family = none)]
         unsafe fn audioPlayerDidFinishPlaying_successfully(
             &self,
@@ -248,7 +248,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(audioPlayerDecodeErrorDidOccur:error:)]
+        #[unsafe(method(audioPlayerDecodeErrorDidOccur:error:))]
         #[unsafe(method_family = none)]
         unsafe fn audioPlayerDecodeErrorDidOccur_error(
             &self,

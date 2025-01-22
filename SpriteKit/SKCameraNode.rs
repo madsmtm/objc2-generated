@@ -68,14 +68,14 @@ extern_methods!(
         ///
         ///
         /// Returns: YES if the node is inside the viewport. NO if node is nil or the node is outside the viewport.
-        #[method(containsNode:)]
+        #[unsafe(method(containsNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsNode(&self, node: &SKNode) -> bool;
 
         /// Returns the set of nodes in the same scene as the camera that are contained within its viewport.
         ///
         /// Returns: the set of nodes contained
-        #[method(containedNodeSet)]
+        #[unsafe(method(containedNodeSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn containedNodeSet(&self) -> Retained<NSSet<SKNode>>;
     }
@@ -86,30 +86,30 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKCameraNode {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(node)]
+        #[unsafe(method(node))]
         #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(nodeWithFileNamed:)]
+        #[unsafe(method(nodeWithFileNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method(nodeWithFileNamed:securelyWithClasses:andError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
@@ -124,7 +124,7 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKCameraNode {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

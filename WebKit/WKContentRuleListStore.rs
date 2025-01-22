@@ -19,11 +19,11 @@ unsafe impl NSObjectProtocol for WKContentRuleListStore {}
 
 extern_methods!(
     unsafe impl WKContentRuleListStore {
-        #[method(defaultStore)]
+        #[unsafe(method(defaultStore))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultStore(mtm: MainThreadMarker) -> Option<Retained<Self>>;
 
-        #[method(storeWithURL:)]
+        #[unsafe(method(storeWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn storeWithURL(
             url: Option<&NSURL>,
@@ -31,7 +31,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "WKContentRuleList", feature = "block2"))]
-        #[method(compileContentRuleListForIdentifier:encodedContentRuleList:completionHandler:)]
+        #[unsafe(method(compileContentRuleListForIdentifier:encodedContentRuleList:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compileContentRuleListForIdentifier_encodedContentRuleList_completionHandler(
             &self,
@@ -43,7 +43,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "WKContentRuleList", feature = "block2"))]
-        #[method(lookUpContentRuleListForIdentifier:completionHandler:)]
+        #[unsafe(method(lookUpContentRuleListForIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lookUpContentRuleListForIdentifier_completionHandler(
             &self,
@@ -54,7 +54,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(removeContentRuleListForIdentifier:completionHandler:)]
+        #[unsafe(method(removeContentRuleListForIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeContentRuleListForIdentifier_completionHandler(
             &self,
@@ -63,7 +63,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(getAvailableContentRuleListIdentifiers:)]
+        #[unsafe(method(getAvailableContentRuleListIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAvailableContentRuleListIdentifiers(
             &self,
@@ -75,11 +75,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKContentRuleListStore {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -70,12 +70,12 @@ extern_methods!(
         /// See: GCController
         ///
         /// See: UIView.userInteractionEnabled
-        #[method(controllerUserInteractionEnabled)]
+        #[unsafe(method(controllerUserInteractionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn controllerUserInteractionEnabled(&self) -> bool;
 
         /// Setter for [`controllerUserInteractionEnabled`][Self::controllerUserInteractionEnabled].
-        #[method(setControllerUserInteractionEnabled:)]
+        #[unsafe(method(setControllerUserInteractionEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setControllerUserInteractionEnabled(
             &self,
@@ -89,7 +89,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GCEventViewController {
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -97,7 +97,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -111,7 +111,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GCEventViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -122,7 +122,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GCEventViewController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

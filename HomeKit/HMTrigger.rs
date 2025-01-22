@@ -28,12 +28,12 @@ unsafe impl NSObjectProtocol for HMTrigger {}
 
 extern_methods!(
     unsafe impl HMTrigger {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Name of the trigger.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
@@ -41,25 +41,25 @@ extern_methods!(
         ///
         ///
         /// TRUE if the trigger is enable, FALSE otherwise.
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         #[cfg(feature = "HMActionSet")]
         /// Array of HMActionSet objects that represent all the action sets associated
         /// with this trigger.
-        #[method(actionSets)]
+        #[unsafe(method(actionSets))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionSets(&self) -> Retained<NSArray<HMActionSet>>;
 
         /// The date that this trigger was most recently fired.
         #[deprecated = "No longer supported"]
-        #[method(lastFireDate)]
+        #[unsafe(method(lastFireDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastFireDate(&self) -> Option<Retained<NSDate>>;
 
         /// A unique identifier for the trigger.
-        #[method(uniqueIdentifier)]
+        #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
@@ -72,7 +72,7 @@ extern_methods!(
         ///
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request.
-        #[method(updateName:completionHandler:)]
+        #[unsafe(method(updateName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateName_completionHandler(
             &self,
@@ -90,7 +90,7 @@ extern_methods!(
         ///
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request.
-        #[method(addActionSet:completionHandler:)]
+        #[unsafe(method(addActionSet:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addActionSet_completionHandler(
             &self,
@@ -107,7 +107,7 @@ extern_methods!(
         ///
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request.
-        #[method(removeActionSet:completionHandler:)]
+        #[unsafe(method(removeActionSet:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeActionSet_completionHandler(
             &self,
@@ -132,7 +132,7 @@ extern_methods!(
         ///
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request.
-        #[method(enable:completionHandler:)]
+        #[unsafe(method(enable:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enable_completionHandler(
             &self,
@@ -145,7 +145,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMTrigger {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

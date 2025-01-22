@@ -41,7 +41,7 @@ extern_protocol!(
         #[cfg(feature = "UITextInput")]
         /// Returns all currently reported found ranges via
         /// `foundRange:forSearchString:.`
-        #[method(allFoundRanges)]
+        #[unsafe(method(allFoundRanges))]
         #[unsafe(method_family = none)]
         unsafe fn allFoundRanges(&self) -> Retained<NSOrderedSet<UITextRange>>;
 
@@ -55,7 +55,7 @@ extern_protocol!(
         ///
         /// Parameter `document`: (Optional) A developer-defined document identifier, later provided when this range
         /// needs to be styled.
-        #[method(foundRange:forSearchString:inDocument:)]
+        #[unsafe(method(foundRange:forSearchString:inDocument:))]
         #[unsafe(method_family = none)]
         unsafe fn foundRange_forSearchString_inDocument(
             &self,
@@ -75,7 +75,7 @@ extern_protocol!(
         /// Parameter `range`: The range that is now invalid.
         ///
         /// Parameter `document`: (Optional) If multiple documents are used, the document identifier for the range provided.
-        #[method(invalidateFoundRange:inDocument:)]
+        #[unsafe(method(invalidateFoundRange:inDocument:))]
         #[unsafe(method_family = none)]
         unsafe fn invalidateFoundRange_inDocument(
             &self,
@@ -85,12 +85,12 @@ extern_protocol!(
 
         /// Call this method to invalidate all currently shown ranges. This will cause the system find panel to update
         /// it's current state, and may trigger a new search using `performTextSearchWithQueryString:` immediately after.
-        #[method(invalidate)]
+        #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         unsafe fn invalidate(&self);
 
         /// Call this method after all documents have been searched.
-        #[method(finishedSearching)]
+        #[unsafe(method(finishedSearching))]
         #[unsafe(method_family = none)]
         unsafe fn finishedSearching(&self);
     }
@@ -101,7 +101,7 @@ extern_protocol!(
     pub unsafe trait UITextSearching: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         /// Overlap from UITextInput: Returns the currently selected text range, if applicable. Nil otherwise.
-        #[method(selectedTextRange)]
+        #[unsafe(method(selectedTextRange))]
         #[unsafe(method_family = none)]
         unsafe fn selectedTextRange(&self) -> Option<Retained<UITextRange>>;
 
@@ -120,7 +120,7 @@ extern_protocol!(
         ///
         /// Parameter `document`: If multiple documents are used, a document identifier will be provided here. Ranges are only
         /// compared between other ranges of the same document.
-        #[method(compareFoundRange:toRange:inDocument:)]
+        #[unsafe(method(compareFoundRange:toRange:inDocument:))]
         #[unsafe(method_family = none)]
         unsafe fn compareFoundRange_toRange_inDocument(
             &self,
@@ -141,7 +141,7 @@ extern_protocol!(
         ///
         /// Parameter `aggregator`: When results are found, provide them to the aggregator. The aggregator is thread-safe,
         /// so you may send it messages on other threads.
-        #[method(performTextSearchWithQueryString:usingOptions:resultAggregator:)]
+        #[unsafe(method(performTextSearchWithQueryString:usingOptions:resultAggregator:))]
         #[unsafe(method_family = none)]
         unsafe fn performTextSearchWithQueryString_usingOptions_resultAggregator(
             &self,
@@ -163,7 +163,7 @@ extern_protocol!(
         ///
         /// Parameter `style`: A style hint for how to decorate the text. This is ultimately up to the developer, but developers are
         /// encouraged to match the system's appearance (i.e., UITextView) as close as possible.
-        #[method(decorateFoundTextRange:inDocument:usingStyle:)]
+        #[unsafe(method(decorateFoundTextRange:inDocument:usingStyle:))]
         #[unsafe(method_family = none)]
         unsafe fn decorateFoundTextRange_inDocument_usingStyle(
             &self,
@@ -175,14 +175,14 @@ extern_protocol!(
         /// Called when the current search session has changed or ended, with the expectation that all decorations
         /// applied via
         /// `decorateFoundTextRange:usingStyle:`are cleared.
-        #[method(clearAllDecoratedFoundText)]
+        #[unsafe(method(clearAllDecoratedFoundText))]
         #[unsafe(method_family = none)]
         unsafe fn clearAllDecoratedFoundText(&self);
 
         /// Return YES if your searchable item also supports replacement. If this method is unimplemented, it is
         /// assumed that text replacement is not supported.
         #[optional]
-        #[method(supportsTextReplacement)]
+        #[unsafe(method(supportsTextReplacement))]
         #[unsafe(method_family = none)]
         unsafe fn supportsTextReplacement(&self) -> bool;
 
@@ -198,7 +198,7 @@ extern_protocol!(
         ///
         /// Parameter `replacementText`: Text that the user intends to replace with.
         #[optional]
-        #[method(shouldReplaceFoundTextInRange:inDocument:withText:)]
+        #[unsafe(method(shouldReplaceFoundTextInRange:inDocument:withText:))]
         #[unsafe(method_family = none)]
         unsafe fn shouldReplaceFoundTextInRange_inDocument_withText(
             &self,
@@ -219,7 +219,7 @@ extern_protocol!(
         ///
         /// Parameter `replacementText`: The replacement string.
         #[optional]
-        #[method(replaceFoundTextInRange:inDocument:withText:)]
+        #[unsafe(method(replaceFoundTextInRange:inDocument:withText:))]
         #[unsafe(method_family = none)]
         unsafe fn replaceFoundTextInRange_inDocument_withText(
             &self,
@@ -238,7 +238,7 @@ extern_protocol!(
         ///
         /// Parameter `replacementText`: The string to replace it with.
         #[optional]
-        #[method(replaceAllOccurrencesOfQueryString:usingOptions:withText:)]
+        #[unsafe(method(replaceAllOccurrencesOfQueryString:usingOptions:withText:))]
         #[unsafe(method_family = none)]
         unsafe fn replaceAllOccurrencesOfQueryString_usingOptions_withText(
             &self,
@@ -251,7 +251,7 @@ extern_protocol!(
         /// Called when the highlighted search result is about to change to
         /// `range`.
         #[optional]
-        #[method(willHighlightFoundTextRange:inDocument:)]
+        #[unsafe(method(willHighlightFoundTextRange:inDocument:))]
         #[unsafe(method_family = none)]
         unsafe fn willHighlightFoundTextRange_inDocument(
             &self,
@@ -268,7 +268,7 @@ extern_protocol!(
         ///
         /// Parameter `document`: (Optional) If multiple documents are used, the document identifier to scroll to.
         #[optional]
-        #[method(scrollRangeToVisible:inDocument:)]
+        #[unsafe(method(scrollRangeToVisible:inDocument:))]
         #[unsafe(method_family = none)]
         unsafe fn scrollRangeToVisible_inDocument(
             &self,
@@ -278,7 +278,7 @@ extern_protocol!(
 
         /// Returns the current search document, if applicable. Nil otherwise.
         #[optional]
-        #[method(selectedTextSearchDocument)]
+        #[unsafe(method(selectedTextSearchDocument))]
         #[unsafe(method_family = none)]
         unsafe fn selectedTextSearchDocument(
             &self,
@@ -287,7 +287,7 @@ extern_protocol!(
         /// Returns the visible ordering from `fromDocument` to `toDocument`. If your document identifiers
         /// are index paths, for example, this would yield the same result as `-[NSIndexPath compare:]`.
         #[optional]
-        #[method(compareOrderFromDocument:toDocument:)]
+        #[unsafe(method(compareOrderFromDocument:toDocument:))]
         #[unsafe(method_family = none)]
         unsafe fn compareOrderFromDocument_toDocument(
             &self,

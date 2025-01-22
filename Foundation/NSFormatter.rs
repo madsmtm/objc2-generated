@@ -78,7 +78,7 @@ unsafe impl NSObjectProtocol for NSFormatter {}
 extern_methods!(
     unsafe impl NSFormatter {
         #[cfg(feature = "NSString")]
-        #[method(stringForObjectValue:)]
+        #[unsafe(method(stringForObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringForObjectValue(
             &self,
@@ -90,7 +90,7 @@ extern_methods!(
             feature = "NSDictionary",
             feature = "NSString"
         ))]
-        #[method(attributedStringForObjectValue:withDefaultAttributes:)]
+        #[unsafe(method(attributedStringForObjectValue:withDefaultAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringForObjectValue_withDefaultAttributes(
             &self,
@@ -99,7 +99,7 @@ extern_methods!(
         ) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSString")]
-        #[method(editingStringForObjectValue:)]
+        #[unsafe(method(editingStringForObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn editingStringForObjectValue(
             &self,
@@ -107,7 +107,7 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method(getObjectValue:forString:errorDescription:)]
+        #[unsafe(method(getObjectValue:forString:errorDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
@@ -117,7 +117,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method(isPartialStringValid:newEditingString:errorDescription:)]
+        #[unsafe(method(isPartialStringValid:newEditingString:errorDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPartialStringValid_newEditingString_errorDescription(
             &self,
@@ -127,7 +127,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
-        #[method(isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:)]
+        #[unsafe(method(isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPartialStringValid_proposedSelectedRange_originalString_originalSelectedRange_errorDescription(
             &self,
@@ -143,11 +143,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFormatter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

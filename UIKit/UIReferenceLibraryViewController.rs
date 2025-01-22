@@ -52,7 +52,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIReferenceLibraryViewController {
         /// Returns YES if any installed dictionary has a definition for the provided term.
-        #[method(dictionaryHasDefinitionForTerm:)]
+        #[unsafe(method(dictionaryHasDefinitionForTerm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryHasDefinitionForTerm(
             term: &NSString,
@@ -60,15 +60,15 @@ extern_methods!(
         ) -> bool;
 
         /// Initializes an instance of a UIReferenceLibraryViewController with the term provided.
-        #[method(initWithTerm:)]
+        #[unsafe(method(initWithTerm:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTerm(this: Allocated<Self>, term: &NSString) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -76,7 +76,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -86,7 +86,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIReferenceLibraryViewController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -91,7 +91,7 @@ extern_methods!(
         /// corresponding to the given response.
         ///
         /// Returns: an initialized NSCachedURLResponse.
-        #[method(initWithResponse:data:)]
+        #[unsafe(method(initWithResponse:data:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResponse_data(
             this: Allocated<Self>,
@@ -118,7 +118,7 @@ extern_methods!(
         /// Parameter `storagePolicy`: an NSURLCacheStoragePolicy constant.
         ///
         /// Returns: an initialized NSCachedURLResponse.
-        #[method(initWithResponse:data:userInfo:storagePolicy:)]
+        #[unsafe(method(initWithResponse:data:userInfo:storagePolicy:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResponse_data_userInfo_storagePolicy(
             this: Allocated<Self>,
@@ -132,7 +132,7 @@ extern_methods!(
         /// Returns the response wrapped by this instance.
         ///
         /// Returns: The response wrapped by this instance.
-        #[method(response)]
+        #[unsafe(method(response))]
         #[unsafe(method_family = none)]
         pub unsafe fn response(&self) -> Retained<NSURLResponse>;
 
@@ -140,7 +140,7 @@ extern_methods!(
         /// Returns the data of the receiver.
         ///
         /// Returns: The data of the receiver.
-        #[method(data)]
+        #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
@@ -148,14 +148,14 @@ extern_methods!(
         /// Returns the userInfo dictionary of the receiver.
         ///
         /// Returns: The userInfo dictionary of the receiver.
-        #[method(userInfo)]
+        #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         /// Returns the NSURLCacheStoragePolicy constant of the receiver.
         ///
         /// Returns: The NSURLCacheStoragePolicy constant of the receiver.
-        #[method(storagePolicy)]
+        #[unsafe(method(storagePolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn storagePolicy(&self) -> NSURLCacheStoragePolicy;
     }
@@ -164,11 +164,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCachedURLResponse {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -232,12 +232,12 @@ extern_methods!(
         /// becoming unexpectedly unretrievable.
         ///
         /// Returns: the shared NSURLCache instance.
-        #[method(sharedURLCache)]
+        #[unsafe(method(sharedURLCache))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedURLCache() -> Retained<NSURLCache>;
 
         /// Setter for [`sharedURLCache`][Self::sharedURLCache].
-        #[method(setSharedURLCache:)]
+        #[unsafe(method(setSharedURLCache:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSharedURLCache(shared_url_cache: &NSURLCache);
 
@@ -259,7 +259,7 @@ extern_methods!(
         /// Returns: an initialized NSURLCache, with the given capacity, backed
         /// by disk.
         #[deprecated]
-        #[method(initWithMemoryCapacity:diskCapacity:diskPath:)]
+        #[unsafe(method(initWithMemoryCapacity:diskCapacity:diskPath:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMemoryCapacity_diskCapacity_diskPath(
             this: Allocated<Self>,
@@ -278,7 +278,7 @@ extern_methods!(
         /// Parameter `directoryURL`: the path to a directory on disk where the cache data is stored. Or nil for default directory.
         ///
         /// Returns: an initialized NSURLCache, with the given capacity, optionally backed by disk.
-        #[method(initWithMemoryCapacity:diskCapacity:directoryURL:)]
+        #[unsafe(method(initWithMemoryCapacity:diskCapacity:directoryURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMemoryCapacity_diskCapacity_directoryURL(
             this: Allocated<Self>,
@@ -299,7 +299,7 @@ extern_methods!(
         /// Returns: The NSCachedURLResponse stored in the cache with the given
         /// request, or nil if there is no NSCachedURLResponse stored with the
         /// given request.
-        #[method(cachedResponseForRequest:)]
+        #[unsafe(method(cachedResponseForRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cachedResponseForRequest(
             &self,
@@ -313,7 +313,7 @@ extern_methods!(
         /// Parameter `cachedResponse`: The cached response to store.
         ///
         /// Parameter `request`: the NSURLRequest to use as a key for the storage.
-        #[method(storeCachedResponse:forRequest:)]
+        #[unsafe(method(storeCachedResponse:forRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn storeCachedResponse_forRequest(
             &self,
@@ -329,19 +329,19 @@ extern_methods!(
         /// stored with the given request.
         ///
         /// Parameter `request`: the NSURLRequest to use as a key for the lookup.
-        #[method(removeCachedResponseForRequest:)]
+        #[unsafe(method(removeCachedResponseForRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeCachedResponseForRequest(&self, request: &NSURLRequest);
 
         /// Clears the given cache, removing all NSCachedURLResponse
         /// objects that it stores.
-        #[method(removeAllCachedResponses)]
+        #[unsafe(method(removeAllCachedResponses))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllCachedResponses(&self);
 
         #[cfg(feature = "NSDate")]
         /// Clears the given cache of any cached responses since the provided date.
-        #[method(removeCachedResponsesSinceDate:)]
+        #[unsafe(method(removeCachedResponsesSinceDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeCachedResponsesSinceDate(&self, date: &NSDate);
 
@@ -350,24 +350,24 @@ extern_methods!(
         /// At the time this call is made, the in-memory cache will truncate its contents to the size given, if necessary.
         ///
         /// Returns: The in-memory capacity, measured in bytes, for the receiver.
-        #[method(memoryCapacity)]
+        #[unsafe(method(memoryCapacity))]
         #[unsafe(method_family = none)]
         pub unsafe fn memoryCapacity(&self) -> NSUInteger;
 
         /// Setter for [`memoryCapacity`][Self::memoryCapacity].
-        #[method(setMemoryCapacity:)]
+        #[unsafe(method(setMemoryCapacity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMemoryCapacity(&self, memory_capacity: NSUInteger);
 
         /// The on-disk capacity of the receiver.
         ///
         /// The on-disk capacity, measured in bytes, for the receiver. On mutation the on-disk cache will truncate its contents to the size given, if necessary.
-        #[method(diskCapacity)]
+        #[unsafe(method(diskCapacity))]
         #[unsafe(method_family = none)]
         pub unsafe fn diskCapacity(&self) -> NSUInteger;
 
         /// Setter for [`diskCapacity`][Self::diskCapacity].
-        #[method(setDiskCapacity:)]
+        #[unsafe(method(setDiskCapacity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDiskCapacity(&self, disk_capacity: NSUInteger);
 
@@ -378,7 +378,7 @@ extern_methods!(
         /// usage of the in-memory cache.
         ///
         /// Returns: the current usage of the in-memory cache of the receiver.
-        #[method(currentMemoryUsage)]
+        #[unsafe(method(currentMemoryUsage))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentMemoryUsage(&self) -> NSUInteger;
 
@@ -389,7 +389,7 @@ extern_methods!(
         /// usage of the on-disk cache.
         ///
         /// Returns: the current usage of the on-disk cache of the receiver.
-        #[method(currentDiskUsage)]
+        #[unsafe(method(currentDiskUsage))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentDiskUsage(&self) -> NSUInteger;
     }
@@ -398,11 +398,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLCache {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -412,7 +412,7 @@ extern_methods!(
     /// NSURLSessionTaskAdditions
     unsafe impl NSURLCache {
         #[cfg(feature = "NSURLSession")]
-        #[method(storeCachedResponse:forDataTask:)]
+        #[unsafe(method(storeCachedResponse:forDataTask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn storeCachedResponse_forDataTask(
             &self,
@@ -421,7 +421,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSURLSession", feature = "block2"))]
-        #[method(getCachedResponseForDataTask:completionHandler:)]
+        #[unsafe(method(getCachedResponseForDataTask:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCachedResponseForDataTask_completionHandler(
             &self,
@@ -430,7 +430,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSURLSession")]
-        #[method(removeCachedResponseForDataTask:)]
+        #[unsafe(method(removeCachedResponseForDataTask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeCachedResponseForDataTask(&self, data_task: &NSURLSessionDataTask);
     }

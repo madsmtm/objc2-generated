@@ -36,23 +36,23 @@ unsafe impl NSSecureCoding for MLMetricKey {}
 extern_methods!(
     #[cfg(feature = "MLKey")]
     unsafe impl MLMetricKey {
-        #[method(lossValue)]
+        #[unsafe(method(lossValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn lossValue() -> Retained<MLMetricKey>;
 
-        #[method(epochIndex)]
+        #[unsafe(method(epochIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn epochIndex() -> Retained<MLMetricKey>;
 
-        #[method(miniBatchIndex)]
+        #[unsafe(method(miniBatchIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn miniBatchIndex() -> Retained<MLMetricKey>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

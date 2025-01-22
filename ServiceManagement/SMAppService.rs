@@ -106,14 +106,14 @@ extern_methods!(
         ///
         /// The identifier must correspond to the bundle identifier for a LoginItem that lives in the calling app's
         /// Contents/Library/LoginItems directory
-        #[method(loginItemServiceWithIdentifier:)]
+        #[unsafe(method(loginItemServiceWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loginItemServiceWithIdentifier(identifier: &NSString) -> Retained<Self>;
 
         /// A SMAppService corresponding to the main application as a LoginItem
         ///
         /// This SMAppService can be used to configure the main app to be launched at login
-        #[method(mainAppService)]
+        #[unsafe(method(mainAppService))]
         #[unsafe(method_family = none)]
         pub unsafe fn mainAppService() -> Retained<SMAppService>;
 
@@ -129,7 +129,7 @@ extern_methods!(
         /// In addition to the standard launchd.plist keys, plists registered with SMAppService may use the
         /// BundleProgram launchd plist key to specify an app bundle relative path for the executable. This key allows
         /// apps to support a user relocating the app bundle after installation.
-        #[method(agentServiceWithPlistName:)]
+        #[unsafe(method(agentServiceWithPlistName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn agentServiceWithPlistName(plist_name: &NSString) -> Retained<Self>;
 
@@ -149,7 +149,7 @@ extern_methods!(
         /// For a LaunchDaemon to be bootstrapped during boot, the containing application must be accessible before
         /// a user logs in. For applications that intend to register LaunchDaemons, it is recommended that the
         /// application bundle live in /Applications
-        #[method(daemonServiceWithPlistName:)]
+        #[unsafe(method(daemonServiceWithPlistName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn daemonServiceWithPlistName(plist_name: &NSString) -> Retained<Self>;
 
@@ -189,7 +189,7 @@ extern_methods!(
         ///
         ///
         /// See: SMAppService:unregisterAndReturnError
-        #[method(registerAndReturnError:_)]
+        #[unsafe(method(registerAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
@@ -216,7 +216,7 @@ extern_methods!(
         ///
         ///
         /// See: SMAppService:registerAndReturnError
-        #[method(unregisterAndReturnError:_)]
+        #[unsafe(method(unregisterAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn unregisterAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
@@ -245,7 +245,7 @@ extern_methods!(
         ///
         ///
         /// See: SMAppService:unregisterAndReturnError
-        #[method(unregisterWithCompletionHandler:)]
+        #[unsafe(method(unregisterWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unregisterWithCompletionHandler(
             &self,
@@ -261,12 +261,12 @@ extern_methods!(
         /// If the user has denied execution, the return value will be SMAppServiceRequiresApproval.
         ///
         /// If the service has been unregistered, the return value will be SMAppServiceNotRegistered
-        #[method(status)]
+        #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> SMAppServiceStatus;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method(statusForLegacyURL:)]
+        #[unsafe(method(statusForLegacyURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn statusForLegacyURL(url: &NSURL) -> SMAppServiceStatus;
 
@@ -276,7 +276,7 @@ extern_methods!(
         /// This API is intended for apps to call whenever they present a prompt to the user and the user
         /// confirms that they want to enable the app's helpers again. The app can call this API to help
         /// the user navigate to the appropriate panel in System Settings.
-        #[method(openSystemSettingsLoginItems)]
+        #[unsafe(method(openSystemSettingsLoginItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn openSystemSettingsLoginItems();
     }
@@ -287,11 +287,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl SMAppService {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

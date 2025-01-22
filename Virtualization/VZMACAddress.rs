@@ -30,11 +30,11 @@ unsafe impl NSObjectProtocol for VZMACAddress {}
 
 extern_methods!(
     unsafe impl VZMACAddress {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -46,7 +46,7 @@ extern_methods!(
         /// The alphabetical characters can appear lowercase or uppercase.
         ///
         /// Returns: A VZMACAddress or nil if the string is not formatted correctly.
-        #[method(initWithString:)]
+        #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithString(
             this: Allocated<Self>,
@@ -56,7 +56,7 @@ extern_methods!(
         /// Create a valid, random, unicast, locally administered address.
         ///
         /// The generated address is not guaranteed to be unique.
-        #[method(randomLocallyAdministeredAddress)]
+        #[unsafe(method(randomLocallyAdministeredAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomLocallyAdministeredAddress() -> Retained<Self>;
 
@@ -66,32 +66,32 @@ extern_methods!(
         /// Alphabetical characters are lowercase.
         ///
         /// The address is compatible with the parameter of -[VZMACAddress initWithString:].
-        #[method(string)]
+        #[unsafe(method(string))]
         #[unsafe(method_family = none)]
         pub unsafe fn string(&self) -> Retained<NSString>;
 
         /// True if the address is the broadcast address, false otherwise.
-        #[method(isBroadcastAddress)]
+        #[unsafe(method(isBroadcastAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBroadcastAddress(&self) -> bool;
 
         /// True if the address is a multicast address, false otherwise.
-        #[method(isMulticastAddress)]
+        #[unsafe(method(isMulticastAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMulticastAddress(&self) -> bool;
 
         /// True if the address is a unicast address, false otherwise.
-        #[method(isUnicastAddress)]
+        #[unsafe(method(isUnicastAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn isUnicastAddress(&self) -> bool;
 
         /// True if the address is a locally administered addresses (LAA), false otherwise.
-        #[method(isLocallyAdministeredAddress)]
+        #[unsafe(method(isLocallyAdministeredAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLocallyAdministeredAddress(&self) -> bool;
 
         /// True if the address is a universally administered addresses (UAA), false otherwise.
-        #[method(isUniversallyAdministeredAddress)]
+        #[unsafe(method(isUniversallyAdministeredAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn isUniversallyAdministeredAddress(&self) -> bool;
     }

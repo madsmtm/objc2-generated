@@ -35,12 +35,12 @@ unsafe impl NSObjectProtocol for CKFetchDatabaseChangesOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchDatabaseChangesOperation {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKServerChangeToken")]
-        #[method(initWithPreviousServerChangeToken:)]
+        #[unsafe(method(initWithPreviousServerChangeToken:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPreviousServerChangeToken(
             this: Allocated<Self>,
@@ -48,25 +48,25 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKServerChangeToken")]
-        #[method(previousServerChangeToken)]
+        #[unsafe(method(previousServerChangeToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Retained<CKServerChangeToken>>;
 
         #[cfg(feature = "CKServerChangeToken")]
         /// Setter for [`previousServerChangeToken`][Self::previousServerChangeToken].
-        #[method(setPreviousServerChangeToken:)]
+        #[unsafe(method(setPreviousServerChangeToken:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviousServerChangeToken(
             &self,
             previous_server_change_token: Option<&CKServerChangeToken>,
         );
 
-        #[method(resultsLimit)]
+        #[unsafe(method(resultsLimit))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultsLimit(&self) -> NSUInteger;
 
         /// Setter for [`resultsLimit`][Self::resultsLimit].
-        #[method(setResultsLimit:)]
+        #[unsafe(method(setResultsLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
@@ -81,12 +81,12 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations
         /// Blocks assigned to this operation may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(fetchAllChanges)]
+        #[unsafe(method(fetchAllChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllChanges(&self) -> bool;
 
         /// Setter for [`fetchAllChanges`][Self::fetchAllChanges].
-        #[method(setFetchAllChanges:)]
+        #[unsafe(method(setFetchAllChanges:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchAllChanges(&self, fetch_all_changes: bool);
 
@@ -95,7 +95,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(recordZoneWithIDChangedBlock)]
+        #[unsafe(method(recordZoneWithIDChangedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDChangedBlock(
             &self,
@@ -103,7 +103,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDChangedBlock`][Self::recordZoneWithIDChangedBlock].
-        #[method(setRecordZoneWithIDChangedBlock:)]
+        #[unsafe(method(setRecordZoneWithIDChangedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDChangedBlock(
             &self,
@@ -117,7 +117,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(recordZoneWithIDWasDeletedBlock)]
+        #[unsafe(method(recordZoneWithIDWasDeletedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDWasDeletedBlock(
             &self,
@@ -125,7 +125,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDWasDeletedBlock`][Self::recordZoneWithIDWasDeletedBlock].
-        #[method(setRecordZoneWithIDWasDeletedBlock:)]
+        #[unsafe(method(setRecordZoneWithIDWasDeletedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDWasDeletedBlock(
             &self,
@@ -144,7 +144,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(recordZoneWithIDWasPurgedBlock)]
+        #[unsafe(method(recordZoneWithIDWasPurgedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDWasPurgedBlock(
             &self,
@@ -152,7 +152,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDWasPurgedBlock`][Self::recordZoneWithIDWasPurgedBlock].
-        #[method(setRecordZoneWithIDWasPurgedBlock:)]
+        #[unsafe(method(setRecordZoneWithIDWasPurgedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDWasPurgedBlock(
             &self,
@@ -171,7 +171,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock)]
+        #[unsafe(method(recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
             &self,
@@ -179,7 +179,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock`][Self::recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock].
-        #[method(setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock:)]
+        #[unsafe(method(setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
             &self,
@@ -193,7 +193,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(changeTokenUpdatedBlock)]
+        #[unsafe(method(changeTokenUpdatedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeTokenUpdatedBlock(
             &self,
@@ -201,7 +201,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         /// Setter for [`changeTokenUpdatedBlock`][Self::changeTokenUpdatedBlock].
-        #[method(setChangeTokenUpdatedBlock:)]
+        #[unsafe(method(setChangeTokenUpdatedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChangeTokenUpdatedBlock(
             &self,
@@ -226,7 +226,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(fetchDatabaseChangesCompletionBlock)]
+        #[unsafe(method(fetchDatabaseChangesCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchDatabaseChangesCompletionBlock(
             &self,
@@ -234,7 +234,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         /// Setter for [`fetchDatabaseChangesCompletionBlock`][Self::fetchDatabaseChangesCompletionBlock].
-        #[method(setFetchDatabaseChangesCompletionBlock:)]
+        #[unsafe(method(setFetchDatabaseChangesCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchDatabaseChangesCompletionBlock(
             &self,
@@ -249,7 +249,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchDatabaseChangesOperation {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

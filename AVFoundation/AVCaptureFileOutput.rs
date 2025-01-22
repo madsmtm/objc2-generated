@@ -36,14 +36,14 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an object conforming to the AVCaptureFileOutputDelegate protocol that will be able to monitor and control recording along exact sample boundaries.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureFileOutputDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -54,7 +54,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSURL object containing the file URL of the file currently being written by the receiver. Returns nil if the receiver is not recording to any file.
-        #[method(outputFileURL)]
+        #[unsafe(method(outputFileURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputFileURL(&self) -> Option<Retained<NSURL>>;
 
@@ -75,7 +75,7 @@ extern_methods!(
         /// On macOS, if this method is called within the captureOutput:didOutputSampleBuffer:fromConnection: delegate method, the first samples written to the new file are guaranteed to be those contained in the sample buffer passed to that method.
         ///
         /// Note: AVCaptureAudioFileOutput does not support -startRecordingToOutputFileURL:recordingDelegate:. Use -startRecordingToOutputFileURL:outputFileType:recordingDelegate: instead.
-        #[method(startRecordingToOutputFileURL:recordingDelegate:)]
+        #[unsafe(method(startRecordingToOutputFileURL:recordingDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startRecordingToOutputFileURL_recordingDelegate(
             &self,
@@ -91,7 +91,7 @@ extern_methods!(
         /// When recording is stopped either by calling this method, by changing files using startRecordingToOutputFileURL:recordingDelegate:, or because of an error, the remaining data that needs to be included to the file will be written in the background. Therefore, before using the file, clients must wait until the delegate that was specified in startRecordingToOutputFileURL:recordingDelegate: is notified when all data has been written to the file using the captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error: method.
         ///
         /// On macOS, if this method is called within the captureOutput:didOutputSampleBuffer:fromConnection: delegate method, the last samples written to the current file are guaranteed to be those that were output immediately before those in the sample buffer passed to that method.
-        #[method(stopRecording)]
+        #[unsafe(method(stopRecording))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopRecording(&self);
 
@@ -99,7 +99,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is YES when the receiver currently has a file to which it is writing new samples, NO otherwise.
-        #[method(isRecording)]
+        #[unsafe(method(isRecording))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRecording(&self) -> bool;
 
@@ -107,7 +107,7 @@ extern_methods!(
         ///
         ///
         /// This property indicates recording to the file returned by outputFileURL has been previously paused using the pauseRecording method. When a recording is paused, captured samples are not written to the output file, but new samples can be written to the same file in the future by calling resumeRecording.
-        #[method(isRecordingPaused)]
+        #[unsafe(method(isRecordingPaused))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRecordingPaused(&self) -> bool;
 
@@ -121,7 +121,7 @@ extern_methods!(
         /// A recording can be stopped as normal, even when it's paused.
         ///
         /// A format or device change will result in the recording being stopped, even when it's paused.
-        #[method(pauseRecording)]
+        #[unsafe(method(pauseRecording))]
         #[unsafe(method_family = none)]
         pub unsafe fn pauseRecording(&self);
 
@@ -131,7 +131,7 @@ extern_methods!(
         /// This method causes the receiver to resume writing captured samples to the current output file returned by outputFileURL, after recording was previously paused using pauseRecording. This allows clients to record multiple media segments that are not contiguous in time to a single file.
         ///
         /// On macOS, if this method is called within the captureOutput:didOutputSampleBuffer:fromConnection: delegate method, the first samples written to the current file are guaranteed to be those contained in the sample buffer passed to that method.
-        #[method(resumeRecording)]
+        #[unsafe(method(resumeRecording))]
         #[unsafe(method_family = none)]
         pub unsafe fn resumeRecording(&self);
 
@@ -140,7 +140,7 @@ extern_methods!(
         ///
         ///
         /// If recording is in progress, this property returns the total time recorded so far.
-        #[method(recordedDuration)]
+        #[unsafe(method(recordedDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordedDuration(&self) -> CMTime;
 
@@ -148,7 +148,7 @@ extern_methods!(
         ///
         ///
         /// If a recording is in progress, this property returns the size in bytes of the data recorded so far.
-        #[method(recordedFileSize)]
+        #[unsafe(method(recordedFileSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordedFileSize(&self) -> i64;
 
@@ -157,13 +157,13 @@ extern_methods!(
         ///
         ///
         /// This property specifies a hard limit on the duration of recorded files. Recording is stopped when the limit is reached and the captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error: delegate method is invoked with an appropriate error. The default value of this property is kCMTimeInvalid, which indicates no limit.
-        #[method(maxRecordedDuration)]
+        #[unsafe(method(maxRecordedDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxRecordedDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`maxRecordedDuration`][Self::maxRecordedDuration].
-        #[method(setMaxRecordedDuration:)]
+        #[unsafe(method(setMaxRecordedDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxRecordedDuration(&self, max_recorded_duration: CMTime);
 
@@ -171,12 +171,12 @@ extern_methods!(
         ///
         ///
         /// This property specifies a hard limit on the data size of recorded files. Recording is stopped when the limit is reached and the captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error: delegate method is invoked with an appropriate error. The default value of this property is 0, which indicates no limit.
-        #[method(maxRecordedFileSize)]
+        #[unsafe(method(maxRecordedFileSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxRecordedFileSize(&self) -> i64;
 
         /// Setter for [`maxRecordedFileSize`][Self::maxRecordedFileSize].
-        #[method(setMaxRecordedFileSize:)]
+        #[unsafe(method(setMaxRecordedFileSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxRecordedFileSize(&self, max_recorded_file_size: i64);
 
@@ -184,12 +184,12 @@ extern_methods!(
         ///
         ///
         /// This property specifies a hard lower limit on the amount of free space that must remain on a target volume for recording to continue. Recording is stopped when the limit is reached and the captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error: delegate method is invoked with an appropriate error.
-        #[method(minFreeDiskSpaceLimit)]
+        #[unsafe(method(minFreeDiskSpaceLimit))]
         #[unsafe(method_family = none)]
         pub unsafe fn minFreeDiskSpaceLimit(&self) -> i64;
 
         /// Setter for [`minFreeDiskSpaceLimit`][Self::minFreeDiskSpaceLimit].
-        #[method(setMinFreeDiskSpaceLimit:)]
+        #[unsafe(method(setMinFreeDiskSpaceLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinFreeDiskSpaceLimit(&self, min_free_disk_space_limit: i64);
     }
@@ -199,11 +199,11 @@ extern_methods!(
     /// Methods declared on superclass `AVCaptureOutput`
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureFileOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -229,7 +229,7 @@ extern_protocol!(
         ///
         /// Clients should not assume that this method will be called on a specific thread, and should also try to make this method as efficient as possible.
         #[optional]
-        #[method(captureOutput:didStartRecordingToOutputFileAtURL:fromConnections:)]
+        #[unsafe(method(captureOutput:didStartRecordingToOutputFileAtURL:fromConnections:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_didStartRecordingToOutputFileAtURL_fromConnections(
             &self,
@@ -261,7 +261,7 @@ extern_protocol!(
         ///
         /// Clients should not assume that this method will be called on a specific thread, and should also try to make this method as efficient as possible.
         #[optional]
-        #[method(captureOutput:didStartRecordingToOutputFileAtURL:startPTS:fromConnections:)]
+        #[unsafe(method(captureOutput:didStartRecordingToOutputFileAtURL:startPTS:fromConnections:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_didStartRecordingToOutputFileAtURL_startPTS_fromConnections(
             &self,
@@ -286,7 +286,7 @@ extern_protocol!(
         ///
         /// Clients should not assume that this method will be called on a specific thread, and should also try to make this method as efficient as possible.
         #[optional]
-        #[method(captureOutput:didPauseRecordingToOutputFileAtURL:fromConnections:)]
+        #[unsafe(method(captureOutput:didPauseRecordingToOutputFileAtURL:fromConnections:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_didPauseRecordingToOutputFileAtURL_fromConnections(
             &self,
@@ -310,7 +310,7 @@ extern_protocol!(
         ///
         /// Clients should not assume that this method will be called on a specific thread, and should also try to make this method as efficient as possible.
         #[optional]
-        #[method(captureOutput:didResumeRecordingToOutputFileAtURL:fromConnections:)]
+        #[unsafe(method(captureOutput:didResumeRecordingToOutputFileAtURL:fromConnections:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_didResumeRecordingToOutputFileAtURL_fromConnections(
             &self,
@@ -336,7 +336,7 @@ extern_protocol!(
         ///
         /// Clients should not assume that this method will be called on a specific thread, and should also try to make this method as efficient as possible.
         #[optional]
-        #[method(captureOutput:willFinishRecordingToOutputFileAtURL:fromConnections:error:)]
+        #[unsafe(method(captureOutput:willFinishRecordingToOutputFileAtURL:fromConnections:error:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_willFinishRecordingToOutputFileAtURL_fromConnections_error(
             &self,
@@ -364,7 +364,7 @@ extern_protocol!(
         /// Clients should not assume that this method will be called on a specific thread.
         ///
         /// Delegates are required to implement this method.
-        #[method(captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:)]
+        #[unsafe(method(captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_didFinishRecordingToOutputFileAtURL_fromConnections_error(
             &self,
@@ -389,7 +389,7 @@ extern_protocol!(
         ///
         ///
         /// In apps linked before macOS 10.8, delegates that implement the captureOutput:didOutputSampleBuffer:fromConnection: method can ensure frame accurate start / stop of a recording by calling startRecordingToOutputFileURL:recordingDelegate: from within the callback. Frame accurate start requires the capture output to apply outputSettings when the session starts running, so it is ready to record on any given frame boundary. Compressing all the time while the session is running has power, thermal, and CPU implications. In apps linked on or after macOS 10.8, delegates must implement captureOutputShouldProvideSampleAccurateRecordingStart: to indicate whether frame accurate start/stop recording is required (returning YES) or not (returning NO). The output calls this method as soon as the delegate is added, and never again. If your delegate returns NO, the capture output applies compression settings when startRecordingToOutputFileURL:recordingDelegate: is called, and disables compression settings after the recording is stopped.
-        #[method(captureOutputShouldProvideSampleAccurateRecordingStart:)]
+        #[unsafe(method(captureOutputShouldProvideSampleAccurateRecordingStart:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutputShouldProvideSampleAccurateRecordingStart(
             &self,
@@ -421,7 +421,7 @@ extern_protocol!(
         ///
         /// Clients should not assume that this method will be called on a specific thread. In addition, this method is called periodically, so it must be efficient to prevent capture performance problems.
         #[optional]
-        #[method(captureOutput:didOutputSampleBuffer:fromConnection:)]
+        #[unsafe(method(captureOutput:didOutputSampleBuffer:fromConnection:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_didOutputSampleBuffer_fromConnection(
             &self,
@@ -451,11 +451,11 @@ unsafe impl NSObjectProtocol for AVCaptureMovieFileOutput {}
 extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureMovieFileOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -468,13 +468,13 @@ extern_methods!(
         /// Changing the value of this property will not affect the movie fragment interval of the file currently being written, if there is one.
         ///
         /// For best writing performance on external storage devices, set the movieFragmentInterval to 10 seconds or greater. If the size of a movie fragment is greater than or equal to 2GB, an interval is added at 2GB mark.
-        #[method(movieFragmentInterval)]
+        #[unsafe(method(movieFragmentInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieFragmentInterval(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`movieFragmentInterval`][Self::movieFragmentInterval].
-        #[method(setMovieFragmentInterval:)]
+        #[unsafe(method(setMovieFragmentInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMovieFragmentInterval(&self, movie_fragment_interval: CMTime);
 
@@ -483,13 +483,13 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an array of AVMetadataItem objects representing the collection of top-level metadata to be written in each output file.
-        #[method(metadata)]
+        #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSArray<AVMetadataItem>>>;
 
         #[cfg(feature = "AVMetadataItem")]
         /// Setter for [`metadata`][Self::metadata].
-        #[method(setMetadata:)]
+        #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: Option<&NSArray<AVMetadataItem>>);
 
@@ -498,7 +498,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of AVVideoCodecTypes that can be used as values for the AVVideoCodecKey in the receiver's setOutputSettingsForConnection: dictionary. The array of available video codecs may change depending on the current session preset. The first codec in the array is used by default when recording a file.
-        #[method(availableVideoCodecTypes)]
+        #[unsafe(method(availableVideoCodecTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableVideoCodecTypes(&self) -> Retained<NSArray<AVVideoCodecType>>;
 
@@ -510,7 +510,7 @@ extern_methods!(
         ///
         ///
         /// Returns an NSArray of NSStrings listing the allowable keys in the receiver's setOutputSettings:forConnection: dictionary.
-        #[method(supportedOutputSettingsKeysForConnection:)]
+        #[unsafe(method(supportedOutputSettingsKeysForConnection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedOutputSettingsKeysForConnection(
             &self,
@@ -527,7 +527,7 @@ extern_methods!(
         ///
         ///
         /// See AVAudioSettings.h for audio connections or AVVideoSettings.h for video connections for more information on the structure of an output settings dictionary. If the returned value is an empty dictionary (i.e. [NSDictionary dictionary], the format of the media from the connection will not be changed before being written to the file. If -setOutputSettings:forConnection: was called with a nil dictionary, this method returns a non-nil dictionary reflecting the settings used by the AVCaptureSession's current sessionPreset.
-        #[method(outputSettingsForConnection:)]
+        #[unsafe(method(outputSettingsForConnection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputSettingsForConnection(
             &self,
@@ -548,7 +548,7 @@ extern_methods!(
         /// On iOS, your outputSettings dictionary may only contain keys listed in - supportedOutputSettingsKeysForConnection:. If you specify any other key, an NSInvalidArgumentException will be thrown. Further restrictions may be imposed on the AVVideoCodecTypeKey. Its value should be present in the -availableVideoCodecTypes array. If AVVideoCompressionPropertiesKey is specified, you must also specify a valid value for AVVideoCodecKey. On iOS versions prior to 12.0, the only settable key for video connections is AVVideoCodecTypeKey. On iOS 12.0 and later, video connections gain support for AVVideoCompressionPropertiesKey.
         ///
         /// On iOS, -outputSettingsForConnection: always provides a fully populated dictionary. If you call -outputSettingsForConnection: with the intent of overriding a few of the values, you must take care to exclude keys that are not supported before calling -setOutputSettings:forConnection:. When providing an AVVideoCompressionPropertiesKey sub dictionary, you may specify a sparse dictionary. AVCaptureMovieFileOutput will always fill in missing keys with default values for the current AVCaptureSession configuration.
-        #[method(setOutputSettings:forConnection:)]
+        #[unsafe(method(setOutputSettings:forConnection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputSettings_forConnection(
             &self,
@@ -564,7 +564,7 @@ extern_methods!(
         ///
         ///
         /// See setRecordsVideoOrientationAndMirroringChanges:asMetadataTrackForConnection: for details on the behavior controlled by this value. The default value returned is NO.
-        #[method(recordsVideoOrientationAndMirroringChangesAsMetadataTrackForConnection:)]
+        #[unsafe(method(recordsVideoOrientationAndMirroringChangesAsMetadataTrackForConnection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordsVideoOrientationAndMirroringChangesAsMetadataTrackForConnection(
             &self,
@@ -591,7 +591,7 @@ extern_methods!(
         /// The default behavior is to not create the timed metadata track.
         ///
         /// The doRecordChanges value is only observed at the start of recording. Changes to the value will not have any effect until the next recording is started.
-        #[method(setRecordsVideoOrientationAndMirroringChanges:asMetadataTrackForConnection:)]
+        #[unsafe(method(setRecordsVideoOrientationAndMirroringChanges:asMetadataTrackForConnection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordsVideoOrientationAndMirroringChanges_asMetadataTrackForConnection(
             &self,
@@ -603,13 +603,13 @@ extern_methods!(
         ///
         ///
         /// This property enables a camera selection behavior to be applied when recording a movie. Once recording starts, the specified behavior and conditions take effect. Once recording stops the camera selection will change back to the primaryConstituentDeviceSwitchingBehavior specified by the AVCaptureDevice. By default, this property is set to YES when connected to an AVCaptureDevice that supports constituent device switching.
-        #[method(isPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled)]
+        #[unsafe(method(isPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled(&self)
             -> bool;
 
         /// Setter for [`isPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled`][Self::isPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled].
-        #[method(setPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled:)]
+        #[unsafe(method(setPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled(
             &self,
@@ -621,7 +621,7 @@ extern_methods!(
         ///
         ///
         /// This controls the camera selection behavior used while recording a movie, when enabled through primaryConstituentDeviceSwitchingBehaviorForRecordingEnabled. Setting the switching behavior to anything other than AVCapturePrimaryConstituentDeviceSwitchingBehaviorUnsupported when connected to an AVCaptureDevice that does not suport constituent device selection throws an NSInvalidArgumentException. Setting restrictedSwitchingBehaviorConditions to something other than AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone while setting switchingBehavior to something other than AVCapturePrimaryConstituentDeviceSwitchingBehaviorRestricted throws an NSInvalidArgumentException exception.
-        #[method(setPrimaryConstituentDeviceSwitchingBehaviorForRecording:restrictedSwitchingBehaviorConditions:)]
+        #[unsafe(method(setPrimaryConstituentDeviceSwitchingBehaviorForRecording:restrictedSwitchingBehaviorConditions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryConstituentDeviceSwitchingBehaviorForRecording_restrictedSwitchingBehaviorConditions(
             &self,
@@ -634,7 +634,7 @@ extern_methods!(
         ///
         ///
         /// By default, this property is set to AVCapturePrimaryConstituentDeviceSwitchingBehaviorRestricted. This property is key-value observable.
-        #[method(primaryConstituentDeviceSwitchingBehaviorForRecording)]
+        #[unsafe(method(primaryConstituentDeviceSwitchingBehaviorForRecording))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryConstituentDeviceSwitchingBehaviorForRecording(
             &self,
@@ -645,14 +645,14 @@ extern_methods!(
         ///
         ///
         /// By default, this property is set to AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorCondition{VideoZoomChanged | FocusModeChanged | ExposureModeChanged}. This property is key-value observable.
-        #[method(primaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording)]
+        #[unsafe(method(primaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording(
             &self,
         ) -> AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions;
 
         /// Returns whether or not capturing spatial video to a file is supported. Note that in order to be supported, two conditions must be met. (1) The source AVCaptureDevice's activeFormat.spatialVideoCaptureSupported property must return YES. (2) The video AVCaptureConnection's activeVideoStabilizationMode property must return AVCaptureVideoStabilizationModeCinematic, AVCaptureVideoStabilizationModeCinematicExtended, or AVCaptureVideoStabilizationModeCinematicExtendedEnhanced.
-        #[method(isSpatialVideoCaptureSupported)]
+        #[unsafe(method(isSpatialVideoCaptureSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSpatialVideoCaptureSupported(&self) -> bool;
 
@@ -662,12 +662,12 @@ extern_methods!(
         /// This property enables capturing spatial video to a file. By default, this property is set to NO. Check spatialVideoCaptureSupported before setting this property, as setting to YES will throw an exception if the feature is not supported.
         ///
         /// On iOS, enabling spatial video will overwrite the connected AVCaptureDevice's `videoZoomFactor`, `minAvailableVideoZoomFactor`, and `maxAvailableVideoZoomFactor` to the field of view of the narrower camera in the pair.
-        #[method(isSpatialVideoCaptureEnabled)]
+        #[unsafe(method(isSpatialVideoCaptureEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSpatialVideoCaptureEnabled(&self) -> bool;
 
         /// Setter for [`isSpatialVideoCaptureEnabled`][Self::isSpatialVideoCaptureEnabled].
-        #[method(setSpatialVideoCaptureEnabled:)]
+        #[unsafe(method(setSpatialVideoCaptureEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpatialVideoCaptureEnabled(&self, spatial_video_capture_enabled: bool);
     }
@@ -692,11 +692,11 @@ unsafe impl NSObjectProtocol for AVCaptureAudioFileOutput {}
 extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureAudioFileOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -705,7 +705,7 @@ extern_methods!(
         ///
         ///
         /// Returns: An NSArray of UTIs identifying the file types the AVCaptureAudioFileOutput class can write.
-        #[method(availableOutputFileTypes)]
+        #[unsafe(method(availableOutputFileTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableOutputFileTypes() -> Retained<NSArray<AVFileType>>;
 
@@ -729,7 +729,7 @@ extern_methods!(
         /// When recording is stopped either by calling stopRecording, by changing files using this method, or because of an error, the remaining data that needs to be included to the file will be written in the background. Therefore, clients must specify a delegate that will be notified when all data has been written to the file using the captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error: method. The recording delegate can also optionally implement methods that inform it when data starts being written, when recording is paused and resumed, and when recording is about to be finished.
         ///
         /// On macOS, if this method is called within the captureOutput:didOutputSampleBuffer:fromConnection: delegate method, the first samples written to the new file are guaranteed to be those contained in the sample buffer passed to that method.
-        #[method(startRecordingToOutputFileURL:outputFileType:recordingDelegate:)]
+        #[unsafe(method(startRecordingToOutputFileURL:outputFileType:recordingDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startRecordingToOutputFileURL_outputFileType_recordingDelegate(
             &self,
@@ -743,13 +743,13 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an array of AVMetadataItem objects representing the collection of top-level metadata to be written in each output file. Only ID3 v2.2, v2.3, or v2.4 style metadata items are supported.
-        #[method(metadata)]
+        #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
         /// Setter for [`metadata`][Self::metadata].
-        #[method(setMetadata:)]
+        #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: &NSArray<AVMetadataItem>);
 
@@ -757,12 +757,12 @@ extern_methods!(
         ///
         ///
         /// The output settings dictionary can contain values for keys from AVAudioSettings.h. A value of nil indicates that the format of the audio should not be changed before being written to the file.
-        #[method(audioSettings)]
+        #[unsafe(method(audioSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioSettings(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`audioSettings`][Self::audioSettings].
-        #[method(setAudioSettings:)]
+        #[unsafe(method(setAudioSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioSettings(
             &self,

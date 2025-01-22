@@ -19,11 +19,11 @@ unsafe impl NSObjectProtocol for VZSharedDirectory {}
 
 extern_methods!(
     unsafe impl VZSharedDirectory {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -32,7 +32,7 @@ extern_methods!(
         /// Parameter `url`: Local file URL to expose to the guest.
         ///
         /// Parameter `readOnly`: Whether or not the directory will be exposed as read-only to the guest.
-        #[method(initWithURL:readOnly:)]
+        #[unsafe(method(initWithURL:readOnly:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_readOnly(
             this: Allocated<Self>,
@@ -43,12 +43,12 @@ extern_methods!(
         /// File URL to a directory on the host to expose to the guest.
         ///
         /// The URL must point to an existing directory path in the host file system.
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// Whether or not the directory will be exposed as read-only to the guest.
-        #[method(isReadOnly)]
+        #[unsafe(method(isReadOnly))]
         #[unsafe(method_family = none)]
         pub unsafe fn isReadOnly(&self) -> bool;
     }

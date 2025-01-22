@@ -11,7 +11,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallobserverdelegate?language=objc)
     pub unsafe trait CXCallObserverDelegate: NSObjectProtocol {
         #[cfg(feature = "CXCall")]
-        #[method(callObserver:callChanged:)]
+        #[unsafe(method(callObserver:callChanged:))]
         #[unsafe(method_family = none)]
         unsafe fn callObserver_callChanged(&self, call_observer: &CXCallObserver, call: &CXCall);
     }
@@ -30,7 +30,7 @@ extern_methods!(
     unsafe impl CXCallObserver {
         #[cfg(feature = "CXCall")]
         /// Retrieve the current call list, blocking on initial state retrieval if necessary
-        #[method(calls)]
+        #[unsafe(method(calls))]
         #[unsafe(method_family = none)]
         pub unsafe fn calls(&self) -> Retained<NSArray<CXCall>>;
     }
@@ -39,11 +39,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXCallObserver {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

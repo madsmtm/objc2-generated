@@ -34,25 +34,25 @@ extern_methods!(
         ///
         /// Provide a `UTType` symbol name and description in your app’s `Info.plist`
         /// file.
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<UTType>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         /// Setter for [`type`][Self::type].
-        #[method(setType:)]
+        #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: &UTType);
 
         /// A string to use to override the title of the item’s type.
         ///
         /// Use this value to dynamically override the title of the custom item.
-        #[method(overrideTitle)]
+        #[unsafe(method(overrideTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn overrideTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`overrideTitle`][Self::overrideTitle].
-        #[method(setOverrideTitle:)]
+        #[unsafe(method(setOverrideTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverrideTitle(&self, override_title: Option<&NSString>);
     }
@@ -61,11 +61,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCustomRoutingActionItem {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

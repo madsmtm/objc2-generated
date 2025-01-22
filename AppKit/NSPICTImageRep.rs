@@ -31,22 +31,22 @@ unsafe impl NSObjectProtocol for NSPICTImageRep {}
 extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSPICTImageRep {
-        #[method(imageRepWithData:)]
+        #[unsafe(method(imageRepWithData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageRepWithData(pict_data: &NSData) -> Option<Retained<Self>>;
 
-        #[method(initWithData:)]
+        #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData(
             this: Allocated<Self>,
             pict_data: &NSData,
         ) -> Option<Retained<Self>>;
 
-        #[method(PICTRepresentation)]
+        #[unsafe(method(PICTRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn PICTRepresentation(&self) -> Retained<NSData>;
 
-        #[method(boundingBox)]
+        #[unsafe(method(boundingBox))]
         #[unsafe(method_family = none)]
         pub unsafe fn boundingBox(&self) -> NSRect;
     }
@@ -56,11 +56,11 @@ extern_methods!(
     /// Methods declared on superclass `NSImageRep`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSPICTImageRep {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -73,7 +73,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSPICTImageRep {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -18,31 +18,31 @@ unsafe impl NSObjectProtocol for GKLeaderboardEntry {}
 extern_methods!(
     unsafe impl GKLeaderboardEntry {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-        #[method(player)]
+        #[unsafe(method(player))]
         #[unsafe(method_family = none)]
         pub unsafe fn player(&self) -> Retained<GKPlayer>;
 
-        #[method(rank)]
+        #[unsafe(method(rank))]
         #[unsafe(method_family = none)]
         pub unsafe fn rank(&self) -> NSInteger;
 
-        #[method(score)]
+        #[unsafe(method(score))]
         #[unsafe(method_family = none)]
         pub unsafe fn score(&self) -> NSInteger;
 
-        #[method(formattedScore)]
+        #[unsafe(method(formattedScore))]
         #[unsafe(method_family = none)]
         pub unsafe fn formattedScore(&self) -> Retained<NSString>;
 
-        #[method(context)]
+        #[unsafe(method(context))]
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> NSUInteger;
 
-        #[method(date)]
+        #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -51,7 +51,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKLeaderboardEntry {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

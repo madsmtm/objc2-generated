@@ -23,7 +23,7 @@ extern_methods!(
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKPolylineRenderer {
         #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
-        #[method(initWithPolyline:)]
+        #[unsafe(method(initWithPolyline:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPolyline(
             this: Allocated<Self>,
@@ -31,29 +31,29 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
-        #[method(polyline)]
+        #[unsafe(method(polyline))]
         #[unsafe(method_family = none)]
         pub unsafe fn polyline(&self) -> Retained<MKPolyline>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(strokeStart)]
+        #[unsafe(method(strokeStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeStart(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`strokeStart`][Self::strokeStart].
-        #[method(setStrokeStart:)]
+        #[unsafe(method(setStrokeStart:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeStart(&self, stroke_start: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(strokeEnd)]
+        #[unsafe(method(strokeEnd))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeEnd(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`strokeEnd`][Self::strokeEnd].
-        #[method(setStrokeEnd:)]
+        #[unsafe(method(setStrokeEnd:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeEnd(&self, stroke_end: CGFloat);
     }
@@ -64,7 +64,7 @@ extern_methods!(
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKPolylineRenderer {
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method(initWithOverlay:)]
+        #[unsafe(method(initWithOverlay:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
@@ -77,11 +77,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKPolylineRenderer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

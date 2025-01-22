@@ -38,43 +38,43 @@ unsafe impl NSSecureCoding for HKFHIRVersion {}
 
 extern_methods!(
     unsafe impl HKFHIRVersion {
-        #[method(majorVersion)]
+        #[unsafe(method(majorVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn majorVersion(&self) -> NSInteger;
 
-        #[method(minorVersion)]
+        #[unsafe(method(minorVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn minorVersion(&self) -> NSInteger;
 
-        #[method(patchVersion)]
+        #[unsafe(method(patchVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn patchVersion(&self) -> NSInteger;
 
         #[cfg(feature = "HKFHIRRelease")]
-        #[method(FHIRRelease)]
+        #[unsafe(method(FHIRRelease))]
         #[unsafe(method_family = none)]
         pub unsafe fn FHIRRelease(&self) -> Retained<HKFHIRRelease>;
 
         /// A string representation in the format "{major}.{minor}.{patch}".
-        #[method(stringRepresentation)]
+        #[unsafe(method(stringRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringRepresentation(&self) -> Retained<NSString>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(versionFromVersionString:error:_)]
+        #[unsafe(method(versionFromVersionString:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn versionFromVersionString_error(
             version_string: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method(primaryDSTU2Version)]
+        #[unsafe(method(primaryDSTU2Version))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryDSTU2Version() -> Retained<Self>;
 
-        #[method(primaryR4Version)]
+        #[unsafe(method(primaryR4Version))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryR4Version() -> Retained<Self>;
     }
@@ -83,7 +83,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKFHIRVersion {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

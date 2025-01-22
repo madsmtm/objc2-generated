@@ -28,7 +28,7 @@ unsafe impl NSObjectProtocol for VZNATNetworkDeviceAttachment {}
 extern_methods!(
     #[cfg(feature = "VZNetworkDeviceAttachment")]
     unsafe impl VZNATNetworkDeviceAttachment {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -38,7 +38,7 @@ extern_methods!(
     /// Methods declared on superclass `VZNetworkDeviceAttachment`
     #[cfg(feature = "VZNetworkDeviceAttachment")]
     unsafe impl VZNATNetworkDeviceAttachment {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

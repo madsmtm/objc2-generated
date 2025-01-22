@@ -141,47 +141,47 @@ extern_methods!(
         /// Controls how samples' depths are compared during reprojection, variance estimation, and
         /// bilateral filtering. The final weight is given by exp(-abs(Z1 - Z2) / depthWeight). Must be
         /// greater than zero. Defaults to 1.0.
-        #[method(depthWeight)]
+        #[unsafe(method(depthWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn depthWeight(&self) -> c_float;
 
         /// Setter for [`depthWeight`][Self::depthWeight].
-        #[method(setDepthWeight:)]
+        #[unsafe(method(setDepthWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDepthWeight(&self, depth_weight: c_float);
 
         /// Controls how samples' normals are compared during reprojection, variance estimation, and
         /// bilateral filtering. The final weight is given by pow(max(dot(N1, N2)), normalWeight). Must be
         /// greater than or equal to zero. Defaults to 128.
-        #[method(normalWeight)]
+        #[unsafe(method(normalWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn normalWeight(&self) -> c_float;
 
         /// Setter for [`normalWeight`][Self::normalWeight].
-        #[method(setNormalWeight:)]
+        #[unsafe(method(setNormalWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNormalWeight(&self, normal_weight: c_float);
 
         /// Controls how samples' luminance values are compared during bilateral filtering. The final
         /// weight is given by exp(-abs(L1 - L2) / (luminanceWeight * luminanceVariance + EPSILON)). Must be
         /// greater than or equal to zero. Defaults to 4.
-        #[method(luminanceWeight)]
+        #[unsafe(method(luminanceWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn luminanceWeight(&self) -> c_float;
 
         /// Setter for [`luminanceWeight`][Self::luminanceWeight].
-        #[method(setLuminanceWeight:)]
+        #[unsafe(method(setLuminanceWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLuminanceWeight(&self, luminance_weight: c_float);
 
         /// How to weight samples during temporal reprojection. Defaults to
         /// MPSTemporalWeightingAverage.
-        #[method(temporalWeighting)]
+        #[unsafe(method(temporalWeighting))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporalWeighting(&self) -> MPSTemporalWeighting;
 
         /// Setter for [`temporalWeighting`][Self::temporalWeighting].
-        #[method(setTemporalWeighting:)]
+        #[unsafe(method(setTemporalWeighting:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTemporalWeighting(&self, temporal_weighting: MPSTemporalWeighting);
 
@@ -189,12 +189,12 @@ extern_methods!(
         /// the current frame with the previous frame during reprojection. The final value is given by
         /// current * temporalReprojectionBlendFactor + previous * (1 - temporalReprojectionBlendFactor).
         /// Must be between zero and one, inclusive. Defaults to 0.2.
-        #[method(temporalReprojectionBlendFactor)]
+        #[unsafe(method(temporalReprojectionBlendFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporalReprojectionBlendFactor(&self) -> c_float;
 
         /// Setter for [`temporalReprojectionBlendFactor`][Self::temporalReprojectionBlendFactor].
-        #[method(setTemporalReprojectionBlendFactor:)]
+        #[unsafe(method(setTemporalReprojectionBlendFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTemporalReprojectionBlendFactor(
             &self,
@@ -204,24 +204,24 @@ extern_methods!(
         /// During reprojection, minimum combined depth and normal weight needed to consider a pixel
         /// from the previous frame consistent with a pixel from the current frame. Must be greater than or
         /// equal to zero. Defaults to 0.01.
-        #[method(reprojectionThreshold)]
+        #[unsafe(method(reprojectionThreshold))]
         #[unsafe(method_family = none)]
         pub unsafe fn reprojectionThreshold(&self) -> c_float;
 
         /// Setter for [`reprojectionThreshold`][Self::reprojectionThreshold].
-        #[method(setReprojectionThreshold:)]
+        #[unsafe(method(setReprojectionThreshold:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReprojectionThreshold(&self, reprojection_threshold: c_float);
 
         /// The minimum number of frames which must be accumulated before variance can be computed
         /// directly from the accumulated luminance moments. If enough frames have not been accumulated,
         /// variance will be estimated with a spatial filter instead. Defaults to 4.
-        #[method(minimumFramesForVarianceEstimation)]
+        #[unsafe(method(minimumFramesForVarianceEstimation))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumFramesForVarianceEstimation(&self) -> NSUInteger;
 
         /// Setter for [`minimumFramesForVarianceEstimation`][Self::minimumFramesForVarianceEstimation].
-        #[method(setMinimumFramesForVarianceEstimation:)]
+        #[unsafe(method(setMinimumFramesForVarianceEstimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumFramesForVarianceEstimation(
             &self,
@@ -230,100 +230,100 @@ extern_methods!(
 
         /// The radius of the spatial filter used when not enough frames have been accumulated to
         /// compute variance from accumulated luminance moments. Defaults to 3 resulting in a 7x7 filter.
-        #[method(varianceEstimationRadius)]
+        #[unsafe(method(varianceEstimationRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn varianceEstimationRadius(&self) -> NSUInteger;
 
         /// Setter for [`varianceEstimationRadius`][Self::varianceEstimationRadius].
-        #[method(setVarianceEstimationRadius:)]
+        #[unsafe(method(setVarianceEstimationRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVarianceEstimationRadius(&self, variance_estimation_radius: NSUInteger);
 
         /// The sigma value of the Gaussian function used by the spatial filter used when not enough
         /// frames have been accumulated to compute variance from accumulated luminance moments. Must be
         /// greater than zero. Defaults to 2.0.
-        #[method(varianceEstimationSigma)]
+        #[unsafe(method(varianceEstimationSigma))]
         #[unsafe(method_family = none)]
         pub unsafe fn varianceEstimationSigma(&self) -> c_float;
 
         /// Setter for [`varianceEstimationSigma`][Self::varianceEstimationSigma].
-        #[method(setVarianceEstimationSigma:)]
+        #[unsafe(method(setVarianceEstimationSigma:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVarianceEstimationSigma(&self, variance_estimation_sigma: c_float);
 
         /// The sigma value of the Gaussian function used by the variance pre-filter of the
         /// bilateral filter. Must be greater than zero. Defaults to 1.33.
-        #[method(variancePrefilterSigma)]
+        #[unsafe(method(variancePrefilterSigma))]
         #[unsafe(method_family = none)]
         pub unsafe fn variancePrefilterSigma(&self) -> c_float;
 
         /// Setter for [`variancePrefilterSigma`][Self::variancePrefilterSigma].
-        #[method(setVariancePrefilterSigma:)]
+        #[unsafe(method(setVariancePrefilterSigma:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVariancePrefilterSigma(&self, variance_prefilter_sigma: c_float);
 
         /// The radius of the variance pre-filter of the bilateral filter. Defaults to 1 resulting in
         /// a 3x3 filter.
-        #[method(variancePrefilterRadius)]
+        #[unsafe(method(variancePrefilterRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn variancePrefilterRadius(&self) -> NSUInteger;
 
         /// Setter for [`variancePrefilterRadius`][Self::variancePrefilterRadius].
-        #[method(setVariancePrefilterRadius:)]
+        #[unsafe(method(setVariancePrefilterRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVariancePrefilterRadius(&self, variance_prefilter_radius: NSUInteger);
 
         /// The sigma value of the Gaussian function used by the bilateral filter. Must be greater
         /// than zero. Defaults to 1.2.
-        #[method(bilateralFilterSigma)]
+        #[unsafe(method(bilateralFilterSigma))]
         #[unsafe(method_family = none)]
         pub unsafe fn bilateralFilterSigma(&self) -> c_float;
 
         /// Setter for [`bilateralFilterSigma`][Self::bilateralFilterSigma].
-        #[method(setBilateralFilterSigma:)]
+        #[unsafe(method(setBilateralFilterSigma:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBilateralFilterSigma(&self, bilateral_filter_sigma: c_float);
 
         /// The radius of the bilateral filter. Defaults to 2 resulting in a 5x5 filter.
-        #[method(bilateralFilterRadius)]
+        #[unsafe(method(bilateralFilterRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn bilateralFilterRadius(&self) -> NSUInteger;
 
         /// Setter for [`bilateralFilterRadius`][Self::bilateralFilterRadius].
-        #[method(setBilateralFilterRadius:)]
+        #[unsafe(method(setBilateralFilterRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBilateralFilterRadius(&self, bilateral_filter_radius: NSUInteger);
 
         /// The number of channels to filter in the source image. Must be at least one and at most
         /// three. Defaults to 3.
-        #[method(channelCount)]
+        #[unsafe(method(channelCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelCount(&self) -> NSUInteger;
 
         /// Setter for [`channelCount`][Self::channelCount].
-        #[method(setChannelCount:)]
+        #[unsafe(method(setChannelCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChannelCount(&self, channel_count: NSUInteger);
 
         /// The number of channels to filter in the second source image. Must be at least one and at
         /// most three. Defaults to 3.
-        #[method(channelCount2)]
+        #[unsafe(method(channelCount2))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelCount2(&self) -> NSUInteger;
 
         /// Setter for [`channelCount2`][Self::channelCount2].
-        #[method(setChannelCount2:)]
+        #[unsafe(method(setChannelCount2:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChannelCount2(&self, channel_count2: NSUInteger);
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -331,7 +331,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[method(copyWithZone:device:)]
+        #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -339,7 +339,7 @@ extern_methods!(
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
 
-        #[method(encodeWithCoder:)]
+        #[unsafe(method(encodeWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
@@ -419,7 +419,7 @@ extern_methods!(
         /// Parameter `depthNormalTexture`: The depth and normal values for the current frame
         ///
         /// Parameter `previousDepthNormalTexture`: The depth and normal values for the previous frame
-        #[method(encodeReprojectionToCommandBuffer:sourceTexture:previousTexture:destinationTexture:previousLuminanceMomentsTexture:destinationLuminanceMomentsTexture:previousFrameCountTexture:destinationFrameCountTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:)]
+        #[unsafe(method(encodeReprojectionToCommandBuffer:sourceTexture:previousTexture:destinationTexture:previousLuminanceMomentsTexture:destinationLuminanceMomentsTexture:previousFrameCountTexture:destinationFrameCountTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeReprojectionToCommandBuffer_sourceTexture_previousTexture_destinationTexture_previousLuminanceMomentsTexture_destinationLuminanceMomentsTexture_previousFrameCountTexture_destinationFrameCountTexture_motionVectorTexture_depthNormalTexture_previousDepthNormalTexture(
             &self,
@@ -522,7 +522,7 @@ extern_methods!(
         /// Parameter `depthNormalTexture`: The depth and normal values for the current frame
         ///
         /// Parameter `previousDepthNormalTexture`: The depth and normal values for the previous frame
-        #[method(encodeReprojectionToCommandBuffer:sourceTexture:previousTexture:destinationTexture:previousLuminanceMomentsTexture:destinationLuminanceMomentsTexture:sourceTexture2:previousTexture2:destinationTexture2:previousLuminanceMomentsTexture2:destinationLuminanceMomentsTexture2:previousFrameCountTexture:destinationFrameCountTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:)]
+        #[unsafe(method(encodeReprojectionToCommandBuffer:sourceTexture:previousTexture:destinationTexture:previousLuminanceMomentsTexture:destinationLuminanceMomentsTexture:sourceTexture2:previousTexture2:destinationTexture2:previousLuminanceMomentsTexture2:destinationLuminanceMomentsTexture2:previousFrameCountTexture:destinationFrameCountTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeReprojectionToCommandBuffer_sourceTexture_previousTexture_destinationTexture_previousLuminanceMomentsTexture_destinationLuminanceMomentsTexture_sourceTexture2_previousTexture2_destinationTexture2_previousLuminanceMomentsTexture2_destinationLuminanceMomentsTexture2_previousFrameCountTexture_destinationFrameCountTexture_motionVectorTexture_depthNormalTexture_previousDepthNormalTexture(
             &self,
@@ -595,7 +595,7 @@ extern_methods!(
         /// Parameter `frameCountTexture`: Number of frames accumulated into the source image
         ///
         /// Parameter `depthNormalTexture`: The depth and normal values for the current frame
-        #[method(encodeVarianceEstimationToCommandBuffer:sourceTexture:luminanceMomentsTexture:destinationTexture:frameCountTexture:depthNormalTexture:)]
+        #[unsafe(method(encodeVarianceEstimationToCommandBuffer:sourceTexture:luminanceMomentsTexture:destinationTexture:frameCountTexture:depthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeVarianceEstimationToCommandBuffer_sourceTexture_luminanceMomentsTexture_destinationTexture_frameCountTexture_depthNormalTexture(
             &self,
@@ -664,7 +664,7 @@ extern_methods!(
         /// Parameter `frameCountTexture`: Number of frames accumulated into the source image
         ///
         /// Parameter `depthNormalTexture`: The depth and normal values for the current frame
-        #[method(encodeVarianceEstimationToCommandBuffer:sourceTexture:luminanceMomentsTexture:destinationTexture:sourceTexture2:luminanceMomentsTexture2:destinationTexture2:frameCountTexture:depthNormalTexture:)]
+        #[unsafe(method(encodeVarianceEstimationToCommandBuffer:sourceTexture:luminanceMomentsTexture:destinationTexture:sourceTexture2:luminanceMomentsTexture2:destinationTexture2:frameCountTexture:depthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeVarianceEstimationToCommandBuffer_sourceTexture_luminanceMomentsTexture_destinationTexture_sourceTexture2_luminanceMomentsTexture2_destinationTexture2_frameCountTexture_depthNormalTexture(
             &self,
@@ -728,7 +728,7 @@ extern_methods!(
         /// Parameter `destinationTexture`: Destination packed color and variance texture
         ///
         /// Parameter `depthNormalTexture`: The depth and normal values for the current frame
-        #[method(encodeBilateralFilterToCommandBuffer:stepDistance:sourceTexture:destinationTexture:depthNormalTexture:)]
+        #[unsafe(method(encodeBilateralFilterToCommandBuffer:stepDistance:sourceTexture:destinationTexture:depthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBilateralFilterToCommandBuffer_stepDistance_sourceTexture_destinationTexture_depthNormalTexture(
             &self,
@@ -792,7 +792,7 @@ extern_methods!(
         /// Parameter `destinationTexture2`: Second destination image
         ///
         /// Parameter `depthNormalTexture`: The depth and normal values for the current frame
-        #[method(encodeBilateralFilterToCommandBuffer:stepDistance:sourceTexture:destinationTexture:sourceTexture2:destinationTexture2:depthNormalTexture:)]
+        #[unsafe(method(encodeBilateralFilterToCommandBuffer:stepDistance:sourceTexture:destinationTexture:sourceTexture2:destinationTexture2:depthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBilateralFilterToCommandBuffer_stepDistance_sourceTexture_destinationTexture_sourceTexture2_destinationTexture2_depthNormalTexture(
             &self,
@@ -819,7 +819,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -832,11 +832,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSSVGF {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -850,7 +850,7 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpssvgftextureallocator?language=objc)
     pub unsafe trait MPSSVGFTextureAllocator: NSObjectProtocol {
         /// Returns an autoreleased Metal 2D texture with a matching pixel format, width, and height.
-        #[method(textureWithPixelFormat:width:height:)]
+        #[unsafe(method(textureWithPixelFormat:width:height:))]
         #[unsafe(method_family = none)]
         unsafe fn textureWithPixelFormat_width_height(
             &self,
@@ -862,7 +862,7 @@ extern_protocol!(
         /// Return a texture to the allocator. The allocator operate in such a way as to reduce the
         /// allocation cost should another texture be requested with the same width, height, and pixel
         /// format.
-        #[method(returnTexture:)]
+        #[unsafe(method(returnTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn returnTexture(&self, texture: &ProtocolObject<dyn MTLTexture>);
     }
@@ -886,24 +886,24 @@ unsafe impl NSObjectProtocol for MPSSVGFDefaultTextureAllocator {}
 extern_methods!(
     unsafe impl MPSSVGFDefaultTextureAllocator {
         /// Metal device this object was allocated from
-        #[method(device)]
+        #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// The number of textures which have been allocated from this allocator
-        #[method(allocatedTextureCount)]
+        #[unsafe(method(allocatedTextureCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn allocatedTextureCount(&self) -> NSUInteger;
 
         /// Initialize the MPSSVGFDefaultTextureAllocator with a Metal device
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method(textureWithPixelFormat:width:height:)]
+        #[unsafe(method(textureWithPixelFormat:width:height:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithPixelFormat_width_height(
             &self,
@@ -912,12 +912,12 @@ extern_methods!(
             height: NSUInteger,
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
-        #[method(returnTexture:)]
+        #[unsafe(method(returnTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn returnTexture(&self, texture: &ProtocolObject<dyn MTLTexture>);
 
         /// Remove all textures from the cache
-        #[method(reset)]
+        #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
         pub unsafe fn reset(&self);
     }
@@ -926,11 +926,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSSVGFDefaultTextureAllocator {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -991,12 +991,12 @@ extern_methods!(
         #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
         /// The underlying MPSSVGF kernels object which will be used for denoising. Use this object
         /// to customize the denoising process.
-        #[method(svgf)]
+        #[unsafe(method(svgf))]
         #[unsafe(method_family = none)]
         pub unsafe fn svgf(&self) -> Retained<MPSSVGF>;
 
         /// The object which will be used to allocate intermediate and output textures.
-        #[method(textureAllocator)]
+        #[unsafe(method(textureAllocator))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureAllocator(
             &self,
@@ -1004,19 +1004,19 @@ extern_methods!(
 
         /// The number of bilateral filter iterations to run. More iterations will improve quality at
         /// the cost of performance. Defaults to 5. Must be at least 1.
-        #[method(bilateralFilterIterations)]
+        #[unsafe(method(bilateralFilterIterations))]
         #[unsafe(method_family = none)]
         pub unsafe fn bilateralFilterIterations(&self) -> NSUInteger;
 
         /// Setter for [`bilateralFilterIterations`][Self::bilateralFilterIterations].
-        #[method(setBilateralFilterIterations:)]
+        #[unsafe(method(setBilateralFilterIterations:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBilateralFilterIterations(&self, bilateral_filter_iterations: NSUInteger);
 
         /// Initialize the MPSSVGFDenoiser object
         ///
         /// Parameter device The Metal device to use for denoising
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1032,7 +1032,7 @@ extern_methods!(
         /// object will be used to allocate temporary intermediate and output
         /// textures. This can be a custom object or an instance of the
         /// MPSSVGFDefaultTextureAllocator class.
-        #[method(initWithSVGF:textureAllocator:)]
+        #[unsafe(method(initWithSVGF:textureAllocator:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSVGF_textureAllocator(
             this: Allocated<Self>,
@@ -1042,13 +1042,13 @@ extern_methods!(
 
         /// Clear the temporal history. Reprojection and temporal accumulation will restart on the
         /// next call to encodeToCommandBuffer:
-        #[method(clearTemporalHistory)]
+        #[unsafe(method(clearTemporalHistory))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearTemporalHistory(&self);
 
         /// Return any temporary textures to the texture allocator. Also clears the temporal history.
         /// This should be called before resizing the source texture(s).
-        #[method(releaseTemporaryTextures)]
+        #[unsafe(method(releaseTemporaryTextures))]
         #[unsafe(method_family = none)]
         pub unsafe fn releaseTemporaryTextures(&self);
 
@@ -1076,7 +1076,7 @@ extern_methods!(
         /// details.
         /// Parameter previousDepthNormalTexture Depth/normal texture from the previous frame. See the MPSSVGF
         /// object for more details.
-        #[method(encodeToCommandBuffer:sourceTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_motionVectorTexture_depthNormalTexture_previousDepthNormalTexture(
             &self,
@@ -1115,7 +1115,7 @@ extern_methods!(
         /// details.
         /// Parameter previousDepthNormalTexture Depth/normal texture from the previous frame. See the MPSSVGF
         /// object for more details.
-        #[method(encodeToCommandBuffer:sourceTexture:destinationTexture:sourceTexture2:destinationTexture2:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceTexture:destinationTexture:sourceTexture2:destinationTexture2:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_destinationTexture_sourceTexture2_destinationTexture2_motionVectorTexture_depthNormalTexture_previousDepthNormalTexture(
             &self,
@@ -1134,11 +1134,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSSVGFDenoiser {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

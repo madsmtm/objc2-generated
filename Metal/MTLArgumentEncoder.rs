@@ -17,27 +17,27 @@ extern_protocol!(
     pub unsafe trait MTLArgumentEncoder: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// The device this argument encoder was created against.
-        #[method(device)]
+        #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// A string to help identify this object.
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         unsafe fn setLabel(&self, label: Option<&NSString>);
 
         /// The number of bytes required to store the encoded resource bindings.
-        #[method(encodedLength)]
+        #[unsafe(method(encodedLength))]
         #[unsafe(method_family = none)]
         fn encodedLength(&self) -> NSUInteger;
 
         /// The alignment in bytes required to store the encoded resource bindings.
-        #[method(alignment)]
+        #[unsafe(method(alignment))]
         #[unsafe(method_family = none)]
         fn alignment(&self) -> NSUInteger;
 
@@ -47,7 +47,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Sets the destination buffer and offset at which the arguments will be encoded.
-        #[method(setArgumentBuffer:offset:)]
+        #[unsafe(method(setArgumentBuffer:offset:))]
         #[unsafe(method_family = none)]
         unsafe fn setArgumentBuffer_offset(
             &self,
@@ -62,7 +62,7 @@ extern_protocol!(
         ))]
         /// Sets the destination buffer, starting offset and specific array element arguments will be encoded into. arrayElement represents
         /// the desired element of IAB array targetted by encoding
-        #[method(setArgumentBuffer:startOffset:arrayElement:)]
+        #[unsafe(method(setArgumentBuffer:startOffset:arrayElement:))]
         #[unsafe(method_family = none)]
         unsafe fn setArgumentBuffer_startOffset_arrayElement(
             &self,
@@ -77,7 +77,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a buffer at the given bind point index.
-        #[method(setBuffer:offset:atIndex:)]
+        #[unsafe(method(setBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffer_offset_atIndex(
             &self,
@@ -92,7 +92,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set an array of buffers at the given bind point index range.
-        #[method(setBuffers:offsets:withRange:)]
+        #[unsafe(method(setBuffers:offsets:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffers_offsets_withRange(
             &self,
@@ -107,7 +107,7 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set a texture at the given bind point index.
-        #[method(setTexture:atIndex:)]
+        #[unsafe(method(setTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTexture_atIndex(
             &self,
@@ -121,7 +121,7 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set an array of textures at the given bind point index range.
-        #[method(setTextures:withRange:)]
+        #[unsafe(method(setTextures:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setTextures_withRange(
             &self,
@@ -131,7 +131,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set a sampler at the given bind point index.
-        #[method(setSamplerState:atIndex:)]
+        #[unsafe(method(setSamplerState:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setSamplerState_atIndex(
             &self,
@@ -141,7 +141,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set an array of samplers at the given bind point index range.
-        #[method(setSamplerStates:withRange:)]
+        #[unsafe(method(setSamplerStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setSamplerStates_withRange(
             &self,
@@ -150,13 +150,13 @@ extern_protocol!(
         );
 
         /// Returns a pointer to the constant data at the given bind point index.
-        #[method(constantDataAtIndex:)]
+        #[unsafe(method(constantDataAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn constantDataAtIndex(&self, index: NSUInteger) -> NonNull<c_void>;
 
         #[cfg(feature = "MTLRenderPipeline")]
         /// Sets a render pipeline state at a given bind point index
-        #[method(setRenderPipelineState:atIndex:)]
+        #[unsafe(method(setRenderPipelineState:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setRenderPipelineState_atIndex(
             &self,
@@ -166,7 +166,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLRenderPipeline")]
         /// Set an array of render pipeline states at a given bind point index range
-        #[method(setRenderPipelineStates:withRange:)]
+        #[unsafe(method(setRenderPipelineStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setRenderPipelineStates_withRange(
             &self,
@@ -176,7 +176,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLComputePipeline")]
         /// Sets a compute pipeline state at a given bind point index
-        #[method(setComputePipelineState:atIndex:)]
+        #[unsafe(method(setComputePipelineState:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setComputePipelineState_atIndex(
             &self,
@@ -186,7 +186,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLComputePipeline")]
         /// Set an array of compute pipeline states at a given bind point index range
-        #[method(setComputePipelineStates:withRange:)]
+        #[unsafe(method(setComputePipelineStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setComputePipelineStates_withRange(
             &self,
@@ -200,7 +200,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Sets an indirect command buffer at a given bind point index
-        #[method(setIndirectCommandBuffer:atIndex:)]
+        #[unsafe(method(setIndirectCommandBuffer:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setIndirectCommandBuffer_atIndex(
             &self,
@@ -214,7 +214,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set an array of indirect command buffers at the given bind point index range.
-        #[method(setIndirectCommandBuffers:withRange:)]
+        #[unsafe(method(setIndirectCommandBuffers:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setIndirectCommandBuffers_withRange(
             &self,
@@ -227,7 +227,7 @@ extern_protocol!(
             feature = "MTLAllocation",
             feature = "MTLResource"
         ))]
-        #[method(setAccelerationStructure:atIndex:)]
+        #[unsafe(method(setAccelerationStructure:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccelerationStructure_atIndex(
             &self,
@@ -238,7 +238,7 @@ extern_protocol!(
         /// Returns a pointer to a new MTLArgumentEncoder that can be used to encode the an argument buffer
         /// in the buffer associated with a given index.
         /// Returns nil if the resource at the given index is not an argument buffer.
-        #[method(newArgumentEncoderForBufferAtIndex:)]
+        #[unsafe(method(newArgumentEncoderForBufferAtIndex:))]
         #[unsafe(method_family = new)]
         unsafe fn newArgumentEncoderForBufferAtIndex(
             &self,
@@ -251,7 +251,7 @@ extern_protocol!(
             feature = "MTLVisibleFunctionTable"
         ))]
         /// Set a visible function table at the given buffer index
-        #[method(setVisibleFunctionTable:atIndex:)]
+        #[unsafe(method(setVisibleFunctionTable:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTable_atIndex(
             &self,
@@ -265,7 +265,7 @@ extern_protocol!(
             feature = "MTLVisibleFunctionTable"
         ))]
         /// Set visible function tables at the given buffer index range
-        #[method(setVisibleFunctionTables:withRange:)]
+        #[unsafe(method(setVisibleFunctionTables:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTables_withRange(
             &self,
@@ -279,7 +279,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set an intersection function table at the given buffer index
-        #[method(setIntersectionFunctionTable:atIndex:)]
+        #[unsafe(method(setIntersectionFunctionTable:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setIntersectionFunctionTable_atIndex(
             &self,
@@ -293,7 +293,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set intersection function tables at the given buffer index range
-        #[method(setIntersectionFunctionTables:withRange:)]
+        #[unsafe(method(setIntersectionFunctionTables:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setIntersectionFunctionTables_withRange(
             &self,

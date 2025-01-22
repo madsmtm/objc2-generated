@@ -26,30 +26,30 @@ extern_methods!(
     unsafe impl SKReachConstraints {
         #[cfg(feature = "objc2-core-foundation")]
         /// Lower angle limit in radians
-        #[method(lowerAngleLimit)]
+        #[unsafe(method(lowerAngleLimit))]
         #[unsafe(method_family = none)]
         pub unsafe fn lowerAngleLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`lowerAngleLimit`][Self::lowerAngleLimit].
-        #[method(setLowerAngleLimit:)]
+        #[unsafe(method(setLowerAngleLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLowerAngleLimit(&self, lower_angle_limit: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Upper angle limit in radians
-        #[method(upperAngleLimit)]
+        #[unsafe(method(upperAngleLimit))]
         #[unsafe(method_family = none)]
         pub unsafe fn upperAngleLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`upperAngleLimit`][Self::upperAngleLimit].
-        #[method(setUpperAngleLimit:)]
+        #[unsafe(method(setUpperAngleLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpperAngleLimit(&self, upper_angle_limit: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithLowerAngleLimit:upperAngleLimit:)]
+        #[unsafe(method(initWithLowerAngleLimit:upperAngleLimit:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLowerAngleLimit_upperAngleLimit(
             this: Allocated<Self>,
@@ -62,11 +62,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKReachConstraints {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

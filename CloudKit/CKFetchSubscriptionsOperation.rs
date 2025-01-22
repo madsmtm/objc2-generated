@@ -21,16 +21,16 @@ unsafe impl NSObjectProtocol for CKFetchSubscriptionsOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchSubscriptionsOperation {
-        #[method(fetchAllSubscriptionsOperation)]
+        #[unsafe(method(fetchAllSubscriptionsOperation))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllSubscriptionsOperation() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
-        #[method(initWithSubscriptionIDs:)]
+        #[unsafe(method(initWithSubscriptionIDs:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSubscriptionIDs(
             this: Allocated<Self>,
@@ -38,13 +38,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
-        #[method(subscriptionIDs)]
+        #[unsafe(method(subscriptionIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionIDs(&self) -> Option<Retained<NSArray<CKSubscriptionID>>>;
 
         #[cfg(feature = "CKSubscription")]
         /// Setter for [`subscriptionIDs`][Self::subscriptionIDs].
-        #[method(setSubscriptionIDs:)]
+        #[unsafe(method(setSubscriptionIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubscriptionIDs(
             &self,
@@ -59,7 +59,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(perSubscriptionCompletionBlock)]
+        #[unsafe(method(perSubscriptionCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perSubscriptionCompletionBlock(
             &self,
@@ -67,7 +67,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         /// Setter for [`perSubscriptionCompletionBlock`][Self::perSubscriptionCompletionBlock].
-        #[method(setPerSubscriptionCompletionBlock:)]
+        #[unsafe(method(setPerSubscriptionCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerSubscriptionCompletionBlock(
             &self,
@@ -98,7 +98,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(fetchSubscriptionCompletionBlock)]
+        #[unsafe(method(fetchSubscriptionCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchSubscriptionCompletionBlock(
             &self,
@@ -108,7 +108,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         /// Setter for [`fetchSubscriptionCompletionBlock`][Self::fetchSubscriptionCompletionBlock].
-        #[method(setFetchSubscriptionCompletionBlock:)]
+        #[unsafe(method(setFetchSubscriptionCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchSubscriptionCompletionBlock(
             &self,
@@ -125,7 +125,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchSubscriptionsOperation {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

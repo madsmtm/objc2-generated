@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for NSStoryboardSegue {}
 extern_methods!(
     unsafe impl NSStoryboardSegue {
         #[cfg(feature = "block2")]
-        #[method(segueWithIdentifier:source:destination:performHandler:)]
+        #[unsafe(method(segueWithIdentifier:source:destination:performHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn segueWithIdentifier_source_destination_performHandler(
             identifier: &NSStoryboardSegueIdentifier,
@@ -31,7 +31,7 @@ extern_methods!(
             perform_handler: &block2::Block<dyn Fn()>,
         ) -> Retained<Self>;
 
-        #[method(initWithIdentifier:source:destination:)]
+        #[unsafe(method(initWithIdentifier:source:destination:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_source_destination(
             this: Allocated<Self>,
@@ -40,19 +40,19 @@ extern_methods!(
             destination_controller: &AnyObject,
         ) -> Retained<Self>;
 
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSStoryboardSegueIdentifier>>;
 
-        #[method(sourceController)]
+        #[unsafe(method(sourceController))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceController(&self) -> Retained<AnyObject>;
 
-        #[method(destinationController)]
+        #[unsafe(method(destinationController))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationController(&self) -> Retained<AnyObject>;
 
-        #[method(perform)]
+        #[unsafe(method(perform))]
         #[unsafe(method_family = none)]
         pub unsafe fn perform(&self);
     }
@@ -61,11 +61,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSStoryboardSegue {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -75,7 +75,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegueperforming?language=objc)
     pub unsafe trait NSSeguePerforming: NSObjectProtocol + MainThreadOnly {
         #[optional]
-        #[method(prepareForSegue:sender:)]
+        #[unsafe(method(prepareForSegue:sender:))]
         #[unsafe(method_family = none)]
         unsafe fn prepareForSegue_sender(
             &self,
@@ -84,7 +84,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(performSegueWithIdentifier:sender:)]
+        #[unsafe(method(performSegueWithIdentifier:sender:))]
         #[unsafe(method_family = none)]
         unsafe fn performSegueWithIdentifier_sender(
             &self,
@@ -93,7 +93,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(shouldPerformSegueWithIdentifier:sender:)]
+        #[unsafe(method(shouldPerformSegueWithIdentifier:sender:))]
         #[unsafe(method_family = none)]
         unsafe fn shouldPerformSegueWithIdentifier_sender(
             &self,

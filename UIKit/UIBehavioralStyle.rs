@@ -42,17 +42,17 @@ extern_methods!(
     ))]
     unsafe impl UIButton {
         /// The button's behavioral style. This property always returns a concrete, resolved style (never UIBehavioralStyleAutomatic).
-        #[method(behavioralStyle)]
+        #[unsafe(method(behavioralStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn behavioralStyle(&self) -> UIBehavioralStyle;
 
         /// Request a style for the button. If the style changed, the button will redraw and its metrics may change.
-        #[method(preferredBehavioralStyle)]
+        #[unsafe(method(preferredBehavioralStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredBehavioralStyle(&self) -> UIBehavioralStyle;
 
         /// Setter for [`preferredBehavioralStyle`][Self::preferredBehavioralStyle].
-        #[method(setPreferredBehavioralStyle:)]
+        #[unsafe(method(setPreferredBehavioralStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredBehavioralStyle(
             &self,
@@ -71,17 +71,17 @@ extern_methods!(
     ))]
     unsafe impl UISlider {
         /// The slider's behavioral style. This property always returns a concrete, resolved style (never UIBehavioralStyleAutomatic).
-        #[method(behavioralStyle)]
+        #[unsafe(method(behavioralStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn behavioralStyle(&self) -> UIBehavioralStyle;
 
         /// Request a style for the slider. If the style changes, the slider will redraw and its metrics may change.
-        #[method(preferredBehavioralStyle)]
+        #[unsafe(method(preferredBehavioralStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredBehavioralStyle(&self) -> UIBehavioralStyle;
 
         /// Setter for [`preferredBehavioralStyle`][Self::preferredBehavioralStyle].
-        #[method(setPreferredBehavioralStyle:)]
+        #[unsafe(method(setPreferredBehavioralStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredBehavioralStyle(
             &self,

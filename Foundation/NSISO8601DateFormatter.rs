@@ -81,41 +81,41 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSISO8601DateFormatter {
         #[cfg(feature = "NSTimeZone")]
-        #[method(timeZone)]
+        #[unsafe(method(timeZone))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeZone(&self) -> Retained<NSTimeZone>;
 
         #[cfg(feature = "NSTimeZone")]
         /// Setter for [`timeZone`][Self::timeZone].
-        #[method(setTimeZone:)]
+        #[unsafe(method(setTimeZone:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
-        #[method(formatOptions)]
+        #[unsafe(method(formatOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn formatOptions(&self) -> NSISO8601DateFormatOptions;
 
         /// Setter for [`formatOptions`][Self::formatOptions].
-        #[method(setFormatOptions:)]
+        #[unsafe(method(setFormatOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFormatOptions(&self, format_options: NSISO8601DateFormatOptions);
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
-        #[method(stringFromDate:)]
+        #[unsafe(method(stringFromDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromDate(&self, date: &NSDate) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
-        #[method(dateFromString:)]
+        #[unsafe(method(dateFromString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dateFromString(&self, string: &NSString) -> Option<Retained<NSDate>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString", feature = "NSTimeZone"))]
-        #[method(stringFromDate:timeZone:formatOptions:)]
+        #[unsafe(method(stringFromDate:timeZone:formatOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromDate_timeZone_formatOptions(
             date: &NSDate,
@@ -129,7 +129,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSISO8601DateFormatter {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

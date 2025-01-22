@@ -22,7 +22,7 @@ extern_protocol!(
         /// - Parameters:
         /// - viewController: Text formatting controller in which action was performed.
         /// - changeValue: Object describing the change made via view controller.
-        #[method(textFormattingViewController:didChangeValue:)]
+        #[unsafe(method(textFormattingViewController:didChangeValue:))]
         #[unsafe(method_family = none)]
         unsafe fn textFormattingViewController_didChangeValue(
             &self,
@@ -46,7 +46,7 @@ extern_protocol!(
         /// - fontPicker: Font picker controller that will be presented.
         /// - Returns: Flag indicating if text formatting controller should present font picker.
         #[optional]
-        #[method(textFormattingViewController:shouldPresentFontPicker:)]
+        #[unsafe(method(textFormattingViewController:shouldPresentFontPicker:))]
         #[unsafe(method_family = none)]
         unsafe fn textFormattingViewController_shouldPresentFontPicker(
             &self,
@@ -70,7 +70,7 @@ extern_protocol!(
         /// - colorPicker: Color picker controller that will be presented.
         /// - Returns: Flag indicating if text formatting controller should present font picker.
         #[optional]
-        #[method(textFormattingViewController:shouldPresentColorPicker:)]
+        #[unsafe(method(textFormattingViewController:shouldPresentColorPicker:))]
         #[unsafe(method_family = none)]
         unsafe fn textFormattingViewController_shouldPresentColorPicker(
             &self,
@@ -81,7 +81,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         /// Informs the delegate that user has dismissed text formatting view controller.
         #[optional]
-        #[method(textFormattingDidFinish:)]
+        #[unsafe(method(textFormattingDidFinish:))]
         #[unsafe(method_family = none)]
         unsafe fn textFormattingDidFinish(&self, view_controller: &UITextFormattingViewController);
     }
@@ -136,14 +136,14 @@ extern_methods!(
     unsafe impl UITextFormattingViewController {
         #[cfg(feature = "UITextFormattingViewControllerConfiguration")]
         /// Current text formatting configuration object.
-        #[method(configuration)]
+        #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self)
             -> Retained<UITextFormattingViewControllerConfiguration>;
 
         #[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
         /// Current formatting descriptor.
-        #[method(formattingDescriptor)]
+        #[unsafe(method(formattingDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn formattingDescriptor(
             &self,
@@ -151,7 +151,7 @@ extern_methods!(
 
         #[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
         /// Setter for [`formattingDescriptor`][Self::formattingDescriptor].
-        #[method(setFormattingDescriptor:)]
+        #[unsafe(method(setFormattingDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFormattingDescriptor(
             &self,
@@ -159,7 +159,7 @@ extern_methods!(
         );
 
         /// Text formatting delegate.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -167,18 +167,18 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UITextFormattingViewControllerDelegate>>,
         );
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -187,7 +187,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UITextFormattingViewControllerConfiguration")]
-        #[method(initWithConfiguration:)]
+        #[unsafe(method(initWithConfiguration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
@@ -200,7 +200,7 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITextFormattingViewController {
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -213,7 +213,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITextFormattingViewController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

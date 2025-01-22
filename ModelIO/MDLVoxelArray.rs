@@ -33,7 +33,7 @@ extern_methods!(
         /// model by applying "patches" of radius patchRadius to any holes found in the
         /// orginal mesh. Choose a patch radius that will be large enough to fill in the largest
         /// hole in the model.
-        #[method(initWithAsset:divisions:patchRadius:)]
+        #[unsafe(method(initWithAsset:divisions:patchRadius:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset_divisions_patchRadius(
             this: Allocated<Self>,
@@ -58,7 +58,7 @@ extern_methods!(
         ///
         /// Parameter `patchRadius`: The radius of the largest model mending patch in world space units
         #[deprecated]
-        #[method(initWithAsset:divisions:interiorShells:exteriorShells:patchRadius:)]
+        #[unsafe(method(initWithAsset:divisions:interiorShells:exteriorShells:patchRadius:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset_divisions_interiorShells_exteriorShells_patchRadius(
             this: Allocated<Self>,
@@ -85,7 +85,7 @@ extern_methods!(
         ///
         /// Parameter `patchRadius`: The radius of the largest model mending patch in world space units
         #[deprecated]
-        #[method(initWithAsset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)]
+        #[unsafe(method(initWithAsset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset_divisions_interiorNBWidth_exteriorNBWidth_patchRadius(
             this: Allocated<Self>,
@@ -97,12 +97,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The number of voxels in the grid
-        #[method(count)]
+        #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
 
         /// Returns an NSData containing the indices of all voxels in the voxel grid
-        #[method(voxelIndices)]
+        #[unsafe(method(voxelIndices))]
         #[unsafe(method_family = none)]
         pub unsafe fn voxelIndices(&self) -> Option<Retained<NSData>>;
 
@@ -110,7 +110,7 @@ extern_methods!(
         /// Set voxels corresponding to a mesh.
         /// Routine will attempt to create a closed volume model by applying "patches" of
         /// a given radius to any holes it may find in the mesh.
-        #[method(setVoxelsForMesh:divisions:patchRadius:)]
+        #[unsafe(method(setVoxelsForMesh:divisions:patchRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVoxelsForMesh_divisions_patchRadius(
             &self,
@@ -134,7 +134,7 @@ extern_methods!(
         ///
         /// Parameter `patchRadius`: The radius of the largest model mending patch in world space units
         #[deprecated]
-        #[method(setVoxelsForMesh:divisions:interiorShells:exteriorShells:patchRadius:)]
+        #[unsafe(method(setVoxelsForMesh:divisions:interiorShells:exteriorShells:patchRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVoxelsForMesh_divisions_interiorShells_exteriorShells_patchRadius(
             &self,
@@ -160,7 +160,7 @@ extern_methods!(
         ///
         /// Parameter `patchRadius`: The radius of the largest model mending patch in world space units
         #[deprecated]
-        #[method(setVoxelsForMesh:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)]
+        #[unsafe(method(setVoxelsForMesh:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVoxelsForMesh_divisions_interiorNBWidth_exteriorNBWidth_patchRadius(
             &self,
@@ -174,21 +174,21 @@ extern_methods!(
         /// Union modifies the voxel grid to be the merger with the supplied voxel grid.
         /// It is assumed that the spatial voxel extent of one voxel in the supplied grid is the same as that of the voxel grid.
         /// Note that the shell level data will be cleared.
-        #[method(unionWithVoxels:)]
+        #[unsafe(method(unionWithVoxels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unionWithVoxels(&self, voxels: &MDLVoxelArray);
 
         /// Intersection modifies the voxel grid so that only voxels that are also in the supplied voxel grid are retained.
         /// It is assumed that the spatial voxel extent of one voxel in the supplied grid is the same as that of the voxel grid.
         /// Note that the shell level data will be cleared.
-        #[method(intersectWithVoxels:)]
+        #[unsafe(method(intersectWithVoxels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn intersectWithVoxels(&self, voxels: &MDLVoxelArray);
 
         /// Difference modifies the voxel grid so that voxels also in the supplied voxel grid are removed.
         /// It is assumed that the spatial voxel extent of one voxel in the supplied grid is the same as that of the voxel grid.
         /// Note that the shell level data will be cleared.
-        #[method(differenceWithVoxels:)]
+        #[unsafe(method(differenceWithVoxels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn differenceWithVoxels(&self, voxels: &MDLVoxelArray);
 
@@ -197,7 +197,7 @@ extern_methods!(
         /// outer layer of voxels with shell level values of positive one.
         ///
         /// The volume model must be closed in order to generate a signed shell field.
-        #[method(convertToSignedShellField)]
+        #[unsafe(method(convertToSignedShellField))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertToSignedShellField(&self);
 
@@ -207,19 +207,19 @@ extern_methods!(
         /// methods that modify the voxel grid will cause this property to be set to NO. Setting
         /// shellFieldInteriorThickness and shellFieldExteriorThickness will not affect the value
         /// of this property.
-        #[method(isValidSignedShellField)]
+        #[unsafe(method(isValidSignedShellField))]
         #[unsafe(method_family = none)]
         pub unsafe fn isValidSignedShellField(&self) -> bool;
 
         /// If voxel grid is in a valid signed shell field form, sets the interior thickness to the desired width,
         /// as measured from the model surface. If the voxel grid is not in a valid signed shell field form, the
         /// value of this property is zero.
-        #[method(shellFieldInteriorThickness)]
+        #[unsafe(method(shellFieldInteriorThickness))]
         #[unsafe(method_family = none)]
         pub unsafe fn shellFieldInteriorThickness(&self) -> c_float;
 
         /// Setter for [`shellFieldInteriorThickness`][Self::shellFieldInteriorThickness].
-        #[method(setShellFieldInteriorThickness:)]
+        #[unsafe(method(setShellFieldInteriorThickness:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShellFieldInteriorThickness(
             &self,
@@ -229,12 +229,12 @@ extern_methods!(
         /// If voxel grid is in a valid signed shell field form, sets the exterior thickness to the desired width,
         /// as measured from the model surface. If the voxel grid is not in a valid signed shell field form, the
         /// value of this property is zero.
-        #[method(shellFieldExteriorThickness)]
+        #[unsafe(method(shellFieldExteriorThickness))]
         #[unsafe(method_family = none)]
         pub unsafe fn shellFieldExteriorThickness(&self) -> c_float;
 
         /// Setter for [`shellFieldExteriorThickness`][Self::shellFieldExteriorThickness].
-        #[method(setShellFieldExteriorThickness:)]
+        #[unsafe(method(setShellFieldExteriorThickness:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShellFieldExteriorThickness(
             &self,
@@ -243,12 +243,12 @@ extern_methods!(
 
         #[cfg(feature = "MDLMesh")]
         /// Creates a coarse mesh from the voxel grid
-        #[method(coarseMesh)]
+        #[unsafe(method(coarseMesh))]
         #[unsafe(method_family = none)]
         pub unsafe fn coarseMesh(&self) -> Option<Retained<MDLMesh>>;
 
         #[cfg(all(feature = "MDLMesh", feature = "MDLMeshBuffer"))]
-        #[method(coarseMeshUsingAllocator:)]
+        #[unsafe(method(coarseMeshUsingAllocator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn coarseMeshUsingAllocator(
             &self,
@@ -257,7 +257,7 @@ extern_methods!(
 
         #[cfg(all(feature = "MDLMesh", feature = "MDLMeshBuffer"))]
         /// Creates a smooth mesh from the voxel grid
-        #[method(meshUsingAllocator:)]
+        #[unsafe(method(meshUsingAllocator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn meshUsingAllocator(
             &self,
@@ -270,11 +270,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLVoxelArray {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

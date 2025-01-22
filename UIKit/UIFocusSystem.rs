@@ -23,20 +23,20 @@ extern_methods!(
     unsafe impl UIFocusSystem {
         #[cfg(feature = "UIFocus")]
         /// The currently focused item in this focus system.
-        #[method(focusedItem)]
+        #[unsafe(method(focusedItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn focusedItem(&self) -> Option<Retained<ProtocolObject<dyn UIFocusItem>>>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIFocus")]
-        #[method(focusSystemForEnvironment:)]
+        #[unsafe(method(focusSystemForEnvironment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn focusSystemForEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
@@ -45,7 +45,7 @@ extern_methods!(
         #[cfg(feature = "UIFocus")]
         /// Requests a focus update to the specified environment. If accepted, the focus update will happen
         /// in the next run loop cycle.
-        #[method(requestFocusUpdateToEnvironment:)]
+        #[unsafe(method(requestFocusUpdateToEnvironment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestFocusUpdateToEnvironment(
             &self,
@@ -53,13 +53,13 @@ extern_methods!(
         );
 
         /// Forces any pending focus update to be committed immediately.
-        #[method(updateFocusIfNeeded)]
+        #[unsafe(method(updateFocusIfNeeded))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateFocusIfNeeded(&self);
 
         #[cfg(feature = "UIFocus")]
         /// Returns true if `environment` is an ancestor of `otherEnvironment`, or false if otherwise.
-        #[method(environment:containsEnvironment:)]
+        #[unsafe(method(environment:containsEnvironment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn environment_containsEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
@@ -73,7 +73,7 @@ extern_methods!(
     unsafe impl UIFocusSystem {
         #[cfg(feature = "UIFocus")]
         /// Registers a sound file for a given identifier.
-        #[method(registerURL:forSoundIdentifier:)]
+        #[unsafe(method(registerURL:forSoundIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerURL_forSoundIdentifier(
             sound_file_url: &NSURL,
@@ -92,7 +92,7 @@ extern_methods!(
     ))]
     unsafe impl UIWindowScene {
         /// Returns the focus system that is responsible for this scene or nil if this scene does not support focus.
-        #[method(focusSystem)]
+        #[unsafe(method(focusSystem))]
         #[unsafe(method_family = none)]
         pub unsafe fn focusSystem(&self) -> Option<Retained<UIFocusSystem>>;
     }

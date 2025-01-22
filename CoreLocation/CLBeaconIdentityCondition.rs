@@ -40,23 +40,23 @@ unsafe impl NSSecureCoding for CLBeaconIdentityCondition {}
 extern_methods!(
     #[cfg(feature = "CLCondition")]
     unsafe impl CLBeaconIdentityCondition {
-        #[method(UUID)]
+        #[unsafe(method(UUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
-        #[method(major)]
+        #[unsafe(method(major))]
         #[unsafe(method_family = none)]
         pub unsafe fn major(&self) -> Option<Retained<NSNumber>>;
 
-        #[method(minor)]
+        #[unsafe(method(minor))]
         #[unsafe(method_family = none)]
         pub unsafe fn minor(&self) -> Option<Retained<NSNumber>>;
 
-        #[method(initWithUUID:)]
+        #[unsafe(method(initWithUUID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUUID(this: Allocated<Self>, uuid: &NSUUID) -> Retained<Self>;
 
-        #[method(initWithUUID:major:)]
+        #[unsafe(method(initWithUUID:major:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUUID_major(
             this: Allocated<Self>,
@@ -64,7 +64,7 @@ extern_methods!(
             major: CLBeaconMajorValue,
         ) -> Retained<Self>;
 
-        #[method(initWithUUID:major:minor:)]
+        #[unsafe(method(initWithUUID:major:minor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUUID_major_minor(
             this: Allocated<Self>,
@@ -79,11 +79,11 @@ extern_methods!(
     /// Methods declared on superclass `CLCondition`
     #[cfg(feature = "CLCondition")]
     unsafe impl CLBeaconIdentityCondition {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

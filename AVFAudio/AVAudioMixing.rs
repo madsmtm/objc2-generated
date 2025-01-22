@@ -60,7 +60,7 @@ extern_protocol!(
         ///
         /// Calling this on an AVAudioMixingDestination instance returns self if the specified
         /// mixer/input bus matches its connection point, otherwise, it returns nil.
-        #[method(destinationForMixer:bus:)]
+        #[unsafe(method(destinationForMixer:bus:))]
         #[unsafe(method_family = none)]
         unsafe fn destinationForMixer_bus(
             &self,
@@ -73,12 +73,12 @@ extern_protocol!(
         /// Range:      0.0 -> 1.0
         /// Default:    1.0
         /// Mixers:     AVAudioMixerNode, AVAudioEnvironmentNode
-        #[method(volume)]
+        #[unsafe(method(volume))]
         #[unsafe(method_family = none)]
         unsafe fn volume(&self) -> c_float;
 
         /// Setter for [`volume`][Self::volume].
-        #[method(setVolume:)]
+        #[unsafe(method(setVolume:))]
         #[unsafe(method_family = none)]
         unsafe fn setVolume(&self, volume: c_float);
     }
@@ -94,12 +94,12 @@ extern_protocol!(
         /// Range:      -1.0 -> 1.0
         /// Default:    0.0
         /// Mixer:      AVAudioMixerNode
-        #[method(pan)]
+        #[unsafe(method(pan))]
         #[unsafe(method_family = none)]
         unsafe fn pan(&self) -> c_float;
 
         /// Setter for [`pan`][Self::pan].
-        #[method(setPan:)]
+        #[unsafe(method(setPan:))]
         #[unsafe(method_family = none)]
         unsafe fn setPan(&self, pan: c_float);
     }
@@ -286,12 +286,12 @@ extern_protocol!(
         ///
         /// Default:    AVAudio3DMixingRenderingAlgorithmEqualPowerPanning
         /// Mixer:      AVAudioEnvironmentNode
-        #[method(renderingAlgorithm)]
+        #[unsafe(method(renderingAlgorithm))]
         #[unsafe(method_family = none)]
         unsafe fn renderingAlgorithm(&self) -> AVAudio3DMixingRenderingAlgorithm;
 
         /// Setter for [`renderingAlgorithm`][Self::renderingAlgorithm].
-        #[method(setRenderingAlgorithm:)]
+        #[unsafe(method(setRenderingAlgorithm:))]
         #[unsafe(method_family = none)]
         unsafe fn setRenderingAlgorithm(
             &self,
@@ -302,12 +302,12 @@ extern_protocol!(
         ///
         /// Default:    AVAudio3DMixingSourceModeSpatializeIfMono
         /// Mixer:      AVAudioEnvironmentNode
-        #[method(sourceMode)]
+        #[unsafe(method(sourceMode))]
         #[unsafe(method_family = none)]
         unsafe fn sourceMode(&self) -> AVAudio3DMixingSourceMode;
 
         /// Setter for [`sourceMode`][Self::sourceMode].
-        #[method(setSourceMode:)]
+        #[unsafe(method(setSourceMode:))]
         #[unsafe(method_family = none)]
         unsafe fn setSourceMode(&self, source_mode: AVAudio3DMixingSourceMode);
 
@@ -315,12 +315,12 @@ extern_protocol!(
         ///
         /// Default:    AVAudio3DMixingPointSourceInHeadModeMono
         /// Mixer:      AVAudioEnvironmentNode
-        #[method(pointSourceInHeadMode)]
+        #[unsafe(method(pointSourceInHeadMode))]
         #[unsafe(method_family = none)]
         unsafe fn pointSourceInHeadMode(&self) -> AVAudio3DMixingPointSourceInHeadMode;
 
         /// Setter for [`pointSourceInHeadMode`][Self::pointSourceInHeadMode].
-        #[method(setPointSourceInHeadMode:)]
+        #[unsafe(method(setPointSourceInHeadMode:))]
         #[unsafe(method_family = none)]
         unsafe fn setPointSourceInHeadMode(
             &self,
@@ -335,12 +335,12 @@ extern_protocol!(
         /// Range:      0.5 -> 2.0
         /// Default:    1.0
         /// Mixer:      AVAudioEnvironmentNode
-        #[method(rate)]
+        #[unsafe(method(rate))]
         #[unsafe(method_family = none)]
         unsafe fn rate(&self) -> c_float;
 
         /// Setter for [`rate`][Self::rate].
-        #[method(setRate:)]
+        #[unsafe(method(setRate:))]
         #[unsafe(method_family = none)]
         unsafe fn setRate(&self, rate: c_float);
 
@@ -353,12 +353,12 @@ extern_protocol!(
         /// Range:      0.0 (completely dry) -> 1.0 (completely wet)
         /// Default:    0.0
         /// Mixer:      AVAudioEnvironmentNode
-        #[method(reverbBlend)]
+        #[unsafe(method(reverbBlend))]
         #[unsafe(method_family = none)]
         unsafe fn reverbBlend(&self) -> c_float;
 
         /// Setter for [`reverbBlend`][Self::reverbBlend].
-        #[method(setReverbBlend:)]
+        #[unsafe(method(setReverbBlend:))]
         #[unsafe(method_family = none)]
         unsafe fn setReverbBlend(&self, reverb_blend: c_float);
 
@@ -369,12 +369,12 @@ extern_protocol!(
         /// Range:      -100.0 -> 0.0 dB
         /// Default:    0.0
         /// Mixer:      AVAudioEnvironmentNode
-        #[method(obstruction)]
+        #[unsafe(method(obstruction))]
         #[unsafe(method_family = none)]
         unsafe fn obstruction(&self) -> c_float;
 
         /// Setter for [`obstruction`][Self::obstruction].
-        #[method(setObstruction:)]
+        #[unsafe(method(setObstruction:))]
         #[unsafe(method_family = none)]
         unsafe fn setObstruction(&self, obstruction: c_float);
 
@@ -385,12 +385,12 @@ extern_protocol!(
         /// Range:      -100.0 -> 0.0 dB
         /// Default:    0.0
         /// Mixer:      AVAudioEnvironmentNode
-        #[method(occlusion)]
+        #[unsafe(method(occlusion))]
         #[unsafe(method_family = none)]
         unsafe fn occlusion(&self) -> c_float;
 
         /// Setter for [`occlusion`][Self::occlusion].
-        #[method(setOcclusion:)]
+        #[unsafe(method(setOcclusion:))]
         #[unsafe(method_family = none)]
         unsafe fn setOcclusion(&self, occlusion: c_float);
 
@@ -400,13 +400,13 @@ extern_protocol!(
         /// The coordinates are specified in meters.
         ///
         /// Mixer:      AVAudioEnvironmentNode
-        #[method(position)]
+        #[unsafe(method(position))]
         #[unsafe(method_family = none)]
         unsafe fn position(&self) -> AVAudio3DPoint;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`position`][Self::position].
-        #[method(setPosition:)]
+        #[unsafe(method(setPosition:))]
         #[unsafe(method_family = none)]
         unsafe fn setPosition(&self, position: AVAudio3DPoint);
     }
@@ -436,13 +436,13 @@ unsafe impl NSObjectProtocol for AVAudioMixingDestination {}
 
 extern_methods!(
     unsafe impl AVAudioMixingDestination {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioConnectionPoint")]
         /// Returns the underlying mixer connection point
-        #[method(connectionPoint)]
+        #[unsafe(method(connectionPoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectionPoint(&self) -> Retained<AVAudioConnectionPoint>;
     }
@@ -451,7 +451,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioMixingDestination {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

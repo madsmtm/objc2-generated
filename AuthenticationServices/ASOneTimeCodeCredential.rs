@@ -30,28 +30,28 @@ unsafe impl NSSecureCoding for ASOneTimeCodeCredential {}
 
 extern_methods!(
     unsafe impl ASOneTimeCodeCredential {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Creates and initializes a new ASOneTimeCodeCredential object.
         ///
         /// Parameter `code`: the one time code.
-        #[method(credentialWithCode:)]
+        #[unsafe(method(credentialWithCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn credentialWithCode(code: &NSString) -> Retained<Self>;
 
         /// Initializes an ASOneTimeCodeCredential object.
         ///
         /// Parameter `code`: the one time code.
-        #[method(initWithCode:)]
+        #[unsafe(method(initWithCode:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCode(this: Allocated<Self>, code: &NSString) -> Retained<Self>;
 
         /// The code of this credential.
         ///
         /// Returns: The code string.
-        #[method(code)]
+        #[unsafe(method(code))]
         #[unsafe(method_family = none)]
         pub unsafe fn code(&self) -> Retained<NSString>;
     }
@@ -60,7 +60,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASOneTimeCodeCredential {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

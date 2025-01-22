@@ -11,12 +11,12 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinputserviceprovider?language=objc)
     pub unsafe trait NSInputServiceProvider {
         #[deprecated]
-        #[method(insertText:client:)]
+        #[unsafe(method(insertText:client:))]
         #[unsafe(method_family = none)]
         unsafe fn insertText_client(&self, string: Option<&AnyObject>, sender: Option<&AnyObject>);
 
         #[deprecated]
-        #[method(doCommandBySelector:client:)]
+        #[unsafe(method(doCommandBySelector:client:))]
         #[unsafe(method_family = none)]
         unsafe fn doCommandBySelector_client(
             &self,
@@ -25,12 +25,12 @@ extern_protocol!(
         );
 
         #[deprecated]
-        #[method(markedTextAbandoned:)]
+        #[unsafe(method(markedTextAbandoned:))]
         #[unsafe(method_family = none)]
         unsafe fn markedTextAbandoned(&self, sender: Option<&AnyObject>);
 
         #[deprecated]
-        #[method(markedTextSelectionChanged:client:)]
+        #[unsafe(method(markedTextSelectionChanged:client:))]
         #[unsafe(method_family = none)]
         unsafe fn markedTextSelectionChanged_client(
             &self,
@@ -39,52 +39,52 @@ extern_protocol!(
         );
 
         #[deprecated]
-        #[method(terminate:)]
+        #[unsafe(method(terminate:))]
         #[unsafe(method_family = none)]
         unsafe fn terminate(&self, sender: Option<&AnyObject>);
 
         #[deprecated]
-        #[method(canBeDisabled)]
+        #[unsafe(method(canBeDisabled))]
         #[unsafe(method_family = none)]
         unsafe fn canBeDisabled(&self) -> bool;
 
         #[deprecated]
-        #[method(wantsToInterpretAllKeystrokes)]
+        #[unsafe(method(wantsToInterpretAllKeystrokes))]
         #[unsafe(method_family = none)]
         unsafe fn wantsToInterpretAllKeystrokes(&self) -> bool;
 
         #[deprecated]
-        #[method(wantsToHandleMouseEvents)]
+        #[unsafe(method(wantsToHandleMouseEvents))]
         #[unsafe(method_family = none)]
         unsafe fn wantsToHandleMouseEvents(&self) -> bool;
 
         #[deprecated]
-        #[method(wantsToDelayTextChangeNotifications)]
+        #[unsafe(method(wantsToDelayTextChangeNotifications))]
         #[unsafe(method_family = none)]
         unsafe fn wantsToDelayTextChangeNotifications(&self) -> bool;
 
         #[deprecated]
-        #[method(inputClientBecomeActive:)]
+        #[unsafe(method(inputClientBecomeActive:))]
         #[unsafe(method_family = none)]
         unsafe fn inputClientBecomeActive(&self, sender: Option<&AnyObject>);
 
         #[deprecated]
-        #[method(inputClientResignActive:)]
+        #[unsafe(method(inputClientResignActive:))]
         #[unsafe(method_family = none)]
         unsafe fn inputClientResignActive(&self, sender: Option<&AnyObject>);
 
         #[deprecated]
-        #[method(inputClientEnabled:)]
+        #[unsafe(method(inputClientEnabled:))]
         #[unsafe(method_family = none)]
         unsafe fn inputClientEnabled(&self, sender: Option<&AnyObject>);
 
         #[deprecated]
-        #[method(inputClientDisabled:)]
+        #[unsafe(method(inputClientDisabled:))]
         #[unsafe(method_family = none)]
         unsafe fn inputClientDisabled(&self, sender: Option<&AnyObject>);
 
         #[deprecated]
-        #[method(activeConversationWillChange:fromOldConversation:)]
+        #[unsafe(method(activeConversationWillChange:fromOldConversation:))]
         #[unsafe(method_family = none)]
         unsafe fn activeConversationWillChange_fromOldConversation(
             &self,
@@ -93,7 +93,7 @@ extern_protocol!(
         );
 
         #[deprecated]
-        #[method(activeConversationChanged:toNewConversation:)]
+        #[unsafe(method(activeConversationChanged:toNewConversation:))]
         #[unsafe(method_family = none)]
         unsafe fn activeConversationChanged_toNewConversation(
             &self,
@@ -107,7 +107,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinputservermousetracker?language=objc)
     pub unsafe trait NSInputServerMouseTracker {
         #[deprecated]
-        #[method(mouseDownOnCharacterIndex:atCoordinate:withModifier:client:)]
+        #[unsafe(method(mouseDownOnCharacterIndex:atCoordinate:withModifier:client:))]
         #[unsafe(method_family = none)]
         unsafe fn mouseDownOnCharacterIndex_atCoordinate_withModifier_client(
             &self,
@@ -118,7 +118,7 @@ extern_protocol!(
         ) -> bool;
 
         #[deprecated]
-        #[method(mouseDraggedOnCharacterIndex:atCoordinate:withModifier:client:)]
+        #[unsafe(method(mouseDraggedOnCharacterIndex:atCoordinate:withModifier:client:))]
         #[unsafe(method_family = none)]
         unsafe fn mouseDraggedOnCharacterIndex_atCoordinate_withModifier_client(
             &self,
@@ -129,7 +129,7 @@ extern_protocol!(
         ) -> bool;
 
         #[deprecated]
-        #[method(mouseUpOnCharacterIndex:atCoordinate:withModifier:client:)]
+        #[unsafe(method(mouseUpOnCharacterIndex:atCoordinate:withModifier:client:))]
         #[unsafe(method_family = none)]
         unsafe fn mouseUpOnCharacterIndex_atCoordinate_withModifier_client(
             &self,
@@ -158,7 +158,7 @@ unsafe impl NSObjectProtocol for NSInputServer {}
 extern_methods!(
     unsafe impl NSInputServer {
         #[deprecated]
-        #[method(initWithDelegate:name:)]
+        #[unsafe(method(initWithDelegate:name:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate_name(
             this: Allocated<Self>,
@@ -171,11 +171,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInputServer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

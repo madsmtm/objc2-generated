@@ -17,12 +17,12 @@ unsafe impl NSObjectProtocol for ASWebAuthenticationSessionWebBrowserSessionMana
 
 extern_methods!(
     unsafe impl ASWebAuthenticationSessionWebBrowserSessionManager {
-        #[method(sharedManager)]
+        #[unsafe(method(sharedManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedManager() -> Retained<ASWebAuthenticationSessionWebBrowserSessionManager>;
 
         #[cfg(feature = "ASWebAuthenticationSessionWebBrowserSessionHandling")]
-        #[method(sessionHandler)]
+        #[unsafe(method(sessionHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionHandler(
             &self,
@@ -30,7 +30,7 @@ extern_methods!(
 
         #[cfg(feature = "ASWebAuthenticationSessionWebBrowserSessionHandling")]
         /// Setter for [`sessionHandler`][Self::sessionHandler].
-        #[method(setSessionHandler:)]
+        #[unsafe(method(setSessionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSessionHandler(
             &self,
@@ -39,7 +39,7 @@ extern_methods!(
             >,
         );
 
-        #[method(wasLaunchedByAuthenticationServices)]
+        #[unsafe(method(wasLaunchedByAuthenticationServices))]
         #[unsafe(method_family = none)]
         pub unsafe fn wasLaunchedByAuthenticationServices(&self) -> bool;
     }
@@ -48,11 +48,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASWebAuthenticationSessionWebBrowserSessionManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

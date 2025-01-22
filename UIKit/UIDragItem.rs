@@ -19,33 +19,33 @@ unsafe impl NSObjectProtocol for UIDragItem {}
 
 extern_methods!(
     unsafe impl UIDragItem {
-        #[method(initWithItemProvider:)]
+        #[unsafe(method(initWithItemProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItemProvider(
             this: Allocated<Self>,
             item_provider: &NSItemProvider,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(itemProvider)]
+        #[unsafe(method(itemProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemProvider(&self) -> Retained<NSItemProvider>;
 
         /// Use `localObject` to attach additional information to
         /// this drag item, visible only inside the app that started the drag.
-        #[method(localObject)]
+        #[unsafe(method(localObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`localObject`][Self::localObject].
-        #[method(setLocalObject:)]
+        #[unsafe(method(setLocalObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalObject(&self, local_object: Option<&AnyObject>);
 
@@ -62,13 +62,13 @@ extern_methods!(
         ///
         /// To use the default preview, set `previewProvider` to nil.
         /// To hide the preview, set `previewProvider` to a block that returns nil.
-        #[method(previewProvider)]
+        #[unsafe(method(previewProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewProvider(&self) -> *mut block2::Block<dyn Fn() -> *mut UIDragPreview>;
 
         #[cfg(all(feature = "UIDragPreview", feature = "block2"))]
         /// Setter for [`previewProvider`][Self::previewProvider].
-        #[method(setPreviewProvider:)]
+        #[unsafe(method(setPreviewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewProvider(
             &self,
@@ -77,7 +77,7 @@ extern_methods!(
 
         /// Requests for the drop preview to be updated if an active drop animation is in progress, and can handle updates.
         /// If no active drop animation is in progress for the specified item, then nothing happens.
-        #[method(setNeedsDropPreviewUpdate)]
+        #[unsafe(method(setNeedsDropPreviewUpdate))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeedsDropPreviewUpdate(&self);
     }

@@ -37,29 +37,29 @@ unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialLargeBlobRegi
 
 extern_methods!(
     unsafe impl ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput {
-        #[method(initWithSupportRequirement:)]
+        #[unsafe(method(initWithSupportRequirement:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSupportRequirement(
             this: Allocated<Self>,
             requirement: ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirement,
         ) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(supportRequirement)]
+        #[unsafe(method(supportRequirement))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportRequirement(
             &self,
         ) -> ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirement;
 
         /// Setter for [`supportRequirement`][Self::supportRequirement].
-        #[method(setSupportRequirement:)]
+        #[unsafe(method(setSupportRequirement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportRequirement(
             &self,

@@ -77,38 +77,38 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIToolbar {
         #[cfg(feature = "UIInterface")]
-        #[method(barStyle)]
+        #[unsafe(method(barStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn barStyle(&self) -> UIBarStyle;
 
         #[cfg(feature = "UIInterface")]
         /// Setter for [`barStyle`][Self::barStyle].
-        #[method(setBarStyle:)]
+        #[unsafe(method(setBarStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBarStyle(&self, bar_style: UIBarStyle);
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
-        #[method(items)]
+        #[unsafe(method(items))]
         #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Option<Retained<NSArray<UIBarButtonItem>>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Setter for [`items`][Self::items].
-        #[method(setItems:)]
+        #[unsafe(method(setItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItems(&self, items: Option<&NSArray<UIBarButtonItem>>);
 
-        #[method(isTranslucent)]
+        #[unsafe(method(isTranslucent))]
         #[unsafe(method_family = none)]
         pub unsafe fn isTranslucent(&self) -> bool;
 
         /// Setter for [`isTranslucent`][Self::isTranslucent].
-        #[method(setTranslucent:)]
+        #[unsafe(method(setTranslucent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTranslucent(&self, translucent: bool);
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
-        #[method(setItems:animated:)]
+        #[unsafe(method(setItems:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItems_animated(
             &self,
@@ -117,29 +117,29 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIColor")]
-        #[method(tintColor)]
+        #[unsafe(method(tintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tintColor`][Self::tintColor].
-        #[method(setTintColor:)]
+        #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
-        #[method(barTintColor)]
+        #[unsafe(method(barTintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn barTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`barTintColor`][Self::barTintColor].
-        #[method(setBarTintColor:)]
+        #[unsafe(method(setBarTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBarTintColor(&self, bar_tint_color: Option<&UIColor>);
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method(setBackgroundImage:forToolbarPosition:barMetrics:)]
+        #[unsafe(method(setBackgroundImage:forToolbarPosition:barMetrics:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImage_forToolbarPosition_barMetrics(
             &self,
@@ -149,7 +149,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method(backgroundImageForToolbarPosition:barMetrics:)]
+        #[unsafe(method(backgroundImageForToolbarPosition:barMetrics:))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundImageForToolbarPosition_barMetrics(
             &self,
@@ -158,7 +158,7 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method(setShadowImage:forToolbarPosition:)]
+        #[unsafe(method(setShadowImage:forToolbarPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowImage_forToolbarPosition(
             &self,
@@ -167,7 +167,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method(shadowImageForToolbarPosition:)]
+        #[unsafe(method(shadowImageForToolbarPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shadowImageForToolbarPosition(
             &self,
@@ -176,37 +176,37 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         /// Describes the appearance attributes for the toolbar to use when it is displayed with its standard height.
-        #[method(standardAppearance)]
+        #[unsafe(method(standardAppearance))]
         #[unsafe(method_family = none)]
         pub unsafe fn standardAppearance(&self) -> Retained<UIToolbarAppearance>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         /// Setter for [`standardAppearance`][Self::standardAppearance].
-        #[method(setStandardAppearance:)]
+        #[unsafe(method(setStandardAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardAppearance(&self, standard_appearance: &UIToolbarAppearance);
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         /// Describes the appearance attributes for the toolbar to use when it is displayed with its compact height. If not set, the standardAppearance will be used instead.
-        #[method(compactAppearance)]
+        #[unsafe(method(compactAppearance))]
         #[unsafe(method_family = none)]
         pub unsafe fn compactAppearance(&self) -> Option<Retained<UIToolbarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         /// Setter for [`compactAppearance`][Self::compactAppearance].
-        #[method(setCompactAppearance:)]
+        #[unsafe(method(setCompactAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompactAppearance(&self, compact_appearance: Option<&UIToolbarAppearance>);
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         /// Describes the appearance attributes for the toolbar to use at standard height when an observable scroll view is scrolled to the bottom. If not set, standardAppearance will be used instead.
-        #[method(scrollEdgeAppearance)]
+        #[unsafe(method(scrollEdgeAppearance))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollEdgeAppearance(&self) -> Option<Retained<UIToolbarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         /// Setter for [`scrollEdgeAppearance`][Self::scrollEdgeAppearance].
-        #[method(setScrollEdgeAppearance:)]
+        #[unsafe(method(setScrollEdgeAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScrollEdgeAppearance(
             &self,
@@ -215,13 +215,13 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         /// Describes the appearance attributes for the toolbar to use at compact height when an observable scroll view is scrolled to the bottom. If not set, will fall back to scrollEdgeAppearance followed by compactAppearance and finally standardAppearance.
-        #[method(compactScrollEdgeAppearance)]
+        #[unsafe(method(compactScrollEdgeAppearance))]
         #[unsafe(method_family = none)]
         pub unsafe fn compactScrollEdgeAppearance(&self) -> Option<Retained<UIToolbarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         /// Setter for [`compactScrollEdgeAppearance`][Self::compactScrollEdgeAppearance].
-        #[method(setCompactScrollEdgeAppearance:)]
+        #[unsafe(method(setCompactScrollEdgeAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompactScrollEdgeAppearance(
             &self,
@@ -229,14 +229,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIBarCommon")]
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UIToolbarDelegate>>>;
 
         #[cfg(feature = "UIBarCommon")]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UIToolbarDelegate>>);
     }
@@ -247,11 +247,11 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIToolbar {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -264,11 +264,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIToolbar {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

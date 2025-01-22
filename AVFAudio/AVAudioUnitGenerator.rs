@@ -59,7 +59,7 @@ extern_methods!(
         /// Parameter `audioComponentDescription`: AudioComponentDescription of the audio unit to be instantiated.
         ///
         /// The componentType must be kAudioUnitType_Generator or kAudioUnitType_RemoteGenerator
-        #[method(initWithAudioComponentDescription:)]
+        #[unsafe(method(initWithAudioComponentDescription:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
@@ -67,12 +67,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Bypass state of the audio unit.
-        #[method(bypass)]
+        #[unsafe(method(bypass))]
         #[unsafe(method_family = none)]
         pub unsafe fn bypass(&self) -> bool;
 
         /// Setter for [`bypass`][Self::bypass].
-        #[method(setBypass:)]
+        #[unsafe(method(setBypass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBypass(&self, bypass: bool);
     }
@@ -82,11 +82,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
     unsafe impl AVAudioUnitGenerator {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

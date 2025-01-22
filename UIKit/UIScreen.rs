@@ -107,114 +107,114 @@ unsafe impl UITraitEnvironment for UIScreen {}
 extern_methods!(
     unsafe impl UIScreen {
         #[deprecated = "Use UIApplication.shared.openSessions to find open sessions with scenes from other screens"]
-        #[method(screens)]
+        #[unsafe(method(screens))]
         #[unsafe(method_family = none)]
         pub fn screens(mtm: MainThreadMarker) -> Retained<NSArray<UIScreen>>;
 
         #[deprecated = "Use a UIScreen instance found through context instead: i.e, view.window.windowScene.screen"]
-        #[method(mainScreen)]
+        #[unsafe(method(mainScreen))]
         #[unsafe(method_family = none)]
         pub fn mainScreen(mtm: MainThreadMarker) -> Retained<UIScreen>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(bounds)]
+        #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
         pub fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(scale)]
+        #[unsafe(method(scale))]
         #[unsafe(method_family = none)]
         pub fn scale(&self) -> CGFloat;
 
         #[cfg(feature = "UIScreenMode")]
-        #[method(availableModes)]
+        #[unsafe(method(availableModes))]
         #[unsafe(method_family = none)]
         pub fn availableModes(&self) -> Retained<NSArray<UIScreenMode>>;
 
         #[cfg(feature = "UIScreenMode")]
-        #[method(preferredMode)]
+        #[unsafe(method(preferredMode))]
         #[unsafe(method_family = none)]
         pub fn preferredMode(&self) -> Option<Retained<UIScreenMode>>;
 
         #[cfg(feature = "UIScreenMode")]
-        #[method(currentMode)]
+        #[unsafe(method(currentMode))]
         #[unsafe(method_family = none)]
         pub fn currentMode(&self) -> Option<Retained<UIScreenMode>>;
 
         #[cfg(feature = "UIScreenMode")]
         /// Setter for [`currentMode`][Self::currentMode].
-        #[method(setCurrentMode:)]
+        #[unsafe(method(setCurrentMode:))]
         #[unsafe(method_family = none)]
         pub fn setCurrentMode(&self, current_mode: Option<&UIScreenMode>);
 
-        #[method(overscanCompensation)]
+        #[unsafe(method(overscanCompensation))]
         #[unsafe(method_family = none)]
         pub fn overscanCompensation(&self) -> UIScreenOverscanCompensation;
 
         /// Setter for [`overscanCompensation`][Self::overscanCompensation].
-        #[method(setOverscanCompensation:)]
+        #[unsafe(method(setOverscanCompensation:))]
         #[unsafe(method_family = none)]
         pub fn setOverscanCompensation(&self, overscan_compensation: UIScreenOverscanCompensation);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method(overscanCompensationInsets)]
+        #[unsafe(method(overscanCompensationInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn overscanCompensationInsets(&self) -> UIEdgeInsets;
 
-        #[method(mirroredScreen)]
+        #[unsafe(method(mirroredScreen))]
         #[unsafe(method_family = none)]
         pub fn mirroredScreen(&self) -> Option<Retained<UIScreen>>;
 
         #[deprecated = "Use the sceneCaptureState in UITraitCollection instead."]
-        #[method(isCaptured)]
+        #[unsafe(method(isCaptured))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCaptured(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(brightness)]
+        #[unsafe(method(brightness))]
         #[unsafe(method_family = none)]
         pub unsafe fn brightness(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`brightness`][Self::brightness].
-        #[method(setBrightness:)]
+        #[unsafe(method(setBrightness:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBrightness(&self, brightness: CGFloat);
 
-        #[method(wantsSoftwareDimming)]
+        #[unsafe(method(wantsSoftwareDimming))]
         #[unsafe(method_family = none)]
         pub unsafe fn wantsSoftwareDimming(&self) -> bool;
 
         /// Setter for [`wantsSoftwareDimming`][Self::wantsSoftwareDimming].
-        #[method(setWantsSoftwareDimming:)]
+        #[unsafe(method(setWantsSoftwareDimming:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWantsSoftwareDimming(&self, wants_software_dimming: bool);
 
         #[cfg(feature = "UIView")]
-        #[method(coordinateSpace)]
+        #[unsafe(method(coordinateSpace))]
         #[unsafe(method_family = none)]
         pub fn coordinateSpace(&self) -> Retained<ProtocolObject<dyn UICoordinateSpace>>;
 
         #[cfg(feature = "UIView")]
-        #[method(fixedCoordinateSpace)]
+        #[unsafe(method(fixedCoordinateSpace))]
         #[unsafe(method_family = none)]
         pub unsafe fn fixedCoordinateSpace(
             &self,
         ) -> Retained<ProtocolObject<dyn UICoordinateSpace>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(nativeBounds)]
+        #[unsafe(method(nativeBounds))]
         #[unsafe(method_family = none)]
         pub fn nativeBounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(nativeScale)]
+        #[unsafe(method(nativeScale))]
         #[unsafe(method_family = none)]
         pub fn nativeScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
-        #[method(displayLinkWithTarget:selector:)]
+        #[unsafe(method(displayLinkWithTarget:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayLinkWithTarget_selector(
             &self,
@@ -222,49 +222,49 @@ extern_methods!(
             sel: Sel,
         ) -> Option<Retained<CADisplayLink>>;
 
-        #[method(maximumFramesPerSecond)]
+        #[unsafe(method(maximumFramesPerSecond))]
         #[unsafe(method_family = none)]
         pub fn maximumFramesPerSecond(&self) -> NSInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(calibratedLatency)]
+        #[unsafe(method(calibratedLatency))]
         #[unsafe(method_family = none)]
         pub unsafe fn calibratedLatency(&self) -> CFTimeInterval;
 
-        #[method(referenceDisplayModeStatus)]
+        #[unsafe(method(referenceDisplayModeStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceDisplayModeStatus(&self) -> UIScreenReferenceDisplayModeStatus;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(currentEDRHeadroom)]
+        #[unsafe(method(currentEDRHeadroom))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentEDRHeadroom(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(potentialEDRHeadroom)]
+        #[unsafe(method(potentialEDRHeadroom))]
         #[unsafe(method_family = none)]
         pub unsafe fn potentialEDRHeadroom(&self) -> CGFloat;
 
         #[cfg(feature = "UIFocus")]
         #[deprecated = "Use -[UIWindowScene focusSystem].focusedItem instead"]
-        #[method(focusedItem)]
+        #[unsafe(method(focusedItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn focusedItem(&self) -> Option<Retained<ProtocolObject<dyn UIFocusItem>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "Use -[UIWindowScene focusSystem].focusedItem instead"]
-        #[method(focusedView)]
+        #[unsafe(method(focusedView))]
         #[unsafe(method_family = none)]
         pub unsafe fn focusedView(&self) -> Option<Retained<UIView>>;
 
         #[deprecated = "Use -[UIWindowScene focusSystem] != nil instead"]
-        #[method(supportsFocus)]
+        #[unsafe(method(supportsFocus))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsFocus(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
-        #[method(applicationFrame)]
+        #[unsafe(method(applicationFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationFrame(&self) -> CGRect;
     }
@@ -273,11 +273,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIScreen {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -287,7 +287,7 @@ extern_methods!(
     /// UISnapshotting
     unsafe impl UIScreen {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method(snapshotViewAfterScreenUpdates:)]
+        #[unsafe(method(snapshotViewAfterScreenUpdates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshotViewAfterScreenUpdates(
             &self,

@@ -48,7 +48,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MCBrowserViewController {
         #[cfg(feature = "MCSession")]
-        #[method(initWithServiceType:session:)]
+        #[unsafe(method(initWithServiceType:session:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServiceType_session(
             this: Allocated<Self>,
@@ -57,7 +57,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MCNearbyServiceBrowser", feature = "MCSession"))]
-        #[method(initWithBrowser:session:)]
+        #[unsafe(method(initWithBrowser:session:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBrowser_session(
             this: Allocated<Self>,
@@ -65,7 +65,7 @@ extern_methods!(
             session: &MCSession,
         ) -> Retained<Self>;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -73,7 +73,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -81,30 +81,30 @@ extern_methods!(
         );
 
         #[cfg(feature = "MCNearbyServiceBrowser")]
-        #[method(browser)]
+        #[unsafe(method(browser))]
         #[unsafe(method_family = none)]
         pub unsafe fn browser(&self) -> Retained<MCNearbyServiceBrowser>;
 
         #[cfg(feature = "MCSession")]
-        #[method(session)]
+        #[unsafe(method(session))]
         #[unsafe(method_family = none)]
         pub unsafe fn session(&self) -> Retained<MCSession>;
 
-        #[method(minimumNumberOfPeers)]
+        #[unsafe(method(minimumNumberOfPeers))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumNumberOfPeers(&self) -> NSUInteger;
 
         /// Setter for [`minimumNumberOfPeers`][Self::minimumNumberOfPeers].
-        #[method(setMinimumNumberOfPeers:)]
+        #[unsafe(method(setMinimumNumberOfPeers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumNumberOfPeers(&self, minimum_number_of_peers: NSUInteger);
 
-        #[method(maximumNumberOfPeers)]
+        #[unsafe(method(maximumNumberOfPeers))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumNumberOfPeers(&self) -> NSUInteger;
 
         /// Setter for [`maximumNumberOfPeers`][Self::maximumNumberOfPeers].
-        #[method(setMaximumNumberOfPeers:)]
+        #[unsafe(method(setMaximumNumberOfPeers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumNumberOfPeers(&self, maximum_number_of_peers: NSUInteger);
     }
@@ -115,7 +115,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MCBrowserViewController {
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -123,7 +123,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -137,7 +137,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MCBrowserViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -148,7 +148,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MCBrowserViewController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -159,7 +159,7 @@ extern_protocol!(
     pub unsafe trait MCBrowserViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method(browserViewControllerDidFinish:)]
+        #[unsafe(method(browserViewControllerDidFinish:))]
         #[unsafe(method_family = none)]
         unsafe fn browserViewControllerDidFinish(
             &self,
@@ -168,7 +168,7 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method(browserViewControllerWasCancelled:)]
+        #[unsafe(method(browserViewControllerWasCancelled:))]
         #[unsafe(method_family = none)]
         unsafe fn browserViewControllerWasCancelled(
             &self,
@@ -178,7 +178,7 @@ extern_protocol!(
         #[cfg(all(feature = "MCPeerID", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[optional]
-        #[method(browserViewController:shouldPresentNearbyPeer:withDiscoveryInfo:)]
+        #[unsafe(method(browserViewController:shouldPresentNearbyPeer:withDiscoveryInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn browserViewController_shouldPresentNearbyPeer_withDiscoveryInfo(
             &self,

@@ -73,7 +73,7 @@ unsafe impl NSSecureCoding for SCNPhysicsShape {}
 extern_methods!(
     unsafe impl SCNPhysicsShape {
         #[cfg(feature = "SCNGeometry")]
-        #[method(shapeWithGeometry:options:)]
+        #[unsafe(method(shapeWithGeometry:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeWithGeometry_options(
             geometry: &SCNGeometry,
@@ -81,31 +81,31 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "SCNNode")]
-        #[method(shapeWithNode:options:)]
+        #[unsafe(method(shapeWithNode:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeWithNode_options(
             node: &SCNNode,
             options: Option<&NSDictionary<SCNPhysicsShapeOption, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method(shapeWithShapes:transforms:)]
+        #[unsafe(method(shapeWithShapes:transforms:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeWithShapes_transforms(
             shapes: &NSArray<SCNPhysicsShape>,
             transforms: Option<&NSArray<NSValue>>,
         ) -> Retained<Self>;
 
-        #[method(options)]
+        #[unsafe(method(options))]
         #[unsafe(method_family = none)]
         pub unsafe fn options(
             &self,
         ) -> Option<Retained<NSDictionary<SCNPhysicsShapeOption, AnyObject>>>;
 
-        #[method(sourceObject)]
+        #[unsafe(method(sourceObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceObject(&self) -> Retained<AnyObject>;
 
-        #[method(transforms)]
+        #[unsafe(method(transforms))]
         #[unsafe(method_family = none)]
         pub unsafe fn transforms(&self) -> Option<Retained<NSArray<NSValue>>>;
     }
@@ -114,11 +114,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsShape {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

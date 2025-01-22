@@ -10,34 +10,34 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcapturescope?language=objc)
     pub unsafe trait MTLCaptureScope: NSObjectProtocol {
-        #[method(beginScope)]
+        #[unsafe(method(beginScope))]
         #[unsafe(method_family = none)]
         fn beginScope(&self);
 
-        #[method(endScope)]
+        #[unsafe(method(endScope))]
         #[unsafe(method_family = none)]
         fn endScope(&self);
 
         /// Scope label
         ///
         /// Created capture scopes are listed in Xcode when long-pressing the capture button, performing the capture over the selected scope
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         unsafe fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
-        #[method(device)]
+        #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLCommandQueue")]
         /// If set, this scope will only capture Metal commands from the associated command queue. Defaults to nil (all command queues from the associated device are captured).
-        #[method(commandQueue)]
+        #[unsafe(method(commandQueue))]
         #[unsafe(method_family = none)]
         unsafe fn commandQueue(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
     }

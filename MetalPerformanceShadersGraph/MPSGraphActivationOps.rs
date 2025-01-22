@@ -20,7 +20,7 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object.
-        #[method(reLUWithTensor:name:)]
+        #[unsafe(method(reLUWithTensor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reLUWithTensor_name(
             &self,
@@ -36,7 +36,7 @@ extern_methods!(
         /// - source: The input tensor from forward pass.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object.
-        #[method(reLUGradientWithIncomingGradient:sourceTensor:name:)]
+        #[unsafe(method(reLUGradientWithIncomingGradient:sourceTensor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reLUGradientWithIncomingGradient_sourceTensor_name(
             &self,
@@ -52,7 +52,7 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object.
-        #[method(sigmoidWithTensor:name:)]
+        #[unsafe(method(sigmoidWithTensor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sigmoidWithTensor_name(
             &self,
@@ -68,7 +68,7 @@ extern_methods!(
         /// - source: The input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[method(sigmoidGradientWithIncomingGradient:sourceTensor:name:)]
+        #[unsafe(method(sigmoidGradientWithIncomingGradient:sourceTensor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sigmoidGradientWithIncomingGradient_sourceTensor_name(
             &self,
@@ -85,7 +85,7 @@ extern_methods!(
         /// - axis: The axis along which softmax is computed.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[method(softMaxWithTensor:axis:name:)]
+        #[unsafe(method(softMaxWithTensor:axis:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn softMaxWithTensor_axis_name(
             &self,
@@ -103,7 +103,7 @@ extern_methods!(
         /// - axis: The axis along which softmax is computed.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[method(softMaxGradientWithIncomingGradient:sourceTensor:axis:name:)]
+        #[unsafe(method(softMaxGradientWithIncomingGradient:sourceTensor:axis:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn softMaxGradientWithIncomingGradient_sourceTensor_axis_name(
             &self,
@@ -123,7 +123,7 @@ extern_methods!(
         /// - alpha: The scalar value alpha used by all elements in the input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[method(leakyReLUWithTensor:alpha:name:)]
+        #[unsafe(method(leakyReLUWithTensor:alpha:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn leakyReLUWithTensor_alpha_name(
             &self,
@@ -143,7 +143,7 @@ extern_methods!(
         /// - alpha: The alpha tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[method(leakyReLUWithTensor:alphaTensor:name:)]
+        #[unsafe(method(leakyReLUWithTensor:alphaTensor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn leakyReLUWithTensor_alphaTensor_name(
             &self,
@@ -163,7 +163,7 @@ extern_methods!(
         /// - alpha: The alpha tensor
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[method(leakyReLUGradientWithIncomingGradient:sourceTensor:alphaTensor:name:)]
+        #[unsafe(method(leakyReLUGradientWithIncomingGradient:sourceTensor:alphaTensor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn leakyReLUGradientWithIncomingGradient_sourceTensor_alphaTensor_name(
             &self,

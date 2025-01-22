@@ -95,7 +95,7 @@ extern_methods!(
         /// Returns: A pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -111,13 +111,13 @@ extern_methods!(
         ///
         /// See Also:
         /// MetalPerformanceShaders.hsubsubsection_mpsoffset
-        #[method(offset)]
+        #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`offset`][Self::offset].
-        #[method(setOffset:)]
+        #[unsafe(method(setOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOffset(&self, offset: MPSOffset);
 
@@ -131,12 +131,12 @@ extern_methods!(
         ///
         /// See Also:
         /// MetalPerformanceShaders.hsubsubsection_clipRect
-        #[method(clipRect)]
+        #[unsafe(method(clipRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn clipRect(&self) -> MTLRegion;
 
         /// Setter for [`clipRect`][Self::clipRect].
-        #[method(setClipRect:)]
+        #[unsafe(method(setClipRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClipRect(&self, clip_rect: MTLRegion);
 
@@ -154,12 +154,12 @@ extern_methods!(
         /// image with insufficient number of feature channels will result in an error.
         /// E.g. if the MPSCNNConvolution outputs 32 channels, and the destination has 64 channels, then it is an error to set
         /// destinationFeatureChannelOffset > 32.
-        #[method(destinationFeatureChannelOffset)]
+        #[unsafe(method(destinationFeatureChannelOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationFeatureChannelOffset(&self) -> NSUInteger;
 
         /// Setter for [`destinationFeatureChannelOffset`][Self::destinationFeatureChannelOffset].
-        #[method(setDestinationFeatureChannelOffset:)]
+        #[unsafe(method(setDestinationFeatureChannelOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestinationFeatureChannelOffset(
             &self,
@@ -180,12 +180,12 @@ extern_methods!(
         /// image with insufficient number of feature channels will result in an error.
         /// E.g. if the MPSCNNConvolution inputs 32 channels, and the source has 64 channels, then it is an error to set
         /// sourceFeatureChannelOffset > 32.
-        #[method(sourceFeatureChannelOffset)]
+        #[unsafe(method(sourceFeatureChannelOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceFeatureChannelOffset(&self) -> NSUInteger;
 
         /// Setter for [`sourceFeatureChannelOffset`][Self::sourceFeatureChannelOffset].
-        #[method(setSourceFeatureChannelOffset:)]
+        #[unsafe(method(setSourceFeatureChannelOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceFeatureChannelOffset(
             &self,
@@ -199,12 +199,12 @@ extern_methods!(
         /// the input image. If the value is too large, it is truncated to be
         /// the remaining size in the image after the sourceFeatureChannelOffset
         /// is taken into account.  Default: ULONG_MAX
-        #[method(sourceFeatureChannelMaxCount)]
+        #[unsafe(method(sourceFeatureChannelMaxCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceFeatureChannelMaxCount(&self) -> NSUInteger;
 
         /// Setter for [`sourceFeatureChannelMaxCount`][Self::sourceFeatureChannelMaxCount].
-        #[method(setSourceFeatureChannelMaxCount:)]
+        #[unsafe(method(setSourceFeatureChannelMaxCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceFeatureChannelMaxCount(
             &self,
@@ -225,13 +225,13 @@ extern_methods!(
         /// MPSCNNPoolingAveragespecifying edge mode
         /// MPSImageEdgeModeClampis interpreted as a "shrink-to-edge" operation, which shrinks the effective
         /// filtering window to remain within the source image borders.
-        #[method(edgeMode)]
+        #[unsafe(method(edgeMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn edgeMode(&self) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`edgeMode`][Self::edgeMode].
-        #[method(setEdgeMode:)]
+        #[unsafe(method(setEdgeMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEdgeMode(&self, edge_mode: MPSImageEdgeMode);
 
@@ -244,7 +244,7 @@ extern_methods!(
         /// Warning: This property was lowered to this class in ios/tvos 11
         /// The property may not be available on iOS/tvOS 10 for
         /// all subclasses of MPSCNNKernel
-        #[method(kernelWidth)]
+        #[unsafe(method(kernelWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWidth(&self) -> NSUInteger;
 
@@ -257,7 +257,7 @@ extern_methods!(
         /// Warning: This property was lowered to this class in ios/tvos 11
         /// The property may not be available on iOS/tvOS 10 for
         /// all subclasses of MPSCNNKernel
-        #[method(kernelHeight)]
+        #[unsafe(method(kernelHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelHeight(&self) -> NSUInteger;
 
@@ -268,7 +268,7 @@ extern_methods!(
         /// Warning: This property was lowered to this class in ios/tvos 11
         /// The property may not be available on iOS/tvOS 10 for
         /// all subclasses of MPSCNNKernel
-        #[method(strideInPixelsX)]
+        #[unsafe(method(strideInPixelsX))]
         #[unsafe(method_family = none)]
         pub unsafe fn strideInPixelsX(&self) -> NSUInteger;
 
@@ -279,17 +279,17 @@ extern_methods!(
         /// Warning: This property was lowered to this class in ios/tvos 11
         /// The property may not be available on iOS/tvOS 10 for
         /// all subclasses of MPSCNNKernel
-        #[method(strideInPixelsY)]
+        #[unsafe(method(strideInPixelsY))]
         #[unsafe(method_family = none)]
         pub unsafe fn strideInPixelsY(&self) -> NSUInteger;
 
         /// Stride in source coordinates from one kernel tap to the next in the X dimension.
-        #[method(dilationRateX)]
+        #[unsafe(method(dilationRateX))]
         #[unsafe(method_family = none)]
         pub unsafe fn dilationRateX(&self) -> NSUInteger;
 
         /// Stride in source coordinates from one kernel tap to the next in the Y dimension.
-        #[method(dilationRateY)]
+        #[unsafe(method(dilationRateY))]
         #[unsafe(method_family = none)]
         pub unsafe fn dilationRateY(&self) -> NSUInteger;
 
@@ -302,12 +302,12 @@ extern_methods!(
         /// to "undo" the effects of an earlier forward filter, and so
         /// enlarge the image. The stride is in the destination coordinate frame
         /// rather than the source coordinate frame.
-        #[method(isBackwards)]
+        #[unsafe(method(isBackwards))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBackwards(&self) -> bool;
 
         /// Returns true if the -encode call modifies the state object it accepts.
-        #[method(isStateModified)]
+        #[unsafe(method(isStateModified))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStateModified(&self) -> bool;
 
@@ -317,13 +317,13 @@ extern_methods!(
         /// This influences how the destination image is sized and how
         /// the offset into the source image is set.  It is used by the
         /// -encode methods that return a MPSImage from the left hand side.
-        #[method(padding)]
+        #[unsafe(method(padding))]
         #[unsafe(method_family = none)]
         pub unsafe fn padding(&self) -> Retained<ProtocolObject<dyn MPSNNPadding>>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
         /// Setter for [`padding`][Self::padding].
-        #[method(setPadding:)]
+        #[unsafe(method(setPadding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPadding(&self, padding: &ProtocolObject<dyn MPSNNPadding>);
 
@@ -331,7 +331,7 @@ extern_methods!(
         /// Method to allocate the result image for -encodeToCommandBuffer:sourceImage:
         ///
         /// Default: MPSTemporaryImage.defaultAllocator
-        #[method(destinationImageAllocator)]
+        #[unsafe(method(destinationImageAllocator))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationImageAllocator(
             &self,
@@ -339,7 +339,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSImage")]
         /// Setter for [`destinationImageAllocator`][Self::destinationImageAllocator].
-        #[method(setDestinationImageAllocator:)]
+        #[unsafe(method(setDestinationImageAllocator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestinationImageAllocator(
             &self,
@@ -359,7 +359,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -378,7 +378,7 @@ extern_methods!(
         /// Parameter `sourceImage`: A valid MPSImage object containing the source image.
         ///
         /// Parameter `destinationImage`: A valid MPSImage to be overwritten by result image. destinationImage may not alias sourceImage.
-        #[method(encodeToCommandBuffer:sourceImage:destinationImage:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceImage:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_destinationImage(
             &self,
@@ -400,7 +400,7 @@ extern_methods!(
         /// Parameter `destinationState`: A state to be overwritten by additional state information.
         ///
         /// Parameter `destinationImage`: A valid MPSImage to be overwritten by result image. destinationImage may not alias sourceImage.
-        #[method(encodeToCommandBuffer:sourceImage:destinationState:destinationImage:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceImage:destinationState:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_destinationState_destinationImage(
             &self,
@@ -423,7 +423,7 @@ extern_methods!(
         /// Parameter `destinationImages`: A valid MPSImage to be overwritten by result images.
         /// destinationImages may not alias sourceImages, even at different
         /// indices.
-        #[method(encodeBatchToCommandBuffer:sourceImages:destinationImages:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:destinationImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationImages(
             &self,
@@ -447,7 +447,7 @@ extern_methods!(
         /// Parameter `destinationImages`: A valid MPSImage to be overwritten by result images.
         /// destinationImages may not alias sourceImages, even at different
         /// indices.
-        #[method(encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationImages:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationStates_destinationImages(
             &self,
@@ -480,7 +480,7 @@ extern_methods!(
         /// The offset property will be adjusted to reflect the offset used during the encode.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[method(encodeToCommandBuffer:sourceImage:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImage(
             &self,
@@ -513,7 +513,7 @@ extern_methods!(
         /// The offset property will be adjusted to reflect the offset used during the encode.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[method(encodeToCommandBuffer:sourceImage:destinationState:destinationStateIsTemporary:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceImage:destinationState:destinationStateIsTemporary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_destinationState_destinationStateIsTemporary(
             &self,
@@ -546,7 +546,7 @@ extern_methods!(
         /// containing the output of the graph. The offset property will be adjusted to reflect the
         /// offset used during the encode. The returned images will be automatically released when
         /// the command buffer completes. If you want to keep them around for longer, retain the images.
-        #[method(encodeBatchToCommandBuffer:sourceImages:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages(
             &self,
@@ -588,7 +588,7 @@ extern_methods!(
         /// containing the output of the graph. The offset property will be adjusted to reflect the
         /// offset used during the encode. The returned images will be automatically released when
         /// the command buffer completes. If you want to keep them around for longer, retain the images.
-        #[method(encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationStates_destinationStateIsTemporary(
             &self,
@@ -665,7 +665,7 @@ extern_methods!(
         /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
         /// returns YES, then it will be called once per batch and the MPSStateBatch array will
         /// contain MPSStateBatch.length references to the same object.
-        #[method(resultStateForSourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method(resultStateForSourceImage:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultStateForSourceImage_sourceStates_destinationImage(
             &self,
@@ -675,7 +675,7 @@ extern_methods!(
         ) -> Option<Retained<MPSState>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[method(resultStateBatchForSourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method(resultStateBatchForSourceImage:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultStateBatchForSourceImage_sourceStates_destinationImage(
             &self,
@@ -754,7 +754,7 @@ extern_methods!(
         /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
         /// returns YES, then it will be called once per batch and the MPSStateBatch array will
         /// contain MPSStateBatch.length references to the same object.
-        #[method(temporaryResultStateForCommandBuffer:sourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method(temporaryResultStateForCommandBuffer:sourceImage:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryResultStateForCommandBuffer_sourceImage_sourceStates_destinationImage(
             &self,
@@ -765,7 +765,7 @@ extern_methods!(
         ) -> Option<Retained<MPSState>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[method(temporaryResultStateBatchForCommandBuffer:sourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method(temporaryResultStateBatchForCommandBuffer:sourceImage:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryResultStateBatchForCommandBuffer_sourceImage_sourceStates_destinationImage(
             &self,
@@ -781,7 +781,7 @@ extern_methods!(
         /// (and different) state to go with it. Set to YES to avoid allocating
         /// redundant state in the case when the same state is used all the time.
         /// Default: NO
-        #[method(isResultStateReusedAcrossBatch)]
+        #[unsafe(method(isResultStateReusedAcrossBatch))]
         #[unsafe(method_family = none)]
         pub unsafe fn isResultStateReusedAcrossBatch(&self) -> bool;
 
@@ -814,7 +814,7 @@ extern_methods!(
         /// over the entire graph.  Filters of this variety should be avoided.
         ///
         /// Default: NO
-        #[method(appendBatchBarrier)]
+        #[unsafe(method(appendBatchBarrier))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBatchBarrier(&self) -> bool;
 
@@ -897,7 +897,7 @@ extern_methods!(
         /// Parameter `sourceStates`: An optional array of source states that will be passed into the -encode call
         ///
         /// Returns: an image descriptor allocated on the autorelease pool
-        #[method(destinationImageDescriptorForSourceImages:sourceStates:)]
+        #[unsafe(method(destinationImageDescriptorForSourceImages:sourceStates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationImageDescriptorForSourceImages_sourceStates(
             &self,
@@ -912,7 +912,7 @@ extern_methods!(
         /// describe all allocation done by the -encode call.  It is intended for use with high water calculations
         /// for MTLHeap sizing. Allocations are typically for temporary storage needed for multipass algorithms.
         /// This interface should not be used to detect multipass algorithms.
-        #[method(encodingStorageSizeForSourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method(encodingStorageSizeForSourceImage:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodingStorageSizeForSourceImage_sourceStates_destinationImage(
             &self,
@@ -928,7 +928,7 @@ extern_methods!(
         /// describe all allocation done by the -encode call.  It is intended for use with high water calculations
         /// for MTLHeap sizing. Allocations are typically for temporary storage needed for multipass algorithms.
         /// This interface should not be used to detect multipass algorithms.
-        #[method(batchEncodingStorageSizeForSourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method(batchEncodingStorageSizeForSourceImage:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn batchEncodingStorageSizeForSourceImage_sourceStates_destinationImage(
             &self,
@@ -951,7 +951,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -964,11 +964,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNKernel {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1015,7 +1015,7 @@ extern_methods!(
         /// Returns: A pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1031,13 +1031,13 @@ extern_methods!(
         ///
         /// See Also:
         /// subsubsection_mpsoffset
-        #[method(primaryOffset)]
+        #[unsafe(method(primaryOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryOffset(&self) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`primaryOffset`][Self::primaryOffset].
-        #[method(setPrimaryOffset:)]
+        #[unsafe(method(setPrimaryOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryOffset(&self, primary_offset: MPSOffset);
 
@@ -1050,13 +1050,13 @@ extern_methods!(
         ///
         /// See Also:
         /// subsubsection_mpsoffset
-        #[method(secondaryOffset)]
+        #[unsafe(method(secondaryOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryOffset(&self) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`secondaryOffset`][Self::secondaryOffset].
-        #[method(setSecondaryOffset:)]
+        #[unsafe(method(setSecondaryOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryOffset(&self, secondary_offset: MPSOffset);
 
@@ -1070,12 +1070,12 @@ extern_methods!(
         ///
         /// See Also:
         /// subsubsection_clipRect
-        #[method(clipRect)]
+        #[unsafe(method(clipRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn clipRect(&self) -> MTLRegion;
 
         /// Setter for [`clipRect`][Self::clipRect].
-        #[method(setClipRect:)]
+        #[unsafe(method(setClipRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClipRect(&self, clip_rect: MTLRegion);
 
@@ -1093,12 +1093,12 @@ extern_methods!(
         /// image with insufficient number of feature channels result in an error.
         /// E.g. if the MPSCNNConvolution outputs 32 channels, and destination has 64 channels, then it is an error to set
         /// destinationFeatureChannelOffset > 32.
-        #[method(destinationFeatureChannelOffset)]
+        #[unsafe(method(destinationFeatureChannelOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationFeatureChannelOffset(&self) -> NSUInteger;
 
         /// Setter for [`destinationFeatureChannelOffset`][Self::destinationFeatureChannelOffset].
-        #[method(setDestinationFeatureChannelOffset:)]
+        #[unsafe(method(setDestinationFeatureChannelOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestinationFeatureChannelOffset(
             &self,
@@ -1119,12 +1119,12 @@ extern_methods!(
         /// image with insufficient number of feature channels will result in an error.
         /// E.g. if the MPSCNNConvolution inputs 32 channels, and the source has 64 channels, then it is an error to set
         /// primarySourceFeatureChannelOffset > 32.
-        #[method(primarySourceFeatureChannelOffset)]
+        #[unsafe(method(primarySourceFeatureChannelOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn primarySourceFeatureChannelOffset(&self) -> NSUInteger;
 
         /// Setter for [`primarySourceFeatureChannelOffset`][Self::primarySourceFeatureChannelOffset].
-        #[method(setPrimarySourceFeatureChannelOffset:)]
+        #[unsafe(method(setPrimarySourceFeatureChannelOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimarySourceFeatureChannelOffset(
             &self,
@@ -1145,12 +1145,12 @@ extern_methods!(
         /// image with insufficient number of feature channels will result in an error.
         /// E.g. if the MPSCNNConvolution inputs 32 channels, and the source has 64 channels, then it is an error to set
         /// primarySourceFeatureChannelOffset > 32.
-        #[method(secondarySourceFeatureChannelOffset)]
+        #[unsafe(method(secondarySourceFeatureChannelOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondarySourceFeatureChannelOffset(&self) -> NSUInteger;
 
         /// Setter for [`secondarySourceFeatureChannelOffset`][Self::secondarySourceFeatureChannelOffset].
-        #[method(setSecondarySourceFeatureChannelOffset:)]
+        #[unsafe(method(setSecondarySourceFeatureChannelOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondarySourceFeatureChannelOffset(
             &self,
@@ -1164,12 +1164,12 @@ extern_methods!(
         /// the input image. If the value is too large, it is truncated to be
         /// the remaining size in the image after the sourceFeatureChannelOffset
         /// is taken into account.  Default: ULONG_MAX
-        #[method(primarySourceFeatureChannelMaxCount)]
+        #[unsafe(method(primarySourceFeatureChannelMaxCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn primarySourceFeatureChannelMaxCount(&self) -> NSUInteger;
 
         /// Setter for [`primarySourceFeatureChannelMaxCount`][Self::primarySourceFeatureChannelMaxCount].
-        #[method(setPrimarySourceFeatureChannelMaxCount:)]
+        #[unsafe(method(setPrimarySourceFeatureChannelMaxCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimarySourceFeatureChannelMaxCount(
             &self,
@@ -1183,12 +1183,12 @@ extern_methods!(
         /// the input image. If the value is too large, it is truncated to be
         /// the remaining size in the image after the sourceFeatureChannelOffset
         /// is taken into account.  Default: ULONG_MAX
-        #[method(secondarySourceFeatureChannelMaxCount)]
+        #[unsafe(method(secondarySourceFeatureChannelMaxCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondarySourceFeatureChannelMaxCount(&self) -> NSUInteger;
 
         /// Setter for [`secondarySourceFeatureChannelMaxCount`][Self::secondarySourceFeatureChannelMaxCount].
-        #[method(setSecondarySourceFeatureChannelMaxCount:)]
+        #[unsafe(method(setSecondarySourceFeatureChannelMaxCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondarySourceFeatureChannelMaxCount(
             &self,
@@ -1205,13 +1205,13 @@ extern_methods!(
         ///
         /// See Also:
         /// subsubsection_edgemode
-        #[method(primaryEdgeMode)]
+        #[unsafe(method(primaryEdgeMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryEdgeMode(&self) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`primaryEdgeMode`][Self::primaryEdgeMode].
-        #[method(setPrimaryEdgeMode:)]
+        #[unsafe(method(setPrimaryEdgeMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryEdgeMode(&self, primary_edge_mode: MPSImageEdgeMode);
 
@@ -1225,13 +1225,13 @@ extern_methods!(
         ///
         /// See Also:
         /// subsubsection_edgemode
-        #[method(secondaryEdgeMode)]
+        #[unsafe(method(secondaryEdgeMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryEdgeMode(&self) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`secondaryEdgeMode`][Self::secondaryEdgeMode].
-        #[method(setSecondaryEdgeMode:)]
+        #[unsafe(method(setSecondaryEdgeMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryEdgeMode(&self, secondary_edge_mode: MPSImageEdgeMode);
 
@@ -1240,7 +1240,7 @@ extern_methods!(
         /// This is the horizontal diameter of the region read by the filter for each
         /// result pixel. If the MPSCNNKernel does not have a filter window, then
         /// 1 will be returned.
-        #[method(primaryKernelWidth)]
+        #[unsafe(method(primaryKernelWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryKernelWidth(&self) -> NSUInteger;
 
@@ -1249,7 +1249,7 @@ extern_methods!(
         /// This is the vertical diameter of the region read by the filter for each
         /// result pixel. If the MPSCNNKernel does not have a filter window, then
         /// 1 will be returned.
-        #[method(primaryKernelHeight)]
+        #[unsafe(method(primaryKernelHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryKernelHeight(&self) -> NSUInteger;
 
@@ -1258,7 +1258,7 @@ extern_methods!(
         /// This is the horizontal diameter of the region read by the filter for each
         /// result pixel. If the MPSCNNBinaryKernel does not have a filter window, then
         /// 1 will be returned.
-        #[method(secondaryKernelWidth)]
+        #[unsafe(method(secondaryKernelWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryKernelWidth(&self) -> NSUInteger;
 
@@ -1267,7 +1267,7 @@ extern_methods!(
         /// This is the vertical diameter of the region read by the filter for each
         /// result pixel. If the MPSCNNBinaryKernel does not have a filter window, then
         /// 1 will be returned.
-        #[method(secondaryKernelHeight)]
+        #[unsafe(method(secondaryKernelHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryKernelHeight(&self) -> NSUInteger;
 
@@ -1275,12 +1275,12 @@ extern_methods!(
         /// for the primary source image
         ///
         /// If the filter does not do up or downsampling, 1 is returned.
-        #[method(primaryStrideInPixelsX)]
+        #[unsafe(method(primaryStrideInPixelsX))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryStrideInPixelsX(&self) -> NSUInteger;
 
         /// Setter for [`primaryStrideInPixelsX`][Self::primaryStrideInPixelsX].
-        #[method(setPrimaryStrideInPixelsX:)]
+        #[unsafe(method(setPrimaryStrideInPixelsX:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryStrideInPixelsX(&self, primary_stride_in_pixels_x: NSUInteger);
 
@@ -1288,12 +1288,12 @@ extern_methods!(
         /// for the primary source image
         ///
         /// If the filter does not do up or downsampling, 1 is returned.
-        #[method(primaryStrideInPixelsY)]
+        #[unsafe(method(primaryStrideInPixelsY))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryStrideInPixelsY(&self) -> NSUInteger;
 
         /// Setter for [`primaryStrideInPixelsY`][Self::primaryStrideInPixelsY].
-        #[method(setPrimaryStrideInPixelsY:)]
+        #[unsafe(method(setPrimaryStrideInPixelsY:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryStrideInPixelsY(&self, primary_stride_in_pixels_y: NSUInteger);
 
@@ -1301,12 +1301,12 @@ extern_methods!(
         /// for the secondary source image
         ///
         /// If the filter does not do up or downsampling, 1 is returned.
-        #[method(secondaryStrideInPixelsX)]
+        #[unsafe(method(secondaryStrideInPixelsX))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryStrideInPixelsX(&self) -> NSUInteger;
 
         /// Setter for [`secondaryStrideInPixelsX`][Self::secondaryStrideInPixelsX].
-        #[method(setSecondaryStrideInPixelsX:)]
+        #[unsafe(method(setSecondaryStrideInPixelsX:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryStrideInPixelsX(&self, secondary_stride_in_pixels_x: NSUInteger);
 
@@ -1314,48 +1314,48 @@ extern_methods!(
         /// for the secondary source image
         ///
         /// If the filter does not do up or downsampling, 1 is returned.
-        #[method(secondaryStrideInPixelsY)]
+        #[unsafe(method(secondaryStrideInPixelsY))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryStrideInPixelsY(&self) -> NSUInteger;
 
         /// Setter for [`secondaryStrideInPixelsY`][Self::secondaryStrideInPixelsY].
-        #[method(setSecondaryStrideInPixelsY:)]
+        #[unsafe(method(setSecondaryStrideInPixelsY:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryStrideInPixelsY(&self, secondary_stride_in_pixels_y: NSUInteger);
 
         /// Stride in source coordinates from one kernel tap to the next in the X dimension.
-        #[method(primaryDilationRateX)]
+        #[unsafe(method(primaryDilationRateX))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryDilationRateX(&self) -> NSUInteger;
 
         /// Stride in source coordinates from one kernel tap to the next in the Y dimension.
-        #[method(primaryDilationRateY)]
+        #[unsafe(method(primaryDilationRateY))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryDilationRateY(&self) -> NSUInteger;
 
         /// Stride in source coordinates from one kernel tap to the next in the X dimension.
         ///
         /// As applied to the secondary source image.
-        #[method(secondaryDilationRateX)]
+        #[unsafe(method(secondaryDilationRateX))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryDilationRateX(&self) -> NSUInteger;
 
         /// Stride in source coordinates from one kernel tap to the next in the Y dimension.
         ///
         /// As applied to the secondary source image.
-        #[method(secondaryDilationRateY)]
+        #[unsafe(method(secondaryDilationRateY))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryDilationRateY(&self) -> NSUInteger;
 
         /// YES if the filter operates backwards.
         ///
         /// This influences how strideInPixelsX/Y should be interpreted.
-        #[method(isBackwards)]
+        #[unsafe(method(isBackwards))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBackwards(&self) -> bool;
 
         /// Returns true if the -encode call modifies the state object it accepts.
-        #[method(isStateModified)]
+        #[unsafe(method(isStateModified))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStateModified(&self) -> bool;
 
@@ -1365,13 +1365,13 @@ extern_methods!(
         /// This influences how strideInPixelsX/Y should be interpreted.
         /// Default:  MPSNNPaddingMethodAlignCentered | MPSNNPaddingMethodAddRemainderToTopLeft | MPSNNPaddingMethodSizeSame
         /// Some object types (e.g. MPSCNNFullyConnected) may override this default with something appropriate to its operation.
-        #[method(padding)]
+        #[unsafe(method(padding))]
         #[unsafe(method_family = none)]
         pub unsafe fn padding(&self) -> Retained<ProtocolObject<dyn MPSNNPadding>>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
         /// Setter for [`padding`][Self::padding].
-        #[method(setPadding:)]
+        #[unsafe(method(setPadding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPadding(&self, padding: &ProtocolObject<dyn MPSNNPadding>);
 
@@ -1379,7 +1379,7 @@ extern_methods!(
         /// Method to allocate the result image for -encodeToCommandBuffer:sourceImage:
         ///
         /// Default: MPSTemporaryImage.defaultAllocator
-        #[method(destinationImageAllocator)]
+        #[unsafe(method(destinationImageAllocator))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationImageAllocator(
             &self,
@@ -1387,7 +1387,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSImage")]
         /// Setter for [`destinationImageAllocator`][Self::destinationImageAllocator].
-        #[method(setDestinationImageAllocator:)]
+        #[unsafe(method(setDestinationImageAllocator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestinationImageAllocator(
             &self,
@@ -1407,7 +1407,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1428,7 +1428,7 @@ extern_methods!(
         /// Parameter `secondaryImage`: A valid MPSImage object containing the secondary source image.
         ///
         /// Parameter `destinationImage`: A valid MPSImage to be overwritten by result image. destinationImage may not alias primarySourceImage or secondarySourceImage.
-        #[method(encodeToCommandBuffer:primaryImage:secondaryImage:destinationImage:)]
+        #[unsafe(method(encodeToCommandBuffer:primaryImage:secondaryImage:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_primaryImage_secondaryImage_destinationImage(
             &self,
@@ -1454,7 +1454,7 @@ extern_methods!(
         /// Parameter `destinationImages`: An array of MPSImage objects to contain the result images.
         /// destinationImages may not alias primarySourceImages or secondarySourceImages
         /// in any manner.
-        #[method(encodeBatchToCommandBuffer:primaryImages:secondaryImages:destinationImages:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:primaryImages:secondaryImages:destinationImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_primaryImages_secondaryImages_destinationImages(
             &self,
@@ -1487,7 +1487,7 @@ extern_methods!(
         /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[method(encodeToCommandBuffer:primaryImage:secondaryImage:)]
+        #[unsafe(method(encodeToCommandBuffer:primaryImage:secondaryImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_primaryImage_secondaryImage(
             &self,
@@ -1520,7 +1520,7 @@ extern_methods!(
         /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[method(encodeBatchToCommandBuffer:primaryImages:secondaryImages:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:primaryImages:secondaryImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_primaryImages_secondaryImages(
             &self,
@@ -1558,7 +1558,7 @@ extern_methods!(
         /// The offset property will be adjusted to reflect the offset used during the encode.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[method(encodeToCommandBuffer:primaryImage:secondaryImage:destinationState:destinationStateIsTemporary:)]
+        #[unsafe(method(encodeToCommandBuffer:primaryImage:secondaryImage:destinationState:destinationStateIsTemporary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_primaryImage_secondaryImage_destinationState_destinationStateIsTemporary(
             &self,
@@ -1598,7 +1598,7 @@ extern_methods!(
         /// The offset property will be adjusted to reflect the offset used during the encode.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[method(encodeBatchToCommandBuffer:primaryImages:secondaryImages:destinationStates:destinationStateIsTemporary:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:primaryImages:secondaryImages:destinationStates:destinationStateIsTemporary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_primaryImages_secondaryImages_destinationStates_destinationStateIsTemporary(
             &self,
@@ -1647,7 +1647,7 @@ extern_methods!(
         /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
         /// returns YES, then it will be called once per batch and the MPSStateBatch array will
         /// contain MPSStateBatch.length references to the same object.
-        #[method(resultStateForPrimaryImage:secondaryImage:sourceStates:destinationImage:)]
+        #[unsafe(method(resultStateForPrimaryImage:secondaryImage:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultStateForPrimaryImage_secondaryImage_sourceStates_destinationImage(
             &self,
@@ -1658,7 +1658,7 @@ extern_methods!(
         ) -> Option<Retained<MPSState>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[method(resultStateBatchForPrimaryImage:secondaryImage:sourceStates:destinationImage:)]
+        #[unsafe(method(resultStateBatchForPrimaryImage:secondaryImage:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultStateBatchForPrimaryImage_secondaryImage_sourceStates_destinationImage(
             &self,
@@ -1709,7 +1709,7 @@ extern_methods!(
         /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
         /// returns YES, then it will be called once per batch and the MPSStateBatch array will
         /// contain MPSStateBatch.length references to the same object.
-        #[method(temporaryResultStateForCommandBuffer:primaryImage:secondaryImage:sourceStates:destinationImage:)]
+        #[unsafe(method(temporaryResultStateForCommandBuffer:primaryImage:secondaryImage:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryResultStateForCommandBuffer_primaryImage_secondaryImage_sourceStates_destinationImage(
             &self,
@@ -1721,7 +1721,7 @@ extern_methods!(
         ) -> Option<Retained<MPSState>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[method(temporaryResultStateBatchForCommandBuffer:primaryImage:secondaryImage:sourceStates:destinationImage:)]
+        #[unsafe(method(temporaryResultStateBatchForCommandBuffer:primaryImage:secondaryImage:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryResultStateBatchForCommandBuffer_primaryImage_secondaryImage_sourceStates_destinationImage(
             &self,
@@ -1738,7 +1738,7 @@ extern_methods!(
         /// (and different) state to go with it. Set to YES to avoid allocating
         /// redundant state in the case when the same state is used all the time.
         /// Default: NO
-        #[method(isResultStateReusedAcrossBatch)]
+        #[unsafe(method(isResultStateReusedAcrossBatch))]
         #[unsafe(method_family = none)]
         pub unsafe fn isResultStateReusedAcrossBatch(&self) -> bool;
 
@@ -1758,7 +1758,7 @@ extern_methods!(
         /// at a time. Note that sub-batches may frequently be as small as 1.
         ///
         /// Default: NO
-        #[method(appendBatchBarrier)]
+        #[unsafe(method(appendBatchBarrier))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBatchBarrier(&self) -> bool;
 
@@ -1841,7 +1841,7 @@ extern_methods!(
         /// Parameter `sourceStates`: An optional array of source states that will be passed into the -encode call
         ///
         /// Returns: an image descriptor allocated on the autorelease pool
-        #[method(destinationImageDescriptorForSourceImages:sourceStates:)]
+        #[unsafe(method(destinationImageDescriptorForSourceImages:sourceStates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationImageDescriptorForSourceImages_sourceStates(
             &self,
@@ -1856,7 +1856,7 @@ extern_methods!(
         /// describe all allocation done by the -encode call.  It is intended for use with high water calculations
         /// for MTLHeap sizing. Allocations are typically for temporary storage needed for multipass algorithms.
         /// This interface should not be used to detect multipass algorithms.
-        #[method(encodingStorageSizeForPrimaryImage:secondaryImage:sourceStates:destinationImage:)]
+        #[unsafe(method(encodingStorageSizeForPrimaryImage:secondaryImage:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodingStorageSizeForPrimaryImage_secondaryImage_sourceStates_destinationImage(
             &self,
@@ -1873,7 +1873,7 @@ extern_methods!(
         /// describe all allocation done by the -encode call.  It is intended for use with high water calculations
         /// for MTLHeap sizing. Allocations are typically for temporary storage needed for multipass algorithms.
         /// This interface should not be used to detect multipass algorithms.
-        #[method(batchEncodingStorageSizeForPrimaryImage:secondaryImage:sourceStates:destinationImage:)]
+        #[unsafe(method(batchEncodingStorageSizeForPrimaryImage:secondaryImage:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn batchEncodingStorageSizeForPrimaryImage_secondaryImage_sourceStates_destinationImage(
             &self,
@@ -1897,7 +1897,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1910,11 +1910,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBinaryKernel {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2000,7 +2000,7 @@ extern_methods!(
         /// Returns: A pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -2020,7 +2020,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -2037,12 +2037,12 @@ extern_methods!(
         /// The kernel offset is the offset after upsampling. Both the source offset
         /// and kernel offset are additive:  effective offset = source offset * stride + kernel offset.
         /// The offset is applied to the (upsampled) source gradient
-        #[method(kernelOffsetX)]
+        #[unsafe(method(kernelOffsetX))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelOffsetX(&self) -> NSInteger;
 
         /// Setter for [`kernelOffsetX`][Self::kernelOffsetX].
-        #[method(setKernelOffsetX:)]
+        #[unsafe(method(setKernelOffsetX:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKernelOffsetX(&self, kernel_offset_x: NSInteger);
 
@@ -2055,12 +2055,12 @@ extern_methods!(
         /// The kernel offset is the offset after upsampling. Both the source offset
         /// and kernel offset are additive:  effective offset = source offset * stride + kernel offset.
         /// The offset is applied to the (upsampled) source gradient
-        #[method(kernelOffsetY)]
+        #[unsafe(method(kernelOffsetY))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelOffsetY(&self) -> NSInteger;
 
         /// Setter for [`kernelOffsetY`][Self::kernelOffsetY].
-        #[method(setKernelOffsetY:)]
+        #[unsafe(method(setKernelOffsetY:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKernelOffsetY(&self, kernel_offset_y: NSInteger);
 
@@ -2092,7 +2092,7 @@ extern_methods!(
         /// inference pass
         ///
         /// Returns: The result gradient from the gradient filter
-        #[method(encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceGradient_sourceImage_gradientState(
             &self,
@@ -2133,7 +2133,7 @@ extern_methods!(
         /// forward pass
         ///
         /// Parameter `destinationGradient`: The MPSImage into which to write the filter result
-        #[method(encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:destinationGradient:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:destinationGradient:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceGradient_sourceImage_gradientState_destinationGradient(
             &self,
@@ -2169,7 +2169,7 @@ extern_methods!(
         ///
         /// Parameter `gradientStates`: The MPSNNGradientState or MPSNNBinaryGradientState subclass produced by the
         /// forward pass
-        #[method(encodeBatchToCommandBuffer:sourceGradients:sourceImages:gradientStates:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceGradients:sourceImages:gradientStates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceGradients_sourceImages_gradientStates(
             &self,
@@ -2209,7 +2209,7 @@ extern_methods!(
         /// produced by the forward pass
         ///
         /// Parameter `destinationGradients`: The MPSImages into which to write the filter result
-        #[method(encodeBatchToCommandBuffer:sourceGradients:sourceImages:gradientStates:destinationGradients:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceGradients:sourceImages:gradientStates:destinationGradients:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceGradients_sourceImages_gradientStates_destinationGradients(
             &self,
@@ -2234,7 +2234,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -2247,11 +2247,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNGradientKernel {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2300,7 +2300,7 @@ extern_methods!(
         /// Returns: A pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(initWithDevice:sourceCount:)]
+        #[unsafe(method(initWithDevice:sourceCount:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
@@ -2308,7 +2308,7 @@ extern_methods!(
             source_count: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -2316,7 +2316,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The number of source images accepted by the kernel
-        #[method(sourceCount)]
+        #[unsafe(method(sourceCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceCount(&self) -> NSUInteger;
 
@@ -2330,12 +2330,12 @@ extern_methods!(
         ///
         /// See Also:
         /// subsubsection_clipRect
-        #[method(clipRect)]
+        #[unsafe(method(clipRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn clipRect(&self) -> MTLRegion;
 
         /// Setter for [`clipRect`][Self::clipRect].
-        #[method(setClipRect:)]
+        #[unsafe(method(setClipRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClipRect(&self, clip_rect: MTLRegion);
 
@@ -2353,12 +2353,12 @@ extern_methods!(
         /// image with insufficient number of feature channels result in an error.
         /// E.g. if the MPSCNNConvolution outputs 32 channels, and destination has 64 channels, then it is an error to set
         /// destinationFeatureChannelOffset > 32.
-        #[method(destinationFeatureChannelOffset)]
+        #[unsafe(method(destinationFeatureChannelOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationFeatureChannelOffset(&self) -> NSUInteger;
 
         /// Setter for [`destinationFeatureChannelOffset`][Self::destinationFeatureChannelOffset].
-        #[method(setDestinationFeatureChannelOffset:)]
+        #[unsafe(method(setDestinationFeatureChannelOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestinationFeatureChannelOffset(
             &self,
@@ -2368,12 +2368,12 @@ extern_methods!(
         /// YES if the filter operates backwards.
         ///
         /// This influences how strideInPixelsX/Y should be interpreted.
-        #[method(isBackwards)]
+        #[unsafe(method(isBackwards))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBackwards(&self) -> bool;
 
         /// Returns true if the -encode call modifies the state object it accepts.
-        #[method(isStateModified)]
+        #[unsafe(method(isStateModified))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStateModified(&self) -> bool;
 
@@ -2383,13 +2383,13 @@ extern_methods!(
         /// This influences how strideInPixelsX/Y should be interpreted.
         /// Default:  MPSNNPaddingMethodAlignCentered | MPSNNPaddingMethodAddRemainderToTopLeft | MPSNNPaddingMethodSizeSame
         /// Some object types (e.g. MPSCNNFullyConnected) may override this default with something appropriate to its operation.
-        #[method(padding)]
+        #[unsafe(method(padding))]
         #[unsafe(method_family = none)]
         pub unsafe fn padding(&self) -> Retained<ProtocolObject<dyn MPSNNPadding>>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
         /// Setter for [`padding`][Self::padding].
-        #[method(setPadding:)]
+        #[unsafe(method(setPadding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPadding(&self, padding: &ProtocolObject<dyn MPSNNPadding>);
 
@@ -2397,7 +2397,7 @@ extern_methods!(
         /// Method to allocate the result image for -encodeToCommandBuffer:sourceImage:
         ///
         /// Default: MPSTemporaryImage.defaultAllocator
-        #[method(destinationImageAllocator)]
+        #[unsafe(method(destinationImageAllocator))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationImageAllocator(
             &self,
@@ -2405,7 +2405,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSImage")]
         /// Setter for [`destinationImageAllocator`][Self::destinationImageAllocator].
-        #[method(setDestinationImageAllocator:)]
+        #[unsafe(method(setDestinationImageAllocator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestinationImageAllocator(
             &self,
@@ -2422,7 +2422,7 @@ extern_methods!(
         /// Parameter `index`: The index of the source image described by the offset
         ///
         /// Returns: A MPSOffset for that image
-        #[method(offsetAtIndex:)]
+        #[unsafe(method(offsetAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn offsetAtIndex(&self, index: NSUInteger) -> MPSOffset;
 
@@ -2436,7 +2436,7 @@ extern_methods!(
         /// Parameter `offset`: The new offset
         ///
         /// Parameter `index`: The index of the source image described by the offset
-        #[method(setOffset:atIndex:)]
+        #[unsafe(method(setOffset:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOffset_atIndex(&self, offset: MPSOffset, index: NSUInteger);
 
@@ -2458,7 +2458,7 @@ extern_methods!(
         /// Parameter `index`: The index of the source image that the feature channel offset describes
         ///
         /// Returns: The source feature channel offset
-        #[method(sourceFeatureChannelOffsetAtIndex:)]
+        #[unsafe(method(sourceFeatureChannelOffsetAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceFeatureChannelOffsetAtIndex(&self, index: NSUInteger) -> NSUInteger;
 
@@ -2480,7 +2480,7 @@ extern_methods!(
         /// Parameter `index`: The index of the source image that the feature channel offset describes
         ///
         /// Parameter `offset`: The source feature channel offset
-        #[method(setSourceFeatureChannelOffset:atIndex:)]
+        #[unsafe(method(setSourceFeatureChannelOffset:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceFeatureChannelOffset_atIndex(
             &self,
@@ -2499,7 +2499,7 @@ extern_methods!(
         /// Parameter `index`: The index of the source image to which the max count refers
         ///
         /// Returns: The source feature channel max count
-        #[method(sourceFeatureChannelMaxCountAtIndex:)]
+        #[unsafe(method(sourceFeatureChannelMaxCountAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceFeatureChannelMaxCountAtIndex(&self, index: NSUInteger) -> NSUInteger;
 
@@ -2514,7 +2514,7 @@ extern_methods!(
         /// Parameter `count`: The new source feature channel max count
         ///
         /// Parameter `index`: The index of the source image to which the max count refers
-        #[method(setSourceFeatureChannelMaxCount:atIndex:)]
+        #[unsafe(method(setSourceFeatureChannelMaxCount:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceFeatureChannelMaxCount_atIndex(
             &self,
@@ -2535,7 +2535,7 @@ extern_methods!(
         /// Parameter `index`: The index of the source image to which the edge mode refers
         ///
         /// Returns: The edge mode for that source image
-        #[method(edgeModeAtIndex:)]
+        #[unsafe(method(edgeModeAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn edgeModeAtIndex(&self, index: NSUInteger) -> MPSImageEdgeMode;
 
@@ -2552,7 +2552,7 @@ extern_methods!(
         /// Parameter `edgeMode`: The new edge mode to use
         ///
         /// Parameter `index`: The index of the source image to which the edge mode refers
-        #[method(setEdgeMode:atIndex:)]
+        #[unsafe(method(setEdgeMode:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEdgeMode_atIndex(&self, edge_mode: MPSImageEdgeMode, index: NSUInteger);
 
@@ -2563,7 +2563,7 @@ extern_methods!(
         /// 1 will be returned.
         ///
         /// Parameter `index`: The index of the source image to which the kernel width refers
-        #[method(kernelWidthAtIndex:)]
+        #[unsafe(method(kernelWidthAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWidthAtIndex(&self, index: NSUInteger) -> NSUInteger;
 
@@ -2576,7 +2576,7 @@ extern_methods!(
         /// Parameter `width`: The new width
         ///
         /// Parameter `index`: The index of the source image to which the kernel width refers
-        #[method(setKernelWidth:atIndex:)]
+        #[unsafe(method(setKernelWidth:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKernelWidth_atIndex(&self, width: NSUInteger, index: NSUInteger);
 
@@ -2587,7 +2587,7 @@ extern_methods!(
         /// 1 will be returned.
         ///
         /// Parameter `index`: The index of the source image to which the kernel width refers
-        #[method(kernelHeightAtIndex:)]
+        #[unsafe(method(kernelHeightAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelHeightAtIndex(&self, index: NSUInteger) -> NSUInteger;
 
@@ -2600,7 +2600,7 @@ extern_methods!(
         /// Parameter `height`: The new width
         ///
         /// Parameter `index`: The index of the source image to which the kernel width refers
-        #[method(setKernelHeight:atIndex:)]
+        #[unsafe(method(setKernelHeight:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKernelHeight_atIndex(&self, height: NSUInteger, index: NSUInteger);
 
@@ -2611,7 +2611,7 @@ extern_methods!(
         /// If the filter does not do up or downsampling, 1 is returned.
         ///
         /// Returns: The stride
-        #[method(strideInPixelsXatIndex:)]
+        #[unsafe(method(strideInPixelsXatIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn strideInPixelsXatIndex(&self, index: NSUInteger) -> NSUInteger;
 
@@ -2622,7 +2622,7 @@ extern_methods!(
         /// Parameter `index`: The index of the source Image
         ///
         /// Parameter `stride`: The stride for the source image
-        #[method(setStrideInPixelsX:atIndex:)]
+        #[unsafe(method(setStrideInPixelsX:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrideInPixelsX_atIndex(&self, stride: NSUInteger, index: NSUInteger);
 
@@ -2633,7 +2633,7 @@ extern_methods!(
         /// If the filter does not do up or downsampling, 1 is returned.
         ///
         /// Returns: The stride
-        #[method(strideInPixelsYatIndex:)]
+        #[unsafe(method(strideInPixelsYatIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn strideInPixelsYatIndex(&self, index: NSUInteger) -> NSUInteger;
 
@@ -2644,7 +2644,7 @@ extern_methods!(
         /// Parameter `index`: The index of the source Image
         ///
         /// Parameter `stride`: The stride for the source image
-        #[method(setStrideInPixelsY:atIndex:)]
+        #[unsafe(method(setStrideInPixelsY:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrideInPixelsY_atIndex(&self, stride: NSUInteger, index: NSUInteger);
 
@@ -2653,7 +2653,7 @@ extern_methods!(
         /// Parameter `index`: The index of the source image to which the dilation rate applies
         ///
         /// Returns: The dilation rate
-        #[method(dilationRateXatIndex:)]
+        #[unsafe(method(dilationRateXatIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dilationRateXatIndex(&self, index: NSUInteger) -> NSUInteger;
 
@@ -2662,7 +2662,7 @@ extern_methods!(
         /// Parameter `index`: The index of the source image to which the dilation rate applies
         ///
         /// Parameter `dilationRate`: The dilation rate
-        #[method(setDilationRateX:atIndex:)]
+        #[unsafe(method(setDilationRateX:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDilationRateX_atIndex(&self, dilation_rate: NSUInteger, index: NSUInteger);
 
@@ -2671,7 +2671,7 @@ extern_methods!(
         /// Parameter `index`: The index of the source image to which the dilation rate applies
         ///
         /// Returns: The dilation rate
-        #[method(dilationRateYatIndex:)]
+        #[unsafe(method(dilationRateYatIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dilationRateYatIndex(&self, index: NSUInteger) -> NSUInteger;
 
@@ -2680,7 +2680,7 @@ extern_methods!(
         /// Parameter `index`: The index of the source image to which the dilation rate applies
         ///
         /// Parameter `dilationRate`: The dilation rate
-        #[method(setDilationRateY:atIndex:)]
+        #[unsafe(method(setDilationRateY:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDilationRateY_atIndex(&self, dilation_rate: NSUInteger, index: NSUInteger);
 
@@ -2697,7 +2697,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -2716,7 +2716,7 @@ extern_methods!(
         /// Parameter `sourceImages`: An array containing the source images
         ///
         /// Parameter `destinationImage`: A valid MPSImage to be overwritten by result image. destinationImage may not alias primarySourceImage or secondarySourceImage.
-        #[method(encodeToCommandBuffer:sourceImages:destinationImage:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceImages:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImages_destinationImage(
             &self,
@@ -2739,7 +2739,7 @@ extern_methods!(
         /// Parameter `destinationImages`: An array of MPSImage objects to contain the result images.
         /// destinationImages may not alias primarySourceImages or secondarySourceImages
         /// in any manner.
-        #[method(encodeBatchToCommandBuffer:sourceImages:destinationImages:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:destinationImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationImages(
             &self,
@@ -2769,7 +2769,7 @@ extern_methods!(
         /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[method(encodeToCommandBuffer:sourceImages:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImages(
             &self,
@@ -2799,7 +2799,7 @@ extern_methods!(
         /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[method(encodeBatchToCommandBuffer:sourceImages:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages(
             &self,
@@ -2834,7 +2834,7 @@ extern_methods!(
         /// The offset property will be adjusted to reflect the offset used during the encode.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[method(encodeToCommandBuffer:sourceImages:destinationState:destinationStateIsTemporary:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceImages:destinationState:destinationStateIsTemporary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImages_destinationState_destinationStateIsTemporary(
             &self,
@@ -2871,7 +2871,7 @@ extern_methods!(
         /// The offset property will be adjusted to reflect the offset used during the encode.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[method(encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationStates_destinationStateIsTemporary(
             &self,
@@ -2887,7 +2887,7 @@ extern_methods!(
         /// (and different) state to go with it. Set to YES to avoid allocating
         /// redundant state in the case when the same state is used all the time.
         /// Default: NO
-        #[method(isResultStateReusedAcrossBatch)]
+        #[unsafe(method(isResultStateReusedAcrossBatch))]
         #[unsafe(method_family = none)]
         pub unsafe fn isResultStateReusedAcrossBatch(&self) -> bool;
 
@@ -2920,7 +2920,7 @@ extern_methods!(
         /// over the entire graph.  Filters of this variety should be avoided.
         ///
         /// Default: NO
-        #[method(appendBatchBarrier)]
+        #[unsafe(method(appendBatchBarrier))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBatchBarrier(&self) -> bool;
 
@@ -2991,7 +2991,7 @@ extern_methods!(
         /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
         /// returns YES, then it will be called once per batch and the MPSStateBatch array will
         /// contain MPSStateBatch.length references to the same object.
-        #[method(resultStateForSourceImages:sourceStates:destinationImage:)]
+        #[unsafe(method(resultStateForSourceImages:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultStateForSourceImages_sourceStates_destinationImage(
             &self,
@@ -3001,7 +3001,7 @@ extern_methods!(
         ) -> Option<Retained<MPSState>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[method(resultStateBatchForSourceImages:sourceStates:destinationImage:)]
+        #[unsafe(method(resultStateBatchForSourceImages:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultStateBatchForSourceImages_sourceStates_destinationImage(
             &self,
@@ -3080,7 +3080,7 @@ extern_methods!(
         /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
         /// returns YES, then it will be called once per batch and the MPSStateBatch array will
         /// contain MPSStateBatch.length references to the same object.
-        #[method(temporaryResultStateForCommandBuffer:sourceImages:sourceStates:destinationImage:)]
+        #[unsafe(method(temporaryResultStateForCommandBuffer:sourceImages:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryResultStateForCommandBuffer_sourceImages_sourceStates_destinationImage(
             &self,
@@ -3091,7 +3091,7 @@ extern_methods!(
         ) -> Option<Retained<MPSState>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[method(temporaryResultStateBatchForCommandBuffer:sourceImages:sourceStates:destinationImage:)]
+        #[unsafe(method(temporaryResultStateBatchForCommandBuffer:sourceImages:sourceStates:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryResultStateBatchForCommandBuffer_sourceImages_sourceStates_destinationImage(
             &self,
@@ -3180,7 +3180,7 @@ extern_methods!(
         /// Parameter `sourceStates`: An optional array of source states that will be passed into the -encode call
         ///
         /// Returns: an image descriptor allocated on the autorelease pool
-        #[method(destinationImageDescriptorForSourceImages:sourceStates:)]
+        #[unsafe(method(destinationImageDescriptorForSourceImages:sourceStates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationImageDescriptorForSourceImages_sourceStates(
             &self,
@@ -3202,7 +3202,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -3215,11 +3215,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNMultiaryKernel {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

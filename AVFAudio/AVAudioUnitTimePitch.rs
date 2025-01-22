@@ -44,12 +44,12 @@ extern_methods!(
         /// Range:      1/32 -> 32.0
         /// Default:    1.0
         /// Unit:       Generic
-        #[method(rate)]
+        #[unsafe(method(rate))]
         #[unsafe(method_family = none)]
         pub unsafe fn rate(&self) -> c_float;
 
         /// Setter for [`rate`][Self::rate].
-        #[method(setRate:)]
+        #[unsafe(method(setRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRate(&self, rate: c_float);
 
@@ -61,12 +61,12 @@ extern_methods!(
         /// Range:      -2400 -> 2400
         /// Default:    0.0
         /// Unit:       Cents
-        #[method(pitch)]
+        #[unsafe(method(pitch))]
         #[unsafe(method_family = none)]
         pub unsafe fn pitch(&self) -> c_float;
 
         /// Setter for [`pitch`][Self::pitch].
-        #[method(setPitch:)]
+        #[unsafe(method(setPitch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPitch(&self, pitch: c_float);
 
@@ -78,12 +78,12 @@ extern_methods!(
         /// Range:      3.0 -> 32.0
         /// Default:    8.0
         /// Unit:       Generic
-        #[method(overlap)]
+        #[unsafe(method(overlap))]
         #[unsafe(method_family = none)]
         pub unsafe fn overlap(&self) -> c_float;
 
         /// Setter for [`overlap`][Self::overlap].
-        #[method(setOverlap:)]
+        #[unsafe(method(setOverlap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverlap(&self, overlap: c_float);
     }
@@ -105,7 +105,7 @@ extern_methods!(
         /// Parameter `audioComponentDescription`: AudioComponentDescription of the audio unit to be initialized
         ///
         /// The componentType must be kAudioUnitType_FormatConverter
-        #[method(initWithAudioComponentDescription:)]
+        #[unsafe(method(initWithAudioComponentDescription:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
@@ -122,11 +122,11 @@ extern_methods!(
         feature = "AVAudioUnitTimeEffect"
     ))]
     unsafe impl AVAudioUnitTimePitch {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

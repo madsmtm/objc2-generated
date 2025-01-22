@@ -37,11 +37,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIBarcodeDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -111,7 +111,7 @@ extern_methods!(
         /// QR Codes are formally specified in ISO/IEC 18004:2006(E). Section 6.4.10 "Bitstream to codeword conversion" specifies the set of 8-bit codewords in the symbol immediately prior to splitting the message into blocks and applying error correction.
         ///
         /// During decode, error correction is applied and if successful, the message is re-ordered to the state immediately following "Bitstream to codeword coversion." The errorCorrectedPayload corresponds to this sequence of 8-bit codewords.
-        #[method(errorCorrectedPayload)]
+        #[unsafe(method(errorCorrectedPayload))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorCorrectedPayload(&self) -> Retained<NSData>;
 
@@ -119,7 +119,7 @@ extern_methods!(
         ///
         ///
         /// QR Codes are square. ISO/IEC 18004 defines versions from 1 to 40, where a higher symbol version indicates a larger data carrying capacity. This field is required in order to properly interpret the error corrected payload.
-        #[method(symbolVersion)]
+        #[unsafe(method(symbolVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolVersion(&self) -> NSInteger;
 
@@ -127,7 +127,7 @@ extern_methods!(
         ///
         ///
         /// QR Codes support eight data mask patterns, which are used to avoid large black or large white areas inside the symbol body. Valid values range from 0 to 7.
-        #[method(maskPattern)]
+        #[unsafe(method(maskPattern))]
         #[unsafe(method_family = none)]
         pub unsafe fn maskPattern(&self) -> u8;
 
@@ -135,11 +135,11 @@ extern_methods!(
         ///
         ///
         /// QR Codes support four levels of Reed-Solomon error correction, in increasing error correction capability: L, M, Q, and H.
-        #[method(errorCorrectionLevel)]
+        #[unsafe(method(errorCorrectionLevel))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorCorrectionLevel(&self) -> CIQRCodeErrorCorrectionLevel;
 
-        #[method(initWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:)]
+        #[unsafe(method(initWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPayload_symbolVersion_maskPattern_errorCorrectionLevel(
             this: Allocated<Self>,
@@ -149,7 +149,7 @@ extern_methods!(
             error_correction_level: CIQRCodeErrorCorrectionLevel,
         ) -> Option<Retained<Self>>;
 
-        #[method(descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:)]
+        #[unsafe(method(descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithPayload_symbolVersion_maskPattern_errorCorrectionLevel(
             error_corrected_payload: &NSData,
@@ -163,11 +163,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIQRCodeDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -205,7 +205,7 @@ extern_methods!(
         /// Aztec Codes are formally specified in ISO/IEC 24778:2008(E).
         ///
         /// The error corrected payload consists of the 6-, 8-, 10-, or 12-bit message codewords produced at the end of the step described in section 7.3.1.2 "Formation of data codewords", which exists immediately prior to adding error correction. These codewords have dummy bits inserted to ensure that an entire codeword isn't all 0's or all 1's. Clients will need to remove these extra bits as part of interpreting the payload.
-        #[method(errorCorrectedPayload)]
+        #[unsafe(method(errorCorrectedPayload))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorCorrectedPayload(&self) -> Retained<NSData>;
 
@@ -213,7 +213,7 @@ extern_methods!(
         ///
         ///
         /// Compact Aztec symbols use one-fewer ring in the central finder pattern than full-range Aztec symbols of the same number of data layers.
-        #[method(isCompact)]
+        #[unsafe(method(isCompact))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCompact(&self) -> bool;
 
@@ -223,7 +223,7 @@ extern_methods!(
         /// Combined with the isCompact property, the number of data layers determines the number of modules in the Aztec Code symbol. Valid values range from 1 to 32. Compact symbols can have up to 4 data layers.
         ///
         /// The number of data layers also determines the number of bits in each data codeword of the message carried by the Aztec Code symbol.
-        #[method(layerCount)]
+        #[unsafe(method(layerCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerCount(&self) -> NSInteger;
 
@@ -233,11 +233,11 @@ extern_methods!(
         /// Used to determine the level of error correction in conjunction with the number of data layers. Valid values are 1...2048. Compact symbols can have up to 64 message codewords.
         ///
         /// Note that this value can exceed the number of message codewords allowed by the number of data layers in this symbol. In this case, the actual number of message codewords is 1024 fewer than this value and the message payload is to be interpreted in an application-defined manner.
-        #[method(dataCodewordCount)]
+        #[unsafe(method(dataCodewordCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataCodewordCount(&self) -> NSInteger;
 
-        #[method(initWithPayload:isCompact:layerCount:dataCodewordCount:)]
+        #[unsafe(method(initWithPayload:isCompact:layerCount:dataCodewordCount:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPayload_isCompact_layerCount_dataCodewordCount(
             this: Allocated<Self>,
@@ -247,7 +247,7 @@ extern_methods!(
             data_codeword_count: NSInteger,
         ) -> Option<Retained<Self>>;
 
-        #[method(descriptorWithPayload:isCompact:layerCount:dataCodewordCount:)]
+        #[unsafe(method(descriptorWithPayload:isCompact:layerCount:dataCodewordCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithPayload_isCompact_layerCount_dataCodewordCount(
             error_corrected_payload: &NSData,
@@ -261,11 +261,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIAztecCodeDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -301,7 +301,7 @@ extern_methods!(
         ///
         ///
         /// PDF417 codes are comprised of a start character on the left and a stop character on the right. Each row begins and ends with special characters indicating the current row as well as information about the dimensions of the PDF417 symbol. The errorCorrectedPayload represents the sequence of PDF417 codewords that make up the body of the message. The first codeword indicates the number of codewords in the message. This count includes the "count" codeword and any padding codewords, but does not include the error correction codewords. Each codeword is a 16-bit value in the range of 0...928. The sequence is to be interpreted as described in the PDF417 bar code symbology specification -- ISO/IEC 15438:2006(E).
-        #[method(errorCorrectedPayload)]
+        #[unsafe(method(errorCorrectedPayload))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorCorrectedPayload(&self) -> Retained<NSData>;
 
@@ -309,7 +309,7 @@ extern_methods!(
         ///
         ///
         /// Compact PDF417 symbols have abbreviated right-side guard bars.
-        #[method(isCompact)]
+        #[unsafe(method(isCompact))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCompact(&self) -> bool;
 
@@ -317,7 +317,7 @@ extern_methods!(
         ///
         ///
         /// rowCount values range from 3 to 90.
-        #[method(rowCount)]
+        #[unsafe(method(rowCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn rowCount(&self) -> NSInteger;
 
@@ -325,11 +325,11 @@ extern_methods!(
         ///
         ///
         /// columnCount values range from 1 to 30.
-        #[method(columnCount)]
+        #[unsafe(method(columnCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn columnCount(&self) -> NSInteger;
 
-        #[method(initWithPayload:isCompact:rowCount:columnCount:)]
+        #[unsafe(method(initWithPayload:isCompact:rowCount:columnCount:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPayload_isCompact_rowCount_columnCount(
             this: Allocated<Self>,
@@ -339,7 +339,7 @@ extern_methods!(
             column_count: NSInteger,
         ) -> Option<Retained<Self>>;
 
-        #[method(descriptorWithPayload:isCompact:rowCount:columnCount:)]
+        #[unsafe(method(descriptorWithPayload:isCompact:rowCount:columnCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithPayload_isCompact_rowCount_columnCount(
             error_corrected_payload: &NSData,
@@ -353,11 +353,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIPDF417CodeDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -440,7 +440,7 @@ extern_methods!(
         /// DataMatrix symbols are specified bn ISO/IEC 16022:2006(E). ECC 200-type symbols will always have an even number of rows and columns.
         ///
         /// For ECC 200-type symbols, the phases of encoding data into a symbol are described in section 5.1 -- Encode procedure overview. The error corrected payload comprises the de-interleaved bits of the message described at the end of Step 1: Data encodation.
-        #[method(errorCorrectedPayload)]
+        #[unsafe(method(errorCorrectedPayload))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorCorrectedPayload(&self) -> Retained<NSData>;
 
@@ -448,7 +448,7 @@ extern_methods!(
         ///
         ///
         /// Refer to ISO/IEC 16022:2006(E) for valid module row and column count combinations.
-        #[method(rowCount)]
+        #[unsafe(method(rowCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn rowCount(&self) -> NSInteger;
 
@@ -456,7 +456,7 @@ extern_methods!(
         ///
         ///
         /// Refer to ISO/IEC 16022:2006(E) for valid module row and column count combinations.
-        #[method(columnCount)]
+        #[unsafe(method(columnCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn columnCount(&self) -> NSInteger;
 
@@ -464,11 +464,11 @@ extern_methods!(
         ///
         ///
         /// Valid values are 000, 050, 080, 100, 140, and 200. Any symbol with an even number of rows and columns will be ECC 200.
-        #[method(eccVersion)]
+        #[unsafe(method(eccVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn eccVersion(&self) -> CIDataMatrixCodeECCVersion;
 
-        #[method(initWithPayload:rowCount:columnCount:eccVersion:)]
+        #[unsafe(method(initWithPayload:rowCount:columnCount:eccVersion:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPayload_rowCount_columnCount_eccVersion(
             this: Allocated<Self>,
@@ -478,7 +478,7 @@ extern_methods!(
             ecc_version: CIDataMatrixCodeECCVersion,
         ) -> Option<Retained<Self>>;
 
-        #[method(descriptorWithPayload:rowCount:columnCount:eccVersion:)]
+        #[unsafe(method(descriptorWithPayload:rowCount:columnCount:eccVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithPayload_rowCount_columnCount_eccVersion(
             error_corrected_payload: &NSData,
@@ -492,11 +492,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIDataMatrixCodeDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -507,7 +507,7 @@ extern_category!(
     #[doc(alias = "CIBarcodeDescriptor")]
     pub unsafe trait NSUserActivityCIBarcodeDescriptor {
         /// The scanned code in the user activity passed in by system scanner.
-        #[method(detectedBarcodeDescriptor)]
+        #[unsafe(method(detectedBarcodeDescriptor))]
         #[unsafe(method_family = none)]
         unsafe fn detectedBarcodeDescriptor(&self) -> Option<Retained<CIBarcodeDescriptor>>;
     }

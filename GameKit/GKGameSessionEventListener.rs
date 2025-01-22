@@ -18,7 +18,7 @@ extern_protocol!(
         ))]
         #[deprecated]
         #[optional]
-        #[method(session:didAddPlayer:)]
+        #[unsafe(method(session:didAddPlayer:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didAddPlayer(&self, session: &GKGameSession, player: &GKCloudPlayer);
 
@@ -29,7 +29,7 @@ extern_protocol!(
         ))]
         #[deprecated]
         #[optional]
-        #[method(session:didRemovePlayer:)]
+        #[unsafe(method(session:didRemovePlayer:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didRemovePlayer(&self, session: &GKGameSession, player: &GKCloudPlayer);
 
@@ -40,7 +40,7 @@ extern_protocol!(
         ))]
         #[deprecated]
         #[optional]
-        #[method(session:player:didChangeConnectionState:)]
+        #[unsafe(method(session:player:didChangeConnectionState:))]
         #[unsafe(method_family = none)]
         unsafe fn session_player_didChangeConnectionState(
             &self,
@@ -56,7 +56,7 @@ extern_protocol!(
         ))]
         #[deprecated]
         #[optional]
-        #[method(session:player:didSaveData:)]
+        #[unsafe(method(session:player:didSaveData:))]
         #[unsafe(method_family = none)]
         unsafe fn session_player_didSaveData(
             &self,
@@ -72,7 +72,7 @@ extern_protocol!(
         ))]
         #[deprecated]
         #[optional]
-        #[method(session:didReceiveData:fromPlayer:)]
+        #[unsafe(method(session:didReceiveData:fromPlayer:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didReceiveData_fromPlayer(
             &self,
@@ -88,7 +88,7 @@ extern_protocol!(
         ))]
         #[deprecated]
         #[optional]
-        #[method(session:didReceiveMessage:withData:fromPlayer:)]
+        #[unsafe(method(session:didReceiveMessage:withData:fromPlayer:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didReceiveMessage_withData_fromPlayer(
             &self,
@@ -105,12 +105,12 @@ extern_methods!(
     #[cfg(feature = "GKGameSession")]
     unsafe impl GKGameSession {
         #[deprecated]
-        #[method(addEventListener:)]
+        #[unsafe(method(addEventListener:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addEventListener(listener: &NSObject);
 
         #[deprecated = "-[GKLocalPlayer unregisterListener:] or -[GKLocalPlayer unregisterAllListeners:]"]
-        #[method(removeEventListener:)]
+        #[unsafe(method(removeEventListener:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeEventListener(listener: &NSObject);
     }

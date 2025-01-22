@@ -32,7 +32,7 @@ extern_methods!(
         /// MXCallStackTrees can be organized into a single callstack for the entire application, or broken up into callstacks associated with individual threads.
         ///
         /// Returns: An NSData object containing the JSON representation
-        #[method(JSONRepresentation)]
+        #[unsafe(method(JSONRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
     }
@@ -41,11 +41,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXCallStackTree {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

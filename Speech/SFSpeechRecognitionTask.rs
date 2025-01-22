@@ -44,27 +44,27 @@ unsafe impl NSObjectProtocol for SFSpeechRecognitionTask {}
 
 extern_methods!(
     unsafe impl SFSpeechRecognitionTask {
-        #[method(state)]
+        #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> SFSpeechRecognitionTaskState;
 
-        #[method(isFinishing)]
+        #[unsafe(method(isFinishing))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFinishing(&self) -> bool;
 
-        #[method(finish)]
+        #[unsafe(method(finish))]
         #[unsafe(method_family = none)]
         pub unsafe fn finish(&self);
 
-        #[method(isCancelled)]
+        #[unsafe(method(isCancelled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCancelled(&self) -> bool;
 
-        #[method(cancel)]
+        #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
-        #[method(error)]
+        #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
@@ -73,11 +73,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechRecognitionTask {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -87,13 +87,13 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskdelegate?language=objc)
     pub unsafe trait SFSpeechRecognitionTaskDelegate: NSObjectProtocol {
         #[optional]
-        #[method(speechRecognitionDidDetectSpeech:)]
+        #[unsafe(method(speechRecognitionDidDetectSpeech:))]
         #[unsafe(method_family = none)]
         unsafe fn speechRecognitionDidDetectSpeech(&self, task: &SFSpeechRecognitionTask);
 
         #[cfg(feature = "SFTranscription")]
         #[optional]
-        #[method(speechRecognitionTask:didHypothesizeTranscription:)]
+        #[unsafe(method(speechRecognitionTask:didHypothesizeTranscription:))]
         #[unsafe(method_family = none)]
         unsafe fn speechRecognitionTask_didHypothesizeTranscription(
             &self,
@@ -103,7 +103,7 @@ extern_protocol!(
 
         #[cfg(feature = "SFSpeechRecognitionResult")]
         #[optional]
-        #[method(speechRecognitionTask:didFinishRecognition:)]
+        #[unsafe(method(speechRecognitionTask:didFinishRecognition:))]
         #[unsafe(method_family = none)]
         unsafe fn speechRecognitionTask_didFinishRecognition(
             &self,
@@ -112,17 +112,17 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(speechRecognitionTaskFinishedReadingAudio:)]
+        #[unsafe(method(speechRecognitionTaskFinishedReadingAudio:))]
         #[unsafe(method_family = none)]
         unsafe fn speechRecognitionTaskFinishedReadingAudio(&self, task: &SFSpeechRecognitionTask);
 
         #[optional]
-        #[method(speechRecognitionTaskWasCancelled:)]
+        #[unsafe(method(speechRecognitionTaskWasCancelled:))]
         #[unsafe(method_family = none)]
         unsafe fn speechRecognitionTaskWasCancelled(&self, task: &SFSpeechRecognitionTask);
 
         #[optional]
-        #[method(speechRecognitionTask:didFinishSuccessfully:)]
+        #[unsafe(method(speechRecognitionTask:didFinishSuccessfully:))]
         #[unsafe(method_family = none)]
         unsafe fn speechRecognitionTask_didFinishSuccessfully(
             &self,
@@ -131,7 +131,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(speechRecognitionTask:didProcessAudioDuration:)]
+        #[unsafe(method(speechRecognitionTask:didProcessAudioDuration:))]
         #[unsafe(method_family = none)]
         unsafe fn speechRecognitionTask_didProcessAudioDuration(
             &self,

@@ -45,68 +45,68 @@ unsafe impl NSSecureCoding for CLMonitoringEvent {}
 
 extern_methods!(
     unsafe impl CLMonitoringEvent {
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "CLCondition")]
-        #[method(refinement)]
+        #[unsafe(method(refinement))]
         #[unsafe(method_family = none)]
         pub unsafe fn refinement(&self) -> Option<Retained<CLCondition>>;
 
-        #[method(state)]
+        #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> CLMonitoringState;
 
-        #[method(date)]
+        #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
-        #[method(authorizationDenied)]
+        #[unsafe(method(authorizationDenied))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationDenied(&self) -> bool;
 
-        #[method(authorizationDeniedGlobally)]
+        #[unsafe(method(authorizationDeniedGlobally))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationDeniedGlobally(&self) -> bool;
 
-        #[method(authorizationRestricted)]
+        #[unsafe(method(authorizationRestricted))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationRestricted(&self) -> bool;
 
-        #[method(insufficientlyInUse)]
+        #[unsafe(method(insufficientlyInUse))]
         #[unsafe(method_family = none)]
         pub unsafe fn insufficientlyInUse(&self) -> bool;
 
-        #[method(accuracyLimited)]
+        #[unsafe(method(accuracyLimited))]
         #[unsafe(method_family = none)]
         pub unsafe fn accuracyLimited(&self) -> bool;
 
-        #[method(conditionUnsupported)]
+        #[unsafe(method(conditionUnsupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn conditionUnsupported(&self) -> bool;
 
-        #[method(conditionLimitExceeded)]
+        #[unsafe(method(conditionLimitExceeded))]
         #[unsafe(method_family = none)]
         pub unsafe fn conditionLimitExceeded(&self) -> bool;
 
-        #[method(persistenceUnavailable)]
+        #[unsafe(method(persistenceUnavailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistenceUnavailable(&self) -> bool;
 
-        #[method(serviceSessionRequired)]
+        #[unsafe(method(serviceSessionRequired))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceSessionRequired(&self) -> bool;
 
-        #[method(authorizationRequestInProgress)]
+        #[unsafe(method(authorizationRequestInProgress))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationRequestInProgress(&self) -> bool;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -64,7 +64,7 @@ extern_methods!(
     unsafe impl HKCumulativeQuantitySample {
         #[cfg(feature = "HKQuantity")]
         /// The sum of quantities represented by the receiver.
-        #[method(sumQuantity)]
+        #[unsafe(method(sumQuantity))]
         #[unsafe(method_family = none)]
         pub unsafe fn sumQuantity(&self) -> Retained<HKQuantity>;
     }
@@ -83,7 +83,7 @@ extern_methods!(
         ///
         /// The quantity must have a unit that is compatible with the given quantity type.
         /// See -[HKQuantityType isCompatibleWithUnit:].
-        #[method(quantitySampleWithType:quantity:startDate:endDate:)]
+        #[unsafe(method(quantitySampleWithType:quantity:startDate:endDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate(
             quantity_type: &HKQuantityType,
@@ -97,7 +97,7 @@ extern_methods!(
         ///
         /// The quantity must have a unit that is compatible with the given quantity type.
         /// See -[HKQuantityType isCompatibleWithUnit:].
-        #[method(quantitySampleWithType:quantity:startDate:endDate:metadata:)]
+        #[unsafe(method(quantitySampleWithType:quantity:startDate:endDate:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate_metadata(
             quantity_type: &HKQuantityType,
@@ -122,7 +122,7 @@ extern_methods!(
         ///
         /// The quantity must have a unit that is compatible with the given quantity type.
         /// See -[HKQuantityType isCompatibleWithUnit:].
-        #[method(quantitySampleWithType:quantity:startDate:endDate:device:metadata:)]
+        #[unsafe(method(quantitySampleWithType:quantity:startDate:endDate:device:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate_device_metadata(
             quantity_type: &HKQuantityType,
@@ -143,7 +143,7 @@ extern_methods!(
         feature = "HKSample"
     ))]
     unsafe impl HKCumulativeQuantitySample {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -157,7 +157,7 @@ extern_methods!(
         feature = "HKSample"
     ))]
     unsafe impl HKCumulativeQuantitySample {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

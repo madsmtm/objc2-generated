@@ -61,7 +61,7 @@ extern_methods!(
     #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl GKLeaderboardViewController {
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -69,7 +69,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -83,7 +83,7 @@ extern_methods!(
     #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl GKLeaderboardViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -94,7 +94,7 @@ extern_methods!(
     #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl GKLeaderboardViewController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -106,30 +106,30 @@ extern_methods!(
     unsafe impl GKLeaderboardViewController {
         #[cfg(feature = "GKLeaderboard")]
         #[deprecated]
-        #[method(timeScope)]
+        #[unsafe(method(timeScope))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeScope(&self) -> GKLeaderboardTimeScope;
 
         #[cfg(feature = "GKLeaderboard")]
         /// Setter for [`timeScope`][Self::timeScope].
         #[deprecated]
-        #[method(setTimeScope:)]
+        #[unsafe(method(setTimeScope:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeScope(&self, time_scope: GKLeaderboardTimeScope);
 
         #[deprecated]
-        #[method(category)]
+        #[unsafe(method(category))]
         #[unsafe(method_family = none)]
         pub unsafe fn category(&self) -> Retained<NSString>;
 
         /// Setter for [`category`][Self::category].
         #[deprecated]
-        #[method(setCategory:)]
+        #[unsafe(method(setCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
 
         #[deprecated]
-        #[method(leaderboardDelegate)]
+        #[unsafe(method(leaderboardDelegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn leaderboardDelegate(
             &self,
@@ -138,7 +138,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`leaderboardDelegate`][Self::leaderboardDelegate].
         #[deprecated]
-        #[method(setLeaderboardDelegate:)]
+        #[unsafe(method(setLeaderboardDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeaderboardDelegate(
             &self,
@@ -155,7 +155,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         /// The leaderboard view has finished
         #[deprecated]
-        #[method(leaderboardViewControllerDidFinish:)]
+        #[unsafe(method(leaderboardViewControllerDidFinish:))]
         #[unsafe(method_family = none)]
         unsafe fn leaderboardViewControllerDidFinish(
             &self,

@@ -22,7 +22,7 @@ extern_methods!(
     unsafe impl ASSettingsHelper {
         #[cfg(feature = "block2")]
         /// Calling this method will open the Settings app and navigate directly to the AutoFill provider settings.
-        #[method(openCredentialProviderAppSettingsWithCompletionHandler:)]
+        #[unsafe(method(openCredentialProviderAppSettingsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openCredentialProviderAppSettingsWithCompletionHandler(
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
@@ -30,7 +30,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Calling this method will open the Settings app and navigate directly to the Verification Code provider settings.
-        #[method(openVerificationCodeAppSettingsWithCompletionHandler:)]
+        #[unsafe(method(openVerificationCodeAppSettingsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openVerificationCodeAppSettingsWithCompletionHandler(
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
@@ -41,17 +41,17 @@ extern_methods!(
         /// If the extension is not currently enabled, a prompt will be shown to allow it to be turned on.
         /// The completion handler is called with YES or NO depending on whether the credential provider is enabled.
         /// You need to wait 10 seconds in order to make additional request to this API.
-        #[method(requestToTurnOnCredentialProviderExtensionWithCompletionHandler:)]
+        #[unsafe(method(requestToTurnOnCredentialProviderExtensionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestToTurnOnCredentialProviderExtensionWithCompletionHandler(
             completion_handler: &block2::Block<dyn Fn(Bool)>,
         );
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

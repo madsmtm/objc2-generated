@@ -68,11 +68,11 @@ unsafe impl UIAppearance for UITabBarItem {}
 extern_methods!(
     #[cfg(feature = "UIBarItem")]
     unsafe impl UITabBarItem {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -80,7 +80,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIImage")]
-        #[method(initWithTitle:image:tag:)]
+        #[unsafe(method(initWithTitle:image:tag:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_image_tag(
             this: Allocated<Self>,
@@ -90,7 +90,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
-        #[method(initWithTitle:image:selectedImage:)]
+        #[unsafe(method(initWithTitle:image:selectedImage:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_image_selectedImage(
             this: Allocated<Self>,
@@ -99,7 +99,7 @@ extern_methods!(
             selected_image: Option<&UIImage>,
         ) -> Retained<Self>;
 
-        #[method(initWithTabBarSystemItem:tag:)]
+        #[unsafe(method(initWithTabBarSystemItem:tag:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTabBarSystemItem_tag(
             this: Allocated<Self>,
@@ -108,28 +108,28 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
-        #[method(selectedImage)]
+        #[unsafe(method(selectedImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`selectedImage`][Self::selectedImage].
-        #[method(setSelectedImage:)]
+        #[unsafe(method(setSelectedImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedImage(&self, selected_image: Option<&UIImage>);
 
-        #[method(badgeValue)]
+        #[unsafe(method(badgeValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn badgeValue(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`badgeValue`][Self::badgeValue].
-        #[method(setBadgeValue:)]
+        #[unsafe(method(setBadgeValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadgeValue(&self, badge_value: Option<&NSString>);
 
         #[cfg(feature = "UIImage")]
         #[deprecated = "Use initWithTitle:image:selectedImage: or the image and selectedImage properties along with UIImageRenderingModeAlwaysOriginal"]
-        #[method(setFinishedSelectedImage:withFinishedUnselectedImage:)]
+        #[unsafe(method(setFinishedSelectedImage:withFinishedUnselectedImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFinishedSelectedImage_withFinishedUnselectedImage(
             &self,
@@ -139,42 +139,42 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[deprecated]
-        #[method(finishedSelectedImage)]
+        #[unsafe(method(finishedSelectedImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishedSelectedImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         #[deprecated]
-        #[method(finishedUnselectedImage)]
+        #[unsafe(method(finishedUnselectedImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishedUnselectedImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method(titlePositionAdjustment)]
+        #[unsafe(method(titlePositionAdjustment))]
         #[unsafe(method_family = none)]
         pub unsafe fn titlePositionAdjustment(&self) -> UIOffset;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`titlePositionAdjustment`][Self::titlePositionAdjustment].
-        #[method(setTitlePositionAdjustment:)]
+        #[unsafe(method(setTitlePositionAdjustment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitlePositionAdjustment(&self, title_position_adjustment: UIOffset);
 
         #[cfg(feature = "UIColor")]
         /// If this item displays a badge, this color will be used for the badge's background. If set to nil, the default background color will be used instead.
-        #[method(badgeColor)]
+        #[unsafe(method(badgeColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn badgeColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`badgeColor`][Self::badgeColor].
-        #[method(setBadgeColor:)]
+        #[unsafe(method(setBadgeColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadgeColor(&self, badge_color: Option<&UIColor>);
 
         #[cfg(feature = "UIControl")]
         /// Provide text attributes to use to draw the badge text for the given singular control state (Normal, Disabled, Focused, Selected, or Highlighted). Default values will be supplied for keys that are not provided by this dictionary. See NSAttributedString.h for details on what keys are available.
-        #[method(setBadgeTextAttributes:forState:)]
+        #[unsafe(method(setBadgeTextAttributes:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadgeTextAttributes_forState(
             &self,
@@ -184,7 +184,7 @@ extern_methods!(
 
         #[cfg(feature = "UIControl")]
         /// Returns attributes previously set via -setBadgeTextAttributes:forState:.
-        #[method(badgeTextAttributesForState:)]
+        #[unsafe(method(badgeTextAttributesForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn badgeTextAttributesForState(
             &self,
@@ -193,13 +193,13 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         /// When set and this item is selected, overrides the hosting tab bar's standardAppearance.
-        #[method(standardAppearance)]
+        #[unsafe(method(standardAppearance))]
         #[unsafe(method_family = none)]
         pub unsafe fn standardAppearance(&self) -> Option<Retained<UITabBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         /// Setter for [`standardAppearance`][Self::standardAppearance].
-        #[method(setStandardAppearance:)]
+        #[unsafe(method(setStandardAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardAppearance(
             &self,
@@ -208,13 +208,13 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         /// When set and this item is selected, overrides the hosting tab bar's scrollEdgeAppearance.
-        #[method(scrollEdgeAppearance)]
+        #[unsafe(method(scrollEdgeAppearance))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollEdgeAppearance(&self) -> Option<Retained<UITabBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         /// Setter for [`scrollEdgeAppearance`][Self::scrollEdgeAppearance].
-        #[method(setScrollEdgeAppearance:)]
+        #[unsafe(method(setScrollEdgeAppearance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScrollEdgeAppearance(
             &self,
@@ -227,7 +227,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIBarItem")]
     unsafe impl UITabBarItem {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

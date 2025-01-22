@@ -82,7 +82,7 @@ extern_methods!(
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
-        #[method(startFetchingMetadataForURL:completionHandler:)]
+        #[unsafe(method(startFetchingMetadataForURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startFetchingMetadataForURL_completionHandler(
             &self,
@@ -113,7 +113,7 @@ extern_methods!(
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
-        #[method(startFetchingMetadataForRequest:completionHandler:)]
+        #[unsafe(method(startFetchingMetadataForRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startFetchingMetadataForRequest_completionHandler(
             &self,
@@ -126,7 +126,7 @@ extern_methods!(
         /// This method invokes the completion handler with the error code
         /// ``LPErrorCode/LPErrorMetadataFetchCancelled`` if the request hasn’t already
         /// completed.
-        #[method(cancel)]
+        #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
@@ -139,12 +139,12 @@ extern_methods!(
         /// ``LPMetadataProvider/startFetchingMetadataForURL:completionHandler:``.
         ///
         /// The default value is `true`.
-        #[method(shouldFetchSubresources)]
+        #[unsafe(method(shouldFetchSubresources))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldFetchSubresources(&self) -> bool;
 
         /// Setter for [`shouldFetchSubresources`][Self::shouldFetchSubresources].
-        #[method(setShouldFetchSubresources:)]
+        #[unsafe(method(setShouldFetchSubresources:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldFetchSubresources(&self, should_fetch_subresources: bool);
 
@@ -154,12 +154,12 @@ extern_methods!(
         /// The default timeout interval is 30 seconds. If a metadata fetch takes longer
         /// than the timeout interval, the completion handler is called with the error
         /// code ``LPErrorCode/LPErrorMetadataFetchTimedOut``.
-        #[method(timeout)]
+        #[unsafe(method(timeout))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeout(&self) -> NSTimeInterval;
 
         /// Setter for [`timeout`][Self::timeout].
-        #[method(setTimeout:)]
+        #[unsafe(method(setTimeout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeout(&self, timeout: NSTimeInterval);
     }
@@ -168,11 +168,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl LPMetadataProvider {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

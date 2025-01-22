@@ -25,7 +25,7 @@ extern_methods!(
     unsafe impl EKReminder {
         #[cfg(feature = "EKEventStore")]
         /// Creates a new reminder in the given event store.
-        #[method(reminderWithEventStore:)]
+        #[unsafe(method(reminderWithEventStore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reminderWithEventStore(event_store: &EKEventStore) -> Retained<EKReminder>;
 
@@ -34,12 +34,12 @@ extern_methods!(
         /// The use of date components allows the start date and its time zone to be represented in a single property.
         /// A nil time zone represents a floating date.  Setting a date component without a hour, minute and second component will set allDay to YES.
         /// If you set this property, the calendar must be set to NSCalendarIdentifierGregorian. An exception is raised otherwise.
-        #[method(startDateComponents)]
+        #[unsafe(method(startDateComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDateComponents(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`startDateComponents`][Self::startDateComponents].
-        #[method(setStartDateComponents:)]
+        #[unsafe(method(setStartDateComponents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartDateComponents(
             &self,
@@ -54,12 +54,12 @@ extern_methods!(
         ///
         /// On iOS, if you set the due date for a reminder, you must also set a start date, otherwise you will receive
         /// an error (EKErrorNoStartDate) when attempting to save this reminder. This is not a requirement on OS X.
-        #[method(dueDateComponents)]
+        #[unsafe(method(dueDateComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn dueDateComponents(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`dueDateComponents`][Self::dueDateComponents].
-        #[method(setDueDateComponents:)]
+        #[unsafe(method(setDueDateComponents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDueDateComponents(&self, due_date_components: Option<&NSDateComponents>);
 
@@ -67,22 +67,22 @@ extern_methods!(
         ///
         /// Setting it to YES will set the completed date to the current date.
         /// Setting it to NO will set the completed date to nil.
-        #[method(isCompleted)]
+        #[unsafe(method(isCompleted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCompleted(&self) -> bool;
 
         /// Setter for [`isCompleted`][Self::isCompleted].
-        #[method(setCompleted:)]
+        #[unsafe(method(setCompleted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompleted(&self, completed: bool);
 
         /// The date on which this reminder was completed.
-        #[method(completionDate)]
+        #[unsafe(method(completionDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`completionDate`][Self::completionDate].
-        #[method(setCompletionDate:)]
+        #[unsafe(method(setCompletionDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionDate(&self, completion_date: Option<&NSDate>);
 
@@ -91,12 +91,12 @@ extern_methods!(
         /// Priorities run from 1 (highest) to 9 (lowest).  A priority of 0 means no priority.
         /// Saving a reminder with any other priority will fail.
         /// Per RFC 5545, priorities of 1-4 are considered "high," a priority of 5 is "medium," and priorities of 6-9 are "low."
-        #[method(priority)]
+        #[unsafe(method(priority))]
         #[unsafe(method_family = none)]
         pub unsafe fn priority(&self) -> NSUInteger;
 
         /// Setter for [`priority`][Self::priority].
-        #[method(setPriority:)]
+        #[unsafe(method(setPriority:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPriority(&self, priority: NSUInteger);
     }
@@ -106,11 +106,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
     unsafe impl EKReminder {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

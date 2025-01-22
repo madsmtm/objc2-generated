@@ -41,7 +41,7 @@ extern_methods!(
         /// Parameter `device`: The metal device to use. Pass nil to let SceneKit choose a default device.
         ///
         /// Parameter `options`: An optional dictionary for future extensions.
-        #[method(rendererWithDevice:options:)]
+        #[unsafe(method(rendererWithDevice:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rendererWithDevice_options(
             device: Option<&ProtocolObject<dyn MTLDevice>>,
@@ -50,13 +50,13 @@ extern_methods!(
 
         #[cfg(feature = "SCNScene")]
         /// Specifies the scene of the receiver
-        #[method(scene)]
+        #[unsafe(method(scene))]
         #[unsafe(method_family = none)]
         pub unsafe fn scene(&self) -> Option<Retained<SCNScene>>;
 
         #[cfg(feature = "SCNScene")]
         /// Setter for [`scene`][Self::scene].
-        #[method(setScene:)]
+        #[unsafe(method(setScene:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScene(&self, scene: Option<&SCNScene>);
 
@@ -65,7 +65,7 @@ extern_methods!(
         /// updates and renders the receiver's scene at the specified time (system time) viewport, Metal command buffer and pass descriptor.
         ///
         /// Use this method to render using Metal.
-        #[method(renderAtTime:viewport:commandBuffer:passDescriptor:)]
+        #[unsafe(method(renderAtTime:viewport:commandBuffer:passDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderAtTime_viewport_commandBuffer_passDescriptor(
             &self,
@@ -79,13 +79,13 @@ extern_methods!(
         /// updates and renders the receiver's scene at the specified time (system time).
         ///
         /// This method only work if the receiver was allocated with an OpenGL context. Use renderAtTime:withEncoder:pass:commandQueue: to render with Metal.
-        #[method(renderAtTime:)]
+        #[unsafe(method(renderAtTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderAtTime(&self, time: CFTimeInterval);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// updates the receiver's scene at the specified time (system time).
-        #[method(updateAtTime:)]
+        #[unsafe(method(updateAtTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateAtTime(&self, time: CFTimeInterval);
 
@@ -94,7 +94,7 @@ extern_methods!(
         /// renders the receiver's scene with the specified viewport, Metal command buffer and pass descriptor.
         ///
         /// Use this method to render using Metal. This method doesn't update the scene's animations, physics, particles etc... It's up to you to call "updateAtTime:" to update the scene.
-        #[method(renderWithViewport:commandBuffer:passDescriptor:)]
+        #[unsafe(method(renderWithViewport:commandBuffer:passDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderWithViewport_commandBuffer_passDescriptor(
             &self,
@@ -105,7 +105,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Returns the time at which the next update should happen. If infinite no update needs to be scheduled yet. If the current frame time, a continuous animation is running and an update should be scheduled after a "natural" delay.
-        #[method(nextFrameTime)]
+        #[unsafe(method(nextFrameTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextFrameTime(&self) -> CFTimeInterval;
 
@@ -116,7 +116,7 @@ extern_methods!(
         ))]
         #[cfg(target_os = "macos")]
         /// renders the receiver's scene at the specified time (system time) into an image.
-        #[method(snapshotAtTime:withSize:antialiasingMode:)]
+        #[unsafe(method(snapshotAtTime:withSize:antialiasingMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshotAtTime_withSize_antialiasingMode(
             &self,
@@ -133,7 +133,7 @@ extern_methods!(
         /// Parameter `time`: The time used to render the scene when computing the light probes irradiance.
         ///
         /// Light probes are only supported with Metal. This method is observable using NSProgress.
-        #[method(updateProbes:atTime:)]
+        #[unsafe(method(updateProbes:atTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateProbes_atTime(
             &self,
@@ -146,11 +146,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNRenderer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

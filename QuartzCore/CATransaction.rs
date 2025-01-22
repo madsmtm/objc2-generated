@@ -20,69 +20,69 @@ unsafe impl NSObjectProtocol for CATransaction {}
 
 extern_methods!(
     unsafe impl CATransaction {
-        #[method(begin)]
+        #[unsafe(method(begin))]
         #[unsafe(method_family = none)]
         pub fn begin();
 
-        #[method(commit)]
+        #[unsafe(method(commit))]
         #[unsafe(method_family = none)]
         pub fn commit();
 
-        #[method(flush)]
+        #[unsafe(method(flush))]
         #[unsafe(method_family = none)]
         pub fn flush();
 
-        #[method(lock)]
+        #[unsafe(method(lock))]
         #[unsafe(method_family = none)]
         pub unsafe fn lock();
 
-        #[method(unlock)]
+        #[unsafe(method(unlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn unlock();
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(animationDuration)]
+        #[unsafe(method(animationDuration))]
         #[unsafe(method_family = none)]
         pub fn animationDuration() -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(setAnimationDuration:)]
+        #[unsafe(method(setAnimationDuration:))]
         #[unsafe(method_family = none)]
         pub fn setAnimationDuration(dur: CFTimeInterval);
 
         #[cfg(feature = "CAMediaTimingFunction")]
-        #[method(animationTimingFunction)]
+        #[unsafe(method(animationTimingFunction))]
         #[unsafe(method_family = none)]
         pub fn animationTimingFunction() -> Option<Retained<CAMediaTimingFunction>>;
 
         #[cfg(feature = "CAMediaTimingFunction")]
-        #[method(setAnimationTimingFunction:)]
+        #[unsafe(method(setAnimationTimingFunction:))]
         #[unsafe(method_family = none)]
         pub fn setAnimationTimingFunction(function: Option<&CAMediaTimingFunction>);
 
-        #[method(disableActions)]
+        #[unsafe(method(disableActions))]
         #[unsafe(method_family = none)]
         pub fn disableActions() -> bool;
 
-        #[method(setDisableActions:)]
+        #[unsafe(method(setDisableActions:))]
         #[unsafe(method_family = none)]
         pub fn setDisableActions(flag: bool);
 
         #[cfg(feature = "block2")]
-        #[method(completionBlock)]
+        #[unsafe(method(completionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionBlock() -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
-        #[method(setCompletionBlock:)]
+        #[unsafe(method(setCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionBlock(block: Option<&block2::Block<dyn Fn()>>);
 
-        #[method(valueForKey:)]
+        #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
 
-        #[method(setValue:forKey:)]
+        #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(an_object: Option<&AnyObject>, key: &NSString);
     }
@@ -91,11 +91,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CATransaction {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

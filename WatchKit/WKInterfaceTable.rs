@@ -21,11 +21,11 @@ unsafe impl NSObjectProtocol for WKInterfaceTable {}
 extern_methods!(
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceTable {
-        #[method(setRowTypes:)]
+        #[unsafe(method(setRowTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRowTypes(&self, row_types: &NSArray<NSString>);
 
-        #[method(setNumberOfRows:withRowType:)]
+        #[unsafe(method(setNumberOfRows:withRowType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfRows_withRowType(
             &self,
@@ -33,15 +33,15 @@ extern_methods!(
             row_type: &NSString,
         );
 
-        #[method(numberOfRows)]
+        #[unsafe(method(numberOfRows))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfRows(&self) -> NSInteger;
 
-        #[method(rowControllerAtIndex:)]
+        #[unsafe(method(rowControllerAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rowControllerAtIndex(&self, index: NSInteger) -> Option<Retained<AnyObject>>;
 
-        #[method(insertRowsAtIndexes:withRowType:)]
+        #[unsafe(method(insertRowsAtIndexes:withRowType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertRowsAtIndexes_withRowType(
             &self,
@@ -49,33 +49,33 @@ extern_methods!(
             row_type: &NSString,
         );
 
-        #[method(removeRowsAtIndexes:)]
+        #[unsafe(method(removeRowsAtIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRowsAtIndexes(&self, rows: &NSIndexSet);
 
-        #[method(scrollToRowAtIndex:)]
+        #[unsafe(method(scrollToRowAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollToRowAtIndex(&self, index: NSInteger);
 
-        #[method(performSegueForRow:)]
+        #[unsafe(method(performSegueForRow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performSegueForRow(&self, row: NSInteger);
 
-        #[method(curvesAtTop)]
+        #[unsafe(method(curvesAtTop))]
         #[unsafe(method_family = none)]
         pub unsafe fn curvesAtTop(&self) -> bool;
 
         /// Setter for [`curvesAtTop`][Self::curvesAtTop].
-        #[method(setCurvesAtTop:)]
+        #[unsafe(method(setCurvesAtTop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurvesAtTop(&self, curves_at_top: bool);
 
-        #[method(curvesAtBottom)]
+        #[unsafe(method(curvesAtBottom))]
         #[unsafe(method_family = none)]
         pub unsafe fn curvesAtBottom(&self) -> bool;
 
         /// Setter for [`curvesAtBottom`][Self::curvesAtBottom].
-        #[method(setCurvesAtBottom:)]
+        #[unsafe(method(setCurvesAtBottom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurvesAtBottom(&self, curves_at_bottom: bool);
     }
@@ -85,7 +85,7 @@ extern_methods!(
     /// Methods declared on superclass `WKInterfaceObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceTable {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -95,7 +95,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceTable {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

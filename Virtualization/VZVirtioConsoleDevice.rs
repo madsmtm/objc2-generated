@@ -26,7 +26,7 @@ extern_protocol!(
         ///
         /// Extra care should be taken to ensure that any pending data from the VZVirtioConsolePort attachment has been processed or flushed before communicating with a new virtual machine process.
         #[optional]
-        #[method(consoleDevice:didOpenPort:)]
+        #[unsafe(method(consoleDevice:didOpenPort:))]
         #[unsafe(method_family = none)]
         unsafe fn consoleDevice_didOpenPort(
             &self,
@@ -43,7 +43,7 @@ extern_protocol!(
         ///
         /// It is recommended to finish processing or flushing any remaining data from the VZVirtioConsolePort attachment after a port has been closed.
         #[optional]
-        #[method(consoleDevice:didClosePort:)]
+        #[unsafe(method(consoleDevice:didClosePort:))]
         #[unsafe(method_family = none)]
         unsafe fn consoleDevice_didClosePort(
             &self,
@@ -73,16 +73,16 @@ unsafe impl NSObjectProtocol for VZVirtioConsoleDevice {}
 extern_methods!(
     #[cfg(feature = "VZConsoleDevice")]
     unsafe impl VZVirtioConsoleDevice {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Pointer to a delegate object for the console device.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -90,7 +90,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -99,7 +99,7 @@ extern_methods!(
 
         #[cfg(feature = "VZVirtioConsolePortArray")]
         /// The console ports currently being used by this console device.
-        #[method(ports)]
+        #[unsafe(method(ports))]
         #[unsafe(method_family = none)]
         pub unsafe fn ports(&self) -> Retained<VZVirtioConsolePortArray>;
     }

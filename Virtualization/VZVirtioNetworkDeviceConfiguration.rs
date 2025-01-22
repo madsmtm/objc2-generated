@@ -37,7 +37,7 @@ unsafe impl NSObjectProtocol for VZVirtioNetworkDeviceConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZNetworkDeviceConfiguration")]
     unsafe impl VZVirtioNetworkDeviceConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -47,7 +47,7 @@ extern_methods!(
     /// Methods declared on superclass `VZNetworkDeviceConfiguration`
     #[cfg(feature = "VZNetworkDeviceConfiguration")]
     unsafe impl VZVirtioNetworkDeviceConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

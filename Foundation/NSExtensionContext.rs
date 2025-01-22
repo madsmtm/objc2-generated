@@ -18,12 +18,12 @@ unsafe impl NSObjectProtocol for NSExtensionContext {}
 extern_methods!(
     unsafe impl NSExtensionContext {
         #[cfg(feature = "NSArray")]
-        #[method(inputItems)]
+        #[unsafe(method(inputItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputItems(&self) -> Retained<NSArray>;
 
         #[cfg(all(feature = "NSArray", feature = "block2"))]
-        #[method(completeRequestReturningItems:completionHandler:)]
+        #[unsafe(method(completeRequestReturningItems:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeRequestReturningItems_completionHandler(
             &self,
@@ -32,12 +32,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSError")]
-        #[method(cancelRequestWithError:)]
+        #[unsafe(method(cancelRequestWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelRequestWithError(&self, error: &NSError);
 
         #[cfg(all(feature = "NSURL", feature = "block2"))]
-        #[method(openURL:completionHandler:)]
+        #[unsafe(method(openURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openURL_completionHandler(
             &self,
@@ -50,11 +50,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSExtensionContext {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -72,12 +72,12 @@ unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptor {}
 extern_methods!(
     unsafe impl MTLPipelineBufferDescriptor {
         /// Buffer mutability. Defaults to MTLMutabilityDefault: mutable for standard buffers, immutable for argument buffers
-        #[method(mutability)]
+        #[unsafe(method(mutability))]
         #[unsafe(method_family = none)]
         pub fn mutability(&self) -> MTLMutability;
 
         /// Setter for [`mutability`][Self::mutability].
-        #[method(setMutability:)]
+        #[unsafe(method(setMutability:))]
         #[unsafe(method_family = none)]
         pub fn setMutability(&self, mutability: MTLMutability);
     }
@@ -86,11 +86,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLPipelineBufferDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -107,14 +107,14 @@ unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptorArray {}
 
 extern_methods!(
     unsafe impl MTLPipelineBufferDescriptorArray {
-        #[method(objectAtIndexedSubscript:)]
+        #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             buffer_index: NSUInteger,
         ) -> Retained<MTLPipelineBufferDescriptor>;
 
-        #[method(setObject:atIndexedSubscript:)]
+        #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
@@ -127,11 +127,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLPipelineBufferDescriptorArray {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

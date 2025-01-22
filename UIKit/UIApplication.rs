@@ -212,18 +212,18 @@ unsafe impl UIResponderStandardEditActions for UIApplication {}
 extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIApplication {
-        #[method(sharedApplication)]
+        #[unsafe(method(sharedApplication))]
         #[unsafe(method_family = none)]
         pub fn sharedApplication(mtm: MainThreadMarker) -> Retained<UIApplication>;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIApplicationDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -231,40 +231,40 @@ extern_methods!(
         );
 
         #[deprecated = "Use UIView's userInteractionEnabled property instead"]
-        #[method(beginIgnoringInteractionEvents)]
+        #[unsafe(method(beginIgnoringInteractionEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginIgnoringInteractionEvents(&self);
 
         #[deprecated = "Use UIView's userInteractionEnabled property instead"]
-        #[method(endIgnoringInteractionEvents)]
+        #[unsafe(method(endIgnoringInteractionEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn endIgnoringInteractionEvents(&self);
 
         #[deprecated = "Use UIView's userInteractionEnabled property instead"]
-        #[method(isIgnoringInteractionEvents)]
+        #[unsafe(method(isIgnoringInteractionEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn isIgnoringInteractionEvents(&self) -> bool;
 
-        #[method(isIdleTimerDisabled)]
+        #[unsafe(method(isIdleTimerDisabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isIdleTimerDisabled(&self) -> bool;
 
         /// Setter for [`isIdleTimerDisabled`][Self::isIdleTimerDisabled].
-        #[method(setIdleTimerDisabled:)]
+        #[unsafe(method(setIdleTimerDisabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdleTimerDisabled(&self, idle_timer_disabled: bool);
 
         #[deprecated]
-        #[method(openURL:)]
+        #[unsafe(method(openURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openURL(&self, url: &NSURL) -> bool;
 
-        #[method(canOpenURL:)]
+        #[unsafe(method(canOpenURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canOpenURL(&self, url: &NSURL) -> bool;
 
         #[cfg(feature = "block2")]
-        #[method(openURL:options:completionHandler:)]
+        #[unsafe(method(openURL:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openURL_options_completionHandler(
             &self,
@@ -274,24 +274,24 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIEvent")]
-        #[method(sendEvent:)]
+        #[unsafe(method(sendEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendEvent(&self, event: &UIEvent);
 
         #[cfg(all(feature = "UIView", feature = "UIWindow"))]
         #[deprecated = "Should not be used for applications that support multiple scenes as it returns a key window across all connected scenes"]
-        #[method(keyWindow)]
+        #[unsafe(method(keyWindow))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyWindow(&self) -> Option<Retained<UIWindow>>;
 
         #[cfg(all(feature = "UIView", feature = "UIWindow"))]
         #[deprecated = "Use UIWindowScene.windows on a relevant window scene instead"]
-        #[method(windows)]
+        #[unsafe(method(windows))]
         #[unsafe(method_family = none)]
         pub fn windows(&self) -> Retained<NSArray<UIWindow>>;
 
         #[cfg(feature = "UIEvent")]
-        #[method(sendAction:to:from:forEvent:)]
+        #[unsafe(method(sendAction:to:from:forEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendAction_to_from_forEvent(
             &self,
@@ -302,13 +302,13 @@ extern_methods!(
         ) -> bool;
 
         #[deprecated = "Provide a custom network activity UI in your app if desired."]
-        #[method(isNetworkActivityIndicatorVisible)]
+        #[unsafe(method(isNetworkActivityIndicatorVisible))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNetworkActivityIndicatorVisible(&self) -> bool;
 
         /// Setter for [`isNetworkActivityIndicatorVisible`][Self::isNetworkActivityIndicatorVisible].
         #[deprecated = "Provide a custom network activity UI in your app if desired."]
-        #[method(setNetworkActivityIndicatorVisible:)]
+        #[unsafe(method(setNetworkActivityIndicatorVisible:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNetworkActivityIndicatorVisible(
             &self,
@@ -316,7 +316,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIOrientation", feature = "UIView", feature = "UIWindow"))]
-        #[method(supportedInterfaceOrientationsForWindow:)]
+        #[unsafe(method(supportedInterfaceOrientationsForWindow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedInterfaceOrientationsForWindow(
             &self,
@@ -324,52 +324,52 @@ extern_methods!(
         ) -> UIInterfaceOrientationMask;
 
         #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
-        #[method(statusBarOrientationAnimationDuration)]
+        #[unsafe(method(statusBarOrientationAnimationDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn statusBarOrientationAnimationDuration(&self) -> NSTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Use the statusBarManager property of the window scene instead."]
-        #[method(statusBarFrame)]
+        #[unsafe(method(statusBarFrame))]
         #[unsafe(method_family = none)]
         pub fn statusBarFrame(&self) -> CGRect;
 
         #[deprecated = "Use -[UNUserNotificationCenter setBadgeCount:withCompletionHandler:] instead."]
-        #[method(applicationIconBadgeNumber)]
+        #[unsafe(method(applicationIconBadgeNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationIconBadgeNumber(&self) -> NSInteger;
 
         /// Setter for [`applicationIconBadgeNumber`][Self::applicationIconBadgeNumber].
         #[deprecated = "Use -[UNUserNotificationCenter setBadgeCount:withCompletionHandler:] instead."]
-        #[method(setApplicationIconBadgeNumber:)]
+        #[unsafe(method(setApplicationIconBadgeNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setApplicationIconBadgeNumber(
             &self,
             application_icon_badge_number: NSInteger,
         );
 
-        #[method(applicationSupportsShakeToEdit)]
+        #[unsafe(method(applicationSupportsShakeToEdit))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationSupportsShakeToEdit(&self) -> bool;
 
         /// Setter for [`applicationSupportsShakeToEdit`][Self::applicationSupportsShakeToEdit].
-        #[method(setApplicationSupportsShakeToEdit:)]
+        #[unsafe(method(setApplicationSupportsShakeToEdit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setApplicationSupportsShakeToEdit(
             &self,
             application_supports_shake_to_edit: bool,
         );
 
-        #[method(applicationState)]
+        #[unsafe(method(applicationState))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationState(&self) -> UIApplicationState;
 
-        #[method(backgroundTimeRemaining)]
+        #[unsafe(method(backgroundTimeRemaining))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundTimeRemaining(&self) -> NSTimeInterval;
 
         #[cfg(feature = "block2")]
-        #[method(beginBackgroundTaskWithExpirationHandler:)]
+        #[unsafe(method(beginBackgroundTaskWithExpirationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginBackgroundTaskWithExpirationHandler(
             &self,
@@ -377,7 +377,7 @@ extern_methods!(
         ) -> UIBackgroundTaskIdentifier;
 
         #[cfg(feature = "block2")]
-        #[method(beginBackgroundTaskWithName:expirationHandler:)]
+        #[unsafe(method(beginBackgroundTaskWithName:expirationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginBackgroundTaskWithName_expirationHandler(
             &self,
@@ -385,7 +385,7 @@ extern_methods!(
             handler: Option<&block2::Block<dyn Fn()>>,
         ) -> UIBackgroundTaskIdentifier;
 
-        #[method(endBackgroundTask:)]
+        #[unsafe(method(endBackgroundTask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endBackgroundTask(&self, identifier: UIBackgroundTaskIdentifier);
 
@@ -398,7 +398,7 @@ extern_methods!(
         /// UIBackgroundMode. See the UIApplicationDelegate method
         /// `application:performFetchWithCompletionHandler:` for more.
         #[deprecated = "Use a BGAppRefreshTask in the BackgroundTasks framework instead"]
-        #[method(setMinimumBackgroundFetchInterval:)]
+        #[unsafe(method(setMinimumBackgroundFetchInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumBackgroundFetchInterval(
             &self,
@@ -408,35 +408,35 @@ extern_methods!(
         /// When background refresh is available for an application, it may launched or resumed in the background to handle significant
         /// location changes, remote notifications, background fetches, etc. Observe UIApplicationBackgroundRefreshStatusDidChangeNotification to
         /// be notified of changes.
-        #[method(backgroundRefreshStatus)]
+        #[unsafe(method(backgroundRefreshStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundRefreshStatus(&self) -> UIBackgroundRefreshStatus;
 
-        #[method(isProtectedDataAvailable)]
+        #[unsafe(method(isProtectedDataAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isProtectedDataAvailable(&self) -> bool;
 
         #[cfg(feature = "UIInterface")]
-        #[method(userInterfaceLayoutDirection)]
+        #[unsafe(method(userInterfaceLayoutDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInterfaceLayoutDirection(&self) -> UIUserInterfaceLayoutDirection;
 
         #[cfg(feature = "UIContentSizeCategory")]
-        #[method(preferredContentSizeCategory)]
+        #[unsafe(method(preferredContentSizeCategory))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredContentSizeCategory(&self) -> Retained<UIContentSizeCategory>;
 
         #[cfg(feature = "UIScene")]
-        #[method(connectedScenes)]
+        #[unsafe(method(connectedScenes))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectedScenes(&self) -> Retained<NSSet<UIScene>>;
 
         #[cfg(feature = "UISceneSession")]
-        #[method(openSessions)]
+        #[unsafe(method(openSessions))]
         #[unsafe(method_family = none)]
         pub unsafe fn openSessions(&self) -> Retained<NSSet<UISceneSession>>;
 
-        #[method(supportsMultipleScenes)]
+        #[unsafe(method(supportsMultipleScenes))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsMultipleScenes(&self) -> bool;
 
@@ -445,7 +445,7 @@ extern_methods!(
         /// - Parameters:
         /// - request: The activation request.
         /// - errorHandler: A handler to be called if the request fails.
-        #[method(activateSceneSessionForRequest:errorHandler:)]
+        #[unsafe(method(activateSceneSessionForRequest:errorHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn activateSceneSessionForRequest_errorHandler(
             &self,
@@ -459,7 +459,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[deprecated = "Please use activateSceneSessionForRequest:errorHandler:"]
-        #[method(requestSceneSessionActivation:userActivity:options:errorHandler:)]
+        #[unsafe(method(requestSceneSessionActivation:userActivity:options:errorHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestSceneSessionActivation_userActivity_options_errorHandler(
             &self,
@@ -474,7 +474,7 @@ extern_methods!(
             feature = "UISceneSession",
             feature = "block2"
         ))]
-        #[method(requestSceneSessionDestruction:options:errorHandler:)]
+        #[unsafe(method(requestSceneSessionDestruction:options:errorHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestSceneSessionDestruction_options_errorHandler(
             &self,
@@ -484,7 +484,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UISceneSession")]
-        #[method(requestSceneSessionRefresh:)]
+        #[unsafe(method(requestSceneSessionRefresh:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestSceneSessionRefresh(&self, scene_session: &UISceneSession);
     }
@@ -494,11 +494,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIResponder")]
     unsafe impl UIApplication {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -508,25 +508,25 @@ extern_methods!(
     /// UIRemoteNotifications
     #[cfg(feature = "UIResponder")]
     unsafe impl UIApplication {
-        #[method(registerForRemoteNotifications)]
+        #[unsafe(method(registerForRemoteNotifications))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForRemoteNotifications(&self);
 
-        #[method(unregisterForRemoteNotifications)]
+        #[unsafe(method(unregisterForRemoteNotifications))]
         #[unsafe(method_family = none)]
         pub unsafe fn unregisterForRemoteNotifications(&self);
 
-        #[method(isRegisteredForRemoteNotifications)]
+        #[unsafe(method(isRegisteredForRemoteNotifications))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRegisteredForRemoteNotifications(&self) -> bool;
 
         #[deprecated = "Use -[UIApplication registerForRemoteNotifications] and UserNotifications Framework's -[UNUserNotificationCenter requestAuthorizationWithOptions:completionHandler:]"]
-        #[method(registerForRemoteNotificationTypes:)]
+        #[unsafe(method(registerForRemoteNotificationTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForRemoteNotificationTypes(&self, types: UIRemoteNotificationType);
 
         #[deprecated = "Use -[UIApplication isRegisteredForRemoteNotifications] and UserNotifications Framework's -[UNUserNotificationCenter getNotificationSettingsWithCompletionHandler:] to retrieve user-enabled remote notification and user notification settings"]
-        #[method(enabledRemoteNotificationTypes)]
+        #[unsafe(method(enabledRemoteNotificationTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn enabledRemoteNotificationTypes(&self) -> UIRemoteNotificationType;
     }
@@ -538,30 +538,30 @@ extern_methods!(
     unsafe impl UIApplication {
         #[cfg(feature = "UILocalNotification")]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenter addNotificationRequest:withCompletionHandler:]"]
-        #[method(presentLocalNotificationNow:)]
+        #[unsafe(method(presentLocalNotificationNow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentLocalNotificationNow(&self, notification: &UILocalNotification);
 
         #[cfg(feature = "UILocalNotification")]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenter addNotificationRequest:withCompletionHandler:]"]
-        #[method(scheduleLocalNotification:)]
+        #[unsafe(method(scheduleLocalNotification:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleLocalNotification(&self, notification: &UILocalNotification);
 
         #[cfg(feature = "UILocalNotification")]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenter removePendingNotificationRequestsWithIdentifiers:]"]
-        #[method(cancelLocalNotification:)]
+        #[unsafe(method(cancelLocalNotification:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelLocalNotification(&self, notification: &UILocalNotification);
 
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenter removeAllPendingNotificationRequests]"]
-        #[method(cancelAllLocalNotifications)]
+        #[unsafe(method(cancelAllLocalNotifications))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelAllLocalNotifications(&self);
 
         #[cfg(feature = "UILocalNotification")]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenter getPendingNotificationRequestsWithCompletionHandler:]"]
-        #[method(scheduledLocalNotifications)]
+        #[unsafe(method(scheduledLocalNotifications))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduledLocalNotifications(
             &self,
@@ -570,7 +570,7 @@ extern_methods!(
         #[cfg(feature = "UILocalNotification")]
         /// Setter for [`scheduledLocalNotifications`][Self::scheduledLocalNotifications].
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenter getPendingNotificationRequestsWithCompletionHandler:]"]
-        #[method(setScheduledLocalNotifications:)]
+        #[unsafe(method(setScheduledLocalNotifications:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScheduledLocalNotifications(
             &self,
@@ -585,7 +585,7 @@ extern_methods!(
     unsafe impl UIApplication {
         #[cfg(feature = "UIUserNotificationSettings")]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenter requestAuthorizationWithOptions:completionHandler:] and -[UNUserNotificationCenter setNotificationCategories:]"]
-        #[method(registerUserNotificationSettings:)]
+        #[unsafe(method(registerUserNotificationSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerUserNotificationSettings(
             &self,
@@ -594,7 +594,7 @@ extern_methods!(
 
         #[cfg(feature = "UIUserNotificationSettings")]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenter getNotificationSettingsWithCompletionHandler:] and -[UNUserNotificationCenter getNotificationCategoriesWithCompletionHandler:]"]
-        #[method(currentUserNotificationSettings)]
+        #[unsafe(method(currentUserNotificationSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentUserNotificationSettings(
             &self,
@@ -606,11 +606,11 @@ extern_methods!(
     /// UIRemoteControlEvents
     #[cfg(feature = "UIResponder")]
     unsafe impl UIApplication {
-        #[method(beginReceivingRemoteControlEvents)]
+        #[unsafe(method(beginReceivingRemoteControlEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginReceivingRemoteControlEvents(&self);
 
-        #[method(endReceivingRemoteControlEvents)]
+        #[unsafe(method(endReceivingRemoteControlEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn endReceivingRemoteControlEvents(&self);
     }
@@ -622,7 +622,7 @@ extern_methods!(
     unsafe impl UIApplication {
         #[cfg(feature = "UIImage")]
         #[deprecated = "Newsstand apps now behave like normal apps on SpringBoard"]
-        #[method(setNewsstandIconImage:)]
+        #[unsafe(method(setNewsstandIconImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNewsstandIconImage(&self, image: Option<&UIImage>);
     }
@@ -633,13 +633,13 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIApplication {
         #[cfg(feature = "UIApplicationShortcutItem")]
-        #[method(shortcutItems)]
+        #[unsafe(method(shortcutItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn shortcutItems(&self) -> Option<Retained<NSArray<UIApplicationShortcutItem>>>;
 
         #[cfg(feature = "UIApplicationShortcutItem")]
         /// Setter for [`shortcutItems`][Self::shortcutItems].
-        #[method(setShortcutItems:)]
+        #[unsafe(method(setShortcutItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShortcutItems(
             &self,
@@ -652,12 +652,12 @@ extern_methods!(
     /// UIAlternateApplicationIcons
     #[cfg(feature = "UIResponder")]
     unsafe impl UIApplication {
-        #[method(supportsAlternateIcons)]
+        #[unsafe(method(supportsAlternateIcons))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsAlternateIcons(&self) -> bool;
 
         #[cfg(feature = "block2")]
-        #[method(setAlternateIconName:completionHandler:)]
+        #[unsafe(method(setAlternateIconName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlternateIconName_completionHandler(
             &self,
@@ -665,7 +665,7 @@ extern_methods!(
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[method(alternateIconName)]
+        #[unsafe(method(alternateIconName))]
         #[unsafe(method_family = none)]
         pub unsafe fn alternateIconName(&self) -> Option<Retained<NSString>>;
     }
@@ -675,20 +675,20 @@ extern_methods!(
     /// UIStateRestoration
     #[cfg(feature = "UIResponder")]
     unsafe impl UIApplication {
-        #[method(extendStateRestoration)]
+        #[unsafe(method(extendStateRestoration))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendStateRestoration(&self);
 
-        #[method(completeStateRestoration)]
+        #[unsafe(method(completeStateRestoration))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeStateRestoration(&self);
 
-        #[method(ignoreSnapshotOnNextApplicationLaunch)]
+        #[unsafe(method(ignoreSnapshotOnNextApplicationLaunch))]
         #[unsafe(method_family = none)]
         pub unsafe fn ignoreSnapshotOnNextApplicationLaunch(&self);
 
         #[cfg(feature = "UIStateRestoration")]
-        #[method(registerObjectForStateRestoration:restorationIdentifier:)]
+        #[unsafe(method(registerObjectForStateRestoration:restorationIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerObjectForStateRestoration_restorationIdentifier(
             object: &ProtocolObject<dyn UIStateRestoring>,
@@ -807,13 +807,13 @@ extern_protocol!(
     pub unsafe trait UIApplicationDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(applicationDidFinishLaunching:)]
+        #[unsafe(method(applicationDidFinishLaunching:))]
         #[unsafe(method_family = none)]
         unsafe fn applicationDidFinishLaunching(&self, application: &UIApplication);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(application:willFinishLaunchingWithOptions:)]
+        #[unsafe(method(application:willFinishLaunchingWithOptions:))]
         #[unsafe(method_family = none)]
         unsafe fn application_willFinishLaunchingWithOptions(
             &self,
@@ -823,7 +823,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(application:didFinishLaunchingWithOptions:)]
+        #[unsafe(method(application:didFinishLaunchingWithOptions:))]
         #[unsafe(method_family = none)]
         unsafe fn application_didFinishLaunchingWithOptions(
             &self,
@@ -833,20 +833,20 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(applicationDidBecomeActive:)]
+        #[unsafe(method(applicationDidBecomeActive:))]
         #[unsafe(method_family = none)]
         unsafe fn applicationDidBecomeActive(&self, application: &UIApplication);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(applicationWillResignActive:)]
+        #[unsafe(method(applicationWillResignActive:))]
         #[unsafe(method_family = none)]
         unsafe fn applicationWillResignActive(&self, application: &UIApplication);
 
         #[cfg(feature = "UIResponder")]
         #[deprecated]
         #[optional]
-        #[method(application:handleOpenURL:)]
+        #[unsafe(method(application:handleOpenURL:))]
         #[unsafe(method_family = none)]
         unsafe fn application_handleOpenURL(
             &self,
@@ -857,7 +857,7 @@ extern_protocol!(
         #[cfg(feature = "UIResponder")]
         #[deprecated]
         #[optional]
-        #[method(application:openURL:sourceApplication:annotation:)]
+        #[unsafe(method(application:openURL:sourceApplication:annotation:))]
         #[unsafe(method_family = none)]
         unsafe fn application_openURL_sourceApplication_annotation(
             &self,
@@ -869,7 +869,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(application:openURL:options:)]
+        #[unsafe(method(application:openURL:options:))]
         #[unsafe(method_family = none)]
         unsafe fn application_openURL_options(
             &self,
@@ -880,26 +880,26 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(applicationDidReceiveMemoryWarning:)]
+        #[unsafe(method(applicationDidReceiveMemoryWarning:))]
         #[unsafe(method_family = none)]
         unsafe fn applicationDidReceiveMemoryWarning(&self, application: &UIApplication);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(applicationWillTerminate:)]
+        #[unsafe(method(applicationWillTerminate:))]
         #[unsafe(method_family = none)]
         unsafe fn applicationWillTerminate(&self, application: &UIApplication);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(applicationSignificantTimeChange:)]
+        #[unsafe(method(applicationSignificantTimeChange:))]
         #[unsafe(method_family = none)]
         unsafe fn applicationSignificantTimeChange(&self, application: &UIApplication);
 
         #[cfg(all(feature = "UIOrientation", feature = "UIResponder"))]
         #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
         #[optional]
-        #[method(application:willChangeStatusBarOrientation:duration:)]
+        #[unsafe(method(application:willChangeStatusBarOrientation:duration:))]
         #[unsafe(method_family = none)]
         unsafe fn application_willChangeStatusBarOrientation_duration(
             &self,
@@ -911,7 +911,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIOrientation", feature = "UIResponder"))]
         #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
         #[optional]
-        #[method(application:didChangeStatusBarOrientation:)]
+        #[unsafe(method(application:didChangeStatusBarOrientation:))]
         #[unsafe(method_family = none)]
         unsafe fn application_didChangeStatusBarOrientation(
             &self,
@@ -922,7 +922,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "objc2-core-foundation"))]
         #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
         #[optional]
-        #[method(application:willChangeStatusBarFrame:)]
+        #[unsafe(method(application:willChangeStatusBarFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn application_willChangeStatusBarFrame(
             &self,
@@ -933,7 +933,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "objc2-core-foundation"))]
         #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
         #[optional]
-        #[method(application:didChangeStatusBarFrame:)]
+        #[unsafe(method(application:didChangeStatusBarFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn application_didChangeStatusBarFrame(
             &self,
@@ -944,7 +944,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIUserNotificationSettings"))]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenter requestAuthorizationWithOptions:completionHandler:]"]
         #[optional]
-        #[method(application:didRegisterUserNotificationSettings:)]
+        #[unsafe(method(application:didRegisterUserNotificationSettings:))]
         #[unsafe(method_family = none)]
         unsafe fn application_didRegisterUserNotificationSettings(
             &self,
@@ -954,7 +954,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(application:didRegisterForRemoteNotificationsWithDeviceToken:)]
+        #[unsafe(method(application:didRegisterForRemoteNotificationsWithDeviceToken:))]
         #[unsafe(method_family = none)]
         unsafe fn application_didRegisterForRemoteNotificationsWithDeviceToken(
             &self,
@@ -964,7 +964,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(application:didFailToRegisterForRemoteNotificationsWithError:)]
+        #[unsafe(method(application:didFailToRegisterForRemoteNotificationsWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn application_didFailToRegisterForRemoteNotificationsWithError(
             &self,
@@ -975,7 +975,7 @@ extern_protocol!(
         #[cfg(feature = "UIResponder")]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate willPresentNotification:withCompletionHandler:] or -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:] for user visible notifications and -[UIApplicationDelegate application:didReceiveRemoteNotification:fetchCompletionHandler:] for silent remote notifications"]
         #[optional]
-        #[method(application:didReceiveRemoteNotification:)]
+        #[unsafe(method(application:didReceiveRemoteNotification:))]
         #[unsafe(method_family = none)]
         unsafe fn application_didReceiveRemoteNotification(
             &self,
@@ -986,7 +986,7 @@ extern_protocol!(
         #[cfg(all(feature = "UILocalNotification", feature = "UIResponder"))]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate willPresentNotification:withCompletionHandler:] or -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]"]
         #[optional]
-        #[method(application:didReceiveLocalNotification:)]
+        #[unsafe(method(application:didReceiveLocalNotification:))]
         #[unsafe(method_family = none)]
         unsafe fn application_didReceiveLocalNotification(
             &self,
@@ -1001,7 +1001,7 @@ extern_protocol!(
         ))]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]"]
         #[optional]
-        #[method(application:handleActionWithIdentifier:forLocalNotification:completionHandler:)]
+        #[unsafe(method(application:handleActionWithIdentifier:forLocalNotification:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn application_handleActionWithIdentifier_forLocalNotification_completionHandler(
             &self,
@@ -1014,7 +1014,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]"]
         #[optional]
-        #[method(application:handleActionWithIdentifier:forRemoteNotification:withResponseInfo:completionHandler:)]
+        #[unsafe(method(application:handleActionWithIdentifier:forRemoteNotification:withResponseInfo:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn application_handleActionWithIdentifier_forRemoteNotification_withResponseInfo_completionHandler(
             &self,
@@ -1028,7 +1028,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]"]
         #[optional]
-        #[method(application:handleActionWithIdentifier:forRemoteNotification:completionHandler:)]
+        #[unsafe(method(application:handleActionWithIdentifier:forRemoteNotification:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn application_handleActionWithIdentifier_forRemoteNotification_completionHandler(
             &self,
@@ -1045,7 +1045,7 @@ extern_protocol!(
         ))]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]"]
         #[optional]
-        #[method(application:handleActionWithIdentifier:forLocalNotification:withResponseInfo:completionHandler:)]
+        #[unsafe(method(application:handleActionWithIdentifier:forLocalNotification:withResponseInfo:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn application_handleActionWithIdentifier_forLocalNotification_withResponseInfo_completionHandler(
             &self,
@@ -1061,7 +1061,7 @@ extern_protocol!(
         ///
         /// This method will be invoked even if the application was launched or resumed because of the remote notification. The respective delegate methods will be invoked first. Note that this behavior is in contrast to application:didReceiveRemoteNotification:, which is not called in those cases, and which will not be invoked if this method is implemented. !
         #[optional]
-        #[method(application:didReceiveRemoteNotification:fetchCompletionHandler:)]
+        #[unsafe(method(application:didReceiveRemoteNotification:fetchCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn application_didReceiveRemoteNotification_fetchCompletionHandler(
             &self,
@@ -1074,7 +1074,7 @@ extern_protocol!(
         /// Applications with the "fetch" background mode may be given opportunities to fetch updated content in the background or when it is convenient for the system. This method will be called in these situations. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
         #[deprecated = "Use a BGAppRefreshTask in the BackgroundTasks framework instead"]
         #[optional]
-        #[method(application:performFetchWithCompletionHandler:)]
+        #[unsafe(method(application:performFetchWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn application_performFetchWithCompletionHandler(
             &self,
@@ -1088,7 +1088,7 @@ extern_protocol!(
             feature = "block2"
         ))]
         #[optional]
-        #[method(application:performActionForShortcutItem:completionHandler:)]
+        #[unsafe(method(application:performActionForShortcutItem:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn application_performActionForShortcutItem_completionHandler(
             &self,
@@ -1099,7 +1099,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
         #[optional]
-        #[method(application:handleEventsForBackgroundURLSession:completionHandler:)]
+        #[unsafe(method(application:handleEventsForBackgroundURLSession:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn application_handleEventsForBackgroundURLSession_completionHandler(
             &self,
@@ -1110,7 +1110,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
         #[optional]
-        #[method(application:handleWatchKitExtensionRequest:reply:)]
+        #[unsafe(method(application:handleWatchKitExtensionRequest:reply:))]
         #[unsafe(method_family = none)]
         unsafe fn application_handleWatchKitExtensionRequest_reply(
             &self,
@@ -1121,44 +1121,44 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(applicationShouldRequestHealthAuthorization:)]
+        #[unsafe(method(applicationShouldRequestHealthAuthorization:))]
         #[unsafe(method_family = none)]
         unsafe fn applicationShouldRequestHealthAuthorization(&self, application: &UIApplication);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(applicationDidEnterBackground:)]
+        #[unsafe(method(applicationDidEnterBackground:))]
         #[unsafe(method_family = none)]
         unsafe fn applicationDidEnterBackground(&self, application: &UIApplication);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(applicationWillEnterForeground:)]
+        #[unsafe(method(applicationWillEnterForeground:))]
         #[unsafe(method_family = none)]
         unsafe fn applicationWillEnterForeground(&self, application: &UIApplication);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(applicationProtectedDataWillBecomeUnavailable:)]
+        #[unsafe(method(applicationProtectedDataWillBecomeUnavailable:))]
         #[unsafe(method_family = none)]
         unsafe fn applicationProtectedDataWillBecomeUnavailable(&self, application: &UIApplication);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(applicationProtectedDataDidBecomeAvailable:)]
+        #[unsafe(method(applicationProtectedDataDidBecomeAvailable:))]
         #[unsafe(method_family = none)]
         unsafe fn applicationProtectedDataDidBecomeAvailable(&self, application: &UIApplication);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
         #[optional]
-        #[method(window)]
+        #[unsafe(method(window))]
         #[unsafe(method_family = none)]
         unsafe fn window(&self) -> Option<Retained<UIWindow>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
         /// Setter for [`window`][Self::window].
         #[optional]
-        #[method(setWindow:)]
+        #[unsafe(method(setWindow:))]
         #[unsafe(method_family = none)]
         unsafe fn setWindow(&self, window: Option<&UIWindow>);
 
@@ -1169,7 +1169,7 @@ extern_protocol!(
             feature = "UIWindow"
         ))]
         #[optional]
-        #[method(application:supportedInterfaceOrientationsForWindow:)]
+        #[unsafe(method(application:supportedInterfaceOrientationsForWindow:))]
         #[unsafe(method_family = none)]
         unsafe fn application_supportedInterfaceOrientationsForWindow(
             &self,
@@ -1179,7 +1179,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(application:shouldAllowExtensionPointIdentifier:)]
+        #[unsafe(method(application:shouldAllowExtensionPointIdentifier:))]
         #[unsafe(method_family = none)]
         unsafe fn application_shouldAllowExtensionPointIdentifier(
             &self,
@@ -1189,7 +1189,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[method(application:viewControllerWithRestorationIdentifierPath:coder:)]
+        #[unsafe(method(application:viewControllerWithRestorationIdentifierPath:coder:))]
         #[unsafe(method_family = none)]
         unsafe fn application_viewControllerWithRestorationIdentifierPath_coder(
             &self,
@@ -1200,7 +1200,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(application:shouldSaveSecureApplicationState:)]
+        #[unsafe(method(application:shouldSaveSecureApplicationState:))]
         #[unsafe(method_family = none)]
         unsafe fn application_shouldSaveSecureApplicationState(
             &self,
@@ -1210,7 +1210,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(application:shouldRestoreSecureApplicationState:)]
+        #[unsafe(method(application:shouldRestoreSecureApplicationState:))]
         #[unsafe(method_family = none)]
         unsafe fn application_shouldRestoreSecureApplicationState(
             &self,
@@ -1220,7 +1220,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(application:willEncodeRestorableStateWithCoder:)]
+        #[unsafe(method(application:willEncodeRestorableStateWithCoder:))]
         #[unsafe(method_family = none)]
         unsafe fn application_willEncodeRestorableStateWithCoder(
             &self,
@@ -1230,7 +1230,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(application:didDecodeRestorableStateWithCoder:)]
+        #[unsafe(method(application:didDecodeRestorableStateWithCoder:))]
         #[unsafe(method_family = none)]
         unsafe fn application_didDecodeRestorableStateWithCoder(
             &self,
@@ -1241,7 +1241,7 @@ extern_protocol!(
         #[cfg(feature = "UIResponder")]
         #[deprecated = "Use application:shouldSaveSecureApplicationState: instead"]
         #[optional]
-        #[method(application:shouldSaveApplicationState:)]
+        #[unsafe(method(application:shouldSaveApplicationState:))]
         #[unsafe(method_family = none)]
         unsafe fn application_shouldSaveApplicationState(
             &self,
@@ -1252,7 +1252,7 @@ extern_protocol!(
         #[cfg(feature = "UIResponder")]
         #[deprecated = "Use application:shouldRestoreSecureApplicationState: instead"]
         #[optional]
-        #[method(application:shouldRestoreApplicationState:)]
+        #[unsafe(method(application:shouldRestoreApplicationState:))]
         #[unsafe(method_family = none)]
         unsafe fn application_shouldRestoreApplicationState(
             &self,
@@ -1262,7 +1262,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(application:willContinueUserActivityWithType:)]
+        #[unsafe(method(application:willContinueUserActivityWithType:))]
         #[unsafe(method_family = none)]
         unsafe fn application_willContinueUserActivityWithType(
             &self,
@@ -1276,7 +1276,7 @@ extern_protocol!(
             feature = "block2"
         ))]
         #[optional]
-        #[method(application:continueUserActivity:restorationHandler:)]
+        #[unsafe(method(application:continueUserActivity:restorationHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn application_continueUserActivity_restorationHandler(
             &self,
@@ -1289,7 +1289,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(application:didFailToContinueUserActivityWithType:error:)]
+        #[unsafe(method(application:didFailToContinueUserActivityWithType:error:))]
         #[unsafe(method_family = none)]
         unsafe fn application_didFailToContinueUserActivityWithType_error(
             &self,
@@ -1300,7 +1300,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(application:didUpdateUserActivity:)]
+        #[unsafe(method(application:didUpdateUserActivity:))]
         #[unsafe(method_family = none)]
         unsafe fn application_didUpdateUserActivity(
             &self,
@@ -1310,7 +1310,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "objc2-cloud-kit"))]
         #[optional]
-        #[method(application:userDidAcceptCloudKitShareWithMetadata:)]
+        #[unsafe(method(application:userDidAcceptCloudKitShareWithMetadata:))]
         #[unsafe(method_family = none)]
         unsafe fn application_userDidAcceptCloudKitShareWithMetadata(
             &self,
@@ -1324,7 +1324,7 @@ extern_protocol!(
             feature = "UISceneSession"
         ))]
         #[optional]
-        #[method(application:configurationForConnectingSceneSession:options:)]
+        #[unsafe(method(application:configurationForConnectingSceneSession:options:))]
         #[unsafe(method_family = none)]
         unsafe fn application_configurationForConnectingSceneSession_options(
             &self,
@@ -1335,7 +1335,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UISceneSession"))]
         #[optional]
-        #[method(application:didDiscardSceneSessions:)]
+        #[unsafe(method(application:didDiscardSceneSessions:))]
         #[unsafe(method_family = none)]
         unsafe fn application_didDiscardSceneSessions(
             &self,
@@ -1345,7 +1345,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method(applicationShouldAutomaticallyLocalizeKeyCommands:)]
+        #[unsafe(method(applicationShouldAutomaticallyLocalizeKeyCommands:))]
         #[unsafe(method_family = none)]
         unsafe fn applicationShouldAutomaticallyLocalizeKeyCommands(
             &self,
@@ -1359,25 +1359,25 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIApplication {
         #[deprecated]
-        #[method(isProximitySensingEnabled)]
+        #[unsafe(method(isProximitySensingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isProximitySensingEnabled(&self) -> bool;
 
         /// Setter for [`isProximitySensingEnabled`][Self::isProximitySensingEnabled].
         #[deprecated]
-        #[method(setProximitySensingEnabled:)]
+        #[unsafe(method(setProximitySensingEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProximitySensingEnabled(&self, proximity_sensing_enabled: bool);
 
         #[deprecated = "Use -[UIViewController prefersStatusBarHidden]"]
-        #[method(setStatusBarHidden:animated:)]
+        #[unsafe(method(setStatusBarHidden:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStatusBarHidden_animated(&self, hidden: bool, animated: bool);
 
         #[cfg(feature = "UIOrientation")]
         /// Setter for [`statusBarOrientation`][Self::statusBarOrientation].
         #[deprecated = "Explicit setting of the status bar orientation is more limited in iOS 6.0 and later"]
-        #[method(setStatusBarOrientation:)]
+        #[unsafe(method(setStatusBarOrientation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStatusBarOrientation(
             &self,
@@ -1386,7 +1386,7 @@ extern_methods!(
 
         #[cfg(feature = "UIOrientation")]
         #[deprecated = "Explicit setting of the status bar orientation is more limited in iOS 6.0 and later"]
-        #[method(setStatusBarOrientation:animated:)]
+        #[unsafe(method(setStatusBarOrientation:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStatusBarOrientation_animated(
             &self,
@@ -1396,12 +1396,12 @@ extern_methods!(
 
         /// Setter for [`statusBarStyle`][Self::statusBarStyle].
         #[deprecated = "Use -[UIViewController preferredStatusBarStyle]"]
-        #[method(setStatusBarStyle:)]
+        #[unsafe(method(setStatusBarStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStatusBarStyle(&self, status_bar_style: UIStatusBarStyle);
 
         #[deprecated = "Use -[UIViewController preferredStatusBarStyle]"]
-        #[method(setStatusBarStyle:animated:)]
+        #[unsafe(method(setStatusBarStyle:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStatusBarStyle_animated(
             &self,
@@ -1411,12 +1411,12 @@ extern_methods!(
 
         /// Setter for [`isStatusBarHidden`][Self::isStatusBarHidden].
         #[deprecated = "Use -[UIViewController prefersStatusBarHidden]"]
-        #[method(setStatusBarHidden:)]
+        #[unsafe(method(setStatusBarHidden:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStatusBarHidden(&self, status_bar_hidden: bool);
 
         #[deprecated = "Use -[UIViewController prefersStatusBarHidden]"]
-        #[method(setStatusBarHidden:withAnimation:)]
+        #[unsafe(method(setStatusBarHidden:withAnimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStatusBarHidden_withAnimation(
             &self,
@@ -1426,7 +1426,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[deprecated = "Please use PushKit for VoIP applications instead of calling this method"]
-        #[method(setKeepAliveTimeout:handler:)]
+        #[unsafe(method(setKeepAliveTimeout:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeepAliveTimeout_handler(
             &self,
@@ -1435,7 +1435,7 @@ extern_methods!(
         ) -> bool;
 
         #[deprecated = "Please use PushKit for VoIP applications instead of calling this method"]
-        #[method(clearKeepAliveTimeout)]
+        #[unsafe(method(clearKeepAliveTimeout))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearKeepAliveTimeout(&self);
     }

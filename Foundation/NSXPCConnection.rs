@@ -9,12 +9,12 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcproxycreating?language=objc)
     pub unsafe trait NSXPCProxyCreating {
-        #[method(remoteObjectProxy)]
+        #[unsafe(method(remoteObjectProxy))]
         #[unsafe(method_family = none)]
         unsafe fn remoteObjectProxy(&self) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        #[method(remoteObjectProxyWithErrorHandler:)]
+        #[unsafe(method(remoteObjectProxyWithErrorHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn remoteObjectProxyWithErrorHandler(
             &self,
@@ -23,7 +23,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
         #[optional]
-        #[method(synchronousRemoteObjectProxyWithErrorHandler:)]
+        #[unsafe(method(synchronousRemoteObjectProxyWithErrorHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn synchronousRemoteObjectProxyWithErrorHandler(
             &self,
@@ -66,7 +66,7 @@ unsafe impl NSXPCProxyCreating for NSXPCConnection {}
 extern_methods!(
     unsafe impl NSXPCConnection {
         #[cfg(feature = "NSString")]
-        #[method(initWithServiceName:)]
+        #[unsafe(method(initWithServiceName:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServiceName(
             this: Allocated<Self>,
@@ -74,12 +74,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(serviceName)]
+        #[unsafe(method(serviceName))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithMachServiceName:options:)]
+        #[unsafe(method(initWithMachServiceName:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMachServiceName_options(
             this: Allocated<Self>,
@@ -87,53 +87,53 @@ extern_methods!(
             options: NSXPCConnectionOptions,
         ) -> Retained<Self>;
 
-        #[method(initWithListenerEndpoint:)]
+        #[unsafe(method(initWithListenerEndpoint:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithListenerEndpoint(
             this: Allocated<Self>,
             endpoint: &NSXPCListenerEndpoint,
         ) -> Retained<Self>;
 
-        #[method(endpoint)]
+        #[unsafe(method(endpoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn endpoint(&self) -> Retained<NSXPCListenerEndpoint>;
 
-        #[method(exportedInterface)]
+        #[unsafe(method(exportedInterface))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportedInterface(&self) -> Option<Retained<NSXPCInterface>>;
 
         /// Setter for [`exportedInterface`][Self::exportedInterface].
-        #[method(setExportedInterface:)]
+        #[unsafe(method(setExportedInterface:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExportedInterface(&self, exported_interface: Option<&NSXPCInterface>);
 
-        #[method(exportedObject)]
+        #[unsafe(method(exportedObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportedObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`exportedObject`][Self::exportedObject].
-        #[method(setExportedObject:)]
+        #[unsafe(method(setExportedObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExportedObject(&self, exported_object: Option<&AnyObject>);
 
-        #[method(remoteObjectInterface)]
+        #[unsafe(method(remoteObjectInterface))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteObjectInterface(&self) -> Option<Retained<NSXPCInterface>>;
 
         /// Setter for [`remoteObjectInterface`][Self::remoteObjectInterface].
-        #[method(setRemoteObjectInterface:)]
+        #[unsafe(method(setRemoteObjectInterface:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRemoteObjectInterface(
             &self,
             remote_object_interface: Option<&NSXPCInterface>,
         );
 
-        #[method(remoteObjectProxy)]
+        #[unsafe(method(remoteObjectProxy))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteObjectProxy(&self) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        #[method(remoteObjectProxyWithErrorHandler:)]
+        #[unsafe(method(remoteObjectProxyWithErrorHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteObjectProxyWithErrorHandler(
             &self,
@@ -141,7 +141,7 @@ extern_methods!(
         ) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        #[method(synchronousRemoteObjectProxyWithErrorHandler:)]
+        #[unsafe(method(synchronousRemoteObjectProxyWithErrorHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn synchronousRemoteObjectProxyWithErrorHandler(
             &self,
@@ -149,13 +149,13 @@ extern_methods!(
         ) -> Retained<AnyObject>;
 
         #[cfg(feature = "block2")]
-        #[method(interruptionHandler)]
+        #[unsafe(method(interruptionHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn interruptionHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`interruptionHandler`][Self::interruptionHandler].
-        #[method(setInterruptionHandler:)]
+        #[unsafe(method(setInterruptionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInterruptionHandler(
             &self,
@@ -163,63 +163,63 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(invalidationHandler)]
+        #[unsafe(method(invalidationHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidationHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`invalidationHandler`][Self::invalidationHandler].
-        #[method(setInvalidationHandler:)]
+        #[unsafe(method(setInvalidationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInvalidationHandler(
             &self,
             invalidation_handler: Option<&block2::Block<dyn Fn()>>,
         );
 
-        #[method(resume)]
+        #[unsafe(method(resume))]
         #[unsafe(method_family = none)]
         pub unsafe fn resume(&self);
 
-        #[method(suspend)]
+        #[unsafe(method(suspend))]
         #[unsafe(method_family = none)]
         pub unsafe fn suspend(&self);
 
-        #[method(activate)]
+        #[unsafe(method(activate))]
         #[unsafe(method_family = none)]
         pub unsafe fn activate(&self);
 
-        #[method(invalidate)]
+        #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
 
         #[cfg(feature = "libc")]
-        #[method(processIdentifier)]
+        #[unsafe(method(processIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn processIdentifier(&self) -> libc::pid_t;
 
         #[cfg(feature = "libc")]
-        #[method(effectiveUserIdentifier)]
+        #[unsafe(method(effectiveUserIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectiveUserIdentifier(&self) -> libc::uid_t;
 
         #[cfg(feature = "libc")]
-        #[method(effectiveGroupIdentifier)]
+        #[unsafe(method(effectiveGroupIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectiveGroupIdentifier(&self) -> libc::gid_t;
 
-        #[method(currentConnection)]
+        #[unsafe(method(currentConnection))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentConnection() -> Option<Retained<NSXPCConnection>>;
 
         #[cfg(feature = "block2")]
-        #[method(scheduleSendBarrierBlock:)]
+        #[unsafe(method(scheduleSendBarrierBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleSendBarrierBlock(&self, block: &block2::Block<dyn Fn()>);
 
         #[cfg(feature = "NSString")]
         /// Sets the code signing requirement for this connection. If the requirement is malformed, an exception is thrown. If new messages do not match the requirement, the connection is invalidated. It is recommended to set this before calling `resume`, as it is an XPC error to call it more than once.
         /// See https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/RequirementLang/RequirementLang.html for more information on the format.
-        #[method(setCodeSigningRequirement:)]
+        #[unsafe(method(setCodeSigningRequirement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCodeSigningRequirement(&self, requirement: &NSString);
     }
@@ -228,11 +228,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSXPCConnection {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -249,23 +249,23 @@ unsafe impl NSObjectProtocol for NSXPCListener {}
 
 extern_methods!(
     unsafe impl NSXPCListener {
-        #[method(serviceListener)]
+        #[unsafe(method(serviceListener))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceListener() -> Retained<NSXPCListener>;
 
-        #[method(anonymousListener)]
+        #[unsafe(method(anonymousListener))]
         #[unsafe(method_family = none)]
         pub unsafe fn anonymousListener() -> Retained<NSXPCListener>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithMachServiceName:)]
+        #[unsafe(method(initWithMachServiceName:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMachServiceName(
             this: Allocated<Self>,
             name: &NSString,
         ) -> Retained<Self>;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -273,30 +273,30 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSXPCListenerDelegate>>,
         );
 
-        #[method(endpoint)]
+        #[unsafe(method(endpoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn endpoint(&self) -> Retained<NSXPCListenerEndpoint>;
 
-        #[method(resume)]
+        #[unsafe(method(resume))]
         #[unsafe(method_family = none)]
         pub unsafe fn resume(&self);
 
-        #[method(suspend)]
+        #[unsafe(method(suspend))]
         #[unsafe(method_family = none)]
         pub unsafe fn suspend(&self);
 
-        #[method(activate)]
+        #[unsafe(method(activate))]
         #[unsafe(method_family = none)]
         pub unsafe fn activate(&self);
 
-        #[method(invalidate)]
+        #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
 
@@ -304,7 +304,7 @@ extern_methods!(
         /// Sets the code signing requirement for new connections. If the requirement is malformed, an exception is thrown. If new peer connections do not match the requirement, the incoming connection is automatically rejected before consulting the delegate.
         /// This method will only work on `anonymousListener` or `initWithMachServiceName` listener instances. Use on other types of listeners will result in an assertion failure.
         /// See https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/RequirementLang/RequirementLang.html for more information on the format.
-        #[method(setConnectionCodeSigningRequirement:)]
+        #[unsafe(method(setConnectionCodeSigningRequirement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConnectionCodeSigningRequirement(&self, requirement: &NSString);
     }
@@ -313,11 +313,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSXPCListener {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -327,7 +327,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpclistenerdelegate?language=objc)
     pub unsafe trait NSXPCListenerDelegate: NSObjectProtocol {
         #[optional]
-        #[method(listener:shouldAcceptNewConnection:)]
+        #[unsafe(method(listener:shouldAcceptNewConnection:))]
         #[unsafe(method_family = none)]
         unsafe fn listener_shouldAcceptNewConnection(
             &self,
@@ -348,21 +348,21 @@ unsafe impl NSObjectProtocol for NSXPCInterface {}
 
 extern_methods!(
     unsafe impl NSXPCInterface {
-        #[method(interfaceWithProtocol:)]
+        #[unsafe(method(interfaceWithProtocol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceWithProtocol(protocol: &AnyProtocol) -> Retained<NSXPCInterface>;
 
-        #[method(protocol)]
+        #[unsafe(method(protocol))]
         #[unsafe(method_family = none)]
         pub unsafe fn protocol(&self) -> Retained<AnyProtocol>;
 
         /// Setter for [`protocol`][Self::protocol].
-        #[method(setProtocol:)]
+        #[unsafe(method(setProtocol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProtocol(&self, protocol: &AnyProtocol);
 
         #[cfg(feature = "NSSet")]
-        #[method(setClasses:forSelector:argumentIndex:ofReply:)]
+        #[unsafe(method(setClasses:forSelector:argumentIndex:ofReply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClasses_forSelector_argumentIndex_ofReply(
             &self,
@@ -373,7 +373,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSSet")]
-        #[method(classesForSelector:argumentIndex:ofReply:)]
+        #[unsafe(method(classesForSelector:argumentIndex:ofReply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn classesForSelector_argumentIndex_ofReply(
             &self,
@@ -382,7 +382,7 @@ extern_methods!(
             of_reply: bool,
         ) -> Retained<NSSet<AnyClass>>;
 
-        #[method(setInterface:forSelector:argumentIndex:ofReply:)]
+        #[unsafe(method(setInterface:forSelector:argumentIndex:ofReply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInterface_forSelector_argumentIndex_ofReply(
             &self,
@@ -392,7 +392,7 @@ extern_methods!(
             of_reply: bool,
         );
 
-        #[method(interfaceForSelector:argumentIndex:ofReply:)]
+        #[unsafe(method(interfaceForSelector:argumentIndex:ofReply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceForSelector_argumentIndex_ofReply(
             &self,
@@ -406,11 +406,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSXPCInterface {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -442,11 +442,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSXPCListenerEndpoint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -466,16 +466,16 @@ unsafe impl NSObjectProtocol for NSXPCCoder {}
 extern_methods!(
     #[cfg(feature = "NSCoder")]
     unsafe impl NSXPCCoder {
-        #[method(userInfo)]
+        #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
-        #[method(setUserInfo:)]
+        #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&ProtocolObject<dyn NSObjectProtocol>>);
 
-        #[method(connection)]
+        #[unsafe(method(connection))]
         #[unsafe(method_family = none)]
         pub unsafe fn connection(&self) -> Option<Retained<NSXPCConnection>>;
     }
@@ -485,11 +485,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSCoder")]
     unsafe impl NSXPCCoder {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

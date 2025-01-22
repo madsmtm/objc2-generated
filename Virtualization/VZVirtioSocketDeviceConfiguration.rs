@@ -36,7 +36,7 @@ unsafe impl NSObjectProtocol for VZVirtioSocketDeviceConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZSocketDeviceConfiguration")]
     unsafe impl VZVirtioSocketDeviceConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -46,7 +46,7 @@ extern_methods!(
     /// Methods declared on superclass `VZSocketDeviceConfiguration`
     #[cfg(feature = "VZSocketDeviceConfiguration")]
     unsafe impl VZVirtioSocketDeviceConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

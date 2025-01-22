@@ -80,14 +80,14 @@ extern_methods!(
     #[cfg(feature = "CBPeer")]
     unsafe impl CBPeripheral {
         /// The delegate object that will receive peripheral events.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn CBPeripheralDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -95,7 +95,7 @@ extern_methods!(
         );
 
         /// The name of the peripheral.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
@@ -108,12 +108,12 @@ extern_methods!(
         ///
         /// ```
         #[deprecated]
-        #[method(RSSI)]
+        #[unsafe(method(RSSI))]
         #[unsafe(method_family = none)]
         pub unsafe fn RSSI(&self) -> Option<Retained<NSNumber>>;
 
         /// The current connection state of the peripheral.
-        #[method(state)]
+        #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> CBPeripheralState;
 
@@ -123,7 +123,7 @@ extern_methods!(
         /// CBService
         /// </code>
         /// objects that have been discovered on the peripheral.
-        #[method(services)]
+        #[unsafe(method(services))]
         #[unsafe(method_family = none)]
         pub unsafe fn services(&self) -> Option<Retained<NSArray<CBService>>>;
 
@@ -133,7 +133,7 @@ extern_methods!(
         /// >peripheralIsReadyToSendWriteWithoutResponse:
         /// </link
         /// > will be called.
-        #[method(canSendWriteWithoutResponse)]
+        #[unsafe(method(canSendWriteWithoutResponse))]
         #[unsafe(method_family = none)]
         pub unsafe fn canSendWriteWithoutResponse(&self) -> bool;
 
@@ -143,7 +143,7 @@ extern_methods!(
         /// >didUpdateANCSAuthorizationForPeripheral:
         /// </link
         /// > will be called.
-        #[method(ancsAuthorized)]
+        #[unsafe(method(ancsAuthorized))]
         #[unsafe(method_family = none)]
         pub unsafe fn ancsAuthorized(&self) -> bool;
 
@@ -151,7 +151,7 @@ extern_methods!(
         ///
         ///
         /// See: peripheral:didReadRSSI:error:
-        #[method(readRSSI)]
+        #[unsafe(method(readRSSI))]
         #[unsafe(method_family = none)]
         pub unsafe fn readRSSI(&self);
 
@@ -172,7 +172,7 @@ extern_methods!(
         ///
         ///
         /// See: peripheral:didDiscoverServices:
-        #[method(discoverServices:)]
+        #[unsafe(method(discoverServices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoverServices(&self, service_uui_ds: Option<&NSArray<CBUUID>>);
 
@@ -203,7 +203,7 @@ extern_methods!(
         ///
         ///
         /// See: peripheral:didDiscoverIncludedServicesForService:error:
-        #[method(discoverIncludedServices:forService:)]
+        #[unsafe(method(discoverIncludedServices:forService:))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoverIncludedServices_forService(
             &self,
@@ -238,7 +238,7 @@ extern_methods!(
         ///
         ///
         /// See: peripheral:didDiscoverCharacteristicsForService:error:
-        #[method(discoverCharacteristics:forService:)]
+        #[unsafe(method(discoverCharacteristics:forService:))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoverCharacteristics_forService(
             &self,
@@ -258,7 +258,7 @@ extern_methods!(
         ///
         ///
         /// See: peripheral:didUpdateValueForCharacteristic:error:
-        #[method(readValueForCharacteristic:)]
+        #[unsafe(method(readValueForCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readValueForCharacteristic(&self, characteristic: &CBCharacteristic);
 
@@ -266,7 +266,7 @@ extern_methods!(
         ///
         ///
         /// See: writeValue:forCharacteristic:type:
-        #[method(maximumWriteValueLengthForType:)]
+        #[unsafe(method(maximumWriteValueLengthForType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumWriteValueLengthForType(
             &self,
@@ -309,7 +309,7 @@ extern_methods!(
         ///  
         ///
         /// ```
-        #[method(writeValue:forCharacteristic:type:)]
+        #[unsafe(method(writeValue:forCharacteristic:type:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeValue_forCharacteristic_type(
             &self,
@@ -346,7 +346,7 @@ extern_methods!(
         /// See: peripheral:didUpdateNotificationStateForCharacteristic:error:
         ///
         /// See also: CBConnectPeripheralOptionNotifyOnNotificationKey
-        #[method(setNotifyValue:forCharacteristic:)]
+        #[unsafe(method(setNotifyValue:forCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotifyValue_forCharacteristic(
             &self,
@@ -366,7 +366,7 @@ extern_methods!(
         ///
         ///
         /// See: peripheral:didDiscoverDescriptorsForCharacteristic:error:
-        #[method(discoverDescriptorsForCharacteristic:)]
+        #[unsafe(method(discoverDescriptorsForCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoverDescriptorsForCharacteristic(
             &self,
@@ -385,7 +385,7 @@ extern_methods!(
         ///
         ///
         /// See: peripheral:didUpdateValueForDescriptor:error:
-        #[method(readValueForDescriptor:)]
+        #[unsafe(method(readValueForDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readValueForDescriptor(&self, descriptor: &CBDescriptor);
 
@@ -414,7 +414,7 @@ extern_methods!(
         ///
         ///
         /// See: peripheral:didWriteValueForCharacteristic:error:
-        #[method(writeValue:forDescriptor:)]
+        #[unsafe(method(writeValue:forDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeValue_forDescriptor(&self, data: &NSData, descriptor: &CBDescriptor);
 
@@ -426,7 +426,7 @@ extern_methods!(
         ///
         ///
         /// See: peripheral:didWriteValueForCharacteristic:error:
-        #[method(openL2CAPChannel:)]
+        #[unsafe(method(openL2CAPChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openL2CAPChannel(&self, psm: CBL2CAPPSM);
     }
@@ -436,7 +436,7 @@ extern_methods!(
     /// Methods declared on superclass `CBPeer`
     #[cfg(feature = "CBPeer")]
     unsafe impl CBPeripheral {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -446,7 +446,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CBPeer")]
     unsafe impl CBPeripheral {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -473,7 +473,7 @@ extern_protocol!(
         /// </i>
         /// changes.
         #[optional]
-        #[method(peripheralDidUpdateName:)]
+        #[unsafe(method(peripheralDidUpdateName:))]
         #[unsafe(method_family = none)]
         unsafe fn peripheralDidUpdateName(&self, peripheral: &CBPeripheral);
 
@@ -507,7 +507,7 @@ extern_protocol!(
         ///
         /// .
         #[optional]
-        #[method(peripheral:didModifyServices:)]
+        #[unsafe(method(peripheral:didModifyServices:))]
         #[unsafe(method_family = none)]
         unsafe fn peripheral_didModifyServices(
             &self,
@@ -537,7 +537,7 @@ extern_protocol!(
         /// ```
         #[deprecated]
         #[optional]
-        #[method(peripheralDidUpdateRSSI:error:)]
+        #[unsafe(method(peripheralDidUpdateRSSI:error:))]
         #[unsafe(method_family = none)]
         unsafe fn peripheralDidUpdateRSSI_error(
             &self,
@@ -561,7 +561,7 @@ extern_protocol!(
         ///
         /// call.
         #[optional]
-        #[method(peripheral:didReadRSSI:error:)]
+        #[unsafe(method(peripheral:didReadRSSI:error:))]
         #[unsafe(method_family = none)]
         unsafe fn peripheral_didReadRSSI_error(
             &self,
@@ -594,7 +594,7 @@ extern_protocol!(
         ///
         /// property.
         #[optional]
-        #[method(peripheral:didDiscoverServices:)]
+        #[unsafe(method(peripheral:didDiscoverServices:))]
         #[unsafe(method_family = none)]
         unsafe fn peripheral_didDiscoverServices(
             &self,
@@ -631,7 +631,7 @@ extern_protocol!(
         /// </code>
         /// property.
         #[optional]
-        #[method(peripheral:didDiscoverIncludedServicesForService:error:)]
+        #[unsafe(method(peripheral:didDiscoverIncludedServicesForService:error:))]
         #[unsafe(method_family = none)]
         unsafe fn peripheral_didDiscoverIncludedServicesForService_error(
             &self,
@@ -669,7 +669,7 @@ extern_protocol!(
         /// </code>
         /// property.
         #[optional]
-        #[method(peripheral:didDiscoverCharacteristicsForService:error:)]
+        #[unsafe(method(peripheral:didDiscoverCharacteristicsForService:error:))]
         #[unsafe(method_family = none)]
         unsafe fn peripheral_didDiscoverCharacteristicsForService_error(
             &self,
@@ -702,7 +702,7 @@ extern_protocol!(
         ///
         /// call, or upon receipt of a notification/indication.
         #[optional]
-        #[method(peripheral:didUpdateValueForCharacteristic:error:)]
+        #[unsafe(method(peripheral:didUpdateValueForCharacteristic:error:))]
         #[unsafe(method_family = none)]
         unsafe fn peripheral_didUpdateValueForCharacteristic_error(
             &self,
@@ -735,7 +735,7 @@ extern_protocol!(
         ///
         /// ```
         #[optional]
-        #[method(peripheral:didWriteValueForCharacteristic:error:)]
+        #[unsafe(method(peripheral:didWriteValueForCharacteristic:error:))]
         #[unsafe(method_family = none)]
         unsafe fn peripheral_didWriteValueForCharacteristic_error(
             &self,
@@ -768,7 +768,7 @@ extern_protocol!(
         ///
         /// call.
         #[optional]
-        #[method(peripheral:didUpdateNotificationStateForCharacteristic:error:)]
+        #[unsafe(method(peripheral:didUpdateNotificationStateForCharacteristic:error:))]
         #[unsafe(method_family = none)]
         unsafe fn peripheral_didUpdateNotificationStateForCharacteristic_error(
             &self,
@@ -810,7 +810,7 @@ extern_protocol!(
         /// </code>
         /// property.
         #[optional]
-        #[method(peripheral:didDiscoverDescriptorsForCharacteristic:error:)]
+        #[unsafe(method(peripheral:didDiscoverDescriptorsForCharacteristic:error:))]
         #[unsafe(method_family = none)]
         unsafe fn peripheral_didDiscoverDescriptorsForCharacteristic_error(
             &self,
@@ -839,7 +839,7 @@ extern_protocol!(
         ///
         /// call.
         #[optional]
-        #[method(peripheral:didUpdateValueForDescriptor:error:)]
+        #[unsafe(method(peripheral:didUpdateValueForDescriptor:error:))]
         #[unsafe(method_family = none)]
         unsafe fn peripheral_didUpdateValueForDescriptor_error(
             &self,
@@ -868,7 +868,7 @@ extern_protocol!(
         ///
         /// call.
         #[optional]
-        #[method(peripheral:didWriteValueForDescriptor:error:)]
+        #[unsafe(method(peripheral:didWriteValueForDescriptor:error:))]
         #[unsafe(method_family = none)]
         unsafe fn peripheral_didWriteValueForDescriptor_error(
             &self,
@@ -894,7 +894,7 @@ extern_protocol!(
         /// is again
         /// ready to send characteristic value updates.
         #[optional]
-        #[method(peripheralIsReadyToSendWriteWithoutResponse:)]
+        #[unsafe(method(peripheralIsReadyToSendWriteWithoutResponse:))]
         #[unsafe(method_family = none)]
         unsafe fn peripheralIsReadyToSendWriteWithoutResponse(&self, peripheral: &CBPeripheral);
 
@@ -918,7 +918,7 @@ extern_protocol!(
         ///
         /// ```
         #[optional]
-        #[method(peripheral:didOpenL2CAPChannel:error:)]
+        #[unsafe(method(peripheral:didOpenL2CAPChannel:error:))]
         #[unsafe(method_family = none)]
         unsafe fn peripheral_didOpenL2CAPChannel_error(
             &self,

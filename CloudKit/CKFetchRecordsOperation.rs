@@ -21,30 +21,30 @@ unsafe impl NSObjectProtocol for CKFetchRecordsOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordsOperation {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method(initWithRecordIDs:)]
+        #[unsafe(method(initWithRecordIDs:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordIDs(
             this: Allocated<Self>,
             record_i_ds: &NSArray<CKRecordID>,
         ) -> Retained<Self>;
 
-        #[method(fetchCurrentUserRecordOperation)]
+        #[unsafe(method(fetchCurrentUserRecordOperation))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchCurrentUserRecordOperation() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method(recordIDs)]
+        #[unsafe(method(recordIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordIDs(&self) -> Option<Retained<NSArray<CKRecordID>>>;
 
         #[cfg(feature = "CKRecordID")]
         /// Setter for [`recordIDs`][Self::recordIDs].
-        #[method(setRecordIDs:)]
+        #[unsafe(method(setRecordIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordIDs(&self, record_i_ds: Option<&NSArray<CKRecordID>>);
 
@@ -55,13 +55,13 @@ extern_methods!(
         /// If nil, declares the entire record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
         /// Defaults to
         /// `nil.`
-        #[method(desiredKeys)]
+        #[unsafe(method(desiredKeys))]
         #[unsafe(method_family = none)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`desiredKeys`][Self::desiredKeys].
-        #[method(setDesiredKeys:)]
+        #[unsafe(method(setDesiredKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
 
@@ -75,7 +75,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(perRecordProgressBlock)]
+        #[unsafe(method(perRecordProgressBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordProgressBlock(
             &self,
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`perRecordProgressBlock`][Self::perRecordProgressBlock].
-        #[method(setPerRecordProgressBlock:)]
+        #[unsafe(method(setPerRecordProgressBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordProgressBlock(
             &self,
@@ -100,7 +100,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(perRecordCompletionBlock)]
+        #[unsafe(method(perRecordCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordCompletionBlock(
             &self,
@@ -108,7 +108,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`perRecordCompletionBlock`][Self::perRecordCompletionBlock].
-        #[method(setPerRecordCompletionBlock:)]
+        #[unsafe(method(setPerRecordCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordCompletionBlock(
             &self,
@@ -137,7 +137,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(fetchRecordsCompletionBlock)]
+        #[unsafe(method(fetchRecordsCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordsCompletionBlock(
             &self,
@@ -145,7 +145,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`fetchRecordsCompletionBlock`][Self::fetchRecordsCompletionBlock].
-        #[method(setFetchRecordsCompletionBlock:)]
+        #[unsafe(method(setFetchRecordsCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchRecordsCompletionBlock(
             &self,
@@ -160,7 +160,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordsOperation {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

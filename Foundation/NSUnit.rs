@@ -17,11 +17,11 @@ unsafe impl NSObjectProtocol for NSUnitConverter {}
 
 extern_methods!(
     unsafe impl NSUnitConverter {
-        #[method(baseUnitValueFromValue:)]
+        #[unsafe(method(baseUnitValueFromValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnitValueFromValue(&self, value: c_double) -> c_double;
 
-        #[method(valueFromBaseUnitValue:)]
+        #[unsafe(method(valueFromBaseUnitValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueFromBaseUnitValue(&self, base_unit_value: c_double) -> c_double;
     }
@@ -30,11 +30,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUnitConverter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -57,22 +57,22 @@ unsafe impl NSSecureCoding for NSUnitConverterLinear {}
 
 extern_methods!(
     unsafe impl NSUnitConverterLinear {
-        #[method(coefficient)]
+        #[unsafe(method(coefficient))]
         #[unsafe(method_family = none)]
         pub unsafe fn coefficient(&self) -> c_double;
 
-        #[method(constant)]
+        #[unsafe(method(constant))]
         #[unsafe(method_family = none)]
         pub unsafe fn constant(&self) -> c_double;
 
-        #[method(initWithCoefficient:)]
+        #[unsafe(method(initWithCoefficient:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoefficient(
             this: Allocated<Self>,
             coefficient: c_double,
         ) -> Retained<Self>;
 
-        #[method(initWithCoefficient:constant:)]
+        #[unsafe(method(initWithCoefficient:constant:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoefficient_constant(
             this: Allocated<Self>,
@@ -85,11 +85,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUnitConverterLinear {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -121,20 +121,20 @@ unsafe impl NSSecureCoding for NSUnit {}
 extern_methods!(
     unsafe impl NSUnit {
         #[cfg(feature = "NSString")]
-        #[method(symbol)]
+        #[unsafe(method(symbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn symbol(&self) -> Retained<NSString>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -165,12 +165,12 @@ unsafe impl NSSecureCoding for NSDimension {}
 
 extern_methods!(
     unsafe impl NSDimension {
-        #[method(converter)]
+        #[unsafe(method(converter))]
         #[unsafe(method_family = none)]
         pub unsafe fn converter(&self) -> Retained<NSUnitConverter>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -178,7 +178,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -187,16 +187,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSDimension {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -231,11 +231,11 @@ unsafe impl NSSecureCoding for NSUnitAcceleration {}
 
 extern_methods!(
     unsafe impl NSUnitAcceleration {
-        #[method(metersPerSecondSquared)]
+        #[unsafe(method(metersPerSecondSquared))]
         #[unsafe(method_family = none)]
         pub unsafe fn metersPerSecondSquared() -> Retained<NSUnitAcceleration>;
 
-        #[method(gravity)]
+        #[unsafe(method(gravity))]
         #[unsafe(method_family = none)]
         pub unsafe fn gravity() -> Retained<NSUnitAcceleration>;
     }
@@ -245,7 +245,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitAcceleration {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -253,7 +253,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -262,16 +262,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitAcceleration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -306,27 +306,27 @@ unsafe impl NSSecureCoding for NSUnitAngle {}
 
 extern_methods!(
     unsafe impl NSUnitAngle {
-        #[method(degrees)]
+        #[unsafe(method(degrees))]
         #[unsafe(method_family = none)]
         pub unsafe fn degrees() -> Retained<NSUnitAngle>;
 
-        #[method(arcMinutes)]
+        #[unsafe(method(arcMinutes))]
         #[unsafe(method_family = none)]
         pub unsafe fn arcMinutes() -> Retained<NSUnitAngle>;
 
-        #[method(arcSeconds)]
+        #[unsafe(method(arcSeconds))]
         #[unsafe(method_family = none)]
         pub unsafe fn arcSeconds() -> Retained<NSUnitAngle>;
 
-        #[method(radians)]
+        #[unsafe(method(radians))]
         #[unsafe(method_family = none)]
         pub unsafe fn radians() -> Retained<NSUnitAngle>;
 
-        #[method(gradians)]
+        #[unsafe(method(gradians))]
         #[unsafe(method_family = none)]
         pub unsafe fn gradians() -> Retained<NSUnitAngle>;
 
-        #[method(revolutions)]
+        #[unsafe(method(revolutions))]
         #[unsafe(method_family = none)]
         pub unsafe fn revolutions() -> Retained<NSUnitAngle>;
     }
@@ -336,7 +336,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitAngle {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -344,7 +344,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -353,16 +353,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitAngle {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -397,59 +397,59 @@ unsafe impl NSSecureCoding for NSUnitArea {}
 
 extern_methods!(
     unsafe impl NSUnitArea {
-        #[method(squareMegameters)]
+        #[unsafe(method(squareMegameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn squareMegameters() -> Retained<NSUnitArea>;
 
-        #[method(squareKilometers)]
+        #[unsafe(method(squareKilometers))]
         #[unsafe(method_family = none)]
         pub unsafe fn squareKilometers() -> Retained<NSUnitArea>;
 
-        #[method(squareMeters)]
+        #[unsafe(method(squareMeters))]
         #[unsafe(method_family = none)]
         pub unsafe fn squareMeters() -> Retained<NSUnitArea>;
 
-        #[method(squareCentimeters)]
+        #[unsafe(method(squareCentimeters))]
         #[unsafe(method_family = none)]
         pub unsafe fn squareCentimeters() -> Retained<NSUnitArea>;
 
-        #[method(squareMillimeters)]
+        #[unsafe(method(squareMillimeters))]
         #[unsafe(method_family = none)]
         pub unsafe fn squareMillimeters() -> Retained<NSUnitArea>;
 
-        #[method(squareMicrometers)]
+        #[unsafe(method(squareMicrometers))]
         #[unsafe(method_family = none)]
         pub unsafe fn squareMicrometers() -> Retained<NSUnitArea>;
 
-        #[method(squareNanometers)]
+        #[unsafe(method(squareNanometers))]
         #[unsafe(method_family = none)]
         pub unsafe fn squareNanometers() -> Retained<NSUnitArea>;
 
-        #[method(squareInches)]
+        #[unsafe(method(squareInches))]
         #[unsafe(method_family = none)]
         pub unsafe fn squareInches() -> Retained<NSUnitArea>;
 
-        #[method(squareFeet)]
+        #[unsafe(method(squareFeet))]
         #[unsafe(method_family = none)]
         pub unsafe fn squareFeet() -> Retained<NSUnitArea>;
 
-        #[method(squareYards)]
+        #[unsafe(method(squareYards))]
         #[unsafe(method_family = none)]
         pub unsafe fn squareYards() -> Retained<NSUnitArea>;
 
-        #[method(squareMiles)]
+        #[unsafe(method(squareMiles))]
         #[unsafe(method_family = none)]
         pub unsafe fn squareMiles() -> Retained<NSUnitArea>;
 
-        #[method(acres)]
+        #[unsafe(method(acres))]
         #[unsafe(method_family = none)]
         pub unsafe fn acres() -> Retained<NSUnitArea>;
 
-        #[method(ares)]
+        #[unsafe(method(ares))]
         #[unsafe(method_family = none)]
         pub unsafe fn ares() -> Retained<NSUnitArea>;
 
-        #[method(hectares)]
+        #[unsafe(method(hectares))]
         #[unsafe(method_family = none)]
         pub unsafe fn hectares() -> Retained<NSUnitArea>;
     }
@@ -459,7 +459,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitArea {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -467,7 +467,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -476,16 +476,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitArea {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -520,15 +520,15 @@ unsafe impl NSSecureCoding for NSUnitConcentrationMass {}
 
 extern_methods!(
     unsafe impl NSUnitConcentrationMass {
-        #[method(gramsPerLiter)]
+        #[unsafe(method(gramsPerLiter))]
         #[unsafe(method_family = none)]
         pub unsafe fn gramsPerLiter() -> Retained<NSUnitConcentrationMass>;
 
-        #[method(milligramsPerDeciliter)]
+        #[unsafe(method(milligramsPerDeciliter))]
         #[unsafe(method_family = none)]
         pub unsafe fn milligramsPerDeciliter() -> Retained<NSUnitConcentrationMass>;
 
-        #[method(millimolesPerLiterWithGramsPerMole:)]
+        #[unsafe(method(millimolesPerLiterWithGramsPerMole:))]
         #[unsafe(method_family = none)]
         pub unsafe fn millimolesPerLiterWithGramsPerMole(
             grams_per_mole: c_double,
@@ -540,7 +540,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitConcentrationMass {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -548,7 +548,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -557,16 +557,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitConcentrationMass {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -601,7 +601,7 @@ unsafe impl NSSecureCoding for NSUnitDispersion {}
 
 extern_methods!(
     unsafe impl NSUnitDispersion {
-        #[method(partsPerMillion)]
+        #[unsafe(method(partsPerMillion))]
         #[unsafe(method_family = none)]
         pub unsafe fn partsPerMillion() -> Retained<NSUnitDispersion>;
     }
@@ -611,7 +611,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitDispersion {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -619,7 +619,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -628,16 +628,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitDispersion {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -672,31 +672,31 @@ unsafe impl NSSecureCoding for NSUnitDuration {}
 
 extern_methods!(
     unsafe impl NSUnitDuration {
-        #[method(hours)]
+        #[unsafe(method(hours))]
         #[unsafe(method_family = none)]
         pub unsafe fn hours() -> Retained<NSUnitDuration>;
 
-        #[method(minutes)]
+        #[unsafe(method(minutes))]
         #[unsafe(method_family = none)]
         pub unsafe fn minutes() -> Retained<NSUnitDuration>;
 
-        #[method(seconds)]
+        #[unsafe(method(seconds))]
         #[unsafe(method_family = none)]
         pub unsafe fn seconds() -> Retained<NSUnitDuration>;
 
-        #[method(milliseconds)]
+        #[unsafe(method(milliseconds))]
         #[unsafe(method_family = none)]
         pub unsafe fn milliseconds() -> Retained<NSUnitDuration>;
 
-        #[method(microseconds)]
+        #[unsafe(method(microseconds))]
         #[unsafe(method_family = none)]
         pub unsafe fn microseconds() -> Retained<NSUnitDuration>;
 
-        #[method(nanoseconds)]
+        #[unsafe(method(nanoseconds))]
         #[unsafe(method_family = none)]
         pub unsafe fn nanoseconds() -> Retained<NSUnitDuration>;
 
-        #[method(picoseconds)]
+        #[unsafe(method(picoseconds))]
         #[unsafe(method_family = none)]
         pub unsafe fn picoseconds() -> Retained<NSUnitDuration>;
     }
@@ -706,7 +706,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitDuration {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -714,7 +714,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -723,16 +723,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitDuration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -767,27 +767,27 @@ unsafe impl NSSecureCoding for NSUnitElectricCharge {}
 
 extern_methods!(
     unsafe impl NSUnitElectricCharge {
-        #[method(coulombs)]
+        #[unsafe(method(coulombs))]
         #[unsafe(method_family = none)]
         pub unsafe fn coulombs() -> Retained<NSUnitElectricCharge>;
 
-        #[method(megaampereHours)]
+        #[unsafe(method(megaampereHours))]
         #[unsafe(method_family = none)]
         pub unsafe fn megaampereHours() -> Retained<NSUnitElectricCharge>;
 
-        #[method(kiloampereHours)]
+        #[unsafe(method(kiloampereHours))]
         #[unsafe(method_family = none)]
         pub unsafe fn kiloampereHours() -> Retained<NSUnitElectricCharge>;
 
-        #[method(ampereHours)]
+        #[unsafe(method(ampereHours))]
         #[unsafe(method_family = none)]
         pub unsafe fn ampereHours() -> Retained<NSUnitElectricCharge>;
 
-        #[method(milliampereHours)]
+        #[unsafe(method(milliampereHours))]
         #[unsafe(method_family = none)]
         pub unsafe fn milliampereHours() -> Retained<NSUnitElectricCharge>;
 
-        #[method(microampereHours)]
+        #[unsafe(method(microampereHours))]
         #[unsafe(method_family = none)]
         pub unsafe fn microampereHours() -> Retained<NSUnitElectricCharge>;
     }
@@ -797,7 +797,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitElectricCharge {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -805,7 +805,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -814,16 +814,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitElectricCharge {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -858,23 +858,23 @@ unsafe impl NSSecureCoding for NSUnitElectricCurrent {}
 
 extern_methods!(
     unsafe impl NSUnitElectricCurrent {
-        #[method(megaamperes)]
+        #[unsafe(method(megaamperes))]
         #[unsafe(method_family = none)]
         pub unsafe fn megaamperes() -> Retained<NSUnitElectricCurrent>;
 
-        #[method(kiloamperes)]
+        #[unsafe(method(kiloamperes))]
         #[unsafe(method_family = none)]
         pub unsafe fn kiloamperes() -> Retained<NSUnitElectricCurrent>;
 
-        #[method(amperes)]
+        #[unsafe(method(amperes))]
         #[unsafe(method_family = none)]
         pub unsafe fn amperes() -> Retained<NSUnitElectricCurrent>;
 
-        #[method(milliamperes)]
+        #[unsafe(method(milliamperes))]
         #[unsafe(method_family = none)]
         pub unsafe fn milliamperes() -> Retained<NSUnitElectricCurrent>;
 
-        #[method(microamperes)]
+        #[unsafe(method(microamperes))]
         #[unsafe(method_family = none)]
         pub unsafe fn microamperes() -> Retained<NSUnitElectricCurrent>;
     }
@@ -884,7 +884,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitElectricCurrent {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -892,7 +892,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -901,16 +901,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitElectricCurrent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -945,23 +945,23 @@ unsafe impl NSSecureCoding for NSUnitElectricPotentialDifference {}
 
 extern_methods!(
     unsafe impl NSUnitElectricPotentialDifference {
-        #[method(megavolts)]
+        #[unsafe(method(megavolts))]
         #[unsafe(method_family = none)]
         pub unsafe fn megavolts() -> Retained<NSUnitElectricPotentialDifference>;
 
-        #[method(kilovolts)]
+        #[unsafe(method(kilovolts))]
         #[unsafe(method_family = none)]
         pub unsafe fn kilovolts() -> Retained<NSUnitElectricPotentialDifference>;
 
-        #[method(volts)]
+        #[unsafe(method(volts))]
         #[unsafe(method_family = none)]
         pub unsafe fn volts() -> Retained<NSUnitElectricPotentialDifference>;
 
-        #[method(millivolts)]
+        #[unsafe(method(millivolts))]
         #[unsafe(method_family = none)]
         pub unsafe fn millivolts() -> Retained<NSUnitElectricPotentialDifference>;
 
-        #[method(microvolts)]
+        #[unsafe(method(microvolts))]
         #[unsafe(method_family = none)]
         pub unsafe fn microvolts() -> Retained<NSUnitElectricPotentialDifference>;
     }
@@ -971,7 +971,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitElectricPotentialDifference {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -979,7 +979,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -988,16 +988,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitElectricPotentialDifference {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -1032,23 +1032,23 @@ unsafe impl NSSecureCoding for NSUnitElectricResistance {}
 
 extern_methods!(
     unsafe impl NSUnitElectricResistance {
-        #[method(megaohms)]
+        #[unsafe(method(megaohms))]
         #[unsafe(method_family = none)]
         pub unsafe fn megaohms() -> Retained<NSUnitElectricResistance>;
 
-        #[method(kiloohms)]
+        #[unsafe(method(kiloohms))]
         #[unsafe(method_family = none)]
         pub unsafe fn kiloohms() -> Retained<NSUnitElectricResistance>;
 
-        #[method(ohms)]
+        #[unsafe(method(ohms))]
         #[unsafe(method_family = none)]
         pub unsafe fn ohms() -> Retained<NSUnitElectricResistance>;
 
-        #[method(milliohms)]
+        #[unsafe(method(milliohms))]
         #[unsafe(method_family = none)]
         pub unsafe fn milliohms() -> Retained<NSUnitElectricResistance>;
 
-        #[method(microohms)]
+        #[unsafe(method(microohms))]
         #[unsafe(method_family = none)]
         pub unsafe fn microohms() -> Retained<NSUnitElectricResistance>;
     }
@@ -1058,7 +1058,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitElectricResistance {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1066,7 +1066,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -1075,16 +1075,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitElectricResistance {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -1119,23 +1119,23 @@ unsafe impl NSSecureCoding for NSUnitEnergy {}
 
 extern_methods!(
     unsafe impl NSUnitEnergy {
-        #[method(kilojoules)]
+        #[unsafe(method(kilojoules))]
         #[unsafe(method_family = none)]
         pub unsafe fn kilojoules() -> Retained<NSUnitEnergy>;
 
-        #[method(joules)]
+        #[unsafe(method(joules))]
         #[unsafe(method_family = none)]
         pub unsafe fn joules() -> Retained<NSUnitEnergy>;
 
-        #[method(kilocalories)]
+        #[unsafe(method(kilocalories))]
         #[unsafe(method_family = none)]
         pub unsafe fn kilocalories() -> Retained<NSUnitEnergy>;
 
-        #[method(calories)]
+        #[unsafe(method(calories))]
         #[unsafe(method_family = none)]
         pub unsafe fn calories() -> Retained<NSUnitEnergy>;
 
-        #[method(kilowattHours)]
+        #[unsafe(method(kilowattHours))]
         #[unsafe(method_family = none)]
         pub unsafe fn kilowattHours() -> Retained<NSUnitEnergy>;
     }
@@ -1145,7 +1145,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitEnergy {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1153,7 +1153,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -1162,16 +1162,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitEnergy {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -1206,39 +1206,39 @@ unsafe impl NSSecureCoding for NSUnitFrequency {}
 
 extern_methods!(
     unsafe impl NSUnitFrequency {
-        #[method(terahertz)]
+        #[unsafe(method(terahertz))]
         #[unsafe(method_family = none)]
         pub unsafe fn terahertz() -> Retained<NSUnitFrequency>;
 
-        #[method(gigahertz)]
+        #[unsafe(method(gigahertz))]
         #[unsafe(method_family = none)]
         pub unsafe fn gigahertz() -> Retained<NSUnitFrequency>;
 
-        #[method(megahertz)]
+        #[unsafe(method(megahertz))]
         #[unsafe(method_family = none)]
         pub unsafe fn megahertz() -> Retained<NSUnitFrequency>;
 
-        #[method(kilohertz)]
+        #[unsafe(method(kilohertz))]
         #[unsafe(method_family = none)]
         pub unsafe fn kilohertz() -> Retained<NSUnitFrequency>;
 
-        #[method(hertz)]
+        #[unsafe(method(hertz))]
         #[unsafe(method_family = none)]
         pub unsafe fn hertz() -> Retained<NSUnitFrequency>;
 
-        #[method(millihertz)]
+        #[unsafe(method(millihertz))]
         #[unsafe(method_family = none)]
         pub unsafe fn millihertz() -> Retained<NSUnitFrequency>;
 
-        #[method(microhertz)]
+        #[unsafe(method(microhertz))]
         #[unsafe(method_family = none)]
         pub unsafe fn microhertz() -> Retained<NSUnitFrequency>;
 
-        #[method(nanohertz)]
+        #[unsafe(method(nanohertz))]
         #[unsafe(method_family = none)]
         pub unsafe fn nanohertz() -> Retained<NSUnitFrequency>;
 
-        #[method(framesPerSecond)]
+        #[unsafe(method(framesPerSecond))]
         #[unsafe(method_family = none)]
         pub unsafe fn framesPerSecond() -> Retained<NSUnitFrequency>;
     }
@@ -1248,7 +1248,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitFrequency {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1256,7 +1256,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -1265,16 +1265,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitFrequency {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -1309,15 +1309,15 @@ unsafe impl NSSecureCoding for NSUnitFuelEfficiency {}
 
 extern_methods!(
     unsafe impl NSUnitFuelEfficiency {
-        #[method(litersPer100Kilometers)]
+        #[unsafe(method(litersPer100Kilometers))]
         #[unsafe(method_family = none)]
         pub unsafe fn litersPer100Kilometers() -> Retained<NSUnitFuelEfficiency>;
 
-        #[method(milesPerImperialGallon)]
+        #[unsafe(method(milesPerImperialGallon))]
         #[unsafe(method_family = none)]
         pub unsafe fn milesPerImperialGallon() -> Retained<NSUnitFuelEfficiency>;
 
-        #[method(milesPerGallon)]
+        #[unsafe(method(milesPerGallon))]
         #[unsafe(method_family = none)]
         pub unsafe fn milesPerGallon() -> Retained<NSUnitFuelEfficiency>;
     }
@@ -1327,7 +1327,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitFuelEfficiency {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1335,7 +1335,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -1344,16 +1344,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitFuelEfficiency {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -1388,143 +1388,143 @@ unsafe impl NSSecureCoding for NSUnitInformationStorage {}
 
 extern_methods!(
     unsafe impl NSUnitInformationStorage {
-        #[method(bytes)]
+        #[unsafe(method(bytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn bytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(bits)]
+        #[unsafe(method(bits))]
         #[unsafe(method_family = none)]
         pub unsafe fn bits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(nibbles)]
+        #[unsafe(method(nibbles))]
         #[unsafe(method_family = none)]
         pub unsafe fn nibbles() -> Retained<NSUnitInformationStorage>;
 
-        #[method(yottabytes)]
+        #[unsafe(method(yottabytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn yottabytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(zettabytes)]
+        #[unsafe(method(zettabytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn zettabytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(exabytes)]
+        #[unsafe(method(exabytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn exabytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(petabytes)]
+        #[unsafe(method(petabytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn petabytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(terabytes)]
+        #[unsafe(method(terabytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn terabytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(gigabytes)]
+        #[unsafe(method(gigabytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn gigabytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(megabytes)]
+        #[unsafe(method(megabytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn megabytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(kilobytes)]
+        #[unsafe(method(kilobytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn kilobytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(yottabits)]
+        #[unsafe(method(yottabits))]
         #[unsafe(method_family = none)]
         pub unsafe fn yottabits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(zettabits)]
+        #[unsafe(method(zettabits))]
         #[unsafe(method_family = none)]
         pub unsafe fn zettabits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(exabits)]
+        #[unsafe(method(exabits))]
         #[unsafe(method_family = none)]
         pub unsafe fn exabits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(petabits)]
+        #[unsafe(method(petabits))]
         #[unsafe(method_family = none)]
         pub unsafe fn petabits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(terabits)]
+        #[unsafe(method(terabits))]
         #[unsafe(method_family = none)]
         pub unsafe fn terabits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(gigabits)]
+        #[unsafe(method(gigabits))]
         #[unsafe(method_family = none)]
         pub unsafe fn gigabits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(megabits)]
+        #[unsafe(method(megabits))]
         #[unsafe(method_family = none)]
         pub unsafe fn megabits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(kilobits)]
+        #[unsafe(method(kilobits))]
         #[unsafe(method_family = none)]
         pub unsafe fn kilobits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(yobibytes)]
+        #[unsafe(method(yobibytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn yobibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(zebibytes)]
+        #[unsafe(method(zebibytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn zebibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(exbibytes)]
+        #[unsafe(method(exbibytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn exbibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(pebibytes)]
+        #[unsafe(method(pebibytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn pebibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(tebibytes)]
+        #[unsafe(method(tebibytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn tebibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(gibibytes)]
+        #[unsafe(method(gibibytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn gibibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(mebibytes)]
+        #[unsafe(method(mebibytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn mebibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(kibibytes)]
+        #[unsafe(method(kibibytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn kibibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method(yobibits)]
+        #[unsafe(method(yobibits))]
         #[unsafe(method_family = none)]
         pub unsafe fn yobibits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(zebibits)]
+        #[unsafe(method(zebibits))]
         #[unsafe(method_family = none)]
         pub unsafe fn zebibits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(exbibits)]
+        #[unsafe(method(exbibits))]
         #[unsafe(method_family = none)]
         pub unsafe fn exbibits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(pebibits)]
+        #[unsafe(method(pebibits))]
         #[unsafe(method_family = none)]
         pub unsafe fn pebibits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(tebibits)]
+        #[unsafe(method(tebibits))]
         #[unsafe(method_family = none)]
         pub unsafe fn tebibits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(gibibits)]
+        #[unsafe(method(gibibits))]
         #[unsafe(method_family = none)]
         pub unsafe fn gibibits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(mebibits)]
+        #[unsafe(method(mebibits))]
         #[unsafe(method_family = none)]
         pub unsafe fn mebibits() -> Retained<NSUnitInformationStorage>;
 
-        #[method(kibibits)]
+        #[unsafe(method(kibibits))]
         #[unsafe(method_family = none)]
         pub unsafe fn kibibits() -> Retained<NSUnitInformationStorage>;
     }
@@ -1534,7 +1534,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitInformationStorage {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1542,7 +1542,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -1551,16 +1551,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitInformationStorage {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -1595,91 +1595,91 @@ unsafe impl NSSecureCoding for NSUnitLength {}
 
 extern_methods!(
     unsafe impl NSUnitLength {
-        #[method(megameters)]
+        #[unsafe(method(megameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn megameters() -> Retained<NSUnitLength>;
 
-        #[method(kilometers)]
+        #[unsafe(method(kilometers))]
         #[unsafe(method_family = none)]
         pub unsafe fn kilometers() -> Retained<NSUnitLength>;
 
-        #[method(hectometers)]
+        #[unsafe(method(hectometers))]
         #[unsafe(method_family = none)]
         pub unsafe fn hectometers() -> Retained<NSUnitLength>;
 
-        #[method(decameters)]
+        #[unsafe(method(decameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn decameters() -> Retained<NSUnitLength>;
 
-        #[method(meters)]
+        #[unsafe(method(meters))]
         #[unsafe(method_family = none)]
         pub unsafe fn meters() -> Retained<NSUnitLength>;
 
-        #[method(decimeters)]
+        #[unsafe(method(decimeters))]
         #[unsafe(method_family = none)]
         pub unsafe fn decimeters() -> Retained<NSUnitLength>;
 
-        #[method(centimeters)]
+        #[unsafe(method(centimeters))]
         #[unsafe(method_family = none)]
         pub unsafe fn centimeters() -> Retained<NSUnitLength>;
 
-        #[method(millimeters)]
+        #[unsafe(method(millimeters))]
         #[unsafe(method_family = none)]
         pub unsafe fn millimeters() -> Retained<NSUnitLength>;
 
-        #[method(micrometers)]
+        #[unsafe(method(micrometers))]
         #[unsafe(method_family = none)]
         pub unsafe fn micrometers() -> Retained<NSUnitLength>;
 
-        #[method(nanometers)]
+        #[unsafe(method(nanometers))]
         #[unsafe(method_family = none)]
         pub unsafe fn nanometers() -> Retained<NSUnitLength>;
 
-        #[method(picometers)]
+        #[unsafe(method(picometers))]
         #[unsafe(method_family = none)]
         pub unsafe fn picometers() -> Retained<NSUnitLength>;
 
-        #[method(inches)]
+        #[unsafe(method(inches))]
         #[unsafe(method_family = none)]
         pub unsafe fn inches() -> Retained<NSUnitLength>;
 
-        #[method(feet)]
+        #[unsafe(method(feet))]
         #[unsafe(method_family = none)]
         pub unsafe fn feet() -> Retained<NSUnitLength>;
 
-        #[method(yards)]
+        #[unsafe(method(yards))]
         #[unsafe(method_family = none)]
         pub unsafe fn yards() -> Retained<NSUnitLength>;
 
-        #[method(miles)]
+        #[unsafe(method(miles))]
         #[unsafe(method_family = none)]
         pub unsafe fn miles() -> Retained<NSUnitLength>;
 
-        #[method(scandinavianMiles)]
+        #[unsafe(method(scandinavianMiles))]
         #[unsafe(method_family = none)]
         pub unsafe fn scandinavianMiles() -> Retained<NSUnitLength>;
 
-        #[method(lightyears)]
+        #[unsafe(method(lightyears))]
         #[unsafe(method_family = none)]
         pub unsafe fn lightyears() -> Retained<NSUnitLength>;
 
-        #[method(nauticalMiles)]
+        #[unsafe(method(nauticalMiles))]
         #[unsafe(method_family = none)]
         pub unsafe fn nauticalMiles() -> Retained<NSUnitLength>;
 
-        #[method(fathoms)]
+        #[unsafe(method(fathoms))]
         #[unsafe(method_family = none)]
         pub unsafe fn fathoms() -> Retained<NSUnitLength>;
 
-        #[method(furlongs)]
+        #[unsafe(method(furlongs))]
         #[unsafe(method_family = none)]
         pub unsafe fn furlongs() -> Retained<NSUnitLength>;
 
-        #[method(astronomicalUnits)]
+        #[unsafe(method(astronomicalUnits))]
         #[unsafe(method_family = none)]
         pub unsafe fn astronomicalUnits() -> Retained<NSUnitLength>;
 
-        #[method(parsecs)]
+        #[unsafe(method(parsecs))]
         #[unsafe(method_family = none)]
         pub unsafe fn parsecs() -> Retained<NSUnitLength>;
     }
@@ -1689,7 +1689,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitLength {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1697,7 +1697,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -1706,16 +1706,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitLength {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -1750,7 +1750,7 @@ unsafe impl NSSecureCoding for NSUnitIlluminance {}
 
 extern_methods!(
     unsafe impl NSUnitIlluminance {
-        #[method(lux)]
+        #[unsafe(method(lux))]
         #[unsafe(method_family = none)]
         pub unsafe fn lux() -> Retained<NSUnitIlluminance>;
     }
@@ -1760,7 +1760,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitIlluminance {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1768,7 +1768,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -1777,16 +1777,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitIlluminance {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -1821,67 +1821,67 @@ unsafe impl NSSecureCoding for NSUnitMass {}
 
 extern_methods!(
     unsafe impl NSUnitMass {
-        #[method(kilograms)]
+        #[unsafe(method(kilograms))]
         #[unsafe(method_family = none)]
         pub unsafe fn kilograms() -> Retained<NSUnitMass>;
 
-        #[method(grams)]
+        #[unsafe(method(grams))]
         #[unsafe(method_family = none)]
         pub unsafe fn grams() -> Retained<NSUnitMass>;
 
-        #[method(decigrams)]
+        #[unsafe(method(decigrams))]
         #[unsafe(method_family = none)]
         pub unsafe fn decigrams() -> Retained<NSUnitMass>;
 
-        #[method(centigrams)]
+        #[unsafe(method(centigrams))]
         #[unsafe(method_family = none)]
         pub unsafe fn centigrams() -> Retained<NSUnitMass>;
 
-        #[method(milligrams)]
+        #[unsafe(method(milligrams))]
         #[unsafe(method_family = none)]
         pub unsafe fn milligrams() -> Retained<NSUnitMass>;
 
-        #[method(micrograms)]
+        #[unsafe(method(micrograms))]
         #[unsafe(method_family = none)]
         pub unsafe fn micrograms() -> Retained<NSUnitMass>;
 
-        #[method(nanograms)]
+        #[unsafe(method(nanograms))]
         #[unsafe(method_family = none)]
         pub unsafe fn nanograms() -> Retained<NSUnitMass>;
 
-        #[method(picograms)]
+        #[unsafe(method(picograms))]
         #[unsafe(method_family = none)]
         pub unsafe fn picograms() -> Retained<NSUnitMass>;
 
-        #[method(ounces)]
+        #[unsafe(method(ounces))]
         #[unsafe(method_family = none)]
         pub unsafe fn ounces() -> Retained<NSUnitMass>;
 
-        #[method(poundsMass)]
+        #[unsafe(method(poundsMass))]
         #[unsafe(method_family = none)]
         pub unsafe fn poundsMass() -> Retained<NSUnitMass>;
 
-        #[method(stones)]
+        #[unsafe(method(stones))]
         #[unsafe(method_family = none)]
         pub unsafe fn stones() -> Retained<NSUnitMass>;
 
-        #[method(metricTons)]
+        #[unsafe(method(metricTons))]
         #[unsafe(method_family = none)]
         pub unsafe fn metricTons() -> Retained<NSUnitMass>;
 
-        #[method(shortTons)]
+        #[unsafe(method(shortTons))]
         #[unsafe(method_family = none)]
         pub unsafe fn shortTons() -> Retained<NSUnitMass>;
 
-        #[method(carats)]
+        #[unsafe(method(carats))]
         #[unsafe(method_family = none)]
         pub unsafe fn carats() -> Retained<NSUnitMass>;
 
-        #[method(ouncesTroy)]
+        #[unsafe(method(ouncesTroy))]
         #[unsafe(method_family = none)]
         pub unsafe fn ouncesTroy() -> Retained<NSUnitMass>;
 
-        #[method(slugs)]
+        #[unsafe(method(slugs))]
         #[unsafe(method_family = none)]
         pub unsafe fn slugs() -> Retained<NSUnitMass>;
     }
@@ -1891,7 +1891,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitMass {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -1899,7 +1899,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -1908,16 +1908,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitMass {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -1952,47 +1952,47 @@ unsafe impl NSSecureCoding for NSUnitPower {}
 
 extern_methods!(
     unsafe impl NSUnitPower {
-        #[method(terawatts)]
+        #[unsafe(method(terawatts))]
         #[unsafe(method_family = none)]
         pub unsafe fn terawatts() -> Retained<NSUnitPower>;
 
-        #[method(gigawatts)]
+        #[unsafe(method(gigawatts))]
         #[unsafe(method_family = none)]
         pub unsafe fn gigawatts() -> Retained<NSUnitPower>;
 
-        #[method(megawatts)]
+        #[unsafe(method(megawatts))]
         #[unsafe(method_family = none)]
         pub unsafe fn megawatts() -> Retained<NSUnitPower>;
 
-        #[method(kilowatts)]
+        #[unsafe(method(kilowatts))]
         #[unsafe(method_family = none)]
         pub unsafe fn kilowatts() -> Retained<NSUnitPower>;
 
-        #[method(watts)]
+        #[unsafe(method(watts))]
         #[unsafe(method_family = none)]
         pub unsafe fn watts() -> Retained<NSUnitPower>;
 
-        #[method(milliwatts)]
+        #[unsafe(method(milliwatts))]
         #[unsafe(method_family = none)]
         pub unsafe fn milliwatts() -> Retained<NSUnitPower>;
 
-        #[method(microwatts)]
+        #[unsafe(method(microwatts))]
         #[unsafe(method_family = none)]
         pub unsafe fn microwatts() -> Retained<NSUnitPower>;
 
-        #[method(nanowatts)]
+        #[unsafe(method(nanowatts))]
         #[unsafe(method_family = none)]
         pub unsafe fn nanowatts() -> Retained<NSUnitPower>;
 
-        #[method(picowatts)]
+        #[unsafe(method(picowatts))]
         #[unsafe(method_family = none)]
         pub unsafe fn picowatts() -> Retained<NSUnitPower>;
 
-        #[method(femtowatts)]
+        #[unsafe(method(femtowatts))]
         #[unsafe(method_family = none)]
         pub unsafe fn femtowatts() -> Retained<NSUnitPower>;
 
-        #[method(horsepower)]
+        #[unsafe(method(horsepower))]
         #[unsafe(method_family = none)]
         pub unsafe fn horsepower() -> Retained<NSUnitPower>;
     }
@@ -2002,7 +2002,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitPower {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -2010,7 +2010,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -2019,16 +2019,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitPower {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -2063,43 +2063,43 @@ unsafe impl NSSecureCoding for NSUnitPressure {}
 
 extern_methods!(
     unsafe impl NSUnitPressure {
-        #[method(newtonsPerMetersSquared)]
+        #[unsafe(method(newtonsPerMetersSquared))]
         #[unsafe(method_family = none)]
         pub unsafe fn newtonsPerMetersSquared() -> Retained<NSUnitPressure>;
 
-        #[method(gigapascals)]
+        #[unsafe(method(gigapascals))]
         #[unsafe(method_family = none)]
         pub unsafe fn gigapascals() -> Retained<NSUnitPressure>;
 
-        #[method(megapascals)]
+        #[unsafe(method(megapascals))]
         #[unsafe(method_family = none)]
         pub unsafe fn megapascals() -> Retained<NSUnitPressure>;
 
-        #[method(kilopascals)]
+        #[unsafe(method(kilopascals))]
         #[unsafe(method_family = none)]
         pub unsafe fn kilopascals() -> Retained<NSUnitPressure>;
 
-        #[method(hectopascals)]
+        #[unsafe(method(hectopascals))]
         #[unsafe(method_family = none)]
         pub unsafe fn hectopascals() -> Retained<NSUnitPressure>;
 
-        #[method(inchesOfMercury)]
+        #[unsafe(method(inchesOfMercury))]
         #[unsafe(method_family = none)]
         pub unsafe fn inchesOfMercury() -> Retained<NSUnitPressure>;
 
-        #[method(bars)]
+        #[unsafe(method(bars))]
         #[unsafe(method_family = none)]
         pub unsafe fn bars() -> Retained<NSUnitPressure>;
 
-        #[method(millibars)]
+        #[unsafe(method(millibars))]
         #[unsafe(method_family = none)]
         pub unsafe fn millibars() -> Retained<NSUnitPressure>;
 
-        #[method(millimetersOfMercury)]
+        #[unsafe(method(millimetersOfMercury))]
         #[unsafe(method_family = none)]
         pub unsafe fn millimetersOfMercury() -> Retained<NSUnitPressure>;
 
-        #[method(poundsForcePerSquareInch)]
+        #[unsafe(method(poundsForcePerSquareInch))]
         #[unsafe(method_family = none)]
         pub unsafe fn poundsForcePerSquareInch() -> Retained<NSUnitPressure>;
     }
@@ -2109,7 +2109,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitPressure {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -2117,7 +2117,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -2126,16 +2126,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitPressure {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -2170,19 +2170,19 @@ unsafe impl NSSecureCoding for NSUnitSpeed {}
 
 extern_methods!(
     unsafe impl NSUnitSpeed {
-        #[method(metersPerSecond)]
+        #[unsafe(method(metersPerSecond))]
         #[unsafe(method_family = none)]
         pub unsafe fn metersPerSecond() -> Retained<NSUnitSpeed>;
 
-        #[method(kilometersPerHour)]
+        #[unsafe(method(kilometersPerHour))]
         #[unsafe(method_family = none)]
         pub unsafe fn kilometersPerHour() -> Retained<NSUnitSpeed>;
 
-        #[method(milesPerHour)]
+        #[unsafe(method(milesPerHour))]
         #[unsafe(method_family = none)]
         pub unsafe fn milesPerHour() -> Retained<NSUnitSpeed>;
 
-        #[method(knots)]
+        #[unsafe(method(knots))]
         #[unsafe(method_family = none)]
         pub unsafe fn knots() -> Retained<NSUnitSpeed>;
     }
@@ -2192,7 +2192,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitSpeed {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -2200,7 +2200,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -2209,16 +2209,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitSpeed {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -2253,15 +2253,15 @@ unsafe impl NSSecureCoding for NSUnitTemperature {}
 
 extern_methods!(
     unsafe impl NSUnitTemperature {
-        #[method(kelvin)]
+        #[unsafe(method(kelvin))]
         #[unsafe(method_family = none)]
         pub unsafe fn kelvin() -> Retained<NSUnitTemperature>;
 
-        #[method(celsius)]
+        #[unsafe(method(celsius))]
         #[unsafe(method_family = none)]
         pub unsafe fn celsius() -> Retained<NSUnitTemperature>;
 
-        #[method(fahrenheit)]
+        #[unsafe(method(fahrenheit))]
         #[unsafe(method_family = none)]
         pub unsafe fn fahrenheit() -> Retained<NSUnitTemperature>;
     }
@@ -2271,7 +2271,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitTemperature {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -2279,7 +2279,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -2288,16 +2288,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitTemperature {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
@@ -2332,127 +2332,127 @@ unsafe impl NSSecureCoding for NSUnitVolume {}
 
 extern_methods!(
     unsafe impl NSUnitVolume {
-        #[method(megaliters)]
+        #[unsafe(method(megaliters))]
         #[unsafe(method_family = none)]
         pub unsafe fn megaliters() -> Retained<NSUnitVolume>;
 
-        #[method(kiloliters)]
+        #[unsafe(method(kiloliters))]
         #[unsafe(method_family = none)]
         pub unsafe fn kiloliters() -> Retained<NSUnitVolume>;
 
-        #[method(liters)]
+        #[unsafe(method(liters))]
         #[unsafe(method_family = none)]
         pub unsafe fn liters() -> Retained<NSUnitVolume>;
 
-        #[method(deciliters)]
+        #[unsafe(method(deciliters))]
         #[unsafe(method_family = none)]
         pub unsafe fn deciliters() -> Retained<NSUnitVolume>;
 
-        #[method(centiliters)]
+        #[unsafe(method(centiliters))]
         #[unsafe(method_family = none)]
         pub unsafe fn centiliters() -> Retained<NSUnitVolume>;
 
-        #[method(milliliters)]
+        #[unsafe(method(milliliters))]
         #[unsafe(method_family = none)]
         pub unsafe fn milliliters() -> Retained<NSUnitVolume>;
 
-        #[method(cubicKilometers)]
+        #[unsafe(method(cubicKilometers))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubicKilometers() -> Retained<NSUnitVolume>;
 
-        #[method(cubicMeters)]
+        #[unsafe(method(cubicMeters))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubicMeters() -> Retained<NSUnitVolume>;
 
-        #[method(cubicDecimeters)]
+        #[unsafe(method(cubicDecimeters))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubicDecimeters() -> Retained<NSUnitVolume>;
 
-        #[method(cubicCentimeters)]
+        #[unsafe(method(cubicCentimeters))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubicCentimeters() -> Retained<NSUnitVolume>;
 
-        #[method(cubicMillimeters)]
+        #[unsafe(method(cubicMillimeters))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubicMillimeters() -> Retained<NSUnitVolume>;
 
-        #[method(cubicInches)]
+        #[unsafe(method(cubicInches))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubicInches() -> Retained<NSUnitVolume>;
 
-        #[method(cubicFeet)]
+        #[unsafe(method(cubicFeet))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubicFeet() -> Retained<NSUnitVolume>;
 
-        #[method(cubicYards)]
+        #[unsafe(method(cubicYards))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubicYards() -> Retained<NSUnitVolume>;
 
-        #[method(cubicMiles)]
+        #[unsafe(method(cubicMiles))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubicMiles() -> Retained<NSUnitVolume>;
 
-        #[method(acreFeet)]
+        #[unsafe(method(acreFeet))]
         #[unsafe(method_family = none)]
         pub unsafe fn acreFeet() -> Retained<NSUnitVolume>;
 
-        #[method(bushels)]
+        #[unsafe(method(bushels))]
         #[unsafe(method_family = none)]
         pub unsafe fn bushels() -> Retained<NSUnitVolume>;
 
-        #[method(teaspoons)]
+        #[unsafe(method(teaspoons))]
         #[unsafe(method_family = none)]
         pub unsafe fn teaspoons() -> Retained<NSUnitVolume>;
 
-        #[method(tablespoons)]
+        #[unsafe(method(tablespoons))]
         #[unsafe(method_family = none)]
         pub unsafe fn tablespoons() -> Retained<NSUnitVolume>;
 
-        #[method(fluidOunces)]
+        #[unsafe(method(fluidOunces))]
         #[unsafe(method_family = none)]
         pub unsafe fn fluidOunces() -> Retained<NSUnitVolume>;
 
-        #[method(cups)]
+        #[unsafe(method(cups))]
         #[unsafe(method_family = none)]
         pub unsafe fn cups() -> Retained<NSUnitVolume>;
 
-        #[method(pints)]
+        #[unsafe(method(pints))]
         #[unsafe(method_family = none)]
         pub unsafe fn pints() -> Retained<NSUnitVolume>;
 
-        #[method(quarts)]
+        #[unsafe(method(quarts))]
         #[unsafe(method_family = none)]
         pub unsafe fn quarts() -> Retained<NSUnitVolume>;
 
-        #[method(gallons)]
+        #[unsafe(method(gallons))]
         #[unsafe(method_family = none)]
         pub unsafe fn gallons() -> Retained<NSUnitVolume>;
 
-        #[method(imperialTeaspoons)]
+        #[unsafe(method(imperialTeaspoons))]
         #[unsafe(method_family = none)]
         pub unsafe fn imperialTeaspoons() -> Retained<NSUnitVolume>;
 
-        #[method(imperialTablespoons)]
+        #[unsafe(method(imperialTablespoons))]
         #[unsafe(method_family = none)]
         pub unsafe fn imperialTablespoons() -> Retained<NSUnitVolume>;
 
-        #[method(imperialFluidOunces)]
+        #[unsafe(method(imperialFluidOunces))]
         #[unsafe(method_family = none)]
         pub unsafe fn imperialFluidOunces() -> Retained<NSUnitVolume>;
 
-        #[method(imperialPints)]
+        #[unsafe(method(imperialPints))]
         #[unsafe(method_family = none)]
         pub unsafe fn imperialPints() -> Retained<NSUnitVolume>;
 
-        #[method(imperialQuarts)]
+        #[unsafe(method(imperialQuarts))]
         #[unsafe(method_family = none)]
         pub unsafe fn imperialQuarts() -> Retained<NSUnitVolume>;
 
-        #[method(imperialGallons)]
+        #[unsafe(method(imperialGallons))]
         #[unsafe(method_family = none)]
         pub unsafe fn imperialGallons() -> Retained<NSUnitVolume>;
 
-        #[method(metricCups)]
+        #[unsafe(method(metricCups))]
         #[unsafe(method_family = none)]
         pub unsafe fn metricCups() -> Retained<NSUnitVolume>;
     }
@@ -2462,7 +2462,7 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitVolume {
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:converter:)]
+        #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
@@ -2470,7 +2470,7 @@ extern_methods!(
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method(baseUnit)]
+        #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
@@ -2479,16 +2479,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitVolume {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithSymbol:)]
+        #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }

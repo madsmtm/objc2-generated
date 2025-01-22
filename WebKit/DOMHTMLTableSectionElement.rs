@@ -78,62 +78,62 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTableSectionElement {
         #[deprecated]
-        #[method(align)]
+        #[unsafe(method(align))]
         #[unsafe(method_family = none)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
         #[deprecated]
-        #[method(setAlign:)]
+        #[unsafe(method(setAlign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[deprecated]
-        #[method(ch)]
+        #[unsafe(method(ch))]
         #[unsafe(method_family = none)]
         pub unsafe fn ch(&self) -> Retained<NSString>;
 
         /// Setter for [`ch`][Self::ch].
         #[deprecated]
-        #[method(setCh:)]
+        #[unsafe(method(setCh:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCh(&self, ch: Option<&NSString>);
 
         #[deprecated]
-        #[method(chOff)]
+        #[unsafe(method(chOff))]
         #[unsafe(method_family = none)]
         pub unsafe fn chOff(&self) -> Retained<NSString>;
 
         /// Setter for [`chOff`][Self::chOff].
         #[deprecated]
-        #[method(setChOff:)]
+        #[unsafe(method(setChOff:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChOff(&self, ch_off: Option<&NSString>);
 
         #[deprecated]
-        #[method(vAlign)]
+        #[unsafe(method(vAlign))]
         #[unsafe(method_family = none)]
         pub unsafe fn vAlign(&self) -> Retained<NSString>;
 
         /// Setter for [`vAlign`][Self::vAlign].
         #[deprecated]
-        #[method(setVAlign:)]
+        #[unsafe(method(setVAlign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVAlign(&self, v_align: Option<&NSString>);
 
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
-        #[method(rows)]
+        #[unsafe(method(rows))]
         #[unsafe(method_family = none)]
         pub unsafe fn rows(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[deprecated]
-        #[method(insertRow:)]
+        #[unsafe(method(insertRow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertRow(&self, index: c_int) -> Option<Retained<DOMHTMLElement>>;
 
         #[deprecated]
-        #[method(deleteRow:)]
+        #[unsafe(method(deleteRow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteRow(&self, index: c_int);
     }
@@ -150,7 +150,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTableSectionElement {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -166,7 +166,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLTableSectionElement {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

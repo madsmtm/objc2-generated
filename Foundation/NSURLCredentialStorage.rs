@@ -26,7 +26,7 @@ extern_methods!(
         /// Get the shared singleton authentication storage
         ///
         /// Returns: the shared authentication storage
-        #[method(sharedCredentialStorage)]
+        #[unsafe(method(sharedCredentialStorage))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedCredentialStorage() -> Retained<NSURLCredentialStorage>;
 
@@ -41,7 +41,7 @@ extern_methods!(
         /// Parameter `space`: An NSURLProtectionSpace indicating the protection space for which to get credentials
         ///
         /// Returns: A dictionary where the keys are usernames and the values are the corresponding NSURLCredentials.
-        #[method(credentialsForProtectionSpace:)]
+        #[unsafe(method(credentialsForProtectionSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn credentialsForProtectionSpace(
             &self,
@@ -59,7 +59,7 @@ extern_methods!(
         /// Returns: an NSDictionary where the keys are NSURLProtectionSpaces
         /// and the values are dictionaries, in which the keys are usernames
         /// and the values are NSURLCredentials
-        #[method(allCredentials)]
+        #[unsafe(method(allCredentials))]
         #[unsafe(method_family = none)]
         pub unsafe fn allCredentials(
             &self,
@@ -75,7 +75,7 @@ extern_methods!(
         /// Multiple credentials may be set for a given protection space, but each must have
         /// a distinct user. If a credential with the same user is already set for the protection space,
         /// the new one will replace it.
-        #[method(setCredential:forProtectionSpace:)]
+        #[unsafe(method(setCredential:forProtectionSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCredential_forProtectionSpace(
             &self,
@@ -93,7 +93,7 @@ extern_methods!(
         /// The credential is removed from both persistent and temporary storage. A credential that
         /// has a persistence policy of NSURLCredentialPersistenceSynchronizable will fail.
         /// See removeCredential:forProtectionSpace:options.
-        #[method(removeCredential:forProtectionSpace:)]
+        #[unsafe(method(removeCredential:forProtectionSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeCredential_forProtectionSpace(
             &self,
@@ -119,7 +119,7 @@ extern_methods!(
         /// are removed, the credential will be removed on all devices that contain this credential.
         ///
         /// The credential is removed from both persistent and temporary storage.
-        #[method(removeCredential:forProtectionSpace:options:)]
+        #[unsafe(method(removeCredential:forProtectionSpace:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeCredential_forProtectionSpace_options(
             &self,
@@ -132,7 +132,7 @@ extern_methods!(
         /// Get the default credential for the specified protection space.
         ///
         /// Parameter `space`: The protection space for which to get the default credential.
-        #[method(defaultCredentialForProtectionSpace:)]
+        #[unsafe(method(defaultCredentialForProtectionSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultCredentialForProtectionSpace(
             &self,
@@ -147,7 +147,7 @@ extern_methods!(
         /// Parameter `space`: The protection space for which the credential should be set as default.
         ///
         /// If the credential is not yet in the set for the protection space, it will be added to it.
-        #[method(setDefaultCredential:forProtectionSpace:)]
+        #[unsafe(method(setDefaultCredential:forProtectionSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultCredential_forProtectionSpace(
             &self,
@@ -160,11 +160,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLCredentialStorage {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -181,7 +181,7 @@ extern_methods!(
             feature = "NSURLSession",
             feature = "block2"
         ))]
-        #[method(getCredentialsForProtectionSpace:task:completionHandler:)]
+        #[unsafe(method(getCredentialsForProtectionSpace:task:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCredentialsForProtectionSpace_task_completionHandler(
             &self,
@@ -197,7 +197,7 @@ extern_methods!(
             feature = "NSURLProtectionSpace",
             feature = "NSURLSession"
         ))]
-        #[method(setCredential:forProtectionSpace:task:)]
+        #[unsafe(method(setCredential:forProtectionSpace:task:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCredential_forProtectionSpace_task(
             &self,
@@ -213,7 +213,7 @@ extern_methods!(
             feature = "NSURLProtectionSpace",
             feature = "NSURLSession"
         ))]
-        #[method(removeCredential:forProtectionSpace:options:task:)]
+        #[unsafe(method(removeCredential:forProtectionSpace:options:task:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeCredential_forProtectionSpace_options_task(
             &self,
@@ -229,7 +229,7 @@ extern_methods!(
             feature = "NSURLSession",
             feature = "block2"
         ))]
-        #[method(getDefaultCredentialForProtectionSpace:task:completionHandler:)]
+        #[unsafe(method(getDefaultCredentialForProtectionSpace:task:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getDefaultCredentialForProtectionSpace_task_completionHandler(
             &self,
@@ -243,7 +243,7 @@ extern_methods!(
             feature = "NSURLProtectionSpace",
             feature = "NSURLSession"
         ))]
-        #[method(setDefaultCredential:forProtectionSpace:task:)]
+        #[unsafe(method(setDefaultCredential:forProtectionSpace:task:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultCredential_forProtectionSpace_task(
             &self,

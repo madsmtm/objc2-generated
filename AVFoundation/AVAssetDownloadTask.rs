@@ -94,7 +94,7 @@ extern_methods!(
     unsafe impl AVAssetDownloadTask {
         #[cfg(feature = "AVAsset")]
         /// The asset supplied to the download task upon initialization.
-        #[method(URLAsset)]
+        #[unsafe(method(URLAsset))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLAsset(&self) -> Retained<AVURLAsset>;
 
@@ -102,13 +102,13 @@ extern_methods!(
         ///
         /// This URL may have been appended with the appropriate extension for the asset.
         #[deprecated = "Use the URL property of URLAsset instead"]
-        #[method(destinationURL)]
+        #[unsafe(method(destinationURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationURL(&self) -> Retained<NSURL>;
 
         /// The options supplied to the download task upon initialization.
         #[deprecated = "Use AVAssetDownloadConfiguration instead"]
-        #[method(options)]
+        #[unsafe(method(options))]
         #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
@@ -116,27 +116,27 @@ extern_methods!(
         ///
         /// Returns an NSArray of NSValues containing CMTimeRanges.
         #[deprecated = "Use NSURLSessionTask.progress instead"]
-        #[method(loadedTimeRanges)]
+        #[unsafe(method(loadedTimeRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(originalRequest)]
+        #[unsafe(method(originalRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn originalRequest(&self) -> Retained<NSURLRequest>;
 
-        #[method(currentRequest)]
+        #[unsafe(method(currentRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentRequest(&self) -> Retained<NSURLRequest>;
 
-        #[method(response)]
+        #[unsafe(method(response))]
         #[unsafe(method_family = none)]
         pub unsafe fn response(&self) -> Retained<NSURLResponse>;
     }
@@ -160,11 +160,11 @@ unsafe impl NSObjectProtocol for AVAssetDownloadConfiguration {}
 
 extern_methods!(
     unsafe impl AVAssetDownloadConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -176,7 +176,7 @@ extern_methods!(
         /// Parameter `asset`: The asset to create the download configuration for.
         ///
         /// Parameter `title`: A human readable title for this asset, expected to be as suitable as possible for the user's preferred languages. Will show up in the usage pane of the settings app.
-        #[method(downloadConfigurationWithAsset:title:)]
+        #[unsafe(method(downloadConfigurationWithAsset:title:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadConfigurationWithAsset_title(
             asset: &AVURLAsset,
@@ -184,17 +184,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// NSData representing artwork data for this asset. Optional. May be displayed, for example, by the usage pane of the Settings app. Must work with +[UIImage imageWithData:].
-        #[method(artworkData)]
+        #[unsafe(method(artworkData))]
         #[unsafe(method_family = none)]
         pub unsafe fn artworkData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`artworkData`][Self::artworkData].
-        #[method(setArtworkData:)]
+        #[unsafe(method(setArtworkData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setArtworkData(&self, artwork_data: Option<&NSData>);
 
         /// The primary content for the download.
-        #[method(primaryContentConfiguration)]
+        #[unsafe(method(primaryContentConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryContentConfiguration(
             &self,
@@ -203,14 +203,14 @@ extern_methods!(
         /// The auxiliary content for the download. Optional.
         ///
         /// By default, auxiliaryContentConfigurations will have one or more default auxiliary content configurations. These content configurations can be augmented with additional content configurations or removed entirely if no auxiliary content is desired.
-        #[method(auxiliaryContentConfigurations)]
+        #[unsafe(method(auxiliaryContentConfigurations))]
         #[unsafe(method_family = none)]
         pub unsafe fn auxiliaryContentConfigurations(
             &self,
         ) -> Retained<NSArray<AVAssetDownloadContentConfiguration>>;
 
         /// Setter for [`auxiliaryContentConfigurations`][Self::auxiliaryContentConfigurations].
-        #[method(setAuxiliaryContentConfigurations:)]
+        #[unsafe(method(setAuxiliaryContentConfigurations:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuxiliaryContentConfigurations(
             &self,
@@ -220,12 +220,12 @@ extern_methods!(
         /// Optimizes auxiliary content selection depending on the primary to minimize total number of video renditions downloaded. True by default.
         ///
         /// For example, if the primary content configuration represents stereo renditions and auxiliary content configuration represents multichannel audio renditions, auxiliary multichannel variant will be chosen so as to avoid downloading duplicate video renditions.
-        #[method(optimizesAuxiliaryContentConfigurations)]
+        #[unsafe(method(optimizesAuxiliaryContentConfigurations))]
         #[unsafe(method_family = none)]
         pub unsafe fn optimizesAuxiliaryContentConfigurations(&self) -> bool;
 
         /// Setter for [`optimizesAuxiliaryContentConfigurations`][Self::optimizesAuxiliaryContentConfigurations].
-        #[method(setOptimizesAuxiliaryContentConfigurations:)]
+        #[unsafe(method(setOptimizesAuxiliaryContentConfigurations:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOptimizesAuxiliaryContentConfigurations(
             &self,
@@ -235,12 +235,12 @@ extern_methods!(
         /// Download interstitial assets as listed in the index file. False by default.
         ///
         /// Ordinarily, interstitial assets are skipped when downloading content for later playback. Setting this property to true will cause interstitial assets to be downloaded as well. Playback of the downloaded content can then match the experience of online streaming playback as closely as possible.
-        #[method(downloadsInterstitialAssets)]
+        #[unsafe(method(downloadsInterstitialAssets))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadsInterstitialAssets(&self) -> bool;
 
         /// Setter for [`downloadsInterstitialAssets`][Self::downloadsInterstitialAssets].
-        #[method(setDownloadsInterstitialAssets:)]
+        #[unsafe(method(setDownloadsInterstitialAssets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDownloadsInterstitialAssets(&self, downloads_interstitial_assets: bool);
     }
@@ -271,13 +271,13 @@ extern_methods!(
         /// The qualifiers are expected to be added in the preferential order and will be evaluated in that order until the qualifier matches one or more AVAssetVariants. Only those variants which can be played on the current device configuration will be initially chosen for evaluation. If there is more than one match, automatic variant selection will be used to choose among the matched.
         /// If a variant qualifier is constructed to explicitly choose a variant, no evaluation is performed and the variant provided will be downloaded as is, even if it is not playable on current device configuration.
         /// If a variant qualifier has not been provided, or if the variant qualifier when evaluated does not match any of the variants which can be played according to the current device configuration, automatic variant selection will be used.
-        #[method(variantQualifiers)]
+        #[unsafe(method(variantQualifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn variantQualifiers(&self) -> Retained<NSArray<AVAssetVariantQualifier>>;
 
         #[cfg(feature = "AVAssetVariant")]
         /// Setter for [`variantQualifiers`][Self::variantQualifiers].
-        #[method(setVariantQualifiers:)]
+        #[unsafe(method(setVariantQualifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVariantQualifiers(
             &self,
@@ -288,13 +288,13 @@ extern_methods!(
         /// An array of media selections obtained from the AVAsset.
         ///
         /// If a media selection is not provided, automatic media selection associated with the asset will be used.
-        #[method(mediaSelections)]
+        #[unsafe(method(mediaSelections))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelections(&self) -> Retained<NSArray<AVMediaSelection>>;
 
         #[cfg(feature = "AVMediaSelection")]
         /// Setter for [`mediaSelections`][Self::mediaSelections].
-        #[method(setMediaSelections:)]
+        #[unsafe(method(setMediaSelections:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaSelections(&self, media_selections: &NSArray<AVMediaSelection>);
     }
@@ -303,11 +303,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAssetDownloadContentConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -342,32 +342,32 @@ extern_methods!(
         #[cfg(feature = "AVAsset")]
         /// The asset supplied to the download task upon initialization.
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
-        #[method(URLAsset)]
+        #[unsafe(method(URLAsset))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLAsset(&self) -> Retained<AVURLAsset>;
 
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
-        #[method(originalRequest)]
+        #[unsafe(method(originalRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn originalRequest(&self) -> Retained<NSURLRequest>;
 
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
-        #[method(currentRequest)]
+        #[unsafe(method(currentRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentRequest(&self) -> Retained<NSURLRequest>;
 
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
-        #[method(response)]
+        #[unsafe(method(response))]
         #[unsafe(method_family = none)]
         pub unsafe fn response(&self) -> Retained<NSURLResponse>;
     }
@@ -390,7 +390,7 @@ extern_protocol!(
         /// Parameter `location`: The location the asset has been downloaded to.
         #[deprecated = "Use URLSession:assetDownloadTask:willDownloadToURL: instead"]
         #[optional]
-        #[method(URLSession:assetDownloadTask:didFinishDownloadingToURL:)]
+        #[unsafe(method(URLSession:assetDownloadTask:didFinishDownloadingToURL:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_assetDownloadTask_didFinishDownloadingToURL(
             &self,
@@ -413,7 +413,7 @@ extern_protocol!(
         /// Parameter `timeRangeExpectedToLoad`: A CMTimeRange indicating the single time range that is expected to be loaded when the download is complete.
         #[deprecated = "Use NSURLSessionTask.progress instead"]
         #[optional]
-        #[method(URLSession:assetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:)]
+        #[unsafe(method(URLSession:assetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_assetDownloadTask_didLoadTimeRange_totalTimeRangesLoaded_timeRangeExpectedToLoad(
             &self,
@@ -426,7 +426,7 @@ extern_protocol!(
 
         #[cfg(feature = "AVMediaSelection")]
         #[optional]
-        #[method(URLSession:assetDownloadTask:didResolveMediaSelection:)]
+        #[unsafe(method(URLSession:assetDownloadTask:didResolveMediaSelection:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_assetDownloadTask_didResolveMediaSelection(
             &self,
@@ -436,7 +436,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(URLSession:assetDownloadTask:willDownloadToURL:)]
+        #[unsafe(method(URLSession:assetDownloadTask:willDownloadToURL:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_assetDownloadTask_willDownloadToURL(
             &self,
@@ -447,7 +447,7 @@ extern_protocol!(
 
         #[deprecated = "Use URLSession:assetDownloadTask:willDownloadToURL: instead"]
         #[optional]
-        #[method(URLSession:aggregateAssetDownloadTask:willDownloadToURL:)]
+        #[unsafe(method(URLSession:aggregateAssetDownloadTask:willDownloadToURL:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_aggregateAssetDownloadTask_willDownloadToURL(
             &self,
@@ -459,7 +459,7 @@ extern_protocol!(
         #[cfg(feature = "AVMediaSelection")]
         #[deprecated = "Use the NSURLSessionDownloadDelegate method instead, URLSession:task:didCompleteWithError:"]
         #[optional]
-        #[method(URLSession:aggregateAssetDownloadTask:didCompleteForMediaSelection:)]
+        #[unsafe(method(URLSession:aggregateAssetDownloadTask:didCompleteForMediaSelection:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_aggregateAssetDownloadTask_didCompleteForMediaSelection(
             &self,
@@ -471,7 +471,7 @@ extern_protocol!(
         #[cfg(all(feature = "AVMediaSelection", feature = "objc2-core-media"))]
         #[deprecated = "Use NSURLSessionTask.progress: instead"]
         #[optional]
-        #[method(URLSession:aggregateAssetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:forMediaSelection:)]
+        #[unsafe(method(URLSession:aggregateAssetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:forMediaSelection:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_aggregateAssetDownloadTask_didLoadTimeRange_totalTimeRangesLoaded_timeRangeExpectedToLoad_forMediaSelection(
             &self,
@@ -492,7 +492,7 @@ extern_protocol!(
         ///
         /// Parameter `variants`: The variants chosen. Depends on the environmental condition when the download starts.
         #[optional]
-        #[method(URLSession:assetDownloadTask:willDownloadVariants:)]
+        #[unsafe(method(URLSession:assetDownloadTask:willDownloadVariants:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_assetDownloadTask_willDownloadVariants(
             &self,
@@ -523,7 +523,7 @@ extern_methods!(
         /// Parameter `delegate`: The delegate object to handle asset download progress updates and other session related events.
         ///
         /// Parameter `delegateQueue`: The queue to receive delegate callbacks on. If nil, a serial queue will be provided.
-        #[method(sessionWithConfiguration:assetDownloadDelegate:delegateQueue:)]
+        #[unsafe(method(sessionWithConfiguration:assetDownloadDelegate:delegateQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionWithConfiguration_assetDownloadDelegate_delegateQueue(
             configuration: &NSURLSessionConfiguration,
@@ -542,7 +542,7 @@ extern_methods!(
         ///
         /// Parameter `options`: See AVAssetDownloadTask*Key above. Configures non-default behavior for the download task. Using this parameter is required for downloading non-default media selections for HLS assets.
         #[deprecated = "Use assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options: instead"]
-        #[method(assetDownloadTaskWithURLAsset:destinationURL:options:)]
+        #[unsafe(method(assetDownloadTaskWithURLAsset:destinationURL:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetDownloadTaskWithURLAsset_destinationURL_options(
             &self,
@@ -564,7 +564,7 @@ extern_methods!(
         ///
         /// Parameter `options`: See AVAssetDownloadTask*Key above. Configures non-default behavior for the download task. Using this parameter is required for downloading non-default media selections for HLS assets.
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
-        #[method(assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options:)]
+        #[unsafe(method(assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetDownloadTaskWithURLAsset_assetTitle_assetArtworkData_options(
             &self,
@@ -589,7 +589,7 @@ extern_methods!(
         ///
         /// Parameter `options`: See AVAssetDownloadTask*Key above. Configures non-default behavior for the download task.
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
-        #[method(aggregateAssetDownloadTaskWithURLAsset:mediaSelections:assetTitle:assetArtworkData:options:)]
+        #[unsafe(method(aggregateAssetDownloadTaskWithURLAsset:mediaSelections:assetTitle:assetArtworkData:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn aggregateAssetDownloadTaskWithURLAsset_mediaSelections_assetTitle_assetArtworkData_options(
             &self,
@@ -605,32 +605,32 @@ extern_methods!(
         /// This method will throw an exception if the URLSession has been invalidated.
         ///
         /// Parameter `downloadConfiguration`: The configuration to be used to create the download task.
-        #[method(assetDownloadTaskWithConfiguration:)]
+        #[unsafe(method(assetDownloadTaskWithConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetDownloadTaskWithConfiguration(
             &self,
             download_configuration: &AVAssetDownloadConfiguration,
         ) -> Retained<AVAssetDownloadTask>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(sharedSession)]
+        #[unsafe(method(sharedSession))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedSession() -> Retained<NSURLSession>;
 
-        #[method(sessionWithConfiguration:)]
+        #[unsafe(method(sessionWithConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionWithConfiguration(
             configuration: &NSURLSessionConfiguration,
         ) -> Retained<NSURLSession>;
 
-        #[method(sessionWithConfiguration:delegate:delegateQueue:)]
+        #[unsafe(method(sessionWithConfiguration:delegate:delegateQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionWithConfiguration_delegate_delegateQueue(
             configuration: &NSURLSessionConfiguration,
@@ -638,18 +638,18 @@ extern_methods!(
             queue: Option<&NSOperationQueue>,
         ) -> Retained<NSURLSession>;
 
-        #[method(dataTaskWithRequest:)]
+        #[unsafe(method(dataTaskWithRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataTaskWithRequest(
             &self,
             request: &NSURLRequest,
         ) -> Retained<NSURLSessionDataTask>;
 
-        #[method(dataTaskWithURL:)]
+        #[unsafe(method(dataTaskWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataTaskWithURL(&self, url: &NSURL) -> Retained<NSURLSessionDataTask>;
 
-        #[method(uploadTaskWithRequest:fromFile:)]
+        #[unsafe(method(uploadTaskWithRequest:fromFile:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uploadTaskWithRequest_fromFile(
             &self,
@@ -657,7 +657,7 @@ extern_methods!(
             file_url: &NSURL,
         ) -> Retained<NSURLSessionUploadTask>;
 
-        #[method(uploadTaskWithRequest:fromData:)]
+        #[unsafe(method(uploadTaskWithRequest:fromData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uploadTaskWithRequest_fromData(
             &self,
@@ -665,26 +665,26 @@ extern_methods!(
             body_data: &NSData,
         ) -> Retained<NSURLSessionUploadTask>;
 
-        #[method(uploadTaskWithStreamedRequest:)]
+        #[unsafe(method(uploadTaskWithStreamedRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uploadTaskWithStreamedRequest(
             &self,
             request: &NSURLRequest,
         ) -> Retained<NSURLSessionUploadTask>;
 
-        #[method(downloadTaskWithRequest:)]
+        #[unsafe(method(downloadTaskWithRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadTaskWithRequest(
             &self,
             request: &NSURLRequest,
         ) -> Retained<NSURLSessionDownloadTask>;
 
-        #[method(downloadTaskWithURL:)]
+        #[unsafe(method(downloadTaskWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadTaskWithURL(&self, url: &NSURL)
             -> Retained<NSURLSessionDownloadTask>;
 
-        #[method(downloadTaskWithResumeData:)]
+        #[unsafe(method(downloadTaskWithResumeData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadTaskWithResumeData(
             &self,
@@ -692,7 +692,7 @@ extern_methods!(
         ) -> Retained<NSURLSessionDownloadTask>;
 
         #[cfg(feature = "block2")]
-        #[method(dataTaskWithRequest:completionHandler:)]
+        #[unsafe(method(dataTaskWithRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataTaskWithRequest_completionHandler(
             &self,
@@ -703,7 +703,7 @@ extern_methods!(
         ) -> Retained<NSURLSessionDataTask>;
 
         #[cfg(feature = "block2")]
-        #[method(dataTaskWithURL:completionHandler:)]
+        #[unsafe(method(dataTaskWithURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataTaskWithURL_completionHandler(
             &self,
@@ -714,7 +714,7 @@ extern_methods!(
         ) -> Retained<NSURLSessionDataTask>;
 
         #[cfg(feature = "block2")]
-        #[method(uploadTaskWithRequest:fromFile:completionHandler:)]
+        #[unsafe(method(uploadTaskWithRequest:fromFile:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uploadTaskWithRequest_fromFile_completionHandler(
             &self,
@@ -726,7 +726,7 @@ extern_methods!(
         ) -> Retained<NSURLSessionUploadTask>;
 
         #[cfg(feature = "block2")]
-        #[method(uploadTaskWithRequest:fromData:completionHandler:)]
+        #[unsafe(method(uploadTaskWithRequest:fromData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uploadTaskWithRequest_fromData_completionHandler(
             &self,
@@ -738,7 +738,7 @@ extern_methods!(
         ) -> Retained<NSURLSessionUploadTask>;
 
         #[cfg(feature = "block2")]
-        #[method(downloadTaskWithRequest:completionHandler:)]
+        #[unsafe(method(downloadTaskWithRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadTaskWithRequest_completionHandler(
             &self,
@@ -749,7 +749,7 @@ extern_methods!(
         ) -> Retained<NSURLSessionDownloadTask>;
 
         #[cfg(feature = "block2")]
-        #[method(downloadTaskWithURL:completionHandler:)]
+        #[unsafe(method(downloadTaskWithURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadTaskWithURL_completionHandler(
             &self,
@@ -760,7 +760,7 @@ extern_methods!(
         ) -> Retained<NSURLSessionDownloadTask>;
 
         #[cfg(feature = "block2")]
-        #[method(downloadTaskWithResumeData:completionHandler:)]
+        #[unsafe(method(downloadTaskWithResumeData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadTaskWithResumeData_completionHandler(
             &self,

@@ -11,21 +11,21 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityelementprotocol?language=objc)
     #[name = "NSAccessibilityElement"]
     pub unsafe trait NSAccessibilityElementProtocol: NSObjectProtocol {
-        #[method(accessibilityFrame)]
+        #[unsafe(method(accessibilityFrame))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityFrame(&self) -> NSRect;
 
-        #[method(accessibilityParent)]
+        #[unsafe(method(accessibilityParent))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityParent(&self) -> Option<Retained<AnyObject>>;
 
         #[optional]
-        #[method(isAccessibilityFocused)]
+        #[unsafe(method(isAccessibilityFocused))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityFocused(&self) -> bool;
 
         #[optional]
-        #[method(accessibilityIdentifier)]
+        #[unsafe(method(accessibilityIdentifier))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityIdentifier(&self) -> Retained<NSString>;
     }
@@ -39,11 +39,11 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitybutton?language=objc)
     pub unsafe trait NSAccessibilityButton: NSAccessibilityElementProtocol {
-        #[method(accessibilityLabel)]
+        #[unsafe(method(accessibilityLabel))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
-        #[method(accessibilityPerformPress)]
+        #[unsafe(method(accessibilityPerformPress))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformPress(&self) -> bool;
     }
@@ -52,17 +52,17 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityswitch?language=objc)
     pub unsafe trait NSAccessibilitySwitch: NSAccessibilityButton {
-        #[method(accessibilityValue)]
+        #[unsafe(method(accessibilityValue))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<NSString>>;
 
         #[optional]
-        #[method(accessibilityPerformIncrement)]
+        #[unsafe(method(accessibilityPerformIncrement))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformIncrement(&self) -> bool;
 
         #[optional]
-        #[method(accessibilityPerformDecrement)]
+        #[unsafe(method(accessibilityPerformDecrement))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformDecrement(&self) -> bool;
     }
@@ -71,7 +71,7 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityradiobutton?language=objc)
     pub unsafe trait NSAccessibilityRadioButton: NSAccessibilityButton {
-        #[method(accessibilityValue)]
+        #[unsafe(method(accessibilityValue))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<NSNumber>>;
     }
@@ -80,7 +80,7 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycheckbox?language=objc)
     pub unsafe trait NSAccessibilityCheckBox: NSAccessibilityButton {
-        #[method(accessibilityValue)]
+        #[unsafe(method(accessibilityValue))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<NSNumber>>;
     }
@@ -89,12 +89,12 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitystatictext?language=objc)
     pub unsafe trait NSAccessibilityStaticText: NSAccessibilityElementProtocol {
-        #[method(accessibilityValue)]
+        #[unsafe(method(accessibilityValue))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<NSString>>;
 
         #[optional]
-        #[method(accessibilityAttributedStringForRange:)]
+        #[unsafe(method(accessibilityAttributedStringForRange:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributedStringForRange(
             &self,
@@ -102,7 +102,7 @@ extern_protocol!(
         ) -> Option<Retained<NSAttributedString>>;
 
         #[optional]
-        #[method(accessibilityVisibleCharacterRange)]
+        #[unsafe(method(accessibilityVisibleCharacterRange))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityVisibleCharacterRange(&self) -> NSRange;
     }
@@ -111,19 +111,19 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitynavigablestatictext?language=objc)
     pub unsafe trait NSAccessibilityNavigableStaticText: NSAccessibilityStaticText {
-        #[method(accessibilityStringForRange:)]
+        #[unsafe(method(accessibilityStringForRange:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityStringForRange(&self, range: NSRange) -> Option<Retained<NSString>>;
 
-        #[method(accessibilityLineForIndex:)]
+        #[unsafe(method(accessibilityLineForIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLineForIndex(&self, index: NSInteger) -> NSInteger;
 
-        #[method(accessibilityRangeForLine:)]
+        #[unsafe(method(accessibilityRangeForLine:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityRangeForLine(&self, line_number: NSInteger) -> NSRange;
 
-        #[method(accessibilityFrameForRange:)]
+        #[unsafe(method(accessibilityFrameForRange:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityFrameForRange(&self, range: NSRange) -> NSRect;
     }
@@ -132,7 +132,7 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityprogressindicator?language=objc)
     pub unsafe trait NSAccessibilityProgressIndicator: NSAccessibilityGroup {
-        #[method(accessibilityValue)]
+        #[unsafe(method(accessibilityValue))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<NSNumber>>;
     }
@@ -141,20 +141,20 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitystepper?language=objc)
     pub unsafe trait NSAccessibilityStepper: NSAccessibilityElementProtocol {
-        #[method(accessibilityLabel)]
+        #[unsafe(method(accessibilityLabel))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
-        #[method(accessibilityPerformIncrement)]
+        #[unsafe(method(accessibilityPerformIncrement))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformIncrement(&self) -> bool;
 
-        #[method(accessibilityPerformDecrement)]
+        #[unsafe(method(accessibilityPerformDecrement))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformDecrement(&self) -> bool;
 
         #[optional]
-        #[method(accessibilityValue)]
+        #[unsafe(method(accessibilityValue))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<AnyObject>>;
     }
@@ -163,19 +163,19 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityslider?language=objc)
     pub unsafe trait NSAccessibilitySlider: NSAccessibilityElementProtocol {
-        #[method(accessibilityLabel)]
+        #[unsafe(method(accessibilityLabel))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
-        #[method(accessibilityValue)]
+        #[unsafe(method(accessibilityValue))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<AnyObject>>;
 
-        #[method(accessibilityPerformIncrement)]
+        #[unsafe(method(accessibilityPerformIncrement))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformIncrement(&self) -> bool;
 
-        #[method(accessibilityPerformDecrement)]
+        #[unsafe(method(accessibilityPerformDecrement))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformDecrement(&self) -> bool;
     }
@@ -184,7 +184,7 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityimage?language=objc)
     pub unsafe trait NSAccessibilityImage: NSAccessibilityElementProtocol {
-        #[method(accessibilityLabel)]
+        #[unsafe(method(accessibilityLabel))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
     }
@@ -195,15 +195,15 @@ extern_protocol!(
     pub unsafe trait NSAccessibilityContainsTransientUI:
         NSAccessibilityElementProtocol
     {
-        #[method(accessibilityPerformShowAlternateUI)]
+        #[unsafe(method(accessibilityPerformShowAlternateUI))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformShowAlternateUI(&self) -> bool;
 
-        #[method(accessibilityPerformShowDefaultUI)]
+        #[unsafe(method(accessibilityPerformShowDefaultUI))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformShowDefaultUI(&self) -> bool;
 
-        #[method(isAccessibilityAlternateUIVisible)]
+        #[unsafe(method(isAccessibilityAlternateUIVisible))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityAlternateUIVisible(&self) -> bool;
     }
@@ -212,25 +212,25 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytable?language=objc)
     pub unsafe trait NSAccessibilityTable: NSAccessibilityGroup {
-        #[method(accessibilityLabel)]
+        #[unsafe(method(accessibilityLabel))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
-        #[method(accessibilityRows)]
+        #[unsafe(method(accessibilityRows))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityRows(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn NSAccessibilityRow>>>>;
 
         #[optional]
-        #[method(accessibilitySelectedRows)]
+        #[unsafe(method(accessibilitySelectedRows))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySelectedRows(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn NSAccessibilityRow>>>>;
 
         #[optional]
-        #[method(setAccessibilitySelectedRows:)]
+        #[unsafe(method(setAccessibilitySelectedRows:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySelectedRows(
             &self,
@@ -238,50 +238,50 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(accessibilityVisibleRows)]
+        #[unsafe(method(accessibilityVisibleRows))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityVisibleRows(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn NSAccessibilityRow>>>>;
 
         #[optional]
-        #[method(accessibilityColumns)]
+        #[unsafe(method(accessibilityColumns))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityColumns(&self) -> Option<Retained<NSArray>>;
 
         #[optional]
-        #[method(accessibilityVisibleColumns)]
+        #[unsafe(method(accessibilityVisibleColumns))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityVisibleColumns(&self) -> Option<Retained<NSArray>>;
 
         #[optional]
-        #[method(accessibilitySelectedColumns)]
+        #[unsafe(method(accessibilitySelectedColumns))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySelectedColumns(&self) -> Option<Retained<NSArray>>;
 
         #[deprecated]
         #[optional]
-        #[method(accessibilityHeaderGroup)]
+        #[unsafe(method(accessibilityHeaderGroup))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityHeaderGroup(&self) -> Option<Retained<NSString>>;
 
         #[optional]
-        #[method(accessibilitySelectedCells)]
+        #[unsafe(method(accessibilitySelectedCells))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySelectedCells(&self) -> Option<Retained<NSArray>>;
 
         #[optional]
-        #[method(accessibilityVisibleCells)]
+        #[unsafe(method(accessibilityVisibleCells))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityVisibleCells(&self) -> Option<Retained<NSArray>>;
 
         #[optional]
-        #[method(accessibilityRowHeaderUIElements)]
+        #[unsafe(method(accessibilityRowHeaderUIElements))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityRowHeaderUIElements(&self) -> Option<Retained<NSArray>>;
 
         #[optional]
-        #[method(accessibilityColumnHeaderUIElements)]
+        #[unsafe(method(accessibilityColumnHeaderUIElements))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityColumnHeaderUIElements(&self) -> Option<Retained<NSArray>>;
     }
@@ -300,12 +300,12 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrow?language=objc)
     pub unsafe trait NSAccessibilityRow: NSAccessibilityGroup {
-        #[method(accessibilityIndex)]
+        #[unsafe(method(accessibilityIndex))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityIndex(&self) -> NSInteger;
 
         #[optional]
-        #[method(accessibilityDisclosureLevel)]
+        #[unsafe(method(accessibilityDisclosureLevel))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityDisclosureLevel(&self) -> NSInteger;
     }
@@ -314,19 +314,19 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylayoutarea?language=objc)
     pub unsafe trait NSAccessibilityLayoutArea: NSAccessibilityGroup {
-        #[method(accessibilityLabel)]
+        #[unsafe(method(accessibilityLabel))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLabel(&self) -> Retained<NSString>;
 
-        #[method(accessibilityChildren)]
+        #[unsafe(method(accessibilityChildren))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityChildren(&self) -> Option<Retained<NSArray>>;
 
-        #[method(accessibilitySelectedChildren)]
+        #[unsafe(method(accessibilitySelectedChildren))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySelectedChildren(&self) -> Option<Retained<NSArray>>;
 
-        #[method(accessibilityFocusedUIElement)]
+        #[unsafe(method(accessibilityFocusedUIElement))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityFocusedUIElement(&self) -> Retained<AnyObject>;
     }
@@ -336,7 +336,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylayoutitem?language=objc)
     pub unsafe trait NSAccessibilityLayoutItem: NSAccessibilityGroup {
         #[optional]
-        #[method(setAccessibilityFrame:)]
+        #[unsafe(method(setAccessibilityFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityFrame(&self, frame: NSRect);
     }
@@ -351,7 +351,7 @@ extern_protocol!(
         /// Returns: An element that will be messaged for other accessibility
         /// properties. Assistive technologies may try to set accessibility
         /// focus on the returned element.
-        #[method(accessibilityElementWithToken:)]
+        #[unsafe(method(accessibilityElementWithToken:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityElementWithToken(
             &self,
@@ -366,7 +366,7 @@ extern_protocol!(
         /// Either do not implement this method or return NSNotFound for the
         /// location if there is no range of interest for a given load token.
         #[optional]
-        #[method(accessibilityRangeInTargetElementWithToken:)]
+        #[unsafe(method(accessibilityRangeInTargetElementWithToken:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityRangeInTargetElementWithToken(
             &self,
@@ -378,91 +378,91 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility?language=objc)
     pub unsafe trait NSAccessibility: NSObjectProtocol {
-        #[method(isAccessibilityElement)]
+        #[unsafe(method(isAccessibilityElement))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityElement(&self) -> bool;
 
         /// Setter for [`isAccessibilityElement`][Self::isAccessibilityElement].
-        #[method(setAccessibilityElement:)]
+        #[unsafe(method(setAccessibilityElement:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityElement(&self, accessibility_element: bool);
 
-        #[method(accessibilityFrame)]
+        #[unsafe(method(accessibilityFrame))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityFrame(&self) -> NSRect;
 
         /// Setter for [`accessibilityFrame`][Self::accessibilityFrame].
-        #[method(setAccessibilityFrame:)]
+        #[unsafe(method(setAccessibilityFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityFrame(&self, accessibility_frame: NSRect);
 
-        #[method(isAccessibilityFocused)]
+        #[unsafe(method(isAccessibilityFocused))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityFocused(&self) -> bool;
 
         /// Setter for [`isAccessibilityFocused`][Self::isAccessibilityFocused].
-        #[method(setAccessibilityFocused:)]
+        #[unsafe(method(setAccessibilityFocused:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityFocused(&self, accessibility_focused: bool);
 
-        #[method(accessibilityActivationPoint)]
+        #[unsafe(method(accessibilityActivationPoint))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityActivationPoint(&self) -> NSPoint;
 
         /// Setter for [`accessibilityActivationPoint`][Self::accessibilityActivationPoint].
-        #[method(setAccessibilityActivationPoint:)]
+        #[unsafe(method(setAccessibilityActivationPoint:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityActivationPoint(&self, accessibility_activation_point: NSPoint);
 
-        #[method(accessibilityTopLevelUIElement)]
+        #[unsafe(method(accessibilityTopLevelUIElement))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityTopLevelUIElement(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityTopLevelUIElement`][Self::accessibilityTopLevelUIElement].
-        #[method(setAccessibilityTopLevelUIElement:)]
+        #[unsafe(method(setAccessibilityTopLevelUIElement:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTopLevelUIElement(
             &self,
             accessibility_top_level_ui_element: Option<&AnyObject>,
         );
 
-        #[method(accessibilityURL)]
+        #[unsafe(method(accessibilityURL))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`accessibilityURL`][Self::accessibilityURL].
-        #[method(setAccessibilityURL:)]
+        #[unsafe(method(setAccessibilityURL:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityURL(&self, accessibility_url: Option<&NSURL>);
 
-        #[method(accessibilityValue)]
+        #[unsafe(method(accessibilityValue))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityValue`][Self::accessibilityValue].
-        #[method(setAccessibilityValue:)]
+        #[unsafe(method(setAccessibilityValue:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityValue(&self, accessibility_value: Option<&AnyObject>);
 
-        #[method(accessibilityValueDescription)]
+        #[unsafe(method(accessibilityValueDescription))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityValueDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityValueDescription`][Self::accessibilityValueDescription].
-        #[method(setAccessibilityValueDescription:)]
+        #[unsafe(method(setAccessibilityValueDescription:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityValueDescription(
             &self,
             accessibility_value_description: Option<&NSString>,
         );
 
-        #[method(accessibilityVisibleChildren)]
+        #[unsafe(method(accessibilityVisibleChildren))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityVisibleChildren(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityVisibleChildren`][Self::accessibilityVisibleChildren].
-        #[method(setAccessibilityVisibleChildren:)]
+        #[unsafe(method(setAccessibilityVisibleChildren:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityVisibleChildren(
             &self,
@@ -470,47 +470,47 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSAccessibilityConstants")]
-        #[method(accessibilitySubrole)]
+        #[unsafe(method(accessibilitySubrole))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySubrole(&self) -> Option<Retained<NSAccessibilitySubrole>>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         /// Setter for [`accessibilitySubrole`][Self::accessibilitySubrole].
-        #[method(setAccessibilitySubrole:)]
+        #[unsafe(method(setAccessibilitySubrole:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySubrole(
             &self,
             accessibility_subrole: Option<&NSAccessibilitySubrole>,
         );
 
-        #[method(accessibilityTitle)]
+        #[unsafe(method(accessibilityTitle))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityTitle`][Self::accessibilityTitle].
-        #[method(setAccessibilityTitle:)]
+        #[unsafe(method(setAccessibilityTitle:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTitle(&self, accessibility_title: Option<&NSString>);
 
-        #[method(accessibilityTitleUIElement)]
+        #[unsafe(method(accessibilityTitleUIElement))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityTitleUIElement(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityTitleUIElement`][Self::accessibilityTitleUIElement].
-        #[method(setAccessibilityTitleUIElement:)]
+        #[unsafe(method(setAccessibilityTitleUIElement:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTitleUIElement(
             &self,
             accessibility_title_ui_element: Option<&AnyObject>,
         );
 
-        #[method(accessibilityNextContents)]
+        #[unsafe(method(accessibilityNextContents))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityNextContents(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityNextContents`][Self::accessibilityNextContents].
-        #[method(setAccessibilityNextContents:)]
+        #[unsafe(method(setAccessibilityNextContents:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityNextContents(
             &self,
@@ -518,59 +518,59 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSAccessibilityConstants")]
-        #[method(accessibilityOrientation)]
+        #[unsafe(method(accessibilityOrientation))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityOrientation(&self) -> NSAccessibilityOrientation;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         /// Setter for [`accessibilityOrientation`][Self::accessibilityOrientation].
-        #[method(setAccessibilityOrientation:)]
+        #[unsafe(method(setAccessibilityOrientation:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityOrientation(
             &self,
             accessibility_orientation: NSAccessibilityOrientation,
         );
 
-        #[method(accessibilityOverflowButton)]
+        #[unsafe(method(accessibilityOverflowButton))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityOverflowButton(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityOverflowButton`][Self::accessibilityOverflowButton].
-        #[method(setAccessibilityOverflowButton:)]
+        #[unsafe(method(setAccessibilityOverflowButton:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityOverflowButton(
             &self,
             accessibility_overflow_button: Option<&AnyObject>,
         );
 
-        #[method(accessibilityParent)]
+        #[unsafe(method(accessibilityParent))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityParent(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityParent`][Self::accessibilityParent].
-        #[method(setAccessibilityParent:)]
+        #[unsafe(method(setAccessibilityParent:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityParent(&self, accessibility_parent: Option<&AnyObject>);
 
-        #[method(accessibilityPlaceholderValue)]
+        #[unsafe(method(accessibilityPlaceholderValue))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPlaceholderValue(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityPlaceholderValue`][Self::accessibilityPlaceholderValue].
-        #[method(setAccessibilityPlaceholderValue:)]
+        #[unsafe(method(setAccessibilityPlaceholderValue:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPlaceholderValue(
             &self,
             accessibility_placeholder_value: Option<&NSString>,
         );
 
-        #[method(accessibilityPreviousContents)]
+        #[unsafe(method(accessibilityPreviousContents))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPreviousContents(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityPreviousContents`][Self::accessibilityPreviousContents].
-        #[method(setAccessibilityPreviousContents:)]
+        #[unsafe(method(setAccessibilityPreviousContents:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPreviousContents(
             &self,
@@ -578,202 +578,202 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSAccessibilityConstants")]
-        #[method(accessibilityRole)]
+        #[unsafe(method(accessibilityRole))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityRole(&self) -> Option<Retained<NSAccessibilityRole>>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         /// Setter for [`accessibilityRole`][Self::accessibilityRole].
-        #[method(setAccessibilityRole:)]
+        #[unsafe(method(setAccessibilityRole:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRole(&self, accessibility_role: Option<&NSAccessibilityRole>);
 
-        #[method(accessibilityRoleDescription)]
+        #[unsafe(method(accessibilityRoleDescription))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityRoleDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityRoleDescription`][Self::accessibilityRoleDescription].
-        #[method(setAccessibilityRoleDescription:)]
+        #[unsafe(method(setAccessibilityRoleDescription:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRoleDescription(
             &self,
             accessibility_role_description: Option<&NSString>,
         );
 
-        #[method(accessibilitySearchButton)]
+        #[unsafe(method(accessibilitySearchButton))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySearchButton(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilitySearchButton`][Self::accessibilitySearchButton].
-        #[method(setAccessibilitySearchButton:)]
+        #[unsafe(method(setAccessibilitySearchButton:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySearchButton(
             &self,
             accessibility_search_button: Option<&AnyObject>,
         );
 
-        #[method(accessibilitySearchMenu)]
+        #[unsafe(method(accessibilitySearchMenu))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySearchMenu(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilitySearchMenu`][Self::accessibilitySearchMenu].
-        #[method(setAccessibilitySearchMenu:)]
+        #[unsafe(method(setAccessibilitySearchMenu:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySearchMenu(&self, accessibility_search_menu: Option<&AnyObject>);
 
-        #[method(isAccessibilitySelected)]
+        #[unsafe(method(isAccessibilitySelected))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilitySelected(&self) -> bool;
 
         /// Setter for [`isAccessibilitySelected`][Self::isAccessibilitySelected].
-        #[method(setAccessibilitySelected:)]
+        #[unsafe(method(setAccessibilitySelected:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySelected(&self, accessibility_selected: bool);
 
-        #[method(accessibilitySelectedChildren)]
+        #[unsafe(method(accessibilitySelectedChildren))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySelectedChildren(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilitySelectedChildren`][Self::accessibilitySelectedChildren].
-        #[method(setAccessibilitySelectedChildren:)]
+        #[unsafe(method(setAccessibilitySelectedChildren:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySelectedChildren(
             &self,
             accessibility_selected_children: Option<&NSArray>,
         );
 
-        #[method(accessibilityServesAsTitleForUIElements)]
+        #[unsafe(method(accessibilityServesAsTitleForUIElements))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityServesAsTitleForUIElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityServesAsTitleForUIElements`][Self::accessibilityServesAsTitleForUIElements].
-        #[method(setAccessibilityServesAsTitleForUIElements:)]
+        #[unsafe(method(setAccessibilityServesAsTitleForUIElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityServesAsTitleForUIElements(
             &self,
             accessibility_serves_as_title_for_ui_elements: Option<&NSArray>,
         );
 
-        #[method(accessibilityShownMenu)]
+        #[unsafe(method(accessibilityShownMenu))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityShownMenu(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityShownMenu`][Self::accessibilityShownMenu].
-        #[method(setAccessibilityShownMenu:)]
+        #[unsafe(method(setAccessibilityShownMenu:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityShownMenu(&self, accessibility_shown_menu: Option<&AnyObject>);
 
-        #[method(accessibilityMinValue)]
+        #[unsafe(method(accessibilityMinValue))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityMinValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityMinValue`][Self::accessibilityMinValue].
-        #[method(setAccessibilityMinValue:)]
+        #[unsafe(method(setAccessibilityMinValue:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMinValue(&self, accessibility_min_value: Option<&AnyObject>);
 
-        #[method(accessibilityMaxValue)]
+        #[unsafe(method(accessibilityMaxValue))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityMaxValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityMaxValue`][Self::accessibilityMaxValue].
-        #[method(setAccessibilityMaxValue:)]
+        #[unsafe(method(setAccessibilityMaxValue:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMaxValue(&self, accessibility_max_value: Option<&AnyObject>);
 
-        #[method(accessibilityLinkedUIElements)]
+        #[unsafe(method(accessibilityLinkedUIElements))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLinkedUIElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityLinkedUIElements`][Self::accessibilityLinkedUIElements].
-        #[method(setAccessibilityLinkedUIElements:)]
+        #[unsafe(method(setAccessibilityLinkedUIElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLinkedUIElements(
             &self,
             accessibility_linked_ui_elements: Option<&NSArray>,
         );
 
-        #[method(accessibilityWindow)]
+        #[unsafe(method(accessibilityWindow))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityWindow(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityWindow`][Self::accessibilityWindow].
-        #[method(setAccessibilityWindow:)]
+        #[unsafe(method(setAccessibilityWindow:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityWindow(&self, accessibility_window: Option<&AnyObject>);
 
-        #[method(accessibilityIdentifier)]
+        #[unsafe(method(accessibilityIdentifier))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityIdentifier`][Self::accessibilityIdentifier].
-        #[method(setAccessibilityIdentifier:)]
+        #[unsafe(method(setAccessibilityIdentifier:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityIdentifier(&self, accessibility_identifier: Option<&NSString>);
 
-        #[method(accessibilityHelp)]
+        #[unsafe(method(accessibilityHelp))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityHelp(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityHelp`][Self::accessibilityHelp].
-        #[method(setAccessibilityHelp:)]
+        #[unsafe(method(setAccessibilityHelp:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHelp(&self, accessibility_help: Option<&NSString>);
 
-        #[method(accessibilityFilename)]
+        #[unsafe(method(accessibilityFilename))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityFilename(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityFilename`][Self::accessibilityFilename].
-        #[method(setAccessibilityFilename:)]
+        #[unsafe(method(setAccessibilityFilename:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityFilename(&self, accessibility_filename: Option<&NSString>);
 
-        #[method(isAccessibilityExpanded)]
+        #[unsafe(method(isAccessibilityExpanded))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityExpanded(&self) -> bool;
 
         /// Setter for [`isAccessibilityExpanded`][Self::isAccessibilityExpanded].
-        #[method(setAccessibilityExpanded:)]
+        #[unsafe(method(setAccessibilityExpanded:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityExpanded(&self, accessibility_expanded: bool);
 
-        #[method(isAccessibilityEdited)]
+        #[unsafe(method(isAccessibilityEdited))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityEdited(&self) -> bool;
 
         /// Setter for [`isAccessibilityEdited`][Self::isAccessibilityEdited].
-        #[method(setAccessibilityEdited:)]
+        #[unsafe(method(setAccessibilityEdited:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityEdited(&self, accessibility_edited: bool);
 
-        #[method(isAccessibilityEnabled)]
+        #[unsafe(method(isAccessibilityEnabled))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityEnabled(&self) -> bool;
 
         /// Setter for [`isAccessibilityEnabled`][Self::isAccessibilityEnabled].
-        #[method(setAccessibilityEnabled:)]
+        #[unsafe(method(setAccessibilityEnabled:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityEnabled(&self, accessibility_enabled: bool);
 
-        #[method(accessibilityChildren)]
+        #[unsafe(method(accessibilityChildren))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityChildren(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityChildren`][Self::accessibilityChildren].
-        #[method(setAccessibilityChildren:)]
+        #[unsafe(method(setAccessibilityChildren:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityChildren(&self, accessibility_children: Option<&NSArray>);
 
-        #[method(accessibilityChildrenInNavigationOrder)]
+        #[unsafe(method(accessibilityChildrenInNavigationOrder))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityChildrenInNavigationOrder(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn NSAccessibilityElementProtocol>>>>;
 
         /// Setter for [`accessibilityChildrenInNavigationOrder`][Self::accessibilityChildrenInNavigationOrder].
-        #[method(setAccessibilityChildrenInNavigationOrder:)]
+        #[unsafe(method(setAccessibilityChildrenInNavigationOrder:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityChildrenInNavigationOrder(
             &self,
@@ -782,243 +782,243 @@ extern_protocol!(
             >,
         );
 
-        #[method(accessibilityClearButton)]
+        #[unsafe(method(accessibilityClearButton))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityClearButton(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityClearButton`][Self::accessibilityClearButton].
-        #[method(setAccessibilityClearButton:)]
+        #[unsafe(method(setAccessibilityClearButton:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityClearButton(
             &self,
             accessibility_clear_button: Option<&AnyObject>,
         );
 
-        #[method(accessibilityCancelButton)]
+        #[unsafe(method(accessibilityCancelButton))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityCancelButton(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityCancelButton`][Self::accessibilityCancelButton].
-        #[method(setAccessibilityCancelButton:)]
+        #[unsafe(method(setAccessibilityCancelButton:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCancelButton(
             &self,
             accessibility_cancel_button: Option<&AnyObject>,
         );
 
-        #[method(isAccessibilityProtectedContent)]
+        #[unsafe(method(isAccessibilityProtectedContent))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityProtectedContent(&self) -> bool;
 
         /// Setter for [`isAccessibilityProtectedContent`][Self::isAccessibilityProtectedContent].
-        #[method(setAccessibilityProtectedContent:)]
+        #[unsafe(method(setAccessibilityProtectedContent:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityProtectedContent(&self, accessibility_protected_content: bool);
 
-        #[method(accessibilityContents)]
+        #[unsafe(method(accessibilityContents))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityContents(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityContents`][Self::accessibilityContents].
-        #[method(setAccessibilityContents:)]
+        #[unsafe(method(setAccessibilityContents:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityContents(&self, accessibility_contents: Option<&NSArray>);
 
-        #[method(accessibilityLabel)]
+        #[unsafe(method(accessibilityLabel))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityLabel`][Self::accessibilityLabel].
-        #[method(setAccessibilityLabel:)]
+        #[unsafe(method(setAccessibilityLabel:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLabel(&self, accessibility_label: Option<&NSString>);
 
-        #[method(isAccessibilityAlternateUIVisible)]
+        #[unsafe(method(isAccessibilityAlternateUIVisible))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityAlternateUIVisible(&self) -> bool;
 
         /// Setter for [`isAccessibilityAlternateUIVisible`][Self::isAccessibilityAlternateUIVisible].
-        #[method(setAccessibilityAlternateUIVisible:)]
+        #[unsafe(method(setAccessibilityAlternateUIVisible:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAlternateUIVisible(
             &self,
             accessibility_alternate_ui_visible: bool,
         );
 
-        #[method(accessibilitySharedFocusElements)]
+        #[unsafe(method(accessibilitySharedFocusElements))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySharedFocusElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilitySharedFocusElements`][Self::accessibilitySharedFocusElements].
-        #[method(setAccessibilitySharedFocusElements:)]
+        #[unsafe(method(setAccessibilitySharedFocusElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySharedFocusElements(
             &self,
             accessibility_shared_focus_elements: Option<&NSArray>,
         );
 
-        #[method(isAccessibilityRequired)]
+        #[unsafe(method(isAccessibilityRequired))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityRequired(&self) -> bool;
 
         /// Setter for [`isAccessibilityRequired`][Self::isAccessibilityRequired].
-        #[method(setAccessibilityRequired:)]
+        #[unsafe(method(setAccessibilityRequired:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRequired(&self, accessibility_required: bool);
 
         #[cfg(feature = "NSAccessibilityCustomRotor")]
-        #[method(accessibilityCustomRotors)]
+        #[unsafe(method(accessibilityCustomRotors))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityCustomRotors(&self)
             -> Retained<NSArray<NSAccessibilityCustomRotor>>;
 
         #[cfg(feature = "NSAccessibilityCustomRotor")]
         /// Setter for [`accessibilityCustomRotors`][Self::accessibilityCustomRotors].
-        #[method(setAccessibilityCustomRotors:)]
+        #[unsafe(method(setAccessibilityCustomRotors:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCustomRotors(
             &self,
             accessibility_custom_rotors: &NSArray<NSAccessibilityCustomRotor>,
         );
 
-        #[method(accessibilityUserInputLabels)]
+        #[unsafe(method(accessibilityUserInputLabels))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityUserInputLabels(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`accessibilityUserInputLabels`][Self::accessibilityUserInputLabels].
-        #[method(setAccessibilityUserInputLabels:)]
+        #[unsafe(method(setAccessibilityUserInputLabels:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityUserInputLabels(
             &self,
             accessibility_user_input_labels: Option<&NSArray<NSString>>,
         );
 
-        #[method(accessibilityAttributedUserInputLabels)]
+        #[unsafe(method(accessibilityAttributedUserInputLabels))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributedUserInputLabels(
             &self,
         ) -> Option<Retained<NSArray<NSAttributedString>>>;
 
         /// Setter for [`accessibilityAttributedUserInputLabels`][Self::accessibilityAttributedUserInputLabels].
-        #[method(setAccessibilityAttributedUserInputLabels:)]
+        #[unsafe(method(setAccessibilityAttributedUserInputLabels:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedUserInputLabels(
             &self,
             accessibility_attributed_user_input_labels: Option<&NSArray<NSAttributedString>>,
         );
 
-        #[method(accessibilityApplicationFocusedUIElement)]
+        #[unsafe(method(accessibilityApplicationFocusedUIElement))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityApplicationFocusedUIElement(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityApplicationFocusedUIElement`][Self::accessibilityApplicationFocusedUIElement].
-        #[method(setAccessibilityApplicationFocusedUIElement:)]
+        #[unsafe(method(setAccessibilityApplicationFocusedUIElement:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityApplicationFocusedUIElement(
             &self,
             accessibility_application_focused_ui_element: Option<&AnyObject>,
         );
 
-        #[method(accessibilityMainWindow)]
+        #[unsafe(method(accessibilityMainWindow))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityMainWindow(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityMainWindow`][Self::accessibilityMainWindow].
-        #[method(setAccessibilityMainWindow:)]
+        #[unsafe(method(setAccessibilityMainWindow:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMainWindow(&self, accessibility_main_window: Option<&AnyObject>);
 
-        #[method(isAccessibilityHidden)]
+        #[unsafe(method(isAccessibilityHidden))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityHidden(&self) -> bool;
 
         /// Setter for [`isAccessibilityHidden`][Self::isAccessibilityHidden].
-        #[method(setAccessibilityHidden:)]
+        #[unsafe(method(setAccessibilityHidden:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHidden(&self, accessibility_hidden: bool);
 
-        #[method(isAccessibilityFrontmost)]
+        #[unsafe(method(isAccessibilityFrontmost))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityFrontmost(&self) -> bool;
 
         /// Setter for [`isAccessibilityFrontmost`][Self::isAccessibilityFrontmost].
-        #[method(setAccessibilityFrontmost:)]
+        #[unsafe(method(setAccessibilityFrontmost:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityFrontmost(&self, accessibility_frontmost: bool);
 
-        #[method(accessibilityFocusedWindow)]
+        #[unsafe(method(accessibilityFocusedWindow))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityFocusedWindow(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityFocusedWindow`][Self::accessibilityFocusedWindow].
-        #[method(setAccessibilityFocusedWindow:)]
+        #[unsafe(method(setAccessibilityFocusedWindow:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityFocusedWindow(
             &self,
             accessibility_focused_window: Option<&AnyObject>,
         );
 
-        #[method(accessibilityWindows)]
+        #[unsafe(method(accessibilityWindows))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityWindows(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityWindows`][Self::accessibilityWindows].
-        #[method(setAccessibilityWindows:)]
+        #[unsafe(method(setAccessibilityWindows:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityWindows(&self, accessibility_windows: Option<&NSArray>);
 
-        #[method(accessibilityExtrasMenuBar)]
+        #[unsafe(method(accessibilityExtrasMenuBar))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityExtrasMenuBar(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityExtrasMenuBar`][Self::accessibilityExtrasMenuBar].
-        #[method(setAccessibilityExtrasMenuBar:)]
+        #[unsafe(method(setAccessibilityExtrasMenuBar:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityExtrasMenuBar(
             &self,
             accessibility_extras_menu_bar: Option<&AnyObject>,
         );
 
-        #[method(accessibilityMenuBar)]
+        #[unsafe(method(accessibilityMenuBar))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityMenuBar(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityMenuBar`][Self::accessibilityMenuBar].
-        #[method(setAccessibilityMenuBar:)]
+        #[unsafe(method(setAccessibilityMenuBar:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMenuBar(&self, accessibility_menu_bar: Option<&AnyObject>);
 
-        #[method(accessibilityColumnTitles)]
+        #[unsafe(method(accessibilityColumnTitles))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityColumnTitles(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityColumnTitles`][Self::accessibilityColumnTitles].
-        #[method(setAccessibilityColumnTitles:)]
+        #[unsafe(method(setAccessibilityColumnTitles:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityColumnTitles(
             &self,
             accessibility_column_titles: Option<&NSArray>,
         );
 
-        #[method(isAccessibilityOrderedByRow)]
+        #[unsafe(method(isAccessibilityOrderedByRow))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityOrderedByRow(&self) -> bool;
 
         /// Setter for [`isAccessibilityOrderedByRow`][Self::isAccessibilityOrderedByRow].
-        #[method(setAccessibilityOrderedByRow:)]
+        #[unsafe(method(setAccessibilityOrderedByRow:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityOrderedByRow(&self, accessibility_ordered_by_row: bool);
 
         #[cfg(feature = "NSAccessibilityConstants")]
-        #[method(accessibilityHorizontalUnits)]
+        #[unsafe(method(accessibilityHorizontalUnits))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityHorizontalUnits(&self) -> NSAccessibilityUnits;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         /// Setter for [`accessibilityHorizontalUnits`][Self::accessibilityHorizontalUnits].
-        #[method(setAccessibilityHorizontalUnits:)]
+        #[unsafe(method(setAccessibilityHorizontalUnits:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHorizontalUnits(
             &self,
@@ -1026,165 +1026,165 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSAccessibilityConstants")]
-        #[method(accessibilityVerticalUnits)]
+        #[unsafe(method(accessibilityVerticalUnits))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityVerticalUnits(&self) -> NSAccessibilityUnits;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         /// Setter for [`accessibilityVerticalUnits`][Self::accessibilityVerticalUnits].
-        #[method(setAccessibilityVerticalUnits:)]
+        #[unsafe(method(setAccessibilityVerticalUnits:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityVerticalUnits(
             &self,
             accessibility_vertical_units: NSAccessibilityUnits,
         );
 
-        #[method(accessibilityHorizontalUnitDescription)]
+        #[unsafe(method(accessibilityHorizontalUnitDescription))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityHorizontalUnitDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityHorizontalUnitDescription`][Self::accessibilityHorizontalUnitDescription].
-        #[method(setAccessibilityHorizontalUnitDescription:)]
+        #[unsafe(method(setAccessibilityHorizontalUnitDescription:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHorizontalUnitDescription(
             &self,
             accessibility_horizontal_unit_description: Option<&NSString>,
         );
 
-        #[method(accessibilityVerticalUnitDescription)]
+        #[unsafe(method(accessibilityVerticalUnitDescription))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityVerticalUnitDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityVerticalUnitDescription`][Self::accessibilityVerticalUnitDescription].
-        #[method(setAccessibilityVerticalUnitDescription:)]
+        #[unsafe(method(setAccessibilityVerticalUnitDescription:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityVerticalUnitDescription(
             &self,
             accessibility_vertical_unit_description: Option<&NSString>,
         );
 
-        #[method(accessibilityLayoutPointForScreenPoint:)]
+        #[unsafe(method(accessibilityLayoutPointForScreenPoint:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLayoutPointForScreenPoint(&self, point: NSPoint) -> NSPoint;
 
-        #[method(accessibilityLayoutSizeForScreenSize:)]
+        #[unsafe(method(accessibilityLayoutSizeForScreenSize:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLayoutSizeForScreenSize(&self, size: NSSize) -> NSSize;
 
-        #[method(accessibilityScreenPointForLayoutPoint:)]
+        #[unsafe(method(accessibilityScreenPointForLayoutPoint:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityScreenPointForLayoutPoint(&self, point: NSPoint) -> NSPoint;
 
-        #[method(accessibilityScreenSizeForLayoutSize:)]
+        #[unsafe(method(accessibilityScreenSizeForLayoutSize:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityScreenSizeForLayoutSize(&self, size: NSSize) -> NSSize;
 
-        #[method(accessibilityHandles)]
+        #[unsafe(method(accessibilityHandles))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityHandles(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityHandles`][Self::accessibilityHandles].
-        #[method(setAccessibilityHandles:)]
+        #[unsafe(method(setAccessibilityHandles:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHandles(&self, accessibility_handles: Option<&NSArray>);
 
-        #[method(accessibilityWarningValue)]
+        #[unsafe(method(accessibilityWarningValue))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityWarningValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityWarningValue`][Self::accessibilityWarningValue].
-        #[method(setAccessibilityWarningValue:)]
+        #[unsafe(method(setAccessibilityWarningValue:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityWarningValue(
             &self,
             accessibility_warning_value: Option<&AnyObject>,
         );
 
-        #[method(accessibilityCriticalValue)]
+        #[unsafe(method(accessibilityCriticalValue))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityCriticalValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityCriticalValue`][Self::accessibilityCriticalValue].
-        #[method(setAccessibilityCriticalValue:)]
+        #[unsafe(method(setAccessibilityCriticalValue:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCriticalValue(
             &self,
             accessibility_critical_value: Option<&AnyObject>,
         );
 
-        #[method(isAccessibilityDisclosed)]
+        #[unsafe(method(isAccessibilityDisclosed))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityDisclosed(&self) -> bool;
 
         /// Setter for [`isAccessibilityDisclosed`][Self::isAccessibilityDisclosed].
-        #[method(setAccessibilityDisclosed:)]
+        #[unsafe(method(setAccessibilityDisclosed:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDisclosed(&self, accessibility_disclosed: bool);
 
-        #[method(accessibilityDisclosedByRow)]
+        #[unsafe(method(accessibilityDisclosedByRow))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityDisclosedByRow(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityDisclosedByRow`][Self::accessibilityDisclosedByRow].
-        #[method(setAccessibilityDisclosedByRow:)]
+        #[unsafe(method(setAccessibilityDisclosedByRow:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDisclosedByRow(
             &self,
             accessibility_disclosed_by_row: Option<&AnyObject>,
         );
 
-        #[method(accessibilityDisclosedRows)]
+        #[unsafe(method(accessibilityDisclosedRows))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityDisclosedRows(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityDisclosedRows`][Self::accessibilityDisclosedRows].
-        #[method(setAccessibilityDisclosedRows:)]
+        #[unsafe(method(setAccessibilityDisclosedRows:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDisclosedRows(
             &self,
             accessibility_disclosed_rows: Option<&AnyObject>,
         );
 
-        #[method(accessibilityDisclosureLevel)]
+        #[unsafe(method(accessibilityDisclosureLevel))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityDisclosureLevel(&self) -> NSInteger;
 
         /// Setter for [`accessibilityDisclosureLevel`][Self::accessibilityDisclosureLevel].
-        #[method(setAccessibilityDisclosureLevel:)]
+        #[unsafe(method(setAccessibilityDisclosureLevel:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDisclosureLevel(&self, accessibility_disclosure_level: NSInteger);
 
-        #[method(accessibilityMarkerUIElements)]
+        #[unsafe(method(accessibilityMarkerUIElements))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityMarkerUIElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityMarkerUIElements`][Self::accessibilityMarkerUIElements].
-        #[method(setAccessibilityMarkerUIElements:)]
+        #[unsafe(method(setAccessibilityMarkerUIElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMarkerUIElements(
             &self,
             accessibility_marker_ui_elements: Option<&NSArray>,
         );
 
-        #[method(accessibilityMarkerValues)]
+        #[unsafe(method(accessibilityMarkerValues))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityMarkerValues(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityMarkerValues`][Self::accessibilityMarkerValues].
-        #[method(setAccessibilityMarkerValues:)]
+        #[unsafe(method(setAccessibilityMarkerValues:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMarkerValues(
             &self,
             accessibility_marker_values: Option<&AnyObject>,
         );
 
-        #[method(accessibilityMarkerGroupUIElement)]
+        #[unsafe(method(accessibilityMarkerGroupUIElement))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityMarkerGroupUIElement(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityMarkerGroupUIElement`][Self::accessibilityMarkerGroupUIElement].
-        #[method(setAccessibilityMarkerGroupUIElement:)]
+        #[unsafe(method(setAccessibilityMarkerGroupUIElement:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMarkerGroupUIElement(
             &self,
@@ -1192,22 +1192,22 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSAccessibilityConstants")]
-        #[method(accessibilityUnits)]
+        #[unsafe(method(accessibilityUnits))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityUnits(&self) -> NSAccessibilityUnits;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         /// Setter for [`accessibilityUnits`][Self::accessibilityUnits].
-        #[method(setAccessibilityUnits:)]
+        #[unsafe(method(setAccessibilityUnits:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityUnits(&self, accessibility_units: NSAccessibilityUnits);
 
-        #[method(accessibilityUnitDescription)]
+        #[unsafe(method(accessibilityUnitDescription))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityUnitDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityUnitDescription`][Self::accessibilityUnitDescription].
-        #[method(setAccessibilityUnitDescription:)]
+        #[unsafe(method(setAccessibilityUnitDescription:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityUnitDescription(
             &self,
@@ -1215,223 +1215,223 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSAccessibilityConstants")]
-        #[method(accessibilityRulerMarkerType)]
+        #[unsafe(method(accessibilityRulerMarkerType))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityRulerMarkerType(&self) -> NSAccessibilityRulerMarkerType;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         /// Setter for [`accessibilityRulerMarkerType`][Self::accessibilityRulerMarkerType].
-        #[method(setAccessibilityRulerMarkerType:)]
+        #[unsafe(method(setAccessibilityRulerMarkerType:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRulerMarkerType(
             &self,
             accessibility_ruler_marker_type: NSAccessibilityRulerMarkerType,
         );
 
-        #[method(accessibilityMarkerTypeDescription)]
+        #[unsafe(method(accessibilityMarkerTypeDescription))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityMarkerTypeDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityMarkerTypeDescription`][Self::accessibilityMarkerTypeDescription].
-        #[method(setAccessibilityMarkerTypeDescription:)]
+        #[unsafe(method(setAccessibilityMarkerTypeDescription:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMarkerTypeDescription(
             &self,
             accessibility_marker_type_description: Option<&NSString>,
         );
 
-        #[method(accessibilityHorizontalScrollBar)]
+        #[unsafe(method(accessibilityHorizontalScrollBar))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityHorizontalScrollBar(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityHorizontalScrollBar`][Self::accessibilityHorizontalScrollBar].
-        #[method(setAccessibilityHorizontalScrollBar:)]
+        #[unsafe(method(setAccessibilityHorizontalScrollBar:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHorizontalScrollBar(
             &self,
             accessibility_horizontal_scroll_bar: Option<&AnyObject>,
         );
 
-        #[method(accessibilityVerticalScrollBar)]
+        #[unsafe(method(accessibilityVerticalScrollBar))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityVerticalScrollBar(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityVerticalScrollBar`][Self::accessibilityVerticalScrollBar].
-        #[method(setAccessibilityVerticalScrollBar:)]
+        #[unsafe(method(setAccessibilityVerticalScrollBar:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityVerticalScrollBar(
             &self,
             accessibility_vertical_scroll_bar: Option<&AnyObject>,
         );
 
-        #[method(accessibilityAllowedValues)]
+        #[unsafe(method(accessibilityAllowedValues))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityAllowedValues(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`accessibilityAllowedValues`][Self::accessibilityAllowedValues].
-        #[method(setAccessibilityAllowedValues:)]
+        #[unsafe(method(setAccessibilityAllowedValues:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAllowedValues(
             &self,
             accessibility_allowed_values: Option<&NSArray<NSNumber>>,
         );
 
-        #[method(accessibilityLabelUIElements)]
+        #[unsafe(method(accessibilityLabelUIElements))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLabelUIElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityLabelUIElements`][Self::accessibilityLabelUIElements].
-        #[method(setAccessibilityLabelUIElements:)]
+        #[unsafe(method(setAccessibilityLabelUIElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLabelUIElements(
             &self,
             accessibility_label_ui_elements: Option<&NSArray>,
         );
 
-        #[method(accessibilityLabelValue)]
+        #[unsafe(method(accessibilityLabelValue))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLabelValue(&self) -> c_float;
 
         /// Setter for [`accessibilityLabelValue`][Self::accessibilityLabelValue].
-        #[method(setAccessibilityLabelValue:)]
+        #[unsafe(method(setAccessibilityLabelValue:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLabelValue(&self, accessibility_label_value: c_float);
 
-        #[method(accessibilitySplitters)]
+        #[unsafe(method(accessibilitySplitters))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySplitters(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilitySplitters`][Self::accessibilitySplitters].
-        #[method(setAccessibilitySplitters:)]
+        #[unsafe(method(setAccessibilitySplitters:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySplitters(&self, accessibility_splitters: Option<&NSArray>);
 
-        #[method(accessibilityDecrementButton)]
+        #[unsafe(method(accessibilityDecrementButton))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityDecrementButton(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityDecrementButton`][Self::accessibilityDecrementButton].
-        #[method(setAccessibilityDecrementButton:)]
+        #[unsafe(method(setAccessibilityDecrementButton:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDecrementButton(
             &self,
             accessibility_decrement_button: Option<&AnyObject>,
         );
 
-        #[method(accessibilityIncrementButton)]
+        #[unsafe(method(accessibilityIncrementButton))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityIncrementButton(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityIncrementButton`][Self::accessibilityIncrementButton].
-        #[method(setAccessibilityIncrementButton:)]
+        #[unsafe(method(setAccessibilityIncrementButton:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityIncrementButton(
             &self,
             accessibility_increment_button: Option<&AnyObject>,
         );
 
-        #[method(accessibilityTabs)]
+        #[unsafe(method(accessibilityTabs))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityTabs(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityTabs`][Self::accessibilityTabs].
-        #[method(setAccessibilityTabs:)]
+        #[unsafe(method(setAccessibilityTabs:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTabs(&self, accessibility_tabs: Option<&NSArray>);
 
-        #[method(accessibilityHeader)]
+        #[unsafe(method(accessibilityHeader))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityHeader(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityHeader`][Self::accessibilityHeader].
-        #[method(setAccessibilityHeader:)]
+        #[unsafe(method(setAccessibilityHeader:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHeader(&self, accessibility_header: Option<&AnyObject>);
 
-        #[method(accessibilityColumnCount)]
+        #[unsafe(method(accessibilityColumnCount))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityColumnCount(&self) -> NSInteger;
 
         /// Setter for [`accessibilityColumnCount`][Self::accessibilityColumnCount].
-        #[method(setAccessibilityColumnCount:)]
+        #[unsafe(method(setAccessibilityColumnCount:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityColumnCount(&self, accessibility_column_count: NSInteger);
 
-        #[method(accessibilityRowCount)]
+        #[unsafe(method(accessibilityRowCount))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityRowCount(&self) -> NSInteger;
 
         /// Setter for [`accessibilityRowCount`][Self::accessibilityRowCount].
-        #[method(setAccessibilityRowCount:)]
+        #[unsafe(method(setAccessibilityRowCount:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRowCount(&self, accessibility_row_count: NSInteger);
 
-        #[method(accessibilityIndex)]
+        #[unsafe(method(accessibilityIndex))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityIndex(&self) -> NSInteger;
 
         /// Setter for [`accessibilityIndex`][Self::accessibilityIndex].
-        #[method(setAccessibilityIndex:)]
+        #[unsafe(method(setAccessibilityIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityIndex(&self, accessibility_index: NSInteger);
 
-        #[method(accessibilityColumns)]
+        #[unsafe(method(accessibilityColumns))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityColumns(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityColumns`][Self::accessibilityColumns].
-        #[method(setAccessibilityColumns:)]
+        #[unsafe(method(setAccessibilityColumns:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityColumns(&self, accessibility_columns: Option<&NSArray>);
 
-        #[method(accessibilityRows)]
+        #[unsafe(method(accessibilityRows))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityRows(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityRows`][Self::accessibilityRows].
-        #[method(setAccessibilityRows:)]
+        #[unsafe(method(setAccessibilityRows:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRows(&self, accessibility_rows: Option<&NSArray>);
 
-        #[method(accessibilityVisibleRows)]
+        #[unsafe(method(accessibilityVisibleRows))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityVisibleRows(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityVisibleRows`][Self::accessibilityVisibleRows].
-        #[method(setAccessibilityVisibleRows:)]
+        #[unsafe(method(setAccessibilityVisibleRows:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityVisibleRows(&self, accessibility_visible_rows: Option<&NSArray>);
 
-        #[method(accessibilitySelectedRows)]
+        #[unsafe(method(accessibilitySelectedRows))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySelectedRows(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilitySelectedRows`][Self::accessibilitySelectedRows].
-        #[method(setAccessibilitySelectedRows:)]
+        #[unsafe(method(setAccessibilitySelectedRows:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySelectedRows(
             &self,
             accessibility_selected_rows: Option<&NSArray>,
         );
 
-        #[method(accessibilityVisibleColumns)]
+        #[unsafe(method(accessibilityVisibleColumns))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityVisibleColumns(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityVisibleColumns`][Self::accessibilityVisibleColumns].
-        #[method(setAccessibilityVisibleColumns:)]
+        #[unsafe(method(setAccessibilityVisibleColumns:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityVisibleColumns(
             &self,
             accessibility_visible_columns: Option<&NSArray>,
         );
 
-        #[method(accessibilitySelectedColumns)]
+        #[unsafe(method(accessibilitySelectedColumns))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySelectedColumns(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilitySelectedColumns`][Self::accessibilitySelectedColumns].
-        #[method(setAccessibilitySelectedColumns:)]
+        #[unsafe(method(setAccessibilitySelectedColumns:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySelectedColumns(
             &self,
@@ -1439,68 +1439,68 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSAccessibilityConstants")]
-        #[method(accessibilitySortDirection)]
+        #[unsafe(method(accessibilitySortDirection))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySortDirection(&self) -> NSAccessibilitySortDirection;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         /// Setter for [`accessibilitySortDirection`][Self::accessibilitySortDirection].
-        #[method(setAccessibilitySortDirection:)]
+        #[unsafe(method(setAccessibilitySortDirection:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySortDirection(
             &self,
             accessibility_sort_direction: NSAccessibilitySortDirection,
         );
 
-        #[method(accessibilityRowHeaderUIElements)]
+        #[unsafe(method(accessibilityRowHeaderUIElements))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityRowHeaderUIElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityRowHeaderUIElements`][Self::accessibilityRowHeaderUIElements].
-        #[method(setAccessibilityRowHeaderUIElements:)]
+        #[unsafe(method(setAccessibilityRowHeaderUIElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRowHeaderUIElements(
             &self,
             accessibility_row_header_ui_elements: Option<&NSArray>,
         );
 
-        #[method(accessibilitySelectedCells)]
+        #[unsafe(method(accessibilitySelectedCells))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySelectedCells(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilitySelectedCells`][Self::accessibilitySelectedCells].
-        #[method(setAccessibilitySelectedCells:)]
+        #[unsafe(method(setAccessibilitySelectedCells:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySelectedCells(
             &self,
             accessibility_selected_cells: Option<&NSArray>,
         );
 
-        #[method(accessibilityVisibleCells)]
+        #[unsafe(method(accessibilityVisibleCells))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityVisibleCells(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityVisibleCells`][Self::accessibilityVisibleCells].
-        #[method(setAccessibilityVisibleCells:)]
+        #[unsafe(method(setAccessibilityVisibleCells:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityVisibleCells(
             &self,
             accessibility_visible_cells: Option<&NSArray>,
         );
 
-        #[method(accessibilityColumnHeaderUIElements)]
+        #[unsafe(method(accessibilityColumnHeaderUIElements))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityColumnHeaderUIElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityColumnHeaderUIElements`][Self::accessibilityColumnHeaderUIElements].
-        #[method(setAccessibilityColumnHeaderUIElements:)]
+        #[unsafe(method(setAccessibilityColumnHeaderUIElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityColumnHeaderUIElements(
             &self,
             accessibility_column_header_ui_elements: Option<&NSArray>,
         );
 
-        #[method(accessibilityCellForColumn:row:)]
+        #[unsafe(method(accessibilityCellForColumn:row:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityCellForColumn_row(
             &self,
@@ -1508,287 +1508,287 @@ extern_protocol!(
             row: NSInteger,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method(accessibilityRowIndexRange)]
+        #[unsafe(method(accessibilityRowIndexRange))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityRowIndexRange(&self) -> NSRange;
 
         /// Setter for [`accessibilityRowIndexRange`][Self::accessibilityRowIndexRange].
-        #[method(setAccessibilityRowIndexRange:)]
+        #[unsafe(method(setAccessibilityRowIndexRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRowIndexRange(&self, accessibility_row_index_range: NSRange);
 
-        #[method(accessibilityColumnIndexRange)]
+        #[unsafe(method(accessibilityColumnIndexRange))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityColumnIndexRange(&self) -> NSRange;
 
         /// Setter for [`accessibilityColumnIndexRange`][Self::accessibilityColumnIndexRange].
-        #[method(setAccessibilityColumnIndexRange:)]
+        #[unsafe(method(setAccessibilityColumnIndexRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityColumnIndexRange(
             &self,
             accessibility_column_index_range: NSRange,
         );
 
-        #[method(accessibilityInsertionPointLineNumber)]
+        #[unsafe(method(accessibilityInsertionPointLineNumber))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityInsertionPointLineNumber(&self) -> NSInteger;
 
         /// Setter for [`accessibilityInsertionPointLineNumber`][Self::accessibilityInsertionPointLineNumber].
-        #[method(setAccessibilityInsertionPointLineNumber:)]
+        #[unsafe(method(setAccessibilityInsertionPointLineNumber:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityInsertionPointLineNumber(
             &self,
             accessibility_insertion_point_line_number: NSInteger,
         );
 
-        #[method(accessibilitySharedCharacterRange)]
+        #[unsafe(method(accessibilitySharedCharacterRange))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySharedCharacterRange(&self) -> NSRange;
 
         /// Setter for [`accessibilitySharedCharacterRange`][Self::accessibilitySharedCharacterRange].
-        #[method(setAccessibilitySharedCharacterRange:)]
+        #[unsafe(method(setAccessibilitySharedCharacterRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySharedCharacterRange(
             &self,
             accessibility_shared_character_range: NSRange,
         );
 
-        #[method(accessibilitySharedTextUIElements)]
+        #[unsafe(method(accessibilitySharedTextUIElements))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySharedTextUIElements(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilitySharedTextUIElements`][Self::accessibilitySharedTextUIElements].
-        #[method(setAccessibilitySharedTextUIElements:)]
+        #[unsafe(method(setAccessibilitySharedTextUIElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySharedTextUIElements(
             &self,
             accessibility_shared_text_ui_elements: Option<&NSArray>,
         );
 
-        #[method(accessibilityVisibleCharacterRange)]
+        #[unsafe(method(accessibilityVisibleCharacterRange))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityVisibleCharacterRange(&self) -> NSRange;
 
         /// Setter for [`accessibilityVisibleCharacterRange`][Self::accessibilityVisibleCharacterRange].
-        #[method(setAccessibilityVisibleCharacterRange:)]
+        #[unsafe(method(setAccessibilityVisibleCharacterRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityVisibleCharacterRange(
             &self,
             accessibility_visible_character_range: NSRange,
         );
 
-        #[method(accessibilityNumberOfCharacters)]
+        #[unsafe(method(accessibilityNumberOfCharacters))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityNumberOfCharacters(&self) -> NSInteger;
 
         /// Setter for [`accessibilityNumberOfCharacters`][Self::accessibilityNumberOfCharacters].
-        #[method(setAccessibilityNumberOfCharacters:)]
+        #[unsafe(method(setAccessibilityNumberOfCharacters:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityNumberOfCharacters(
             &self,
             accessibility_number_of_characters: NSInteger,
         );
 
-        #[method(accessibilitySelectedText)]
+        #[unsafe(method(accessibilitySelectedText))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySelectedText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilitySelectedText`][Self::accessibilitySelectedText].
-        #[method(setAccessibilitySelectedText:)]
+        #[unsafe(method(setAccessibilitySelectedText:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySelectedText(
             &self,
             accessibility_selected_text: Option<&NSString>,
         );
 
-        #[method(accessibilitySelectedTextRange)]
+        #[unsafe(method(accessibilitySelectedTextRange))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySelectedTextRange(&self) -> NSRange;
 
         /// Setter for [`accessibilitySelectedTextRange`][Self::accessibilitySelectedTextRange].
-        #[method(setAccessibilitySelectedTextRange:)]
+        #[unsafe(method(setAccessibilitySelectedTextRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySelectedTextRange(
             &self,
             accessibility_selected_text_range: NSRange,
         );
 
-        #[method(accessibilitySelectedTextRanges)]
+        #[unsafe(method(accessibilitySelectedTextRanges))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilitySelectedTextRanges(&self) -> Option<Retained<NSArray<NSValue>>>;
 
         /// Setter for [`accessibilitySelectedTextRanges`][Self::accessibilitySelectedTextRanges].
-        #[method(setAccessibilitySelectedTextRanges:)]
+        #[unsafe(method(setAccessibilitySelectedTextRanges:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilitySelectedTextRanges(
             &self,
             accessibility_selected_text_ranges: Option<&NSArray<NSValue>>,
         );
 
-        #[method(accessibilityAttributedStringForRange:)]
+        #[unsafe(method(accessibilityAttributedStringForRange:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributedStringForRange(
             &self,
             range: NSRange,
         ) -> Option<Retained<NSAttributedString>>;
 
-        #[method(accessibilityRangeForLine:)]
+        #[unsafe(method(accessibilityRangeForLine:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityRangeForLine(&self, line: NSInteger) -> NSRange;
 
-        #[method(accessibilityStringForRange:)]
+        #[unsafe(method(accessibilityStringForRange:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityStringForRange(&self, range: NSRange) -> Option<Retained<NSString>>;
 
-        #[method(accessibilityRangeForPosition:)]
+        #[unsafe(method(accessibilityRangeForPosition:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityRangeForPosition(&self, point: NSPoint) -> NSRange;
 
-        #[method(accessibilityRangeForIndex:)]
+        #[unsafe(method(accessibilityRangeForIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityRangeForIndex(&self, index: NSInteger) -> NSRange;
 
-        #[method(accessibilityFrameForRange:)]
+        #[unsafe(method(accessibilityFrameForRange:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityFrameForRange(&self, range: NSRange) -> NSRect;
 
-        #[method(accessibilityRTFForRange:)]
+        #[unsafe(method(accessibilityRTFForRange:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityRTFForRange(&self, range: NSRange) -> Option<Retained<NSData>>;
 
-        #[method(accessibilityStyleRangeForIndex:)]
+        #[unsafe(method(accessibilityStyleRangeForIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityStyleRangeForIndex(&self, index: NSInteger) -> NSRange;
 
-        #[method(accessibilityLineForIndex:)]
+        #[unsafe(method(accessibilityLineForIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLineForIndex(&self, index: NSInteger) -> NSInteger;
 
-        #[method(accessibilityToolbarButton)]
+        #[unsafe(method(accessibilityToolbarButton))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityToolbarButton(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityToolbarButton`][Self::accessibilityToolbarButton].
-        #[method(setAccessibilityToolbarButton:)]
+        #[unsafe(method(setAccessibilityToolbarButton:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityToolbarButton(
             &self,
             accessibility_toolbar_button: Option<&AnyObject>,
         );
 
-        #[method(isAccessibilityModal)]
+        #[unsafe(method(isAccessibilityModal))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityModal(&self) -> bool;
 
         /// Setter for [`isAccessibilityModal`][Self::isAccessibilityModal].
-        #[method(setAccessibilityModal:)]
+        #[unsafe(method(setAccessibilityModal:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityModal(&self, accessibility_modal: bool);
 
-        #[method(accessibilityProxy)]
+        #[unsafe(method(accessibilityProxy))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityProxy(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityProxy`][Self::accessibilityProxy].
-        #[method(setAccessibilityProxy:)]
+        #[unsafe(method(setAccessibilityProxy:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityProxy(&self, accessibility_proxy: Option<&AnyObject>);
 
-        #[method(isAccessibilityMain)]
+        #[unsafe(method(isAccessibilityMain))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityMain(&self) -> bool;
 
         /// Setter for [`isAccessibilityMain`][Self::isAccessibilityMain].
-        #[method(setAccessibilityMain:)]
+        #[unsafe(method(setAccessibilityMain:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMain(&self, accessibility_main: bool);
 
-        #[method(accessibilityFullScreenButton)]
+        #[unsafe(method(accessibilityFullScreenButton))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityFullScreenButton(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityFullScreenButton`][Self::accessibilityFullScreenButton].
-        #[method(setAccessibilityFullScreenButton:)]
+        #[unsafe(method(setAccessibilityFullScreenButton:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityFullScreenButton(
             &self,
             accessibility_full_screen_button: Option<&AnyObject>,
         );
 
-        #[method(accessibilityGrowArea)]
+        #[unsafe(method(accessibilityGrowArea))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityGrowArea(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityGrowArea`][Self::accessibilityGrowArea].
-        #[method(setAccessibilityGrowArea:)]
+        #[unsafe(method(setAccessibilityGrowArea:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityGrowArea(&self, accessibility_grow_area: Option<&AnyObject>);
 
-        #[method(accessibilityDocument)]
+        #[unsafe(method(accessibilityDocument))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityDocument(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityDocument`][Self::accessibilityDocument].
-        #[method(setAccessibilityDocument:)]
+        #[unsafe(method(setAccessibilityDocument:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDocument(&self, accessibility_document: Option<&NSString>);
 
-        #[method(accessibilityDefaultButton)]
+        #[unsafe(method(accessibilityDefaultButton))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityDefaultButton(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityDefaultButton`][Self::accessibilityDefaultButton].
-        #[method(setAccessibilityDefaultButton:)]
+        #[unsafe(method(setAccessibilityDefaultButton:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDefaultButton(
             &self,
             accessibility_default_button: Option<&AnyObject>,
         );
 
-        #[method(accessibilityCloseButton)]
+        #[unsafe(method(accessibilityCloseButton))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityCloseButton(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityCloseButton`][Self::accessibilityCloseButton].
-        #[method(setAccessibilityCloseButton:)]
+        #[unsafe(method(setAccessibilityCloseButton:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCloseButton(
             &self,
             accessibility_close_button: Option<&AnyObject>,
         );
 
-        #[method(accessibilityZoomButton)]
+        #[unsafe(method(accessibilityZoomButton))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityZoomButton(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityZoomButton`][Self::accessibilityZoomButton].
-        #[method(setAccessibilityZoomButton:)]
+        #[unsafe(method(setAccessibilityZoomButton:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityZoomButton(&self, accessibility_zoom_button: Option<&AnyObject>);
 
-        #[method(accessibilityMinimizeButton)]
+        #[unsafe(method(accessibilityMinimizeButton))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityMinimizeButton(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityMinimizeButton`][Self::accessibilityMinimizeButton].
-        #[method(setAccessibilityMinimizeButton:)]
+        #[unsafe(method(setAccessibilityMinimizeButton:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMinimizeButton(
             &self,
             accessibility_minimize_button: Option<&AnyObject>,
         );
 
-        #[method(isAccessibilityMinimized)]
+        #[unsafe(method(isAccessibilityMinimized))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityMinimized(&self) -> bool;
 
         /// Setter for [`isAccessibilityMinimized`][Self::isAccessibilityMinimized].
-        #[method(setAccessibilityMinimized:)]
+        #[unsafe(method(setAccessibilityMinimized:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMinimized(&self, accessibility_minimized: bool);
 
         #[cfg(feature = "NSAccessibilityCustomAction")]
-        #[method(accessibilityCustomActions)]
+        #[unsafe(method(accessibilityCustomActions))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityCustomActions(
             &self,
@@ -1796,58 +1796,58 @@ extern_protocol!(
 
         #[cfg(feature = "NSAccessibilityCustomAction")]
         /// Setter for [`accessibilityCustomActions`][Self::accessibilityCustomActions].
-        #[method(setAccessibilityCustomActions:)]
+        #[unsafe(method(setAccessibilityCustomActions:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCustomActions(
             &self,
             accessibility_custom_actions: Option<&NSArray<NSAccessibilityCustomAction>>,
         );
 
-        #[method(accessibilityPerformCancel)]
+        #[unsafe(method(accessibilityPerformCancel))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformCancel(&self) -> bool;
 
-        #[method(accessibilityPerformConfirm)]
+        #[unsafe(method(accessibilityPerformConfirm))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformConfirm(&self) -> bool;
 
-        #[method(accessibilityPerformDecrement)]
+        #[unsafe(method(accessibilityPerformDecrement))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformDecrement(&self) -> bool;
 
-        #[method(accessibilityPerformDelete)]
+        #[unsafe(method(accessibilityPerformDelete))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformDelete(&self) -> bool;
 
-        #[method(accessibilityPerformIncrement)]
+        #[unsafe(method(accessibilityPerformIncrement))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformIncrement(&self) -> bool;
 
-        #[method(accessibilityPerformPick)]
+        #[unsafe(method(accessibilityPerformPick))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformPick(&self) -> bool;
 
-        #[method(accessibilityPerformPress)]
+        #[unsafe(method(accessibilityPerformPress))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformPress(&self) -> bool;
 
-        #[method(accessibilityPerformRaise)]
+        #[unsafe(method(accessibilityPerformRaise))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformRaise(&self) -> bool;
 
-        #[method(accessibilityPerformShowAlternateUI)]
+        #[unsafe(method(accessibilityPerformShowAlternateUI))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformShowAlternateUI(&self) -> bool;
 
-        #[method(accessibilityPerformShowDefaultUI)]
+        #[unsafe(method(accessibilityPerformShowDefaultUI))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformShowDefaultUI(&self) -> bool;
 
-        #[method(accessibilityPerformShowMenu)]
+        #[unsafe(method(accessibilityPerformShowMenu))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformShowMenu(&self) -> bool;
 
-        #[method(isAccessibilitySelectorAllowed:)]
+        #[unsafe(method(isAccessibilitySelectorAllowed:))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilitySelectorAllowed(&self, selector: Sel) -> bool;
     }

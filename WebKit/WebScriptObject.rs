@@ -28,7 +28,7 @@ extern_category!(
         ///
         /// Returns: Returns the name to be used to represent the specified selector in the
         /// scripting environment.
-        #[method(webScriptNameForSelector:)]
+        #[unsafe(method(webScriptNameForSelector:))]
         #[unsafe(method_family = none)]
         unsafe fn webScriptNameForSelector(selector: Option<Sel>) -> Option<Retained<NSString>>;
 
@@ -39,7 +39,7 @@ extern_category!(
         /// If this method is not implemented on the class no selectors will be exported.
         ///
         /// Returns: Returns YES to hide the selector, NO to export the selector.
-        #[method(isSelectorExcludedFromWebScript:)]
+        #[unsafe(method(isSelectorExcludedFromWebScript:))]
         #[unsafe(method_family = none)]
         unsafe fn isSelectorExcludedFromWebScript(selector: Option<Sel>) -> bool;
 
@@ -51,7 +51,7 @@ extern_category!(
         ///
         /// Returns: Returns the name to be used to represent the specified property in the
         /// scripting environment.
-        #[method(webScriptNameForKey:)]
+        #[unsafe(method(webScriptNameForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn webScriptNameForKey(name: *const c_char) -> Option<Retained<NSString>>;
 
@@ -62,7 +62,7 @@ extern_category!(
         /// Return YES to prevent the property from being exported to the script environment.
         ///
         /// Returns: Returns YES to hide the property, NO to export the property.
-        #[method(isKeyExcludedFromWebScript:)]
+        #[unsafe(method(isKeyExcludedFromWebScript:))]
         #[unsafe(method_family = none)]
         unsafe fn isKeyExcludedFromWebScript(name: *const c_char) -> bool;
 
@@ -75,7 +75,7 @@ extern_category!(
         ///
         /// Returns: The return value of the invocation. The value will be converted as appropriate
         /// for the script environment.
-        #[method(invokeUndefinedMethodFromWebScript:withArguments:)]
+        #[unsafe(method(invokeUndefinedMethodFromWebScript:withArguments:))]
         #[unsafe(method_family = none)]
         unsafe fn invokeUndefinedMethodFromWebScript_withArguments(
             &self,
@@ -90,7 +90,7 @@ extern_category!(
         ///
         /// Returns: The return value of the call. The value will be converted as appropriate
         /// for the script environment.
-        #[method(invokeDefaultMethodWithArguments:)]
+        #[unsafe(method(invokeDefaultMethodWithArguments:))]
         #[unsafe(method_family = none)]
         unsafe fn invokeDefaultMethodWithArguments(
             &self,
@@ -101,7 +101,7 @@ extern_category!(
         /// environment just before the script environment garbage collects the object.
         /// Subsequently, any references to WebScriptObjects made by the exposed object will
         /// be invalid and have undefined consequences.
-        #[method(finalizeForWebScript)]
+        #[unsafe(method(finalizeForWebScript))]
         #[unsafe(method_family = none)]
         unsafe fn finalizeForWebScript(&self);
     }
@@ -147,7 +147,7 @@ extern_methods!(
         ///
         /// Returns: Either NO if an exception could not be raised, YES otherwise.
         #[deprecated]
-        #[method(throwException:)]
+        #[unsafe(method(throwException:))]
         #[unsafe(method_family = none)]
         pub unsafe fn throwException(exception_message: Option<&NSString>) -> bool;
 
@@ -161,7 +161,7 @@ extern_methods!(
         /// Returns: Returns the result of calling the script method.
         /// Returns WebUndefined when an exception is thrown in the script environment.
         #[deprecated]
-        #[method(callWebScriptMethod:withArguments:)]
+        #[unsafe(method(callWebScriptMethod:withArguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn callWebScriptMethod_withArguments(
             &self,
@@ -177,7 +177,7 @@ extern_methods!(
         /// Returns: Returns the result of evaluating the script in the script environment.
         /// Returns WebUndefined when an exception is thrown in the script environment.
         #[deprecated]
-        #[method(evaluateWebScript:)]
+        #[unsafe(method(evaluateWebScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn evaluateWebScript(
             &self,
@@ -188,7 +188,7 @@ extern_methods!(
         ///
         /// Removes the property from the object in the script environment.
         #[deprecated]
-        #[method(removeWebScriptKey:)]
+        #[unsafe(method(removeWebScriptKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeWebScriptKey(&self, name: Option<&NSString>);
 
@@ -197,7 +197,7 @@ extern_methods!(
         ///
         /// Returns: Returns the string representation of the object.
         #[deprecated]
-        #[method(stringRepresentation)]
+        #[unsafe(method(stringRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringRepresentation(&self) -> Option<Retained<NSString>>;
 
@@ -208,7 +208,7 @@ extern_methods!(
         /// Returns: The value of the property. Returns WebUndefined when an exception is
         /// thrown in the script environment.
         #[deprecated]
-        #[method(webScriptValueAtIndex:)]
+        #[unsafe(method(webScriptValueAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn webScriptValueAtIndex(&self, index: c_uint) -> Option<Retained<AnyObject>>;
 
@@ -218,7 +218,7 @@ extern_methods!(
         ///
         /// Sets the property value at the specified index.
         #[deprecated]
-        #[method(setWebScriptValueAtIndex:value:)]
+        #[unsafe(method(setWebScriptValueAtIndex:value:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWebScriptValueAtIndex_value(
             &self,
@@ -231,7 +231,7 @@ extern_methods!(
         /// Raises an exception in the script environment in the context of the
         /// current object.
         #[deprecated]
-        #[method(setException:)]
+        #[unsafe(method(setException:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setException(&self, description: Option<&NSString>);
     }
@@ -240,11 +240,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebScriptObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -272,7 +272,7 @@ extern_methods!(
     unsafe impl WebUndefined {
         /// Returns: The WebUndefined shared instance.
         #[deprecated]
-        #[method(undefined)]
+        #[unsafe(method(undefined))]
         #[unsafe(method_family = none)]
         pub unsafe fn undefined() -> Option<Retained<WebUndefined>>;
     }
@@ -281,11 +281,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebUndefined {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

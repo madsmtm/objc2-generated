@@ -13,12 +13,12 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidraganimating?language=objc)
     pub unsafe trait UIDragAnimating: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "block2")]
-        #[method(addAnimations:)]
+        #[unsafe(method(addAnimations:))]
         #[unsafe(method_family = none)]
         unsafe fn addAnimations(&self, animations: &block2::Block<dyn Fn()>);
 
         #[cfg(all(feature = "UIViewAnimating", feature = "block2"))]
-        #[method(addCompletion:)]
+        #[unsafe(method(addCompletion:))]
         #[unsafe(method_family = none)]
         unsafe fn addCompletion(&self, completion: &block2::Block<dyn Fn(UIViewAnimatingPosition)>);
     }
@@ -39,49 +39,49 @@ unsafe impl UIInteraction for UIDragInteraction {}
 
 extern_methods!(
     unsafe impl UIDragInteraction {
-        #[method(initWithDelegate:)]
+        #[unsafe(method(initWithDelegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: &ProtocolObject<dyn UIDragInteractionDelegate>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIDragInteractionDelegate>>>;
 
-        #[method(allowsSimultaneousRecognitionDuringLift)]
+        #[unsafe(method(allowsSimultaneousRecognitionDuringLift))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsSimultaneousRecognitionDuringLift(&self) -> bool;
 
         /// Setter for [`allowsSimultaneousRecognitionDuringLift`][Self::allowsSimultaneousRecognitionDuringLift].
-        #[method(setAllowsSimultaneousRecognitionDuringLift:)]
+        #[unsafe(method(setAllowsSimultaneousRecognitionDuringLift:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsSimultaneousRecognitionDuringLift(
             &self,
             allows_simultaneous_recognition_during_lift: bool,
         );
 
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
-        #[method(isEnabledByDefault)]
+        #[unsafe(method(isEnabledByDefault))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabledByDefault(mtm: MainThreadMarker) -> bool;
     }
@@ -91,7 +91,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidraginteractiondelegate?language=objc)
     pub unsafe trait UIDragInteractionDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIDragItem", feature = "UIDragSession"))]
-        #[method(dragInteraction:itemsForBeginningSession:)]
+        #[unsafe(method(dragInteraction:itemsForBeginningSession:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_itemsForBeginningSession(
             &self,
@@ -106,7 +106,7 @@ extern_protocol!(
             feature = "UITargetedPreview"
         ))]
         #[optional]
-        #[method(dragInteraction:previewForLiftingItem:session:)]
+        #[unsafe(method(dragInteraction:previewForLiftingItem:session:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_previewForLiftingItem_session(
             &self,
@@ -117,7 +117,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIDragSession")]
         #[optional]
-        #[method(dragInteraction:willAnimateLiftWithAnimator:session:)]
+        #[unsafe(method(dragInteraction:willAnimateLiftWithAnimator:session:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_willAnimateLiftWithAnimator_session(
             &self,
@@ -128,7 +128,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIDragSession")]
         #[optional]
-        #[method(dragInteraction:sessionWillBegin:)]
+        #[unsafe(method(dragInteraction:sessionWillBegin:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_sessionWillBegin(
             &self,
@@ -138,7 +138,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIDragSession")]
         #[optional]
-        #[method(dragInteraction:sessionAllowsMoveOperation:)]
+        #[unsafe(method(dragInteraction:sessionAllowsMoveOperation:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_sessionAllowsMoveOperation(
             &self,
@@ -148,7 +148,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIDragSession")]
         #[optional]
-        #[method(dragInteraction:sessionIsRestrictedToDraggingApplication:)]
+        #[unsafe(method(dragInteraction:sessionIsRestrictedToDraggingApplication:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_sessionIsRestrictedToDraggingApplication(
             &self,
@@ -158,7 +158,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIDragSession")]
         #[optional]
-        #[method(dragInteraction:prefersFullSizePreviewsForSession:)]
+        #[unsafe(method(dragInteraction:prefersFullSizePreviewsForSession:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_prefersFullSizePreviewsForSession(
             &self,
@@ -168,7 +168,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIDragSession")]
         #[optional]
-        #[method(dragInteraction:sessionDidMove:)]
+        #[unsafe(method(dragInteraction:sessionDidMove:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_sessionDidMove(
             &self,
@@ -178,7 +178,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIDragSession", feature = "UIDropInteraction"))]
         #[optional]
-        #[method(dragInteraction:session:willEndWithOperation:)]
+        #[unsafe(method(dragInteraction:session:willEndWithOperation:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_session_willEndWithOperation(
             &self,
@@ -189,7 +189,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIDragSession", feature = "UIDropInteraction"))]
         #[optional]
-        #[method(dragInteraction:session:didEndWithOperation:)]
+        #[unsafe(method(dragInteraction:session:didEndWithOperation:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_session_didEndWithOperation(
             &self,
@@ -200,7 +200,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIDragSession")]
         #[optional]
-        #[method(dragInteraction:sessionDidTransferItems:)]
+        #[unsafe(method(dragInteraction:sessionDidTransferItems:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_sessionDidTransferItems(
             &self,
@@ -214,7 +214,7 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[optional]
-        #[method(dragInteraction:itemsForAddingToSession:withTouchAtPoint:)]
+        #[unsafe(method(dragInteraction:itemsForAddingToSession:withTouchAtPoint:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_itemsForAddingToSession_withTouchAtPoint(
             &self,
@@ -225,7 +225,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIDragSession", feature = "objc2-core-foundation"))]
         #[optional]
-        #[method(dragInteraction:sessionForAddingItems:withTouchAtPoint:)]
+        #[unsafe(method(dragInteraction:sessionForAddingItems:withTouchAtPoint:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_sessionForAddingItems_withTouchAtPoint(
             &self,
@@ -236,7 +236,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIDragItem", feature = "UIDragSession"))]
         #[optional]
-        #[method(dragInteraction:session:willAddItems:forInteraction:)]
+        #[unsafe(method(dragInteraction:session:willAddItems:forInteraction:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_session_willAddItems_forInteraction(
             &self,
@@ -252,7 +252,7 @@ extern_protocol!(
             feature = "UITargetedPreview"
         ))]
         #[optional]
-        #[method(dragInteraction:previewForCancellingItem:withDefault:)]
+        #[unsafe(method(dragInteraction:previewForCancellingItem:withDefault:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_previewForCancellingItem_withDefault(
             &self,
@@ -263,7 +263,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIDragItem")]
         #[optional]
-        #[method(dragInteraction:item:willAnimateCancelWithAnimator:)]
+        #[unsafe(method(dragInteraction:item:willAnimateCancelWithAnimator:))]
         #[unsafe(method_family = none)]
         unsafe fn dragInteraction_item_willAnimateCancelWithAnimator(
             &self,

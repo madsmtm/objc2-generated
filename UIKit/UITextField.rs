@@ -211,137 +211,137 @@ unsafe impl UITraitEnvironment for UITextField {}
 extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITextField {
-        #[method(text)]
+        #[unsafe(method(text))]
         #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
-        #[method(setText:)]
+        #[unsafe(method(setText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
-        #[method(attributedText)]
+        #[unsafe(method(attributedText))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedText`][Self::attributedText].
-        #[method(setAttributedText:)]
+        #[unsafe(method(setAttributedText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
         #[cfg(feature = "UIColor")]
-        #[method(textColor)]
+        #[unsafe(method(textColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn textColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`textColor`][Self::textColor].
-        #[method(setTextColor:)]
+        #[unsafe(method(setTextColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextColor(&self, text_color: Option<&UIColor>);
 
         #[cfg(feature = "UIFont")]
-        #[method(font)]
+        #[unsafe(method(font))]
         #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Option<Retained<UIFont>>;
 
         #[cfg(feature = "UIFont")]
         /// Setter for [`font`][Self::font].
-        #[method(setFont:)]
+        #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: Option<&UIFont>);
 
         #[cfg(feature = "NSText")]
-        #[method(textAlignment)]
+        #[unsafe(method(textAlignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn textAlignment(&self) -> NSTextAlignment;
 
         #[cfg(feature = "NSText")]
         /// Setter for [`textAlignment`][Self::textAlignment].
-        #[method(setTextAlignment:)]
+        #[unsafe(method(setTextAlignment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAlignment(&self, text_alignment: NSTextAlignment);
 
-        #[method(borderStyle)]
+        #[unsafe(method(borderStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderStyle(&self) -> UITextBorderStyle;
 
         /// Setter for [`borderStyle`][Self::borderStyle].
-        #[method(setBorderStyle:)]
+        #[unsafe(method(setBorderStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderStyle(&self, border_style: UITextBorderStyle);
 
-        #[method(defaultTextAttributes)]
+        #[unsafe(method(defaultTextAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultTextAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         /// Setter for [`defaultTextAttributes`][Self::defaultTextAttributes].
-        #[method(setDefaultTextAttributes:)]
+        #[unsafe(method(setDefaultTextAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultTextAttributes(
             &self,
             default_text_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
         );
 
-        #[method(placeholder)]
+        #[unsafe(method(placeholder))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholder(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`placeholder`][Self::placeholder].
-        #[method(setPlaceholder:)]
+        #[unsafe(method(setPlaceholder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlaceholder(&self, placeholder: Option<&NSString>);
 
-        #[method(attributedPlaceholder)]
+        #[unsafe(method(attributedPlaceholder))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedPlaceholder(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedPlaceholder`][Self::attributedPlaceholder].
-        #[method(setAttributedPlaceholder:)]
+        #[unsafe(method(setAttributedPlaceholder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedPlaceholder(
             &self,
             attributed_placeholder: Option<&NSAttributedString>,
         );
 
-        #[method(clearsOnBeginEditing)]
+        #[unsafe(method(clearsOnBeginEditing))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearsOnBeginEditing(&self) -> bool;
 
         /// Setter for [`clearsOnBeginEditing`][Self::clearsOnBeginEditing].
-        #[method(setClearsOnBeginEditing:)]
+        #[unsafe(method(setClearsOnBeginEditing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClearsOnBeginEditing(&self, clears_on_begin_editing: bool);
 
-        #[method(adjustsFontSizeToFitWidth)]
+        #[unsafe(method(adjustsFontSizeToFitWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustsFontSizeToFitWidth(&self) -> bool;
 
         /// Setter for [`adjustsFontSizeToFitWidth`][Self::adjustsFontSizeToFitWidth].
-        #[method(setAdjustsFontSizeToFitWidth:)]
+        #[unsafe(method(setAdjustsFontSizeToFitWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdjustsFontSizeToFitWidth(&self, adjusts_font_size_to_fit_width: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(minimumFontSize)]
+        #[unsafe(method(minimumFontSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumFontSize(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumFontSize`][Self::minimumFontSize].
-        #[method(setMinimumFontSize:)]
+        #[unsafe(method(setMinimumFontSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumFontSize(&self, minimum_font_size: CGFloat);
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITextFieldDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -349,169 +349,169 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIImage")]
-        #[method(background)]
+        #[unsafe(method(background))]
         #[unsafe(method_family = none)]
         pub unsafe fn background(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`background`][Self::background].
-        #[method(setBackground:)]
+        #[unsafe(method(setBackground:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackground(&self, background: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
-        #[method(disabledBackground)]
+        #[unsafe(method(disabledBackground))]
         #[unsafe(method_family = none)]
         pub unsafe fn disabledBackground(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`disabledBackground`][Self::disabledBackground].
-        #[method(setDisabledBackground:)]
+        #[unsafe(method(setDisabledBackground:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisabledBackground(&self, disabled_background: Option<&UIImage>);
 
-        #[method(isEditing)]
+        #[unsafe(method(isEditing))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEditing(&self) -> bool;
 
-        #[method(allowsEditingTextAttributes)]
+        #[unsafe(method(allowsEditingTextAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsEditingTextAttributes(&self) -> bool;
 
         /// Setter for [`allowsEditingTextAttributes`][Self::allowsEditingTextAttributes].
-        #[method(setAllowsEditingTextAttributes:)]
+        #[unsafe(method(setAllowsEditingTextAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsEditingTextAttributes(&self, allows_editing_text_attributes: bool);
 
-        #[method(typingAttributes)]
+        #[unsafe(method(typingAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn typingAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         /// Setter for [`typingAttributes`][Self::typingAttributes].
-        #[method(setTypingAttributes:)]
+        #[unsafe(method(setTypingAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTypingAttributes(
             &self,
             typing_attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         );
 
-        #[method(clearButtonMode)]
+        #[unsafe(method(clearButtonMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearButtonMode(&self) -> UITextFieldViewMode;
 
         /// Setter for [`clearButtonMode`][Self::clearButtonMode].
-        #[method(setClearButtonMode:)]
+        #[unsafe(method(setClearButtonMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClearButtonMode(&self, clear_button_mode: UITextFieldViewMode);
 
-        #[method(leftView)]
+        #[unsafe(method(leftView))]
         #[unsafe(method_family = none)]
         pub unsafe fn leftView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`leftView`][Self::leftView].
-        #[method(setLeftView:)]
+        #[unsafe(method(setLeftView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeftView(&self, left_view: Option<&UIView>);
 
-        #[method(leftViewMode)]
+        #[unsafe(method(leftViewMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn leftViewMode(&self) -> UITextFieldViewMode;
 
         /// Setter for [`leftViewMode`][Self::leftViewMode].
-        #[method(setLeftViewMode:)]
+        #[unsafe(method(setLeftViewMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeftViewMode(&self, left_view_mode: UITextFieldViewMode);
 
-        #[method(rightView)]
+        #[unsafe(method(rightView))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`rightView`][Self::rightView].
-        #[method(setRightView:)]
+        #[unsafe(method(setRightView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRightView(&self, right_view: Option<&UIView>);
 
-        #[method(rightViewMode)]
+        #[unsafe(method(rightViewMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightViewMode(&self) -> UITextFieldViewMode;
 
         /// Setter for [`rightViewMode`][Self::rightViewMode].
-        #[method(setRightViewMode:)]
+        #[unsafe(method(setRightViewMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRightViewMode(&self, right_view_mode: UITextFieldViewMode);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(borderRectForBounds:)]
+        #[unsafe(method(borderRectForBounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderRectForBounds(&self, bounds: CGRect) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(textRectForBounds:)]
+        #[unsafe(method(textRectForBounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textRectForBounds(&self, bounds: CGRect) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(placeholderRectForBounds:)]
+        #[unsafe(method(placeholderRectForBounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderRectForBounds(&self, bounds: CGRect) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(editingRectForBounds:)]
+        #[unsafe(method(editingRectForBounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn editingRectForBounds(&self, bounds: CGRect) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(clearButtonRectForBounds:)]
+        #[unsafe(method(clearButtonRectForBounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearButtonRectForBounds(&self, bounds: CGRect) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(leftViewRectForBounds:)]
+        #[unsafe(method(leftViewRectForBounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn leftViewRectForBounds(&self, bounds: CGRect) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(rightViewRectForBounds:)]
+        #[unsafe(method(rightViewRectForBounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightViewRectForBounds(&self, bounds: CGRect) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "This method is no longer called."]
-        #[method(drawTextInRect:)]
+        #[unsafe(method(drawTextInRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawTextInRect(&self, rect: CGRect);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(drawPlaceholderInRect:)]
+        #[unsafe(method(drawPlaceholderInRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawPlaceholderInRect(&self, rect: CGRect);
 
-        #[method(inputView)]
+        #[unsafe(method(inputView))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`inputView`][Self::inputView].
-        #[method(setInputView:)]
+        #[unsafe(method(setInputView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputView(&self, input_view: Option<&UIView>);
 
-        #[method(inputAccessoryView)]
+        #[unsafe(method(inputAccessoryView))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputAccessoryView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`inputAccessoryView`][Self::inputAccessoryView].
-        #[method(setInputAccessoryView:)]
+        #[unsafe(method(setInputAccessoryView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputAccessoryView(&self, input_accessory_view: Option<&UIView>);
 
-        #[method(clearsOnInsertion)]
+        #[unsafe(method(clearsOnInsertion))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearsOnInsertion(&self) -> bool;
 
         /// Setter for [`clearsOnInsertion`][Self::clearsOnInsertion].
-        #[method(setClearsOnInsertion:)]
+        #[unsafe(method(setClearsOnInsertion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClearsOnInsertion(&self, clears_on_insertion: bool);
     }
@@ -522,11 +522,11 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITextField {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -539,7 +539,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
-        #[method(initWithFrame:primaryAction:)]
+        #[unsafe(method(initWithFrame:primaryAction:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,
@@ -553,11 +553,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITextField {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -603,12 +603,12 @@ extern_methods!(
     /// UIInteractionStateRestorable
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITextField {
-        #[method(interactionState)]
+        #[unsafe(method(interactionState))]
         #[unsafe(method_family = none)]
         pub unsafe fn interactionState(&self) -> Retained<AnyObject>;
 
         /// Setter for [`interactionState`][Self::interactionState].
-        #[method(setInteractionState:)]
+        #[unsafe(method(setInteractionState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInteractionState(&self, interaction_state: &AnyObject);
     }
@@ -618,7 +618,7 @@ extern_methods!(
     /// UITextField
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIView {
-        #[method(endEditing:)]
+        #[unsafe(method(endEditing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endEditing(&self, force: bool) -> bool;
     }
@@ -629,31 +629,31 @@ extern_protocol!(
     pub unsafe trait UITextFieldDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(textFieldShouldBeginEditing:)]
+        #[unsafe(method(textFieldShouldBeginEditing:))]
         #[unsafe(method_family = none)]
         unsafe fn textFieldShouldBeginEditing(&self, text_field: &UITextField) -> bool;
 
         #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(textFieldDidBeginEditing:)]
+        #[unsafe(method(textFieldDidBeginEditing:))]
         #[unsafe(method_family = none)]
         unsafe fn textFieldDidBeginEditing(&self, text_field: &UITextField);
 
         #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(textFieldShouldEndEditing:)]
+        #[unsafe(method(textFieldShouldEndEditing:))]
         #[unsafe(method_family = none)]
         unsafe fn textFieldShouldEndEditing(&self, text_field: &UITextField) -> bool;
 
         #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(textFieldDidEndEditing:)]
+        #[unsafe(method(textFieldDidEndEditing:))]
         #[unsafe(method_family = none)]
         unsafe fn textFieldDidEndEditing(&self, text_field: &UITextField);
 
         #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(textFieldDidEndEditing:reason:)]
+        #[unsafe(method(textFieldDidEndEditing:reason:))]
         #[unsafe(method_family = none)]
         unsafe fn textFieldDidEndEditing_reason(
             &self,
@@ -663,7 +663,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(textField:shouldChangeCharactersInRange:replacementString:)]
+        #[unsafe(method(textField:shouldChangeCharactersInRange:replacementString:))]
         #[unsafe(method_family = none)]
         unsafe fn textField_shouldChangeCharactersInRange_replacementString(
             &self,
@@ -674,19 +674,19 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(textFieldDidChangeSelection:)]
+        #[unsafe(method(textFieldDidChangeSelection:))]
         #[unsafe(method_family = none)]
         unsafe fn textFieldDidChangeSelection(&self, text_field: &UITextField);
 
         #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(textFieldShouldClear:)]
+        #[unsafe(method(textFieldShouldClear:))]
         #[unsafe(method_family = none)]
         unsafe fn textFieldShouldClear(&self, text_field: &UITextField) -> bool;
 
         #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method(textFieldShouldReturn:)]
+        #[unsafe(method(textFieldShouldReturn:))]
         #[unsafe(method_family = none)]
         unsafe fn textFieldShouldReturn(&self, text_field: &UITextField) -> bool;
 
@@ -710,7 +710,7 @@ extern_protocol!(
         /// Returns: Return a UIMenu describing the desired menu hierarchy. Return
         /// `nil`to present the default system menu.
         #[optional]
-        #[method(textField:editMenuForCharactersInRange:suggestedActions:)]
+        #[unsafe(method(textField:editMenuForCharactersInRange:suggestedActions:))]
         #[unsafe(method_family = none)]
         unsafe fn textField_editMenuForCharactersInRange_suggestedActions(
             &self,
@@ -732,7 +732,7 @@ extern_protocol!(
         ///
         /// Parameter `animator`: Appearance animator. Add animations to this object to run them alongside the appearance transition.
         #[optional]
-        #[method(textField:willPresentEditMenuWithAnimator:)]
+        #[unsafe(method(textField:willPresentEditMenuWithAnimator:))]
         #[unsafe(method_family = none)]
         unsafe fn textField_willPresentEditMenuWithAnimator(
             &self,
@@ -753,7 +753,7 @@ extern_protocol!(
         ///
         /// Parameter `animator`: Dismissal animator. Add animations to this object to run them alongside the dismissal transition.
         #[optional]
-        #[method(textField:willDismissEditMenuWithAnimator:)]
+        #[unsafe(method(textField:willDismissEditMenuWithAnimator:))]
         #[unsafe(method_family = none)]
         unsafe fn textField_willDismissEditMenuWithAnimator(
             &self,

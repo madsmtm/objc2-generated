@@ -28,7 +28,7 @@ extern_methods!(
     unsafe impl LAEnvironmentMechanismCompanion {
         #[cfg(feature = "LACompanionType")]
         /// Type of the companion.
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> LACompanionType;
 
@@ -40,7 +40,7 @@ extern_methods!(
         /// `stateHash`is not
         /// `nil`and
         /// it changes whenever the set of paired companions of this type is changed.
-        #[method(stateHash)]
+        #[unsafe(method(stateHash))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateHash(&self) -> Option<Retained<NSData>>;
     }
@@ -51,12 +51,12 @@ extern_methods!(
     #[cfg(feature = "LAEnvironmentMechanism")]
     unsafe impl LAEnvironmentMechanismCompanion {
         /// Clients should only consume environment mechanisms..
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The Clients should only consume environment mechanisms..
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

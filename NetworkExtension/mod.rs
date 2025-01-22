@@ -97,7 +97,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A block that is called when the process of opening flow is complete. A nil value passed to this block indicates that the flow was opened successfully. A non-nil NSError value indicates that the flow failed to open successfully.
         #[deprecated]
-        #[method(openWithLocalEndpoint:completionHandler:)]
+        #[unsafe(method(openWithLocalEndpoint:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openWithLocalEndpoint_completionHandler(
             &self,
@@ -108,30 +108,30 @@ extern_methods!(
         /// This function is used by an NEProvider implementation to indicate that it does not want to receive any more data from the flow.
         ///
         /// Parameter `error`: An error in NEAppProxyErrorDomain that should be passed to the flow's source application.
-        #[method(closeReadWithError:)]
+        #[unsafe(method(closeReadWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn closeReadWithError(&self, error: Option<&NSError>);
 
         /// This functions is used by an NEProvider implementation to indicate that it does not have any more data to write to the flow.
         ///
         /// Parameter `error`: An error in NEAppProxyErrorDomain that should be passed to the flow's source application.
-        #[method(closeWriteWithError:)]
+        #[unsafe(method(closeWriteWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn closeWriteWithError(&self, error: Option<&NSError>);
 
         /// An NEFlowMetaData object containing meta data for the flow.
-        #[method(metaData)]
+        #[unsafe(method(metaData))]
         #[unsafe(method_family = none)]
         pub unsafe fn metaData(&self) -> Retained<NEFlowMetaData>;
 
         /// If the flow was created by passing a hostname to a "connect by name" API such as NSURLSession or Network.framework, this property is set to the
         /// remote hostname.
-        #[method(remoteHostname)]
+        #[unsafe(method(remoteHostname))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteHostname(&self) -> Option<Retained<NSString>>;
 
         /// YES if the flow was bound by the application to a specific interface (contained in the networkInterface property), NO otherwise.
-        #[method(isBound)]
+        #[unsafe(method(isBound))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBound(&self) -> bool;
     }
@@ -140,11 +140,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEAppProxyFlow {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -225,7 +225,7 @@ extern_methods!(
         /// This function is called by the framework when the system is about to go to sleep. Subclass developers can override this method to implement custom behavior such as closing connections or pausing some network activity.
         ///
         /// Parameter `completionHandler`: When the method is finished handling the sleep event it must execute this completion handler.
-        #[method(sleepWithCompletionHandler:)]
+        #[unsafe(method(sleepWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sleepWithCompletionHandler(
             &self,
@@ -233,7 +233,7 @@ extern_methods!(
         );
 
         /// This function is called by the framework immediately after the system wakes up from sleep. Subclass developers can override this method to implement custom behavior such as re-establishing connections or resuming some network activity.
-        #[method(wake)]
+        #[unsafe(method(wake))]
         #[unsafe(method_family = none)]
         pub unsafe fn wake(&self);
 
@@ -249,7 +249,7 @@ extern_methods!(
         ///
         /// Returns: An NWTCPConnection object.
         #[deprecated = "Use nw_connection_t in Network framework instead"]
-        #[method(createTCPConnectionToEndpoint:enableTLS:TLSParameters:delegate:)]
+        #[unsafe(method(createTCPConnectionToEndpoint:enableTLS:TLSParameters:delegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createTCPConnectionToEndpoint_enableTLS_TLSParameters_delegate(
             &self,
@@ -267,7 +267,7 @@ extern_methods!(
         ///
         /// Returns: An NWUDPSession object.
         #[deprecated = "Use nw_connection_t in Network framework instead"]
-        #[method(createUDPSessionToEndpoint:fromEndpoint:)]
+        #[unsafe(method(createUDPSessionToEndpoint:fromEndpoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createUDPSessionToEndpoint_fromEndpoint(
             &self,
@@ -282,7 +282,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A block that is executed when the user acknowledges the message. If this method is called on a NEFilterDataProvider instance or the message cannot be displayed, then the completion handler block will be executed immediately with success parameter set to NO. If the message was successfully displayed to the user, then the completion handler block is executed with the success parameter set to YES when the user dismisses the message.
         #[deprecated]
-        #[method(displayMessage:completionHandler:)]
+        #[unsafe(method(displayMessage:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayMessage_completionHandler(
             &self,
@@ -335,13 +335,13 @@ extern_methods!(
         /// >
         ///
         /// This method should be called as early as possible after the system extension starts.
-        #[method(startSystemExtensionMode)]
+        #[unsafe(method(startSystemExtensionMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn startSystemExtensionMode();
 
         /// The current default path for connections created by the provider. Use KVO to watch for network changes.
         #[deprecated = "Use nw_path_monitor_t in Network framework instead"]
-        #[method(defaultPath)]
+        #[unsafe(method(defaultPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultPath(&self) -> Option<Retained<NWPath>>;
     }
@@ -350,11 +350,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEProvider {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -434,7 +434,7 @@ extern_methods!(
         /// Parameter `messageData`: An NSData object containing the message sent by the container app.
         ///
         /// Parameter `completionHandler`: A block that the method can execute to send a response to the container app. If this parameter is non-nil then the method implementation should always execute the block. If this parameter is nil then the method implementation should treat this as an indication that the container app is not expecting a response.
-        #[method(handleAppMessage:completionHandler:)]
+        #[unsafe(method(handleAppMessage:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleAppMessage_completionHandler(
             &self,
@@ -448,7 +448,7 @@ extern_methods!(
         /// Parameter `tunnelNetworkSettings`: An NETunnelNetworkSettings object containing all of the desired network settings for the tunnel. Pass nil to clear out the current network settings.
         ///
         /// Parameter `completionHandler`: A block that will be called by the framework when the process of setting or clearing the network settings is complete. If an error occurred during the process of setting or clearing the IP network settings then a non-nill NSError object will be passed to this block containing error details.
-        #[method(setTunnelNetworkSettings:completionHandler:)]
+        #[unsafe(method(setTunnelNetworkSettings:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTunnelNetworkSettings_completionHandler(
             &self,
@@ -457,27 +457,27 @@ extern_methods!(
         );
 
         /// An NEVPNProtocol object containing the provider's current configuration. The value of this property may change during the lifetime of the tunnel provided by this NETunnelProvider, KVO can be used to detect when changes occur.  For different protocol types, this property will contain the corresponding subclass.   For NEVPNProtocolTypePlugin protocol type, this property will contain the NETunnelProviderProtocol subclass.  For NEVPNProtocolTypeIKEv2 protocol type, this property will contain the NEVPNProtocolIKEv2 subclass.
-        #[method(protocolConfiguration)]
+        #[unsafe(method(protocolConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn protocolConfiguration(&self) -> Retained<NEVPNProtocol>;
 
         /// An array of NEAppRule objects specifying which applications are currently being routed through the tunnel provided by this NETunnelProvider. If application-based routing is not enabled for the tunnel, then this property is set to nil.
-        #[method(appRules)]
+        #[unsafe(method(appRules))]
         #[unsafe(method_family = none)]
         pub unsafe fn appRules(&self) -> Option<Retained<NSArray<NEAppRule>>>;
 
         /// The method by which network traffic is routed to the tunnel. The default is NETunnelProviderRoutingMethodDestinationIP.
-        #[method(routingMethod)]
+        #[unsafe(method(routingMethod))]
         #[unsafe(method_family = none)]
         pub unsafe fn routingMethod(&self) -> NETunnelProviderRoutingMethod;
 
         /// A flag that indicates to the framework if this NETunnelProvider is currently re-establishing the tunnel. Setting this flag will cause the session status visible to the user to change to "Reasserting". Clearing this flag will change the user-visible status of the session back to "Connected". Setting and clearing this flag only has an effect if the session is in the "Connected" state.
-        #[method(reasserting)]
+        #[unsafe(method(reasserting))]
         #[unsafe(method_family = none)]
         pub unsafe fn reasserting(&self) -> bool;
 
         /// Setter for [`reasserting`][Self::reasserting].
-        #[method(setReasserting:)]
+        #[unsafe(method(setReasserting:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReasserting(&self, reasserting: bool);
     }
@@ -486,11 +486,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NETunnelProvider {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -517,7 +517,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary containing keys and values passed by the provider's containing app. If the containing app did not start the proxy then this parameter will be nil.
         ///
         /// Parameter `completionHandler`: A block that must be called when the process of starting the proxy is complete. If the proxy cannot be started then the subclass' implementation of this method must pass a non-nil NSError object to this block. A value of nil passed to the completion handler indicates that the proxy was successfully started.
-        #[method(startProxyWithOptions:completionHandler:)]
+        #[unsafe(method(startProxyWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startProxyWithOptions_completionHandler(
             &self,
@@ -531,7 +531,7 @@ extern_methods!(
         /// Parameter `reason`: An NEProviderStopReason indicating why the proxy is being stopped.
         ///
         /// Parameter `completionHandler`: A block that must be called when the proxy is completely stopped.
-        #[method(stopProxyWithReason:completionHandler:)]
+        #[unsafe(method(stopProxyWithReason:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopProxyWithReason_completionHandler(
             &self,
@@ -542,7 +542,7 @@ extern_methods!(
         /// This function is called by proxy provider implementations to stop the proxy when a network error is encountered that renders the proxy no longer viable. Subclasses should not override this method.
         ///
         /// Parameter `error`: An NSError object containing details about the error that the proxy provider implementation encountered.
-        #[method(cancelProxyWithError:)]
+        #[unsafe(method(cancelProxyWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelProxyWithError(&self, error: Option<&NSError>);
 
@@ -551,7 +551,7 @@ extern_methods!(
         /// Parameter `flow`: The new flow
         ///
         /// Returns: YES if the proxy implementation has retained the flow and intends to handle the flow data. NO if the proxy implementation has not retained the flow and will not handle the flow data. In NETransparentProxyProvider sub-classes returning NO causes the flow to be handled by the networking stack without any proxy. In all other cases the flow is terminated when NO is returned.
-        #[method(handleNewFlow:)]
+        #[unsafe(method(handleNewFlow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleNewFlow(&self, flow: &NEAppProxyFlow) -> bool;
 
@@ -567,7 +567,7 @@ extern_methods!(
         ///
         /// Returns: YES if the proxy implementation has retained the flow and intends to handle the flow data. NO if the proxy implementation has not retained the flow and will not handle the flow data. In NETransparentProxyProvider sub-classes returning NO causes the flow to be handled by the networking stack without any proxy. In all other cases the flow is terminated when NO is returned.
         #[deprecated]
-        #[method(handleNewUDPFlow:initialRemoteEndpoint:)]
+        #[unsafe(method(handleNewUDPFlow:initialRemoteEndpoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleNewUDPFlow_initialRemoteEndpoint(
             &self,
@@ -580,11 +580,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEAppProxyProvider {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -648,7 +648,7 @@ unsafe impl NSObjectProtocol for NEVPNManager {}
 extern_methods!(
     unsafe impl NEVPNManager {
         /// Returns: The singleton NEVPNManager object for the calling process.
-        #[method(sharedManager)]
+        #[unsafe(method(sharedManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedManager() -> Retained<NEVPNManager>;
 
@@ -656,7 +656,7 @@ extern_methods!(
         /// This function loads the current VPN configuration from the caller's VPN preferences.
         ///
         /// Parameter `completionHandler`: A block that will be called on the main thread when the load operation is completed. The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        #[method(loadFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(loadFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
@@ -667,7 +667,7 @@ extern_methods!(
         /// This function removes the VPN configuration from the caller's VPN preferences. If the VPN is enabled, has VPN On Demand enabled, and has VPN On Demand rules, the VPN is disabled and the VPN On Demand rules are de-activated.
         ///
         /// Parameter `completionHandler`: A block that will be called on the main thread when the remove operation is completed. The NSError passed to this block will be nil if the remove operation succeeded, non-nil otherwise.
-        #[method(removeFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(removeFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
@@ -679,7 +679,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: A block that will be called on the main thread when the save operation is completed. The NSError passed to this block will be nil if the save operation succeeded, non-nil otherwise.
-        #[method(saveToPreferencesWithCompletionHandler:)]
+        #[unsafe(method(saveToPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
@@ -690,59 +690,59 @@ extern_methods!(
         /// This function sets an authorization object that can be used to obtain the authorization rights necessary to modify the system VPN configuration.
         ///
         /// Parameter `authorization`: The AuthorizationRef to use to obtain rights.
-        #[method(setAuthorization:)]
+        #[unsafe(method(setAuthorization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthorization(&self, authorization: AuthorizationRef);
 
         /// An array of NEOnDemandRule objects.
-        #[method(onDemandRules)]
+        #[unsafe(method(onDemandRules))]
         #[unsafe(method_family = none)]
         pub unsafe fn onDemandRules(&self) -> Option<Retained<NSArray<NEOnDemandRule>>>;
 
         /// Setter for [`onDemandRules`][Self::onDemandRules].
-        #[method(setOnDemandRules:)]
+        #[unsafe(method(setOnDemandRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOnDemandRules(&self, on_demand_rules: Option<&NSArray<NEOnDemandRule>>);
 
         /// Toggles VPN On Demand.
-        #[method(isOnDemandEnabled)]
+        #[unsafe(method(isOnDemandEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isOnDemandEnabled(&self) -> bool;
 
         /// Setter for [`isOnDemandEnabled`][Self::isOnDemandEnabled].
-        #[method(setOnDemandEnabled:)]
+        #[unsafe(method(setOnDemandEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOnDemandEnabled(&self, on_demand_enabled: bool);
 
         /// A string containing a description of the VPN.
-        #[method(localizedDescription)]
+        #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedDescription`][Self::localizedDescription].
-        #[method(setLocalizedDescription:)]
+        #[unsafe(method(setLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
 
         /// An NEVPNProtocol object containing the protocol-specific portion of the VPN configuration.
         #[deprecated]
-        #[method(protocol)]
+        #[unsafe(method(protocol))]
         #[unsafe(method_family = none)]
         pub unsafe fn protocol(&self) -> Option<Retained<NEVPNProtocol>>;
 
         /// Setter for [`protocol`][Self::protocol].
         #[deprecated]
-        #[method(setProtocol:)]
+        #[unsafe(method(setProtocol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProtocol(&self, protocol: Option<&NEVPNProtocol>);
 
         /// An NEVPNProtocol object containing the protocol-specific portion of the VPN configuration.
-        #[method(protocolConfiguration)]
+        #[unsafe(method(protocolConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn protocolConfiguration(&self) -> Option<Retained<NEVPNProtocol>>;
 
         /// Setter for [`protocolConfiguration`][Self::protocolConfiguration].
-        #[method(setProtocolConfiguration:)]
+        #[unsafe(method(setProtocolConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProtocolConfiguration(
             &self,
@@ -750,17 +750,17 @@ extern_methods!(
         );
 
         /// The NEVPNConnection object used for controlling the VPN tunnel.
-        #[method(connection)]
+        #[unsafe(method(connection))]
         #[unsafe(method_family = none)]
         pub unsafe fn connection(&self) -> Retained<NEVPNConnection>;
 
         /// Toggles the enabled status of the VPN. Setting this property will disable VPN configurations of other apps. This property will be set to NO  when other VPN configurations are enabled.
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
     }
@@ -769,11 +769,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEVPNManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -798,7 +798,7 @@ extern_methods!(
         /// This function asynchronously reads all of the NETunnelProvider configurations created by the calling app that have previously been saved to disk and returns them as NETunnelProviderManager objects.
         ///
         /// Parameter `completionHandler`: A block that takes an array NETunnelProviderManager objects. The array passed to the block may be empty if no NETunnelProvider configurations were successfully read from the disk.  The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        #[method(loadAllFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(loadAllFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
             completion_handler: &block2::Block<
@@ -807,89 +807,89 @@ extern_methods!(
         );
 
         /// Create a NETunnelProviderManager instance that is used to manage a per-app VPN configuration.
-        #[method(forPerAppVPN)]
+        #[unsafe(method(forPerAppVPN))]
         #[unsafe(method_family = none)]
         pub unsafe fn forPerAppVPN() -> Retained<Self>;
 
         /// This function returns an array of NEAppRule objects.
-        #[method(copyAppRules)]
+        #[unsafe(method(copyAppRules))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyAppRules(&self) -> Option<Retained<NSArray<NEAppRule>>>;
 
         /// The method by which network traffic is routed to the tunnel. The default is NETunnelProviderRoutingMethodDestinationIP.
-        #[method(routingMethod)]
+        #[unsafe(method(routingMethod))]
         #[unsafe(method_family = none)]
         pub unsafe fn routingMethod(&self) -> NETunnelProviderRoutingMethod;
 
         /// An array of domain strings. Only applies to per-app VPN configurations. When the per-app VPN is enabled and the user navigates in Safari to a web site within one of these domains,
         /// the web site network traffic is routed through the per-app VPN.
-        #[method(safariDomains)]
+        #[unsafe(method(safariDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn safariDomains(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`safariDomains`][Self::safariDomains].
-        #[method(setSafariDomains:)]
+        #[unsafe(method(setSafariDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSafariDomains(&self, safari_domains: &NSArray<NSString>);
 
         /// An array of domain strings. Only applies to per-app VPN configurations. When the per-app VPN is enabled, connections from the Mail app to mail servers within
         /// one of these domains are routed through the per-app VPN.
-        #[method(mailDomains)]
+        #[unsafe(method(mailDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn mailDomains(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`mailDomains`][Self::mailDomains].
-        #[method(setMailDomains:)]
+        #[unsafe(method(setMailDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMailDomains(&self, mail_domains: &NSArray<NSString>);
 
         /// An array of domain strings. Only applies to per-app VPN configurations. When the per-app VPN is enabled, connections from the Calendar app to calendar servers within one of
         /// these domains are routed through the per-app VPN.
-        #[method(calendarDomains)]
+        #[unsafe(method(calendarDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn calendarDomains(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`calendarDomains`][Self::calendarDomains].
-        #[method(setCalendarDomains:)]
+        #[unsafe(method(setCalendarDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCalendarDomains(&self, calendar_domains: &NSArray<NSString>);
 
         /// An array of domain strings. Only applies to per-app VPN configurations. When the per-app VPN is enabled, connections from the Contacts app to contacts servers within one of these
         /// domains are routed through the per-app VPN.
-        #[method(contactsDomains)]
+        #[unsafe(method(contactsDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn contactsDomains(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`contactsDomains`][Self::contactsDomains].
-        #[method(setContactsDomains:)]
+        #[unsafe(method(setContactsDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContactsDomains(&self, contacts_domains: &NSArray<NSString>);
 
-        #[method(appRules)]
+        #[unsafe(method(appRules))]
         #[unsafe(method_family = none)]
         pub unsafe fn appRules(&self) -> Retained<NSArray<NEAppRule>>;
 
         /// Setter for [`appRules`][Self::appRules].
-        #[method(setAppRules:)]
+        #[unsafe(method(setAppRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAppRules(&self, app_rules: &NSArray<NEAppRule>);
 
         /// per-app VPN.
-        #[method(excludedDomains)]
+        #[unsafe(method(excludedDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludedDomains(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`excludedDomains`][Self::excludedDomains].
-        #[method(setExcludedDomains:)]
+        #[unsafe(method(setExcludedDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedDomains(&self, excluded_domains: &NSArray<NSString>);
 
-        #[method(associatedDomains)]
+        #[unsafe(method(associatedDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn associatedDomains(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`associatedDomains`][Self::associatedDomains].
-        #[method(setAssociatedDomains:)]
+        #[unsafe(method(setAssociatedDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAssociatedDomains(&self, associated_domains: &NSArray<NSString>);
     }
@@ -898,11 +898,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NETunnelProviderManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -927,7 +927,7 @@ extern_methods!(
         /// This function asynchronously reads all of the NEAppProxy configurations associated with the calling app that have previously been saved to disk and returns them as NEAppProxyProviderManager objects.
         ///
         /// Parameter `completionHandler`: A block that takes an array NEAppProxyProviderManager objects. The array passed to the block may be empty if no NETunnelProvider configurations were successfully read from the disk.  The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        #[method(loadAllFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(loadAllFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
             completion_handler: &block2::Block<
@@ -941,7 +941,7 @@ extern_methods!(
     /// Methods declared on superclass `NETunnelProviderManager`
     unsafe impl NEAppProxyProviderManager {
         /// Create a NETunnelProviderManager instance that is used to manage a per-app VPN configuration.
-        #[method(forPerAppVPN)]
+        #[unsafe(method(forPerAppVPN))]
         #[unsafe(method_family = none)]
         pub unsafe fn forPerAppVPN() -> Retained<Self>;
     }
@@ -950,11 +950,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEAppProxyProviderManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -981,7 +981,7 @@ extern_methods!(
         /// Read data from the flow.
         ///
         /// Parameter `completionHandler`: A block that will be executed when some data is read from the flow. The block is passed either the data that was read or a non-nil error if an error occurred. If data has a length of 0 then no data can be subsequently read from the flow. The completion handler is only called for the single read operation that was initiated by calling this method. If the caller wants to read more data then it should call this method again to schedule another read operation and another execution of the completion handler block.
-        #[method(readDataWithCompletionHandler:)]
+        #[unsafe(method(readDataWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readDataWithCompletionHandler(
             &self,
@@ -994,7 +994,7 @@ extern_methods!(
         /// Parameter `data`: The data to write.
         ///
         /// Parameter `completionHandler`: A block that will be executed when the data is written into the associated socket's receive buffer. The caller should use this callback as an indication that it is possible to write more data to the flow without using up excessive buffer memory. If an error occurs while writing the data then a non-nil NSError object is passed to the block.
-        #[method(writeData:withCompletionHandler:)]
+        #[unsafe(method(writeData:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeData_withCompletionHandler(
             &self,
@@ -1004,7 +1004,7 @@ extern_methods!(
 
         /// An NWEndpoint object containing information about the intended remote endpoint of the flow.
         #[deprecated]
-        #[method(remoteEndpoint)]
+        #[unsafe(method(remoteEndpoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteEndpoint(&self) -> Retained<NWEndpoint>;
     }
@@ -1013,11 +1013,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEAppProxyTCPFlow {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1045,7 +1045,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A block that will be executed when datagrams have been read from the flow. The block takes the datagrams that were read, the destination endpoints of the datagrams, and an NSError. If an error occurred while reading then the error parameter will be non-nil.
         #[deprecated]
-        #[method(readDatagramsWithCompletionHandler:)]
+        #[unsafe(method(readDatagramsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readDatagramsWithCompletionHandler(
             &self,
@@ -1063,7 +1063,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A block that will be executed when the datagrams have been written to the corresponding socket's receive buffer.
         #[deprecated]
-        #[method(writeDatagrams:sentByEndpoints:completionHandler:)]
+        #[unsafe(method(writeDatagrams:sentByEndpoints:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeDatagrams_sentByEndpoints_completionHandler(
             &self,
@@ -1074,7 +1074,7 @@ extern_methods!(
 
         /// An NWEndpoint object containing the local endpoint of the flow's corresponding socket.
         #[deprecated]
-        #[method(localEndpoint)]
+        #[unsafe(method(localEndpoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn localEndpoint(&self) -> Option<Retained<NWEndpoint>>;
     }
@@ -1083,11 +1083,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEAppProxyUDPFlow {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1123,7 +1123,7 @@ extern_methods!(
         /// Initializes a newly-allocated NEAppRule object.
         ///
         /// Parameter `signingIdentifier`: The signing identifier of the executable that matches the rule.
-        #[method(initWithSigningIdentifier:)]
+        #[unsafe(method(initWithSigningIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSigningIdentifier(
             this: Allocated<Self>,
@@ -1135,7 +1135,7 @@ extern_methods!(
         /// Parameter `signingIdentifier`: The signing identifier of the executable that matches the rule.
         ///
         /// Parameter `designatedRequirement`: The designated requirement of the executable that matches the rule.
-        #[method(initWithSigningIdentifier:designatedRequirement:)]
+        #[unsafe(method(initWithSigningIdentifier:designatedRequirement:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSigningIdentifier_designatedRequirement(
             this: Allocated<Self>,
@@ -1144,32 +1144,32 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// A string containing a signing identifier. If the code signature of the executable being evaluated has a signing identifier equal to this string and all other conditions of the rule match, then the rule matches.
-        #[method(matchSigningIdentifier)]
+        #[unsafe(method(matchSigningIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchSigningIdentifier(&self) -> Retained<NSString>;
 
         /// A string containing a designated requirement. If the code signature of the exectuable being evaluated has a designated requirement equal to this string and all other conditions of the rule match, then the rule matches. This property is required on Mac OS X.
-        #[method(matchDesignatedRequirement)]
+        #[unsafe(method(matchDesignatedRequirement))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchDesignatedRequirement(&self) -> Retained<NSString>;
 
         /// A string containing a file system path. If the file system path of the executable being evaluated is equal to this string and all other conditions of the rule match, then the rule matches. This property is optional.
-        #[method(matchPath)]
+        #[unsafe(method(matchPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`matchPath`][Self::matchPath].
-        #[method(setMatchPath:)]
+        #[unsafe(method(setMatchPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchPath(&self, match_path: Option<&NSString>);
 
         /// An array of strings. This property is actually read-only. If the destination host of the network traffic being evaluated has a suffix equal to one of the strings in this array and all other conditions of the rule match, then the rule matches. This property is optional.
-        #[method(matchDomains)]
+        #[unsafe(method(matchDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`matchDomains`][Self::matchDomains].
-        #[method(setMatchDomains:)]
+        #[unsafe(method(setMatchDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray>);
 
@@ -1177,12 +1177,12 @@ extern_methods!(
         /// For example, to match network traffic generated by the "curl" command line tool when the tool is run from Terminal.app, create an NEAppRule for Terminal.app and set the app rule's matchTools property to an array that
         /// contains an NEAppRule for the "curl" command line tool.
         /// Set this property to nil (which is the default) to match all network traffic generated by the matching app and all helper tool processes spawned by the matching app.
-        #[method(matchTools)]
+        #[unsafe(method(matchTools))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchTools(&self) -> Option<Retained<NSArray<NEAppRule>>>;
 
         /// Setter for [`matchTools`][Self::matchTools].
-        #[method(setMatchTools:)]
+        #[unsafe(method(setMatchTools:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchTools(&self, match_tools: Option<&NSArray<NEAppRule>>);
     }
@@ -1191,11 +1191,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEAppRule {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1255,7 +1255,7 @@ unsafe impl NSObjectProtocol for NEDNSProxyManager {}
 extern_methods!(
     unsafe impl NEDNSProxyManager {
         /// Returns: The singleton NEDNSProxyManager object for the calling process.
-        #[method(sharedManager)]
+        #[unsafe(method(sharedManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedManager() -> Retained<NEDNSProxyManager>;
 
@@ -1263,7 +1263,7 @@ extern_methods!(
         /// This function loads the current DNS proxy configuration from the caller's DNS proxy preferences.
         ///
         /// Parameter `completionHandler`: A block that will be called when the load operation is completed. The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        #[method(loadFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(loadFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
@@ -1274,7 +1274,7 @@ extern_methods!(
         /// This function removes the DNS proxy configuration from the caller's DNS proxy preferences. If the DNS proxy is enabled, the DNS proxy becomes disabled.
         ///
         /// Parameter `completionHandler`: A block that will be called when the remove operation is completed. The NSError passed to this block will be nil if the remove operation succeeded, non-nil otherwise.
-        #[method(removeFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(removeFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
@@ -1285,7 +1285,7 @@ extern_methods!(
         /// This function saves the DNS proxy configuration in the caller's DNS proxy preferences. If the DNS proxy is enabled, it will become active.
         ///
         /// Parameter `completionHandler`: A block that will be called when the save operation is completed. The NSError passed to this block will be nil if the save operation succeeded, non-nil otherwise.
-        #[method(saveToPreferencesWithCompletionHandler:)]
+        #[unsafe(method(saveToPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
@@ -1293,22 +1293,22 @@ extern_methods!(
         );
 
         /// A string containing a description of the DNS proxy.
-        #[method(localizedDescription)]
+        #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedDescription`][Self::localizedDescription].
-        #[method(setLocalizedDescription:)]
+        #[unsafe(method(setLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
 
         /// An NEDNSProxyProviderProtocol object containing the provider-specific portion of the DNS proxy configuration.
-        #[method(providerProtocol)]
+        #[unsafe(method(providerProtocol))]
         #[unsafe(method_family = none)]
         pub unsafe fn providerProtocol(&self) -> Option<Retained<NEDNSProxyProviderProtocol>>;
 
         /// Setter for [`providerProtocol`][Self::providerProtocol].
-        #[method(setProviderProtocol:)]
+        #[unsafe(method(setProviderProtocol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderProtocol(
             &self,
@@ -1316,12 +1316,12 @@ extern_methods!(
         );
 
         /// Toggles the enabled status of the DNS proxy. Setting this property will disable DNS proxy configurations of other apps. This property will be set to NO when other DNS proxy configurations are enabled.
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
     }
@@ -1330,11 +1330,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEDNSProxyManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1361,7 +1361,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary containing keys and values passed by the provider's containing app. If the containing app did not start the proxy then this parameter will be nil.
         ///
         /// Parameter `completionHandler`: A block that must be called when the process of starting the proxy is complete. If the proxy cannot be started then the subclass' implementation of this method must pass a non-nil NSError object to this block. A value of nil passed to the completion handler indicates that the proxy was successfully started.
-        #[method(startProxyWithOptions:completionHandler:)]
+        #[unsafe(method(startProxyWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startProxyWithOptions_completionHandler(
             &self,
@@ -1375,7 +1375,7 @@ extern_methods!(
         /// Parameter `reason`: An NEProviderStopReason indicating why the proxy is being stopped.
         ///
         /// Parameter `completionHandler`: A block that must be called when the proxy is completely stopped.
-        #[method(stopProxyWithReason:completionHandler:)]
+        #[unsafe(method(stopProxyWithReason:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopProxyWithReason_completionHandler(
             &self,
@@ -1386,7 +1386,7 @@ extern_methods!(
         /// This function is called by proxy provider implementations to stop the proxy when a network error is encountered that renders the proxy no longer viable. Subclasses should not override this method.
         ///
         /// Parameter `error`: An NSError object containing details about the error that the proxy provider implementation encountered.
-        #[method(cancelProxyWithError:)]
+        #[unsafe(method(cancelProxyWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelProxyWithError(&self, error: Option<&NSError>);
 
@@ -1395,7 +1395,7 @@ extern_methods!(
         /// Parameter `flow`: The new flow
         ///
         /// Returns: YES if the proxy implementation has retained the flow and intends to handle the flow data. NO if the proxy implementation has not retained the flow and will not handle the flow data. In this case the flow is terminated.
-        #[method(handleNewFlow:)]
+        #[unsafe(method(handleNewFlow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleNewFlow(&self, flow: &NEAppProxyFlow) -> bool;
 
@@ -1411,7 +1411,7 @@ extern_methods!(
         ///
         /// Returns: YES if the proxy implementation has retained the flow and intends to handle the flow data. NO if the proxy implementation has not retained the flow and will not handle the flow data. In this case the flow is terminated.
         #[deprecated]
-        #[method(handleNewUDPFlow:initialRemoteEndpoint:)]
+        #[unsafe(method(handleNewUDPFlow:initialRemoteEndpoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleNewUDPFlow_initialRemoteEndpoint(
             &self,
@@ -1420,7 +1420,7 @@ extern_methods!(
         ) -> bool;
 
         /// The current system DNS settings. Use KVO to watch for changes.
-        #[method(systemDNSSettings)]
+        #[unsafe(method(systemDNSSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemDNSSettings(&self) -> Option<Retained<NSArray<NEDNSSettings>>>;
     }
@@ -1429,11 +1429,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEDNSProxyProvider {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1469,7 +1469,7 @@ extern_methods!(
         /// Parameter `address`: The string representation of the proxy server IP address.
         ///
         /// Parameter `port`: The TCP port of the proxy server.
-        #[method(initWithAddress:port:)]
+        #[unsafe(method(initWithAddress:port:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAddress_port(
             this: Allocated<Self>,
@@ -1478,42 +1478,42 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The string representation of the proxy server IP address.
-        #[method(address)]
+        #[unsafe(method(address))]
         #[unsafe(method_family = none)]
         pub unsafe fn address(&self) -> Retained<NSString>;
 
         /// The TCP port of the proxy server.
-        #[method(port)]
+        #[unsafe(method(port))]
         #[unsafe(method_family = none)]
         pub unsafe fn port(&self) -> NSInteger;
 
         /// A flag indicating if the server requires authentication credentials.
-        #[method(authenticationRequired)]
+        #[unsafe(method(authenticationRequired))]
         #[unsafe(method_family = none)]
         pub unsafe fn authenticationRequired(&self) -> bool;
 
         /// Setter for [`authenticationRequired`][Self::authenticationRequired].
-        #[method(setAuthenticationRequired:)]
+        #[unsafe(method(setAuthenticationRequired:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthenticationRequired(&self, authentication_required: bool);
 
         /// The username portion of the authentication credential to use when communicating with the proxy server.
-        #[method(username)]
+        #[unsafe(method(username))]
         #[unsafe(method_family = none)]
         pub unsafe fn username(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`username`][Self::username].
-        #[method(setUsername:)]
+        #[unsafe(method(setUsername:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsername(&self, username: Option<&NSString>);
 
         /// The password portion of the authentication credential to use when communicating with the proxy server. This property is only saved persistently if the username property is non-nil and non-empty and if the authenticationRequired flag is set.
-        #[method(password)]
+        #[unsafe(method(password))]
         #[unsafe(method_family = none)]
         pub unsafe fn password(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`password`][Self::password].
-        #[method(setPassword:)]
+        #[unsafe(method(setPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPassword(&self, password: Option<&NSString>);
     }
@@ -1522,11 +1522,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEProxyServer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1558,12 +1558,12 @@ unsafe impl NSSecureCoding for NEProxySettings {}
 extern_methods!(
     unsafe impl NEProxySettings {
         /// A boolean indicating if proxy auto-configuration is enabled.
-        #[method(autoProxyConfigurationEnabled)]
+        #[unsafe(method(autoProxyConfigurationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn autoProxyConfigurationEnabled(&self) -> bool;
 
         /// Setter for [`autoProxyConfigurationEnabled`][Self::autoProxyConfigurationEnabled].
-        #[method(setAutoProxyConfigurationEnabled:)]
+        #[unsafe(method(setAutoProxyConfigurationEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutoProxyConfigurationEnabled(
             &self,
@@ -1571,12 +1571,12 @@ extern_methods!(
         );
 
         /// A URL specifying where the PAC script is located.
-        #[method(proxyAutoConfigurationURL)]
+        #[unsafe(method(proxyAutoConfigurationURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn proxyAutoConfigurationURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`proxyAutoConfigurationURL`][Self::proxyAutoConfigurationURL].
-        #[method(setProxyAutoConfigurationURL:)]
+        #[unsafe(method(setProxyAutoConfigurationURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProxyAutoConfigurationURL(
             &self,
@@ -1584,12 +1584,12 @@ extern_methods!(
         );
 
         /// A string containing the PAC JavaScript source code.
-        #[method(proxyAutoConfigurationJavaScript)]
+        #[unsafe(method(proxyAutoConfigurationJavaScript))]
         #[unsafe(method_family = none)]
         pub unsafe fn proxyAutoConfigurationJavaScript(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`proxyAutoConfigurationJavaScript`][Self::proxyAutoConfigurationJavaScript].
-        #[method(setProxyAutoConfigurationJavaScript:)]
+        #[unsafe(method(setProxyAutoConfigurationJavaScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProxyAutoConfigurationJavaScript(
             &self,
@@ -1597,72 +1597,72 @@ extern_methods!(
         );
 
         /// A boolean indicating if the static HTTP proxy is enabled.
-        #[method(HTTPEnabled)]
+        #[unsafe(method(HTTPEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPEnabled(&self) -> bool;
 
         /// Setter for [`HTTPEnabled`][Self::HTTPEnabled].
-        #[method(setHTTPEnabled:)]
+        #[unsafe(method(setHTTPEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPEnabled(&self, http_enabled: bool);
 
         /// A NEProxyServer object containing the HTTP proxy server settings.
-        #[method(HTTPServer)]
+        #[unsafe(method(HTTPServer))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPServer(&self) -> Option<Retained<NEProxyServer>>;
 
         /// Setter for [`HTTPServer`][Self::HTTPServer].
-        #[method(setHTTPServer:)]
+        #[unsafe(method(setHTTPServer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPServer(&self, http_server: Option<&NEProxyServer>);
 
         /// A boolean indicating if the static HTTPS proxy is enabled.
-        #[method(HTTPSEnabled)]
+        #[unsafe(method(HTTPSEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPSEnabled(&self) -> bool;
 
         /// Setter for [`HTTPSEnabled`][Self::HTTPSEnabled].
-        #[method(setHTTPSEnabled:)]
+        #[unsafe(method(setHTTPSEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPSEnabled(&self, https_enabled: bool);
 
         /// A NEProxyServer object containing the HTTPS proxy server settings.
-        #[method(HTTPSServer)]
+        #[unsafe(method(HTTPSServer))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPSServer(&self) -> Option<Retained<NEProxyServer>>;
 
         /// Setter for [`HTTPSServer`][Self::HTTPSServer].
-        #[method(setHTTPSServer:)]
+        #[unsafe(method(setHTTPSServer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPSServer(&self, https_server: Option<&NEProxyServer>);
 
         /// A flag indicating if the proxy settings should not be used for network destinations specified using single-label host names.
-        #[method(excludeSimpleHostnames)]
+        #[unsafe(method(excludeSimpleHostnames))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludeSimpleHostnames(&self) -> bool;
 
         /// Setter for [`excludeSimpleHostnames`][Self::excludeSimpleHostnames].
-        #[method(setExcludeSimpleHostnames:)]
+        #[unsafe(method(setExcludeSimpleHostnames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludeSimpleHostnames(&self, exclude_simple_hostnames: bool);
 
         /// An array of domain strings. If the destination host name of a connection shares a suffix with one of these strings then the proxy settings will not be used for the connection.
-        #[method(exceptionList)]
+        #[unsafe(method(exceptionList))]
         #[unsafe(method_family = none)]
         pub unsafe fn exceptionList(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`exceptionList`][Self::exceptionList].
-        #[method(setExceptionList:)]
+        #[unsafe(method(setExceptionList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExceptionList(&self, exception_list: Option<&NSArray<NSString>>);
 
         /// An array of domain strings. If the destination host name of a connection shares a suffix with one of these strings then the proxy settings will be used for the connection. Otherwise the proxy settings will not be used. If this property is nil then all connections to which the Network Extension applies will use the proxy settings.
-        #[method(matchDomains)]
+        #[unsafe(method(matchDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`matchDomains`][Self::matchDomains].
-        #[method(setMatchDomains:)]
+        #[unsafe(method(setMatchDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray<NSString>>);
     }
@@ -1671,11 +1671,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEProxySettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1709,82 +1709,82 @@ unsafe impl NSSecureCoding for NEVPNProtocol {}
 extern_methods!(
     unsafe impl NEVPNProtocol {
         /// The VPN server. Depending on the protocol, may be an IP address, host name, or URL.
-        #[method(serverAddress)]
+        #[unsafe(method(serverAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`serverAddress`][Self::serverAddress].
-        #[method(setServerAddress:)]
+        #[unsafe(method(setServerAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServerAddress(&self, server_address: Option<&NSString>);
 
         /// The username component of the VPN authentication credential.
-        #[method(username)]
+        #[unsafe(method(username))]
         #[unsafe(method_family = none)]
         pub unsafe fn username(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`username`][Self::username].
-        #[method(setUsername:)]
+        #[unsafe(method(setUsername:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsername(&self, username: Option<&NSString>);
 
         /// The password component of the VPN authentication credential. The value is a persistent reference to a keychain item with the kSecClassGenericPassword class.
-        #[method(passwordReference)]
+        #[unsafe(method(passwordReference))]
         #[unsafe(method_family = none)]
         pub unsafe fn passwordReference(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`passwordReference`][Self::passwordReference].
-        #[method(setPasswordReference:)]
+        #[unsafe(method(setPasswordReference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPasswordReference(&self, password_reference: Option<&NSData>);
 
         /// The certificate and private key component of the VPN authentication credential. The value is a persistent reference to a keychain item with the kSecClassIdentity class.
-        #[method(identityReference)]
+        #[unsafe(method(identityReference))]
         #[unsafe(method_family = none)]
         pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`identityReference`][Self::identityReference].
-        #[method(setIdentityReference:)]
+        #[unsafe(method(setIdentityReference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
 
         /// The PKCS12 data for the VPN authentication identity. The value is a NSData in PKCS12 format.
-        #[method(identityData)]
+        #[unsafe(method(identityData))]
         #[unsafe(method_family = none)]
         pub unsafe fn identityData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`identityData`][Self::identityData].
-        #[method(setIdentityData:)]
+        #[unsafe(method(setIdentityData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityData(&self, identity_data: Option<&NSData>);
 
         /// The password to be used to decrypt the PKCS12 identity data.
-        #[method(identityDataPassword)]
+        #[unsafe(method(identityDataPassword))]
         #[unsafe(method_family = none)]
         pub unsafe fn identityDataPassword(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identityDataPassword`][Self::identityDataPassword].
-        #[method(setIdentityDataPassword:)]
+        #[unsafe(method(setIdentityDataPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityDataPassword(&self, identity_data_password: Option<&NSString>);
 
         /// If YES, the VPN connection will be disconnected when the device goes to sleep. The default is NO.
-        #[method(disconnectOnSleep)]
+        #[unsafe(method(disconnectOnSleep))]
         #[unsafe(method_family = none)]
         pub unsafe fn disconnectOnSleep(&self) -> bool;
 
         /// Setter for [`disconnectOnSleep`][Self::disconnectOnSleep].
-        #[method(setDisconnectOnSleep:)]
+        #[unsafe(method(setDisconnectOnSleep:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisconnectOnSleep(&self, disconnect_on_sleep: bool);
 
         /// An NEProxySettings object containing the proxy settings to use for connections routed through the tunnel.
-        #[method(proxySettings)]
+        #[unsafe(method(proxySettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn proxySettings(&self) -> Option<Retained<NEProxySettings>>;
 
         /// Setter for [`proxySettings`][Self::proxySettings].
-        #[method(setProxySettings:)]
+        #[unsafe(method(setProxySettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProxySettings(&self, proxy_settings: Option<&NEProxySettings>);
 
@@ -1797,22 +1797,22 @@ extern_methods!(
         /// excludeCellularServices property for more details.
         /// - Network communication with a companion device such as a watchOS device.
         /// The default value of this property is NO.
-        #[method(includeAllNetworks)]
+        #[unsafe(method(includeAllNetworks))]
         #[unsafe(method_family = none)]
         pub unsafe fn includeAllNetworks(&self) -> bool;
 
         /// Setter for [`includeAllNetworks`][Self::includeAllNetworks].
-        #[method(setIncludeAllNetworks:)]
+        #[unsafe(method(setIncludeAllNetworks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncludeAllNetworks(&self, include_all_networks: bool);
 
         /// If YES, all traffic destined for local networks will be excluded from the tunnel. The default is NO on macOS and YES on iOS.
-        #[method(excludeLocalNetworks)]
+        #[unsafe(method(excludeLocalNetworks))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludeLocalNetworks(&self) -> bool;
 
         /// Setter for [`excludeLocalNetworks`][Self::excludeLocalNetworks].
-        #[method(setExcludeLocalNetworks:)]
+        #[unsafe(method(setExcludeLocalNetworks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludeLocalNetworks(&self, exclude_local_networks: bool);
 
@@ -1820,56 +1820,56 @@ extern_methods!(
         /// (VoLTE, Wi-Fi Calling, IMS, MMS, Visual Voicemail, etc.) is excluded from the tunnel. Note that some cellular carriers route cellular services traffic
         /// directly to the carrier network, bypassing the internet. Such cellular services traffic is always excluded from the tunnel. The default value of this
         /// property is YES.
-        #[method(excludeCellularServices)]
+        #[unsafe(method(excludeCellularServices))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludeCellularServices(&self) -> bool;
 
         /// Setter for [`excludeCellularServices`][Self::excludeCellularServices].
-        #[method(setExcludeCellularServices:)]
+        #[unsafe(method(setExcludeCellularServices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludeCellularServices(&self, exclude_cellular_services: bool);
 
         /// If includeAllNetworks is set to YES and this property is set to YES, then network traffic for the Apple Push Notification service (APNs)
         /// is excluded from the tunnel. The default value of this property is YES.
-        #[method(excludeAPNs)]
+        #[unsafe(method(excludeAPNs))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludeAPNs(&self) -> bool;
 
         /// Setter for [`excludeAPNs`][Self::excludeAPNs].
-        #[method(setExcludeAPNs:)]
+        #[unsafe(method(setExcludeAPNs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludeAPNs(&self, exclude_ap_ns: bool);
 
         /// If includeAllNetworks is set to YES and this property is set to YES, then network traffic used for communicating with devices connected via USB or Wi-Fi is excluded
         /// from the tunnel. For example, Xcode uses a network tunnel to communicate with connected development devices like iPhone, iPad and TV. The default value of this
         /// property is YES.
-        #[method(excludeDeviceCommunication)]
+        #[unsafe(method(excludeDeviceCommunication))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludeDeviceCommunication(&self) -> bool;
 
         /// Setter for [`excludeDeviceCommunication`][Self::excludeDeviceCommunication].
-        #[method(setExcludeDeviceCommunication:)]
+        #[unsafe(method(setExcludeDeviceCommunication:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludeDeviceCommunication(&self, exclude_device_communication: bool);
 
         /// If YES, route rules for this tunnel will take precendence over any locally-defined routes. The default is NO.
-        #[method(enforceRoutes)]
+        #[unsafe(method(enforceRoutes))]
         #[unsafe(method_family = none)]
         pub unsafe fn enforceRoutes(&self) -> bool;
 
         /// Setter for [`enforceRoutes`][Self::enforceRoutes].
-        #[method(setEnforceRoutes:)]
+        #[unsafe(method(setEnforceRoutes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnforceRoutes(&self, enforce_routes: bool);
 
         /// Identification string of the associated Cellular slice.  If present, VPN tunnel will be scoped to the associated Cellular slice whenever slice is active.
         /// Otherwise, VPN tunnel will fallback onto the primary interface.
-        #[method(sliceUUID)]
+        #[unsafe(method(sliceUUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn sliceUUID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`sliceUUID`][Self::sliceUUID].
-        #[method(setSliceUUID:)]
+        #[unsafe(method(setSliceUUID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSliceUUID(&self, slice_uuid: Option<&NSString>);
     }
@@ -1878,11 +1878,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEVPNProtocol {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1914,14 +1914,14 @@ unsafe impl NSSecureCoding for NEDNSProxyProviderProtocol {}
 extern_methods!(
     unsafe impl NEDNSProxyProviderProtocol {
         /// A dictionary containing NEDNSProxyProvider vendor-specific configuration parameters. This dictionary is passed as-is to NEDNSProxyProviders when a DNS proxy is started.
-        #[method(providerConfiguration)]
+        #[unsafe(method(providerConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn providerConfiguration(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`providerConfiguration`][Self::providerConfiguration].
-        #[method(setProviderConfiguration:)]
+        #[unsafe(method(setProviderConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderConfiguration(
             &self,
@@ -1929,12 +1929,12 @@ extern_methods!(
         );
 
         /// A string containing the bundle identifier of the NEDNSProxyProvider to be used by this configuration.
-        #[method(providerBundleIdentifier)]
+        #[unsafe(method(providerBundleIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn providerBundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`providerBundleIdentifier`][Self::providerBundleIdentifier].
-        #[method(setProviderBundleIdentifier:)]
+        #[unsafe(method(setProviderBundleIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderBundleIdentifier(
             &self,
@@ -1946,11 +1946,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEDNSProxyProviderProtocol {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2004,14 +2004,14 @@ unsafe impl NSSecureCoding for NEDNSSettings {}
 extern_methods!(
     unsafe impl NEDNSSettings {
         /// The DNS protocol used by the settings.
-        #[method(dnsProtocol)]
+        #[unsafe(method(dnsProtocol))]
         #[unsafe(method_family = none)]
         pub unsafe fn dnsProtocol(&self) -> NEDNSProtocol;
 
         /// Initialize a newly-allocated NEDNSSettings object.
         ///
         /// Parameter `servers`: An array of DNS server IP address strings.
-        #[method(initWithServers:)]
+        #[unsafe(method(initWithServers:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServers(
             this: Allocated<Self>,
@@ -2019,47 +2019,47 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// An array of DNS server address strings.
-        #[method(servers)]
+        #[unsafe(method(servers))]
         #[unsafe(method_family = none)]
         pub unsafe fn servers(&self) -> Retained<NSArray<NSString>>;
 
         /// An array of DNS server search domain strings.
-        #[method(searchDomains)]
+        #[unsafe(method(searchDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn searchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`searchDomains`][Self::searchDomains].
-        #[method(setSearchDomains:)]
+        #[unsafe(method(setSearchDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchDomains(&self, search_domains: Option<&NSArray<NSString>>);
 
         /// A string containing the DNS domain.
-        #[method(domainName)]
+        #[unsafe(method(domainName))]
         #[unsafe(method_family = none)]
         pub unsafe fn domainName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`domainName`][Self::domainName].
-        #[method(setDomainName:)]
+        #[unsafe(method(setDomainName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDomainName(&self, domain_name: Option<&NSString>);
 
         /// An array of strings containing domain strings. If this property is non-nil, the DNS settings will only be used to resolve host names within the specified domains.
-        #[method(matchDomains)]
+        #[unsafe(method(matchDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`matchDomains`][Self::matchDomains].
-        #[method(setMatchDomains:)]
+        #[unsafe(method(setMatchDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray<NSString>>);
 
         /// A boolean indicating if the match domains should be appended to the search domain list.  Default is NO (match domains will be appended to the search domain list).
-        #[method(matchDomainsNoSearch)]
+        #[unsafe(method(matchDomainsNoSearch))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchDomainsNoSearch(&self) -> bool;
 
         /// Setter for [`matchDomainsNoSearch`][Self::matchDomainsNoSearch].
-        #[method(setMatchDomainsNoSearch:)]
+        #[unsafe(method(setMatchDomainsNoSearch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchDomainsNoSearch(&self, match_domains_no_search: bool);
     }
@@ -2068,11 +2068,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEDNSSettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2100,22 +2100,22 @@ unsafe impl NSSecureCoding for NEDNSOverTLSSettings {}
 extern_methods!(
     unsafe impl NEDNSOverTLSSettings {
         /// The name of the server to use for TLS certificate validation.
-        #[method(serverName)]
+        #[unsafe(method(serverName))]
         #[unsafe(method_family = none)]
         pub unsafe fn serverName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`serverName`][Self::serverName].
-        #[method(setServerName:)]
+        #[unsafe(method(setServerName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServerName(&self, server_name: Option<&NSString>);
 
         /// The optional certificate identity keychain reference to use as a TLS client certificate.
-        #[method(identityReference)]
+        #[unsafe(method(identityReference))]
         #[unsafe(method_family = none)]
         pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`identityReference`][Self::identityReference].
-        #[method(setIdentityReference:)]
+        #[unsafe(method(setIdentityReference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
     }
@@ -2127,7 +2127,7 @@ extern_methods!(
         /// Initialize a newly-allocated NEDNSSettings object.
         ///
         /// Parameter `servers`: An array of DNS server IP address strings.
-        #[method(initWithServers:)]
+        #[unsafe(method(initWithServers:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServers(
             this: Allocated<Self>,
@@ -2139,11 +2139,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEDNSOverTLSSettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2171,22 +2171,22 @@ unsafe impl NSSecureCoding for NEDNSOverHTTPSSettings {}
 extern_methods!(
     unsafe impl NEDNSOverHTTPSSettings {
         /// The URL to which to make DNS-over-HTTPS requests. The format should be an HTTPS URL with the path indicating the location of the DNS-over-HTTPS server, such as: "https://dnsserver.example.net/dns-query".
-        #[method(serverURL)]
+        #[unsafe(method(serverURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn serverURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`serverURL`][Self::serverURL].
-        #[method(setServerURL:)]
+        #[unsafe(method(setServerURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServerURL(&self, server_url: Option<&NSURL>);
 
         /// The optional certificate identity keychain reference to use as a TLS client certificate.
-        #[method(identityReference)]
+        #[unsafe(method(identityReference))]
         #[unsafe(method_family = none)]
         pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`identityReference`][Self::identityReference].
-        #[method(setIdentityReference:)]
+        #[unsafe(method(setIdentityReference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
     }
@@ -2198,7 +2198,7 @@ extern_methods!(
         /// Initialize a newly-allocated NEDNSSettings object.
         ///
         /// Parameter `servers`: An array of DNS server IP address strings.
-        #[method(initWithServers:)]
+        #[unsafe(method(initWithServers:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServers(
             this: Allocated<Self>,
@@ -2210,11 +2210,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEDNSOverHTTPSSettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2274,7 +2274,7 @@ unsafe impl NSObjectProtocol for NEDNSSettingsManager {}
 extern_methods!(
     unsafe impl NEDNSSettingsManager {
         /// Returns: The singleton NEDNSSettingsManager object for the calling process.
-        #[method(sharedManager)]
+        #[unsafe(method(sharedManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedManager() -> Retained<NEDNSSettingsManager>;
 
@@ -2282,7 +2282,7 @@ extern_methods!(
         /// This function loads the current DNS settings configuration from the caller's DNS settings preferences.
         ///
         /// Parameter `completionHandler`: A block that will be called when the load operation is completed. The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        #[method(loadFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(loadFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
@@ -2293,7 +2293,7 @@ extern_methods!(
         /// This function removes the DNS settings configuration from the caller's DNS settings preferences. If the DNS settings are enabled, the DNS settings becomes disabled.
         ///
         /// Parameter `completionHandler`: A block that will be called when the remove operation is completed. The NSError passed to this block will be nil if the remove operation succeeded, non-nil otherwise.
-        #[method(removeFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(removeFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
@@ -2304,7 +2304,7 @@ extern_methods!(
         /// This function saves the DNS settingsconfiguration in the caller's DNS settings preferences. If the DNS settings are enabled, they will become active.
         ///
         /// Parameter `completionHandler`: A block that will be called when the save operation is completed. The NSError passed to this block will be nil if the save operation succeeded, non-nil otherwise.
-        #[method(saveToPreferencesWithCompletionHandler:)]
+        #[unsafe(method(saveToPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
@@ -2312,37 +2312,37 @@ extern_methods!(
         );
 
         /// A string containing a description of the DNS settings.
-        #[method(localizedDescription)]
+        #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedDescription`][Self::localizedDescription].
-        #[method(setLocalizedDescription:)]
+        #[unsafe(method(setLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
 
         /// An NEDNSSettings object containing the DNS resolver configuration to apply to the system.
-        #[method(dnsSettings)]
+        #[unsafe(method(dnsSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn dnsSettings(&self) -> Option<Retained<NEDNSSettings>>;
 
         /// Setter for [`dnsSettings`][Self::dnsSettings].
-        #[method(setDnsSettings:)]
+        #[unsafe(method(setDnsSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDnsSettings(&self, dns_settings: Option<&NEDNSSettings>);
 
         /// An array of NEOnDemandRule objects. If nil, the associated DNS settings will always apply. If non-nil, the array describes the networks on which the DNS configuration should take effect or not.
-        #[method(onDemandRules)]
+        #[unsafe(method(onDemandRules))]
         #[unsafe(method_family = none)]
         pub unsafe fn onDemandRules(&self) -> Option<Retained<NSArray<NEOnDemandRule>>>;
 
         /// Setter for [`onDemandRules`][Self::onDemandRules].
-        #[method(setOnDemandRules:)]
+        #[unsafe(method(setOnDemandRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOnDemandRules(&self, on_demand_rules: Option<&NSArray<NEOnDemandRule>>);
 
         /// Checks the enabled status of the DNS settings. DNS settings must be enabled by the user in Settings or System Preferences.
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
     }
@@ -2351,11 +2351,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEDNSSettingsManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2444,7 +2444,7 @@ extern_methods!(
         ///
         /// Returns: The initialized NENetworkRule instance.
         #[deprecated]
-        #[method(initWithDestinationNetwork:prefix:protocol:)]
+        #[unsafe(method(initWithDestinationNetwork:prefix:protocol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDestinationNetwork_prefix_protocol(
             this: Allocated<Self>,
@@ -2477,7 +2477,7 @@ extern_methods!(
         ///
         /// Returns: The initialized NENetworkRule instance.
         #[deprecated]
-        #[method(initWithDestinationHost:protocol:)]
+        #[unsafe(method(initWithDestinationHost:protocol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDestinationHost_protocol(
             this: Allocated<Self>,
@@ -2510,7 +2510,7 @@ extern_methods!(
         ///
         /// Returns: The initialized NENetworkRule instance.
         #[deprecated]
-        #[method(initWithRemoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:)]
+        #[unsafe(method(initWithRemoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRemoteNetwork_remotePrefix_localNetwork_localPrefix_protocol_direction(
             this: Allocated<Self>,
@@ -2524,33 +2524,33 @@ extern_methods!(
 
         /// The remote endpoint that the rule matches.
         #[deprecated]
-        #[method(matchRemoteEndpoint)]
+        #[unsafe(method(matchRemoteEndpoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchRemoteEndpoint(&self) -> Option<Retained<NWHostEndpoint>>;
 
         /// A number that specifies the remote sub-network that the rule matches. This property is set to NSNotFound for rules where matchRemoteEndpoint does not contain an IP address.
-        #[method(matchRemotePrefix)]
+        #[unsafe(method(matchRemotePrefix))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchRemotePrefix(&self) -> NSUInteger;
 
         /// The local network that the rule matches.
         #[deprecated]
-        #[method(matchLocalNetwork)]
+        #[unsafe(method(matchLocalNetwork))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchLocalNetwork(&self) -> Option<Retained<NWHostEndpoint>>;
 
         /// A number that specifies the local sub-network that the rule matches. This property is set to NSNotFound for rules with a nil matchLocalNetwork property.
-        #[method(matchLocalPrefix)]
+        #[unsafe(method(matchLocalPrefix))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchLocalPrefix(&self) -> NSUInteger;
 
         /// A NENetworkRuleProtocol value containing the protocol that the rule matches.
-        #[method(matchProtocol)]
+        #[unsafe(method(matchProtocol))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchProtocol(&self) -> NENetworkRuleProtocol;
 
         /// A NETrafficDirection value indicating the network traffic direction that the rule matches.
-        #[method(matchDirection)]
+        #[unsafe(method(matchDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchDirection(&self) -> NETrafficDirection;
     }
@@ -2559,11 +2559,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NENetworkRule {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2595,44 +2595,44 @@ unsafe impl NSSecureCoding for NEFilterFlow {}
 extern_methods!(
     unsafe impl NEFilterFlow {
         /// The flow's HTTP request URL. Will be nil if the flow did not originate from WebKit.
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// A byte string that uniquely identifies the binary for each build of the source application of the flow.
-        #[method(sourceAppUniqueIdentifier)]
+        #[unsafe(method(sourceAppUniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceAppUniqueIdentifier(&self) -> Option<Retained<NSData>>;
 
         /// A string containing the identifier of the source application of the flow. This identifier stays the same for all versions and builds of the application. This identifier is unique among all applications.
-        #[method(sourceAppIdentifier)]
+        #[unsafe(method(sourceAppIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceAppIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// The short version string of the source application. Will be nil if the app info is unavailable.
-        #[method(sourceAppVersion)]
+        #[unsafe(method(sourceAppVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceAppVersion(&self) -> Option<Retained<NSString>>;
 
         /// Initial direction of the flow (outgoing or incoming flow)
-        #[method(direction)]
+        #[unsafe(method(direction))]
         #[unsafe(method_family = none)]
         pub unsafe fn direction(&self) -> NETrafficDirection;
 
         /// Audit token of the source application of the flow.
-        #[method(sourceAppAuditToken)]
+        #[unsafe(method(sourceAppAuditToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceAppAuditToken(&self) -> Option<Retained<NSData>>;
 
         /// The audit token of the process that created the flow. In cases where the connection was created by a system process on behalf of the source application,
         /// sourceProcessAuditToken will be different from sourceAppAuditToken and will contain the audit token of the system process. In cases where the source application directly
         /// created the connection sourceAppAuditToken and sourceProcessAuditToken will be identical.
-        #[method(sourceProcessAuditToken)]
+        #[unsafe(method(sourceProcessAuditToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceProcessAuditToken(&self) -> Option<Retained<NSData>>;
 
         /// The unique identifier of the flow.
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
     }
@@ -2641,11 +2641,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterFlow {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2677,17 +2677,17 @@ unsafe impl NSSecureCoding for NEFilterBrowserFlow {}
 extern_methods!(
     unsafe impl NEFilterBrowserFlow {
         /// The NSURLRequest of the flow. This property is always nil for the control providers.
-        #[method(request)]
+        #[unsafe(method(request))]
         #[unsafe(method_family = none)]
         pub unsafe fn request(&self) -> Option<Retained<NSURLRequest>>;
 
         /// The NSURLResponse of the flow. This will be nil until the request is sent to the server and the response headers are received. And this property is always nil for the control providers.
-        #[method(response)]
+        #[unsafe(method(response))]
         #[unsafe(method_family = none)]
         pub unsafe fn response(&self) -> Option<Retained<NSURLResponse>>;
 
         /// The parent URL for the current flow which is created to load the sub frames because the flow with the parent URL was allowed. Will be nil if the parent flow does not exist.
-        #[method(parentURL)]
+        #[unsafe(method(parentURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn parentURL(&self) -> Option<Retained<NSURL>>;
     }
@@ -2696,11 +2696,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterBrowserFlow {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2734,34 +2734,34 @@ extern_methods!(
         /// The flow's remote endpoint. This endpoint object may be nil when [NEFilterDataProvider handleNewFlow:] is invoked and if so will be populated upon receiving network data.
         /// In such a case, filtering on the flow may still be performed based on its socket type, socket family or socket protocol.
         #[deprecated]
-        #[method(remoteEndpoint)]
+        #[unsafe(method(remoteEndpoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteEndpoint(&self) -> Option<Retained<NWEndpoint>>;
 
         /// The flow's remote hostname. This property is only non-nil if the flow was created using Network.framework or NSURLSession.
-        #[method(remoteHostname)]
+        #[unsafe(method(remoteHostname))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteHostname(&self) -> Option<Retained<NSString>>;
 
         /// The flow's local endpoint. This endpoint object may be nil when [NEFilterDataProvider handleNewFlow:] is invoked and if so will be populated upon receiving network data.
         /// In such a case, filtering on the flow may still be performed based on its socket type, socket family or socket protocol.
         #[deprecated]
-        #[method(localEndpoint)]
+        #[unsafe(method(localEndpoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn localEndpoint(&self) -> Option<Retained<NWEndpoint>>;
 
         /// Socket family of the socket flow, such as PF_INET.
-        #[method(socketFamily)]
+        #[unsafe(method(socketFamily))]
         #[unsafe(method_family = none)]
         pub unsafe fn socketFamily(&self) -> c_int;
 
         /// Socket type of the socket flow, such as SOCK_STREAM.
-        #[method(socketType)]
+        #[unsafe(method(socketType))]
         #[unsafe(method_family = none)]
         pub unsafe fn socketType(&self) -> c_int;
 
         /// Socket protocol of the socket flow, such as IPPROTO_TCP.
-        #[method(socketProtocol)]
+        #[unsafe(method(socketProtocol))]
         #[unsafe(method_family = none)]
         pub unsafe fn socketProtocol(&self) -> c_int;
     }
@@ -2770,11 +2770,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterSocketFlow {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2803,7 +2803,7 @@ extern_methods!(
         /// Parameter `completionHandler`: A block that must be called when the process of starting the filter is complete. If the
         /// filter was started successfully, subclass implementations must pass the nil value to this block. If an error occurred
         /// while starting the filter, sublcass implementations must pass a non-nil NSError containing more details about the error.
-        #[method(startFilterWithCompletionHandler:)]
+        #[unsafe(method(startFilterWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startFilterWithCompletionHandler(
             &self,
@@ -2817,7 +2817,7 @@ extern_methods!(
         /// Parameter `reason`: An NEProviderStopReason indicating why the filter is being stopped.
         ///
         /// Parameter `completionHandler`: A block that must be called when the process of stopping the filter is complete.
-        #[method(stopFilterWithReason:completionHandler:)]
+        #[unsafe(method(stopFilterWithReason:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopFilterWithReason_completionHandler(
             &self,
@@ -2828,7 +2828,7 @@ extern_methods!(
         /// An NEContentFilterConfiguration object containing the current filter configuration. The value of this
         /// property can change during the lifetime of a filter. Filter implementations can use KVO to be notified when the
         /// configuration changes.
-        #[method(filterConfiguration)]
+        #[unsafe(method(filterConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterConfiguration(&self) -> Retained<NEFilterProviderConfiguration>;
 
@@ -2836,7 +2836,7 @@ extern_methods!(
         /// Subclass implementations may override this method to handle the flow report.
         ///
         /// Parameter `report`: The report being delivered.
-        #[method(handleReport:)]
+        #[unsafe(method(handleReport:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleReport(&self, report: &NEFilterReport);
     }
@@ -2845,11 +2845,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterProvider {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2915,12 +2915,12 @@ extern_methods!(
         /// deny, remediate, or filterData (filterData for new flows only). Setting this flag on a verdict for a socket
         /// flow will also cause the data provider's -[NEFilterProvider handleReport:] method to be called when the flow
         /// is closed.
-        #[method(shouldReport)]
+        #[unsafe(method(shouldReport))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldReport(&self) -> bool;
 
         /// Setter for [`shouldReport`][Self::shouldReport].
-        #[method(setShouldReport:)]
+        #[unsafe(method(setShouldReport:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldReport(&self, should_report: bool);
     }
@@ -2929,11 +2929,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterVerdict {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2967,12 +2967,12 @@ extern_methods!(
     unsafe impl NEFilterNewFlowVerdict {
         /// The frequency at which the data provider's -[NEFilterProvider handleReport:] method is called with a NEFilterReport instance with an event of NEFilterReportEventFlowStatistics.
         /// The default value is NEFilterReportFrequencyNone, so by default no statistics are reported.
-        #[method(statisticsReportFrequency)]
+        #[unsafe(method(statisticsReportFrequency))]
         #[unsafe(method_family = none)]
         pub unsafe fn statisticsReportFrequency(&self) -> NEFilterReportFrequency;
 
         /// Setter for [`statisticsReportFrequency`][Self::statisticsReportFrequency].
-        #[method(setStatisticsReportFrequency:)]
+        #[unsafe(method(setStatisticsReportFrequency:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStatisticsReportFrequency(
             &self,
@@ -2984,21 +2984,21 @@ extern_methods!(
         /// to decide on the new flow again.
         ///
         /// Returns: The NEFilterNewFlowVerdict object.
-        #[method(needRulesVerdict)]
+        #[unsafe(method(needRulesVerdict))]
         #[unsafe(method_family = none)]
         pub unsafe fn needRulesVerdict() -> Retained<NEFilterNewFlowVerdict>;
 
         /// This class method returns a verdict indicating that the flow should be allowed.
         ///
         /// Returns: The NEFilterNewFlowVerdict object.
-        #[method(allowVerdict)]
+        #[unsafe(method(allowVerdict))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowVerdict() -> Retained<NEFilterNewFlowVerdict>;
 
         /// This class method returns a verdict indicating that the flow should be dropped.
         ///
         /// Returns: The NEFilterNewFlowVerdict object.
-        #[method(dropVerdict)]
+        #[unsafe(method(dropVerdict))]
         #[unsafe(method_family = none)]
         pub unsafe fn dropVerdict() -> Retained<NEFilterNewFlowVerdict>;
 
@@ -3008,7 +3008,7 @@ extern_methods!(
         /// Parameter `remediationURLMapKey`: Remediation map key used by data plugin to get remediation url
         ///
         /// Returns: The NEFilterNewFlowVerdict object.
-        #[method(remediateVerdictWithRemediationURLMapKey:remediationButtonTextMapKey:)]
+        #[unsafe(method(remediateVerdictWithRemediationURLMapKey:remediationButtonTextMapKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn remediateVerdictWithRemediationURLMapKey_remediationButtonTextMapKey(
             remediation_url_map_key: &NSString,
@@ -3020,7 +3020,7 @@ extern_methods!(
         /// Parameter `urlAppendMapKey`: URL Append map key to be used by the data plugin to notify what the url should be appended with
         ///
         /// Returns: The NEFilterNewFlowVerdict object.
-        #[method(URLAppendStringVerdictWithMapKey:)]
+        #[unsafe(method(URLAppendStringVerdictWithMapKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLAppendStringVerdictWithMapKey(
             url_append_map_key: &NSString,
@@ -3040,7 +3040,7 @@ extern_methods!(
         /// -[NEFilterDataProvider handleOutboundDataFromFlow:readBytesStartOffset:readBytes:].
         ///
         /// Returns: The new flow verdict.
-        #[method(filterDataVerdictWithFilterInbound:peekInboundBytes:filterOutbound:peekOutboundBytes:)]
+        #[unsafe(method(filterDataVerdictWithFilterInbound:peekInboundBytes:filterOutbound:peekOutboundBytes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterDataVerdictWithFilterInbound_peekInboundBytes_filterOutbound_peekOutboundBytes(
             filter_inbound: bool,
@@ -3054,7 +3054,7 @@ extern_methods!(
         /// being paused. It is invalid to pause a flow that is already paused.
         ///
         /// Returns: The NEFilterNewFlowVerdict object.
-        #[method(pauseVerdict)]
+        #[unsafe(method(pauseVerdict))]
         #[unsafe(method_family = none)]
         pub unsafe fn pauseVerdict() -> Retained<NEFilterNewFlowVerdict>;
     }
@@ -3063,11 +3063,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterNewFlowVerdict {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -3105,7 +3105,7 @@ extern_methods!(
         /// Parameter `updateRules`: YES if the control provider has updated the rules and wants to communicate that to the data provider
         ///
         /// Returns: The NEFilterControlVerdict object.
-        #[method(allowVerdictWithUpdateRules:)]
+        #[unsafe(method(allowVerdictWithUpdateRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowVerdictWithUpdateRules(
             update_rules: bool,
@@ -3117,7 +3117,7 @@ extern_methods!(
         /// Parameter `updateRules`: YES if the control provider has updated the rules and wants to communicate that to the data provider
         ///
         /// Returns: The NEFilterControlVerdict object.
-        #[method(dropVerdictWithUpdateRules:)]
+        #[unsafe(method(dropVerdictWithUpdateRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dropVerdictWithUpdateRules(
             update_rules: bool,
@@ -3127,7 +3127,7 @@ extern_methods!(
         /// and the rules needed by the data provider have been set.
         ///
         /// Returns: The NEFilterControlVerdict object.
-        #[method(updateRules)]
+        #[unsafe(method(updateRules))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateRules() -> Retained<NEFilterControlVerdict>;
     }
@@ -3136,11 +3136,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterControlVerdict {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -3228,27 +3228,27 @@ unsafe impl NSSecureCoding for NEFilterReport {}
 extern_methods!(
     unsafe impl NEFilterReport {
         /// The flow on which the described action was taken.
-        #[method(flow)]
+        #[unsafe(method(flow))]
         #[unsafe(method_family = none)]
         pub unsafe fn flow(&self) -> Option<Retained<NEFilterFlow>>;
 
         /// The action taken upon the reported flow.
-        #[method(action)]
+        #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> NEFilterAction;
 
         /// The type of event that the report is reporting.
-        #[method(event)]
+        #[unsafe(method(event))]
         #[unsafe(method_family = none)]
         pub unsafe fn event(&self) -> NEFilterReportEvent;
 
         /// The number of inbound bytes received from the flow. This property is only non-zero when the report event is NEFilterReportEventFlowClosed or NEFilterReportEventFlowStatistics.
-        #[method(bytesInboundCount)]
+        #[unsafe(method(bytesInboundCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn bytesInboundCount(&self) -> NSUInteger;
 
         /// The number of outbound bytes sent on the flow. This property is only non-zero when the report event is NEFilterReportEventFlowClosed or NEFilterReportEventFlowStatistics.
-        #[method(bytesOutboundCount)]
+        #[unsafe(method(bytesOutboundCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn bytesOutboundCount(&self) -> NSUInteger;
     }
@@ -3257,11 +3257,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterReport {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -3301,14 +3301,14 @@ extern_methods!(
         /// RemediationButtonText1" : @"Remediate URL"
         /// }
         /// };
-        #[method(remediationMap)]
+        #[unsafe(method(remediationMap))]
         #[unsafe(method_family = none)]
         pub unsafe fn remediationMap(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSDictionary<NSString, NSObject>>>>;
 
         /// Setter for [`remediationMap`][Self::remediationMap].
-        #[method(setRemediationMap:)]
+        #[unsafe(method(setRemediationMap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRemediationMap(
             &self,
@@ -3316,14 +3316,14 @@ extern_methods!(
         );
 
         /// A dictionary containing strings to be appended to URLs.
-        #[method(URLAppendStringMap)]
+        #[unsafe(method(URLAppendStringMap))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLAppendStringMap(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         /// Setter for [`URLAppendStringMap`][Self::URLAppendStringMap].
-        #[method(setURLAppendStringMap:)]
+        #[unsafe(method(setURLAppendStringMap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURLAppendStringMap(
             &self,
@@ -3336,7 +3336,7 @@ extern_methods!(
         /// Parameter `flow`: An NEFilterFlow object containing details about the flow that requires remediation.
         ///
         /// Parameter `completionHandler`: A block that must be called when the NEFilterControlProvider is ready for the NEFilterDataProvider to re-process the new flow. NEFilterControlVerdict stores the verdict through which the control provider determines if a flow needs to be dropped or allowed. The verdict also indicates if the control plugin wants the data plugin to update its rules and handle the verdict.
-        #[method(handleRemediationForFlow:completionHandler:)]
+        #[unsafe(method(handleRemediationForFlow:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleRemediationForFlow_completionHandler(
             &self,
@@ -3350,7 +3350,7 @@ extern_methods!(
         /// Parameter `flow`: An NEFilterFlow object containing details about the flow that requires a rules update.
         ///
         /// Parameter `completionHandler`: A block that must be called when the NEFilterControlProvider is ready for the NEFilterDataProvider to re-process the new flow. NEFilterControlVerdict stores the verdict through which the control provider determines if a flow needs to be dropped or allowed. The verdict also indicates if the control plugin wants the data plugin to update its rules and handle the verdict.
-        #[method(handleNewFlow:completionHandler:)]
+        #[unsafe(method(handleNewFlow:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleNewFlow_completionHandler(
             &self,
@@ -3359,7 +3359,7 @@ extern_methods!(
         );
 
         /// This function is called by filter control implementations to notify the data provider "out of band" that the rules changed.
-        #[method(notifyRulesChanged)]
+        #[unsafe(method(notifyRulesChanged))]
         #[unsafe(method_family = none)]
         pub unsafe fn notifyRulesChanged(&self);
     }
@@ -3368,11 +3368,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterControlProvider {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -3416,7 +3416,7 @@ extern_methods!(
         /// Parameter `flow`: An NEFilterFlow object containing details about the new flow.
         ///
         /// Returns: An NEFilterNewFlowVerdict object containing the verdict for the new flow.
-        #[method(handleNewFlow:)]
+        #[unsafe(method(handleNewFlow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleNewFlow(&self, flow: &NEFilterFlow)
             -> Retained<NEFilterNewFlowVerdict>;
@@ -3430,7 +3430,7 @@ extern_methods!(
         /// Parameter `readBytes`: The data that was read.  For non-UDP/TCP flows, since data may optionally include the IP header, readBytes includes a 4-bytes NEFilterDataAttribute field preceding the user data.  Handler must examine the NEFilterDataAttribute field and handle the data accordingly.
         ///
         /// Returns: An NEFilterFlowDataVerdict containing the verdict for the flow.
-        #[method(handleInboundDataFromFlow:readBytesStartOffset:readBytes:)]
+        #[unsafe(method(handleInboundDataFromFlow:readBytesStartOffset:readBytes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleInboundDataFromFlow_readBytesStartOffset_readBytes(
             &self,
@@ -3448,7 +3448,7 @@ extern_methods!(
         /// Parameter `readBytes`: The data that was read.  For non-UDP/TCP flows, since data may optionally include the IP header, readBytes includes a 4-bytes NEFilterDataAttribute field preceding the user data.  Handler must examine the NEFilterDataAttribute field and handle the data accordingly.
         ///
         /// Returns: An NEFilterFlowDataVerdict containing the verdict for the flow.
-        #[method(handleOutboundDataFromFlow:readBytesStartOffset:readBytes:)]
+        #[unsafe(method(handleOutboundDataFromFlow:readBytesStartOffset:readBytes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleOutboundDataFromFlow_readBytesStartOffset_readBytes(
             &self,
@@ -3462,7 +3462,7 @@ extern_methods!(
         /// Parameter `flow`: The flow
         ///
         /// Returns: The final NEFilterFlowDataVerdict verdict for the flow.
-        #[method(handleInboundDataCompleteForFlow:)]
+        #[unsafe(method(handleInboundDataCompleteForFlow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleInboundDataCompleteForFlow(
             &self,
@@ -3474,7 +3474,7 @@ extern_methods!(
         /// Parameter `flow`: The flow
         ///
         /// Returns: The final NEFilterFlowDataVerdict verdict for the flow.
-        #[method(handleOutboundDataCompleteForFlow:)]
+        #[unsafe(method(handleOutboundDataCompleteForFlow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleOutboundDataCompleteForFlow(
             &self,
@@ -3486,7 +3486,7 @@ extern_methods!(
         /// Parameter `flow`: The flow
         ///
         /// Returns: The final NEFilterRemediationVerdict verdict for the flow.
-        #[method(handleRemediationForFlow:)]
+        #[unsafe(method(handleRemediationForFlow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleRemediationForFlow(
             &self,
@@ -3494,7 +3494,7 @@ extern_methods!(
         ) -> Retained<NEFilterRemediationVerdict>;
 
         /// This function is called by the framework when -[NEFilterControlProvider notifyRulesChanged] is called. Subclasses should override this method to reload new rules from disk.
-        #[method(handleRulesChanged)]
+        #[unsafe(method(handleRulesChanged))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleRulesChanged(&self);
 
@@ -3505,7 +3505,7 @@ extern_methods!(
         /// empty list of rules and a default action of NEFilterActionFilterData.
         ///
         /// Parameter `completionHandler`: A block that will be executed when the settings have been applied to the system. If an error occurs then the error parameter will be non-nil.
-        #[method(applySettings:completionHandler:)]
+        #[unsafe(method(applySettings:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applySettings_completionHandler(
             &self,
@@ -3521,7 +3521,7 @@ extern_methods!(
         /// flow handler callback (handleNewFlow:, handleInboundDataFromFlow:, etc.) that returned the pause verdict that
         /// paused the flow. This must be either a NEFilterDataVerdict or a NEFilterNewFlowVerdict. It is invalid to resume
         /// a flow that is not paused.
-        #[method(resumeFlow:withVerdict:)]
+        #[unsafe(method(resumeFlow:withVerdict:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resumeFlow_withVerdict(&self, flow: &NEFilterFlow, verdict: &NEFilterVerdict);
 
@@ -3532,7 +3532,7 @@ extern_methods!(
         /// Parameter `verdict`: The NEFilterDataVerdict. Must be a +[NEFilterDataVerdict allowVerdict], a +[NEFilterDataVerdict dropVerdict], or a +[NEFilterDataVerdict dataVerdictWithPassBytes:peekBytes:].
         ///
         /// Parameter `direction`: The direction to which the verdict applies. Pass NETrafficDirectionAny to update the verdict for both the inbound and outbound directions. This parameter is ignored if the verdict is +[NEFilterDataVerdict dropVerdict].
-        #[method(updateFlow:usingVerdict:forDirection:)]
+        #[unsafe(method(updateFlow:usingVerdict:forDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateFlow_usingVerdict_forDirection(
             &self,
@@ -3546,11 +3546,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterDataProvider {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -3583,12 +3583,12 @@ extern_methods!(
     unsafe impl NEFilterDataVerdict {
         /// The frequency at which the data provider's -[NEFilterProvider handleReport:] method is called with a NEFilterReport instance with an event of NEFilterReportEventFlowStatistics.
         /// The default value is NEFilterReportFrequencyNone, so by default no statistics are reported.
-        #[method(statisticsReportFrequency)]
+        #[unsafe(method(statisticsReportFrequency))]
         #[unsafe(method_family = none)]
         pub unsafe fn statisticsReportFrequency(&self) -> NEFilterReportFrequency;
 
         /// Setter for [`statisticsReportFrequency`][Self::statisticsReportFrequency].
-        #[method(setStatisticsReportFrequency:)]
+        #[unsafe(method(setStatisticsReportFrequency:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStatisticsReportFrequency(
             &self,
@@ -3598,14 +3598,14 @@ extern_methods!(
         /// This class method returns a verdict indicating that the flow should be allowed.
         ///
         /// Returns: The NEFilterDataVerdict object.
-        #[method(allowVerdict)]
+        #[unsafe(method(allowVerdict))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowVerdict() -> Retained<NEFilterDataVerdict>;
 
         /// This class method returns a verdict indicating that the flow should be dropped.
         ///
         /// Returns: The NEFilterDataVerdict object.
-        #[method(dropVerdict)]
+        #[unsafe(method(dropVerdict))]
         #[unsafe(method_family = none)]
         pub unsafe fn dropVerdict() -> Retained<NEFilterDataVerdict>;
 
@@ -3616,7 +3616,7 @@ extern_methods!(
         /// Parameter `remediationButtonTextMapKey`: Remediation button map key used by the data plugin to get the remediation button text. Passing nil will set the button text to "Request Access"
         ///
         /// Returns: The NEFilterDataVerdict object.
-        #[method(remediateVerdictWithRemediationURLMapKey:remediationButtonTextMapKey:)]
+        #[unsafe(method(remediateVerdictWithRemediationURLMapKey:remediationButtonTextMapKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn remediateVerdictWithRemediationURLMapKey_remediationButtonTextMapKey(
             remediation_url_map_key: Option<&NSString>,
@@ -3630,7 +3630,7 @@ extern_methods!(
         /// Parameter `peekBytes`: The number of bytes after the end of the bytes passed that the filter wants to see in the next call to -[NEFilterDataProvider handleOutboundDataFromFlow:readBytesStartOffset:readBytes:] or -[NEFilterDataProvider handleInboundDataFromFlow:readBytesStartOffset:readBytes:].
         ///
         /// Returns: The data flow verdict.
-        #[method(dataVerdictWithPassBytes:peekBytes:)]
+        #[unsafe(method(dataVerdictWithPassBytes:peekBytes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataVerdictWithPassBytes_peekBytes(
             pass_bytes: NSUInteger,
@@ -3640,7 +3640,7 @@ extern_methods!(
         /// This class method returns a verdict indicating that control provider needs to be asked how to handle the data flow. The control provider can either drop or allow the flow, or update the rules and ask the data provider to decide on the data flow again.
         ///
         /// Returns: The NEFilterDataVerdict object.
-        #[method(needRulesVerdict)]
+        #[unsafe(method(needRulesVerdict))]
         #[unsafe(method_family = none)]
         pub unsafe fn needRulesVerdict() -> Retained<NEFilterDataVerdict>;
 
@@ -3649,7 +3649,7 @@ extern_methods!(
         /// being paused. It is invalid to pause a flow that is already paused.
         ///
         /// Returns: The NEFilterDataVerdict object.
-        #[method(pauseVerdict)]
+        #[unsafe(method(pauseVerdict))]
         #[unsafe(method_family = none)]
         pub unsafe fn pauseVerdict() -> Retained<NEFilterDataVerdict>;
     }
@@ -3658,11 +3658,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterDataVerdict {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -3696,21 +3696,21 @@ extern_methods!(
         /// This class method returns a verdict indicating that the flow should be allowed.
         ///
         /// Returns: The NEFilterRemediationVerdict object.
-        #[method(allowVerdict)]
+        #[unsafe(method(allowVerdict))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowVerdict() -> Retained<NEFilterRemediationVerdict>;
 
         /// This class method returns a verdict indicating that the flow should be dropped.
         ///
         /// Returns: The NEFilterRemediationVerdict object.
-        #[method(dropVerdict)]
+        #[unsafe(method(dropVerdict))]
         #[unsafe(method_family = none)]
         pub unsafe fn dropVerdict() -> Retained<NEFilterRemediationVerdict>;
 
         /// This class method returns a verdict indicating that control provider needs to be asked how to handle the remediation. The control provider can either drop or allow the flow, or update the rules and ask the data provider to decide on the data flow again.
         ///
         /// Returns: The NEFilterRemediationVerdict object.
-        #[method(needRulesVerdict)]
+        #[unsafe(method(needRulesVerdict))]
         #[unsafe(method_family = none)]
         pub unsafe fn needRulesVerdict() -> Retained<NEFilterRemediationVerdict>;
     }
@@ -3719,11 +3719,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterRemediationVerdict {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -3809,7 +3809,7 @@ unsafe impl NSObjectProtocol for NEFilterManager {}
 extern_methods!(
     unsafe impl NEFilterManager {
         /// Returns: The singleton NEFilterManager object for the calling process.
-        #[method(sharedManager)]
+        #[unsafe(method(sharedManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedManager() -> Retained<NEFilterManager>;
 
@@ -3817,7 +3817,7 @@ extern_methods!(
         /// This function loads the current filter configuration from the caller's filter preferences.
         ///
         /// Parameter `completionHandler`: A block that will be called when the load operation is completed. The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        #[method(loadFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(loadFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
@@ -3828,7 +3828,7 @@ extern_methods!(
         /// This function removes the filter configuration from the caller's filter preferences. If the filter is enabled, the filter becomes disabled.
         ///
         /// Parameter `completionHandler`: A block that will be called when the remove operation is completed. The NSError passed to this block will be nil if the remove operation succeeded, non-nil otherwise.
-        #[method(removeFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(removeFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
@@ -3839,7 +3839,7 @@ extern_methods!(
         /// This function saves the filter configuration in the caller's filter preferences. If the filter is enabled, it will become active.
         ///
         /// Parameter `completionHandler`: A block that will be called when the save operation is completed. The NSError passed to this block will be nil if the save operation succeeded, non-nil otherwise.
-        #[method(saveToPreferencesWithCompletionHandler:)]
+        #[unsafe(method(saveToPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
@@ -3847,24 +3847,24 @@ extern_methods!(
         );
 
         /// A string containing a description of the filter.
-        #[method(localizedDescription)]
+        #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedDescription`][Self::localizedDescription].
-        #[method(setLocalizedDescription:)]
+        #[unsafe(method(setLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
 
         /// An NEFilterProviderConfiguration object containing the provider-specific portion of the filter configuration.
-        #[method(providerConfiguration)]
+        #[unsafe(method(providerConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn providerConfiguration(
             &self,
         ) -> Option<Retained<NEFilterProviderConfiguration>>;
 
         /// Setter for [`providerConfiguration`][Self::providerConfiguration].
-        #[method(setProviderConfiguration:)]
+        #[unsafe(method(setProviderConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderConfiguration(
             &self,
@@ -3873,33 +3873,33 @@ extern_methods!(
 
         /// Toggles the enabled status of the filter. On iOS, setting this property will disable filter configurations of other apps, and this property will be set to NO when other filter configurations are enabled.
         /// On macOS, up to 4 filter configurations of the same grade can be enabled simultaneously.
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         /// The grade of the filter. The default grade is NEFilterManagerGradeFirewall.
-        #[method(grade)]
+        #[unsafe(method(grade))]
         #[unsafe(method_family = none)]
         pub unsafe fn grade(&self) -> NEFilterManagerGrade;
 
         /// Setter for [`grade`][Self::grade].
-        #[method(setGrade:)]
+        #[unsafe(method(setGrade:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGrade(&self, grade: NEFilterManagerGrade);
 
         /// Causes the content filter to disable any other installed encrypted DNS settings. This should only be used if
         /// the content filter expects to intercept cleartext UDP DNS packets.  On macOS disables encrypted DNS for Privacy Proxies.
-        #[method(disableEncryptedDNSSettings)]
+        #[unsafe(method(disableEncryptedDNSSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableEncryptedDNSSettings(&self) -> bool;
 
         /// Setter for [`disableEncryptedDNSSettings`][Self::disableEncryptedDNSSettings].
-        #[method(setDisableEncryptedDNSSettings:)]
+        #[unsafe(method(setDisableEncryptedDNSSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisableEncryptedDNSSettings(&self, disable_encrypted_dns_settings: bool);
     }
@@ -3908,11 +3908,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -3936,11 +3936,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterPacketContext {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -3991,7 +3991,7 @@ extern_methods!(
         ///
         /// Parameter `context`: The context of the current packet filter which is passed to the packetHandler block.
         /// The packetHandler block must pass this context when calling delayCurrentPacket().
-        #[method(delayCurrentPacket:)]
+        #[unsafe(method(delayCurrentPacket:))]
         #[unsafe(method_family = none)]
         pub unsafe fn delayCurrentPacket(
             &self,
@@ -4001,7 +4001,7 @@ extern_methods!(
         /// This function is used to allow a previously-delayed packet to continue its journey into or out of the networking stack.
         ///
         /// Parameter `packet`: A NEPacket object that contains the data of the packet that was previously delayed by the NEFilterPacketProvider.
-        #[method(allowPacket:)]
+        #[unsafe(method(allowPacket:))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowPacket(&self, packet: &NEPacket);
     }
@@ -4010,11 +4010,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterPacketProvider {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -4045,45 +4045,45 @@ extern_methods!(
     unsafe impl NEFilterProviderConfiguration {
         /// If YES, the filter plugin will be allowed to filter browser traffic. If NO, the filter plugin will not see any browser flows. Defaults to NO. At least one of filterBrowsers and filterSockets should be set to YES to make the filter take effect.
         #[deprecated = "filterBrowsers is not supported on macOS"]
-        #[method(filterBrowsers)]
+        #[unsafe(method(filterBrowsers))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterBrowsers(&self) -> bool;
 
         /// Setter for [`filterBrowsers`][Self::filterBrowsers].
         #[deprecated = "filterBrowsers is not supported on macOS"]
-        #[method(setFilterBrowsers:)]
+        #[unsafe(method(setFilterBrowsers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilterBrowsers(&self, filter_browsers: bool);
 
         /// If YES, the filter plugin will be allowed to filter socket traffic. If NO, the filter plugin will not see any socket flows. Defaults to NO. At least one of filterBrowsers and filterSockets should be set to YES to make the filter take effect.
-        #[method(filterSockets)]
+        #[unsafe(method(filterSockets))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterSockets(&self) -> bool;
 
         /// Setter for [`filterSockets`][Self::filterSockets].
-        #[method(setFilterSockets:)]
+        #[unsafe(method(setFilterSockets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilterSockets(&self, filter_sockets: bool);
 
         /// If YES, a NEFilterPacketProvider will be instantiated and will be allowed to filter packets.
-        #[method(filterPackets)]
+        #[unsafe(method(filterPackets))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterPackets(&self) -> bool;
 
         /// Setter for [`filterPackets`][Self::filterPackets].
-        #[method(setFilterPackets:)]
+        #[unsafe(method(setFilterPackets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilterPackets(&self, filter_packets: bool);
 
         /// An optional dictionary of plugin-specific keys to be passed to the plugin.
-        #[method(vendorConfiguration)]
+        #[unsafe(method(vendorConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn vendorConfiguration(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`vendorConfiguration`][Self::vendorConfiguration].
-        #[method(setVendorConfiguration:)]
+        #[unsafe(method(setVendorConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVendorConfiguration(
             &self,
@@ -4091,52 +4091,52 @@ extern_methods!(
         );
 
         /// The optional address of the server used to support the filter.
-        #[method(serverAddress)]
+        #[unsafe(method(serverAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`serverAddress`][Self::serverAddress].
-        #[method(setServerAddress:)]
+        #[unsafe(method(setServerAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServerAddress(&self, server_address: Option<&NSString>);
 
         /// The optional username associated with the filter.
-        #[method(username)]
+        #[unsafe(method(username))]
         #[unsafe(method_family = none)]
         pub unsafe fn username(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`username`][Self::username].
-        #[method(setUsername:)]
+        #[unsafe(method(setUsername:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsername(&self, username: Option<&NSString>);
 
         /// The optional organization associated with the filter.
-        #[method(organization)]
+        #[unsafe(method(organization))]
         #[unsafe(method_family = none)]
         pub unsafe fn organization(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`organization`][Self::organization].
-        #[method(setOrganization:)]
+        #[unsafe(method(setOrganization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrganization(&self, organization: Option<&NSString>);
 
         /// The optional password keychain reference associated with the filter.
-        #[method(passwordReference)]
+        #[unsafe(method(passwordReference))]
         #[unsafe(method_family = none)]
         pub unsafe fn passwordReference(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`passwordReference`][Self::passwordReference].
-        #[method(setPasswordReference:)]
+        #[unsafe(method(setPasswordReference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPasswordReference(&self, password_reference: Option<&NSData>);
 
         /// The optional certificate identity keychain reference associated with the filter.
-        #[method(identityReference)]
+        #[unsafe(method(identityReference))]
         #[unsafe(method_family = none)]
         pub unsafe fn identityReference(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`identityReference`][Self::identityReference].
-        #[method(setIdentityReference:)]
+        #[unsafe(method(setIdentityReference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityReference(&self, identity_reference: Option<&NSData>);
 
@@ -4144,12 +4144,12 @@ extern_methods!(
         /// If this property is nil, then the bundle identifier of the NEFilterDataProvider extension in the calling app's
         /// bundle is used, and if the calling app's bundle contains more than one NEFilterDataProvider extension then which one will
         /// be used is undefined.
-        #[method(filterDataProviderBundleIdentifier)]
+        #[unsafe(method(filterDataProviderBundleIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterDataProviderBundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`filterDataProviderBundleIdentifier`][Self::filterDataProviderBundleIdentifier].
-        #[method(setFilterDataProviderBundleIdentifier:)]
+        #[unsafe(method(setFilterDataProviderBundleIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilterDataProviderBundleIdentifier(
             &self,
@@ -4160,12 +4160,12 @@ extern_methods!(
         /// If this property is nil, then the bundle identifier of the NEFilterPacketProvider extension in the calling app's
         /// bundle is used, and if the calling app's bundle contains more than one NEFilterPacketProvider extension then which one will
         /// be used is undefined.
-        #[method(filterPacketProviderBundleIdentifier)]
+        #[unsafe(method(filterPacketProviderBundleIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterPacketProviderBundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`filterPacketProviderBundleIdentifier`][Self::filterPacketProviderBundleIdentifier].
-        #[method(setFilterPacketProviderBundleIdentifier:)]
+        #[unsafe(method(setFilterPacketProviderBundleIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilterPacketProviderBundleIdentifier(
             &self,
@@ -4177,11 +4177,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterProviderConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -4215,7 +4215,7 @@ extern_methods!(
         /// Parameter `networkRule`: A NENetworkRule object that defines the network traffic characteristics that this rule matches.
         ///
         /// Parameter `action`: The action to take when this rule matches.
-        #[method(initWithNetworkRule:action:)]
+        #[unsafe(method(initWithNetworkRule:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNetworkRule_action(
             this: Allocated<Self>,
@@ -4224,12 +4224,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The NENetworkRule that defines the network traffic characteristics that this rule matches.
-        #[method(networkRule)]
+        #[unsafe(method(networkRule))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkRule(&self) -> Retained<NENetworkRule>;
 
         /// The action to take when this rule matches network traffic.
-        #[method(action)]
+        #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> NEFilterAction;
     }
@@ -4238,11 +4238,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterRule {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -4284,7 +4284,7 @@ extern_methods!(
         /// and have an action of NEFilterActionFilterData.
         ///
         /// Returns: the newly-initialized NEFilterSettings object.
-        #[method(initWithRules:defaultAction:)]
+        #[unsafe(method(initWithRules:defaultAction:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRules_defaultAction(
             this: Allocated<Self>,
@@ -4297,12 +4297,12 @@ extern_methods!(
         /// NEFilterActionAllow: Allow the flow of data to proceed on its journey through the networking stack without consulting this provider.
         /// NEFilterActionDrop: Drop the flow without consulting this provider.
         /// NEFilterActionFilterData: Call this provider's handleNewFlow: method with the flow.
-        #[method(rules)]
+        #[unsafe(method(rules))]
         #[unsafe(method_family = none)]
         pub unsafe fn rules(&self) -> Retained<NSArray<NEFilterRule>>;
 
         /// An NEFilterAction containing the default action to take for flows of network data that do not match any of the specified rules.
-        #[method(defaultAction)]
+        #[unsafe(method(defaultAction))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultAction(&self) -> NEFilterAction;
     }
@@ -4311,11 +4311,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFilterSettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -4345,22 +4345,22 @@ unsafe impl NSSecureCoding for NEFlowMetaData {}
 extern_methods!(
     unsafe impl NEFlowMetaData {
         /// A byte string that uniquely identifies the binary for each build of the source application of the flow. The data object may be empty in cases where the flow originates from a system process.
-        #[method(sourceAppUniqueIdentifier)]
+        #[unsafe(method(sourceAppUniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceAppUniqueIdentifier(&self) -> Retained<NSData>;
 
         /// A string containing the signing identifier (almost always equivalent to the bundle identifier) of the source app of the flow. The string may be empty in cases where the flow originates from a system process.
-        #[method(sourceAppSigningIdentifier)]
+        #[unsafe(method(sourceAppSigningIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceAppSigningIdentifier(&self) -> Retained<NSString>;
 
         /// Audit token of the source application of the flow.
-        #[method(sourceAppAuditToken)]
+        #[unsafe(method(sourceAppAuditToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceAppAuditToken(&self) -> Option<Retained<NSData>>;
 
         /// The identifier of the content filter flow corresponding to this flow.
-        #[method(filterFlowIdentifier)]
+        #[unsafe(method(filterFlowIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterFlowIdentifier(&self) -> Option<Retained<NSUUID>>;
     }
@@ -4369,11 +4369,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEFlowMetaData {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -4424,17 +4424,17 @@ unsafe impl NSObjectProtocol for NEHotspotNetwork {}
 extern_methods!(
     unsafe impl NEHotspotNetwork {
         /// The SSID of the Wi-Fi network.
-        #[method(SSID)]
+        #[unsafe(method(SSID))]
         #[unsafe(method_family = none)]
         pub unsafe fn SSID(&self) -> Retained<NSString>;
 
         /// The BSSID of the Wi-Fi network.
-        #[method(BSSID)]
+        #[unsafe(method(BSSID))]
         #[unsafe(method_family = none)]
         pub unsafe fn BSSID(&self) -> Retained<NSString>;
 
         /// The security type of the Wi-Fi network.
-        #[method(securityType)]
+        #[unsafe(method(securityType))]
         #[unsafe(method_family = none)]
         pub unsafe fn securityType(&self) -> NEHotspotNetworkSecurityType;
 
@@ -4453,7 +4453,7 @@ extern_methods!(
         /// application fails to meet above requirements, non-nil otherwise. NEHotspotNetwork object contains only valid
         /// SSID, BSSID and security type values, when the block is passed non-nil object.This block is executed on application's
         /// main queue.
-        #[method(fetchCurrentWithCompletionHandler:)]
+        #[unsafe(method(fetchCurrentWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchCurrentWithCompletionHandler(
             completion_handler: &block2::Block<dyn Fn(*mut NEHotspotNetwork)>,
@@ -4464,11 +4464,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotNetwork {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -4604,25 +4604,25 @@ extern_methods!(
     unsafe impl NEHotspotNetwork {
         /// The signal strength for the Wi-Fi network. The value lies within
         /// the range 0.0 (weak/no signal) to 1.0 (strong signal).
-        #[method(signalStrength)]
+        #[unsafe(method(signalStrength))]
         #[unsafe(method_family = none)]
         pub unsafe fn signalStrength(&self) -> c_double;
 
         /// Indicates whether the network is secure
-        #[method(isSecure)]
+        #[unsafe(method(isSecure))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSecure(&self) -> bool;
 
         /// Indicates whether the network was joined automatically
         /// (YES) or joined by the user (NO).
-        #[method(didAutoJoin)]
+        #[unsafe(method(didAutoJoin))]
         #[unsafe(method_family = none)]
         pub unsafe fn didAutoJoin(&self) -> bool;
 
         /// Indicates whether the network was just joined. Useful in the
         /// Maintaining state to differentiate whether the Maintain command
         /// is for the initial join, or the subsequent periodic callback.
-        #[method(didJustJoin)]
+        #[unsafe(method(didJustJoin))]
         #[unsafe(method_family = none)]
         pub unsafe fn didJustJoin(&self) -> bool;
 
@@ -4631,7 +4631,7 @@ extern_methods!(
         /// call to the +[NEHotspotHelper supportedNetworkInterfaces] method. This
         /// is useful to restore state after the HotspotHelper application is quit
         /// and restarted.
-        #[method(isChosenHelper)]
+        #[unsafe(method(isChosenHelper))]
         #[unsafe(method_family = none)]
         pub unsafe fn isChosenHelper(&self) -> bool;
 
@@ -4641,7 +4641,7 @@ extern_methods!(
         /// successfully authenticate to the given network. Used in the response
         /// to the kNEHotspotHelperCommandTypeEvaluate and
         /// kNEHotspotHelperCommandTypeFilterScanList commands.
-        #[method(setConfidence:)]
+        #[unsafe(method(setConfidence:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfidence(&self, confidence: NEHotspotHelperConfidence);
 
@@ -4653,7 +4653,7 @@ extern_methods!(
         ///
         /// Used only in the response to the kNEHotspotHelperCommandTypeFilterScanList
         /// command.
-        #[method(setPassword:)]
+        #[unsafe(method(setPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPassword(&self, password: &NSString);
     }
@@ -4677,19 +4677,19 @@ unsafe impl NSObjectProtocol for NEHotspotHelperCommand {}
 extern_methods!(
     unsafe impl NEHotspotHelperCommand {
         /// The type of the command.
-        #[method(commandType)]
+        #[unsafe(method(commandType))]
         #[unsafe(method_family = none)]
         pub unsafe fn commandType(&self) -> NEHotspotHelperCommandType;
 
         /// The network associated with the command. May be nil.
-        #[method(network)]
+        #[unsafe(method(network))]
         #[unsafe(method_family = none)]
         pub unsafe fn network(&self) -> Option<Retained<NEHotspotNetwork>>;
 
         /// The list of networks associated with a command. Will be nil unless
         /// the command type is kNEHotspotHelperCommandTypeFilterScanList.
         /// This property returns an NSArray of NEHotspotNetwork.
-        #[method(networkList)]
+        #[unsafe(method(networkList))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkList(&self) -> Option<Retained<NSArray<NEHotspotNetwork>>>;
 
@@ -4698,7 +4698,7 @@ extern_methods!(
         /// Instantiate an NEHotspotHelperResponse for the command.
         ///
         /// Returns: NEHotspotHelperResponse with the specified result.
-        #[method(createResponse:)]
+        #[unsafe(method(createResponse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createResponse(
             &self,
@@ -4712,7 +4712,7 @@ extern_methods!(
         ///
         /// Returns: non-nil NWTCPConnection object if successful, nil otherwise
         #[deprecated = "Use the `interface` property with `nw_parameters_require_interface`"]
-        #[method(createTCPConnection:)]
+        #[unsafe(method(createTCPConnection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createTCPConnection(
             &self,
@@ -4726,7 +4726,7 @@ extern_methods!(
         ///
         /// Returns: non-nil NWUDPSession object if successful, nil otherwise
         #[deprecated = "Use the `interface` property with `nw_parameters_require_interface`"]
-        #[method(createUDPSession:)]
+        #[unsafe(method(createUDPSession:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createUDPSession(&self, endpoint: &NWEndpoint) -> Retained<NWUDPSession>;
     }
@@ -4735,11 +4735,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotHelperCommand {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -4765,7 +4765,7 @@ extern_methods!(
         /// kNEHotspotHelperCommandTypeEvaluate command. The helper sets the
         /// confidence in the network object to indicate its ability to handle
         /// the current network.
-        #[method(setNetwork:)]
+        #[unsafe(method(setNetwork:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNetwork(&self, network: &NEHotspotNetwork);
 
@@ -4776,14 +4776,14 @@ extern_methods!(
         /// The helper provides the list of network objects that it is capable of
         /// handling with at least low confidence. Networks that it has no
         /// confidence in handling should not be specified.
-        #[method(setNetworkList:)]
+        #[unsafe(method(setNetworkList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNetworkList(&self, network_list: &NSArray<NEHotspotNetwork>);
 
         /// Delivers the response to the command.
         ///
         /// Deliver the NEHotspotHelperResponse to the HotspotHelper infrastructure.
-        #[method(deliver)]
+        #[unsafe(method(deliver))]
         #[unsafe(method_family = none)]
         pub unsafe fn deliver(&self);
     }
@@ -4792,11 +4792,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotHelperResponse {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -4848,7 +4848,7 @@ extern_methods!(
         /// Note: 2
         /// After the application invokes -[NEHotspotHelperResponse deliver] indicating
         /// kNEHotspotHelperResultSuccess, the Wi-Fi network is disassociated.
-        #[method(logoff:)]
+        #[unsafe(method(logoff:))]
         #[unsafe(method_family = none)]
         pub unsafe fn logoff(network: &NEHotspotNetwork) -> bool;
 
@@ -4867,7 +4867,7 @@ extern_methods!(
         ///
         /// Returns: nil if no network interfaces are being managed,
         /// non-nil NSArray of NEHotspotNetwork objects otherwise.
-        #[method(supportedNetworkInterfaces)]
+        #[unsafe(method(supportedNetworkInterfaces))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedNetworkInterfaces() -> Option<Retained<NSArray>>;
     }
@@ -4876,11 +4876,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotHelper {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -4895,7 +4895,7 @@ extern_category!(
     pub unsafe trait NSMutableURLRequestNEHotspotHelper {
         /// Binds the NSMutableURLRequest to the network interface associated with
         /// the NEHotspotHelperCommand object.
-        #[method(bindToHotspotHelperCommand:)]
+        #[unsafe(method(bindToHotspotHelperCommand:))]
         #[unsafe(method_family = none)]
         unsafe fn bindToHotspotHelperCommand(&self, command: &NEHotspotHelperCommand);
     }
@@ -4983,52 +4983,52 @@ extern_methods!(
     unsafe impl NEHotspotHS20Settings {
         /// Domain Name of Legacy Hotspot or Hotspot 2.0 Wi-Fi Network.
         /// This Domain Name is used for Wi-Fi Hotspot 2.0 negotiation.
-        #[method(domainName)]
+        #[unsafe(method(domainName))]
         #[unsafe(method_family = none)]
         pub unsafe fn domainName(&self) -> Retained<NSString>;
 
         /// If set to YES, allows connection to networks of roaming service
         /// providers. Defaults to NO.
-        #[method(isRoamingEnabled)]
+        #[unsafe(method(isRoamingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRoamingEnabled(&self) -> bool;
 
         /// Setter for [`isRoamingEnabled`][Self::isRoamingEnabled].
-        #[method(setRoamingEnabled:)]
+        #[unsafe(method(setRoamingEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRoamingEnabled(&self, roaming_enabled: bool);
 
         /// Array of Roaming Consortium Organization Identifiers used
         /// for Wi-Fi Hotspot 2.0 negotiation.
-        #[method(roamingConsortiumOIs)]
+        #[unsafe(method(roamingConsortiumOIs))]
         #[unsafe(method_family = none)]
         pub unsafe fn roamingConsortiumOIs(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`roamingConsortiumOIs`][Self::roamingConsortiumOIs].
-        #[method(setRoamingConsortiumOIs:)]
+        #[unsafe(method(setRoamingConsortiumOIs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRoamingConsortiumOIs(&self, roaming_consortium_o_is: &NSArray<NSString>);
 
         /// Array of Network Access Identifier Realm names used for
         /// Wi-Fi Hotspot 2.0 negotiation.
-        #[method(naiRealmNames)]
+        #[unsafe(method(naiRealmNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn naiRealmNames(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`naiRealmNames`][Self::naiRealmNames].
-        #[method(setNaiRealmNames:)]
+        #[unsafe(method(setNaiRealmNames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNaiRealmNames(&self, nai_realm_names: &NSArray<NSString>);
 
         /// Array of Mobile Country Code (MCC)/Mobile Network Code (MNC)
         /// pairs used for Wi-Fi Hotspot 2.0 negotiation. Each string must contain
         /// exactly six digits.
-        #[method(MCCAndMNCs)]
+        #[unsafe(method(MCCAndMNCs))]
         #[unsafe(method_family = none)]
         pub unsafe fn MCCAndMNCs(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`MCCAndMNCs`][Self::MCCAndMNCs].
-        #[method(setMCCAndMNCs:)]
+        #[unsafe(method(setMCCAndMNCs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMCCAndMNCs(&self, mcc_and_mn_cs: &NSArray<NSString>);
 
@@ -5039,7 +5039,7 @@ extern_methods!(
         /// Parameter `domainName`: The domain name of HS2.0 Wi-Fi Network
         ///
         /// Parameter `roamingEnabled`: If YES, allows connections to networks of roaming service providers.
-        #[method(initWithDomainName:roamingEnabled:)]
+        #[unsafe(method(initWithDomainName:roamingEnabled:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDomainName_roamingEnabled(
             this: Allocated<Self>,
@@ -5052,11 +5052,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotHS20Settings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -5088,47 +5088,47 @@ extern_methods!(
     unsafe impl NEHotspotEAPSettings {
         /// Array of supported EAP Types. Refer to NEHotspotConfigurationEAPType
         /// for valid values.
-        #[method(supportedEAPTypes)]
+        #[unsafe(method(supportedEAPTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedEAPTypes(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`supportedEAPTypes`][Self::supportedEAPTypes].
-        #[method(setSupportedEAPTypes:)]
+        #[unsafe(method(setSupportedEAPTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedEAPTypes(&self, supported_eap_types: &NSArray<NSNumber>);
 
         /// A UTF-8 encoded string containing username component of the user authentication
         /// credentials. Length of this property must be between 1 and 253 characters.
-        #[method(username)]
+        #[unsafe(method(username))]
         #[unsafe(method_family = none)]
         pub unsafe fn username(&self) -> Retained<NSString>;
 
         /// Setter for [`username`][Self::username].
-        #[method(setUsername:)]
+        #[unsafe(method(setUsername:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsername(&self, username: &NSString);
 
         /// Identity string to be used in EAP-Response/Identity of the outer phase. This key is only
         /// relevant to TTLS, PEAP, and EAP-FAST.
-        #[method(outerIdentity)]
+        #[unsafe(method(outerIdentity))]
         #[unsafe(method_family = none)]
         pub unsafe fn outerIdentity(&self) -> Retained<NSString>;
 
         /// Setter for [`outerIdentity`][Self::outerIdentity].
-        #[method(setOuterIdentity:)]
+        #[unsafe(method(setOuterIdentity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOuterIdentity(&self, outer_identity: &NSString);
 
         /// Specifies the inner authentication used by the TTLS module.
         /// Possible values are PAP, CHAP, MSCHAP, MSCHAPv2, and EAP. Defaults to EAP.
-        #[method(ttlsInnerAuthenticationType)]
+        #[unsafe(method(ttlsInnerAuthenticationType))]
         #[unsafe(method_family = none)]
         pub unsafe fn ttlsInnerAuthenticationType(
             &self,
         ) -> NEHotspotConfigurationTTLSInnerAuthenticationType;
 
         /// Setter for [`ttlsInnerAuthenticationType`][Self::ttlsInnerAuthenticationType].
-        #[method(setTtlsInnerAuthenticationType:)]
+        #[unsafe(method(setTtlsInnerAuthenticationType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTtlsInnerAuthenticationType(
             &self,
@@ -5137,47 +5137,47 @@ extern_methods!(
 
         /// The password component of the 802.1X authentication credential.
         /// Length of this property must be between 1 and 64 characters.
-        #[method(password)]
+        #[unsafe(method(password))]
         #[unsafe(method_family = none)]
         pub unsafe fn password(&self) -> Retained<NSString>;
 
         /// Setter for [`password`][Self::password].
-        #[method(setPassword:)]
+        #[unsafe(method(setPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPassword(&self, password: &NSString);
 
         /// Array of server certificate common names that will be used to verify server's certificate.
         /// The string could have wildcards to specify the name, such as "*.mycompany.net". If a server presents
         /// a certificate with DNSName or Common Name that isn't in this list, it won't be trusted.
-        #[method(trustedServerNames)]
+        #[unsafe(method(trustedServerNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn trustedServerNames(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`trustedServerNames`][Self::trustedServerNames].
-        #[method(setTrustedServerNames:)]
+        #[unsafe(method(setTrustedServerNames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrustedServerNames(&self, trusted_server_names: &NSArray<NSString>);
 
         /// If YES, supports two-factor authentication for EAP-TTLS, PEAP, or EAP-FAST.
         /// If NO, allows for zero-factor authentication for EAP-TLS. The default is YES for EAP-TLS,
         /// and NO for other EAP types.
-        #[method(isTLSClientCertificateRequired)]
+        #[unsafe(method(isTLSClientCertificateRequired))]
         #[unsafe(method_family = none)]
         pub unsafe fn isTLSClientCertificateRequired(&self) -> bool;
 
         /// Setter for [`isTLSClientCertificateRequired`][Self::isTLSClientCertificateRequired].
-        #[method(setTlsClientCertificateRequired:)]
+        #[unsafe(method(setTlsClientCertificateRequired:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTlsClientCertificateRequired(&self, tls_client_certificate_required: bool);
 
         /// TLS version to use during the TLS handshake.
         /// Default value is NEHotspotConfigurationEAPTLSVersion_1_2.
-        #[method(preferredTLSVersion)]
+        #[unsafe(method(preferredTLSVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredTLSVersion(&self) -> NEHotspotConfigurationEAPTLSVersion;
 
         /// Setter for [`preferredTLSVersion`][Self::preferredTLSVersion].
-        #[method(setPreferredTLSVersion:)]
+        #[unsafe(method(setPreferredTLSVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredTLSVersion(
             &self,
@@ -5197,7 +5197,7 @@ extern_methods!(
         ///
         /// Returns: returns NO if the parameter is not an object of SecIdentityRef type or if the persistent reference
         /// is not found in the application's keychain else returns YES.
-        #[method(setIdentity:)]
+        #[unsafe(method(setIdentity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentity(&self, identity: &SecIdentity) -> bool;
 
@@ -5214,7 +5214,7 @@ extern_methods!(
         ///
         /// Returns: returns NO if any element in the array is not an object of type SecCertificateRef or if API
         /// fails to find persistent reference for each element from the application's keychain else return YES.
-        #[method(setTrustedServerCertificates:)]
+        #[unsafe(method(setTrustedServerCertificates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrustedServerCertificates(&self, certificates: &NSArray) -> bool;
     }
@@ -5223,11 +5223,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotEAPSettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -5258,22 +5258,22 @@ unsafe impl NSSecureCoding for NEHotspotConfiguration {}
 extern_methods!(
     unsafe impl NEHotspotConfiguration {
         /// SSID of the Wi-Fi Network.
-        #[method(SSID)]
+        #[unsafe(method(SSID))]
         #[unsafe(method_family = none)]
         pub unsafe fn SSID(&self) -> Retained<NSString>;
 
         /// Prefix string of SSID of the Wi-Fi Network.
-        #[method(SSIDPrefix)]
+        #[unsafe(method(SSIDPrefix))]
         #[unsafe(method_family = none)]
         pub unsafe fn SSIDPrefix(&self) -> Retained<NSString>;
 
         /// if set to YES the configuration will not be persisted. Default is NO.
-        #[method(joinOnce)]
+        #[unsafe(method(joinOnce))]
         #[unsafe(method_family = none)]
         pub unsafe fn joinOnce(&self) -> bool;
 
         /// Setter for [`joinOnce`][Self::joinOnce].
-        #[method(setJoinOnce:)]
+        #[unsafe(method(setJoinOnce:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJoinOnce(&self, join_once: bool);
 
@@ -5281,22 +5281,22 @@ extern_methods!(
         /// number of days specified by this property. The minimum value is 1 day and maximum value is 365 days.
         /// A configuration does not get deleted automatically if this property is not set or set to an invalid value.
         /// This property does not apply to Enterprise and HS2.0 networks.
-        #[method(lifeTimeInDays)]
+        #[unsafe(method(lifeTimeInDays))]
         #[unsafe(method_family = none)]
         pub unsafe fn lifeTimeInDays(&self) -> Retained<NSNumber>;
 
         /// Setter for [`lifeTimeInDays`][Self::lifeTimeInDays].
-        #[method(setLifeTimeInDays:)]
+        #[unsafe(method(setLifeTimeInDays:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLifeTimeInDays(&self, life_time_in_days: &NSNumber);
 
         /// if set to YES the system will perform active scan of the SSID. Default is NO.
-        #[method(hidden)]
+        #[unsafe(method(hidden))]
         #[unsafe(method_family = none)]
         pub unsafe fn hidden(&self) -> bool;
 
         /// Setter for [`hidden`][Self::hidden].
-        #[method(setHidden:)]
+        #[unsafe(method(setHidden:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
@@ -5306,7 +5306,7 @@ extern_methods!(
         ///
         /// Parameter `SSID`: The SSID of the open Wi-Fi Network.
         /// Length of SSID must be between 1 and 32 characters.
-        #[method(initWithSSID:)]
+        #[unsafe(method(initWithSSID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSSID(this: Allocated<Self>, ssid: &NSString) -> Retained<Self>;
 
@@ -5322,7 +5322,7 @@ extern_methods!(
         /// For Static WEP(128bit) : 26 Hex Digits
         ///
         /// Parameter `isWEP`: YES specifies WEP Wi-Fi Network else WPA/WPA2 Personal Wi-Fi Network
-        #[method(initWithSSID:passphrase:isWEP:)]
+        #[unsafe(method(initWithSSID:passphrase:isWEP:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSSID_passphrase_isWEP(
             this: Allocated<Self>,
@@ -5338,7 +5338,7 @@ extern_methods!(
         /// Parameter `SSID`: The SSID of WPA/WPA2 Enterprise Wi-Fi Network
         ///
         /// Parameter `eapSettings`: EAP configuration
-        #[method(initWithSSID:eapSettings:)]
+        #[unsafe(method(initWithSSID:eapSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSSID_eapSettings(
             this: Allocated<Self>,
@@ -5353,7 +5353,7 @@ extern_methods!(
         /// Parameter `hs20Settings`: Hotspot 2.0 configuration
         ///
         /// Parameter `eapSettings`: EAP configuration
-        #[method(initWithHS20Settings:eapSettings:)]
+        #[unsafe(method(initWithHS20Settings:eapSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHS20Settings_eapSettings(
             this: Allocated<Self>,
@@ -5367,7 +5367,7 @@ extern_methods!(
         ///
         /// Parameter `SSIDPrefix`: The prefix string of SSID of the open Wi-Fi Network.
         /// Length of SSIDPrefix must be between 3 and 32 characters.
-        #[method(initWithSSIDPrefix:)]
+        #[unsafe(method(initWithSSIDPrefix:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSSIDPrefix(
             this: Allocated<Self>,
@@ -5387,7 +5387,7 @@ extern_methods!(
         /// For Static WEP(128bit) : 26 Hex Digits
         ///
         /// Parameter `isWEP`: YES specifies WEP Wi-Fi Network else WPA/WPA2 Personal Wi-Fi Network
-        #[method(initWithSSIDPrefix:passphrase:isWEP:)]
+        #[unsafe(method(initWithSSIDPrefix:passphrase:isWEP:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSSIDPrefix_passphrase_isWEP(
             this: Allocated<Self>,
@@ -5401,11 +5401,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -5484,7 +5484,7 @@ unsafe impl NSObjectProtocol for NEHotspotConfigurationManager {}
 
 extern_methods!(
     unsafe impl NEHotspotConfigurationManager {
-        #[method(sharedManager)]
+        #[unsafe(method(sharedManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedManager() -> Retained<NEHotspotConfigurationManager>;
 
@@ -5499,7 +5499,7 @@ extern_methods!(
         /// If the configuration is found invalid or API encounters some other error then completionHandler is called
         /// with instance of NSError containing appropriate error code. This API attempts to join the Wi-Fi network
         /// if the configuration is successfully added or updated and the network is found nearby.
-        #[method(applyConfiguration:completionHandler:)]
+        #[unsafe(method(applyConfiguration:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyConfiguration_completionHandler(
             &self,
@@ -5512,21 +5512,21 @@ extern_methods!(
         /// after the configuration is removed.
         ///
         /// Parameter `SSID`: Wi-Fi SSID for which the configuration is to be deleted.
-        #[method(removeConfigurationForSSID:)]
+        #[unsafe(method(removeConfigurationForSSID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeConfigurationForSSID(&self, ssid: &NSString);
 
         /// This function removes Wi-Fi configuration.
         ///
         /// Parameter `domainName`: HS2.0 domainName for which the configuration is to be deleted.
-        #[method(removeConfigurationForHS20DomainName:)]
+        #[unsafe(method(removeConfigurationForHS20DomainName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeConfigurationForHS20DomainName(&self, domain_name: &NSString);
 
         #[cfg(feature = "block2")]
         /// This function returns array of SSIDs and HS2.0 Domain Names that the calling application has configured.
         /// It returns nil if there are no networks configurred by the calling application.
-        #[method(getConfiguredSSIDsWithCompletionHandler:)]
+        #[unsafe(method(getConfiguredSSIDsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getConfiguredSSIDsWithCompletionHandler(
             &self,
@@ -5538,11 +5538,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEHotspotConfigurationManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -5580,7 +5580,7 @@ extern_methods!(
         /// Parameter `subnetMasks`: An array of IPv4 subnet masks represented as dotted decimal strings.
         ///
         /// Returns: The initialized object.
-        #[method(initWithAddresses:subnetMasks:)]
+        #[unsafe(method(initWithAddresses:subnetMasks:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAddresses_subnetMasks(
             this: Allocated<Self>,
@@ -5591,47 +5591,47 @@ extern_methods!(
         /// Create a NEIPv4Settings object that will obtain IP addresses and netmasks using DHCP.
         ///
         /// Returns: The initialized object.
-        #[method(settingsWithAutomaticAddressing)]
+        #[unsafe(method(settingsWithAutomaticAddressing))]
         #[unsafe(method_family = none)]
         pub unsafe fn settingsWithAutomaticAddressing() -> Retained<Self>;
 
         /// An array of IPv4 addresses represented as dotted decimal strings. These addresses will be set on the virtual interface used by the VPN tunnel.
-        #[method(addresses)]
+        #[unsafe(method(addresses))]
         #[unsafe(method_family = none)]
         pub unsafe fn addresses(&self) -> Retained<NSArray<NSString>>;
 
         /// An array of IPv4 subnet masks represented as dotted decimal strings. These subnet masks will be set along with their corresponding addresses from the addresses array on the virtual interface used by the VPN tunnel.
-        #[method(subnetMasks)]
+        #[unsafe(method(subnetMasks))]
         #[unsafe(method_family = none)]
         pub unsafe fn subnetMasks(&self) -> Retained<NSArray<NSString>>;
 
         /// The address of the next-hop gateway router represented as a dotted decimal string. This property is ignored for TUN interfaces.
-        #[method(router)]
+        #[unsafe(method(router))]
         #[unsafe(method_family = none)]
         pub unsafe fn router(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`router`][Self::router].
-        #[method(setRouter:)]
+        #[unsafe(method(setRouter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRouter(&self, router: Option<&NSString>);
 
         /// An array of NEIPv4Route objects. Traffic matching these routes will be routed through the virtual interface used by the VPN tunnel.
-        #[method(includedRoutes)]
+        #[unsafe(method(includedRoutes))]
         #[unsafe(method_family = none)]
         pub unsafe fn includedRoutes(&self) -> Option<Retained<NSArray<NEIPv4Route>>>;
 
         /// Setter for [`includedRoutes`][Self::includedRoutes].
-        #[method(setIncludedRoutes:)]
+        #[unsafe(method(setIncludedRoutes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncludedRoutes(&self, included_routes: Option<&NSArray<NEIPv4Route>>);
 
         /// An array of NEIPv4Route objects. Traffic matching these routes will be routed through the current primary physical interface of the device.
-        #[method(excludedRoutes)]
+        #[unsafe(method(excludedRoutes))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludedRoutes(&self) -> Option<Retained<NSArray<NEIPv4Route>>>;
 
         /// Setter for [`excludedRoutes`][Self::excludedRoutes].
-        #[method(setExcludedRoutes:)]
+        #[unsafe(method(setExcludedRoutes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedRoutes(&self, excluded_routes: Option<&NSArray<NEIPv4Route>>);
     }
@@ -5640,11 +5640,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEIPv4Settings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -5682,7 +5682,7 @@ extern_methods!(
         /// Parameter `subnetMask`: The subnet mask of the destination network.
         ///
         /// Returns: The initialized NEIPv4Route.
-        #[method(initWithDestinationAddress:subnetMask:)]
+        #[unsafe(method(initWithDestinationAddress:subnetMask:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDestinationAddress_subnetMask(
             this: Allocated<Self>,
@@ -5691,27 +5691,27 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// An IPv4 address represented as a dotted decimal string.
-        #[method(destinationAddress)]
+        #[unsafe(method(destinationAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationAddress(&self) -> Retained<NSString>;
 
         /// An IPv4 subnet mask represented as a dotted decimal string. This mask in combination with the destinationAddress property is used to determine the destination network of the route.
-        #[method(destinationSubnetMask)]
+        #[unsafe(method(destinationSubnetMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationSubnetMask(&self) -> Retained<NSString>;
 
         /// The IPv4 address of the route's gateway. If this property is nil then the route's gateway will be set to the tunnel's virtual interface.
-        #[method(gatewayAddress)]
+        #[unsafe(method(gatewayAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn gatewayAddress(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`gatewayAddress`][Self::gatewayAddress].
-        #[method(setGatewayAddress:)]
+        #[unsafe(method(setGatewayAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGatewayAddress(&self, gateway_address: Option<&NSString>);
 
         /// Returns: A route object that represents the IPv4 default route.
-        #[method(defaultRoute)]
+        #[unsafe(method(defaultRoute))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultRoute() -> Retained<NEIPv4Route>;
     }
@@ -5720,11 +5720,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEIPv4Route {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -5762,7 +5762,7 @@ extern_methods!(
         /// Parameter `networkPrefixLengths`: An array of NSNumber objects each containing the length in bits of the network prefix of the corresponding address in the addresses parameter.
         ///
         /// Returns: The initialized object.
-        #[method(initWithAddresses:networkPrefixLengths:)]
+        #[unsafe(method(initWithAddresses:networkPrefixLengths:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAddresses_networkPrefixLengths(
             this: Allocated<Self>,
@@ -5771,42 +5771,42 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Create a NEIPv6Settings object that will obtain IP addresses and netmasks automatically.
-        #[method(settingsWithAutomaticAddressing)]
+        #[unsafe(method(settingsWithAutomaticAddressing))]
         #[unsafe(method_family = none)]
         pub unsafe fn settingsWithAutomaticAddressing() -> Retained<Self>;
 
         /// Create a NEIPv6Settings object that will only use link-local IPv6 addresses.
-        #[method(settingsWithLinkLocalAddressing)]
+        #[unsafe(method(settingsWithLinkLocalAddressing))]
         #[unsafe(method_family = none)]
         pub unsafe fn settingsWithLinkLocalAddressing() -> Retained<Self>;
 
         /// An array of IPv6 addresses represented strings. These addresses will be set on the virtual interface used by the VPN tunnel.
-        #[method(addresses)]
+        #[unsafe(method(addresses))]
         #[unsafe(method_family = none)]
         pub unsafe fn addresses(&self) -> Retained<NSArray<NSString>>;
 
         /// An array of NSNumber objects each representing the length in bits of the network prefix of the corresponding address in the addresses property.
-        #[method(networkPrefixLengths)]
+        #[unsafe(method(networkPrefixLengths))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkPrefixLengths(&self) -> Retained<NSArray<NSNumber>>;
 
         /// An array of NEIPv6Route objects. Traffic matching these routes will be routed through the virtual interface used by the VPN tunnel.
-        #[method(includedRoutes)]
+        #[unsafe(method(includedRoutes))]
         #[unsafe(method_family = none)]
         pub unsafe fn includedRoutes(&self) -> Option<Retained<NSArray<NEIPv6Route>>>;
 
         /// Setter for [`includedRoutes`][Self::includedRoutes].
-        #[method(setIncludedRoutes:)]
+        #[unsafe(method(setIncludedRoutes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncludedRoutes(&self, included_routes: Option<&NSArray<NEIPv6Route>>);
 
         /// An array of NEIPv6Route objects. Traffic matching these routes will be routed through the current primary physical interface of the device.
-        #[method(excludedRoutes)]
+        #[unsafe(method(excludedRoutes))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludedRoutes(&self) -> Option<Retained<NSArray<NEIPv6Route>>>;
 
         /// Setter for [`excludedRoutes`][Self::excludedRoutes].
-        #[method(setExcludedRoutes:)]
+        #[unsafe(method(setExcludedRoutes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedRoutes(&self, excluded_routes: Option<&NSArray<NEIPv6Route>>);
     }
@@ -5815,11 +5815,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEIPv6Settings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -5857,7 +5857,7 @@ extern_methods!(
         /// Parameter `networkPrefixLength`: A number containing the length in bits of the network prefix of the destination network.
         ///
         /// Returns: The initialized NEIPv6Route.
-        #[method(initWithDestinationAddress:networkPrefixLength:)]
+        #[unsafe(method(initWithDestinationAddress:networkPrefixLength:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDestinationAddress_networkPrefixLength(
             this: Allocated<Self>,
@@ -5866,27 +5866,27 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// An IPv6 address represented as a string.
-        #[method(destinationAddress)]
+        #[unsafe(method(destinationAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationAddress(&self) -> Retained<NSString>;
 
         /// A number containing the length in bits of the network prefix of the destination network. This prefix in combination with the destinationAddress property is used to determine the destination network of the route.
-        #[method(destinationNetworkPrefixLength)]
+        #[unsafe(method(destinationNetworkPrefixLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationNetworkPrefixLength(&self) -> Retained<NSNumber>;
 
         /// The IPv6 address of the route's gateway. If this property is nil then the route's gateway will be set to the tunnel's virtual interface.
-        #[method(gatewayAddress)]
+        #[unsafe(method(gatewayAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn gatewayAddress(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`gatewayAddress`][Self::gatewayAddress].
-        #[method(setGatewayAddress:)]
+        #[unsafe(method(setGatewayAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGatewayAddress(&self, gateway_address: Option<&NSString>);
 
         /// Returns: A route object that represents the IPv6 default route.
-        #[method(defaultRoute)]
+        #[unsafe(method(defaultRoute))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultRoute() -> Retained<NEIPv6Route>;
     }
@@ -5895,11 +5895,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEIPv6Route {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -5935,7 +5935,7 @@ extern_methods!(
         /// This function initializes a newly-allocated NETunnelNetworkSettings object with a given tunnel remote address.
         ///
         /// Parameter `address`: The address of the remote endpoint that is providing the tunnel service.
-        #[method(initWithTunnelRemoteAddress:)]
+        #[unsafe(method(initWithTunnelRemoteAddress:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTunnelRemoteAddress(
             this: Allocated<Self>,
@@ -5943,27 +5943,27 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// A string containing the IP address of the remote endpoint that is providing the tunnel service.
-        #[method(tunnelRemoteAddress)]
+        #[unsafe(method(tunnelRemoteAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn tunnelRemoteAddress(&self) -> Retained<NSString>;
 
         /// An NEDNSSettings object that contains the desired tunnel DNS settings.
-        #[method(DNSSettings)]
+        #[unsafe(method(DNSSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn DNSSettings(&self) -> Option<Retained<NEDNSSettings>>;
 
         /// Setter for [`DNSSettings`][Self::DNSSettings].
-        #[method(setDNSSettings:)]
+        #[unsafe(method(setDNSSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDNSSettings(&self, dns_settings: Option<&NEDNSSettings>);
 
         /// An NEProxySettings object that contains the desired tunnel proxy settings.
-        #[method(proxySettings)]
+        #[unsafe(method(proxySettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn proxySettings(&self) -> Option<Retained<NEProxySettings>>;
 
         /// Setter for [`proxySettings`][Self::proxySettings].
-        #[method(setProxySettings:)]
+        #[unsafe(method(setProxySettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProxySettings(&self, proxy_settings: Option<&NEProxySettings>);
     }
@@ -5972,11 +5972,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NETunnelNetworkSettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -6010,42 +6010,42 @@ unsafe impl NSSecureCoding for NEPacketTunnelNetworkSettings {}
 extern_methods!(
     unsafe impl NEPacketTunnelNetworkSettings {
         /// An NEIPv4Settings object that contains the desired tunnel IPv4 settings.
-        #[method(IPv4Settings)]
+        #[unsafe(method(IPv4Settings))]
         #[unsafe(method_family = none)]
         pub unsafe fn IPv4Settings(&self) -> Option<Retained<NEIPv4Settings>>;
 
         /// Setter for [`IPv4Settings`][Self::IPv4Settings].
-        #[method(setIPv4Settings:)]
+        #[unsafe(method(setIPv4Settings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIPv4Settings(&self, i_pv4_settings: Option<&NEIPv4Settings>);
 
         /// An NEIPv6Settings object that contains the desired tunnel IPv6 settings.
-        #[method(IPv6Settings)]
+        #[unsafe(method(IPv6Settings))]
         #[unsafe(method_family = none)]
         pub unsafe fn IPv6Settings(&self) -> Option<Retained<NEIPv6Settings>>;
 
         /// Setter for [`IPv6Settings`][Self::IPv6Settings].
-        #[method(setIPv6Settings:)]
+        #[unsafe(method(setIPv6Settings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIPv6Settings(&self, i_pv6_settings: Option<&NEIPv6Settings>);
 
         /// An NSNumber object containing the number of bytes of overhead appended to each outbound packet through the tunnel. The MTU for the TUN interface is computed by subtracting this value from the MTU of the primary physical interface.
-        #[method(tunnelOverheadBytes)]
+        #[unsafe(method(tunnelOverheadBytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn tunnelOverheadBytes(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`tunnelOverheadBytes`][Self::tunnelOverheadBytes].
-        #[method(setTunnelOverheadBytes:)]
+        #[unsafe(method(setTunnelOverheadBytes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTunnelOverheadBytes(&self, tunnel_overhead_bytes: Option<&NSNumber>);
 
         /// An NSNumber object containing the Maximum Transmission Unit (MTU) size in bytes to assign to the TUN interface. If this property is set, the tunnelOverheadBytes property is ignored.
-        #[method(MTU)]
+        #[unsafe(method(MTU))]
         #[unsafe(method_family = none)]
         pub unsafe fn MTU(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`MTU`][Self::MTU].
-        #[method(setMTU:)]
+        #[unsafe(method(setMTU:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMTU(&self, mtu: Option<&NSNumber>);
     }
@@ -6057,7 +6057,7 @@ extern_methods!(
         /// This function initializes a newly-allocated NETunnelNetworkSettings object with a given tunnel remote address.
         ///
         /// Parameter `address`: The address of the remote endpoint that is providing the tunnel service.
-        #[method(initWithTunnelRemoteAddress:)]
+        #[unsafe(method(initWithTunnelRemoteAddress:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTunnelRemoteAddress(
             this: Allocated<Self>,
@@ -6069,11 +6069,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEPacketTunnelNetworkSettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -6113,7 +6113,7 @@ extern_methods!(
         /// Parameter `ethernetAddress`: The ethernet address to be assigned to the tunnel interface. This string should be in the format "xx:xx:xx:xx:xx:xx", where each xx is a hexidecimal number between 0 and ff.
         ///
         /// Parameter `mtu`: The MTU (Maxium Transmission Unit) in bytes to be assigned to the tunnel interface.
-        #[method(initWithTunnelRemoteAddress:ethernetAddress:mtu:)]
+        #[unsafe(method(initWithTunnelRemoteAddress:ethernetAddress:mtu:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTunnelRemoteAddress_ethernetAddress_mtu(
             this: Allocated<Self>,
@@ -6123,7 +6123,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// An NSString object containing the ethernet address of the tunnel interface.
-        #[method(ethernetAddress)]
+        #[unsafe(method(ethernetAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn ethernetAddress(&self) -> Retained<NSString>;
     }
@@ -6135,7 +6135,7 @@ extern_methods!(
         /// This function initializes a newly-allocated NETunnelNetworkSettings object with a given tunnel remote address.
         ///
         /// Parameter `address`: The address of the remote endpoint that is providing the tunnel service.
-        #[method(initWithTunnelRemoteAddress:)]
+        #[unsafe(method(initWithTunnelRemoteAddress:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTunnelRemoteAddress(
             this: Allocated<Self>,
@@ -6147,11 +6147,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEEthernetTunnelNetworkSettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -6178,7 +6178,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary containing keys and values passed by the provider's containing app. If the containing app did not start the tunnel then this parameter will be nil.
         ///
         /// Parameter `completionHandler`: A block that must be called when the process of starting the tunnel is complete. If the tunnel cannot be established then the subclass' implementation of this method must pass a non-nil NSError object to this block. A value of nil passed to the completion handler indicates that the tunnel was successfully established.
-        #[method(startTunnelWithOptions:completionHandler:)]
+        #[unsafe(method(startTunnelWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startTunnelWithOptions_completionHandler(
             &self,
@@ -6192,7 +6192,7 @@ extern_methods!(
         /// Parameter `reason`: An NEProviderStopReason indicating why the tunnel is being stopped.
         ///
         /// Parameter `completionHandler`: A block that must be called when the tunnel is completely torn down.
-        #[method(stopTunnelWithReason:completionHandler:)]
+        #[unsafe(method(stopTunnelWithReason:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopTunnelWithReason_completionHandler(
             &self,
@@ -6203,12 +6203,12 @@ extern_methods!(
         /// This function is called by tunnel provider implementations to initiate tunnel destruction when a network error is encountered that renders the tunnel no longer viable. Subclasses should not override this method.
         ///
         /// Parameter `error`: An NSError object containing details about the error that the tunnel provider implementation encountered.
-        #[method(cancelTunnelWithError:)]
+        #[unsafe(method(cancelTunnelWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelTunnelWithError(&self, error: Option<&NSError>);
 
         /// An NEPacketFlow object that the tunnel provider implementation should use to receive packets from the network stack and inject packets into the network stack. Every time the tunnel is started the packet flow object is in an initialized state and must be explicitly opened before any packets can be received or injected.
-        #[method(packetFlow)]
+        #[unsafe(method(packetFlow))]
         #[unsafe(method_family = none)]
         pub unsafe fn packetFlow(&self) -> Retained<NEPacketTunnelFlow>;
 
@@ -6224,7 +6224,7 @@ extern_methods!(
         ///
         /// Returns: An NWTCPConnection object.
         #[deprecated = "Use the `virtualInterface` property with `nw_parameters_require_interface`"]
-        #[method(createTCPConnectionThroughTunnelToEndpoint:enableTLS:TLSParameters:delegate:)]
+        #[unsafe(method(createTCPConnectionThroughTunnelToEndpoint:enableTLS:TLSParameters:delegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createTCPConnectionThroughTunnelToEndpoint_enableTLS_TLSParameters_delegate(
             &self,
@@ -6242,7 +6242,7 @@ extern_methods!(
         ///
         /// Returns: An NWUDPSession object.
         #[deprecated = "Use the `virtualInterface` property with `nw_parameters_require_interface`"]
-        #[method(createUDPSessionThroughTunnelToEndpoint:fromEndpoint:)]
+        #[unsafe(method(createUDPSessionThroughTunnelToEndpoint:fromEndpoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createUDPSessionThroughTunnelToEndpoint_fromEndpoint(
             &self,
@@ -6255,11 +6255,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEPacketTunnelProvider {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -6285,11 +6285,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEEthernetTunnelProvider {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -6375,17 +6375,17 @@ unsafe impl NSSecureCoding for NEOnDemandRule {}
 extern_methods!(
     unsafe impl NEOnDemandRule {
         /// The rule's action
-        #[method(action)]
+        #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> NEOnDemandRuleAction;
 
         /// An array of NSString objects. If the current default search domain is equal to one of the strings in this array and all of the other conditions in the rule match, then the rule matches. If this property is nil (the default), then the current default search domain does not factor into the rule match.
-        #[method(DNSSearchDomainMatch)]
+        #[unsafe(method(DNSSearchDomainMatch))]
         #[unsafe(method_family = none)]
         pub unsafe fn DNSSearchDomainMatch(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`DNSSearchDomainMatch`][Self::DNSSearchDomainMatch].
-        #[method(setDNSSearchDomainMatch:)]
+        #[unsafe(method(setDNSSearchDomainMatch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDNSSearchDomainMatch(
             &self,
@@ -6393,12 +6393,12 @@ extern_methods!(
         );
 
         /// An array of DNS server IP addresses represented as NSString objects. If each of the current default DNS servers is equal to one of the strings in this array and all of the other conditions in the rule match, then the rule matches. If this property is nil (the default), then the default DNS servers do not factor into the rule match.
-        #[method(DNSServerAddressMatch)]
+        #[unsafe(method(DNSServerAddressMatch))]
         #[unsafe(method_family = none)]
         pub unsafe fn DNSServerAddressMatch(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`DNSServerAddressMatch`][Self::DNSServerAddressMatch].
-        #[method(setDNSServerAddressMatch:)]
+        #[unsafe(method(setDNSServerAddressMatch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDNSServerAddressMatch(
             &self,
@@ -6406,12 +6406,12 @@ extern_methods!(
         );
 
         /// The type of interface that this rule matches. If the current primary network interface is of this type and all of the other conditions in the rule match, then the rule matches. If this property is 0 (the default), then the current primary interface type does not factor into the rule match.
-        #[method(interfaceTypeMatch)]
+        #[unsafe(method(interfaceTypeMatch))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceTypeMatch(&self) -> NEOnDemandRuleInterfaceType;
 
         /// Setter for [`interfaceTypeMatch`][Self::interfaceTypeMatch].
-        #[method(setInterfaceTypeMatch:)]
+        #[unsafe(method(setInterfaceTypeMatch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInterfaceTypeMatch(
             &self,
@@ -6419,22 +6419,22 @@ extern_methods!(
         );
 
         /// An array of NSString objects. If the Service Set Identifier (SSID) of the current primary connected network matches one of the strings in this array and all of the other conditions in the rule match, then the rule matches. If this property is nil (the default), then the current primary connected network SSID does not factor into the rule match.
-        #[method(SSIDMatch)]
+        #[unsafe(method(SSIDMatch))]
         #[unsafe(method_family = none)]
         pub unsafe fn SSIDMatch(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`SSIDMatch`][Self::SSIDMatch].
-        #[method(setSSIDMatch:)]
+        #[unsafe(method(setSSIDMatch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSSIDMatch(&self, ssid_match: Option<&NSArray<NSString>>);
 
         /// An HTTP or HTTPS URL. If a request sent to this URL results in a HTTP 200 OK response and all of the other conditions in the rule match, then then rule matches. If this property is nil (the default), then an HTTP request does not factor into the rule match.
-        #[method(probeURL)]
+        #[unsafe(method(probeURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn probeURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`probeURL`][Self::probeURL].
-        #[method(setProbeURL:)]
+        #[unsafe(method(setProbeURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProbeURL(&self, probe_url: Option<&NSURL>);
     }
@@ -6443,11 +6443,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEOnDemandRule {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -6485,11 +6485,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEOnDemandRuleConnect {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -6527,11 +6527,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEOnDemandRuleDisconnect {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -6569,11 +6569,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEOnDemandRuleIgnore {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -6607,13 +6607,13 @@ unsafe impl NSSecureCoding for NEOnDemandRuleEvaluateConnection {}
 extern_methods!(
     unsafe impl NEOnDemandRuleEvaluateConnection {
         /// An array of NEEvaluateConnectionRule objects. Each NEEvaluateConnectionRule object is evaluated in order against the properties of the network connection being established.
-        #[method(connectionRules)]
+        #[unsafe(method(connectionRules))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectionRules(&self)
             -> Option<Retained<NSArray<NEEvaluateConnectionRule>>>;
 
         /// Setter for [`connectionRules`][Self::connectionRules].
-        #[method(setConnectionRules:)]
+        #[unsafe(method(setConnectionRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConnectionRules(
             &self,
@@ -6625,11 +6625,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEOnDemandRuleEvaluateConnection {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -6683,7 +6683,7 @@ unsafe impl NSSecureCoding for NEEvaluateConnectionRule {}
 extern_methods!(
     unsafe impl NEEvaluateConnectionRule {
         /// Initialize an NEEvaluateConnectionRule instance with a list of destination host domains and an action
-        #[method(initWithMatchDomains:andAction:)]
+        #[unsafe(method(initWithMatchDomains:andAction:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMatchDomains_andAction(
             this: Allocated<Self>,
@@ -6692,32 +6692,32 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The action to take if the properties of the network connection being established match the rule.
-        #[method(action)]
+        #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> NEEvaluateConnectionRuleAction;
 
         /// An array of NSString objects. If the host name of the destination of the network connection being established shares a suffix with one of the strings in this array, then the rule matches.
-        #[method(matchDomains)]
+        #[unsafe(method(matchDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchDomains(&self) -> Retained<NSArray<NSString>>;
 
         /// An array of NSString objects. If the rule matches the connection being established and the action is NEEvaluateConnectionRuleActionConnectIfNeeded, the DNS servers specified in this array are used to resolve the host name of the destination while evaluating connectivity to the destination. If the resolution fails for any reason, the VPN is started.
-        #[method(useDNSServers)]
+        #[unsafe(method(useDNSServers))]
         #[unsafe(method_family = none)]
         pub unsafe fn useDNSServers(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`useDNSServers`][Self::useDNSServers].
-        #[method(setUseDNSServers:)]
+        #[unsafe(method(setUseDNSServers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUseDNSServers(&self, use_dns_servers: Option<&NSArray<NSString>>);
 
         /// An HTTP or HTTPS URL. If the rule matches the connection being established and the action is NEEvaluateConnectionRuleActionConnectIfNeeded and a request sent to this URL results in a response with an HTTP response code other than 200, then the VPN is started.
-        #[method(probeURL)]
+        #[unsafe(method(probeURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn probeURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`probeURL`][Self::probeURL].
-        #[method(setProbeURL:)]
+        #[unsafe(method(setProbeURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProbeURL(&self, probe_url: Option<&NSURL>);
     }
@@ -6726,11 +6726,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEEvaluateConnectionRule {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -6770,7 +6770,7 @@ extern_methods!(
         /// Parameter `data`: The content of the packet.
         ///
         /// Parameter `protocolFamily`: The protocol family of the packet (such as AF_INET or AF_INET6).
-        #[method(initWithData:protocolFamily:)]
+        #[unsafe(method(initWithData:protocolFamily:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_protocolFamily(
             this: Allocated<Self>,
@@ -6779,25 +6779,25 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The data content of the packet.
-        #[method(data)]
+        #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         #[cfg(feature = "libc")]
         /// The protocol family of the packet (such as AF_INET or AF_INET6).
-        #[method(protocolFamily)]
+        #[unsafe(method(protocolFamily))]
         #[unsafe(method_family = none)]
         pub unsafe fn protocolFamily(&self) -> libc::sa_family_t;
 
         /// The direction of the packet.
-        #[method(direction)]
+        #[unsafe(method(direction))]
         #[unsafe(method_family = none)]
         pub unsafe fn direction(&self) -> NETrafficDirection;
 
         /// Metadata about the source application and flow for this packet.
         /// This property will only be non-nil when the routing method for the NEPacketTunnelProvider
         /// is NETunnelProviderRoutingMethodSourceApplication.
-        #[method(metadata)]
+        #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<NEFlowMetaData>>;
     }
@@ -6806,11 +6806,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEPacket {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -6837,7 +6837,7 @@ extern_methods!(
         /// Read available IP packets from the flow.
         ///
         /// Parameter `completionHandler`: A block that will be executed to handle the packets. This block takes an array of NSData objects and an array of NSNumber objects. The NSData and NSNumber in corresponding indicies in the array represent one packet. If after handling the packets the caller wants to read more packets then the caller must call this method again.
-        #[method(readPacketsWithCompletionHandler:)]
+        #[unsafe(method(readPacketsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readPacketsWithCompletionHandler(
             &self,
@@ -6851,7 +6851,7 @@ extern_methods!(
         /// Parameter `packets`: An array of NSData objects, each containing packet data to be written.
         ///
         /// Parameter `protocols`: An array of NSNumber objects. Each number contains the protocol of the packet in the corresponding index in the packets array.
-        #[method(writePackets:withProtocols:)]
+        #[unsafe(method(writePackets:withProtocols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writePackets_withProtocols(
             &self,
@@ -6863,7 +6863,7 @@ extern_methods!(
         /// Read available IP packets from the flow.
         ///
         /// Parameter `completionHandler`: A block that will be executed to handle the packets. This block takes an array of NEPacket objects. If after handling the packets the caller wants to read more packets then the caller must call this method again.
-        #[method(readPacketObjectsWithCompletionHandler:)]
+        #[unsafe(method(readPacketObjectsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readPacketObjectsWithCompletionHandler(
             &self,
@@ -6873,7 +6873,7 @@ extern_methods!(
         /// Write multiple IP packets to the flow.
         ///
         /// Parameter `packets`: An array of NEPacket objects, each containing packet data and protocol family to be written.
-        #[method(writePacketObjects:)]
+        #[unsafe(method(writePacketObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writePacketObjects(&self, packets: &NSArray<NEPacket>) -> bool;
     }
@@ -6882,11 +6882,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEPacketTunnelFlow {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -6919,43 +6919,43 @@ unsafe impl NSSecureCoding for NERelay {}
 extern_methods!(
     unsafe impl NERelay {
         /// The URL of the relay accessible over HTTP/3.
-        #[method(HTTP3RelayURL)]
+        #[unsafe(method(HTTP3RelayURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTP3RelayURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`HTTP3RelayURL`][Self::HTTP3RelayURL].
-        #[method(setHTTP3RelayURL:)]
+        #[unsafe(method(setHTTP3RelayURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTP3RelayURL(&self, http3_relay_url: Option<&NSURL>);
 
         /// The URL of the relay accessible over HTTP/2.
-        #[method(HTTP2RelayURL)]
+        #[unsafe(method(HTTP2RelayURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTP2RelayURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`HTTP2RelayURL`][Self::HTTP2RelayURL].
-        #[method(setHTTP2RelayURL:)]
+        #[unsafe(method(setHTTP2RelayURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTP2RelayURL(&self, http2_relay_url: Option<&NSURL>);
 
         /// The URL of a DNS-over-HTTPS (DoH) resolver accessible via the relay.
-        #[method(dnsOverHTTPSURL)]
+        #[unsafe(method(dnsOverHTTPSURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn dnsOverHTTPSURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`dnsOverHTTPSURL`][Self::dnsOverHTTPSURL].
-        #[method(setDnsOverHTTPSURL:)]
+        #[unsafe(method(setDnsOverHTTPSURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDnsOverHTTPSURL(&self, dns_over_httpsurl: Option<&NSURL>);
 
         /// An IPv4 address prefix (such as "192.0.2.0/24") that will be used to synthesize
         /// DNS answers for apps that use `getaddrinfo()` to resolve domains included in `matchDomains`
-        #[method(syntheticDNSAnswerIPv4Prefix)]
+        #[unsafe(method(syntheticDNSAnswerIPv4Prefix))]
         #[unsafe(method_family = none)]
         pub unsafe fn syntheticDNSAnswerIPv4Prefix(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`syntheticDNSAnswerIPv4Prefix`][Self::syntheticDNSAnswerIPv4Prefix].
-        #[method(setSyntheticDNSAnswerIPv4Prefix:)]
+        #[unsafe(method(setSyntheticDNSAnswerIPv4Prefix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSyntheticDNSAnswerIPv4Prefix(
             &self,
@@ -6964,12 +6964,12 @@ extern_methods!(
 
         /// An IPv6 address prefix (such as "2001:DB8::/32") that will be used to synthesize
         /// DNS answers for apps that use `getaddrinfo()` to resolve domains included in `matchDomains`
-        #[method(syntheticDNSAnswerIPv6Prefix)]
+        #[unsafe(method(syntheticDNSAnswerIPv6Prefix))]
         #[unsafe(method_family = none)]
         pub unsafe fn syntheticDNSAnswerIPv6Prefix(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`syntheticDNSAnswerIPv6Prefix`][Self::syntheticDNSAnswerIPv6Prefix].
-        #[method(setSyntheticDNSAnswerIPv6Prefix:)]
+        #[unsafe(method(setSyntheticDNSAnswerIPv6Prefix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSyntheticDNSAnswerIPv6Prefix(
             &self,
@@ -6977,14 +6977,14 @@ extern_methods!(
         );
 
         /// Additional HTTP header field names and values to be added to all relay requests.
-        #[method(additionalHTTPHeaderFields)]
+        #[unsafe(method(additionalHTTPHeaderFields))]
         #[unsafe(method_family = none)]
         pub unsafe fn additionalHTTPHeaderFields(
             &self,
         ) -> Retained<NSDictionary<NSString, NSString>>;
 
         /// Setter for [`additionalHTTPHeaderFields`][Self::additionalHTTPHeaderFields].
-        #[method(setAdditionalHTTPHeaderFields:)]
+        #[unsafe(method(setAdditionalHTTPHeaderFields:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalHTTPHeaderFields(
             &self,
@@ -6992,32 +6992,32 @@ extern_methods!(
         );
 
         /// TLS 1.3 raw public keys to use to authenticate the relay servers.
-        #[method(rawPublicKeys)]
+        #[unsafe(method(rawPublicKeys))]
         #[unsafe(method_family = none)]
         pub unsafe fn rawPublicKeys(&self) -> Option<Retained<NSArray<NSData>>>;
 
         /// Setter for [`rawPublicKeys`][Self::rawPublicKeys].
-        #[method(setRawPublicKeys:)]
+        #[unsafe(method(setRawPublicKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRawPublicKeys(&self, raw_public_keys: Option<&NSArray<NSData>>);
 
         /// The PKCS12 data for the relay client authentication. The value is a NSData in PKCS12 format.
-        #[method(identityData)]
+        #[unsafe(method(identityData))]
         #[unsafe(method_family = none)]
         pub unsafe fn identityData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`identityData`][Self::identityData].
-        #[method(setIdentityData:)]
+        #[unsafe(method(setIdentityData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityData(&self, identity_data: Option<&NSData>);
 
         /// The password to be used to decrypt the PKCS12 identity data.
-        #[method(identityDataPassword)]
+        #[unsafe(method(identityDataPassword))]
         #[unsafe(method_family = none)]
         pub unsafe fn identityDataPassword(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identityDataPassword`][Self::identityDataPassword].
-        #[method(setIdentityDataPassword:)]
+        #[unsafe(method(setIdentityDataPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentityDataPassword(&self, identity_data_password: Option<&NSString>);
     }
@@ -7026,11 +7026,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NERelay {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -7133,7 +7133,7 @@ unsafe impl NSObjectProtocol for NERelayManager {}
 extern_methods!(
     unsafe impl NERelayManager {
         /// Returns: The singleton NERelayManager object for the calling process.
-        #[method(sharedManager)]
+        #[unsafe(method(sharedManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedManager() -> Retained<NERelayManager>;
 
@@ -7141,7 +7141,7 @@ extern_methods!(
         /// This function loads the current relay configuration from the caller's relay preferences.
         ///
         /// Parameter `completionHandler`: A block that will be called when the load operation is completed. The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        #[method(loadFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(loadFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
@@ -7152,7 +7152,7 @@ extern_methods!(
         /// This function removes the relay configuration from the caller's relay preferences. If the relay is enabled, the relay becomes disabled.
         ///
         /// Parameter `completionHandler`: A block that will be called when the remove operation is completed. The NSError passed to this block will be nil if the remove operation succeeded, non-nil otherwise.
-        #[method(removeFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(removeFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
@@ -7163,7 +7163,7 @@ extern_methods!(
         /// This function saves the relay configuration in the caller's relay preferences. If the relay are enabled, they will become active.
         ///
         /// Parameter `completionHandler`: A block that will be called when the save operation is completed. The NSError passed to this block will be nil if the save operation succeeded, non-nil otherwise.
-        #[method(saveToPreferencesWithCompletionHandler:)]
+        #[unsafe(method(saveToPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
@@ -7176,7 +7176,7 @@ extern_methods!(
         /// Parameter `seconds`: A NSTimeInterval that specifies how many seconds to report errors for.  The maximum supported value is 24 hours and any larger values will be automatically reduced to 24 hours.
         ///
         /// Parameter `completionHandler`: A block that will be called when once the errors have been collected. The NSArray will contain a list of NERelayManagerClientError values detected within the last number of seconds as specified by the "seconds" parameter.  The values will be ordered from the error most recently detected to the oldest.  The error value of NERelayManagerClientErrorNone indicates the last successful use of the relay without error.  The NSArray will be empty if there are no values detected within the specified time period or nil if there was a problem in retrieving the errors.
-        #[method(getLastClientErrors:completionHandler:)]
+        #[unsafe(method(getLastClientErrors:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getLastClientErrors_completionHandler(
             &self,
@@ -7185,62 +7185,62 @@ extern_methods!(
         );
 
         /// A string containing a description of the relay.
-        #[method(localizedDescription)]
+        #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedDescription`][Self::localizedDescription].
-        #[method(setLocalizedDescription:)]
+        #[unsafe(method(setLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
 
         /// Toggles the enabled status of the relay.
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         /// An array of relay configurations describing one or more relay hops.
-        #[method(relays)]
+        #[unsafe(method(relays))]
         #[unsafe(method_family = none)]
         pub unsafe fn relays(&self) -> Option<Retained<NSArray<NERelay>>>;
 
         /// Setter for [`relays`][Self::relays].
-        #[method(setRelays:)]
+        #[unsafe(method(setRelays:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRelays(&self, relays: Option<&NSArray<NERelay>>);
 
         /// An array of strings containing domain names. If this property is non-nil, the relay will only be used to access hosts within the specified domains. If the property is nil, the relay will be used for all domains.
-        #[method(matchDomains)]
+        #[unsafe(method(matchDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchDomains(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`matchDomains`][Self::matchDomains].
-        #[method(setMatchDomains:)]
+        #[unsafe(method(setMatchDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray<NSString>>);
 
         /// An array of strings containing domain names. If the destination host name of a connection shares a suffix with one of these strings then the relay will not be used.
-        #[method(excludedDomains)]
+        #[unsafe(method(excludedDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludedDomains(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`excludedDomains`][Self::excludedDomains].
-        #[method(setExcludedDomains:)]
+        #[unsafe(method(setExcludedDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedDomains(&self, excluded_domains: Option<&NSArray<NSString>>);
 
         /// An array of NEOnDemandRule objects. If nil, the associated relay will always apply. If non-nil, the array describes the networks on which the relay should be used or not.
-        #[method(onDemandRules)]
+        #[unsafe(method(onDemandRules))]
         #[unsafe(method_family = none)]
         pub unsafe fn onDemandRules(&self) -> Option<Retained<NSArray<NEOnDemandRule>>>;
 
         /// Setter for [`onDemandRules`][Self::onDemandRules].
-        #[method(setOnDemandRules:)]
+        #[unsafe(method(setOnDemandRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOnDemandRules(&self, on_demand_rules: Option<&NSArray<NEOnDemandRule>>);
 
@@ -7248,7 +7248,7 @@ extern_methods!(
         /// This function asynchronously reads all of the NERelay configurations created by the calling app that have previously been saved to disk and returns them as NERelayManager objects.
         ///
         /// Parameter `completionHandler`: A block that takes an array NERelayManager objects. The array passed to the block may be empty if no NERelay configurations were successfully read from the disk.  The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        #[method(loadAllManagersFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(loadAllManagersFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllManagersFromPreferencesWithCompletionHandler(
             completion_handler: &block2::Block<
@@ -7261,11 +7261,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NERelayManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -7290,7 +7290,7 @@ extern_methods!(
         /// This function asynchronously reads all of the transparent proxy configurations associated with the calling app that have previously been saved to disk and returns them as NETransparentProxyManager objects.
         ///
         /// Parameter `completionHandler`: A block that takes an array NETransparentProxyManager objects. The array passed to the block may be empty if no transparent proxy configurations were successfully read from the disk.  The NSError passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        #[method(loadAllFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(loadAllFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
             completion_handler: &block2::Block<
@@ -7303,11 +7303,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NETransparentProxyManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -7348,12 +7348,12 @@ extern_methods!(
         /// A port string of "53" is not allowed. Destination Domain-based rules must be used to match DNS traffic.
         /// The matchLocalNetwork property must be nil.
         /// The matchDirection property must be NETrafficDirectionOutbound.
-        #[method(includedNetworkRules)]
+        #[unsafe(method(includedNetworkRules))]
         #[unsafe(method_family = none)]
         pub unsafe fn includedNetworkRules(&self) -> Option<Retained<NSArray<NENetworkRule>>>;
 
         /// Setter for [`includedNetworkRules`][Self::includedNetworkRules].
-        #[method(setIncludedNetworkRules:)]
+        #[unsafe(method(setIncludedNetworkRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncludedNetworkRules(
             &self,
@@ -7368,12 +7368,12 @@ extern_methods!(
         /// A port string of "53" is not allowed. Destination Domain-based rules must be used to match DNS traffic.
         /// The matchLocalNetwork property must be nil.
         /// The matchDirection property must be NETrafficDirectionOutbound.
-        #[method(excludedNetworkRules)]
+        #[unsafe(method(excludedNetworkRules))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludedNetworkRules(&self) -> Option<Retained<NSArray<NENetworkRule>>>;
 
         /// Setter for [`excludedNetworkRules`][Self::excludedNetworkRules].
-        #[method(setExcludedNetworkRules:)]
+        #[unsafe(method(setExcludedNetworkRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedNetworkRules(
             &self,
@@ -7388,7 +7388,7 @@ extern_methods!(
         /// This function initializes a newly-allocated NETunnelNetworkSettings object with a given tunnel remote address.
         ///
         /// Parameter `address`: The address of the remote endpoint that is providing the tunnel service.
-        #[method(initWithTunnelRemoteAddress:)]
+        #[unsafe(method(initWithTunnelRemoteAddress:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTunnelRemoteAddress(
             this: Allocated<Self>,
@@ -7400,11 +7400,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NETransparentProxyNetworkSettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -7434,11 +7434,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NETransparentProxyProvider {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -7573,7 +7573,7 @@ extern_methods!(
         /// 2. NEVPNErrorConfigurationDisabled
         ///
         /// Returns: YES if the VPN tunnel was started successfully, NO if an error occurred.
-        #[method(startVPNTunnelAndReturnError:_)]
+        #[unsafe(method(startVPNTunnelAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn startVPNTunnelAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
@@ -7589,7 +7589,7 @@ extern_methods!(
         /// 2. NEVPNErrorConfigurationDisabled
         ///
         /// Returns: YES if the VPN tunnel was started successfully, NO if an error occurred.
-        #[method(startVPNTunnelWithOptions:andReturnError:_)]
+        #[unsafe(method(startVPNTunnelWithOptions:andReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn startVPNTunnelWithOptions_andReturnError(
             &self,
@@ -7597,7 +7597,7 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         /// This function is used to stop the VPN tunnel. The VPN tunnel disconnect process is started and this function returns immediately.
-        #[method(stopVPNTunnel)]
+        #[unsafe(method(stopVPNTunnel))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopVPNTunnel(&self);
 
@@ -7605,7 +7605,7 @@ extern_methods!(
         /// Retrive the most recent error that caused the VPN to disconnect. If the error was generated by the VPN system (including the IPsec client) then the error will be in the NEVPNConnectionErrorDomain error domain. If the error was generated by a tunnel provider app extension then the error will be the NSError that the provider passed when disconnecting the tunnel.
         ///
         /// Parameter `handler`: A block which takes an optional NSError that will be called when the error is obtained.
-        #[method(fetchLastDisconnectErrorWithCompletionHandler:)]
+        #[unsafe(method(fetchLastDisconnectErrorWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchLastDisconnectErrorWithCompletionHandler(
             &self,
@@ -7613,17 +7613,17 @@ extern_methods!(
         );
 
         /// The current status of the VPN.
-        #[method(status)]
+        #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> NEVPNStatus;
 
         /// The date and time when the connection status changed to NEVPNStatusConnected. This property is nil if the connection is not fully established.
-        #[method(connectedDate)]
+        #[unsafe(method(connectedDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectedDate(&self) -> Option<Retained<NSDate>>;
 
         /// The NEVPNManager associated with this NEVPNConnection.
-        #[method(manager)]
+        #[unsafe(method(manager))]
         #[unsafe(method_family = none)]
         pub unsafe fn manager(&self) -> Retained<NEVPNManager>;
     }
@@ -7632,11 +7632,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEVPNConnection {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -7666,7 +7666,7 @@ extern_methods!(
         /// 2. NEVPNErrorConfigurationDisabled
         ///
         /// Returns: YES if the tunnel was started successfully, NO if an error occurred.
-        #[method(startTunnelWithOptions:andReturnError:_)]
+        #[unsafe(method(startTunnelWithOptions:andReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn startTunnelWithOptions_andReturnError(
             &self,
@@ -7674,7 +7674,7 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         /// This function is used to stop the tunnel. The tunnel disconnect process is started and this function returns immediately.
-        #[method(stopTunnel)]
+        #[unsafe(method(stopTunnel))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopTunnel(&self);
 
@@ -7690,7 +7690,7 @@ extern_methods!(
         /// Parameter `responseHandler`: A block that handles the response. Can be set to nil if no response is expected.
         ///
         /// Returns: YES if the message was sent successfully, NO if an error occurred.
-        #[method(sendProviderMessage:returnError:responseHandler:)]
+        #[unsafe(method(sendProviderMessage:returnError:responseHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendProviderMessage_returnError_responseHandler(
             &self,
@@ -7704,11 +7704,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NETunnelProviderSession {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -7740,14 +7740,14 @@ unsafe impl NSSecureCoding for NETunnelProviderProtocol {}
 extern_methods!(
     unsafe impl NETunnelProviderProtocol {
         /// A dictionary containing NETunnelProvider vendor-specific configuration parameters. This dictionary is passed as-is to NETunnelProviders when a tunnel is started.
-        #[method(providerConfiguration)]
+        #[unsafe(method(providerConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn providerConfiguration(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`providerConfiguration`][Self::providerConfiguration].
-        #[method(setProviderConfiguration:)]
+        #[unsafe(method(setProviderConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderConfiguration(
             &self,
@@ -7755,12 +7755,12 @@ extern_methods!(
         );
 
         /// A string containing the bundle identifier of the NETunnelProvider to be used by this configuration.
-        #[method(providerBundleIdentifier)]
+        #[unsafe(method(providerBundleIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn providerBundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`providerBundleIdentifier`][Self::providerBundleIdentifier].
-        #[method(setProviderBundleIdentifier:)]
+        #[unsafe(method(setProviderBundleIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderBundleIdentifier(
             &self,
@@ -7772,11 +7772,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NETunnelProviderProtocol {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -7832,12 +7832,12 @@ unsafe impl NSSecureCoding for NEVPNProtocolIPSec {}
 extern_methods!(
     unsafe impl NEVPNProtocolIPSec {
         /// The method used to authenticate with the IPSec server. Note that if this property is set to NEVPNIKEAuthenticationMethodNone, extended authentication will still be negotiated if useExtendedAuthentication is set to YES.
-        #[method(authenticationMethod)]
+        #[unsafe(method(authenticationMethod))]
         #[unsafe(method_family = none)]
         pub unsafe fn authenticationMethod(&self) -> NEVPNIKEAuthenticationMethod;
 
         /// Setter for [`authenticationMethod`][Self::authenticationMethod].
-        #[method(setAuthenticationMethod:)]
+        #[unsafe(method(setAuthenticationMethod:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthenticationMethod(
             &self,
@@ -7847,42 +7847,42 @@ extern_methods!(
         /// A flag indicating if extended authentication will be negotiated. This authentication is in addition to the IKE authentication used to authenticate the endpoints of the IKE session.
         /// For IKE version 1, when this flag is set X-Auth authentication will be negotiated as part of the IKE session, using the username and password properties as the credential.
         /// For IKE version 2, when this flag is set EAP authentication will be negotiated as part of the IKE session, using the username, password, and/or identity properties as the credential depending on which EAP method the server requires.
-        #[method(useExtendedAuthentication)]
+        #[unsafe(method(useExtendedAuthentication))]
         #[unsafe(method_family = none)]
         pub unsafe fn useExtendedAuthentication(&self) -> bool;
 
         /// Setter for [`useExtendedAuthentication`][Self::useExtendedAuthentication].
-        #[method(setUseExtendedAuthentication:)]
+        #[unsafe(method(setUseExtendedAuthentication:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUseExtendedAuthentication(&self, use_extended_authentication: bool);
 
         /// A persistent reference to a keychain item of class kSecClassGenericPassword containing the IKE shared secret.
-        #[method(sharedSecretReference)]
+        #[unsafe(method(sharedSecretReference))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedSecretReference(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`sharedSecretReference`][Self::sharedSecretReference].
-        #[method(setSharedSecretReference:)]
+        #[unsafe(method(setSharedSecretReference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSharedSecretReference(&self, shared_secret_reference: Option<&NSData>);
 
         /// A string identifying the local IPSec endpoint for authentication purposes.
-        #[method(localIdentifier)]
+        #[unsafe(method(localIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn localIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localIdentifier`][Self::localIdentifier].
-        #[method(setLocalIdentifier:)]
+        #[unsafe(method(setLocalIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalIdentifier(&self, local_identifier: Option<&NSString>);
 
         /// A string identifying the remote IPSec endpoint for authentication purposes.
-        #[method(remoteIdentifier)]
+        #[unsafe(method(remoteIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`remoteIdentifier`][Self::remoteIdentifier].
-        #[method(setRemoteIdentifier:)]
+        #[unsafe(method(setRemoteIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRemoteIdentifier(&self, remote_identifier: Option<&NSString>);
     }
@@ -7891,11 +7891,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEVPNProtocolIPSec {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -8089,12 +8089,12 @@ extern_methods!(
     unsafe impl NEVPNIKEv2SecurityAssociationParameters {
         /// The algorithm used by the Security Association to encrypt and decrypt data. On macOS and iOS, the default is NEVPNIKEv2EncryptionAlgorithmAES256 starting in macOS 11 and iOS 14.
         /// Prior to that the default was NEVPNIKEv2EncryptionAlgorithm3DES. On tvOS, the default is NEVPNIKEv2EncryptionAlgorithmAES256GCM.
-        #[method(encryptionAlgorithm)]
+        #[unsafe(method(encryptionAlgorithm))]
         #[unsafe(method_family = none)]
         pub unsafe fn encryptionAlgorithm(&self) -> NEVPNIKEv2EncryptionAlgorithm;
 
         /// Setter for [`encryptionAlgorithm`][Self::encryptionAlgorithm].
-        #[method(setEncryptionAlgorithm:)]
+        #[unsafe(method(setEncryptionAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEncryptionAlgorithm(
             &self,
@@ -8103,12 +8103,12 @@ extern_methods!(
 
         /// The algorithm used by the Security Association to verify the integrity of data.  The IKE psedo-random function algorithm will be inferred based on the integrity algorithm.
         /// Default is NEVPNIKEv2IntegrityAlgorithmSHA256 starting in macOS 11, iOS 14, and tvOS 17.  Prior to that the default was NEVPNIKEv2IntegrityAlgorithmSHA96.
-        #[method(integrityAlgorithm)]
+        #[unsafe(method(integrityAlgorithm))]
         #[unsafe(method_family = none)]
         pub unsafe fn integrityAlgorithm(&self) -> NEVPNIKEv2IntegrityAlgorithm;
 
         /// Setter for [`integrityAlgorithm`][Self::integrityAlgorithm].
-        #[method(setIntegrityAlgorithm:)]
+        #[unsafe(method(setIntegrityAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIntegrityAlgorithm(
             &self,
@@ -8116,12 +8116,12 @@ extern_methods!(
         );
 
         /// The Diffie Hellman group used by the Security Association. Default is NEVPNIKEv2DiffieHellmanGroup14 starting in macOS 11, iOS 14, and tvOS 17. Prior to that the default was NEVPNIKEv2DiffieHellmanGroup2.
-        #[method(diffieHellmanGroup)]
+        #[unsafe(method(diffieHellmanGroup))]
         #[unsafe(method_family = none)]
         pub unsafe fn diffieHellmanGroup(&self) -> NEVPNIKEv2DiffieHellmanGroup;
 
         /// Setter for [`diffieHellmanGroup`][Self::diffieHellmanGroup].
-        #[method(setDiffieHellmanGroup:)]
+        #[unsafe(method(setDiffieHellmanGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDiffieHellmanGroup(
             &self,
@@ -8129,12 +8129,12 @@ extern_methods!(
         );
 
         /// The life time of the Security Association, in minutes. Default is 60 for IKE Security Associations, and 30 for Child Security Associations. Before the lifetime is reached, IKEv2 will attempt to rekey the Security Association to maintain the connection.
-        #[method(lifetimeMinutes)]
+        #[unsafe(method(lifetimeMinutes))]
         #[unsafe(method_family = none)]
         pub unsafe fn lifetimeMinutes(&self) -> i32;
 
         /// Setter for [`lifetimeMinutes`][Self::lifetimeMinutes].
-        #[method(setLifetimeMinutes:)]
+        #[unsafe(method(setLifetimeMinutes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLifetimeMinutes(&self, lifetime_minutes: i32);
     }
@@ -8143,11 +8143,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEVPNIKEv2SecurityAssociationParameters {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -8180,7 +8180,7 @@ extern_methods!(
         /// Parameter `identifier`: The identifier for the PPK.
         ///
         /// Parameter `keychainReference`: A persistent reference to a keychain item of class kSecClassGenericPassword containing the PPK.
-        #[method(initWithIdentifier:keychainReference:)]
+        #[unsafe(method(initWithIdentifier:keychainReference:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_keychainReference(
             this: Allocated<Self>,
@@ -8189,22 +8189,22 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The identifer for the PPK.
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// A persistent reference to a keychain item of class kSecClassGenericPassword containing the PPK.
-        #[method(keychainReference)]
+        #[unsafe(method(keychainReference))]
         #[unsafe(method_family = none)]
         pub unsafe fn keychainReference(&self) -> Retained<NSData>;
 
         /// Boolean indicating whether use of the PPK is mandatory or not. Default is YES.
-        #[method(isMandatory)]
+        #[unsafe(method(isMandatory))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMandatory(&self) -> bool;
 
         /// Setter for [`isMandatory`][Self::isMandatory].
-        #[method(setIsMandatory:)]
+        #[unsafe(method(setIsMandatory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIsMandatory(&self, is_mandatory: bool);
     }
@@ -8213,11 +8213,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEVPNIKEv2PPKConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -8250,12 +8250,12 @@ unsafe impl NSSecureCoding for NEVPNProtocolIKEv2 {}
 extern_methods!(
     unsafe impl NEVPNProtocolIKEv2 {
         /// How frequently the IKEv2 client will run the dead peer detection algorithm.  Default is NEVPNIKEv2DeadPeerDetectionRateMedium.
-        #[method(deadPeerDetectionRate)]
+        #[unsafe(method(deadPeerDetectionRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn deadPeerDetectionRate(&self) -> NEVPNIKEv2DeadPeerDetectionRate;
 
         /// Setter for [`deadPeerDetectionRate`][Self::deadPeerDetectionRate].
-        #[method(setDeadPeerDetectionRate:)]
+        #[unsafe(method(setDeadPeerDetectionRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDeadPeerDetectionRate(
             &self,
@@ -8263,12 +8263,12 @@ extern_methods!(
         );
 
         /// A string containing the Subject Common Name field of the Certificate Authority certificate that issued the IKEv2 server's certificate.
-        #[method(serverCertificateIssuerCommonName)]
+        #[unsafe(method(serverCertificateIssuerCommonName))]
         #[unsafe(method_family = none)]
         pub unsafe fn serverCertificateIssuerCommonName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`serverCertificateIssuerCommonName`][Self::serverCertificateIssuerCommonName].
-        #[method(setServerCertificateIssuerCommonName:)]
+        #[unsafe(method(setServerCertificateIssuerCommonName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServerCertificateIssuerCommonName(
             &self,
@@ -8276,12 +8276,12 @@ extern_methods!(
         );
 
         /// A string containing the value to verify in the IKEv2 server certificate's Subject Common Name field.
-        #[method(serverCertificateCommonName)]
+        #[unsafe(method(serverCertificateCommonName))]
         #[unsafe(method_family = none)]
         pub unsafe fn serverCertificateCommonName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`serverCertificateCommonName`][Self::serverCertificateCommonName].
-        #[method(setServerCertificateCommonName:)]
+        #[unsafe(method(setServerCertificateCommonName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServerCertificateCommonName(
             &self,
@@ -8289,22 +8289,22 @@ extern_methods!(
         );
 
         /// contains the type of certificate if an certificate is configured.  Default is RSA.
-        #[method(certificateType)]
+        #[unsafe(method(certificateType))]
         #[unsafe(method_family = none)]
         pub unsafe fn certificateType(&self) -> NEVPNIKEv2CertificateType;
 
         /// Setter for [`certificateType`][Self::certificateType].
-        #[method(setCertificateType:)]
+        #[unsafe(method(setCertificateType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCertificateType(&self, certificate_type: NEVPNIKEv2CertificateType);
 
         /// Boolean indicating if client should use INTERNAL_IP4_SUBNET / INTERNAL_IP6_SUBNET attributes.  Default is False.
-        #[method(useConfigurationAttributeInternalIPSubnet)]
+        #[unsafe(method(useConfigurationAttributeInternalIPSubnet))]
         #[unsafe(method_family = none)]
         pub unsafe fn useConfigurationAttributeInternalIPSubnet(&self) -> bool;
 
         /// Setter for [`useConfigurationAttributeInternalIPSubnet`][Self::useConfigurationAttributeInternalIPSubnet].
-        #[method(setUseConfigurationAttributeInternalIPSubnet:)]
+        #[unsafe(method(setUseConfigurationAttributeInternalIPSubnet:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUseConfigurationAttributeInternalIPSubnet(
             &self,
@@ -8312,86 +8312,86 @@ extern_methods!(
         );
 
         /// Parameters for the IKE SA
-        #[method(IKESecurityAssociationParameters)]
+        #[unsafe(method(IKESecurityAssociationParameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn IKESecurityAssociationParameters(
             &self,
         ) -> Retained<NEVPNIKEv2SecurityAssociationParameters>;
 
         /// Parameters for the child SA
-        #[method(childSecurityAssociationParameters)]
+        #[unsafe(method(childSecurityAssociationParameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn childSecurityAssociationParameters(
             &self,
         ) -> Retained<NEVPNIKEv2SecurityAssociationParameters>;
 
         /// Disable MOBIKE negotiation. Default is NO.
-        #[method(disableMOBIKE)]
+        #[unsafe(method(disableMOBIKE))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableMOBIKE(&self) -> bool;
 
         /// Setter for [`disableMOBIKE`][Self::disableMOBIKE].
-        #[method(setDisableMOBIKE:)]
+        #[unsafe(method(setDisableMOBIKE:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisableMOBIKE(&self, disable_mobike: bool);
 
         /// Disable Server Redirect. Default is NO.
-        #[method(disableRedirect)]
+        #[unsafe(method(disableRedirect))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableRedirect(&self) -> bool;
 
         /// Setter for [`disableRedirect`][Self::disableRedirect].
-        #[method(setDisableRedirect:)]
+        #[unsafe(method(setDisableRedirect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisableRedirect(&self, disable_redirect: bool);
 
         /// Enable Perfect Forward Secrecy. Default is NO.
-        #[method(enablePFS)]
+        #[unsafe(method(enablePFS))]
         #[unsafe(method_family = none)]
         pub unsafe fn enablePFS(&self) -> bool;
 
         /// Setter for [`enablePFS`][Self::enablePFS].
-        #[method(setEnablePFS:)]
+        #[unsafe(method(setEnablePFS:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnablePFS(&self, enable_pfs: bool);
 
         /// Enable certificate revocation check. Default is NO.
-        #[method(enableRevocationCheck)]
+        #[unsafe(method(enableRevocationCheck))]
         #[unsafe(method_family = none)]
         pub unsafe fn enableRevocationCheck(&self) -> bool;
 
         /// Setter for [`enableRevocationCheck`][Self::enableRevocationCheck].
-        #[method(setEnableRevocationCheck:)]
+        #[unsafe(method(setEnableRevocationCheck:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnableRevocationCheck(&self, enable_revocation_check: bool);
 
         /// Require positive certificate revocation check response for peer certificate validation to pass. Default is NO.
-        #[method(strictRevocationCheck)]
+        #[unsafe(method(strictRevocationCheck))]
         #[unsafe(method_family = none)]
         pub unsafe fn strictRevocationCheck(&self) -> bool;
 
         /// Setter for [`strictRevocationCheck`][Self::strictRevocationCheck].
-        #[method(setStrictRevocationCheck:)]
+        #[unsafe(method(setStrictRevocationCheck:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrictRevocationCheck(&self, strict_revocation_check: bool);
 
         /// Sets a minimum TLS version to allow for EAP-TLS authentication. Default is NEVPNIKEv2TLSVersionDefault.
-        #[method(minimumTLSVersion)]
+        #[unsafe(method(minimumTLSVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumTLSVersion(&self) -> NEVPNIKEv2TLSVersion;
 
         /// Setter for [`minimumTLSVersion`][Self::minimumTLSVersion].
-        #[method(setMinimumTLSVersion:)]
+        #[unsafe(method(setMinimumTLSVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumTLSVersion(&self, minimum_tls_version: NEVPNIKEv2TLSVersion);
 
         /// Sets a maximum TLS version to allow for EAP-TLS authentication. Default is NEVPNIKEv2TLSVersionDefault.
-        #[method(maximumTLSVersion)]
+        #[unsafe(method(maximumTLSVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumTLSVersion(&self) -> NEVPNIKEv2TLSVersion;
 
         /// Setter for [`maximumTLSVersion`][Self::maximumTLSVersion].
-        #[method(setMaximumTLSVersion:)]
+        #[unsafe(method(setMaximumTLSVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumTLSVersion(&self, maximum_tls_version: NEVPNIKEv2TLSVersion);
 
@@ -8399,32 +8399,32 @@ extern_methods!(
         /// to Cellular Data when WiFi connectivity is poor. By setting the EnableFallback key, the device will bring up a tunnel over
         /// Cellular Data to carry traffic that is eligible for Wi-Fi Assist and also requires VPN. Enabling fallback requires that the
         /// server support multiple tunnels for a single user. Default is NO.
-        #[method(enableFallback)]
+        #[unsafe(method(enableFallback))]
         #[unsafe(method_family = none)]
         pub unsafe fn enableFallback(&self) -> bool;
 
         /// Setter for [`enableFallback`][Self::enableFallback].
-        #[method(setEnableFallback:)]
+        #[unsafe(method(setEnableFallback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnableFallback(&self, enable_fallback: bool);
 
         /// Maximum Transmission Unit (MTU) size in bytes to assign to the tunnel interface.
-        #[method(mtu)]
+        #[unsafe(method(mtu))]
         #[unsafe(method_family = none)]
         pub unsafe fn mtu(&self) -> NSUInteger;
 
         /// Setter for [`mtu`][Self::mtu].
-        #[method(setMtu:)]
+        #[unsafe(method(setMtu:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMtu(&self, mtu: NSUInteger);
 
         /// Configuration for the use of a Post-quantum Pre-shared Key (PPK).
-        #[method(ppkConfiguration)]
+        #[unsafe(method(ppkConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn ppkConfiguration(&self) -> Option<Retained<NEVPNIKEv2PPKConfiguration>>;
 
         /// Setter for [`ppkConfiguration`][Self::ppkConfiguration].
-        #[method(setPpkConfiguration:)]
+        #[unsafe(method(setPpkConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPpkConfiguration(
             &self,
@@ -8436,11 +8436,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEVPNProtocolIKEv2 {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -8500,32 +8500,32 @@ unsafe impl NSSecureCoding for NEPrivateLTENetwork {}
 extern_methods!(
     unsafe impl NEPrivateLTENetwork {
         /// Mobile Country Code of the private LTE network.
-        #[method(mobileCountryCode)]
+        #[unsafe(method(mobileCountryCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn mobileCountryCode(&self) -> Retained<NSString>;
 
         /// Setter for [`mobileCountryCode`][Self::mobileCountryCode].
-        #[method(setMobileCountryCode:)]
+        #[unsafe(method(setMobileCountryCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMobileCountryCode(&self, mobile_country_code: &NSString);
 
         /// Mobile Network Code of the private LTE network.
-        #[method(mobileNetworkCode)]
+        #[unsafe(method(mobileNetworkCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn mobileNetworkCode(&self) -> Retained<NSString>;
 
         /// Setter for [`mobileNetworkCode`][Self::mobileNetworkCode].
-        #[method(setMobileNetworkCode:)]
+        #[unsafe(method(setMobileNetworkCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMobileNetworkCode(&self, mobile_network_code: &NSString);
 
         /// Tracking Area Code of the private LTE network. This property is only applicable for band 48 private LTE networks.
-        #[method(trackingAreaCode)]
+        #[unsafe(method(trackingAreaCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackingAreaCode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`trackingAreaCode`][Self::trackingAreaCode].
-        #[method(setTrackingAreaCode:)]
+        #[unsafe(method(setTrackingAreaCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrackingAreaCode(&self, tracking_area_code: Option<&NSString>);
     }
@@ -8534,11 +8534,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEPrivateLTENetwork {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -8563,23 +8563,23 @@ extern_methods!(
     unsafe impl NEAppPushManager {
         /// An array of Wi-Fi SSID strings. If the SSID string of current Wi-Fi network matches with one of these strings then the NEAppPushProvider
         /// is started. The upper limit of number of SSIDs is 10.
-        #[method(matchSSIDs)]
+        #[unsafe(method(matchSSIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchSSIDs(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`matchSSIDs`][Self::matchSSIDs].
-        #[method(setMatchSSIDs:)]
+        #[unsafe(method(setMatchSSIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchSSIDs(&self, match_ssi_ds: &NSArray<NSString>);
 
         /// An array of NEPrivateLTENetwork objects. If the properties of current private LTE network match with properties of one of these NEPrivateLTENetwork objects then the
         /// NEAppPushProvider is started. The upper limit of number of private LTE networks is 10. For private LTE networks that are not band 48, the device must be supervised in order to perform the match
-        #[method(matchPrivateLTENetworks)]
+        #[unsafe(method(matchPrivateLTENetworks))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchPrivateLTENetworks(&self) -> Retained<NSArray<NEPrivateLTENetwork>>;
 
         /// Setter for [`matchPrivateLTENetworks`][Self::matchPrivateLTENetworks].
-        #[method(setMatchPrivateLTENetworks:)]
+        #[unsafe(method(setMatchPrivateLTENetworks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchPrivateLTENetworks(
             &self,
@@ -8588,12 +8588,12 @@ extern_methods!(
 
         /// A dictionary containing vendor-specific key-value pairs, where the data type of values must be one of the data types supported by property list. Values of user defined data
         /// type are not supported. This dictionary is passed as-is to NEAppPushProvider when is it is started or notified for other specified reasons.
-        #[method(providerConfiguration)]
+        #[unsafe(method(providerConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn providerConfiguration(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`providerConfiguration`][Self::providerConfiguration].
-        #[method(setProviderConfiguration:)]
+        #[unsafe(method(setProviderConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderConfiguration(
             &self,
@@ -8601,12 +8601,12 @@ extern_methods!(
         );
 
         /// A string containing the bundle identifier of the NEAppPushProvider.
-        #[method(providerBundleIdentifier)]
+        #[unsafe(method(providerBundleIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn providerBundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`providerBundleIdentifier`][Self::providerBundleIdentifier].
-        #[method(setProviderBundleIdentifier:)]
+        #[unsafe(method(setProviderBundleIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderBundleIdentifier(
             &self,
@@ -8614,13 +8614,13 @@ extern_methods!(
         );
 
         /// An instance of type NEAppPushDelegate that is required to receive incoming call informarion from the provider.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NEAppPushDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NEAppPushDelegate>>);
 
@@ -8629,7 +8629,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A block that takes an array of NEAppPushManager objects. The array passed to the block may be empty if no configurations
         /// were successfully read from the disk. The NSError object passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        #[method(loadAllFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(loadAllFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllFromPreferencesWithCompletionHandler(
             completion_handler: &block2::Block<
@@ -8641,7 +8641,7 @@ extern_methods!(
         /// This method loads the saved configuration from the persistent store.
         ///
         /// Parameter `completionHandler`: A block that will be called when the load operation is completed. The NSError object passed to this block will be nil if the load operation succeeded, non-nil otherwise.
-        #[method(loadFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(loadFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromPreferencesWithCompletionHandler(
             &self,
@@ -8652,7 +8652,7 @@ extern_methods!(
         /// This method removes the configuration from the persistent store.
         ///
         /// Parameter `completionHandler`: A block that will be called when the remove operation is completed. The NSError object passed to this block will be nil if the remove operation succeeded, non-nil otherwise.
-        #[method(removeFromPreferencesWithCompletionHandler:)]
+        #[unsafe(method(removeFromPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPreferencesWithCompletionHandler(
             &self,
@@ -8663,7 +8663,7 @@ extern_methods!(
         /// This method saves the configuration in the persistent store.
         ///
         /// Parameter `completionHandler`: A block that will be called when the save operation is completed. The NSError object passed to this block will be nil if the save operation succeeded, non-nil otherwise.
-        #[method(saveToPreferencesWithCompletionHandler:)]
+        #[unsafe(method(saveToPreferencesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveToPreferencesWithCompletionHandler(
             &self,
@@ -8671,27 +8671,27 @@ extern_methods!(
         );
 
         /// A string containing a description of the app push manager.
-        #[method(localizedDescription)]
+        #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedDescription`][Self::localizedDescription].
-        #[method(setLocalizedDescription:)]
+        #[unsafe(method(setLocalizedDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
 
         /// Toggles the enabled status of the configuration. This property will be set to NO when the same app saves another configuration that overlaps with this configuration.
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         /// If set to YES, it indicates the associated configuration is in use. Use KVO to watch for changes.
-        #[method(isActive)]
+        #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isActive(&self) -> bool;
     }
@@ -8700,11 +8700,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEAppPushManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -8718,7 +8718,7 @@ extern_protocol!(
         /// This delegate method is called when the provider reports incoming call using reportIncomingCommunicationWithUserInfo method.
         ///
         /// Parameter `userInfo`: A dictionary of custom information that the provider passes to reportIncomingCommunicationWithUserInfo method.
-        #[method(appPushManager:didReceiveIncomingCallWithUserInfo:)]
+        #[unsafe(method(appPushManager:didReceiveIncomingCallWithUserInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn appPushManager_didReceiveIncomingCallWithUserInfo(
             &self,
@@ -8744,7 +8744,7 @@ unsafe impl NSObjectProtocol for NEAppPushProvider {}
 extern_methods!(
     unsafe impl NEAppPushProvider {
         /// A dictionary containing current vendor-specific configuration parameters. This dictionary is provided by NEAppPushManager. Use KVO to watch for changes.
-        #[method(providerConfiguration)]
+        #[unsafe(method(providerConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn providerConfiguration(
             &self,
@@ -8757,7 +8757,7 @@ extern_methods!(
         /// the subclass' implementation of this method must pass a non-nil NSError object to this block. A value of nil passed to the completion handler indicates that the connection
         /// was successfully created.
         #[deprecated]
-        #[method(startWithCompletionHandler:)]
+        #[unsafe(method(startWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(
             &self,
@@ -8765,7 +8765,7 @@ extern_methods!(
         );
 
         /// This method is called by the framework when the provider is started. Subclasses must override this method to create a connection with its server.
-        #[method(start)]
+        #[unsafe(method(start))]
         #[unsafe(method_family = none)]
         pub unsafe fn start(&self);
 
@@ -8775,7 +8775,7 @@ extern_methods!(
         /// Parameter `reason`: An NEProviderStopReason indicating why the provider was stopped.
         ///
         /// Parameter `completionHandler`: A block that must be called when the provider is completely stopped.
-        #[method(stopWithReason:completionHandler:)]
+        #[unsafe(method(stopWithReason:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopWithReason_completionHandler(
             &self,
@@ -8786,19 +8786,19 @@ extern_methods!(
         /// This function is called by the provider when it determines incoming call on the conection.
         ///
         /// Parameter `userInfo`: A dictionary of custom information associated with the incoming call. This dictionary is passed to containg app as-is.
-        #[method(reportIncomingCallWithUserInfo:)]
+        #[unsafe(method(reportIncomingCallWithUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportIncomingCallWithUserInfo(&self, user_info: &NSDictionary);
 
         /// This function is called by the provider when it receives a Push to Talk message on the connection.
         ///
         /// Parameter `userInfo`: A dictionary of custom information associated with the Push to Talk message, such as the active remote participant. This dictionary is passed to the PTChannelManagerDelegate of the containing app if the user is joined to a Push to Talk channel.
-        #[method(reportPushToTalkMessageWithUserInfo:)]
+        #[unsafe(method(reportPushToTalkMessageWithUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportPushToTalkMessageWithUserInfo(&self, user_info: &NSDictionary);
 
         /// This method is called by the framework periodically after every 60 seconds. Subclasses must override this method to perform necessary tasks.
-        #[method(handleTimerEvent)]
+        #[unsafe(method(handleTimerEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleTimerEvent(&self);
     }
@@ -8807,11 +8807,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NEAppPushProvider {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -8846,11 +8846,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NWEndpoint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -8887,7 +8887,7 @@ extern_methods!(
         ///
         /// Returns: An initialized NWHostEndpoint object.
         #[deprecated = "Use `nw_endpoint_create_host` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
-        #[method(endpointWithHostname:port:)]
+        #[unsafe(method(endpointWithHostname:port:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endpointWithHostname_port(
             hostname: &NSString,
@@ -8896,13 +8896,13 @@ extern_methods!(
 
         /// The endpoint's hostname.
         #[deprecated = "Use `nw_endpoint_get_hostname` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
-        #[method(hostname)]
+        #[unsafe(method(hostname))]
         #[unsafe(method_family = none)]
         pub unsafe fn hostname(&self) -> Retained<NSString>;
 
         /// The endpoint's port.
         #[deprecated = "Use `nw_endpoint_get_port` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
-        #[method(port)]
+        #[unsafe(method(port))]
         #[unsafe(method_family = none)]
         pub unsafe fn port(&self) -> Retained<NSString>;
     }
@@ -8911,11 +8911,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NWHostEndpoint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -8956,7 +8956,7 @@ extern_methods!(
         ///
         /// Returns: An initialized NWBonjourServiceEndpoint object.
         #[deprecated = "Use `nw_endpoint_create_bonjour_service` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
-        #[method(endpointWithName:type:domain:)]
+        #[unsafe(method(endpointWithName:type:domain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endpointWithName_type_domain(
             name: &NSString,
@@ -8966,19 +8966,19 @@ extern_methods!(
 
         /// The endpoint's Bonjour service name.
         #[deprecated = "Use `nw_endpoint_get_bonjour_service_name` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// The endpoint's Bonjour service type.
         #[deprecated = "Use `nw_endpoint_get_bonjour_service_type` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// The endpoint's Bonjour service domain.
         #[deprecated = "Use `nw_endpoint_get_bonjour_service_domain` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
-        #[method(domain)]
+        #[unsafe(method(domain))]
         #[unsafe(method_family = none)]
         pub unsafe fn domain(&self) -> Retained<NSString>;
     }
@@ -8987,11 +8987,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NWBonjourServiceEndpoint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -9047,19 +9047,19 @@ extern_methods!(
     unsafe impl NWPath {
         /// The evaluated NWPathStatus of the NWPath.
         #[deprecated = "Use `nw_path_get_status` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
-        #[method(status)]
+        #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> NWPathStatus;
 
         /// Returns YES if the path is considered expensive, as when using a cellular data plan.
         #[deprecated = "Use `nw_path_is_expensive` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
-        #[method(isExpensive)]
+        #[unsafe(method(isExpensive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isExpensive(&self) -> bool;
 
         /// Returns YES if the path is considered constrained, as when it is in save data mode.
         #[deprecated = "Use `nw_path_is_constrained` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
-        #[method(isConstrained)]
+        #[unsafe(method(isConstrained))]
         #[unsafe(method_family = none)]
         pub unsafe fn isConstrained(&self) -> bool;
 
@@ -9067,7 +9067,7 @@ extern_methods!(
         ///
         /// Returns: YES if the two path objects have the same content, NO otherwise.
         #[deprecated = "Use `nw_path_is_equal` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
-        #[method(isEqualToPath:)]
+        #[unsafe(method(isEqualToPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToPath(&self, path: &NWPath) -> bool;
     }
@@ -9076,11 +9076,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NWPath {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -9164,7 +9164,7 @@ extern_methods!(
         ///
         /// Returns: An initialized NWTCPConnection
         #[deprecated = "Use `nw_connection_create` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-        #[method(initWithUpgradeForConnection:)]
+        #[unsafe(method(initWithUpgradeForConnection:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUpgradeForConnection(
             this: Allocated<Self>,
@@ -9173,13 +9173,13 @@ extern_methods!(
 
         /// The status of the connection. Use KVO to watch this property to get updates.
         #[deprecated = "Use `nw_connection_set_state_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-        #[method(state)]
+        #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> NWTCPConnectionState;
 
         /// YES if the connection can read and write data, NO otherwise. Use KVO to watch this property.
         #[deprecated = "Use `nw_connection_set_viability_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-        #[method(isViable)]
+        #[unsafe(method(isViable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isViable(&self) -> bool;
 
@@ -9188,13 +9188,13 @@ extern_methods!(
         /// be done using the convenience upgrade initializer method.
         /// Use KVO to watch this property to get updates.
         #[deprecated = "Use `nw_connection_set_better_path_available_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-        #[method(hasBetterPath)]
+        #[unsafe(method(hasBetterPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasBetterPath(&self) -> bool;
 
         /// The destination endpoint with which this connection was created.
         #[deprecated = "Use `nw_connection_copy_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-        #[method(endpoint)]
+        #[unsafe(method(endpoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn endpoint(&self) -> Retained<NWEndpoint>;
 
@@ -9205,19 +9205,19 @@ extern_methods!(
         /// for this connection only. As a result, some underlying properties might change in time and
         /// might not reflect the path for other connections that might be established at different times.
         #[deprecated = "Use `nw_connection_copy_current_path` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-        #[method(connectedPath)]
+        #[unsafe(method(connectedPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectedPath(&self) -> Option<Retained<NWPath>>;
 
         /// The IP address endpoint from which the connection was connected.
         #[deprecated = "Use `nw_path_copy_effective_local_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-        #[method(localAddress)]
+        #[unsafe(method(localAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn localAddress(&self) -> Option<Retained<NWEndpoint>>;
 
         /// The IP address endpoint to which the connection was connected.
         #[deprecated = "Use `nw_path_copy_effective_remote_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-        #[method(remoteAddress)]
+        #[unsafe(method(remoteAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteAddress(&self) -> Option<Retained<NWEndpoint>>;
 
@@ -9225,21 +9225,21 @@ extern_methods!(
         /// with the Bonjour service is available via this property. Beware that the value comes from
         /// the network. Care must be taken when parsing this potentially malicious value.
         #[deprecated = "Use `nw_endpoint_copy_txt_record` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-        #[method(txtRecord)]
+        #[unsafe(method(txtRecord))]
         #[unsafe(method_family = none)]
         pub unsafe fn txtRecord(&self) -> Option<Retained<NSData>>;
 
         /// The connection-wide error property indicates any fatal error that occurred while
         /// processing the connection or performing data reading or writing.
         #[deprecated = "Use `nw_connection_set_state_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-        #[method(error)]
+        #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         /// Cancel the connection. This will clean up the resources associated with this object
         /// and transition this object to NWTCPConnectionStateCancelled state.
         #[deprecated = "Use `nw_connection_cancel` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-        #[method(cancel)]
+        #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
@@ -9251,7 +9251,7 @@ extern_methods!(
         ///
         /// Parameter `completion`: The completion handler to be invoked when there is data to read or an error occurred
         #[deprecated = "Use `nw_connection_receive` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-        #[method(readLength:completionHandler:)]
+        #[unsafe(method(readLength:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readLength_completionHandler(
             &self,
@@ -9285,7 +9285,7 @@ extern_methods!(
         ///
         /// Parameter `completion`: The completion handler to be invoked when there is data to read or an error occurred
         #[deprecated = "Use `nw_connection_receive` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-        #[method(readMinimumLength:maximumLength:completionHandler:)]
+        #[unsafe(method(readMinimumLength:maximumLength:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readMinimumLength_maximumLength_completionHandler(
             &self,
@@ -9303,7 +9303,7 @@ extern_methods!(
         /// Parameter `completion`: The completion handler to be invoked when the data content has been written or an error has occurred.
         /// If the error is nil, the write succeeded and the caller can write more data.
         #[deprecated = "Use `nw_connection_send` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-        #[method(write:completionHandler:)]
+        #[unsafe(method(write:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn write_completionHandler(
             &self,
@@ -9316,7 +9316,7 @@ extern_methods!(
         /// When the connection's read side and write side are closed, the connection is considered
         /// disconnected and will transition to the appropriate state.
         #[deprecated = "Use `nw_connection_send` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-        #[method(writeClose)]
+        #[unsafe(method(writeClose))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeClose(&self);
     }
@@ -9325,11 +9325,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NWTCPConnection {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -9352,7 +9352,7 @@ extern_protocol!(
         /// provideIdentityForConnection:completionHandler: will be called.
         #[deprecated = "Use `sec_protocol_options_set_challenge_block` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
         #[optional]
-        #[method(shouldProvideIdentityForConnection:)]
+        #[unsafe(method(shouldProvideIdentityForConnection:))]
         #[unsafe(method_family = none)]
         unsafe fn shouldProvideIdentityForConnection(&self, connection: &NWTCPConnection) -> bool;
 
@@ -9372,7 +9372,7 @@ extern_protocol!(
         /// completion handler invocation.
         #[deprecated = "Use `sec_protocol_options_set_challenge_block` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
         #[optional]
-        #[method(provideIdentityForConnection:completionHandler:)]
+        #[unsafe(method(provideIdentityForConnection:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn provideIdentityForConnection_completionHandler(
             &self,
@@ -9391,7 +9391,7 @@ extern_protocol!(
         /// evaluateTrustForConnection:peerCertificateChain:completionHandler: will be called.
         #[deprecated = "Use `sec_protocol_options_set_verify_block` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
         #[optional]
-        #[method(shouldEvaluateTrustForConnection:)]
+        #[unsafe(method(shouldEvaluateTrustForConnection:))]
         #[unsafe(method_family = none)]
         unsafe fn shouldEvaluateTrustForConnection(&self, connection: &NWTCPConnection) -> bool;
 
@@ -9411,7 +9411,7 @@ extern_protocol!(
         /// alive for the duration of the completion handler invocation.
         #[deprecated = "Use `sec_protocol_options_set_verify_block` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
         #[optional]
-        #[method(evaluateTrustForConnection:peerCertificateChain:completionHandler:)]
+        #[unsafe(method(evaluateTrustForConnection:peerCertificateChain:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn evaluateTrustForConnection_peerCertificateChain_completionHandler(
             &self,
@@ -9492,7 +9492,7 @@ extern_methods!(
         ///
         /// Returns: An initialized NWUDPSession object.
         #[deprecated = "Use `nw_connection_create` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
-        #[method(initWithUpgradeForSession:)]
+        #[unsafe(method(initWithUpgradeForSession:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUpgradeForSession(
             this: Allocated<Self>,
@@ -9504,39 +9504,39 @@ extern_methods!(
         /// NWUDPSessionStateFailed if the endpoint could not be resolved, or all endpoints have been
         /// rejected. Use KVO to watch for changes.
         #[deprecated = "Use `nw_connection_set_state_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
-        #[method(state)]
+        #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> NWUDPSessionState;
 
         /// The provided endpoint.
         #[deprecated = "Use `nw_connection_copy_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
-        #[method(endpoint)]
+        #[unsafe(method(endpoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn endpoint(&self) -> Retained<NWEndpoint>;
 
         /// The currently targeted remote endpoint. Use KVO to watch for changes.
         #[deprecated = "Use `nw_connection_copy_current_path` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
-        #[method(resolvedEndpoint)]
+        #[unsafe(method(resolvedEndpoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn resolvedEndpoint(&self) -> Option<Retained<NWEndpoint>>;
 
         /// YES if the connection can read and write data, NO otherwise.
         /// Use KVO to watch this property.
         #[deprecated = "Use `nw_connection_set_viability_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
-        #[method(isViable)]
+        #[unsafe(method(isViable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isViable(&self) -> bool;
 
         /// YES if there is another path available that is preferred over the currentPath.
         /// To take advantage of this path, create a new UDPSession. Use KVO to watch for changes.
         #[deprecated = "Use `nw_connection_set_better_path_available_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
-        #[method(hasBetterPath)]
+        #[unsafe(method(hasBetterPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasBetterPath(&self) -> bool;
 
         /// The current evaluated path for the resolvedEndpoint. Use KVO to watch for changes.
         #[deprecated = "Use `nw_connection_copy_current_path` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
-        #[method(currentPath)]
+        #[unsafe(method(currentPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentPath(&self) -> Option<Retained<NWPath>>;
 
@@ -9545,7 +9545,7 @@ extern_methods!(
         /// with the current resolvedEndpoint, and the caller has determined that it is unusable. If
         /// there are no other resolved endpoints, the session will move to the failed state.
         #[deprecated = "Use `nw_connection_cancel_current_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
-        #[method(tryNextResolvedEndpoint)]
+        #[unsafe(method(tryNextResolvedEndpoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn tryNextResolvedEndpoint(&self);
 
@@ -9554,7 +9554,7 @@ extern_methods!(
         /// value is not guaranteed to be the maximum datagram length for end-to-end communication
         /// across the network. Use KVO to watch for changes.
         #[deprecated = "Use `nw_connection_get_maximum_datagram_size` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
-        #[method(maximumDatagramLength)]
+        #[unsafe(method(maximumDatagramLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumDatagramLength(&self) -> NSUInteger;
 
@@ -9566,7 +9566,7 @@ extern_methods!(
         ///
         /// Parameter `maxDatagrams`: The maximum number of datagrams to send to the handler.
         #[deprecated = "Use `nw_connection_receive` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
-        #[method(setReadHandler:maxDatagrams:)]
+        #[unsafe(method(setReadHandler:maxDatagrams:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReadHandler_maxDatagrams(
             &self,
@@ -9582,7 +9582,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A handler called when the write request has either succeeded or failed.
         #[deprecated = "Use `nw_connection_send` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
-        #[method(writeMultipleDatagrams:completionHandler:)]
+        #[unsafe(method(writeMultipleDatagrams:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeMultipleDatagrams_completionHandler(
             &self,
@@ -9598,7 +9598,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A handler called when the write request has either succeeded or failed.
         #[deprecated = "Use `nw_connection_send` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
-        #[method(writeDatagram:completionHandler:)]
+        #[unsafe(method(writeDatagram:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeDatagram_completionHandler(
             &self,
@@ -9609,7 +9609,7 @@ extern_methods!(
         /// Move into the NWUDPSessionStateCancelled state. The connection will be terminated,
         /// and all handlers will be cancelled.
         #[deprecated = "Use `nw_connection_cancel` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
-        #[method(cancel)]
+        #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
     }
@@ -9618,11 +9618,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NWUDPSession {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -9648,13 +9648,13 @@ extern_methods!(
         /// The session ID for the associated connection, used for TLS session resumption.
         /// This property is optional when using TLS.
         #[deprecated = "Use `sec_protocol_options_set_tls_resumption_enabled` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
-        #[method(TLSSessionID)]
+        #[unsafe(method(TLSSessionID))]
         #[unsafe(method_family = none)]
         pub unsafe fn TLSSessionID(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`TLSSessionID`][Self::TLSSessionID].
         #[deprecated = "Use `sec_protocol_options_set_tls_resumption_enabled` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
-        #[method(setTLSSessionID:)]
+        #[unsafe(method(setTLSSessionID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTLSSessionID(&self, tls_session_id: Option<&NSData>);
 
@@ -9663,13 +9663,13 @@ extern_methods!(
         /// /CipherSuite.h>.
         /// If set to nil, the default cipher suites will be used.
         #[deprecated = "Use `sec_protocol_options_append_tls_ciphersuite` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
-        #[method(SSLCipherSuites)]
+        #[unsafe(method(SSLCipherSuites))]
         #[unsafe(method_family = none)]
         pub unsafe fn SSLCipherSuites(&self) -> Option<Retained<NSSet<NSNumber>>>;
 
         /// Setter for [`SSLCipherSuites`][Self::SSLCipherSuites].
         #[deprecated = "Use `sec_protocol_options_append_tls_ciphersuite` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
-        #[method(setSSLCipherSuites:)]
+        #[unsafe(method(setSSLCipherSuites:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSSLCipherSuites(&self, ssl_cipher_suites: Option<&NSSet<NSNumber>>);
 
@@ -9678,13 +9678,13 @@ extern_methods!(
         /// /SecureTransport.h>.
         /// If set, the SSL handshake will not accept any protocol version older than the minimum.
         #[deprecated = "Use `sec_protocol_options_set_min_tls_protocol_version` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
-        #[method(minimumSSLProtocolVersion)]
+        #[unsafe(method(minimumSSLProtocolVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumSSLProtocolVersion(&self) -> NSUInteger;
 
         /// Setter for [`minimumSSLProtocolVersion`][Self::minimumSSLProtocolVersion].
         #[deprecated = "Use `sec_protocol_options_set_min_tls_protocol_version` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
-        #[method(setMinimumSSLProtocolVersion:)]
+        #[unsafe(method(setMinimumSSLProtocolVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumSSLProtocolVersion(&self, minimum_ssl_protocol_version: NSUInteger);
 
@@ -9695,13 +9695,13 @@ extern_methods!(
         /// This property should be used with caution, since it may limit the use of preferred
         /// SSL protocols.
         #[deprecated = "Use `sec_protocol_options_set_max_tls_protocol_version` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
-        #[method(maximumSSLProtocolVersion)]
+        #[unsafe(method(maximumSSLProtocolVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumSSLProtocolVersion(&self) -> NSUInteger;
 
         /// Setter for [`maximumSSLProtocolVersion`][Self::maximumSSLProtocolVersion].
         #[deprecated = "Use `sec_protocol_options_set_max_tls_protocol_version` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
-        #[method(setMaximumSSLProtocolVersion:)]
+        #[unsafe(method(setMaximumSSLProtocolVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumSSLProtocolVersion(&self, maximum_ssl_protocol_version: NSUInteger);
     }
@@ -9710,11 +9710,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NWTLSParameters {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

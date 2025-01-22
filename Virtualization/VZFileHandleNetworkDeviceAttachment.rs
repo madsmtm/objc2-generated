@@ -36,7 +36,7 @@ extern_methods!(
         /// Initialize the attachment with a file handle.
         ///
         /// Parameter `fileHandle`: File handle holding a connected datagram socket.
-        #[method(initWithFileHandle:)]
+        #[unsafe(method(initWithFileHandle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFileHandle(
             this: Allocated<Self>,
@@ -44,7 +44,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The file handle associated with this attachment.
-        #[method(fileHandle)]
+        #[unsafe(method(fileHandle))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileHandle(&self) -> Retained<NSFileHandle>;
 
@@ -58,12 +58,12 @@ extern_methods!(
         /// The default MTU is 1500.
         /// The maximum MTU allowed is 65535, and the minimum MTU allowed is 1500. An invalid MTU value will result in an invalid
         /// virtual machine configuration.
-        #[method(maximumTransmissionUnit)]
+        #[unsafe(method(maximumTransmissionUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumTransmissionUnit(&self) -> NSInteger;
 
         /// Setter for [`maximumTransmissionUnit`][Self::maximumTransmissionUnit].
-        #[method(setMaximumTransmissionUnit:)]
+        #[unsafe(method(setMaximumTransmissionUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumTransmissionUnit(&self, maximum_transmission_unit: NSInteger);
     }
@@ -73,11 +73,11 @@ extern_methods!(
     /// Methods declared on superclass `VZNetworkDeviceAttachment`
     #[cfg(feature = "VZNetworkDeviceAttachment")]
     unsafe impl VZFileHandleNetworkDeviceAttachment {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

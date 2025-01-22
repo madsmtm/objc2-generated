@@ -28,23 +28,23 @@ unsafe impl NSObjectProtocol for AVAssetCache {}
 
 extern_methods!(
     unsafe impl AVAssetCache {
-        #[method(isPlayableOffline)]
+        #[unsafe(method(isPlayableOffline))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPlayableOffline(&self) -> bool;
 
         #[cfg(feature = "AVMediaSelectionGroup")]
-        #[method(mediaSelectionOptionsInMediaSelectionGroup:)]
+        #[unsafe(method(mediaSelectionOptionsInMediaSelectionGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionOptionsInMediaSelectionGroup(
             &self,
             media_selection_group: &AVMediaSelectionGroup,
         ) -> Retained<NSArray<AVMediaSelectionOption>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

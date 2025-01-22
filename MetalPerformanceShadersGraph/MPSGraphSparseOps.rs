@@ -61,24 +61,24 @@ extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphCreateSparseOpDescriptor {
         /// Defines the storage format of the sparse tensor.
-        #[method(sparseStorageType)]
+        #[unsafe(method(sparseStorageType))]
         #[unsafe(method_family = none)]
         pub unsafe fn sparseStorageType(&self) -> MPSGraphSparseStorageType;
 
         /// Setter for [`sparseStorageType`][Self::sparseStorageType].
-        #[method(setSparseStorageType:)]
+        #[unsafe(method(setSparseStorageType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSparseStorageType(&self, sparse_storage_type: MPSGraphSparseStorageType);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Defines the datatype of the sparse tensor.
-        #[method(dataType)]
+        #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataType(&self) -> MPSDataType;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Setter for [`dataType`][Self::dataType].
-        #[method(setDataType:)]
+        #[unsafe(method(setDataType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataType(&self, data_type: MPSDataType);
 
@@ -89,7 +89,7 @@ extern_methods!(
         /// - sparseStorageType: A sparseStorageType.
         /// - dataType: A dataType of the sparse tensor.
         /// - Returns: The descriptor.
-        #[method(descriptorWithStorageType:dataType:)]
+        #[unsafe(method(descriptorWithStorageType:dataType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithStorageType_dataType(
             sparse_storage_type: MPSGraphSparseStorageType,
@@ -102,11 +102,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphCreateSparseOpDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -136,7 +136,7 @@ extern_methods!(
         /// - dataType: The dataType of the sparse tensor.
         /// - name: A name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object.
-        #[method(sparseTensorWithType:tensors:shape:dataType:name:)]
+        #[unsafe(method(sparseTensorWithType:tensors:shape:dataType:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sparseTensorWithType_tensors_shape_dataType_name(
             &self,
@@ -166,7 +166,7 @@ extern_methods!(
         /// - shape: The shape of the sparse tensor.
         /// - name: A name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[method(sparseTensorWithDescriptor:tensors:shape:name:)]
+        #[unsafe(method(sparseTensorWithDescriptor:tensors:shape:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sparseTensorWithDescriptor_tensors_shape_name(
             &self,

@@ -21,20 +21,20 @@ unsafe impl NSPasteboardReading for NSFilePromiseReceiver {}
 
 extern_methods!(
     unsafe impl NSFilePromiseReceiver {
-        #[method(readableDraggedTypes)]
+        #[unsafe(method(readableDraggedTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn readableDraggedTypes() -> Retained<NSArray<NSString>>;
 
-        #[method(fileTypes)]
+        #[unsafe(method(fileTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileTypes(&self) -> Retained<NSArray<NSString>>;
 
-        #[method(fileNames)]
+        #[unsafe(method(fileNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "block2")]
-        #[method(receivePromisedFilesAtDestination:options:operationQueue:reader:)]
+        #[unsafe(method(receivePromisedFilesAtDestination:options:operationQueue:reader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn receivePromisedFilesAtDestination_options_operationQueue_reader(
             &self,
@@ -49,11 +49,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFilePromiseReceiver {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

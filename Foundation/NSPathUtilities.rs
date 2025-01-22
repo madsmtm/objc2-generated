@@ -11,64 +11,64 @@ extern_methods!(
     #[cfg(feature = "NSString")]
     unsafe impl NSString {
         #[cfg(feature = "NSArray")]
-        #[method(pathWithComponents:)]
+        #[unsafe(method(pathWithComponents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pathWithComponents(components: &NSArray<NSString>) -> Retained<NSString>;
 
         #[cfg(feature = "NSArray")]
-        #[method(pathComponents)]
+        #[unsafe(method(pathComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn pathComponents(&self) -> Retained<NSArray<NSString>>;
 
-        #[method(isAbsolutePath)]
+        #[unsafe(method(isAbsolutePath))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAbsolutePath(&self) -> bool;
 
-        #[method(lastPathComponent)]
+        #[unsafe(method(lastPathComponent))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastPathComponent(&self) -> Retained<NSString>;
 
-        #[method(stringByDeletingLastPathComponent)]
+        #[unsafe(method(stringByDeletingLastPathComponent))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringByDeletingLastPathComponent(&self) -> Retained<NSString>;
 
-        #[method(stringByAppendingPathComponent:)]
+        #[unsafe(method(stringByAppendingPathComponent:))]
         #[unsafe(method_family = none)]
         pub fn stringByAppendingPathComponent(&self, str: &NSString) -> Retained<NSString>;
 
-        #[method(pathExtension)]
+        #[unsafe(method(pathExtension))]
         #[unsafe(method_family = none)]
         pub unsafe fn pathExtension(&self) -> Retained<NSString>;
 
-        #[method(stringByDeletingPathExtension)]
+        #[unsafe(method(stringByDeletingPathExtension))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringByDeletingPathExtension(&self) -> Retained<NSString>;
 
-        #[method(stringByAppendingPathExtension:)]
+        #[unsafe(method(stringByAppendingPathExtension:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringByAppendingPathExtension(
             &self,
             str: &NSString,
         ) -> Option<Retained<NSString>>;
 
-        #[method(stringByAbbreviatingWithTildeInPath)]
+        #[unsafe(method(stringByAbbreviatingWithTildeInPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringByAbbreviatingWithTildeInPath(&self) -> Retained<NSString>;
 
-        #[method(stringByExpandingTildeInPath)]
+        #[unsafe(method(stringByExpandingTildeInPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringByExpandingTildeInPath(&self) -> Retained<NSString>;
 
-        #[method(stringByStandardizingPath)]
+        #[unsafe(method(stringByStandardizingPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringByStandardizingPath(&self) -> Retained<NSString>;
 
-        #[method(stringByResolvingSymlinksInPath)]
+        #[unsafe(method(stringByResolvingSymlinksInPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringByResolvingSymlinksInPath(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSArray")]
-        #[method(stringsByAppendingPaths:)]
+        #[unsafe(method(stringsByAppendingPaths:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringsByAppendingPaths(
             &self,
@@ -76,7 +76,7 @@ extern_methods!(
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSArray")]
-        #[method(completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:)]
+        #[unsafe(method(completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completePathIntoString_caseSensitive_matchesIntoArray_filterTypes(
             &self,
@@ -86,11 +86,11 @@ extern_methods!(
             filter_types: Option<&NSArray<NSString>>,
         ) -> NSUInteger;
 
-        #[method(fileSystemRepresentation)]
+        #[unsafe(method(fileSystemRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileSystemRepresentation(&self) -> NonNull<c_char>;
 
-        #[method(getFileSystemRepresentation:maxLength:)]
+        #[unsafe(method(getFileSystemRepresentation:maxLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getFileSystemRepresentation_maxLength(
             &self,
@@ -105,7 +105,7 @@ extern_methods!(
     #[cfg(feature = "NSArray")]
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[cfg(feature = "NSString")]
-        #[method(pathsMatchingExtensions:)]
+        #[unsafe(method(pathsMatchingExtensions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pathsMatchingExtensions(
             &self,

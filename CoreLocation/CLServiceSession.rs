@@ -40,35 +40,35 @@ unsafe impl NSObjectProtocol for CLServiceSessionDiagnostic {}
 
 extern_methods!(
     unsafe impl CLServiceSessionDiagnostic {
-        #[method(authorizationDenied)]
+        #[unsafe(method(authorizationDenied))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationDenied(&self) -> bool;
 
-        #[method(authorizationDeniedGlobally)]
+        #[unsafe(method(authorizationDeniedGlobally))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationDeniedGlobally(&self) -> bool;
 
-        #[method(authorizationRestricted)]
+        #[unsafe(method(authorizationRestricted))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationRestricted(&self) -> bool;
 
-        #[method(insufficientlyInUse)]
+        #[unsafe(method(insufficientlyInUse))]
         #[unsafe(method_family = none)]
         pub unsafe fn insufficientlyInUse(&self) -> bool;
 
-        #[method(serviceSessionRequired)]
+        #[unsafe(method(serviceSessionRequired))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceSessionRequired(&self) -> bool;
 
-        #[method(fullAccuracyDenied)]
+        #[unsafe(method(fullAccuracyDenied))]
         #[unsafe(method_family = none)]
         pub unsafe fn fullAccuracyDenied(&self) -> bool;
 
-        #[method(alwaysAuthorizationDenied)]
+        #[unsafe(method(alwaysAuthorizationDenied))]
         #[unsafe(method_family = none)]
         pub unsafe fn alwaysAuthorizationDenied(&self) -> bool;
 
-        #[method(authorizationRequestInProgress)]
+        #[unsafe(method(authorizationRequestInProgress))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationRequestInProgress(&self) -> bool;
     }
@@ -77,11 +77,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLServiceSessionDiagnostic {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -98,28 +98,28 @@ unsafe impl NSObjectProtocol for CLServiceSession {}
 
 extern_methods!(
     unsafe impl CLServiceSession {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(sessionRequiringAuthorization:)]
+        #[unsafe(method(sessionRequiringAuthorization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionRequiringAuthorization(
             authorization_requirement: CLServiceSessionAuthorizationRequirement,
         ) -> Retained<CLServiceSession>;
 
-        #[method(sessionRequiringAuthorization:fullAccuracyPurposeKey:)]
+        #[unsafe(method(sessionRequiringAuthorization:fullAccuracyPurposeKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionRequiringAuthorization_fullAccuracyPurposeKey(
             authorization_requirement: CLServiceSessionAuthorizationRequirement,
             purpose_key: &NSString,
         ) -> Retained<CLServiceSession>;
 
-        #[method(invalidate)]
+        #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
     }

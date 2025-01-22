@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for NSNib {}
 
 extern_methods!(
     unsafe impl NSNib {
-        #[method(initWithNibNamed:bundle:)]
+        #[unsafe(method(initWithNibNamed:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibNamed_bundle(
             this: Allocated<Self>,
@@ -30,7 +30,7 @@ extern_methods!(
             bundle: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
 
-        #[method(initWithNibData:bundle:)]
+        #[unsafe(method(initWithNibData:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibData_bundle(
             this: Allocated<Self>,
@@ -43,11 +43,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNib {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -57,7 +57,7 @@ extern_methods!(
     /// NSDeprecated
     unsafe impl NSNib {
         #[deprecated]
-        #[method(initWithContentsOfURL:)]
+        #[unsafe(method(initWithContentsOfURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
@@ -65,7 +65,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated]
-        #[method(instantiateNibWithExternalNameTable:)]
+        #[unsafe(method(instantiateNibWithExternalNameTable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateNibWithExternalNameTable(
             &self,
@@ -73,7 +73,7 @@ extern_methods!(
         ) -> bool;
 
         #[deprecated]
-        #[method(instantiateNibWithOwner:topLevelObjects:)]
+        #[unsafe(method(instantiateNibWithOwner:topLevelObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateNibWithOwner_topLevelObjects(
             &self,

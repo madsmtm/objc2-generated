@@ -58,7 +58,7 @@ extern_methods!(
         ///
         /// This property reports whether or not authorization is required for the receiver's content to be played.  If it does not require authorization, then none of the other
         /// methods or properties in the AVPlayerItemProtectedContent category apply (though they will return sensible values where possible). This value is NOT key-value observable.
-        #[method(isAuthorizationRequiredForPlayback)]
+        #[unsafe(method(isAuthorizationRequiredForPlayback))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAuthorizationRequiredForPlayback(&self) -> bool;
 
@@ -68,7 +68,7 @@ extern_methods!(
         /// is independent of content authorization (see contentAuthorizedForPlayback) and that both must be granted in order for an application to be allowed to play protected content.
         /// Also, unlike content authorization, application authorization is not dependent on user credentials (i.e. if applicationAuthorizedForPlayback is NO, there are no means to obtain authorization).
         /// This value is NOT key-value observable.
-        #[method(isApplicationAuthorizedForPlayback)]
+        #[unsafe(method(isApplicationAuthorizedForPlayback))]
         #[unsafe(method_family = none)]
         pub unsafe fn isApplicationAuthorizedForPlayback(&self) -> bool;
 
@@ -77,7 +77,7 @@ extern_methods!(
         /// This property reports whether or not the user has provided the necessary credentials to the system in order for the content to be decrypted for playback.
         /// Note that content authorization is independent of application authorization (see applicationAuthorizedForPlayback) and that both must be
         /// granted in order for an application to be allowed to play protected content. This value is NOT key-value observable.
-        #[method(isContentAuthorizedForPlayback)]
+        #[unsafe(method(isContentAuthorizedForPlayback))]
         #[unsafe(method_family = none)]
         pub unsafe fn isContentAuthorizedForPlayback(&self) -> bool;
 
@@ -94,7 +94,7 @@ extern_methods!(
         /// Parameter `timoutInterval`: The maximum amount of time to wait for the user to authorize the content in seconds before calling the handler block with a timeout result.
         ///
         /// Parameter `handler`: Block to be called upon completion.
-        #[method(requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:)]
+        #[unsafe(method(requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestContentAuthorizationAsynchronouslyWithTimeoutInterval_completionHandler(
             &self,
@@ -106,7 +106,7 @@ extern_methods!(
         ///
         /// Calling this method while a content authorization request is pending will cause that request to be cancelled and its completion handler to be invoked
         /// with a status of AVContentAuthorizationCancelled.  This call does not block.
-        #[method(cancelContentAuthorizationRequest)]
+        #[unsafe(method(cancelContentAuthorizationRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelContentAuthorizationRequest(&self);
 
@@ -115,7 +115,7 @@ extern_methods!(
         /// This property reports the authorization status as determined by the most recent call to requestContentAuthorizationAsynchronouslyWithTimeoutInterval:CompletionHandler:.
         /// The value will be AVContentAuthorizationUnknown before the first call and between the time a request call is made and just prior to the completion handler being executed
         /// (i.e. it is safe to query this property from the completion handler). This value is NOT key-value observable.
-        #[method(contentAuthorizationRequestStatus)]
+        #[unsafe(method(contentAuthorizationRequestStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentAuthorizationRequestStatus(&self) -> AVContentAuthorizationStatus;
     }

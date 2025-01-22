@@ -41,7 +41,7 @@ extern_protocol!(
         /// The identifier will be retained.
         #[deprecated]
         #[optional]
-        #[method(webView:identifierForInitialRequest:fromDataSource:)]
+        #[unsafe(method(webView:identifierForInitialRequest:fromDataSource:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_identifierForInitialRequest_fromDataSource(
             &self,
@@ -75,7 +75,7 @@ extern_protocol!(
         /// will be request.
         #[deprecated]
         #[optional]
-        #[method(webView:resource:willSendRequest:redirectResponse:fromDataSource:)]
+        #[unsafe(method(webView:resource:willSendRequest:redirectResponse:fromDataSource:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_resource_willSendRequest_redirectResponse_fromDataSource(
             &self,
@@ -103,7 +103,7 @@ extern_protocol!(
         /// automatically by prompting with a sheet on the window that the WebView is associated with.
         #[deprecated]
         #[optional]
-        #[method(webView:resource:didReceiveAuthenticationChallenge:fromDataSource:)]
+        #[unsafe(method(webView:resource:didReceiveAuthenticationChallenge:fromDataSource:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_resource_didReceiveAuthenticationChallenge_fromDataSource(
             &self,
@@ -124,7 +124,7 @@ extern_protocol!(
         /// Parameter `challenge`: The NSURLAuthenticationChallenge for which to cancel authentication
         #[deprecated]
         #[optional]
-        #[method(webView:resource:didCancelAuthenticationChallenge:fromDataSource:)]
+        #[unsafe(method(webView:resource:didCancelAuthenticationChallenge:fromDataSource:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_resource_didCancelAuthenticationChallenge_fromDataSource(
             &self,
@@ -157,7 +157,7 @@ extern_protocol!(
         /// and should check the new response for the expected content length.
         #[deprecated]
         #[optional]
-        #[method(webView:resource:didReceiveResponse:fromDataSource:)]
+        #[unsafe(method(webView:resource:didReceiveResponse:fromDataSource:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_resource_didReceiveResponse_fromDataSource(
             &self,
@@ -185,7 +185,7 @@ extern_protocol!(
         /// Parameter `dataSource`: The dataSource that initiated the load.
         #[deprecated]
         #[optional]
-        #[method(webView:resource:didReceiveContentLength:fromDataSource:)]
+        #[unsafe(method(webView:resource:didReceiveContentLength:fromDataSource:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_resource_didReceiveContentLength_fromDataSource(
             &self,
@@ -211,7 +211,7 @@ extern_protocol!(
         /// Parameter `dataSource`: The dataSource that initiated the load.
         #[deprecated]
         #[optional]
-        #[method(webView:resource:didFinishLoadingFromDataSource:)]
+        #[unsafe(method(webView:resource:didFinishLoadingFromDataSource:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_resource_didFinishLoadingFromDataSource(
             &self,
@@ -238,7 +238,7 @@ extern_protocol!(
         /// Parameter `dataSource`: The dataSource that initiated the load.
         #[deprecated]
         #[optional]
-        #[method(webView:resource:didFailLoadingWithError:fromDataSource:)]
+        #[unsafe(method(webView:resource:didFailLoadingWithError:fromDataSource:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_resource_didFailLoadingWithError_fromDataSource(
             &self,
@@ -268,7 +268,7 @@ extern_protocol!(
         /// Parameter `dataSource`: The dataSource that contains the plug-in.
         #[deprecated]
         #[optional]
-        #[method(webView:plugInFailedWithError:dataSource:)]
+        #[unsafe(method(webView:plugInFailedWithError:dataSource:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_plugInFailedWithError_dataSource(
             &self,

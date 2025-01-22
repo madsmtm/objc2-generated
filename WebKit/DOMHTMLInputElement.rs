@@ -78,266 +78,266 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLInputElement {
         #[deprecated]
-        #[method(accept)]
+        #[unsafe(method(accept))]
         #[unsafe(method_family = none)]
         pub unsafe fn accept(&self) -> Retained<NSString>;
 
         /// Setter for [`accept`][Self::accept].
         #[deprecated]
-        #[method(setAccept:)]
+        #[unsafe(method(setAccept:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccept(&self, accept: Option<&NSString>);
 
         #[deprecated]
-        #[method(alt)]
+        #[unsafe(method(alt))]
         #[unsafe(method_family = none)]
         pub unsafe fn alt(&self) -> Retained<NSString>;
 
         /// Setter for [`alt`][Self::alt].
         #[deprecated]
-        #[method(setAlt:)]
+        #[unsafe(method(setAlt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlt(&self, alt: Option<&NSString>);
 
-        #[method(autofocus)]
+        #[unsafe(method(autofocus))]
         #[unsafe(method_family = none)]
         pub unsafe fn autofocus(&self) -> bool;
 
         /// Setter for [`autofocus`][Self::autofocus].
-        #[method(setAutofocus:)]
+        #[unsafe(method(setAutofocus:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutofocus(&self, autofocus: bool);
 
         #[deprecated]
-        #[method(defaultChecked)]
+        #[unsafe(method(defaultChecked))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultChecked(&self) -> bool;
 
         /// Setter for [`defaultChecked`][Self::defaultChecked].
         #[deprecated]
-        #[method(setDefaultChecked:)]
+        #[unsafe(method(setDefaultChecked:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultChecked(&self, default_checked: bool);
 
         #[deprecated]
-        #[method(checked)]
+        #[unsafe(method(checked))]
         #[unsafe(method_family = none)]
         pub unsafe fn checked(&self) -> bool;
 
         /// Setter for [`checked`][Self::checked].
         #[deprecated]
-        #[method(setChecked:)]
+        #[unsafe(method(setChecked:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChecked(&self, checked: bool);
 
         #[deprecated]
-        #[method(disabled)]
+        #[unsafe(method(disabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn disabled(&self) -> bool;
 
         /// Setter for [`disabled`][Self::disabled].
         #[deprecated]
-        #[method(setDisabled:)]
+        #[unsafe(method(setDisabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisabled(&self, disabled: bool);
 
         #[cfg(feature = "DOMHTMLFormElement")]
         #[deprecated]
-        #[method(form)]
+        #[unsafe(method(form))]
         #[unsafe(method_family = none)]
         pub unsafe fn form(&self) -> Option<Retained<DOMHTMLFormElement>>;
 
         #[cfg(feature = "DOMFileList")]
-        #[method(files)]
+        #[unsafe(method(files))]
         #[unsafe(method_family = none)]
         pub unsafe fn files(&self) -> Option<Retained<DOMFileList>>;
 
         #[cfg(feature = "DOMFileList")]
         /// Setter for [`files`][Self::files].
-        #[method(setFiles:)]
+        #[unsafe(method(setFiles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFiles(&self, files: Option<&DOMFileList>);
 
-        #[method(indeterminate)]
+        #[unsafe(method(indeterminate))]
         #[unsafe(method_family = none)]
         pub unsafe fn indeterminate(&self) -> bool;
 
         /// Setter for [`indeterminate`][Self::indeterminate].
-        #[method(setIndeterminate:)]
+        #[unsafe(method(setIndeterminate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndeterminate(&self, indeterminate: bool);
 
         #[deprecated]
-        #[method(maxLength)]
+        #[unsafe(method(maxLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxLength(&self) -> c_int;
 
         /// Setter for [`maxLength`][Self::maxLength].
         #[deprecated]
-        #[method(setMaxLength:)]
+        #[unsafe(method(setMaxLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxLength(&self, max_length: c_int);
 
-        #[method(multiple)]
+        #[unsafe(method(multiple))]
         #[unsafe(method_family = none)]
         pub unsafe fn multiple(&self) -> bool;
 
         /// Setter for [`multiple`][Self::multiple].
-        #[method(setMultiple:)]
+        #[unsafe(method(setMultiple:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMultiple(&self, multiple: bool);
 
         #[deprecated]
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         #[deprecated]
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[deprecated]
-        #[method(readOnly)]
+        #[unsafe(method(readOnly))]
         #[unsafe(method_family = none)]
         pub unsafe fn readOnly(&self) -> bool;
 
         /// Setter for [`readOnly`][Self::readOnly].
         #[deprecated]
-        #[method(setReadOnly:)]
+        #[unsafe(method(setReadOnly:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReadOnly(&self, read_only: bool);
 
         #[deprecated]
-        #[method(size)]
+        #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> Retained<NSString>;
 
         /// Setter for [`size`][Self::size].
         #[deprecated]
-        #[method(setSize:)]
+        #[unsafe(method(setSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSize(&self, size: Option<&NSString>);
 
         #[deprecated]
-        #[method(src)]
+        #[unsafe(method(src))]
         #[unsafe(method_family = none)]
         pub unsafe fn src(&self) -> Retained<NSString>;
 
         /// Setter for [`src`][Self::src].
         #[deprecated]
-        #[method(setSrc:)]
+        #[unsafe(method(setSrc:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSrc(&self, src: Option<&NSString>);
 
         #[deprecated]
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
         #[deprecated]
-        #[method(setType:)]
+        #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
 
         #[deprecated]
-        #[method(defaultValue)]
+        #[unsafe(method(defaultValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultValue(&self) -> Retained<NSString>;
 
         /// Setter for [`defaultValue`][Self::defaultValue].
         #[deprecated]
-        #[method(setDefaultValue:)]
+        #[unsafe(method(setDefaultValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultValue(&self, default_value: Option<&NSString>);
 
         #[deprecated]
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
         /// Setter for [`value`][Self::value].
         #[deprecated]
-        #[method(setValue:)]
+        #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);
 
-        #[method(willValidate)]
+        #[unsafe(method(willValidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn willValidate(&self) -> bool;
 
-        #[method(selectionStart)]
+        #[unsafe(method(selectionStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectionStart(&self) -> c_int;
 
         /// Setter for [`selectionStart`][Self::selectionStart].
-        #[method(setSelectionStart:)]
+        #[unsafe(method(setSelectionStart:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionStart(&self, selection_start: c_int);
 
-        #[method(selectionEnd)]
+        #[unsafe(method(selectionEnd))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectionEnd(&self) -> c_int;
 
         /// Setter for [`selectionEnd`][Self::selectionEnd].
-        #[method(setSelectionEnd:)]
+        #[unsafe(method(setSelectionEnd:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionEnd(&self, selection_end: c_int);
 
         #[deprecated]
-        #[method(align)]
+        #[unsafe(method(align))]
         #[unsafe(method_family = none)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
         #[deprecated]
-        #[method(setAlign:)]
+        #[unsafe(method(setAlign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[deprecated]
-        #[method(useMap)]
+        #[unsafe(method(useMap))]
         #[unsafe(method_family = none)]
         pub unsafe fn useMap(&self) -> Retained<NSString>;
 
         /// Setter for [`useMap`][Self::useMap].
         #[deprecated]
-        #[method(setUseMap:)]
+        #[unsafe(method(setUseMap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUseMap(&self, use_map: Option<&NSString>);
 
         #[deprecated]
-        #[method(accessKey)]
+        #[unsafe(method(accessKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         /// Setter for [`accessKey`][Self::accessKey].
         #[deprecated]
-        #[method(setAccessKey:)]
+        #[unsafe(method(setAccessKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
 
-        #[method(altDisplayString)]
+        #[unsafe(method(altDisplayString))]
         #[unsafe(method_family = none)]
         pub unsafe fn altDisplayString(&self) -> Retained<NSString>;
 
-        #[method(absoluteImageURL)]
+        #[unsafe(method(absoluteImageURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn absoluteImageURL(&self) -> Retained<NSURL>;
 
         #[deprecated]
-        #[method(select)]
+        #[unsafe(method(select))]
         #[unsafe(method_family = none)]
         pub unsafe fn select(&self);
 
-        #[method(setSelectionRange:end:)]
+        #[unsafe(method(setSelectionRange:end:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionRange_end(&self, start: c_int, end: c_int);
 
         #[deprecated]
-        #[method(click)]
+        #[unsafe(method(click))]
         #[unsafe(method_family = none)]
         pub unsafe fn click(&self);
     }
@@ -354,7 +354,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLInputElement {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -370,7 +370,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLInputElement {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

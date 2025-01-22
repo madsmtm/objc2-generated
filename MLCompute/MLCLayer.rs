@@ -28,19 +28,19 @@ extern_methods!(
         ///
         /// A unique number to identify each layer.  Assigned when the layer is created.
         #[deprecated]
-        #[method(layerID)]
+        #[unsafe(method(layerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerID(&self) -> NSUInteger;
 
         /// A string to help identify this object.
         #[deprecated]
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
         #[deprecated]
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
@@ -50,13 +50,13 @@ extern_methods!(
         /// The default is NO.  If isDebuggingEnabled is set to YES,  make sure to set options to enable debugging when
         /// compiling the graph.  Otherwise this property may be ignored.
         #[deprecated]
-        #[method(isDebuggingEnabled)]
+        #[unsafe(method(isDebuggingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDebuggingEnabled(&self) -> bool;
 
         /// Setter for [`isDebuggingEnabled`][Self::isDebuggingEnabled].
         #[deprecated]
-        #[method(setIsDebuggingEnabled:)]
+        #[unsafe(method(setIsDebuggingEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIsDebuggingEnabled(&self, is_debugging_enabled: bool);
 
@@ -69,7 +69,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating whether the data type is supported
         #[deprecated]
-        #[method(supportsDataType:onDevice:)]
+        #[unsafe(method(supportsDataType:onDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsDataType_onDevice(data_type: MLCDataType, device: &MLCDevice)
             -> bool;
@@ -80,17 +80,17 @@ extern_methods!(
         /// Typically the MLCDevice passed to compileWithOptions will be the device used to execute layers in the graph.
         /// If MLCDeviceTypeANE is selected, it is possible that some of the layers of the graph may not be executed on the ANE
         /// but instead on the CPU or GPU.  This property can be used to determine which device type the layer will be executed on.
-        #[method(deviceType)]
+        #[unsafe(method(deviceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceType(&self) -> MLCDeviceType;
 
         #[deprecated]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

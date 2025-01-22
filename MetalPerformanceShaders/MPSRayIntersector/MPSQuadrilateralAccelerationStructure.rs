@@ -85,13 +85,13 @@ extern_methods!(
         /// Number of quads. Changes to this property require rebuilding the acceleration
         /// structure. This is an alias for the polygonCount property.
         #[deprecated]
-        #[method(quadrilateralCount)]
+        #[unsafe(method(quadrilateralCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn quadrilateralCount(&self) -> NSUInteger;
 
         /// Setter for [`quadrilateralCount`][Self::quadrilateralCount].
         #[deprecated]
-        #[method(setQuadrilateralCount:)]
+        #[unsafe(method(setQuadrilateralCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQuadrilateralCount(&self, quadrilateral_count: NSUInteger);
     }
@@ -107,13 +107,13 @@ extern_methods!(
     ))]
     unsafe impl MPSQuadrilateralAccelerationStructure {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the acceleration structure with a Metal device
         #[deprecated]
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -124,7 +124,7 @@ extern_methods!(
         /// properties such as the vertex buffer, instance buffer, etc. are set to nil. Encode and decode
         /// these buffers along with the acceleration structure instead.
         #[deprecated]
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -140,7 +140,7 @@ extern_methods!(
         /// The Metal device is determined from the acceleration structure group. All
         /// acceleration structures in the instance hierarchy must share the same group.
         #[deprecated]
-        #[method(initWithGroup:)]
+        #[unsafe(method(initWithGroup:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithGroup(
             this: Allocated<Self>,
@@ -154,7 +154,7 @@ extern_methods!(
         /// vertex buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with
         /// the acceleration structure instead.
         #[deprecated]
-        #[method(initWithCoder:group:)]
+        #[unsafe(method(initWithCoder:group:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_group(
             this: Allocated<Self>,
@@ -181,7 +181,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -199,7 +199,7 @@ extern_methods!(
         feature = "MPSPolygonAccelerationStructure"
     ))]
     unsafe impl MPSQuadrilateralAccelerationStructure {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

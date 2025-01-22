@@ -44,12 +44,12 @@ extern_methods!(
         /// completely within the source image, the intersection of the image bounds and clipRectSource will
         /// be used. The clipRectSource replaces the MPSUnaryImageKernel offset parameter for this filter.
         /// The latter is ignored.   Default: MPSRectNoClip, use the entire source texture.
-        #[method(clipRectSource)]
+        #[unsafe(method(clipRectSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn clipRectSource(&self) -> MTLRegion;
 
         /// Setter for [`clipRectSource`][Self::clipRectSource].
-        #[method(setClipRectSource:)]
+        #[unsafe(method(setClipRectSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClipRectSource(&self, clip_rect_source: MTLRegion);
 
@@ -57,12 +57,12 @@ extern_methods!(
         ///
         /// Indicates that the memory region in which the histogram results are to be written in the
         /// histogram buffer are to be zero-initialized or not. Default: YES.
-        #[method(zeroHistogram)]
+        #[unsafe(method(zeroHistogram))]
         #[unsafe(method_family = none)]
         pub unsafe fn zeroHistogram(&self) -> bool;
 
         /// Setter for [`zeroHistogram`][Self::zeroHistogram].
-        #[method(setZeroHistogram:)]
+        #[unsafe(method(setZeroHistogram:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZeroHistogram(&self, zero_histogram: bool);
 
@@ -79,7 +79,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -110,7 +110,7 @@ extern_methods!(
         /// - histogram results for the G channel for all bins followed by
         /// - histogram results for the B channel for all bins followed by
         /// - histogram results for the A channel for all bins
-        #[method(encodeToCommandBuffer:sourceTexture:histogram:histogramOffset:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceTexture:histogram:histogramOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_histogram_histogramOffset(
             &self,
@@ -131,7 +131,7 @@ extern_methods!(
         /// sourceTexture:histogram:histogramOffset
         ///
         /// Returns: The number of bytes needed to store the result histograms.
-        #[method(histogramSizeForSourceFormat:)]
+        #[unsafe(method(histogramSizeForSourceFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn histogramSizeForSourceFormat(&self, source_format: MTLPixelFormat) -> usize;
     }
@@ -148,7 +148,7 @@ extern_methods!(
         /// Returns: a pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -163,7 +163,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -176,11 +176,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSImageHistogram {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -226,12 +226,12 @@ extern_methods!(
         /// completely within the source image, the intersection of the image bounds and clipRectSource will
         /// be used. The clipRectSource replaces the MPSUnaryImageKernel offset parameter for this filter.
         /// The latter is ignored.   Default: MPSRectNoClip, use the entire source texture.
-        #[method(clipRectSource)]
+        #[unsafe(method(clipRectSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn clipRectSource(&self) -> MTLRegion;
 
         /// Setter for [`clipRectSource`][Self::clipRectSource].
-        #[method(setClipRectSource:)]
+        #[unsafe(method(setClipRectSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClipRectSource(&self, clip_rect_source: MTLRegion);
 
@@ -239,12 +239,12 @@ extern_methods!(
         ///
         /// Indicates that the memory region in which the histogram results are to be written in the
         /// histogram buffer are to be zero-initialized or not. Default: YES.
-        #[method(zeroHistogram)]
+        #[unsafe(method(zeroHistogram))]
         #[unsafe(method_family = none)]
         pub unsafe fn zeroHistogram(&self) -> bool;
 
         /// Setter for [`zeroHistogram`][Self::zeroHistogram].
-        #[method(setZeroHistogram:)]
+        #[unsafe(method(setZeroHistogram:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZeroHistogram(&self, zero_histogram: bool);
 
@@ -261,7 +261,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -294,7 +294,7 @@ extern_methods!(
         /// - histogram results for the G channel for all bins followed by
         /// - histogram results for the B channel for all bins followed by
         /// - histogram results for the A channel for all bins
-        #[method(encodeToCommandBuffer:sourceTexture:minmaxTexture:histogram:histogramOffset:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceTexture:minmaxTexture:histogram:histogramOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_minmaxTexture_histogram_histogramOffset(
             &self,
@@ -316,7 +316,7 @@ extern_methods!(
         /// sourceTexture:histogram:histogramOffset
         ///
         /// Returns: The number of bytes needed to store the result histograms.
-        #[method(histogramSizeForSourceFormat:)]
+        #[unsafe(method(histogramSizeForSourceFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn histogramSizeForSourceFormat(&self, source_format: MTLPixelFormat) -> usize;
     }
@@ -333,7 +333,7 @@ extern_methods!(
         /// Returns: a pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -348,7 +348,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -361,11 +361,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSImageNormalizedHistogram {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -437,7 +437,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -470,7 +470,7 @@ extern_methods!(
         /// Parameter `histogramOffset`: A byte offset into the histogram MTLBuffer where the histogram starts. Must conform to
         /// alignment requirements for [MTLComputeCommandEncoder setBuffer:offset:atIndex:] offset
         /// parameter.
-        #[method(encodeTransformToCommandBuffer:sourceTexture:histogram:histogramOffset:)]
+        #[unsafe(method(encodeTransformToCommandBuffer:sourceTexture:histogram:histogramOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeTransformToCommandBuffer_sourceTexture_histogram_histogramOffset(
             &self,
@@ -493,7 +493,7 @@ extern_methods!(
         /// Returns: a pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -514,7 +514,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -527,11 +527,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageHistogramEqualization {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -582,7 +582,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -622,7 +622,7 @@ extern_methods!(
         /// Parameter `desiredHistogramOffset`: A byte offset into the desiredHistogram MTLBuffer where the histogram starts. Must conform to
         /// alignment requirements for [MTLComputeCommandEncoder setBuffer:offset:atIndex:] offset
         /// parameter.
-        #[method(encodeTransformToCommandBuffer:sourceTexture:sourceHistogram:sourceHistogramOffset:desiredHistogram:desiredHistogramOffset:)]
+        #[unsafe(method(encodeTransformToCommandBuffer:sourceTexture:sourceHistogram:sourceHistogramOffset:desiredHistogram:desiredHistogramOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeTransformToCommandBuffer_sourceTexture_sourceHistogram_sourceHistogramOffset_desiredHistogram_desiredHistogramOffset(
             &self,
@@ -647,7 +647,7 @@ extern_methods!(
         /// Returns: a pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -668,7 +668,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -681,11 +681,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageHistogramSpecification {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

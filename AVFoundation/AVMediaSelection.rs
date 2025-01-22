@@ -31,7 +31,7 @@ unsafe impl NSObjectProtocol for AVMediaSelection {}
 extern_methods!(
     unsafe impl AVMediaSelection {
         #[cfg(feature = "AVAsset")]
-        #[method(asset)]
+        #[unsafe(method(asset))]
         #[unsafe(method_family = none)]
         pub unsafe fn asset(&self) -> Option<Retained<AVAsset>>;
 
@@ -43,7 +43,7 @@ extern_methods!(
         /// Returns: An instance of AVMediaSelectionOption that describes the currently selection option in the group.
         ///
         /// If the value of the property allowsEmptySelection of the AVMediaSelectionGroup is YES, the currently selected option in the group may be nil.
-        #[method(selectedMediaOptionInMediaSelectionGroup:)]
+        #[unsafe(method(selectedMediaOptionInMediaSelectionGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedMediaOptionInMediaSelectionGroup(
             &self,
@@ -58,7 +58,7 @@ extern_methods!(
         /// Returns: YES if the group is subject to automatic media selection.
         ///
         /// Automatic application of media selection criteria is suspended in any group in which a specific selection has been made via an invocation of -selectMediaOption:inMediaSelectionGroup:.
-        #[method(mediaSelectionCriteriaCanBeAppliedAutomaticallyToMediaSelectionGroup:)]
+        #[unsafe(method(mediaSelectionCriteriaCanBeAppliedAutomaticallyToMediaSelectionGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionCriteriaCanBeAppliedAutomaticallyToMediaSelectionGroup(
             &self,
@@ -70,11 +70,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMediaSelection {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -112,7 +112,7 @@ extern_methods!(
         ///
         /// If the specified media selection option isn't a member of the specified media selection group, no change in presentation state will result.
         /// If the value of the property allowsEmptySelection of the AVMediaSelectionGroup is YES, you can pass nil for mediaSelectionOption to deselect all media selection options in the group.
-        #[method(selectMediaOption:inMediaSelectionGroup:)]
+        #[unsafe(method(selectMediaOption:inMediaSelectionGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectMediaOption_inMediaSelectionGroup(
             &self,
@@ -125,11 +125,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMutableMediaSelection {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

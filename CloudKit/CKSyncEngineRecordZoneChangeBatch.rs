@@ -38,7 +38,7 @@ extern_methods!(
         /// If you return `nil` from the record provider, this will skip to the next pending change.
         ///
         /// This will return `nil` if there are no pending changes to send.
-        #[method(initWithPendingChanges:recordProvider:)]
+        #[unsafe(method(initWithPendingChanges:recordProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPendingChanges_recordProvider(
             this: Allocated<Self>,
@@ -58,7 +58,7 @@ extern_methods!(
         /// If you supply too many changes, or if the total size of the records is too large, then you might get a ``CKErrorLimitExceeded``.
         ///
         /// > Tip: These batch size limitations are handled automatically by the ``initWithPendingChanges:recordProvider:`` initializer.
-        #[method(initWithRecordsToSave:recordIDsToDelete:atomicByZone:)]
+        #[unsafe(method(initWithRecordsToSave:recordIDsToDelete:atomicByZone:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordsToSave_recordIDsToDelete_atomicByZone(
             this: Allocated<Self>,
@@ -67,23 +67,23 @@ extern_methods!(
             atomic_by_zone: bool,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
         /// The records to save to the server.
-        #[method(recordsToSave)]
+        #[unsafe(method(recordsToSave))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordsToSave(&self) -> Retained<NSArray<CKRecord>>;
 
         #[cfg(feature = "CKRecordID")]
         /// The IDs of the records to delete from the server.
-        #[method(recordIDsToDelete)]
+        #[unsafe(method(recordIDsToDelete))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordIDsToDelete(&self) -> Retained<NSArray<CKRecordID>>;
 
@@ -92,12 +92,12 @@ extern_methods!(
         /// If this is true, and if any record change fails, then any other changes from that zone in this batch will also fail with ``CKErrorBatchRequestFailed``.
         ///
         /// Records that exist in different zones will not be modified together atomically.
-        #[method(atomicByZone)]
+        #[unsafe(method(atomicByZone))]
         #[unsafe(method_family = none)]
         pub unsafe fn atomicByZone(&self) -> bool;
 
         /// Setter for [`atomicByZone`][Self::atomicByZone].
-        #[method(setAtomicByZone:)]
+        #[unsafe(method(setAtomicByZone:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAtomicByZone(&self, atomic_by_zone: bool);
     }

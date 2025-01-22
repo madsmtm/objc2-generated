@@ -70,11 +70,11 @@ unsafe impl NSObjectProtocol for AVAssetWriter {}
 
 extern_methods!(
     unsafe impl AVAssetWriter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -94,7 +94,7 @@ extern_methods!(
         /// Writing will fail if a file already exists at the specified URL.
         ///
         /// UTIs for container formats that can be written are declared in AVMediaFormat.h.
-        #[method(assetWriterWithURL:fileType:error:_)]
+        #[unsafe(method(assetWriterWithURL:fileType:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterWithURL_fileType_error(
             output_url: &NSURL,
@@ -117,7 +117,7 @@ extern_methods!(
         /// Writing will fail if a file already exists at the specified URL.
         ///
         /// This method throws an exception if the output file type is not declared in AVMediaFormat.h.
-        #[method(initWithURL:fileType:error:_)]
+        #[unsafe(method(initWithURL:fileType:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_fileType_error(
             this: Allocated<Self>,
@@ -141,7 +141,7 @@ extern_methods!(
         /// /UTType.h>.
         ///
         /// This method throws an exception if the output content type UTI for container format is not declared in AVMediaFormat.h.
-        #[method(initWithContentType:)]
+        #[unsafe(method(initWithContentType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentType(
             this: Allocated<Self>,
@@ -153,13 +153,13 @@ extern_methods!(
         /// You may use [[UTType typeWithIdentifier:outputFileType] preferredFilenameExtension] to obtain an appropriate path extension for the outputFileType you have specified. For more information, see
         /// <UniformTypeIdentifiers
         /// /UTType.h>.
-        #[method(outputURL)]
+        #[unsafe(method(outputURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputURL(&self) -> Retained<NSURL>;
 
         #[cfg(feature = "AVMediaFormat")]
         /// The UTI of the file format of the file for which the instance of AVAssetWriter was initialized for writing.
-        #[method(outputFileType)]
+        #[unsafe(method(outputFileType))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputFileType(&self) -> Retained<AVFileType>;
 
@@ -168,7 +168,7 @@ extern_methods!(
         ///
         ///
         /// Some media types may not be accepted within the file format with which an AVAssetWriter was initialized.
-        #[method(availableMediaTypes)]
+        #[unsafe(method(availableMediaTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableMediaTypes(&self) -> Retained<NSArray<AVMediaType>>;
 
@@ -176,7 +176,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an AVAssetWriterStatus that indicates whether writing is in progress, has completed successfully, has been canceled, or has failed. Clients of AVAssetWriterInput objects should check the value of this property after appending samples fails to determine why no more samples could be written. This property is thread safe.
-        #[method(status)]
+        #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> AVAssetWriterStatus;
 
@@ -184,7 +184,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSError that describes what caused the receiver to no longer be able to write to its output file. If the receiver's status is not AVAssetWriterStatusFailed, the value of this property is nil. This property is thread safe.
-        #[method(error)]
+        #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
@@ -195,13 +195,13 @@ extern_methods!(
         /// The value of this property is an array of AVMetadataItem objects representing the collection of top-level metadata to be written in the output file.
         ///
         /// This property cannot be set after writing has started.
-        #[method(metadata)]
+        #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
         /// Setter for [`metadata`][Self::metadata].
-        #[method(setMetadata:)]
+        #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: &NSArray<AVMetadataItem>);
 
@@ -211,12 +211,12 @@ extern_methods!(
         /// When the value of this property is YES, the output file will be written in such a way that playback can start after only a small amount of the file is downloaded.
         ///
         /// This property cannot be set after writing has started.
-        #[method(shouldOptimizeForNetworkUse)]
+        #[unsafe(method(shouldOptimizeForNetworkUse))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldOptimizeForNetworkUse(&self) -> bool;
 
         /// Setter for [`shouldOptimizeForNetworkUse`][Self::shouldOptimizeForNetworkUse].
-        #[method(setShouldOptimizeForNetworkUse:)]
+        #[unsafe(method(setShouldOptimizeForNetworkUse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldOptimizeForNetworkUse(&self, should_optimize_for_network_use: bool);
 
@@ -228,12 +228,12 @@ extern_methods!(
         /// When the value of this property is nil, the asset writer will choose a suitable location when writing temporary files.  The default value is nil.
         ///
         /// This property cannot be set after writing has started.  The asset writer will fail if a file cannot be created in this directory (for example, due to insufficient permissions).
-        #[method(directoryForTemporaryFiles)]
+        #[unsafe(method(directoryForTemporaryFiles))]
         #[unsafe(method_family = none)]
         pub unsafe fn directoryForTemporaryFiles(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`directoryForTemporaryFiles`][Self::directoryForTemporaryFiles].
-        #[method(setDirectoryForTemporaryFiles:)]
+        #[unsafe(method(setDirectoryForTemporaryFiles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirectoryForTemporaryFiles(
             &self,
@@ -244,7 +244,7 @@ extern_methods!(
         /// The inputs from which the asset writer receives media data.
         ///
         /// The value of this property is an NSArray containing concrete instances of AVAssetWriterInput. Inputs can be added to the receiver using the addInput: method.
-        #[method(inputs)]
+        #[unsafe(method(inputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputs(&self) -> Retained<NSArray<AVAssetWriterInput>>;
 
@@ -262,7 +262,7 @@ extern_methods!(
         /// This method determines whether the output settings for the specified media type can be used with the receiver's file format. For example, video compression settings that specify H.264 compression are not compatible with file formats that cannot contain H.264-compressed video.
         ///
         /// Attempting to add an input with output settings and a media type for which this method returns NO will cause an exception to be thrown.
-        #[method(canApplyOutputSettings:forMediaType:)]
+        #[unsafe(method(canApplyOutputSettings:forMediaType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canApplyOutputSettings_forMediaType(
             &self,
@@ -280,7 +280,7 @@ extern_methods!(
         ///
         ///
         /// An input that accepts media data of a type that is not compatible with the receiver, or with output settings that are not compatible with the receiver, cannot be added.
-        #[method(canAddInput:)]
+        #[unsafe(method(canAddInput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canAddInput(&self, input: &AVAssetWriterInput) -> bool;
 
@@ -302,7 +302,7 @@ extern_methods!(
         /// - passthrough* is not supported for this media/file type combination (for example, AVFileTypeWAVE only supports AVMediaTypeAudio)
         ///
         /// Passthrough is indicated when the input's output settings are nil.
-        #[method(addInput:)]
+        #[unsafe(method(addInput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addInput(&self, input: &AVAssetWriterInput);
 
@@ -317,7 +317,7 @@ extern_methods!(
         /// If writing cannot be started, this method returns NO. Clients can check the values of the status and error properties for more information on why writing could not be started.
         ///
         /// On iOS, if the status of an AVAssetWriter is AVAssetWriterStatusWriting when the client app goes into the background, its status will change to AVAssetWriterStatusFailed and appending to any of its inputs will fail.  You may want to use -[UIApplication beginBackgroundTaskWithExpirationHandler:] to avoid being interrupted in the middle of a writing session and to finish writing the data that has already been appended.  For more information about executing code in the background, see the iOS Application Programming Guide.
-        #[method(startWriting)]
+        #[unsafe(method(startWriting))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWriting(&self) -> bool;
 
@@ -335,7 +335,7 @@ extern_methods!(
         /// To end the session started by use of this method, use -endSessionAtSourceTime: or -finishWritingWithCompletionHandler:.  It is an error to invoke -startSessionAtSourceTime: twice in a row without invoking -endSessionAtSourceTime: in between.
         ///
         /// NOTE: Multiple sample-writing sessions are currently not supported. It is an error to call -startSessionAtSourceTime: a second time after calling -endSessionAtSourceTime:.
-        #[method(startSessionAtSourceTime:)]
+        #[unsafe(method(startSessionAtSourceTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startSessionAtSourceTime(&self, start_time: CMTime);
 
@@ -357,7 +357,7 @@ extern_methods!(
         /// NOTE: Multiple sample-writing sessions are currently not supported. It is an error to call -startSessionAtSourceTime: a second time after calling -endSessionAtSourceTime:.
         ///
         /// This method throws an exception if the session is ended without first starting it.
-        #[method(endSessionAtSourceTime:)]
+        #[unsafe(method(endSessionAtSourceTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endSessionAtSourceTime(&self, end_time: CMTime);
 
@@ -369,7 +369,7 @@ extern_methods!(
         /// If an output file was created by the receiver during the writing process, -cancelWriting will delete the file.
         ///
         /// This method should not be called concurrently with -[AVAssetWriterInput appendSampleBuffer:] or -[AVAssetWriterInputPixelBufferAdaptor appendPixelBuffer:withPresentationTime:].
-        #[method(cancelWriting)]
+        #[unsafe(method(cancelWriting))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelWriting(&self);
 
@@ -389,7 +389,7 @@ extern_methods!(
         ///
         /// This method should not be called concurrently with -[AVAssetWriterInput appendSampleBuffer:] or -[AVAssetWriterInputPixelBufferAdaptor appendPixelBuffer:withPresentationTime:].
         #[deprecated]
-        #[method(finishWriting)]
+        #[unsafe(method(finishWriting))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishWriting(&self) -> bool;
 
@@ -402,7 +402,7 @@ extern_methods!(
         /// When the writing of the output file is finished, or if a failure or a cancellation occurs in the meantime, the specified handler will be invoked to indicate completion of the operation. To determine whether the operation succeeded, your handler can check the value of AVAssetWriter.status. If the status is AVAssetWriterStatusFailed, AVAsset.error will contain an instance of NSError that describes the failure.
         ///
         /// To guarantee that all sample buffers are successfully written, ensure all calls to -[AVAssetWriterInput appendSampleBuffer:] or -[AVAssetWriterInputPixelBufferAdaptor appendPixelBuffer:withPresentationTime:] have returned before invoking this method.
-        #[method(finishWritingWithCompletionHandler:)]
+        #[unsafe(method(finishWritingWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishWritingWithCompletionHandler(&self, handler: &block2::Block<dyn Fn()>);
     }
@@ -420,13 +420,13 @@ extern_methods!(
         /// When using movie fragments, for best writing performance to external storage devices, set the movieFragmentInterval to 10 seconds or greater.
         ///
         /// This property cannot be set after writing has started.
-        #[method(movieFragmentInterval)]
+        #[unsafe(method(movieFragmentInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieFragmentInterval(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`movieFragmentInterval`][Self::movieFragmentInterval].
-        #[method(setMovieFragmentInterval:)]
+        #[unsafe(method(setMovieFragmentInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMovieFragmentInterval(&self, movie_fragment_interval: CMTime);
 
@@ -437,13 +437,13 @@ extern_methods!(
         /// This property is irrelevant if the movieFragmentInterval property is not set. The default value is kCMTimeInvalid, which indicates that the interval for initial movie fragment is same as the one specified by movieFragmentInterval property.
         ///
         /// This property cannot be set after writing has started.
-        #[method(initialMovieFragmentInterval)]
+        #[unsafe(method(initialMovieFragmentInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn initialMovieFragmentInterval(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`initialMovieFragmentInterval`][Self::initialMovieFragmentInterval].
-        #[method(setInitialMovieFragmentInterval:)]
+        #[unsafe(method(setInitialMovieFragmentInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialMovieFragmentInterval(
             &self,
@@ -460,12 +460,12 @@ extern_methods!(
         /// Note that if you combine movie fragments produced by an instance of AVAssetWriter with additional movie fragments, produced either by a different instance of AVAssetWriter or by some other means, it is necessary to ensure that movie fragment sequence numbers increase monotonically across the entire combined collection, in temporal order.
         ///
         /// This property cannot be set after writing has started.
-        #[method(initialMovieFragmentSequenceNumber)]
+        #[unsafe(method(initialMovieFragmentSequenceNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn initialMovieFragmentSequenceNumber(&self) -> NSInteger;
 
         /// Setter for [`initialMovieFragmentSequenceNumber`][Self::initialMovieFragmentSequenceNumber].
-        #[method(setInitialMovieFragmentSequenceNumber:)]
+        #[unsafe(method(setInitialMovieFragmentSequenceNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialMovieFragmentSequenceNumber(
             &self,
@@ -480,12 +480,12 @@ extern_methods!(
         /// When multiple instances of AVAssetWriter are used to produce distinct streams that complement each other, for example to create HLS encoding or bitrate variants, it’s not necessary to set this property to YES.
         ///
         /// This property cannot be set after writing has started.
-        #[method(producesCombinableFragments)]
+        #[unsafe(method(producesCombinableFragments))]
         #[unsafe(method_family = none)]
         pub unsafe fn producesCombinableFragments(&self) -> bool;
 
         /// Setter for [`producesCombinableFragments`][Self::producesCombinableFragments].
-        #[method(setProducesCombinableFragments:)]
+        #[unsafe(method(setProducesCombinableFragments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProducesCombinableFragments(&self, produces_combinable_fragments: bool);
 
@@ -498,13 +498,13 @@ extern_methods!(
         /// This property is currently ignored if movie fragments are not being written.  Use the movieFragmentInterval property to enable movie fragments.
         ///
         /// This property cannot be set after writing has started.
-        #[method(overallDurationHint)]
+        #[unsafe(method(overallDurationHint))]
         #[unsafe(method_family = none)]
         pub unsafe fn overallDurationHint(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`overallDurationHint`][Self::overallDurationHint].
-        #[method(setOverallDurationHint:)]
+        #[unsafe(method(setOverallDurationHint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverallDurationHint(&self, overall_duration_hint: CMTime);
 
@@ -515,13 +515,13 @@ extern_methods!(
         /// The default value is 0, which indicates that the receiver should choose a convenient value, if applicable.
         ///
         /// This property cannot be set after writing has started.
-        #[method(movieTimeScale)]
+        #[unsafe(method(movieTimeScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieTimeScale(&self) -> CMTimeScale;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`movieTimeScale`][Self::movieTimeScale].
-        #[method(setMovieTimeScale:)]
+        #[unsafe(method(setMovieTimeScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMovieTimeScale(&self, movie_time_scale: CMTimeScale);
     }
@@ -544,12 +544,12 @@ extern_methods!(
         /// This method throws an exception if any of the following conditions are satisfied:
         /// - this writer's output file type does not support mutually exclusive relationships among tracks (allowed types are AVFileTypeQuickTimeMovie, AVFileTypeAppleM4A, AVFileTypeAppleM4V, AVFileType3GPP, AVFileTypeMPEG4)
         /// - any AVAssetWriterInput in the input group is also present in an input group already added
-        #[method(canAddInputGroup:)]
+        #[unsafe(method(canAddInputGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canAddInputGroup(&self, input_group: &AVAssetWriterInputGroup) -> bool;
 
         #[cfg(feature = "AVMediaSelectionGroup")]
-        #[method(addInputGroup:)]
+        #[unsafe(method(addInputGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addInputGroup(&self, input_group: &AVAssetWriterInputGroup);
 
@@ -558,7 +558,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray containing concrete instances of AVAssetWriterInputGroup.  Input groups can be added to the receiver using the addInputGroup: method.
-        #[method(inputGroups)]
+        #[unsafe(method(inputGroups))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputGroups(&self) -> Retained<NSArray<AVAssetWriterInputGroup>>;
     }
@@ -586,16 +586,16 @@ unsafe impl NSObjectProtocol for AVAssetWriterInputGroup {}
 extern_methods!(
     #[cfg(feature = "AVMediaSelectionGroup")]
     unsafe impl AVAssetWriterInputGroup {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAssetWriterInput")]
-        #[method(assetWriterInputGroupWithInputs:defaultInput:)]
+        #[unsafe(method(assetWriterInputGroupWithInputs:defaultInput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInputGroupWithInputs_defaultInput(
             inputs: &NSArray<AVAssetWriterInput>,
@@ -603,7 +603,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVAssetWriterInput")]
-        #[method(initWithInputs:defaultInput:)]
+        #[unsafe(method(initWithInputs:defaultInput:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithInputs_defaultInput(
             this: Allocated<Self>,
@@ -616,7 +616,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray containing concrete instances of AVAssetWriterInput.
-        #[method(inputs)]
+        #[unsafe(method(inputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputs(&self) -> Retained<NSArray<AVAssetWriterInput>>;
 
@@ -625,7 +625,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is a concrete instance of AVAssetWriterInput.
-        #[method(defaultInput)]
+        #[unsafe(method(defaultInput))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultInput(&self) -> Option<Retained<AVAssetWriterInput>>;
     }
@@ -642,13 +642,13 @@ extern_methods!(
         /// If the value is kCMTimeIndefinite, every time a client calls -flushSegment the receiver outputs a segment data.
         ///
         /// This property cannot be set after writing has started.
-        #[method(preferredOutputSegmentInterval)]
+        #[unsafe(method(preferredOutputSegmentInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredOutputSegmentInterval(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`preferredOutputSegmentInterval`][Self::preferredOutputSegmentInterval].
-        #[method(setPreferredOutputSegmentInterval:)]
+        #[unsafe(method(setPreferredOutputSegmentInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredOutputSegmentInterval(
             &self,
@@ -662,13 +662,13 @@ extern_methods!(
         /// A numeric time must be set if the value of preferredOutputSegmentInterval property is positive numeric. If not, this property is irrelevant.
         ///
         /// This property cannot be set after writing has started.
-        #[method(initialSegmentStartTime)]
+        #[unsafe(method(initialSegmentStartTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn initialSegmentStartTime(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`initialSegmentStartTime`][Self::initialSegmentStartTime].
-        #[method(setInitialSegmentStartTime:)]
+        #[unsafe(method(setInitialSegmentStartTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialSegmentStartTime(&self, initial_segment_start_time: CMTime);
 
@@ -683,13 +683,13 @@ extern_methods!(
         /// File type profiles are declared in AVMediaFormat.h.
         ///
         /// This property cannot be set after writing has started.
-        #[method(outputFileTypeProfile)]
+        #[unsafe(method(outputFileTypeProfile))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputFileTypeProfile(&self) -> Option<Retained<AVFileTypeProfile>>;
 
         #[cfg(feature = "AVMediaFormat")]
         /// Setter for [`outputFileTypeProfile`][Self::outputFileTypeProfile].
-        #[method(setOutputFileTypeProfile:)]
+        #[unsafe(method(setOutputFileTypeProfile:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputFileTypeProfile(
             &self,
@@ -700,7 +700,7 @@ extern_methods!(
         ///
         ///
         /// This property cannot be set after writing has started.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -708,7 +708,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -719,7 +719,7 @@ extern_methods!(
         ///
         ///
         /// This method throws an exception if the delegate method to output segment data is not implemented, or if the value of the preferredOutputSegmentInterval property is not kCMTimeIndefinite.
-        #[method(flushSegment)]
+        #[unsafe(method(flushSegment))]
         #[unsafe(method_family = none)]
         pub unsafe fn flushSegment(&self);
     }
@@ -766,7 +766,7 @@ extern_protocol!(
         /// Only one input of each media type can be added.
         /// The client should call -flushSegment prior to a sync sample so that the next segment can start with the sync sample. Otherwise, it is an error.
         #[optional]
-        #[method(assetWriter:didOutputSegmentData:segmentType:segmentReport:)]
+        #[unsafe(method(assetWriter:didOutputSegmentData:segmentType:segmentReport:))]
         #[unsafe(method_family = none)]
         unsafe fn assetWriter_didOutputSegmentData_segmentType_segmentReport(
             &self,
@@ -791,7 +791,7 @@ extern_protocol!(
         ///
         /// If clients implement the -assetWriter:didOutputSegmentData:segmentType:segmentReport: method, that method is called instead of this one.
         #[optional]
-        #[method(assetWriter:didOutputSegmentData:segmentType:)]
+        #[unsafe(method(assetWriter:didOutputSegmentData:segmentType:))]
         #[unsafe(method_family = none)]
         unsafe fn assetWriter_didOutputSegmentData_segmentType(
             &self,

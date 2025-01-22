@@ -40,7 +40,7 @@ extern_protocol!(
             feature = "UIViewController"
         ))]
         #[deprecated = "UIDocumentMenuDelegate is deprecated. Use UIDocumentPickerViewController directly."]
-        #[method(documentMenu:didPickDocumentPicker:)]
+        #[unsafe(method(documentMenu:didPickDocumentPicker:))]
         #[unsafe(method_family = none)]
         unsafe fn documentMenu_didPickDocumentPicker(
             &self,
@@ -51,7 +51,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "UIDocumentMenuDelegate is deprecated. Use UIDocumentPickerViewController directly."]
         #[optional]
-        #[method(documentMenuWasCancelled:)]
+        #[unsafe(method(documentMenuWasCancelled:))]
         #[unsafe(method_family = none)]
         unsafe fn documentMenuWasCancelled(&self, document_menu: &UIDocumentMenuViewController);
     }
@@ -105,7 +105,7 @@ extern_methods!(
     unsafe impl UIDocumentMenuViewController {
         #[cfg(feature = "UIDocumentPickerViewController")]
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
-        #[method(initWithDocumentTypes:inMode:)]
+        #[unsafe(method(initWithDocumentTypes:inMode:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDocumentTypes_inMode(
             this: Allocated<Self>,
@@ -115,7 +115,7 @@ extern_methods!(
 
         #[cfg(feature = "UIDocumentPickerViewController")]
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
-        #[method(initWithURL:inMode:)]
+        #[unsafe(method(initWithURL:inMode:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_inMode(
             this: Allocated<Self>,
@@ -124,7 +124,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -133,7 +133,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
-        #[method(addOptionWithTitle:image:order:handler:)]
+        #[unsafe(method(addOptionWithTitle:image:order:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addOptionWithTitle_image_order_handler(
             &self,
@@ -144,7 +144,7 @@ extern_methods!(
         );
 
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -153,7 +153,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -166,7 +166,7 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentMenuViewController {
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -180,11 +180,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentMenuViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

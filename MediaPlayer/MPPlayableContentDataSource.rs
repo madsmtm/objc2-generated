@@ -26,7 +26,7 @@ extern_protocol!(
         /// has finished, if this method is implemented.
         #[deprecated = "Use CarPlay framework"]
         #[optional]
-        #[method(beginLoadingChildItemsAtIndexPath:completionHandler:)]
+        #[unsafe(method(beginLoadingChildItemsAtIndexPath:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn beginLoadingChildItemsAtIndexPath_completionHandler(
             &self,
@@ -40,7 +40,7 @@ extern_protocol!(
         /// not supported for any content items.
         #[deprecated = "Use CarPlay framework"]
         #[optional]
-        #[method(childItemsDisplayPlaybackProgressAtIndexPath:)]
+        #[unsafe(method(childItemsDisplayPlaybackProgressAtIndexPath:))]
         #[unsafe(method_family = none)]
         unsafe fn childItemsDisplayPlaybackProgressAtIndexPath(
             &self,
@@ -56,7 +56,7 @@ extern_protocol!(
         /// has finished, if this method is implemented.
         #[deprecated = "Use CarPlay framework"]
         #[optional]
-        #[method(contentItemForIdentifier:completionHandler:)]
+        #[unsafe(method(contentItemForIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn contentItemForIdentifier_completionHandler(
             &self,
@@ -68,7 +68,7 @@ extern_protocol!(
         /// filesystem, this would be the number of files in a specific folder. An empty
         /// index path represents the root node.
         #[deprecated = "Use CarPlay framework"]
-        #[method(numberOfChildItemsAtIndexPath:)]
+        #[unsafe(method(numberOfChildItemsAtIndexPath:))]
         #[unsafe(method_family = none)]
         unsafe fn numberOfChildItemsAtIndexPath(&self, index_path: &NSIndexPath) -> NSInteger;
 
@@ -76,7 +76,7 @@ extern_protocol!(
         /// Returns the content item at the specified index path. If the content item is
         /// mutated after returning, its updated contents will be sent to MediaPlayer.
         #[deprecated = "Use CarPlay framework"]
-        #[method(contentItemAtIndexPath:)]
+        #[unsafe(method(contentItemAtIndexPath:))]
         #[unsafe(method_family = none)]
         unsafe fn contentItemAtIndexPath(
             &self,

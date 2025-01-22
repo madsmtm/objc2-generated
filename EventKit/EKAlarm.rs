@@ -37,7 +37,7 @@ extern_methods!(
         /// Creates a new autoreleased alarm with an absolute trigger time.
         ///
         /// Parameter `date`: The date the alarm should fire.
-        #[method(alarmWithAbsoluteDate:)]
+        #[unsafe(method(alarmWithAbsoluteDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn alarmWithAbsoluteDate(date: &NSDate) -> Retained<EKAlarm>;
 
@@ -48,7 +48,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `offset`: The offset from the event start that the alarm should fire.
-        #[method(alarmWithRelativeOffset:)]
+        #[unsafe(method(alarmWithRelativeOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn alarmWithRelativeOffset(offset: NSTimeInterval) -> Retained<EKAlarm>;
 
@@ -57,12 +57,12 @@ extern_methods!(
         /// Set this property to an appropriate negative value to establish an alarm trigger
         /// relative to the start date/time of an event. Setting this clears any existing
         /// date trigger.
-        #[method(relativeOffset)]
+        #[unsafe(method(relativeOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn relativeOffset(&self) -> NSTimeInterval;
 
         /// Setter for [`relativeOffset`][Self::relativeOffset].
-        #[method(setRelativeOffset:)]
+        #[unsafe(method(setRelativeOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRelativeOffset(&self, relative_offset: NSTimeInterval);
 
@@ -70,12 +70,12 @@ extern_methods!(
         ///
         /// Set this property to a date to establish an absolute alarm trigger. Setting this
         /// clears any relative interval trigger.
-        #[method(absoluteDate)]
+        #[unsafe(method(absoluteDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn absoluteDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`absoluteDate`][Self::absoluteDate].
-        #[method(setAbsoluteDate:)]
+        #[unsafe(method(setAbsoluteDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAbsoluteDate(&self, absolute_date: Option<&NSDate>);
 
@@ -83,13 +83,13 @@ extern_methods!(
         /// Allows you to set a structured location (a location with a potential geo-coordinate)
         /// on an alarm. This is used in conjunction with proximity to do geofence-based
         /// triggering of reminders.
-        #[method(structuredLocation)]
+        #[unsafe(method(structuredLocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn structuredLocation(&self) -> Option<Retained<EKStructuredLocation>>;
 
         #[cfg(feature = "EKStructuredLocation")]
         /// Setter for [`structuredLocation`][Self::structuredLocation].
-        #[method(setStructuredLocation:)]
+        #[unsafe(method(setStructuredLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStructuredLocation(
             &self,
@@ -99,13 +99,13 @@ extern_methods!(
         #[cfg(feature = "EKTypes")]
         /// Defines whether this alarm triggers via entering/exiting a geofence as defined by
         /// structuredLocation.
-        #[method(proximity)]
+        #[unsafe(method(proximity))]
         #[unsafe(method_family = none)]
         pub unsafe fn proximity(&self) -> EKAlarmProximity;
 
         #[cfg(feature = "EKTypes")]
         /// Setter for [`proximity`][Self::proximity].
-        #[method(setProximity:)]
+        #[unsafe(method(setProximity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProximity(&self, proximity: EKAlarmProximity);
 
@@ -115,7 +115,7 @@ extern_methods!(
         /// This field is read-only; to change the type of alarm, set emailAddress for EKAlarmTypeEmail,
         /// soundName for EKAlarmTypeAudio or url for EKAlarmTypeProcedure.
         /// Setting all of those to nil will change it to EKAlarmTypeDisplay.
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> EKAlarmType;
 
@@ -123,12 +123,12 @@ extern_methods!(
         ///
         /// When you set the emailAddress property, the action property is set to EKAlarmTypeEmail,
         /// and the soundName and url properties are set to nil.
-        #[method(emailAddress)]
+        #[unsafe(method(emailAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn emailAddress(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`emailAddress`][Self::emailAddress].
-        #[method(setEmailAddress:)]
+        #[unsafe(method(setEmailAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmailAddress(&self, email_address: Option<&NSString>);
 
@@ -137,12 +137,12 @@ extern_methods!(
         /// The value of this property is the name of a system sound that can be used with
         /// the soundNamed: class method to create an NSSound object. When you set the soundName property,
         /// the action property is set to EKAlarmTypeAudio, and the emailAddress and url properties are set to nil.
-        #[method(soundName)]
+        #[unsafe(method(soundName))]
         #[unsafe(method_family = none)]
         pub unsafe fn soundName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`soundName`][Self::soundName].
-        #[method(setSoundName:)]
+        #[unsafe(method(setSoundName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSoundName(&self, sound_name: Option<&NSString>);
 
@@ -154,13 +154,13 @@ extern_methods!(
         /// Trying to save or modify a procedure alarm will result in a save error.
         /// Editing other aspects of events or reminders that have existing procedure alarms is allowed as long as the alarm isn't modified.
         #[deprecated]
-        #[method(url)]
+        #[unsafe(method(url))]
         #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`url`][Self::url].
         #[deprecated]
-        #[method(setUrl:)]
+        #[unsafe(method(setUrl:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUrl(&self, url: Option<&NSURL>);
     }
@@ -170,11 +170,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "EKObject")]
     unsafe impl EKAlarm {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

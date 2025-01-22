@@ -21,7 +21,7 @@ extern_protocol!(
         ///
         /// Parameter `request`: the NSURLRequest to which the protocol implementation
         /// has redirected.
-        #[method(URLProtocol:wasRedirectedToRequest:redirectResponse:)]
+        #[unsafe(method(URLProtocol:wasRedirectedToRequest:redirectResponse:))]
         #[unsafe(method_family = none)]
         unsafe fn URLProtocol_wasRedirectedToRequest_redirectResponse(
             &self,
@@ -39,7 +39,7 @@ extern_protocol!(
         ///
         /// Parameter `cachedResponse`: the NSCachedURLResponse object that has
         /// examined and is valid.
-        #[method(URLProtocol:cachedResponseIsValid:)]
+        #[unsafe(method(URLProtocol:cachedResponseIsValid:))]
         #[unsafe(method_family = none)]
         unsafe fn URLProtocol_cachedResponseIsValid(
             &self,
@@ -59,7 +59,7 @@ extern_protocol!(
         /// Parameter `policy`: The NSURLCacheStoragePolicy the protocol
         /// has determined should be used for the given response if the
         /// response is to be stored in a cache.
-        #[method(URLProtocol:didReceiveResponse:cacheStoragePolicy:)]
+        #[unsafe(method(URLProtocol:didReceiveResponse:cacheStoragePolicy:))]
         #[unsafe(method_family = none)]
         unsafe fn URLProtocol_didReceiveResponse_cacheStoragePolicy(
             &self,
@@ -79,7 +79,7 @@ extern_protocol!(
         /// Parameter `protocol`: the NSURLProtocol object sending the message.
         ///
         /// Parameter `data`: URL load data being made available.
-        #[method(URLProtocol:didLoadData:)]
+        #[unsafe(method(URLProtocol:didLoadData:))]
         #[unsafe(method_family = none)]
         unsafe fn URLProtocol_didLoadData(&self, protocol: &NSURLProtocol, data: &NSData);
 
@@ -87,7 +87,7 @@ extern_protocol!(
         /// implementation has finished loading successfully.
         ///
         /// Parameter `protocol`: the NSURLProtocol object sending the message.
-        #[method(URLProtocolDidFinishLoading:)]
+        #[unsafe(method(URLProtocolDidFinishLoading:))]
         #[unsafe(method_family = none)]
         unsafe fn URLProtocolDidFinishLoading(&self, protocol: &NSURLProtocol);
 
@@ -98,7 +98,7 @@ extern_protocol!(
         /// Parameter `protocol`: the NSURLProtocol object sending the message.
         ///
         /// Parameter `error`: The error that caused the load to fail.
-        #[method(URLProtocol:didFailWithError:)]
+        #[unsafe(method(URLProtocol:didFailWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn URLProtocol_didFailWithError(&self, protocol: &NSURLProtocol, error: &NSError);
 
@@ -113,7 +113,7 @@ extern_protocol!(
         /// request on the same thread that called this method. It may add a
         /// default credential to the challenge it issues to the connection delegate,
         /// if the protocol did not provide one.
-        #[method(URLProtocol:didReceiveAuthenticationChallenge:)]
+        #[unsafe(method(URLProtocol:didReceiveAuthenticationChallenge:))]
         #[unsafe(method_family = none)]
         unsafe fn URLProtocol_didReceiveAuthenticationChallenge(
             &self,
@@ -127,7 +127,7 @@ extern_protocol!(
         /// Parameter `protocol`: The protocol object cancelling authentication.
         ///
         /// Parameter `challenge`: The authentication challenge.
-        #[method(URLProtocol:didCancelAuthenticationChallenge:)]
+        #[unsafe(method(URLProtocol:didCancelAuthenticationChallenge:))]
         #[unsafe(method_family = none)]
         unsafe fn URLProtocol_didCancelAuthenticationChallenge(
             &self,
@@ -167,7 +167,7 @@ extern_methods!(
         /// Parameter `client`: The NSURLProtocolClient object that serves as the
         /// interface the protocol implementation can use to report results back
         /// to the URL loading system.
-        #[method(initWithRequest:cachedResponse:client:)]
+        #[unsafe(method(initWithRequest:cachedResponse:client:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRequest_cachedResponse_client(
             this: Allocated<Self>,
@@ -179,7 +179,7 @@ extern_methods!(
         /// Returns the NSURLProtocolClient of the receiver.
         ///
         /// Returns: The NSURLProtocolClient of the receiver.
-        #[method(client)]
+        #[unsafe(method(client))]
         #[unsafe(method_family = none)]
         pub unsafe fn client(&self) -> Option<Retained<ProtocolObject<dyn NSURLProtocolClient>>>;
 
@@ -187,7 +187,7 @@ extern_methods!(
         /// Returns the NSURLRequest of the receiver.
         ///
         /// Returns: The NSURLRequest of the receiver.
-        #[method(request)]
+        #[unsafe(method(request))]
         #[unsafe(method_family = none)]
         pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
@@ -195,7 +195,7 @@ extern_methods!(
         /// Returns the NSCachedURLResponse of the receiver.
         ///
         /// Returns: The NSCachedURLResponse of the receiver.
-        #[method(cachedResponse)]
+        #[unsafe(method(cachedResponse))]
         #[unsafe(method_family = none)]
         pub unsafe fn cachedResponse(&self) -> Option<Retained<NSCachedURLResponse>>;
 
@@ -211,7 +211,7 @@ extern_methods!(
         /// Parameter `request`: A request to inspect.
         ///
         /// Returns: YES if the protocol can handle the given request, NO if not.
-        #[method(canInitWithRequest:)]
+        #[unsafe(method(canInitWithRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canInitWithRequest(request: &NSURLRequest) -> bool;
 
@@ -233,7 +233,7 @@ extern_methods!(
         /// Parameter `request`: A request to make canonical.
         ///
         /// Returns: The canonical form of the given request.
-        #[method(canonicalRequestForRequest:)]
+        #[unsafe(method(canonicalRequestForRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canonicalRequestForRequest(request: &NSURLRequest) -> Retained<NSURLRequest>;
 
@@ -246,7 +246,7 @@ extern_methods!(
         /// implementation-specific checks.
         ///
         /// Returns: YES if the two requests are cache-equivalent, NO otherwise.
-        #[method(requestIsCacheEquivalent:toRequest:)]
+        #[unsafe(method(requestIsCacheEquivalent:toRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestIsCacheEquivalent_toRequest(
             a: &NSURLRequest,
@@ -257,7 +257,7 @@ extern_methods!(
         ///
         /// When this method is called, the protocol implementation
         /// should start loading a request.
-        #[method(startLoading)]
+        #[unsafe(method(startLoading))]
         #[unsafe(method_family = none)]
         pub unsafe fn startLoading(&self);
 
@@ -267,7 +267,7 @@ extern_methods!(
         /// should end the work of loading a request. This could be in response
         /// to a cancel operation, so protocol implementations must be able to
         /// handle this call while a load is in progress.
-        #[method(stopLoading)]
+        #[unsafe(method(stopLoading))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopLoading(&self);
 
@@ -285,7 +285,7 @@ extern_methods!(
         ///
         /// Returns: The property stored with the given key, or nil if no property
         /// had previously been stored with the given key in the given request.
-        #[method(propertyForKey:inRequest:)]
+        #[unsafe(method(propertyForKey:inRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyForKey_inRequest(
             key: &NSString,
@@ -305,7 +305,7 @@ extern_methods!(
         /// Parameter `key`: The string to use for the property storage.
         ///
         /// Parameter `request`: The request in which to store the property.
-        #[method(setProperty:forKey:inRequest:)]
+        #[unsafe(method(setProperty:forKey:inRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProperty_forKey_inRequest(
             value: &AnyObject,
@@ -323,7 +323,7 @@ extern_methods!(
         /// Parameter `key`: The key whose value should be removed
         ///
         /// Parameter `request`: The request to be modified
-        #[method(removePropertyForKey:inRequest:)]
+        #[unsafe(method(removePropertyForKey:inRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removePropertyForKey_inRequest(key: &NSString, request: &NSMutableURLRequest);
 
@@ -361,7 +361,7 @@ extern_methods!(
         /// Returns: YES if the protocol was registered successfully, NO if not.
         /// The only way that failure can occur is if the given class is not a
         /// subclass of NSURLProtocol.
-        #[method(registerClass:)]
+        #[unsafe(method(registerClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerClass(protocol_class: &AnyClass) -> bool;
 
@@ -371,7 +371,7 @@ extern_methods!(
         /// consulted in calls to NSURLProtocol class methods.
         ///
         /// Parameter `protocolClass`: The class to unregister.
-        #[method(unregisterClass:)]
+        #[unsafe(method(unregisterClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unregisterClass(protocol_class: &AnyClass);
     }
@@ -380,11 +380,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLProtocol {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -394,12 +394,12 @@ extern_methods!(
     /// NSURLSessionTaskAdditions
     unsafe impl NSURLProtocol {
         #[cfg(feature = "NSURLSession")]
-        #[method(canInitWithTask:)]
+        #[unsafe(method(canInitWithTask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canInitWithTask(task: &NSURLSessionTask) -> bool;
 
         #[cfg(all(feature = "NSURLCache", feature = "NSURLSession"))]
-        #[method(initWithTask:cachedResponse:client:)]
+        #[unsafe(method(initWithTask:cachedResponse:client:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTask_cachedResponse_client(
             this: Allocated<Self>,
@@ -409,7 +409,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURLSession")]
-        #[method(task)]
+        #[unsafe(method(task))]
         #[unsafe(method_family = none)]
         pub unsafe fn task(&self) -> Option<Retained<NSURLSessionTask>>;
     }

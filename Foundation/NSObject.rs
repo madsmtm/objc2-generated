@@ -10,12 +10,12 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoding?language=objc)
     pub unsafe trait NSCoding {
         #[cfg(feature = "NSCoder")]
-        #[method(encodeWithCoder:)]
+        #[unsafe(method(encodeWithCoder:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
         #[cfg(feature = "NSCoder")]
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Retained<Self>>;
     }
@@ -24,7 +24,7 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssecurecoding?language=objc)
     pub unsafe trait NSSecureCoding: NSCoding {
-        #[method(supportsSecureCoding)]
+        #[unsafe(method(supportsSecureCoding))]
         #[unsafe(method_family = none)]
         unsafe fn supportsSecureCoding() -> bool;
     }
@@ -35,20 +35,20 @@ extern_category!(
     #[doc(alias = "NSCoderMethods")]
     /// *********    Base class        **********
     pub unsafe trait NSObjectNSCoderMethods {
-        #[method(version)]
+        #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         unsafe fn version() -> NSInteger;
 
-        #[method(setVersion:)]
+        #[unsafe(method(setVersion:))]
         #[unsafe(method_family = none)]
         unsafe fn setVersion(a_version: NSInteger);
 
-        #[method(classForCoder)]
+        #[unsafe(method(classForCoder))]
         #[unsafe(method_family = none)]
         unsafe fn classForCoder(&self) -> &'static AnyClass;
 
         #[cfg(feature = "NSCoder")]
-        #[method(replacementObjectForCoder:)]
+        #[unsafe(method(replacementObjectForCoder:))]
         #[unsafe(method_family = none)]
         unsafe fn replacementObjectForCoder(&self, coder: &NSCoder) -> Option<Retained<AnyObject>>;
     }
@@ -61,19 +61,19 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdiscardablecontent?language=objc)
     pub unsafe trait NSDiscardableContent {
-        #[method(beginContentAccess)]
+        #[unsafe(method(beginContentAccess))]
         #[unsafe(method_family = none)]
         unsafe fn beginContentAccess(&self) -> bool;
 
-        #[method(endContentAccess)]
+        #[unsafe(method(endContentAccess))]
         #[unsafe(method_family = none)]
         unsafe fn endContentAccess(&self);
 
-        #[method(discardContentIfPossible)]
+        #[unsafe(method(discardContentIfPossible))]
         #[unsafe(method_family = none)]
         unsafe fn discardContentIfPossible(&self);
 
-        #[method(isContentDiscarded)]
+        #[unsafe(method(isContentDiscarded))]
         #[unsafe(method_family = none)]
         unsafe fn isContentDiscarded(&self) -> bool;
     }
@@ -83,7 +83,7 @@ extern_category!(
     /// Category "NSDiscardableContentProxy" on [`NSObject`].
     #[doc(alias = "NSDiscardableContentProxy")]
     pub unsafe trait NSObjectNSDiscardableContentProxy {
-        #[method(autoContentAccessingProxy)]
+        #[unsafe(method(autoContentAccessingProxy))]
         #[unsafe(method_family = none)]
         unsafe fn autoContentAccessingProxy(&self) -> Retained<AnyObject>;
     }

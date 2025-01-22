@@ -21,7 +21,7 @@ extern_methods!(
     #[cfg(feature = "NSTextElement")]
     unsafe impl NSTextListElement {
         #[cfg(feature = "NSTextList")]
-        #[method(initWithParentElement:textList:contents:markerAttributes:childElements:)]
+        #[unsafe(method(initWithParentElement:textList:contents:markerAttributes:childElements:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithParentElement_textList_contents_markerAttributes_childElements(
             this: Allocated<Self>,
@@ -32,7 +32,7 @@ extern_methods!(
             children: Option<&NSArray<NSTextListElement>>,
         ) -> Retained<Self>;
 
-        #[method(initWithAttributedString:)]
+        #[unsafe(method(initWithAttributedString:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedString(
             this: Allocated<Self>,
@@ -40,7 +40,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSTextList")]
-        #[method(textListElementWithContents:markerAttributes:textList:childElements:)]
+        #[unsafe(method(textListElementWithContents:markerAttributes:textList:childElements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textListElementWithContents_markerAttributes_textList_childElements(
             contents: &NSAttributedString,
@@ -50,7 +50,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSTextList")]
-        #[method(textListElementWithChildElements:textList:nestingLevel:)]
+        #[unsafe(method(textListElementWithChildElements:textList:nestingLevel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textListElementWithChildElements_textList_nestingLevel(
             children: &NSArray<NSTextListElement>,
@@ -59,29 +59,29 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSTextList")]
-        #[method(textList)]
+        #[unsafe(method(textList))]
         #[unsafe(method_family = none)]
         pub unsafe fn textList(&self) -> Retained<NSTextList>;
 
-        #[method(contents)]
+        #[unsafe(method(contents))]
         #[unsafe(method_family = none)]
         pub unsafe fn contents(&self) -> Option<Retained<NSAttributedString>>;
 
-        #[method(markerAttributes)]
+        #[unsafe(method(markerAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn markerAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
-        #[method(attributedString)]
+        #[unsafe(method(attributedString))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
 
-        #[method(childElements)]
+        #[unsafe(method(childElements))]
         #[unsafe(method_family = none)]
         pub unsafe fn childElements(&self) -> Retained<NSArray<NSTextListElement>>;
 
-        #[method(parentElement)]
+        #[unsafe(method(parentElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn parentElement(&self) -> Option<Retained<NSTextListElement>>;
     }
@@ -92,7 +92,7 @@ extern_methods!(
     #[cfg(feature = "NSTextElement")]
     unsafe impl NSTextListElement {
         #[cfg(feature = "NSTextContentManager")]
-        #[method(initWithTextContentManager:)]
+        #[unsafe(method(initWithTextContentManager:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTextContentManager(
             this: Allocated<Self>,
@@ -105,11 +105,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSTextElement")]
     unsafe impl NSTextListElement {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

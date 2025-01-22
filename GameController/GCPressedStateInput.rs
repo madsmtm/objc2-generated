@@ -16,7 +16,7 @@ extern_protocol!(
     pub unsafe trait GCPressedStateInput: NSObjectProtocol {
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Set this block if you want to be notified when the pressed state changes.
-        #[method(pressedDidChangeHandler)]
+        #[unsafe(method(pressedDidChangeHandler))]
         #[unsafe(method_family = none)]
         unsafe fn pressedDidChangeHandler(
             &self,
@@ -30,7 +30,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Setter for [`pressedDidChangeHandler`][Self::pressedDidChangeHandler].
-        #[method(setPressedDidChangeHandler:)]
+        #[unsafe(method(setPressedDidChangeHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setPressedDidChangeHandler(
             &self,
@@ -58,7 +58,7 @@ extern_protocol!(
         ///
         ///
         /// See: pressedDidChangeHandler
-        #[method(isPressed)]
+        #[unsafe(method(isPressed))]
         #[unsafe(method_family = none)]
         unsafe fn isPressed(&self) -> bool;
 
@@ -67,7 +67,7 @@ extern_protocol!(
         /// This time interval is not relative to any specific point in time.  You can
         /// subtract a previous timestamp from the current timestamp to determine the time
         /// (in seconds) between changes to the value.
-        #[method(lastPressedStateTimestamp)]
+        #[unsafe(method(lastPressedStateTimestamp))]
         #[unsafe(method_family = none)]
         unsafe fn lastPressedStateTimestamp(&self) -> NSTimeInterval;
 
@@ -77,14 +77,14 @@ extern_protocol!(
         /// This should be treated as a lower bound of the event latency.  It may not
         /// include (wired or wireless) transmission latency, or latency accrued on
         /// the device before the event was transmitted to the host.
-        #[method(lastPressedStateLatency)]
+        #[unsafe(method(lastPressedStateLatency))]
         #[unsafe(method_family = none)]
         unsafe fn lastPressedStateLatency(&self) -> NSTimeInterval;
 
         #[cfg(feature = "GCPhysicalInputSource")]
         /// An object describing the physical action(s) the user performs to manipulate
         /// this input.
-        #[method(sources)]
+        #[unsafe(method(sources))]
         #[unsafe(method_family = none)]
         unsafe fn sources(&self) -> Retained<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }

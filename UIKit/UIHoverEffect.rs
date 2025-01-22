@@ -37,15 +37,15 @@ unsafe impl UIHoverEffect for UIHoverHighlightEffect {}
 
 extern_methods!(
     unsafe impl UIHoverHighlightEffect {
-        #[method(effect)]
+        #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
         pub unsafe fn effect(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -73,15 +73,15 @@ unsafe impl UIHoverEffect for UIHoverLiftEffect {}
 
 extern_methods!(
     unsafe impl UIHoverLiftEffect {
-        #[method(effect)]
+        #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
         pub unsafe fn effect(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -110,15 +110,15 @@ unsafe impl UIHoverEffect for UIHoverAutomaticEffect {}
 
 extern_methods!(
     unsafe impl UIHoverAutomaticEffect {
-        #[method(effect)]
+        #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
         pub unsafe fn effect(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

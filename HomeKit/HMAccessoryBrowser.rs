@@ -25,12 +25,12 @@ unsafe impl NSObjectProtocol for HMAccessoryBrowser {}
 
 extern_methods!(
     unsafe impl HMAccessoryBrowser {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Delegate that receives updates on the state of the accessories discovered.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -38,7 +38,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -49,7 +49,7 @@ extern_methods!(
         /// This is the array of HMAccessory objects that represents new
         /// accessories that were discovered as part of a search session.
         /// This array is not updated when a search session is not in progress.
-        #[method(discoveredAccessories)]
+        #[unsafe(method(discoveredAccessories))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoveredAccessories(&self) -> Retained<NSArray<HMAccessory>>;
 
@@ -65,7 +65,7 @@ extern_methods!(
         /// The array of discovered accessories will be updated when this method
         /// is called, so applications should clear and reload any stored copies
         /// of that array or previous new accessory objects.
-        #[method(startSearchingForNewAccessories)]
+        #[unsafe(method(startSearchingForNewAccessories))]
         #[unsafe(method_family = none)]
         pub unsafe fn startSearchingForNewAccessories(&self);
 
@@ -77,7 +77,7 @@ extern_methods!(
         /// reasons or if other delegates are still in active searching sessions.
         /// The contents of the array of discovered accessories will not be updated until
         /// startSearchingForNewAccessories is called.
-        #[method(stopSearchingForNewAccessories)]
+        #[unsafe(method(stopSearchingForNewAccessories))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopSearchingForNewAccessories(&self);
     }
@@ -86,7 +86,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMAccessoryBrowser {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -106,7 +106,7 @@ extern_protocol!(
         ///
         /// Parameter `accessory`: New accessory that was discovered.
         #[optional]
-        #[method(accessoryBrowser:didFindNewAccessory:)]
+        #[unsafe(method(accessoryBrowser:didFindNewAccessory:))]
         #[unsafe(method_family = none)]
         unsafe fn accessoryBrowser_didFindNewAccessory(
             &self,
@@ -124,7 +124,7 @@ extern_protocol!(
         /// Parameter `accessory`: Accessory that was previously discovered but are no longer reachable.
         /// This method is also invoked when an accessory is added to a home.
         #[optional]
-        #[method(accessoryBrowser:didRemoveNewAccessory:)]
+        #[unsafe(method(accessoryBrowser:didRemoveNewAccessory:))]
         #[unsafe(method_family = none)]
         unsafe fn accessoryBrowser_didRemoveNewAccessory(
             &self,

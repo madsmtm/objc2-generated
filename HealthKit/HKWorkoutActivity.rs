@@ -34,25 +34,25 @@ unsafe impl NSSecureCoding for HKWorkoutActivity {}
 extern_methods!(
     unsafe impl HKWorkoutActivity {
         /// A unique identifier of the activity in the HealthKit database.
-        #[method(UUID)]
+        #[unsafe(method(UUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "HKWorkoutConfiguration")]
         /// The configuration object describing the workout activity.
-        #[method(workoutConfiguration)]
+        #[unsafe(method(workoutConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutConfiguration(&self) -> Retained<HKWorkoutConfiguration>;
 
         /// The point in time when the workout activity was started.
-        #[method(startDate)]
+        #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         /// The point in time when the workout activity was ended.
         ///
         /// This value is nil when a workout activity is in progress.
-        #[method(endDate)]
+        #[unsafe(method(endDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
@@ -60,7 +60,7 @@ extern_methods!(
         ///
         /// Keys must be NSString and values must be either NSString, NSNumber, NSDate, or
         /// HKQuantity. See HKMetadata.h for potential metadata keys and values.
-        #[method(metadata)]
+        #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
@@ -69,7 +69,7 @@ extern_methods!(
         /// The duration is derived from the start and end dates of the activity and takes
         /// into account periods that the activity was paused. Periods that the activity was
         /// paused are based off of the workoutEvents property of the parent workout object.
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
@@ -80,7 +80,7 @@ extern_methods!(
         /// of the workout events that take place between the start date and end date of the
         /// activity. This includes any event that overlaps the activity, even partially.
         /// Consequently, some events may be included in more than one activity.
-        #[method(workoutEvents)]
+        #[unsafe(method(workoutEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutEvents(&self) -> Retained<NSArray<HKWorkoutEvent>>;
 
@@ -90,7 +90,7 @@ extern_methods!(
         /// This dictionary will contain HKStatistics objects containing the statistics by quantity
         /// sample type for all of the samples that have been added to the workout within the date
         /// interval of this activity.
-        #[method(allStatistics)]
+        #[unsafe(method(allStatistics))]
         #[unsafe(method_family = none)]
         pub unsafe fn allStatistics(&self) -> Retained<NSDictionary<HKQuantityType, HKStatistics>>;
 
@@ -101,18 +101,18 @@ extern_methods!(
         ///
         ///
         /// Parameter `quantityType`: The quantity type to gather statistics about.
-        #[method(statisticsForType:)]
+        #[unsafe(method(statisticsForType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn statisticsForType(
             &self,
             quantity_type: &HKQuantityType,
         ) -> Option<Retained<HKStatistics>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -127,7 +127,7 @@ extern_methods!(
         /// Parameter `endDate`: The point in time when the workout activity was ended.
         ///
         /// Parameter `metadata`: Metadata for the workout activity. (Optional)
-        #[method(initWithWorkoutConfiguration:startDate:endDate:metadata:)]
+        #[unsafe(method(initWithWorkoutConfiguration:startDate:endDate:metadata:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWorkoutConfiguration_startDate_endDate_metadata(
             this: Allocated<Self>,

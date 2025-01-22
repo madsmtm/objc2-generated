@@ -13,25 +13,25 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandqueue?language=objc)
     pub unsafe trait MTLCommandQueue: NSObjectProtocol {
         /// A string to help identify this object
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
         /// The device this queue will submit to
-        #[method(device)]
+        #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLCommandBuffer")]
         /// Returns a new autoreleased command buffer used to encode work into this queue that
         /// maintains strong references to resources used within the command buffer.
-        #[method(commandBuffer)]
+        #[unsafe(method(commandBuffer))]
         #[unsafe(method_family = none)]
         fn commandBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandBuffer>>>;
 
@@ -39,7 +39,7 @@ extern_protocol!(
         /// Parameter `descriptor`: The requested properties of the command buffer.
         ///
         /// Returns a new autoreleased command buffer used to encode work into this queue.
-        #[method(commandBufferWithDescriptor:)]
+        #[unsafe(method(commandBufferWithDescriptor:))]
         #[unsafe(method_family = none)]
         unsafe fn commandBufferWithDescriptor(
             &self,
@@ -49,7 +49,7 @@ extern_protocol!(
         #[cfg(feature = "MTLCommandBuffer")]
         /// Returns a new autoreleased command buffer used to encode work into this queue that
         /// does not maintain strong references to resources used within the command buffer.
-        #[method(commandBufferWithUnretainedReferences)]
+        #[unsafe(method(commandBufferWithUnretainedReferences))]
         #[unsafe(method_family = none)]
         unsafe fn commandBufferWithUnretainedReferences(
             &self,
@@ -57,19 +57,19 @@ extern_protocol!(
 
         /// Inform Xcode about when debug capture should start and stop.
         #[deprecated = "Use MTLCaptureScope instead"]
-        #[method(insertDebugCaptureBoundary)]
+        #[unsafe(method(insertDebugCaptureBoundary))]
         #[unsafe(method_family = none)]
         unsafe fn insertDebugCaptureBoundary(&self);
 
         #[cfg(feature = "MTLResidencySet")]
         /// Marks the residency set as part of the command queue execution. This ensures that the residency set is resident during execution of all the command buffers within the queue.
-        #[method(addResidencySet:)]
+        #[unsafe(method(addResidencySet:))]
         #[unsafe(method_family = none)]
         unsafe fn addResidencySet(&self, residency_set: &ProtocolObject<dyn MTLResidencySet>);
 
         #[cfg(feature = "MTLResidencySet")]
         /// Marks the residency sets as part of the command queue execution. This ensures that the residency sets are resident during execution of all the command buffers within the queue.
-        #[method(addResidencySets:count:)]
+        #[unsafe(method(addResidencySets:count:))]
         #[unsafe(method_family = none)]
         unsafe fn addResidencySets_count(
             &self,
@@ -79,13 +79,13 @@ extern_protocol!(
 
         #[cfg(feature = "MTLResidencySet")]
         /// Removes the residency set from the command queue execution. This ensures that only the remaining residency sets are resident during execution of all the command buffers within the queue.
-        #[method(removeResidencySet:)]
+        #[unsafe(method(removeResidencySet:))]
         #[unsafe(method_family = none)]
         unsafe fn removeResidencySet(&self, residency_set: &ProtocolObject<dyn MTLResidencySet>);
 
         #[cfg(feature = "MTLResidencySet")]
         /// Removes the residency sets from the command queue execution. This ensures that only the remaining residency sets are resident during execution of all the command buffers within the queue.
-        #[method(removeResidencySets:count:)]
+        #[unsafe(method(removeResidencySets:count:))]
         #[unsafe(method_family = none)]
         unsafe fn removeResidencySets_count(
             &self,
@@ -114,25 +114,25 @@ extern_methods!(
     unsafe impl MTLCommandQueueDescriptor {
         /// @
         /// Specify upper bound on uncompleted command buffers that may be enqueued on this queue
-        #[method(maxCommandBufferCount)]
+        #[unsafe(method(maxCommandBufferCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxCommandBufferCount(&self) -> NSUInteger;
 
         /// Setter for [`maxCommandBufferCount`][Self::maxCommandBufferCount].
-        #[method(setMaxCommandBufferCount:)]
+        #[unsafe(method(setMaxCommandBufferCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxCommandBufferCount(&self, max_command_buffer_count: NSUInteger);
 
         #[cfg(feature = "MTLLogState")]
         /// @
         /// Specify the MTLLogState to enable shader logging
-        #[method(logState)]
+        #[unsafe(method(logState))]
         #[unsafe(method_family = none)]
         pub unsafe fn logState(&self) -> Option<Retained<ProtocolObject<dyn MTLLogState>>>;
 
         #[cfg(feature = "MTLLogState")]
         /// Setter for [`logState`][Self::logState].
-        #[method(setLogState:)]
+        #[unsafe(method(setLogState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLogState(&self, log_state: Option<&ProtocolObject<dyn MTLLogState>>);
     }
@@ -141,11 +141,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLCommandQueueDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

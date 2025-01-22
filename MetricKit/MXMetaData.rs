@@ -24,37 +24,37 @@ unsafe impl NSSecureCoding for MXMetaData {}
 extern_methods!(
     unsafe impl MXMetaData {
         /// An NSString designating the region format associated with the application.
-        #[method(regionFormat)]
+        #[unsafe(method(regionFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn regionFormat(&self) -> Retained<NSString>;
 
         /// An NSString designating the OS version associated with the device.
-        #[method(osVersion)]
+        #[unsafe(method(osVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn osVersion(&self) -> Retained<NSString>;
 
         /// An NSString designating the device type associated with this device.
-        #[method(deviceType)]
+        #[unsafe(method(deviceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceType(&self) -> Retained<NSString>;
 
         /// An NSString designating the app build version.
-        #[method(applicationBuildVersion)]
+        #[unsafe(method(applicationBuildVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationBuildVersion(&self) -> Retained<NSString>;
 
         /// An NSString designating the current architecture.
-        #[method(platformArchitecture)]
+        #[unsafe(method(platformArchitecture))]
         #[unsafe(method_family = none)]
         pub unsafe fn platformArchitecture(&self) -> Retained<NSString>;
 
         /// A boolean representing low power mode enablement on device
-        #[method(lowPowerModeEnabled)]
+        #[unsafe(method(lowPowerModeEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn lowPowerModeEnabled(&self) -> bool;
 
         /// A boolean representing if the app is registered as a testFlightApp
-        #[method(isTestFlightApp)]
+        #[unsafe(method(isTestFlightApp))]
         #[unsafe(method_family = none)]
         pub unsafe fn isTestFlightApp(&self) -> bool;
 
@@ -62,14 +62,14 @@ extern_methods!(
         /// pid of the process
         ///
         /// Note: A value of -1 indicates that the PID was unavailable for the containing payload.
-        #[method(pid)]
+        #[unsafe(method(pid))]
         #[unsafe(method_family = none)]
         pub unsafe fn pid(&self) -> libc::pid_t;
 
         /// Convenience method to return a JSON representation of this metadata.
         ///
         /// Returns: An NSData object containing the JSON representation
-        #[method(JSONRepresentation)]
+        #[unsafe(method(JSONRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
@@ -77,14 +77,14 @@ extern_methods!(
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
         #[deprecated]
-        #[method(DictionaryRepresentation)]
+        #[unsafe(method(DictionaryRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn DictionaryRepresentation(&self) -> Retained<NSDictionary>;
 
         /// Convenience method to return a NSDictionary representation of this metadata.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
-        #[method(dictionaryRepresentation)]
+        #[unsafe(method(dictionaryRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
@@ -93,11 +93,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXMetaData {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

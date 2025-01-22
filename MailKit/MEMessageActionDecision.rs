@@ -21,28 +21,28 @@ unsafe impl NSSecureCoding for MEMessageActionDecision {}
 
 extern_methods!(
     unsafe impl MEMessageActionDecision {
-        #[method(invokeAgainWithBody)]
+        #[unsafe(method(invokeAgainWithBody))]
         #[unsafe(method_family = none)]
         pub unsafe fn invokeAgainWithBody() -> Retained<MEMessageActionDecision>;
 
         #[cfg(feature = "MEMessageAction")]
-        #[method(decisionApplyingAction:)]
+        #[unsafe(method(decisionApplyingAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decisionApplyingAction(action: &MEMessageAction) -> Retained<Self>;
 
         #[cfg(feature = "MEMessageAction")]
         /// Creates an
         /// `MEMessageActionDecision`with multiple actions. Conflicting actions will be ignored.
-        #[method(decisionApplyingActions:)]
+        #[unsafe(method(decisionApplyingActions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decisionApplyingActions(actions: &NSArray<MEMessageAction>)
             -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

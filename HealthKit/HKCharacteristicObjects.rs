@@ -34,7 +34,7 @@ unsafe impl NSSecureCoding for HKBiologicalSexObject {}
 extern_methods!(
     unsafe impl HKBiologicalSexObject {
         #[cfg(feature = "HKCharacteristicValues")]
-        #[method(biologicalSex)]
+        #[unsafe(method(biologicalSex))]
         #[unsafe(method_family = none)]
         pub unsafe fn biologicalSex(&self) -> HKBiologicalSex;
     }
@@ -43,11 +43,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKBiologicalSexObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -81,7 +81,7 @@ unsafe impl NSSecureCoding for HKBloodTypeObject {}
 extern_methods!(
     unsafe impl HKBloodTypeObject {
         #[cfg(feature = "HKCharacteristicValues")]
-        #[method(bloodType)]
+        #[unsafe(method(bloodType))]
         #[unsafe(method_family = none)]
         pub unsafe fn bloodType(&self) -> HKBloodType;
     }
@@ -90,11 +90,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKBloodTypeObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -128,7 +128,7 @@ unsafe impl NSSecureCoding for HKFitzpatrickSkinTypeObject {}
 extern_methods!(
     unsafe impl HKFitzpatrickSkinTypeObject {
         #[cfg(feature = "HKCharacteristicValues")]
-        #[method(skinType)]
+        #[unsafe(method(skinType))]
         #[unsafe(method_family = none)]
         pub unsafe fn skinType(&self) -> HKFitzpatrickSkinType;
     }
@@ -137,11 +137,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKFitzpatrickSkinTypeObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -175,7 +175,7 @@ unsafe impl NSSecureCoding for HKWheelchairUseObject {}
 extern_methods!(
     unsafe impl HKWheelchairUseObject {
         #[cfg(feature = "HKCharacteristicValues")]
-        #[method(wheelchairUse)]
+        #[unsafe(method(wheelchairUse))]
         #[unsafe(method_family = none)]
         pub unsafe fn wheelchairUse(&self) -> HKWheelchairUse;
     }
@@ -184,11 +184,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKWheelchairUseObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -222,7 +222,7 @@ unsafe impl NSSecureCoding for HKActivityMoveModeObject {}
 extern_methods!(
     unsafe impl HKActivityMoveModeObject {
         #[cfg(feature = "HKCharacteristicValues")]
-        #[method(activityMoveMode)]
+        #[unsafe(method(activityMoveMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn activityMoveMode(&self) -> HKActivityMoveMode;
     }
@@ -231,11 +231,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKActivityMoveModeObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

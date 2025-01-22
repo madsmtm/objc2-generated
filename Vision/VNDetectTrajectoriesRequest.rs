@@ -37,7 +37,7 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNDetectTrajectoriesRequest {
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
-        #[method(initWithFrameAnalysisSpacing:completionHandler:)]
+        #[unsafe(method(initWithFrameAnalysisSpacing:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
             this: Allocated<Self>,
@@ -54,7 +54,7 @@ extern_methods!(
         /// Parameter `trajectoryLength`: The number of points required to analyze a parabola that indicates a trajectory. Must be at least 5.
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method(initWithFrameAnalysisSpacing:trajectoryLength:completionHandler:)]
+        #[unsafe(method(initWithFrameAnalysisSpacing:trajectoryLength:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_trajectoryLength_completionHandler(
             this: Allocated<Self>,
@@ -64,17 +64,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The number of points required to analyze a parabola that indicates a trajectory.
-        #[method(trajectoryLength)]
+        #[unsafe(method(trajectoryLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn trajectoryLength(&self) -> NSInteger;
 
         /// Specifies the minimum radius of the bounding circle of the object to be tracked. This can be used to filter out noise and small objects. The default is 0.0, which means no filtering is applied. Changing the property from frame to frame can produce eratic trajectories as objects will either disappear or be added to the tracking base on this filtering. The value is specified in normalized coordinates.
-        #[method(objectMinimumNormalizedRadius)]
+        #[unsafe(method(objectMinimumNormalizedRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectMinimumNormalizedRadius(&self) -> c_float;
 
         /// Setter for [`objectMinimumNormalizedRadius`][Self::objectMinimumNormalizedRadius].
-        #[method(setObjectMinimumNormalizedRadius:)]
+        #[unsafe(method(setObjectMinimumNormalizedRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectMinimumNormalizedRadius(
             &self,
@@ -82,23 +82,23 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method(minimumObjectSize)]
+        #[unsafe(method(minimumObjectSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumObjectSize(&self) -> c_float;
 
         /// Setter for [`minimumObjectSize`][Self::minimumObjectSize].
         #[deprecated]
-        #[method(setMinimumObjectSize:)]
+        #[unsafe(method(setMinimumObjectSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumObjectSize(&self, minimum_object_size: c_float);
 
         /// Specifies the maximum radius of the bounding circle of the object to be tracked. This can be used to filter out unwanted trajectories from larger objects moving through the scene. The default is 1.0, which means no filtering is applied. Changing the maximum from frame to frame can produce eratic trajectories as objects will either disappear or be added to the tracking base on this filtering. The size is specified in normalized coordinates.
-        #[method(objectMaximumNormalizedRadius)]
+        #[unsafe(method(objectMaximumNormalizedRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectMaximumNormalizedRadius(&self) -> c_float;
 
         /// Setter for [`objectMaximumNormalizedRadius`][Self::objectMaximumNormalizedRadius].
-        #[method(setObjectMaximumNormalizedRadius:)]
+        #[unsafe(method(setObjectMaximumNormalizedRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectMaximumNormalizedRadius(
             &self,
@@ -106,31 +106,31 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method(maximumObjectSize)]
+        #[unsafe(method(maximumObjectSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumObjectSize(&self) -> c_float;
 
         /// Setter for [`maximumObjectSize`][Self::maximumObjectSize].
         #[deprecated]
-        #[method(setMaximumObjectSize:)]
+        #[unsafe(method(setMaximumObjectSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumObjectSize(&self, maximum_object_size: c_float);
 
         #[cfg(feature = "objc2-core-media")]
         /// Specifies the desired target frame time for processing trajectory detection. This can be used for real-time processing of frames, which requires execution with a specific amount of time. The target frame time is evaluated from frame-to-frame. If processing takes longer than this target frame time for the currect frame, it will attempt to reduce the amount of time taken by reducing the accuracy (down to a set minimum) for the next frame. If a frame takes less time than this target, then accuracy of the next frame will be increased (up to a set maximum). The default value is kCMTimeIndefinite, meaning accuracy stays at the predefined maximum.
-        #[method(targetFrameTime)]
+        #[unsafe(method(targetFrameTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetFrameTime(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`targetFrameTime`][Self::targetFrameTime].
-        #[method(setTargetFrameTime:)]
+        #[unsafe(method(setTargetFrameTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTargetFrameTime(&self, target_frame_time: CMTime);
 
         #[cfg(feature = "VNObservation")]
         /// Provides VNTrajectoryObservation results.
-        #[method(results)]
+        #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNTrajectoryObservation>>>;
     }
@@ -140,16 +140,16 @@ extern_methods!(
     /// Methods declared on superclass `VNStatefulRequest`
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNDetectTrajectoriesRequest {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method(initWithCompletionHandler:)]
+        #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,

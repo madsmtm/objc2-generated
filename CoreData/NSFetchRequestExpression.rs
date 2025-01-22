@@ -30,7 +30,7 @@ unsafe impl NSSecureCoding for NSFetchRequestExpression {}
 
 extern_methods!(
     unsafe impl NSFetchRequestExpression {
-        #[method(expressionForFetch:context:countOnly:)]
+        #[unsafe(method(expressionForFetch:context:countOnly:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForFetch_context_countOnly(
             fetch: &NSExpression,
@@ -38,15 +38,15 @@ extern_methods!(
             count_flag: bool,
         ) -> Retained<NSExpression>;
 
-        #[method(requestExpression)]
+        #[unsafe(method(requestExpression))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestExpression(&self) -> Retained<NSExpression>;
 
-        #[method(contextExpression)]
+        #[unsafe(method(contextExpression))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextExpression(&self) -> Retained<NSExpression>;
 
-        #[method(isCountOnlyRequest)]
+        #[unsafe(method(isCountOnlyRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCountOnlyRequest(&self) -> bool;
     }
@@ -55,14 +55,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSExpression`
     unsafe impl NSFetchRequestExpression {
-        #[method(initWithExpressionType:)]
+        #[unsafe(method(initWithExpressionType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithExpressionType(
             this: Allocated<Self>,
             r#type: NSExpressionType,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -74,11 +74,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFetchRequestExpression {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

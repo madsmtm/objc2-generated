@@ -59,66 +59,66 @@ unsafe impl NSUserInterfaceValidations for OSAScriptView {}
 
 extern_methods!(
     unsafe impl OSAScriptView {
-        #[method(source)]
+        #[unsafe(method(source))]
         #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`source`][Self::source].
-        #[method(setSource:)]
+        #[unsafe(method(setSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSource(&self, source: Option<&NSString>);
 
-        #[method(usesScriptAssistant)]
+        #[unsafe(method(usesScriptAssistant))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesScriptAssistant(&self) -> bool;
 
         /// Setter for [`usesScriptAssistant`][Self::usesScriptAssistant].
-        #[method(setUsesScriptAssistant:)]
+        #[unsafe(method(setUsesScriptAssistant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesScriptAssistant(&self, uses_script_assistant: bool);
 
-        #[method(usesTabs)]
+        #[unsafe(method(usesTabs))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesTabs(&self) -> bool;
 
         /// Setter for [`usesTabs`][Self::usesTabs].
-        #[method(setUsesTabs:)]
+        #[unsafe(method(setUsesTabs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesTabs(&self, uses_tabs: bool);
 
-        #[method(tabWidth)]
+        #[unsafe(method(tabWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn tabWidth(&self) -> NSUInteger;
 
         /// Setter for [`tabWidth`][Self::tabWidth].
-        #[method(setTabWidth:)]
+        #[unsafe(method(setTabWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTabWidth(&self, tab_width: NSUInteger);
 
-        #[method(wrapsLines)]
+        #[unsafe(method(wrapsLines))]
         #[unsafe(method_family = none)]
         pub unsafe fn wrapsLines(&self) -> bool;
 
         /// Setter for [`wrapsLines`][Self::wrapsLines].
-        #[method(setWrapsLines:)]
+        #[unsafe(method(setWrapsLines:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWrapsLines(&self, wraps_lines: bool);
 
-        #[method(indentsWrappedLines)]
+        #[unsafe(method(indentsWrappedLines))]
         #[unsafe(method_family = none)]
         pub unsafe fn indentsWrappedLines(&self) -> bool;
 
         /// Setter for [`indentsWrappedLines`][Self::indentsWrappedLines].
-        #[method(setIndentsWrappedLines:)]
+        #[unsafe(method(setIndentsWrappedLines:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndentsWrappedLines(&self, indents_wrapped_lines: bool);
 
-        #[method(indentWidth)]
+        #[unsafe(method(indentWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn indentWidth(&self) -> NSUInteger;
 
         /// Setter for [`indentWidth`][Self::indentWidth].
-        #[method(setIndentWidth:)]
+        #[unsafe(method(setIndentWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndentWidth(&self, indent_width: NSUInteger);
     }
@@ -128,7 +128,7 @@ extern_methods!(
     /// Methods declared on superclass `NSTextView`
     unsafe impl OSAScriptView {
         /// ************************** Initializing ***************************
-        #[method(initWithFrame:textContainer:)]
+        #[unsafe(method(initWithFrame:textContainer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_textContainer(
             this: Allocated<Self>,
@@ -136,25 +136,25 @@ extern_methods!(
             container: Option<&NSTextContainer>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method(initUsingTextLayoutManager:)]
+        #[unsafe(method(initUsingTextLayoutManager:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initUsingTextLayoutManager(
             this: Allocated<Self>,
             using_text_layout_manager: bool,
         ) -> Retained<Self>;
 
-        #[method(textViewUsingTextLayoutManager:)]
+        #[unsafe(method(textViewUsingTextLayoutManager:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textViewUsingTextLayoutManager(
             using_text_layout_manager: bool,
@@ -166,7 +166,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     unsafe impl OSAScriptView {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -175,7 +175,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSAScriptView {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

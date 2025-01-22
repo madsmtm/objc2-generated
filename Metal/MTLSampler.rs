@@ -162,168 +162,168 @@ extern_methods!(
         /// Filter option for combining texels within a mipmap level the sample footprint is larger than a pixel (minification).
         ///
         /// The default value is MTLSamplerMinMagFilterNearest.
-        #[method(minFilter)]
+        #[unsafe(method(minFilter))]
         #[unsafe(method_family = none)]
         pub fn minFilter(&self) -> MTLSamplerMinMagFilter;
 
         /// Setter for [`minFilter`][Self::minFilter].
-        #[method(setMinFilter:)]
+        #[unsafe(method(setMinFilter:))]
         #[unsafe(method_family = none)]
         pub fn setMinFilter(&self, min_filter: MTLSamplerMinMagFilter);
 
         /// Filter option for combining texels within a mipmap level the sample footprint is smaller than a pixel (magnification).
         ///
         /// The default value is MTLSamplerMinMagFilterNearest.
-        #[method(magFilter)]
+        #[unsafe(method(magFilter))]
         #[unsafe(method_family = none)]
         pub fn magFilter(&self) -> MTLSamplerMinMagFilter;
 
         /// Setter for [`magFilter`][Self::magFilter].
-        #[method(setMagFilter:)]
+        #[unsafe(method(setMagFilter:))]
         #[unsafe(method_family = none)]
         pub fn setMagFilter(&self, mag_filter: MTLSamplerMinMagFilter);
 
         /// Filter options for filtering between two mipmap levels.
         ///
         /// The default value is MTLSamplerMipFilterNotMipmapped
-        #[method(mipFilter)]
+        #[unsafe(method(mipFilter))]
         #[unsafe(method_family = none)]
         pub fn mipFilter(&self) -> MTLSamplerMipFilter;
 
         /// Setter for [`mipFilter`][Self::mipFilter].
-        #[method(setMipFilter:)]
+        #[unsafe(method(setMipFilter:))]
         #[unsafe(method_family = none)]
         pub fn setMipFilter(&self, mip_filter: MTLSamplerMipFilter);
 
         /// The number of samples that can be taken to improve quality of sample footprints that are anisotropic.
         ///
         /// The default value is 1.
-        #[method(maxAnisotropy)]
+        #[unsafe(method(maxAnisotropy))]
         #[unsafe(method_family = none)]
         pub fn maxAnisotropy(&self) -> NSUInteger;
 
         /// Setter for [`maxAnisotropy`][Self::maxAnisotropy].
-        #[method(setMaxAnisotropy:)]
+        #[unsafe(method(setMaxAnisotropy:))]
         #[unsafe(method_family = none)]
         pub fn setMaxAnisotropy(&self, max_anisotropy: NSUInteger);
 
         /// Set the wrap mode for the S texture coordinate.  The default value is MTLSamplerAddressModeClampToEdge.
-        #[method(sAddressMode)]
+        #[unsafe(method(sAddressMode))]
         #[unsafe(method_family = none)]
         pub fn sAddressMode(&self) -> MTLSamplerAddressMode;
 
         /// Setter for [`sAddressMode`][Self::sAddressMode].
-        #[method(setSAddressMode:)]
+        #[unsafe(method(setSAddressMode:))]
         #[unsafe(method_family = none)]
         pub fn setSAddressMode(&self, s_address_mode: MTLSamplerAddressMode);
 
         /// Set the wrap mode for the T texture coordinate.  The default value is MTLSamplerAddressModeClampToEdge.
-        #[method(tAddressMode)]
+        #[unsafe(method(tAddressMode))]
         #[unsafe(method_family = none)]
         pub fn tAddressMode(&self) -> MTLSamplerAddressMode;
 
         /// Setter for [`tAddressMode`][Self::tAddressMode].
-        #[method(setTAddressMode:)]
+        #[unsafe(method(setTAddressMode:))]
         #[unsafe(method_family = none)]
         pub fn setTAddressMode(&self, t_address_mode: MTLSamplerAddressMode);
 
         /// Set the wrap mode for the R texture coordinate.  The default value is MTLSamplerAddressModeClampToEdge.
-        #[method(rAddressMode)]
+        #[unsafe(method(rAddressMode))]
         #[unsafe(method_family = none)]
         pub fn rAddressMode(&self) -> MTLSamplerAddressMode;
 
         /// Setter for [`rAddressMode`][Self::rAddressMode].
-        #[method(setRAddressMode:)]
+        #[unsafe(method(setRAddressMode:))]
         #[unsafe(method_family = none)]
         pub fn setRAddressMode(&self, r_address_mode: MTLSamplerAddressMode);
 
         /// Set the color for the MTLSamplerAddressMode to one of the predefined in the MTLSamplerBorderColor enum.
-        #[method(borderColor)]
+        #[unsafe(method(borderColor))]
         #[unsafe(method_family = none)]
         pub fn borderColor(&self) -> MTLSamplerBorderColor;
 
         /// Setter for [`borderColor`][Self::borderColor].
-        #[method(setBorderColor:)]
+        #[unsafe(method(setBorderColor:))]
         #[unsafe(method_family = none)]
         pub fn setBorderColor(&self, border_color: MTLSamplerBorderColor);
 
         /// If YES, texture coordates are from 0 to 1.  If NO, texture coordinates are 0..width, 0..height.
         ///
         /// normalizedCoordinates defaults to YES.  Non-normalized coordinates should only be used with 1D and 2D textures with the ClampToEdge wrap mode, otherwise the results of sampling are undefined.
-        #[method(normalizedCoordinates)]
+        #[unsafe(method(normalizedCoordinates))]
         #[unsafe(method_family = none)]
         pub fn normalizedCoordinates(&self) -> bool;
 
         /// Setter for [`normalizedCoordinates`][Self::normalizedCoordinates].
-        #[method(setNormalizedCoordinates:)]
+        #[unsafe(method(setNormalizedCoordinates:))]
         #[unsafe(method_family = none)]
         pub fn setNormalizedCoordinates(&self, normalized_coordinates: bool);
 
         /// The minimum level of detail that will be used when sampling from a texture.
         ///
         /// The default value of lodMinClamp is 0.0.  Clamp values are ignored for texture sample variants that specify an explicit level of detail.
-        #[method(lodMinClamp)]
+        #[unsafe(method(lodMinClamp))]
         #[unsafe(method_family = none)]
         pub fn lodMinClamp(&self) -> c_float;
 
         /// Setter for [`lodMinClamp`][Self::lodMinClamp].
-        #[method(setLodMinClamp:)]
+        #[unsafe(method(setLodMinClamp:))]
         #[unsafe(method_family = none)]
         pub fn setLodMinClamp(&self, lod_min_clamp: c_float);
 
         /// The maximum level of detail that will be used when sampling from a texture.
         ///
         /// The default value of lodMaxClamp is FLT_MAX.  Clamp values are ignored for texture sample variants that specify an explicit level of detail.
-        #[method(lodMaxClamp)]
+        #[unsafe(method(lodMaxClamp))]
         #[unsafe(method_family = none)]
         pub fn lodMaxClamp(&self) -> c_float;
 
         /// Setter for [`lodMaxClamp`][Self::lodMaxClamp].
-        #[method(setLodMaxClamp:)]
+        #[unsafe(method(setLodMaxClamp:))]
         #[unsafe(method_family = none)]
         pub fn setLodMaxClamp(&self, lod_max_clamp: c_float);
 
         /// If YES, an average level of detail will be used when sampling from a texture. If NO, no averaging is performed.
         ///
         /// lodAverage defaults to NO. This option is a performance hint. An implementation is free to ignore this property.
-        #[method(lodAverage)]
+        #[unsafe(method(lodAverage))]
         #[unsafe(method_family = none)]
         pub fn lodAverage(&self) -> bool;
 
         /// Setter for [`lodAverage`][Self::lodAverage].
-        #[method(setLodAverage:)]
+        #[unsafe(method(setLodAverage:))]
         #[unsafe(method_family = none)]
         pub fn setLodAverage(&self, lod_average: bool);
 
         #[cfg(feature = "MTLDepthStencil")]
         /// Set the comparison function used when sampling shadow maps. The default value is MTLCompareFunctionNever.
-        #[method(compareFunction)]
+        #[unsafe(method(compareFunction))]
         #[unsafe(method_family = none)]
         pub fn compareFunction(&self) -> MTLCompareFunction;
 
         #[cfg(feature = "MTLDepthStencil")]
         /// Setter for [`compareFunction`][Self::compareFunction].
-        #[method(setCompareFunction:)]
+        #[unsafe(method(setCompareFunction:))]
         #[unsafe(method_family = none)]
         pub fn setCompareFunction(&self, compare_function: MTLCompareFunction);
 
         /// true if the sampler can be used inside an argument buffer
-        #[method(supportArgumentBuffers)]
+        #[unsafe(method(supportArgumentBuffers))]
         #[unsafe(method_family = none)]
         pub fn supportArgumentBuffers(&self) -> bool;
 
         /// Setter for [`supportArgumentBuffers`][Self::supportArgumentBuffers].
-        #[method(setSupportArgumentBuffers:)]
+        #[unsafe(method(setSupportArgumentBuffers:))]
         #[unsafe(method_family = none)]
         pub fn setSupportArgumentBuffers(&self, support_argument_buffers: bool);
 
         /// A string to help identify the created object.
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub fn setLabel(&self, label: Option<&NSString>);
     }
@@ -332,11 +332,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLSamplerDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -355,19 +355,19 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerstate?language=objc)
     pub unsafe trait MTLSamplerState: NSObjectProtocol {
         /// A string to help identify this object.
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
-        #[method(device)]
+        #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLTypes")]
         /// Handle of the GPU resource suitable for storing in an Argument Buffer
-        #[method(gpuResourceID)]
+        #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
     }

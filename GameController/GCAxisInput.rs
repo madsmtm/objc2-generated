@@ -24,7 +24,7 @@ extern_protocol!(
         /// Parameter `input`: the input that has been modified.
         ///
         /// Parameter `value`: the value the axis was set to at the time the valueChangedHandler fired.
-        #[method(valueDidChangeHandler)]
+        #[unsafe(method(valueDidChangeHandler))]
         #[unsafe(method_family = none)]
         unsafe fn valueDidChangeHandler(
             &self,
@@ -38,7 +38,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Setter for [`valueDidChangeHandler`][Self::valueDidChangeHandler].
-        #[method(setValueDidChangeHandler:)]
+        #[unsafe(method(setValueDidChangeHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setValueDidChangeHandler(
             &self,
@@ -61,7 +61,7 @@ extern_protocol!(
         /// As an axis is often used in a digital sense, you can rely on a value of 0
         /// meaning the axis is inside the deadzone.  Any value greater than or less than
         /// zero is not in the deadzone.
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         unsafe fn value(&self) -> c_float;
 
@@ -69,7 +69,7 @@ extern_protocol!(
         ///
         /// Defaults to
         /// `YES`for most axis inputs.
-        #[method(isAnalog)]
+        #[unsafe(method(isAnalog))]
         #[unsafe(method_family = none)]
         unsafe fn isAnalog(&self) -> bool;
 
@@ -79,7 +79,7 @@ extern_protocol!(
         ///
         /// Defaults to
         /// `NO`for most axis elements.
-        #[method(canWrap)]
+        #[unsafe(method(canWrap))]
         #[unsafe(method_family = none)]
         unsafe fn canWrap(&self) -> bool;
 
@@ -88,7 +88,7 @@ extern_protocol!(
         /// This time interval is not relative to any specific point in time.  You can
         /// subtract a previous timestamp from the current timestamp to determine the time
         /// (in seconds) between changes to the value.
-        #[method(lastValueTimestamp)]
+        #[unsafe(method(lastValueTimestamp))]
         #[unsafe(method_family = none)]
         unsafe fn lastValueTimestamp(&self) -> NSTimeInterval;
 
@@ -98,14 +98,14 @@ extern_protocol!(
         /// This should be treated as a lower bound of the event latency.  It may not
         /// include (wired or wireless) transmission latency, or latency accrued on
         /// the device before the event was transmitted to the host.
-        #[method(lastValueLatency)]
+        #[unsafe(method(lastValueLatency))]
         #[unsafe(method_family = none)]
         unsafe fn lastValueLatency(&self) -> NSTimeInterval;
 
         #[cfg(feature = "GCPhysicalInputSource")]
         /// An object describing the physical action(s) the user performs to manipulate
         /// this input.
-        #[method(sources)]
+        #[unsafe(method(sources))]
         #[unsafe(method_family = none)]
         unsafe fn sources(&self) -> Retained<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }

@@ -64,69 +64,69 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSDateIntervalFormatter {
         #[cfg(feature = "NSLocale")]
-        #[method(locale)]
+        #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
         /// Setter for [`locale`][Self::locale].
-        #[method(setLocale:)]
+        #[unsafe(method(setLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(feature = "NSCalendar")]
-        #[method(calendar)]
+        #[unsafe(method(calendar))]
         #[unsafe(method_family = none)]
         pub unsafe fn calendar(&self) -> Retained<NSCalendar>;
 
         #[cfg(feature = "NSCalendar")]
         /// Setter for [`calendar`][Self::calendar].
-        #[method(setCalendar:)]
+        #[unsafe(method(setCalendar:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
         #[cfg(feature = "NSTimeZone")]
-        #[method(timeZone)]
+        #[unsafe(method(timeZone))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeZone(&self) -> Retained<NSTimeZone>;
 
         #[cfg(feature = "NSTimeZone")]
         /// Setter for [`timeZone`][Self::timeZone].
-        #[method(setTimeZone:)]
+        #[unsafe(method(setTimeZone:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
         #[cfg(feature = "NSString")]
-        #[method(dateTemplate)]
+        #[unsafe(method(dateTemplate))]
         #[unsafe(method_family = none)]
         pub unsafe fn dateTemplate(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`dateTemplate`][Self::dateTemplate].
-        #[method(setDateTemplate:)]
+        #[unsafe(method(setDateTemplate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDateTemplate(&self, date_template: Option<&NSString>);
 
-        #[method(dateStyle)]
+        #[unsafe(method(dateStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn dateStyle(&self) -> NSDateIntervalFormatterStyle;
 
         /// Setter for [`dateStyle`][Self::dateStyle].
-        #[method(setDateStyle:)]
+        #[unsafe(method(setDateStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDateStyle(&self, date_style: NSDateIntervalFormatterStyle);
 
-        #[method(timeStyle)]
+        #[unsafe(method(timeStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeStyle(&self) -> NSDateIntervalFormatterStyle;
 
         /// Setter for [`timeStyle`][Self::timeStyle].
-        #[method(setTimeStyle:)]
+        #[unsafe(method(setTimeStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeStyle(&self, time_style: NSDateIntervalFormatterStyle);
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
-        #[method(stringFromDate:toDate:)]
+        #[unsafe(method(stringFromDate:toDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromDate_toDate(
             &self,
@@ -135,7 +135,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDateInterval", feature = "NSString"))]
-        #[method(stringFromDateInterval:)]
+        #[unsafe(method(stringFromDateInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromDateInterval(
             &self,
@@ -148,11 +148,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSDateIntervalFormatter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

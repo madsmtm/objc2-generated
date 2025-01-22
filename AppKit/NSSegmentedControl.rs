@@ -166,50 +166,50 @@ unsafe impl NSUserInterfaceItemIdentification for NSSegmentedControl {}
 extern_methods!(
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
-        #[method(segmentCount)]
+        #[unsafe(method(segmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentCount(&self) -> NSInteger;
 
         /// Setter for [`segmentCount`][Self::segmentCount].
-        #[method(setSegmentCount:)]
+        #[unsafe(method(setSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSegmentCount(&self, segment_count: NSInteger);
 
-        #[method(selectedSegment)]
+        #[unsafe(method(selectedSegment))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedSegment(&self) -> NSInteger;
 
         /// Setter for [`selectedSegment`][Self::selectedSegment].
-        #[method(setSelectedSegment:)]
+        #[unsafe(method(setSelectedSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedSegment(&self, selected_segment: NSInteger);
 
-        #[method(selectSegmentWithTag:)]
+        #[unsafe(method(selectSegmentWithTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectSegmentWithTag(&self, tag: NSInteger) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(setWidth:forSegment:)]
+        #[unsafe(method(setWidth:forSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidth_forSegment(&self, width: CGFloat, segment: NSInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(widthForSegment:)]
+        #[unsafe(method(widthForSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn widthForSegment(&self, segment: NSInteger) -> CGFloat;
 
         #[cfg(feature = "NSImage")]
-        #[method(setImage:forSegment:)]
+        #[unsafe(method(setImage:forSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImage_forSegment(&self, image: Option<&NSImage>, segment: NSInteger);
 
         #[cfg(feature = "NSImage")]
-        #[method(imageForSegment:)]
+        #[unsafe(method(imageForSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageForSegment(&self, segment: NSInteger) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSCell")]
-        #[method(setImageScaling:forSegment:)]
+        #[unsafe(method(setImageScaling:forSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageScaling_forSegment(
             &self,
@@ -218,61 +218,61 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSCell")]
-        #[method(imageScalingForSegment:)]
+        #[unsafe(method(imageScalingForSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageScalingForSegment(&self, segment: NSInteger) -> NSImageScaling;
 
-        #[method(setLabel:forSegment:)]
+        #[unsafe(method(setLabel:forSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel_forSegment(&self, label: &NSString, segment: NSInteger);
 
-        #[method(labelForSegment:)]
+        #[unsafe(method(labelForSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSMenu")]
-        #[method(setMenu:forSegment:)]
+        #[unsafe(method(setMenu:forSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMenu_forSegment(&self, menu: Option<&NSMenu>, segment: NSInteger);
 
         #[cfg(feature = "NSMenu")]
-        #[method(menuForSegment:)]
+        #[unsafe(method(menuForSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn menuForSegment(&self, segment: NSInteger) -> Option<Retained<NSMenu>>;
 
-        #[method(setSelected:forSegment:)]
+        #[unsafe(method(setSelected:forSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelected_forSegment(&self, selected: bool, segment: NSInteger);
 
-        #[method(isSelectedForSegment:)]
+        #[unsafe(method(isSelectedForSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSelectedForSegment(&self, segment: NSInteger) -> bool;
 
-        #[method(setEnabled:forSegment:)]
+        #[unsafe(method(setEnabled:forSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled_forSegment(&self, enabled: bool, segment: NSInteger);
 
-        #[method(isEnabledForSegment:)]
+        #[unsafe(method(isEnabledForSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabledForSegment(&self, segment: NSInteger) -> bool;
 
-        #[method(setToolTip:forSegment:)]
+        #[unsafe(method(setToolTip:forSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setToolTip_forSegment(&self, tool_tip: Option<&NSString>, segment: NSInteger);
 
-        #[method(toolTipForSegment:)]
+        #[unsafe(method(toolTipForSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toolTipForSegment(&self, segment: NSInteger) -> Option<Retained<NSString>>;
 
-        #[method(setTag:forSegment:)]
+        #[unsafe(method(setTag:forSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTag_forSegment(&self, tag: NSInteger, segment: NSInteger);
 
-        #[method(tagForSegment:)]
+        #[unsafe(method(tagForSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tagForSegment(&self, segment: NSInteger) -> NSInteger;
 
-        #[method(setShowsMenuIndicator:forSegment:)]
+        #[unsafe(method(setShowsMenuIndicator:forSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsMenuIndicator_forSegment(
             &self,
@@ -280,61 +280,61 @@ extern_methods!(
             segment: NSInteger,
         );
 
-        #[method(showsMenuIndicatorForSegment:)]
+        #[unsafe(method(showsMenuIndicatorForSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsMenuIndicatorForSegment(&self, segment: NSInteger) -> bool;
 
-        #[method(segmentStyle)]
+        #[unsafe(method(segmentStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentStyle(&self) -> NSSegmentStyle;
 
         /// Setter for [`segmentStyle`][Self::segmentStyle].
-        #[method(setSegmentStyle:)]
+        #[unsafe(method(setSegmentStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSegmentStyle(&self, segment_style: NSSegmentStyle);
 
-        #[method(isSpringLoaded)]
+        #[unsafe(method(isSpringLoaded))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSpringLoaded(&self) -> bool;
 
         /// Setter for [`isSpringLoaded`][Self::isSpringLoaded].
-        #[method(setSpringLoaded:)]
+        #[unsafe(method(setSpringLoaded:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpringLoaded(&self, spring_loaded: bool);
 
-        #[method(trackingMode)]
+        #[unsafe(method(trackingMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackingMode(&self) -> NSSegmentSwitchTracking;
 
         /// Setter for [`trackingMode`][Self::trackingMode].
-        #[method(setTrackingMode:)]
+        #[unsafe(method(setTrackingMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrackingMode(&self, tracking_mode: NSSegmentSwitchTracking);
 
-        #[method(doubleValueForSelectedSegment)]
+        #[unsafe(method(doubleValueForSelectedSegment))]
         #[unsafe(method_family = none)]
         pub unsafe fn doubleValueForSelectedSegment(&self) -> c_double;
 
         #[cfg(feature = "NSColor")]
-        #[method(selectedSegmentBezelColor)]
+        #[unsafe(method(selectedSegmentBezelColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedSegmentBezelColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`selectedSegmentBezelColor`][Self::selectedSegmentBezelColor].
-        #[method(setSelectedSegmentBezelColor:)]
+        #[unsafe(method(setSelectedSegmentBezelColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedSegmentBezelColor(
             &self,
             selected_segment_bezel_color: Option<&NSColor>,
         );
 
-        #[method(indexOfSelectedItem)]
+        #[unsafe(method(indexOfSelectedItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfSelectedItem(&self) -> NSInteger;
 
         #[cfg(feature = "NSText")]
-        #[method(setAlignment:forSegment:)]
+        #[unsafe(method(setAlignment:forSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlignment_forSegment(
             &self,
@@ -343,21 +343,21 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSText")]
-        #[method(alignmentForSegment:)]
+        #[unsafe(method(alignmentForSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignmentForSegment(&self, segment: NSInteger) -> NSTextAlignment;
 
-        #[method(segmentDistribution)]
+        #[unsafe(method(segmentDistribution))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentDistribution(&self) -> NSSegmentDistribution;
 
         /// Setter for [`segmentDistribution`][Self::segmentDistribution].
-        #[method(setSegmentDistribution:)]
+        #[unsafe(method(setSegmentDistribution:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSegmentDistribution(&self, segment_distribution: NSSegmentDistribution);
 
         #[cfg(feature = "NSUserInterfaceCompression")]
-        #[method(compressWithPrioritizedCompressionOptions:)]
+        #[unsafe(method(compressWithPrioritizedCompressionOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compressWithPrioritizedCompressionOptions(
             &self,
@@ -365,7 +365,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSUserInterfaceCompression")]
-        #[method(minimumSizeWithPrioritizedCompressionOptions:)]
+        #[unsafe(method(minimumSizeWithPrioritizedCompressionOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,
@@ -373,7 +373,7 @@ extern_methods!(
         ) -> NSSize;
 
         #[cfg(feature = "NSUserInterfaceCompression")]
-        #[method(activeCompressionOptions)]
+        #[unsafe(method(activeCompressionOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn activeCompressionOptions(
             &self,
@@ -385,11 +385,11 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -402,7 +402,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -412,7 +412,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -433,7 +433,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized segmented control.
-        #[method(segmentedControlWithLabels:trackingMode:target:action:)]
+        #[unsafe(method(segmentedControlWithLabels:trackingMode:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentedControlWithLabels_trackingMode_target_action(
             labels: &NSArray<NSString>,
@@ -455,7 +455,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized segmented control.
-        #[method(segmentedControlWithImages:trackingMode:target:action:)]
+        #[unsafe(method(segmentedControlWithImages:trackingMode:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentedControlWithImages_trackingMode_target_action(
             images: &NSArray<NSImage>,

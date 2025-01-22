@@ -28,11 +28,11 @@ unsafe impl NSObjectProtocol for AVCaptureMetadataOutput {}
 extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureMetadataOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -40,7 +40,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an object conforming to the AVCaptureMetadataOutputObjectsDelegate protocol that will receive metadata objects after they are captured. The delegate is set using the setMetadataObjectsDelegate:queue: method.
-        #[method(metadataObjectsDelegate)]
+        #[unsafe(method(metadataObjectsDelegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataObjectsDelegate(
             &self,
@@ -51,7 +51,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of NSStrings corresponding to AVMetadataObjectType strings defined in AVMetadataObject.h -- one for each metadata object type supported by the receiver. Available metadata object types are dependent on the capabilities of the AVCaptureInputPort to which this receiver's AVCaptureConnection is connected. Clients may specify the types of objects they would like to process by calling setMetadataObjectTypes:. This property is key-value observable.
-        #[method(availableMetadataObjectTypes)]
+        #[unsafe(method(availableMetadataObjectTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableMetadataObjectTypes(
             &self,
@@ -62,13 +62,13 @@ extern_methods!(
         ///
         ///
         /// AVCaptureMetadataOutput may detect and emit multiple metadata object types. For apps linked before iOS 7.0, the receiver defaults to capturing face metadata objects if supported (see -availableMetadataObjectTypes). For apps linked on or after iOS 7.0, the receiver captures no metadata objects by default. -setMetadataObjectTypes: throws an NSInvalidArgumentException if any elements in the array are not present in the -availableMetadataObjectTypes array.
-        #[method(metadataObjectTypes)]
+        #[unsafe(method(metadataObjectTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataObjectTypes(&self) -> Retained<NSArray<AVMetadataObjectType>>;
 
         #[cfg(feature = "AVMetadataObject")]
         /// Setter for [`metadataObjectTypes`][Self::metadataObjectTypes].
-        #[method(setMetadataObjectTypes:)]
+        #[unsafe(method(setMetadataObjectTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadataObjectTypes(
             &self,
@@ -82,13 +82,13 @@ extern_methods!(
         /// The value of this property is a CGRect that determines the receiver's rectangle of interest for each frame of video. The rectangle's origin is top left and is relative to the coordinate space of the device providing the metadata. Specifying a rectOfInterest may improve detection performance for certain types of metadata. The default value of this property is the value CGRectMake(0, 0, 1, 1). Metadata objects whose bounds do not intersect with the rectOfInterest will not be returned.
         ///
         /// As of iOS 13, this property can be set without requiring a lengthy rebuild of the session in which video preview is disrupted.
-        #[method(rectOfInterest)]
+        #[unsafe(method(rectOfInterest))]
         #[unsafe(method_family = none)]
         pub unsafe fn rectOfInterest(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`rectOfInterest`][Self::rectOfInterest].
-        #[method(setRectOfInterest:)]
+        #[unsafe(method(setRectOfInterest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRectOfInterest(&self, rect_of_interest: CGRect);
     }
@@ -118,7 +118,7 @@ extern_protocol!(
         ///
         /// Clients that need to reference metadata objects outside of the scope of this method must retain them and then release them when they are finished with them.
         #[optional]
-        #[method(captureOutput:didOutputMetadataObjects:fromConnection:)]
+        #[unsafe(method(captureOutput:didOutputMetadataObjects:fromConnection:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_didOutputMetadataObjects_fromConnection(
             &self,

@@ -45,11 +45,11 @@ unsafe impl NSObjectProtocol for VZEFIVariableStore {}
 
 extern_methods!(
     unsafe impl VZEFIVariableStore {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -58,7 +58,7 @@ extern_methods!(
         /// Parameter `URL`: The URL of the variable store on the local file system.
         ///
         /// To create a new variable store, use -[VZEFIVariableStore initCreatingVariableStoreAtURL:options:error].
-        #[method(initWithURL:)]
+        #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
@@ -73,7 +73,7 @@ extern_methods!(
         /// Returns: A newly initialized VZEFIVariableStore on success. If an error was encountered returns
         /// `nil,`and
         /// `error`contains the error.
-        #[method(initCreatingVariableStoreAtURL:options:error:_)]
+        #[unsafe(method(initCreatingVariableStoreAtURL:options:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initCreatingVariableStoreAtURL_options_error(
             this: Allocated<Self>,
@@ -82,7 +82,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// The URL of the variable store on the local file system.
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
     }

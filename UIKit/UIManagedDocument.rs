@@ -30,42 +30,42 @@ unsafe impl NSProgressReporting for UIManagedDocument {}
 extern_methods!(
     #[cfg(feature = "UIDocument")]
     unsafe impl UIManagedDocument {
-        #[method(persistentStoreName)]
+        #[unsafe(method(persistentStoreName))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentStoreName(mtm: MainThreadMarker) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-data")]
-        #[method(managedObjectContext)]
+        #[unsafe(method(managedObjectContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn managedObjectContext(&self) -> Retained<NSManagedObjectContext>;
 
         #[cfg(feature = "objc2-core-data")]
-        #[method(managedObjectModel)]
+        #[unsafe(method(managedObjectModel))]
         #[unsafe(method_family = none)]
         pub unsafe fn managedObjectModel(&self) -> Retained<NSManagedObjectModel>;
 
-        #[method(persistentStoreOptions)]
+        #[unsafe(method(persistentStoreOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentStoreOptions(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`persistentStoreOptions`][Self::persistentStoreOptions].
-        #[method(setPersistentStoreOptions:)]
+        #[unsafe(method(setPersistentStoreOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPersistentStoreOptions(
             &self,
             persistent_store_options: Option<&NSDictionary>,
         );
 
-        #[method(modelConfiguration)]
+        #[unsafe(method(modelConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelConfiguration(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`modelConfiguration`][Self::modelConfiguration].
-        #[method(setModelConfiguration:)]
+        #[unsafe(method(setModelConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModelConfiguration(&self, model_configuration: Option<&NSString>);
 
-        #[method(configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:_)]
+        #[unsafe(method(configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurePersistentStoreCoordinatorForURL_ofType_modelConfiguration_storeOptions_error(
             &self,
@@ -75,28 +75,28 @@ extern_methods!(
             store_options: Option<&NSDictionary>,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method(persistentStoreTypeForFileType:)]
+        #[unsafe(method(persistentStoreTypeForFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentStoreTypeForFileType(
             &self,
             file_type: &NSString,
         ) -> Retained<NSString>;
 
-        #[method(readAdditionalContentFromURL:error:_)]
+        #[unsafe(method(readAdditionalContentFromURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn readAdditionalContentFromURL_error(
             &self,
             absolute_url: &NSURL,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method(additionalContentForURL:error:_)]
+        #[unsafe(method(additionalContentForURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn additionalContentForURL_error(
             &self,
             absolute_url: &NSURL,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
-        #[method(writeAdditionalContent:toURL:originalContentsURL:error:_)]
+        #[unsafe(method(writeAdditionalContent:toURL:originalContentsURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeAdditionalContent_toURL_originalContentsURL_error(
             &self,
@@ -111,7 +111,7 @@ extern_methods!(
     /// Methods declared on superclass `UIDocument`
     #[cfg(feature = "UIDocument")]
     unsafe impl UIManagedDocument {
-        #[method(initWithFileURL:)]
+        #[unsafe(method(initWithFileURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFileURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
     }
@@ -121,11 +121,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIDocument")]
     unsafe impl UIManagedDocument {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

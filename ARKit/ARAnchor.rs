@@ -21,7 +21,7 @@ extern_protocol!(
         /// This method must be implemented for any ARAnchor subclasses that adds properties.
         ///
         /// Parameter `anchor`: The anchor from which to copy values.
-        #[method(initWithAnchor:)]
+        #[unsafe(method(initWithAnchor:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithAnchor(this: Allocated<Self>, anchor: &ARAnchor) -> Retained<Self>;
     }
@@ -38,7 +38,7 @@ extern_protocol!(
         ///
         /// The isTracked value is used to determine the anchor transform’s validity. When the object being tracked is no longer detected in the
         /// camera image, its anchor will return NO for isTracked.
-        #[method(isTracked)]
+        #[unsafe(method(isTracked))]
         #[unsafe(method_family = none)]
         unsafe fn isTracked(&self) -> bool;
     }
@@ -87,13 +87,13 @@ extern_methods!(
     unsafe impl ARAnchor {
         #[cfg(feature = "objc2-foundation")]
         /// Unique identifier of the anchor.
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "objc2-foundation")]
         /// An optional name used to associate with the anchor.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
@@ -102,16 +102,16 @@ extern_methods!(
         ///
         ///
         /// The session identifier will be assigned to anchor when added to the session.
-        #[method(sessionIdentifier)]
+        #[unsafe(method(sessionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionIdentifier(&self) -> Option<Retained<NSUUID>>;
 
         /// Unavailable
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

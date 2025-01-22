@@ -14,7 +14,7 @@ extern_protocol!(
     {
         #[cfg(feature = "ASAuthorization")]
         #[optional]
-        #[method(authorizationController:didCompleteWithAuthorization:)]
+        #[unsafe(method(authorizationController:didCompleteWithAuthorization:))]
         #[unsafe(method_family = none)]
         unsafe fn authorizationController_didCompleteWithAuthorization(
             &self,
@@ -23,7 +23,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(authorizationController:didCompleteWithError:)]
+        #[unsafe(method(authorizationController:didCompleteWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn authorizationController_didCompleteWithError(
             &self,
@@ -33,7 +33,7 @@ extern_protocol!(
 
         #[cfg(feature = "ASAuthorizationCustomMethod")]
         #[optional]
-        #[method(authorizationController:didCompleteWithCustomMethod:)]
+        #[unsafe(method(authorizationController:didCompleteWithCustomMethod:))]
         #[unsafe(method_family = none)]
         unsafe fn authorizationController_didCompleteWithCustomMethod(
             &self,
@@ -51,7 +51,7 @@ extern_protocol!(
         #[cfg(feature = "ASFoundation")]
         #[cfg(target_os = "macos")]
         /// Return a view anchor that is most appropriate for athorization UI to be presented over.  This view will be used as a hint if a credential provider requires user interaction.
-        #[method(presentationAnchorForAuthorizationController:)]
+        #[unsafe(method(presentationAnchorForAuthorizationController:))]
         #[unsafe(method_family = none)]
         unsafe fn presentationAnchorForAuthorizationController(
             &self,
@@ -94,13 +94,13 @@ extern_methods!(
     unsafe impl ASAuthorizationController {
         #[cfg(feature = "ASAuthorizationRequest")]
         /// Authorization requests that are being serviced by this controller
-        #[method(authorizationRequests)]
+        #[unsafe(method(authorizationRequests))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationRequests(&self) -> Retained<NSArray<ASAuthorizationRequest>>;
 
         /// This delegate will be invoked upon completion of the authorization indicating success or failure.
         /// Delegate is required to receive the results of authorization.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -109,7 +109,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -117,7 +117,7 @@ extern_methods!(
         );
 
         /// This delegate will be invoked upon needing a presentation context to display authorization UI.
-        #[method(presentationContextProvider)]
+        #[unsafe(method(presentationContextProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentationContextProvider(
             &self,
@@ -128,7 +128,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`presentationContextProvider`][Self::presentationContextProvider].
-        #[method(setPresentationContextProvider:)]
+        #[unsafe(method(setPresentationContextProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPresentationContextProvider(
             &self,
@@ -143,7 +143,7 @@ extern_methods!(
         /// If the user selects one of these methods, instead of attempting to secure an authorization for the requests, the
         /// controller will call authorizationController:didCompleteWithCustomMethod: with the selected method, allowing
         /// the client to perform the requested authorization.
-        #[method(customAuthorizationMethods)]
+        #[unsafe(method(customAuthorizationMethods))]
         #[unsafe(method_family = none)]
         pub unsafe fn customAuthorizationMethods(
             &self,
@@ -151,7 +151,7 @@ extern_methods!(
 
         #[cfg(feature = "ASAuthorizationCustomMethod")]
         /// Setter for [`customAuthorizationMethods`][Self::customAuthorizationMethods].
-        #[method(setCustomAuthorizationMethods:)]
+        #[unsafe(method(setCustomAuthorizationMethods:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomAuthorizationMethods(
             &self,
@@ -163,7 +163,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `authorizationRequests`: At least one request should be provided. Requests of same type maybe honored in first in first out order
-        #[method(initWithAuthorizationRequests:)]
+        #[unsafe(method(initWithAuthorizationRequests:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAuthorizationRequests(
             this: Allocated<Self>,
@@ -176,7 +176,7 @@ extern_methods!(
         /// to provide it.
         ///
         /// The instance will remain retained until the flow is either completed or canceled, and the delegate callback is made.
-        #[method(performRequests)]
+        #[unsafe(method(performRequests))]
         #[unsafe(method_family = none)]
         pub unsafe fn performRequests(&self);
 
@@ -185,7 +185,7 @@ extern_methods!(
         /// or failure.
         ///
         /// The instance will remain retained until the flow is either completed or canceled, and the delegate callback is made.
-        #[method(performAutoFillAssistedRequests)]
+        #[unsafe(method(performAutoFillAssistedRequests))]
         #[unsafe(method_family = none)]
         pub unsafe fn performAutoFillAssistedRequests(&self);
 
@@ -197,7 +197,7 @@ extern_methods!(
         /// Calling this method with no options is the same as calling
         /// `performRequests.`The instance will remain retained until
         /// the flow is either completed or canceled, and the delegate callback is made.
-        #[method(performRequestsWithOptions:)]
+        #[unsafe(method(performRequestsWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performRequestsWithOptions(
             &self,
@@ -206,15 +206,15 @@ extern_methods!(
 
         /// Cancel the running authorization flows, if there are any. If a flow is canceled, the delegate callback will
         /// be made indicating the cancel.
-        #[method(cancel)]
+        #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

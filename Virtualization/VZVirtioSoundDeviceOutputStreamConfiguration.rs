@@ -34,7 +34,7 @@ extern_methods!(
     #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
     unsafe impl VZVirtioSoundDeviceOutputStreamConfiguration {
         /// Initialize the output stream configuration.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -44,13 +44,13 @@ extern_methods!(
         /// Not specifying a Sink will have a default handler that swallows the audio.
         ///
         /// See: VZAudioOutputStreamSink
-        #[method(sink)]
+        #[unsafe(method(sink))]
         #[unsafe(method_family = none)]
         pub unsafe fn sink(&self) -> Option<Retained<VZAudioOutputStreamSink>>;
 
         #[cfg(feature = "VZAudioOutputStreamSink")]
         /// Setter for [`sink`][Self::sink].
-        #[method(setSink:)]
+        #[unsafe(method(setSink:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSink(&self, sink: Option<&VZAudioOutputStreamSink>);
     }
@@ -60,7 +60,7 @@ extern_methods!(
     /// Methods declared on superclass `VZVirtioSoundDeviceStreamConfiguration`
     #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
     unsafe impl VZVirtioSoundDeviceOutputStreamConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

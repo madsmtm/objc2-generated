@@ -32,47 +32,47 @@ unsafe impl NSObjectProtocol for NSDraggingImageComponent {}
 
 extern_methods!(
     unsafe impl NSDraggingImageComponent {
-        #[method(draggingImageComponentWithKey:)]
+        #[unsafe(method(draggingImageComponentWithKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn draggingImageComponentWithKey(
             key: &NSDraggingImageComponentKey,
         ) -> Retained<NSDraggingImageComponent>;
 
-        #[method(initWithKey:)]
+        #[unsafe(method(initWithKey:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKey(
             this: Allocated<Self>,
             key: &NSDraggingImageComponentKey,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(key)]
+        #[unsafe(method(key))]
         #[unsafe(method_family = none)]
         pub unsafe fn key(&self) -> Retained<NSDraggingImageComponentKey>;
 
         /// Setter for [`key`][Self::key].
-        #[method(setKey:)]
+        #[unsafe(method(setKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKey(&self, key: &NSDraggingImageComponentKey);
 
-        #[method(contents)]
+        #[unsafe(method(contents))]
         #[unsafe(method_family = none)]
         pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`contents`][Self::contents].
-        #[method(setContents:)]
+        #[unsafe(method(setContents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
 
-        #[method(frame)]
+        #[unsafe(method(frame))]
         #[unsafe(method_family = none)]
         pub unsafe fn frame(&self) -> NSRect;
 
         /// Setter for [`frame`][Self::frame].
-        #[method(setFrame:)]
+        #[unsafe(method(setFrame:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFrame(&self, frame: NSRect);
     }
@@ -81,7 +81,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDraggingImageComponent {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -99,32 +99,32 @@ unsafe impl NSObjectProtocol for NSDraggingItem {}
 extern_methods!(
     unsafe impl NSDraggingItem {
         #[cfg(feature = "NSPasteboard")]
-        #[method(initWithPasteboardWriter:)]
+        #[unsafe(method(initWithPasteboardWriter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPasteboardWriter(
             this: Allocated<Self>,
             pasteboard_writer: &ProtocolObject<dyn NSPasteboardWriting>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(item)]
+        #[unsafe(method(item))]
         #[unsafe(method_family = none)]
         pub unsafe fn item(&self) -> Retained<AnyObject>;
 
-        #[method(draggingFrame)]
+        #[unsafe(method(draggingFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn draggingFrame(&self) -> NSRect;
 
         /// Setter for [`draggingFrame`][Self::draggingFrame].
-        #[method(setDraggingFrame:)]
+        #[unsafe(method(setDraggingFrame:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDraggingFrame(&self, dragging_frame: NSRect);
 
         #[cfg(feature = "block2")]
-        #[method(imageComponentsProvider)]
+        #[unsafe(method(imageComponentsProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageComponentsProvider(
             &self,
@@ -132,7 +132,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`imageComponentsProvider`][Self::imageComponentsProvider].
-        #[method(setImageComponentsProvider:)]
+        #[unsafe(method(setImageComponentsProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageComponentsProvider(
             &self,
@@ -141,11 +141,11 @@ extern_methods!(
             >,
         );
 
-        #[method(setDraggingFrame:contents:)]
+        #[unsafe(method(setDraggingFrame:contents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDraggingFrame_contents(&self, frame: NSRect, contents: Option<&AnyObject>);
 
-        #[method(imageComponents)]
+        #[unsafe(method(imageComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageComponents(&self)
             -> Option<Retained<NSArray<NSDraggingImageComponent>>>;
@@ -155,7 +155,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDraggingItem {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

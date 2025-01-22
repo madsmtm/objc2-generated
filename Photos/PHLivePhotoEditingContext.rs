@@ -39,57 +39,57 @@ extern_methods!(
         #[cfg(feature = "PHContentEditingInput")]
         /// Initializer from the specified live photo input
         /// Return nil if the specified input is not for a live photo
-        #[method(initWithLivePhotoEditingInput:)]
+        #[unsafe(method(initWithLivePhotoEditingInput:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLivePhotoEditingInput(
             this: Allocated<Self>,
             live_photo_input: &PHContentEditingInput,
         ) -> Option<Retained<Self>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-image")]
         /// The original full-size image from the input live photo
-        #[method(fullSizeImage)]
+        #[unsafe(method(fullSizeImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn fullSizeImage(&self) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-media")]
         /// The duration of the live photo
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// The time of the still image within the live photo
-        #[method(photoTime)]
+        #[unsafe(method(photoTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoTime(&self) -> CMTime;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
         /// A block that can be set to process each frame of the live photo
         /// Note that the context uses a copy of the processor block during processing
-        #[method(frameProcessor)]
+        #[unsafe(method(frameProcessor))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameProcessor(&self) -> PHLivePhotoFrameProcessingBlock;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
         /// Setter for [`frameProcessor`][Self::frameProcessor].
-        #[method(setFrameProcessor:)]
+        #[unsafe(method(setFrameProcessor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFrameProcessor(&self, frame_processor: PHLivePhotoFrameProcessingBlock);
 
         /// Specify the audio volume of the edited live photo
         /// Must be between 0.0 and 1.0
         /// Default to 1.0
-        #[method(audioVolume)]
+        #[unsafe(method(audioVolume))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioVolume(&self) -> c_float;
 
         /// Setter for [`audioVolume`][Self::audioVolume].
-        #[method(setAudioVolume:)]
+        #[unsafe(method(setAudioVolume:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioVolume(&self, audio_volume: c_float);
 
@@ -100,7 +100,7 @@ extern_methods!(
         ))]
         /// Asynchronously generate a new live photo suitable for playback in a PHLivePhotoView of the specified target size
         /// The options dictionary can contain additional options, see below
-        #[method(prepareLivePhotoForPlaybackWithTargetSize:options:completionHandler:)]
+        #[unsafe(method(prepareLivePhotoForPlaybackWithTargetSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareLivePhotoForPlaybackWithTargetSize_options_completionHandler(
             &self,
@@ -112,7 +112,7 @@ extern_methods!(
         #[cfg(all(feature = "PHContentEditingOutput", feature = "block2"))]
         /// Asynchronously process and save the edited live photo to the specified content editing output
         /// Options dictionary should be nil, reserved for future expansion
-        #[method(saveLivePhotoToOutput:options:completionHandler:)]
+        #[unsafe(method(saveLivePhotoToOutput:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveLivePhotoToOutput_options_completionHandler(
             &self,
@@ -124,7 +124,7 @@ extern_methods!(
         /// Cancel the current asynchronous operation
         /// This is implicitly called whenever prepare or save is called
         /// A canceled operation will call its completion handler with an appropriate error code
-        #[method(cancel)]
+        #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
     }
@@ -133,7 +133,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHLivePhotoEditingContext {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -170,24 +170,24 @@ extern_protocol!(
     pub unsafe trait PHLivePhotoFrame {
         #[cfg(feature = "objc2-core-image")]
         /// Input image for the frame
-        #[method(image)]
+        #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         unsafe fn image(&self) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-media")]
         /// The time of the frame relative to the beginning of the live photo
-        #[method(time)]
+        #[unsafe(method(time))]
         #[unsafe(method_family = none)]
         unsafe fn time(&self) -> CMTime;
 
         /// The type of frame
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         unsafe fn r#type(&self) -> PHLivePhotoFrameType;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The scale of the frame relative to the full-size image
-        #[method(renderScale)]
+        #[unsafe(method(renderScale))]
         #[unsafe(method_family = none)]
         unsafe fn renderScale(&self) -> CGFloat;
     }

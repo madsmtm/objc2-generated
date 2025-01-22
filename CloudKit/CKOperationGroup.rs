@@ -70,11 +70,11 @@ unsafe impl NSSecureCoding for CKOperationGroup {}
 
 extern_methods!(
     unsafe impl CKOperationGroup {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
@@ -83,7 +83,7 @@ extern_methods!(
         ///
         /// This value is chosen by the system, and will be unique to this instance of a
         /// `CKOperationGroup.`This identifier will be sent to Apple's servers, and can be used to identify any server-side logging associated with this operation group.
-        #[method(operationGroupID)]
+        #[unsafe(method(operationGroupID))]
         #[unsafe(method_family = none)]
         pub unsafe fn operationGroupID(&self) -> Retained<NSString>;
 
@@ -92,13 +92,13 @@ extern_methods!(
         ///
         ///
         /// If an operation associated with this operation group has its own configuration, then any explicitly-set properties in that operation's configuration will override these default configuration values.  See the example in CKOperation.h
-        #[method(defaultConfiguration)]
+        #[unsafe(method(defaultConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultConfiguration(&self) -> Retained<CKOperationConfiguration>;
 
         #[cfg(feature = "CKOperation")]
         /// Setter for [`defaultConfiguration`][Self::defaultConfiguration].
-        #[method(setDefaultConfiguration:)]
+        #[unsafe(method(setDefaultConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultConfiguration(
             &self,
@@ -114,12 +114,12 @@ extern_methods!(
         /// "Saving User-Entered Record"
         /// This string will be sent to Apple servers to provide aggregate reporting for
         /// `CKOperationGroup`s and therefore must not include personally identifying data.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
@@ -127,12 +127,12 @@ extern_methods!(
         ///
         ///
         /// `quantity`is intended to show the app-specific count of items contained within the operation group.  It is your job to assign meaning to this value.  For example, if an app created an operation group to save 3 calendar events the user had created, the app might want to set this to "3".  This value is not shown to your users, it's meant to aid your development and debugging.  This value will be reported in the CloudKit Dashboard's log entries for all operations associated with this operation group.
-        #[method(quantity)]
+        #[unsafe(method(quantity))]
         #[unsafe(method_family = none)]
         pub unsafe fn quantity(&self) -> NSUInteger;
 
         /// Setter for [`quantity`][Self::quantity].
-        #[method(setQuantity:)]
+        #[unsafe(method(setQuantity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQuantity(&self, quantity: NSUInteger);
 
@@ -147,12 +147,12 @@ extern_methods!(
         /// `CKOperation`s associated with this operation group may be delayed until network conditions are good.
         /// Defaults to
         /// `CKOperationGroupTransferSizeUnknown`
-        #[method(expectedSendSize)]
+        #[unsafe(method(expectedSendSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectedSendSize(&self) -> CKOperationGroupTransferSize;
 
         /// Setter for [`expectedSendSize`][Self::expectedSendSize].
-        #[method(setExpectedSendSize:)]
+        #[unsafe(method(setExpectedSendSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExpectedSendSize(&self, expected_send_size: CKOperationGroupTransferSize);
 
@@ -167,12 +167,12 @@ extern_methods!(
         /// `CKOperation`s associated with this operation group may be delayed until network conditions are good.
         /// Defaults to
         /// `CKOperationGroupTransferSizeUnknown`
-        #[method(expectedReceiveSize)]
+        #[unsafe(method(expectedReceiveSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectedReceiveSize(&self) -> CKOperationGroupTransferSize;
 
         /// Setter for [`expectedReceiveSize`][Self::expectedReceiveSize].
-        #[method(setExpectedReceiveSize:)]
+        #[unsafe(method(setExpectedReceiveSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExpectedReceiveSize(
             &self,
@@ -184,7 +184,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKOperationGroup {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

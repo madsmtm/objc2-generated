@@ -83,13 +83,13 @@ extern_methods!(
         #[cfg(all(feature = "NSSplitView", feature = "NSView"))]
         /// The split view managed by the SplitViewController. This can be used to customize view properties such as the dividerStyle, vertical, and autosaveName. It is not guaranteed to be the same view as the receivers 'view' property. The default created splitView is vertical with a dividerStyle of
         /// `NSSplitViewDividerStyleThin.`To provide a custom NSSplitView, set the splitView property anytime before self.viewLoaded is YES.
-        #[method(splitView)]
+        #[unsafe(method(splitView))]
         #[unsafe(method_family = none)]
         pub unsafe fn splitView(&self) -> Retained<NSSplitView>;
 
         #[cfg(all(feature = "NSSplitView", feature = "NSView"))]
         /// Setter for [`splitView`][Self::splitView].
-        #[method(setSplitView:)]
+        #[unsafe(method(setSplitView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSplitView(&self, split_view: &NSSplitView);
 
@@ -97,13 +97,13 @@ extern_methods!(
         /// The array of SplitViewItems that correspond to the current child view controllers. After a child view controller is added to the receiving splitViewController, a NSSplitViewItem with the default values will be created for it. Once the child is removed, its corresponding splitViewItem will be removed from the splitViewItems array. Setting this will call through to
         /// `-insertSplitViewItem:atIndex`and
         /// `-removeSplitViewItem:`for items that are new or need removal.
-        #[method(splitViewItems)]
+        #[unsafe(method(splitViewItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn splitViewItems(&self) -> Retained<NSArray<NSSplitViewItem>>;
 
         #[cfg(feature = "NSSplitViewItem")]
         /// Setter for [`splitViewItems`][Self::splitViewItems].
-        #[method(setSplitViewItems:)]
+        #[unsafe(method(setSplitViewItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSplitViewItems(&self, split_view_items: &NSArray<NSSplitViewItem>);
 
@@ -111,7 +111,7 @@ extern_methods!(
         /// Adds a SplitViewItem to the end of the SplitViewController. If the receiver's view is loaded and the SplitViewItem is not collapsed, the SplitViewItem's viewController's view will be loaded and added to the splitView. This calls through to -insertSplitViewItem:atIndex:.
         ///
         /// Parameter `splitViewItem`: The SplitViewItem to add. It must have a viewController set by the time it is added or an exception will be thrown. An exception will also be thrown if splitViewItem is nil.
-        #[method(addSplitViewItem:)]
+        #[unsafe(method(addSplitViewItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSplitViewItem(&self, split_view_item: &NSSplitViewItem);
 
@@ -128,7 +128,7 @@ extern_methods!(
         /// 0 or
         /// `index`>
         /// `splitViewItems.count`
-        #[method(insertSplitViewItem:atIndex:)]
+        #[unsafe(method(insertSplitViewItem:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertSplitViewItem_atIndex(
             &self,
@@ -143,7 +143,7 @@ extern_methods!(
         ///
         /// Parameter `splitViewItem`: The SplitViewItem to remove. An exception will be thrown if
         /// `splitViewItem`is not in the SplitViewController or if it is nil.
-        #[method(removeSplitViewItem:)]
+        #[unsafe(method(removeSplitViewItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeSplitViewItem(&self, split_view_item: &NSSplitViewItem);
 
@@ -154,7 +154,7 @@ extern_methods!(
         ///
         /// Returns: The corresponding SplitViewItem. Returns nil if
         /// `viewController`is not a child of the SplitViewController.
-        #[method(splitViewItemForViewController:)]
+        #[unsafe(method(splitViewItemForViewController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn splitViewItemForViewController(
             &self,
@@ -166,13 +166,13 @@ extern_methods!(
         /// Auto-collapsed sidebars will automatically uncollapse if the thickness is increased back to or past the minimum thickness.
         /// Defaults to
         /// `NSSplitViewControllerAutomaticDimension,`which will use the effective minimum sizes of the split view item views as described by constraints in the window to determine the minimum size for inline sidebars. Once constraints establishing the minimum size can't be satisfied for all non-collapsed split panes, all sidebars will auto-collapse. When fullscreen, if a sidebar tries to uncollapse in this state, it will overlay.
-        #[method(minimumThicknessForInlineSidebars)]
+        #[unsafe(method(minimumThicknessForInlineSidebars))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumThicknessForInlineSidebars(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumThicknessForInlineSidebars`][Self::minimumThicknessForInlineSidebars].
-        #[method(setMinimumThicknessForInlineSidebars:)]
+        #[unsafe(method(setMinimumThicknessForInlineSidebars:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumThicknessForInlineSidebars(
             &self,
@@ -181,19 +181,19 @@ extern_methods!(
 
         #[cfg(feature = "NSUserInterfaceValidation")]
         /// Validates items with an action of `toggleSidebar:` to reflect the status of the sidebar item contained within the receiver.
-        #[method(validateUserInterfaceItem:)]
+        #[unsafe(method(validateUserInterfaceItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateUserInterfaceItem(
             &self,
             item: &ProtocolObject<dyn NSValidatedUserInterfaceItem>,
         ) -> bool;
 
-        #[method(viewDidLoad)]
+        #[unsafe(method(viewDidLoad))]
         #[unsafe(method_family = none)]
         pub unsafe fn viewDidLoad(&self);
 
         #[cfg(all(feature = "NSSplitView", feature = "NSView"))]
-        #[method(splitView:canCollapseSubview:)]
+        #[unsafe(method(splitView:canCollapseSubview:))]
         #[unsafe(method_family = none)]
         pub unsafe fn splitView_canCollapseSubview(
             &self,
@@ -203,7 +203,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSSplitView", feature = "NSView"))]
         #[deprecated = "NSSplitView no longer supports collapsing sections via double-click. This delegate method is never called, and NSSplitViewController's implementation always returns NO."]
-        #[method(splitView:shouldCollapseSubview:forDoubleClickOnDividerAtIndex:)]
+        #[unsafe(method(splitView:shouldCollapseSubview:forDoubleClickOnDividerAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex(
             &self,
@@ -213,7 +213,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "NSSplitView", feature = "NSView"))]
-        #[method(splitView:shouldHideDividerAtIndex:)]
+        #[unsafe(method(splitView:shouldHideDividerAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn splitView_shouldHideDividerAtIndex(
             &self,
@@ -222,7 +222,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "NSSplitView", feature = "NSView"))]
-        #[method(splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:)]
+        #[unsafe(method(splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn splitView_effectiveRect_forDrawnRect_ofDividerAtIndex(
             &self,
@@ -233,7 +233,7 @@ extern_methods!(
         ) -> NSRect;
 
         #[cfg(all(feature = "NSSplitView", feature = "NSView"))]
-        #[method(splitView:additionalEffectiveRectOfDividerAtIndex:)]
+        #[unsafe(method(splitView:additionalEffectiveRectOfDividerAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn splitView_additionalEffectiveRectOfDividerAtIndex(
             &self,
@@ -248,7 +248,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSSplitViewController {
         #[cfg(feature = "NSNib")]
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -256,7 +256,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -269,7 +269,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSSplitViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -279,7 +279,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSSplitViewController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -290,12 +290,12 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSSplitViewController {
         /// Animatedly collapses or uncollapses the first sidebar split view item in the receiver. Does nothing if the receiver does not contain any sidebars.
-        #[method(toggleSidebar:)]
+        #[unsafe(method(toggleSidebar:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleSidebar(&self, sender: Option<&AnyObject>);
 
         /// Animatedly collapses or uncollapses the first inspector split view item in the receiver. Does nothing if the receiver does not contain any inspectors.
-        #[method(toggleInspector:)]
+        #[unsafe(method(toggleInspector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleInspector(&self, sender: Option<&AnyObject>);
     }

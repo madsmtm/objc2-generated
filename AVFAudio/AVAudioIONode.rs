@@ -161,7 +161,7 @@ extern_methods!(
         /// See
         /// <CoreAudio
         /// /AudioHardwareBase.h>.
-        #[method(presentationLatency)]
+        #[unsafe(method(presentationLatency))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentationLatency(&self) -> NSTimeInterval;
 
@@ -170,12 +170,12 @@ extern_methods!(
         /// The node's underlying AudioUnit, if any.
         ///
         /// This is only necessary for certain advanced usages.
-        #[method(audioUnit)]
+        #[unsafe(method(audioUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioUnit(&self) -> AudioUnit;
 
         /// Indicates whether voice processing is enabled.
-        #[method(isVoiceProcessingEnabled)]
+        #[unsafe(method(isVoiceProcessingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVoiceProcessingEnabled(&self) -> bool;
 
@@ -199,7 +199,7 @@ extern_methods!(
         ///
         /// The output format of the input node and the input format of the output node have to be
         /// the same and they can only be changed when the engine is in a stopped state.
-        #[method(setVoiceProcessingEnabled:error:_)]
+        #[unsafe(method(setVoiceProcessingEnabled:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVoiceProcessingEnabled_error(
             &self,
@@ -212,11 +212,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioIONode {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -265,7 +265,7 @@ unsafe impl NSObjectProtocol for AVAudioInputNode {}
 extern_methods!(
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioInputNode {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -288,7 +288,7 @@ extern_methods!(
         /// manual rendering mode.
         /// Switching the engine to render to/from an audio device invalidates any previously set block,
         /// and makes this method ineffective.
-        #[method(setManualRenderingInputPCMFormat:inputBlock:)]
+        #[unsafe(method(setManualRenderingInputPCMFormat:inputBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setManualRenderingInputPCMFormat_inputBlock(
             &self,
@@ -299,12 +299,12 @@ extern_methods!(
         /// Bypass all processing for microphone uplink done by the voice processing unit.
         ///
         /// Querying this property when voice processing is disabled will return false.
-        #[method(isVoiceProcessingBypassed)]
+        #[unsafe(method(isVoiceProcessingBypassed))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVoiceProcessingBypassed(&self) -> bool;
 
         /// Setter for [`isVoiceProcessingBypassed`][Self::isVoiceProcessingBypassed].
-        #[method(setVoiceProcessingBypassed:)]
+        #[unsafe(method(setVoiceProcessingBypassed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVoiceProcessingBypassed(&self, voice_processing_bypassed: bool);
 
@@ -312,24 +312,24 @@ extern_methods!(
         /// signal. Enabled by default.
         ///
         /// Querying this property when voice processing is disabled will return false.
-        #[method(isVoiceProcessingAGCEnabled)]
+        #[unsafe(method(isVoiceProcessingAGCEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVoiceProcessingAGCEnabled(&self) -> bool;
 
         /// Setter for [`isVoiceProcessingAGCEnabled`][Self::isVoiceProcessingAGCEnabled].
-        #[method(setVoiceProcessingAGCEnabled:)]
+        #[unsafe(method(setVoiceProcessingAGCEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVoiceProcessingAGCEnabled(&self, voice_processing_agc_enabled: bool);
 
         /// Mutes the input of the voice processing unit.
         ///
         /// Querying this property when voice processing is disabled will return false.
-        #[method(isVoiceProcessingInputMuted)]
+        #[unsafe(method(isVoiceProcessingInputMuted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVoiceProcessingInputMuted(&self) -> bool;
 
         /// Setter for [`isVoiceProcessingInputMuted`][Self::isVoiceProcessingInputMuted].
-        #[method(setVoiceProcessingInputMuted:)]
+        #[unsafe(method(setVoiceProcessingInputMuted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVoiceProcessingInputMuted(&self, voice_processing_input_muted: bool);
 
@@ -343,7 +343,7 @@ extern_methods!(
         ///
         /// Continuous presence of or lack of speech activity during mute will not cause redundant notification.
         /// In order to use this API, it's expected to implement the mute via the voiceProcessingInputMuted.
-        #[method(setMutedSpeechActivityEventListener:)]
+        #[unsafe(method(setMutedSpeechActivityEventListener:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMutedSpeechActivityEventListener(
             &self,
@@ -357,14 +357,14 @@ extern_methods!(
         /// Configures the ducking of other (i.e. non-voice) audio, including advanced ducking enablement and ducking level.
         /// In general, when other audio is played during voice chat, applying a higher level of ducking could increase the intelligibility of the voice chat.
         /// If not set, the default ducking configuration is to disable advanced ducking, with a ducking level set to AVAudioVoiceProcessingOtherAudioDuckingLevelDefault.
-        #[method(voiceProcessingOtherAudioDuckingConfiguration)]
+        #[unsafe(method(voiceProcessingOtherAudioDuckingConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn voiceProcessingOtherAudioDuckingConfiguration(
             &self,
         ) -> AVAudioVoiceProcessingOtherAudioDuckingConfiguration;
 
         /// Setter for [`voiceProcessingOtherAudioDuckingConfiguration`][Self::voiceProcessingOtherAudioDuckingConfiguration].
-        #[method(setVoiceProcessingOtherAudioDuckingConfiguration:)]
+        #[unsafe(method(setVoiceProcessingOtherAudioDuckingConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVoiceProcessingOtherAudioDuckingConfiguration(
             &self,
@@ -377,7 +377,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioInputNode {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -413,7 +413,7 @@ unsafe impl NSObjectProtocol for AVAudioOutputNode {}
 extern_methods!(
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioOutputNode {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -423,7 +423,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioOutputNode {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

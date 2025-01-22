@@ -26,7 +26,7 @@ extern_methods!(
     unsafe impl NSDistantObject {
         #[cfg(feature = "NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(proxyWithTarget:connection:)]
+        #[unsafe(method(proxyWithTarget:connection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn proxyWithTarget_connection(
             target: &AnyObject,
@@ -35,7 +35,7 @@ extern_methods!(
 
         #[cfg(feature = "NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(initWithTarget:connection:)]
+        #[unsafe(method(initWithTarget:connection:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_connection(
             this: Allocated<Self>,
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(proxyWithLocal:connection:)]
+        #[unsafe(method(proxyWithLocal:connection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn proxyWithLocal_connection(
             target: &AnyObject,
@@ -54,7 +54,7 @@ extern_methods!(
 
         #[cfg(feature = "NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(initWithLocal:connection:)]
+        #[unsafe(method(initWithLocal:connection:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocal_connection(
             this: Allocated<Self>,
@@ -64,7 +64,7 @@ extern_methods!(
 
         #[cfg(feature = "NSCoder")]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -72,13 +72,13 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(setProtocolForProxy:)]
+        #[unsafe(method(setProtocolForProxy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProtocolForProxy(&self, proto: Option<&AnyProtocol>);
 
         #[cfg(feature = "NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(connectionForProxy)]
+        #[unsafe(method(connectionForProxy))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectionForProxy(&self) -> Retained<NSConnection>;
     }

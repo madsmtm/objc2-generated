@@ -75,40 +75,40 @@ unsafe impl NSObjectProtocol for MKDistanceFormatter {}
 extern_methods!(
     unsafe impl MKDistanceFormatter {
         #[cfg(feature = "objc2-core-location")]
-        #[method(stringFromDistance:)]
+        #[unsafe(method(stringFromDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromDistance(&self, distance: CLLocationDistance)
             -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method(distanceFromString:)]
+        #[unsafe(method(distanceFromString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn distanceFromString(&self, distance: &NSString) -> CLLocationDistance;
 
-        #[method(locale)]
+        #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         /// Setter for [`locale`][Self::locale].
-        #[method(setLocale:)]
+        #[unsafe(method(setLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[method(units)]
+        #[unsafe(method(units))]
         #[unsafe(method_family = none)]
         pub unsafe fn units(&self) -> MKDistanceFormatterUnits;
 
         /// Setter for [`units`][Self::units].
-        #[method(setUnits:)]
+        #[unsafe(method(setUnits:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUnits(&self, units: MKDistanceFormatterUnits);
 
-        #[method(unitStyle)]
+        #[unsafe(method(unitStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn unitStyle(&self) -> MKDistanceFormatterUnitStyle;
 
         /// Setter for [`unitStyle`][Self::unitStyle].
-        #[method(setUnitStyle:)]
+        #[unsafe(method(setUnitStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUnitStyle(&self, unit_style: MKDistanceFormatterUnitStyle);
     }
@@ -117,11 +117,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKDistanceFormatter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

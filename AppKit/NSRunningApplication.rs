@@ -91,7 +91,7 @@ extern_methods!(
     unsafe impl NSRunningApplication {
         /// Indicates that the process is an exited application.
         /// This is observable through KVO.
-        #[method(isTerminated)]
+        #[unsafe(method(isTerminated))]
         #[unsafe(method_family = none)]
         pub unsafe fn isTerminated(&self) -> bool;
 
@@ -99,52 +99,52 @@ extern_methods!(
         /// `NSApplicationDidFinishLaunching`internal notification.
         /// This is observable through KVO.
         /// Some applications do not post this notification and so are never reported as finished launching.
-        #[method(isFinishedLaunching)]
+        #[unsafe(method(isFinishedLaunching))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFinishedLaunching(&self) -> bool;
 
         /// Indicates whether the application is currently hidden.
         /// This is observable through KVO.
-        #[method(isHidden)]
+        #[unsafe(method(isHidden))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
 
         /// Indicates whether the application is currently frontmost.
         /// This is observable through KVO.
-        #[method(isActive)]
+        #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isActive(&self) -> bool;
 
         /// Indicates whether the application currently owns the menu bar.
         /// This is observable through KVO.
-        #[method(ownsMenuBar)]
+        #[unsafe(method(ownsMenuBar))]
         #[unsafe(method_family = none)]
         pub unsafe fn ownsMenuBar(&self) -> bool;
 
         /// Indicates the activation policy of the application.
         /// This is observable through KVO (the type is usually fixed, but may be changed through a call to `-[NSApplication setActivationPolicy:]`).
-        #[method(activationPolicy)]
+        #[unsafe(method(activationPolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn activationPolicy(&self) -> NSApplicationActivationPolicy;
 
         /// Indicates the name of the application.
         /// This is dependent on the current localization of the referenced app, and is suitable for presentation to the user.
-        #[method(localizedName)]
+        #[unsafe(method(localizedName))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
         /// Indicates the `CFBundleIdentifier` of the application, or nil if the application does not have an `Info.plist`.
-        #[method(bundleIdentifier)]
+        #[unsafe(method(bundleIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn bundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Indicates the URL to the application's bundle, or nil if the application does not have a bundle.
-        #[method(bundleURL)]
+        #[unsafe(method(bundleURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn bundleURL(&self) -> Option<Retained<NSURL>>;
 
         /// Indicates the URL to the application's executable.
-        #[method(executableURL)]
+        #[unsafe(method(executableURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn executableURL(&self) -> Option<Retained<NSURL>>;
 
@@ -154,40 +154,40 @@ extern_methods!(
         ///
         /// Note: Not all applications have a pid.  Applications without a pid return -1 from this method.
         /// This is observable through KVO (an application's pid may change if it is automatically terminated).
-        #[method(processIdentifier)]
+        #[unsafe(method(processIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn processIdentifier(&self) -> libc::pid_t;
 
         /// Indicates the date when the application was launched.
         /// This property is not available for all applications.
         /// Specifically, it is not available for applications that were launched without going through `LaunchServices`.
-        #[method(launchDate)]
+        #[unsafe(method(launchDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn launchDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSImage")]
         /// Returns: The icon of the application.
-        #[method(icon)]
+        #[unsafe(method(icon))]
         #[unsafe(method_family = none)]
         pub unsafe fn icon(&self) -> Option<Retained<NSImage>>;
 
         /// Indicates the executing processor architecture for the application, as an
         /// `NSBundleExecutableArchitecture`from `NSBundle.h`.
-        #[method(executableArchitecture)]
+        #[unsafe(method(executableArchitecture))]
         #[unsafe(method_family = none)]
         pub unsafe fn executableArchitecture(&self) -> NSInteger;
 
         /// Attempts to hide the receiver.
         ///
         /// Returns: `YES` if the request to hide or unhide was successfully sent, `NO` if not (for example, if the application has quit, or is of a type that cannot be unhidden).
-        #[method(hide)]
+        #[unsafe(method(hide))]
         #[unsafe(method_family = none)]
         pub unsafe fn hide(&self) -> bool;
 
         /// Attempts to unhide the receiver.
         ///
         /// Returns: `YES` if the request to hide or unhide was successfully sent, `NO` if not (for example, if the application has quit, or is of a type that cannot be unhidden).
-        #[method(unhide)]
+        #[unsafe(method(unhide))]
         #[unsafe(method_family = none)]
         pub unsafe fn unhide(&self) -> bool;
 
@@ -206,7 +206,7 @@ extern_methods!(
         ///
         /// Returns: `YES` if the request has been allowed by the system,
         /// otherwise `NO`.
-        #[method(activateFromApplication:options:)]
+        #[unsafe(method(activateFromApplication:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn activateFromApplication_options(
             &self,
@@ -217,7 +217,7 @@ extern_methods!(
         /// Attempts to activate the receiver.
         ///
         /// Returns: `YES` if the request to activate was successfully sent, `NO` if not (for example, if the application has quit, or is of a type that cannot be activated).
-        #[method(activateWithOptions:)]
+        #[unsafe(method(activateWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn activateWithOptions(&self, options: NSApplicationActivationOptions) -> bool;
 
@@ -225,7 +225,7 @@ extern_methods!(
         ///
         /// Returns: `YES` if the request was successfully sent, `NO` if not (for example, if the application is no longer running).
         /// This method may return before the receiver exits; you should observe the terminated property or listen for the notification to detect when the app has exited.
-        #[method(terminate)]
+        #[unsafe(method(terminate))]
         #[unsafe(method_family = none)]
         pub unsafe fn terminate(&self) -> bool;
 
@@ -233,12 +233,12 @@ extern_methods!(
         ///
         /// Returns: `YES` if the request was successfully sent, `NO` if not (for example, if the application is no longer running).
         /// This method may return before the receiver exits; you should observe the terminated property or listen for the notification to detect when the app has exited.
-        #[method(forceTerminate)]
+        #[unsafe(method(forceTerminate))]
         #[unsafe(method_family = none)]
         pub unsafe fn forceTerminate(&self) -> bool;
 
         /// Returns: An array of currently running applications with the given bundle identifier, or an empty array if no apps match.
-        #[method(runningApplicationsWithBundleIdentifier:)]
+        #[unsafe(method(runningApplicationsWithBundleIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runningApplicationsWithBundleIdentifier(
             bundle_identifier: &NSString,
@@ -247,7 +247,7 @@ extern_methods!(
         #[cfg(feature = "libc")]
         /// Returns: The running application with the given process identifier, or nil if no application has that pid.
         /// Applications that do not have PIDs cannot be returned from this method.
-        #[method(runningApplicationWithProcessIdentifier:)]
+        #[unsafe(method(runningApplicationWithProcessIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runningApplicationWithProcessIdentifier(
             pid: libc::pid_t,
@@ -255,13 +255,13 @@ extern_methods!(
 
         /// Returns: An
         /// `NSRunningApplication`representing this application.
-        #[method(currentApplication)]
+        #[unsafe(method(currentApplication))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentApplication() -> Retained<NSRunningApplication>;
 
         /// Cause any applications that are invisibly still running (see `NSProcessInfo.h` automatic termination methods and docs) to terminate as if triggered by system memory pressure.
         /// This is intended for installer apps and the like to make sure that nothing is unexpectedly relying on the files they're replacing.
-        #[method(terminateAutomaticallyTerminableApplications)]
+        #[unsafe(method(terminateAutomaticallyTerminableApplications))]
         #[unsafe(method_family = none)]
         pub unsafe fn terminateAutomaticallyTerminableApplications();
     }
@@ -270,11 +270,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSRunningApplication {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -288,7 +288,7 @@ extern_methods!(
         /// The order of the array is unspecified, but it is stable, meaning that the relative order of particular applications will not change across multiple calls to `runningApplications`.
         /// Similar to `NSRunningApplication`'s properties, this property will only change when the main run loop is run in a common mode.  Instead of polling, use key-value observing to be notified of changes to this array property.
         /// This property is thread safe, in that it may be called from background threads and the result is returned atomically.  This property is observable through KVO.
-        #[method(runningApplications)]
+        #[unsafe(method(runningApplications))]
         #[unsafe(method_family = none)]
         pub unsafe fn runningApplications(&self) -> Retained<NSArray<NSRunningApplication>>;
     }

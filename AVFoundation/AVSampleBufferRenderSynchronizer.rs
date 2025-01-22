@@ -40,19 +40,19 @@ extern_methods!(
         /// If no AVSampleBufferAudioRenderer has been added, the source clock will be the host time clock (mach_absolute_time with the appropriate timescale conversion; this is the same as Core Animation's CACurrentMediaTime).
         ///
         /// The timebase is a read-only timebase.  Use the rate property and corresponding methods to adjust the timebase.
-        #[method(timebase)]
+        #[unsafe(method(timebase))]
         #[unsafe(method_family = none)]
         pub unsafe fn timebase(&self) -> Retained<CMTimebase>;
 
         /// Playback rate.
         ///
         /// Indicates the current rate of rendering.  A value of 0.0 means "stopped"; a value of 1.0 means "play at the natural rate of the media".  Must be greater than or equal to 0.0.
-        #[method(rate)]
+        #[unsafe(method(rate))]
         #[unsafe(method_family = none)]
         pub unsafe fn rate(&self) -> c_float;
 
         /// Setter for [`rate`][Self::rate].
-        #[method(setRate:)]
+        #[unsafe(method(setRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRate(&self, rate: c_float);
 
@@ -62,7 +62,7 @@ extern_methods!(
         /// Returns: A CMTime
         ///
         /// Returns the current time of the synchronizer. Not key-value observable; use -addPeriodicTimeObserverForInterval:queue:usingBlock: instead.
-        #[method(currentTime)]
+        #[unsafe(method(currentTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentTime(&self) -> CMTime;
 
@@ -75,7 +75,7 @@ extern_methods!(
         ///
         /// Sets the timebase's time to time and then sets the rendering rate to rate.  A rate value of 0.0 means "stopped"; a rate value of 1.0 means "play at the natural rate of the media".  Use kCMTimeInvalid for time to not modify the timebase's time.
         /// Note that this method updates the rate property synchronously, but the timebase is updated asynchronously.
-        #[method(setRate:time:)]
+        #[unsafe(method(setRate:time:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRate_time(&self, rate: c_float, time: CMTime);
 
@@ -110,7 +110,7 @@ extern_methods!(
         /// [synchronizer setRate:rate time:startTime atHostTime:inOneSecond];
         ///
         /// Also note that this method updates the rate property synchronously, but the timebase is updated asynchronously.
-        #[method(setRate:time:atHostTime:)]
+        #[unsafe(method(setRate:time:atHostTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRate_time_atHostTime(
             &self,
@@ -122,12 +122,12 @@ extern_methods!(
         /// Indicates whether the playback should be started immediately on rate change request.
         ///
         /// If set to YES, playback will be delayed if the value of hasSufficientMediaDataForReliablePlaybackStart of any added renderer is NO. If set to NO, playback will attempt to start immediately regardless of the value of hasSufficientMediaDataForReliablePlaybackStart of added renderers. Default is YES.
-        #[method(delaysRateChangeUntilHasSufficientMediaData)]
+        #[unsafe(method(delaysRateChangeUntilHasSufficientMediaData))]
         #[unsafe(method_family = none)]
         pub unsafe fn delaysRateChangeUntilHasSufficientMediaData(&self) -> bool;
 
         /// Setter for [`delaysRateChangeUntilHasSufficientMediaData`][Self::delaysRateChangeUntilHasSufficientMediaData].
-        #[method(setDelaysRateChangeUntilHasSufficientMediaData:)]
+        #[unsafe(method(setDelaysRateChangeUntilHasSufficientMediaData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelaysRateChangeUntilHasSufficientMediaData(
             &self,
@@ -139,11 +139,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVSampleBufferRenderSynchronizer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -160,7 +160,7 @@ extern_methods!(
         /// A list of renderers added to and not removed from the synchronizer.  The list also includes renderers that have been scheduled to be removed but have not yet been removed.
         ///
         /// This property is not KVO observable.
-        #[method(renderers)]
+        #[unsafe(method(renderers))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderers(
             &self,
@@ -174,7 +174,7 @@ extern_methods!(
         /// Adds a renderer to begin operating with the synchronizer's timebase.
         ///
         /// This method can be called while rate is non-0.0.
-        #[method(addRenderer:)]
+        #[unsafe(method(addRenderer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRenderer(
             &self,
@@ -205,7 +205,7 @@ extern_methods!(
         /// - If the renderer has not been added to this synchronizer, completionHandler will be called and didRemoveRenderer will be NO.
         /// - If a removal of a particular renderer is scheduled after another removal of that same renderer has already been scheduled but not yet occurred, the previously-scheduled removal's completionHandler will be called and didRemoveRenderer will be NO.  The new scheduled removal's completionHandler will not be called until it is replaced by another scheduled removal or the renderer is actually removed.
         /// - When the renderer is removed due to a scheduled removal, the completionHandler provided when that removal was scheduled will be called and didRemoveRenderer will be YES.
-        #[method(removeRenderer:atTime:completionHandler:)]
+        #[unsafe(method(removeRenderer:atTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRenderer_atTime_completionHandler(
             &self,
@@ -230,7 +230,7 @@ extern_methods!(
         /// - observer was not returned by either
         /// -addPeriodicTimeObserverForInterval:queue:usingBlock:
         /// -addBoundaryTimeObserverForTimes:queue:usingBlock:
-        #[method(removeTimeObserver:)]
+        #[unsafe(method(removeTimeObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTimeObserver(&self, observer: &AnyObject);
     }

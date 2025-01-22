@@ -28,7 +28,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl ASCredentialProviderViewController {
         #[cfg(feature = "ASCredentialProviderExtensionContext")]
-        #[method(extensionContext)]
+        #[unsafe(method(extensionContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionContext(&self) -> Retained<ASCredentialProviderExtensionContext>;
 
@@ -43,7 +43,7 @@ extern_methods!(
         /// represent more specific identifiers for which a credential is being requested. For example, the array could contain identifiers
         /// [m.example.com, example.com] with the first item representing the more specifc service that requires a credential.
         /// If the array of service identifiers is empty, it is expected that the credential list should still show credentials that the user can pick from.
-        #[method(prepareCredentialListForServiceIdentifiers:)]
+        #[unsafe(method(prepareCredentialListForServiceIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareCredentialListForServiceIdentifiers(
             &self,
@@ -68,7 +68,7 @@ extern_methods!(
         /// If the array of service identifiers is empty, it is expected that the credential list should still show credentials that the user can pick from.
         /// If a passkey credential is selected, the extension should use the requestParameters object to complete the request using the selected
         /// passkey credential.
-        #[method(prepareCredentialListForServiceIdentifiers:requestParameters:)]
+        #[unsafe(method(prepareCredentialListForServiceIdentifiers:requestParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareCredentialListForServiceIdentifiers_requestParameters(
             &self,
@@ -87,7 +87,7 @@ extern_methods!(
         /// represent more specific identifiers for which a credential is being requested. For example, the array could contain identifiers
         /// [m.example.com, example.com] with the first item representing the more specifc service that requires a credential.
         /// If the array of service identifiers is empty, it is expected that the credential list should still show credentials that the user can pick from.
-        #[method(prepareOneTimeCodeCredentialListForServiceIdentifiers:)]
+        #[unsafe(method(prepareOneTimeCodeCredentialListForServiceIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareOneTimeCodeCredentialListForServiceIdentifiers(
             &self,
@@ -110,7 +110,7 @@ extern_methods!(
         /// Note: When this method is called, your extension's view controller is not present on the screen. Do not attempt or expect to show any user
         /// interface in this method.
         #[deprecated]
-        #[method(provideCredentialWithoutUserInteractionForIdentity:)]
+        #[unsafe(method(provideCredentialWithoutUserInteractionForIdentity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn provideCredentialWithoutUserInteractionForIdentity(
             &self,
@@ -153,7 +153,7 @@ extern_methods!(
         /// attempt or expect to show any user interface in this method.
         ///
         /// - Parameter credentialRequest: The credential request for which a credential should be provided.
-        #[method(provideCredentialWithoutUserInteractionForRequest:)]
+        #[unsafe(method(provideCredentialWithoutUserInteractionForRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn provideCredentialWithoutUserInteractionForRequest(
             &self,
@@ -174,7 +174,7 @@ extern_methods!(
         /// ASExtensionErrorDomain and an appropriate error code from ASExtensionErrorCode. For example, if the credential identity cannot
         /// be found in the database, pass an error with code ASExtensionErrorCodeCredentialIdentityNotFound.
         #[deprecated]
-        #[method(prepareInterfaceToProvideCredentialForIdentity:)]
+        #[unsafe(method(prepareInterfaceToProvideCredentialForIdentity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareInterfaceToProvideCredentialForIdentity(
             &self,
@@ -195,7 +195,7 @@ extern_methods!(
         /// If an error occurs, call -[ASCredentialProviderExtensionContext cancelRequestWithError:] and pass an error with domain
         /// ASExtensionErrorDomain and an appropriate error code from ASExtensionErrorCode. For example, if the credential identity cannot
         /// be found in the database, pass an error with code ASExtensionErrorCodeCredentialIdentityNotFound.
-        #[method(prepareInterfaceToProvideCredentialForRequest:)]
+        #[unsafe(method(prepareInterfaceToProvideCredentialForRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareInterfaceToProvideCredentialForRequest(
             &self,
@@ -210,7 +210,7 @@ extern_methods!(
         ///
         /// Note: This method only gets called if your extension supports this functionality by specifying
         /// "ASCredentialProviderExtensionShowsConfigurationUI": YES in its extension attributes.
-        #[method(prepareInterfaceForExtensionConfiguration)]
+        #[unsafe(method(prepareInterfaceForExtensionConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareInterfaceForExtensionConfiguration(&self);
 
@@ -236,7 +236,7 @@ extern_methods!(
         ///
         /// - Parameter registrationRequest: The passkey registration request parameters needed to
         /// register a new passkey.
-        #[method(prepareInterfaceForPasskeyRegistration:)]
+        #[unsafe(method(prepareInterfaceForPasskeyRegistration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareInterfaceForPasskeyRegistration(
             &self,
@@ -272,7 +272,7 @@ extern_methods!(
         /// ├─ NSExtensionAttributes
         /// ├─ ASCredentialProviderExtensionCapabilities
         /// ├─ SupportsConditionalPasskeyRegistration => true
-        #[method(performPasskeyRegistrationWithoutUserInteractionIfPossible:)]
+        #[unsafe(method(performPasskeyRegistrationWithoutUserInteractionIfPossible:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performPasskeyRegistrationWithoutUserInteractionIfPossible(
             &self,
@@ -285,7 +285,7 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(target_os = "macos")]
     unsafe impl ASCredentialProviderViewController {
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -293,7 +293,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -306,7 +306,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(target_os = "macos")]
     unsafe impl ASCredentialProviderViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -316,7 +316,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(target_os = "macos")]
     unsafe impl ASCredentialProviderViewController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

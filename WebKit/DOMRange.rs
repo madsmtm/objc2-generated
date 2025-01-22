@@ -57,93 +57,93 @@ extern_methods!(
     unsafe impl DOMRange {
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(startContainer)]
+        #[unsafe(method(startContainer))]
         #[unsafe(method_family = none)]
         pub unsafe fn startContainer(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
-        #[method(startOffset)]
+        #[unsafe(method(startOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn startOffset(&self) -> c_int;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(endContainer)]
+        #[unsafe(method(endContainer))]
         #[unsafe(method_family = none)]
         pub unsafe fn endContainer(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
-        #[method(endOffset)]
+        #[unsafe(method(endOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn endOffset(&self) -> c_int;
 
         #[deprecated]
-        #[method(collapsed)]
+        #[unsafe(method(collapsed))]
         #[unsafe(method_family = none)]
         pub unsafe fn collapsed(&self) -> bool;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(commonAncestorContainer)]
+        #[unsafe(method(commonAncestorContainer))]
         #[unsafe(method_family = none)]
         pub unsafe fn commonAncestorContainer(&self) -> Option<Retained<DOMNode>>;
 
-        #[method(text)]
+        #[unsafe(method(text))]
         #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMNode")]
-        #[method(setStart:offset:)]
+        #[unsafe(method(setStart:offset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStart_offset(&self, ref_node: Option<&DOMNode>, offset: c_int);
 
         #[cfg(feature = "DOMNode")]
-        #[method(setEnd:offset:)]
+        #[unsafe(method(setEnd:offset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnd_offset(&self, ref_node: Option<&DOMNode>, offset: c_int);
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(setStartBefore:)]
+        #[unsafe(method(setStartBefore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartBefore(&self, ref_node: Option<&DOMNode>);
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(setStartAfter:)]
+        #[unsafe(method(setStartAfter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartAfter(&self, ref_node: Option<&DOMNode>);
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(setEndBefore:)]
+        #[unsafe(method(setEndBefore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEndBefore(&self, ref_node: Option<&DOMNode>);
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(setEndAfter:)]
+        #[unsafe(method(setEndAfter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEndAfter(&self, ref_node: Option<&DOMNode>);
 
         #[deprecated]
-        #[method(collapse:)]
+        #[unsafe(method(collapse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn collapse(&self, to_start: bool);
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(selectNode:)]
+        #[unsafe(method(selectNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectNode(&self, ref_node: Option<&DOMNode>);
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(selectNodeContents:)]
+        #[unsafe(method(selectNodeContents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectNodeContents(&self, ref_node: Option<&DOMNode>);
 
-        #[method(compareBoundaryPoints:sourceRange:)]
+        #[unsafe(method(compareBoundaryPoints:sourceRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compareBoundaryPoints_sourceRange(
             &self,
@@ -152,51 +152,51 @@ extern_methods!(
         ) -> c_short;
 
         #[deprecated]
-        #[method(deleteContents)]
+        #[unsafe(method(deleteContents))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteContents(&self);
 
         #[cfg(all(feature = "DOMDocumentFragment", feature = "DOMNode"))]
         #[deprecated]
-        #[method(extractContents)]
+        #[unsafe(method(extractContents))]
         #[unsafe(method_family = none)]
         pub unsafe fn extractContents(&self) -> Option<Retained<DOMDocumentFragment>>;
 
         #[cfg(all(feature = "DOMDocumentFragment", feature = "DOMNode"))]
         #[deprecated]
-        #[method(cloneContents)]
+        #[unsafe(method(cloneContents))]
         #[unsafe(method_family = none)]
         pub unsafe fn cloneContents(&self) -> Option<Retained<DOMDocumentFragment>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(insertNode:)]
+        #[unsafe(method(insertNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertNode(&self, new_node: Option<&DOMNode>);
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(surroundContents:)]
+        #[unsafe(method(surroundContents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn surroundContents(&self, new_parent: Option<&DOMNode>);
 
         #[deprecated]
-        #[method(cloneRange)]
+        #[unsafe(method(cloneRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn cloneRange(&self) -> Option<Retained<DOMRange>>;
 
         #[deprecated]
-        #[method(toString)]
+        #[unsafe(method(toString))]
         #[unsafe(method_family = none)]
         pub unsafe fn toString(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
-        #[method(detach)]
+        #[unsafe(method(detach))]
         #[unsafe(method_family = none)]
         pub unsafe fn detach(&self);
 
         #[cfg(all(feature = "DOMDocumentFragment", feature = "DOMNode"))]
-        #[method(createContextualFragment:)]
+        #[unsafe(method(createContextualFragment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createContextualFragment(
             &self,
@@ -204,17 +204,17 @@ extern_methods!(
         ) -> Option<Retained<DOMDocumentFragment>>;
 
         #[cfg(feature = "DOMNode")]
-        #[method(compareNode:)]
+        #[unsafe(method(compareNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compareNode(&self, ref_node: Option<&DOMNode>) -> c_short;
 
         #[cfg(feature = "DOMNode")]
-        #[method(intersectsNode:)]
+        #[unsafe(method(intersectsNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn intersectsNode(&self, ref_node: Option<&DOMNode>) -> bool;
 
         #[cfg(feature = "DOMNode")]
-        #[method(comparePoint:offset:)]
+        #[unsafe(method(comparePoint:offset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn comparePoint_offset(
             &self,
@@ -223,7 +223,7 @@ extern_methods!(
         ) -> c_short;
 
         #[cfg(feature = "DOMNode")]
-        #[method(isPointInRange:offset:)]
+        #[unsafe(method(isPointInRange:offset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPointInRange_offset(
             &self,
@@ -238,7 +238,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRange {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -248,7 +248,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRange {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -260,18 +260,18 @@ extern_methods!(
     unsafe impl DOMRange {
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(setStart::)]
+        #[unsafe(method(setStart::))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStart(&self, ref_node: Option<&DOMNode>, offset: c_int);
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(setEnd::)]
+        #[unsafe(method(setEnd::))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnd(&self, ref_node: Option<&DOMNode>, offset: c_int);
 
         #[deprecated]
-        #[method(compareBoundaryPoints::)]
+        #[unsafe(method(compareBoundaryPoints::))]
         #[unsafe(method_family = none)]
         pub unsafe fn compareBoundaryPoints(
             &self,

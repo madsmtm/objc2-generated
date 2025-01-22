@@ -24,7 +24,7 @@ extern_methods!(
     unsafe impl MLCScatterLayer {
         /// The dimension along which to index
         #[deprecated]
-        #[method(dimension)]
+        #[unsafe(method(dimension))]
         #[unsafe(method_family = none)]
         pub unsafe fn dimension(&self) -> NSUInteger;
 
@@ -32,7 +32,7 @@ extern_methods!(
         /// The reduction type applied for all values in source tensor that are scattered to a specific location in the result tensor.
         /// Must be: MLCReductionTypeNone or MLCReductionTypeSum.
         #[deprecated]
-        #[method(reductionType)]
+        #[unsafe(method(reductionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn reductionType(&self) -> MLCReductionType;
 
@@ -45,7 +45,7 @@ extern_methods!(
         ///
         /// Returns: A new scatter layer
         #[deprecated]
-        #[method(layerWithDimension:reductionType:)]
+        #[unsafe(method(layerWithDimension:reductionType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithDimension_reductionType(
             dimension: NSUInteger,
@@ -59,12 +59,12 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCScatterLayer {
         #[deprecated]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

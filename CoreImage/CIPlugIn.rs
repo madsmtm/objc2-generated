@@ -30,18 +30,18 @@ extern_methods!(
         /// ~Library/Graphics/Image Units
         /// If called more than once, newly added plug-ins will be loaded but you cannot remove a plug-in and its filters.
         #[deprecated]
-        #[method(loadAllPlugIns)]
+        #[unsafe(method(loadAllPlugIns))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAllPlugIns();
 
         /// Same as loadAllPlugIns does not load filters that contain executable code.
-        #[method(loadNonExecutablePlugIns)]
+        #[unsafe(method(loadNonExecutablePlugIns))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadNonExecutablePlugIns();
 
         /// Loads a plug-in specified by its URL.
         #[deprecated]
-        #[method(loadPlugIn:allowNonExecutable:)]
+        #[unsafe(method(loadPlugIn:allowNonExecutable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadPlugIn_allowNonExecutable(
             url: Option<&NSURL>,
@@ -51,7 +51,7 @@ extern_methods!(
         /// Loads a plug-in specified by its URL.
         /// If allowExecutableCode is NO, filters containing executable code will not be loaded. If YES, any kind of filter will be loaded.
         #[deprecated]
-        #[method(loadPlugIn:allowExecutableCode:)]
+        #[unsafe(method(loadPlugIn:allowExecutableCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadPlugIn_allowExecutableCode(
             url: Option<&NSURL>,
@@ -60,7 +60,7 @@ extern_methods!(
 
         /// Loads a non-executable plug-in specified by its URL.
         /// If the filters containing executable code, it will not be loaded.
-        #[method(loadNonExecutablePlugIn:)]
+        #[unsafe(method(loadNonExecutablePlugIn:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadNonExecutablePlugIn(url: Option<&NSURL>);
     }
@@ -69,11 +69,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIPlugIn {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

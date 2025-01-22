@@ -111,41 +111,41 @@ unsafe impl NSProgressReporting for UIDocument {}
 
 extern_methods!(
     unsafe impl UIDocument {
-        #[method(initWithFileURL:)]
+        #[unsafe(method(initWithFileURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFileURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
-        #[method(fileURL)]
+        #[unsafe(method(fileURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileURL(&self) -> Retained<NSURL>;
 
-        #[method(localizedName)]
+        #[unsafe(method(localizedName))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedName(&self) -> Retained<NSString>;
 
-        #[method(fileType)]
+        #[unsafe(method(fileType))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileType(&self) -> Option<Retained<NSString>>;
 
-        #[method(fileModificationDate)]
+        #[unsafe(method(fileModificationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileModificationDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`fileModificationDate`][Self::fileModificationDate].
-        #[method(setFileModificationDate:)]
+        #[unsafe(method(setFileModificationDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFileModificationDate(&self, file_modification_date: Option<&NSDate>);
 
-        #[method(documentState)]
+        #[unsafe(method(documentState))]
         #[unsafe(method_family = none)]
         pub unsafe fn documentState(&self) -> UIDocumentState;
 
-        #[method(progress)]
+        #[unsafe(method(progress))]
         #[unsafe(method_family = none)]
         pub unsafe fn progress(&self) -> Option<Retained<NSProgress>>;
 
         #[cfg(feature = "block2")]
-        #[method(openWithCompletionHandler:)]
+        #[unsafe(method(openWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openWithCompletionHandler(
             &self,
@@ -153,14 +153,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(closeWithCompletionHandler:)]
+        #[unsafe(method(closeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn closeWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
         );
 
-        #[method(loadFromContents:ofType:error:_)]
+        #[unsafe(method(loadFromContents:ofType:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromContents_ofType_error(
             &self,
@@ -168,46 +168,46 @@ extern_methods!(
             type_name: Option<&NSString>,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method(contentsForType:error:_)]
+        #[unsafe(method(contentsForType:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentsForType_error(
             &self,
             type_name: &NSString,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
-        #[method(disableEditing)]
+        #[unsafe(method(disableEditing))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableEditing(&self);
 
-        #[method(enableEditing)]
+        #[unsafe(method(enableEditing))]
         #[unsafe(method_family = none)]
         pub unsafe fn enableEditing(&self);
 
-        #[method(undoManager)]
+        #[unsafe(method(undoManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
 
         /// Setter for [`undoManager`][Self::undoManager].
-        #[method(setUndoManager:)]
+        #[unsafe(method(setUndoManager:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUndoManager(&self, undo_manager: Option<&NSUndoManager>);
 
-        #[method(hasUnsavedChanges)]
+        #[unsafe(method(hasUnsavedChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasUnsavedChanges(&self) -> bool;
 
-        #[method(updateChangeCount:)]
+        #[unsafe(method(updateChangeCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateChangeCount(&self, change: UIDocumentChangeKind);
 
-        #[method(changeCountTokenForSaveOperation:)]
+        #[unsafe(method(changeCountTokenForSaveOperation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeCountTokenForSaveOperation(
             &self,
             save_operation: UIDocumentSaveOperation,
         ) -> Retained<AnyObject>;
 
-        #[method(updateChangeCountWithToken:forSaveOperation:)]
+        #[unsafe(method(updateChangeCountWithToken:forSaveOperation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateChangeCountWithToken_forSaveOperation(
             &self,
@@ -216,7 +216,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(saveToURL:forSaveOperation:completionHandler:)]
+        #[unsafe(method(saveToURL:forSaveOperation:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveToURL_forSaveOperation_completionHandler(
             &self,
@@ -226,18 +226,18 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(autosaveWithCompletionHandler:)]
+        #[unsafe(method(autosaveWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn autosaveWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
         );
 
-        #[method(savingFileType)]
+        #[unsafe(method(savingFileType))]
         #[unsafe(method_family = none)]
         pub unsafe fn savingFileType(&self) -> Option<Retained<NSString>>;
 
-        #[method(fileNameExtensionForType:saveOperation:)]
+        #[unsafe(method(fileNameExtensionForType:saveOperation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileNameExtensionForType_saveOperation(
             &self,
@@ -245,7 +245,7 @@ extern_methods!(
             save_operation: UIDocumentSaveOperation,
         ) -> Retained<NSString>;
 
-        #[method(writeContents:andAttributes:safelyToURL:forSaveOperation:error:_)]
+        #[unsafe(method(writeContents:andAttributes:safelyToURL:forSaveOperation:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeContents_andAttributes_safelyToURL_forSaveOperation_error(
             &self,
@@ -255,7 +255,7 @@ extern_methods!(
             save_operation: UIDocumentSaveOperation,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method(writeContents:toURL:forSaveOperation:originalContentsURL:error:_)]
+        #[unsafe(method(writeContents:toURL:forSaveOperation:originalContentsURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeContents_toURL_forSaveOperation_originalContentsURL_error(
             &self,
@@ -265,7 +265,7 @@ extern_methods!(
             original_contents_url: Option<&NSURL>,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method(fileAttributesToWriteToURL:forSaveOperation:error:_)]
+        #[unsafe(method(fileAttributesToWriteToURL:forSaveOperation:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileAttributesToWriteToURL_forSaveOperation_error(
             &self,
@@ -273,19 +273,19 @@ extern_methods!(
             save_operation: UIDocumentSaveOperation,
         ) -> Result<Retained<NSDictionary>, Retained<NSError>>;
 
-        #[method(readFromURL:error:_)]
+        #[unsafe(method(readFromURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn readFromURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
-        #[method(performAsynchronousFileAccessUsingBlock:)]
+        #[unsafe(method(performAsynchronousFileAccessUsingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performAsynchronousFileAccessUsingBlock(
             &self,
             block: &block2::Block<dyn Fn()>,
         );
 
-        #[method(handleError:userInteractionPermitted:)]
+        #[unsafe(method(handleError:userInteractionPermitted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleError_userInteractionPermitted(
             &self,
@@ -293,16 +293,16 @@ extern_methods!(
             user_interaction_permitted: bool,
         );
 
-        #[method(finishedHandlingError:recovered:)]
+        #[unsafe(method(finishedHandlingError:recovered:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishedHandlingError_recovered(&self, error: &NSError, recovered: bool);
 
-        #[method(userInteractionNoLongerPermittedForError:)]
+        #[unsafe(method(userInteractionNoLongerPermittedForError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInteractionNoLongerPermittedForError(&self, error: &NSError);
 
         #[cfg(feature = "block2")]
-        #[method(revertToContentsOfURL:completionHandler:)]
+        #[unsafe(method(revertToContentsOfURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn revertToContentsOfURL_completionHandler(
             &self,
@@ -315,11 +315,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDocument {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -340,20 +340,20 @@ extern "C" {
 extern_methods!(
     /// ActivityContinuation
     unsafe impl UIDocument {
-        #[method(userActivity)]
+        #[unsafe(method(userActivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
 
         /// Setter for [`userActivity`][Self::userActivity].
-        #[method(setUserActivity:)]
+        #[unsafe(method(setUserActivity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserActivity(&self, user_activity: Option<&NSUserActivity>);
 
-        #[method(updateUserActivityState:)]
+        #[unsafe(method(updateUserActivityState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateUserActivityState(&self, user_activity: &NSUserActivity);
 
-        #[method(restoreUserActivityState:)]
+        #[unsafe(method(restoreUserActivityState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn restoreUserActivityState(&self, user_activity: &NSUserActivity);
     }

@@ -80,48 +80,48 @@ unsafe impl NSUserInterfaceItemIdentification for NSStepper {}
 extern_methods!(
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStepper {
-        #[method(minValue)]
+        #[unsafe(method(minValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn minValue(&self) -> c_double;
 
         /// Setter for [`minValue`][Self::minValue].
-        #[method(setMinValue:)]
+        #[unsafe(method(setMinValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinValue(&self, min_value: c_double);
 
-        #[method(maxValue)]
+        #[unsafe(method(maxValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxValue(&self) -> c_double;
 
         /// Setter for [`maxValue`][Self::maxValue].
-        #[method(setMaxValue:)]
+        #[unsafe(method(setMaxValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxValue(&self, max_value: c_double);
 
-        #[method(increment)]
+        #[unsafe(method(increment))]
         #[unsafe(method_family = none)]
         pub unsafe fn increment(&self) -> c_double;
 
         /// Setter for [`increment`][Self::increment].
-        #[method(setIncrement:)]
+        #[unsafe(method(setIncrement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncrement(&self, increment: c_double);
 
-        #[method(valueWraps)]
+        #[unsafe(method(valueWraps))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWraps(&self) -> bool;
 
         /// Setter for [`valueWraps`][Self::valueWraps].
-        #[method(setValueWraps:)]
+        #[unsafe(method(setValueWraps:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueWraps(&self, value_wraps: bool);
 
-        #[method(autorepeat)]
+        #[unsafe(method(autorepeat))]
         #[unsafe(method_family = none)]
         pub unsafe fn autorepeat(&self) -> bool;
 
         /// Setter for [`autorepeat`][Self::autorepeat].
-        #[method(setAutorepeat:)]
+        #[unsafe(method(setAutorepeat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutorepeat(&self, autorepeat: bool);
     }
@@ -131,11 +131,11 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStepper {
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -148,7 +148,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStepper {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -158,7 +158,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStepper {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

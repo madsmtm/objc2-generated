@@ -19,7 +19,7 @@ unsafe impl UNNotificationContentProviding for UNNotificationAttributedMessageCo
 
 extern_methods!(
     unsafe impl UNNotificationAttributedMessageContext {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -28,7 +28,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationAttributedMessageContext {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

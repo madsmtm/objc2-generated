@@ -17,27 +17,27 @@ unsafe impl NSObjectProtocol for CLBackgroundActivitySessionDiagnostic {}
 
 extern_methods!(
     unsafe impl CLBackgroundActivitySessionDiagnostic {
-        #[method(authorizationDenied)]
+        #[unsafe(method(authorizationDenied))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationDenied(&self) -> bool;
 
-        #[method(authorizationDeniedGlobally)]
+        #[unsafe(method(authorizationDeniedGlobally))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationDeniedGlobally(&self) -> bool;
 
-        #[method(authorizationRestricted)]
+        #[unsafe(method(authorizationRestricted))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationRestricted(&self) -> bool;
 
-        #[method(insufficientlyInUse)]
+        #[unsafe(method(insufficientlyInUse))]
         #[unsafe(method_family = none)]
         pub unsafe fn insufficientlyInUse(&self) -> bool;
 
-        #[method(serviceSessionRequired)]
+        #[unsafe(method(serviceSessionRequired))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceSessionRequired(&self) -> bool;
 
-        #[method(authorizationRequestInProgress)]
+        #[unsafe(method(authorizationRequestInProgress))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationRequestInProgress(&self) -> bool;
     }
@@ -46,11 +46,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLBackgroundActivitySessionDiagnostic {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -67,19 +67,19 @@ unsafe impl NSObjectProtocol for CLBackgroundActivitySession {}
 
 extern_methods!(
     unsafe impl CLBackgroundActivitySession {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(invalidate)]
+        #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
 
-        #[method(backgroundActivitySession)]
+        #[unsafe(method(backgroundActivitySession))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundActivitySession() -> Retained<Self>;
     }

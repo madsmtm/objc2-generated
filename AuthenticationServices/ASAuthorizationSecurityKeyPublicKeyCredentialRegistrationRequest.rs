@@ -46,7 +46,7 @@ extern_methods!(
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialParameters")]
         /// A list of parameters for the new credential which are supported by the Relying Party. The authenticator should choose from these parameters when creating the credential.
-        #[method(credentialParameters)]
+        #[unsafe(method(credentialParameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn credentialParameters(
             &self,
@@ -54,7 +54,7 @@ extern_methods!(
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialParameters")]
         /// Setter for [`credentialParameters`][Self::credentialParameters].
-        #[method(setCredentialParameters:)]
+        #[unsafe(method(setCredentialParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCredentialParameters(
             &self,
@@ -63,7 +63,7 @@ extern_methods!(
 
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
         /// A list of descriptors indicating credentials which must not already exist on the authenticator. If a credential already exists on the authenticator which matches one or more of these descriptors, a new credential will not be created and authentication will fail.
-        #[method(excludedCredentials)]
+        #[unsafe(method(excludedCredentials))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludedCredentials(
             &self,
@@ -71,7 +71,7 @@ extern_methods!(
 
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
         /// Setter for [`excludedCredentials`][Self::excludedCredentials].
-        #[method(setExcludedCredentials:)]
+        #[unsafe(method(setExcludedCredentials:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedCredentials(
             &self,
@@ -80,7 +80,7 @@ extern_methods!(
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         /// A preference whether the authenticator should store the private key of the newly created credential.
-        #[method(residentKeyPreference)]
+        #[unsafe(method(residentKeyPreference))]
         #[unsafe(method_family = none)]
         pub unsafe fn residentKeyPreference(
             &self,
@@ -88,18 +88,18 @@ extern_methods!(
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         /// Setter for [`residentKeyPreference`][Self::residentKeyPreference].
-        #[method(setResidentKeyPreference:)]
+        #[unsafe(method(setResidentKeyPreference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResidentKeyPreference(
             &self,
             resident_key_preference: &ASAuthorizationPublicKeyCredentialResidentKeyPreference,
         );
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

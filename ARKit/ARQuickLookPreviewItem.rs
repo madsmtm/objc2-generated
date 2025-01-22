@@ -44,7 +44,7 @@ extern_methods!(
         /// Parameter `url`: A file URL to 3D content file (e.g. usdz).
         ///
         /// Returns: The preview object to display in AR Quick Look.
-        #[method(initWithFileAtURL:)]
+        #[unsafe(method(initWithFileAtURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFileAtURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
@@ -54,33 +54,33 @@ extern_methods!(
         ///
         /// If this is supplied, the URL to the canonical web page is shared instead of the 3D content file.
         /// For example, providing https://developer.apple.com/arkit/gallery/ as the canonical web page URL string will be shared via the Share button. If the web page URL string is malformed or not provided, then AR Quick Look will default to sharing the 3D content.
-        #[method(canonicalWebPageURL)]
+        #[unsafe(method(canonicalWebPageURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn canonicalWebPageURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "objc2-foundation")]
         /// Setter for [`canonicalWebPageURL`][Self::canonicalWebPageURL].
-        #[method(setCanonicalWebPageURL:)]
+        #[unsafe(method(setCanonicalWebPageURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCanonicalWebPageURL(&self, canonical_web_page_url: Option<&NSURL>);
 
         /// Whether or not AR Quick Look allows content scaling in AR mode.
         /// Defaults to `YES` which allows scaling content in AR mode.
-        #[method(allowsContentScaling)]
+        #[unsafe(method(allowsContentScaling))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsContentScaling(&self) -> bool;
 
         /// Setter for [`allowsContentScaling`][Self::allowsContentScaling].
-        #[method(setAllowsContentScaling:)]
+        #[unsafe(method(setAllowsContentScaling:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsContentScaling(&self, allows_content_scaling: bool);
 
         /// Unavailable
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

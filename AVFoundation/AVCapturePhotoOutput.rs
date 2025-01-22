@@ -112,11 +112,11 @@ unsafe impl NSObjectProtocol for AVCapturePhotoOutput {}
 extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCapturePhotoOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -176,7 +176,7 @@ extern_methods!(
         /// - The maxPhotoDimensions setting for 24MP (5712, 4284), when supported, is only serviced as 24MP via deferred photo delivery.
         /// Color space rules:
         /// - Photo capture is not supported when AVCaptureDevice has selected AVCaptureColorSpace_AppleLog as color space.
-        #[method(capturePhotoWithSettings:delegate:)]
+        #[unsafe(method(capturePhotoWithSettings:delegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn capturePhotoWithSettings_delegate(
             &self,
@@ -189,7 +189,7 @@ extern_methods!(
         ///
         /// See also setPreparedPhotoSettingsArray:completionHandler:
         /// Some types of photo capture, such as bracketed captures and RAW captures, require the receiver to allocate additional buffers or prepare other resources. To prevent photo capture requests from executing slowly due to lazy resource allocation, you may call -setPreparedPhotoSettingsArray:completionHandler: with an array of settings objects representative of the types of capture you will be performing (e.g., settings for a bracketed capture, RAW capture, and/or still image stabilization capture). By default, the receiver prepares sufficient resources to capture photos with default settings, +[AVCapturePhotoSettings photoSettings].
-        #[method(preparedPhotoSettingsArray)]
+        #[unsafe(method(preparedPhotoSettingsArray))]
         #[unsafe(method_family = none)]
         pub unsafe fn preparedPhotoSettingsArray(
             &self,
@@ -211,7 +211,7 @@ extern_methods!(
         /// If you call this method while your AVCaptureSession is not running, your completionHandler does not fire immediately. It only fires once you've called -[AVCaptureSession startRunning], and the needed resources have actually been prepared. If you call -setPreparedPhotoSettingsArray:completionHandler: with an array of settings, and then call it a second time, your first prepare call's completionHandler fires immediately with prepared == NO.
         ///
         /// Prepared settings persist across session starts/stops and committed configuration changes. This property participates in -[AVCaptureSession beginConfiguration] / -[AVCaptureSession commitConfiguration] deferred work behavior. That is, if you call -[AVCaptureSession beginConfiguration], change your session's input/output topology, and call this method, preparation is deferred until you call -[AVCaptureSession commitConfiguration], enabling you to atomically commit a new configuration as well as prepare to take photos in that new configuration.
-        #[method(setPreparedPhotoSettingsArray:completionHandler:)]
+        #[unsafe(method(setPreparedPhotoSettingsArray:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreparedPhotoSettingsArray_completionHandler(
             &self,
@@ -223,7 +223,7 @@ extern_methods!(
         ///
         ///
         /// If you wish to capture a photo in an uncompressed format, such as 420f, 420v, or BGRA, you must ensure that the format you want is present in the receiver's availablePhotoPixelFormatTypes array. If you've not yet added your receiver to an AVCaptureSession with a video source, no pixel format types are available. This property is key-value observable.
-        #[method(availablePhotoPixelFormatTypes)]
+        #[unsafe(method(availablePhotoPixelFormatTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availablePhotoPixelFormatTypes(&self) -> Retained<NSArray<NSNumber>>;
 
@@ -232,7 +232,7 @@ extern_methods!(
         ///
         ///
         /// If you wish to capture a photo in a compressed format, such as JPEG, you must ensure that the format you want is present in the receiver's availablePhotoCodecTypes array. If you've not yet added your receiver to an AVCaptureSession with a video source, no codec types are available. This property is key-value observable.
-        #[method(availablePhotoCodecTypes)]
+        #[unsafe(method(availablePhotoCodecTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availablePhotoCodecTypes(&self) -> Retained<NSArray<AVVideoCodecType>>;
 
@@ -241,7 +241,7 @@ extern_methods!(
         ///
         ///
         /// Not all codecs can be used for all rawPixelFormatType values and this call will show all of the possible codecs available. To check if a codec is available for a specific rawPixelFormatType and rawFileType, one should use supportedRawPhotoCodecTypesForRawPhotoPixelFormatType:fileType:.
-        #[method(availableRawPhotoCodecTypes)]
+        #[unsafe(method(availableRawPhotoCodecTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableRawPhotoCodecTypes(&self) -> Retained<NSArray<AVVideoCodecType>>;
 
@@ -249,7 +249,7 @@ extern_methods!(
         ///
         ///
         /// The AVCapturePhotoSettings appleProRAWEnabled property may only be set to YES if this property returns YES. This property is key-value observable.
-        #[method(isAppleProRAWSupported)]
+        #[unsafe(method(isAppleProRAWSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAppleProRAWSupported(&self) -> bool;
 
@@ -259,12 +259,12 @@ extern_methods!(
         /// Setting this property to YES will enable support for taking photos in Apple ProRAW pixel formats. These formats will be added to -availableRawPhotoPixelFormatTypes after any existing Bayer RAW formats. Compared to photos taken with a Bayer RAW format, these photos will be demosaiced and partially processed. They are still scene-referred, and allow capturing RAW photos in modes where there is no traditional sensor/Bayer RAW available. Examples are any modes that rely on fusion of multiple captures. Use +isBayerRAWPixelFormat: to determine if a pixel format in -availableRawPhotoPixelFormatTypes is a Bayer RAW format, and +isAppleProRAWPixelFormat: to determine if it is an Apple ProRAW format. When writing an Apple ProRAW buffer to a DNG file, the resulting file is known as "Linear DNG". Apple ProRAW formats are not supported on all platforms and devices. This property may only be set to YES if appleProRAWSupported returns YES. This property is key-value observable.
         ///
         /// Enabling this property requires a lengthy reconfiguration of the capture render pipeline, so you should set this property to YES before calling -[AVCaptureSession startRunning].
-        #[method(isAppleProRAWEnabled)]
+        #[unsafe(method(isAppleProRAWEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAppleProRAWEnabled(&self) -> bool;
 
         /// Setter for [`isAppleProRAWEnabled`][Self::isAppleProRAWEnabled].
-        #[method(setAppleProRAWEnabled:)]
+        #[unsafe(method(setAppleProRAWEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAppleProRAWEnabled(&self, apple_pro_raw_enabled: bool);
 
@@ -272,7 +272,7 @@ extern_methods!(
         ///
         ///
         /// May be used to distinguish Bayer RAW from Apple ProRAW pixel formats in -availableRawPhotoPixelFormatTypes once appleProRAWEnabled has been set to YES.
-        #[method(isBayerRAWPixelFormat:)]
+        #[unsafe(method(isBayerRAWPixelFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBayerRAWPixelFormat(pixel_format: OSType) -> bool;
 
@@ -282,7 +282,7 @@ extern_methods!(
         /// May be used to distinguish Bayer RAW from Apple ProRAW pixel formats in -availableRawPhotoPixelFormatTypes once appleProRAWEnabled has been set to YES.
         ///
         /// See appleProRAWEnabled for more information on Apple ProRAW.
-        #[method(isAppleProRAWPixelFormat:)]
+        #[unsafe(method(isAppleProRAWPixelFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAppleProRAWPixelFormat(pixel_format: OSType) -> bool;
 
@@ -290,7 +290,7 @@ extern_methods!(
         ///
         ///
         /// If you wish to capture a RAW photo, you must ensure that the RAW format you want is present in the receiver's availableRawPhotoPixelFormatTypes array. If you've not yet added your receiver to an AVCaptureSession with a video source, no RAW formats are available. See AVCapturePhotoOutput.appleProRAWEnabled on how to enable support for partially processed RAW formats. This property is key-value observable. RAW capture is not supported on all platforms.
-        #[method(availableRawPhotoPixelFormatTypes)]
+        #[unsafe(method(availableRawPhotoPixelFormatTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableRawPhotoPixelFormatTypes(&self) -> Retained<NSArray<NSNumber>>;
 
@@ -299,7 +299,7 @@ extern_methods!(
         ///
         ///
         /// If you wish to capture a photo that is formatted for a particular file container, such as HEIF, you must ensure that the fileType you desire is present in the receiver's availablePhotoFileTypes array. If you've not yet added your receiver to an AVCaptureSession with a video source, no file types are available. This property is key-value observable.
-        #[method(availablePhotoFileTypes)]
+        #[unsafe(method(availablePhotoFileTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availablePhotoFileTypes(&self) -> Retained<NSArray<AVFileType>>;
 
@@ -308,7 +308,7 @@ extern_methods!(
         ///
         ///
         /// If you wish to capture a RAW photo that is formatted for a particular file container, such as DNG, you must ensure that the fileType you desire is present in the receiver's availableRawPhotoFileTypes array. If you've not yet added your receiver to an AVCaptureSession with a video source, no file types are available. This property is key-value observable.
-        #[method(availableRawPhotoFileTypes)]
+        #[unsafe(method(availableRawPhotoFileTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableRawPhotoFileTypes(&self) -> Retained<NSArray<AVFileType>>;
 
@@ -322,7 +322,7 @@ extern_methods!(
         ///
         ///
         /// If you wish to capture a photo for storage in a particular file container, such as TIFF, you must ensure that the photo pixel format type you request is valid for that file type. If no pixel format types are supported for a given fileType, an empty array is returned. If you've not yet added your receiver to an AVCaptureSession with a video source, no pixel format types are supported.
-        #[method(supportedPhotoPixelFormatTypesForFileType:)]
+        #[unsafe(method(supportedPhotoPixelFormatTypesForFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedPhotoPixelFormatTypesForFileType(
             &self,
@@ -339,7 +339,7 @@ extern_methods!(
         ///
         ///
         /// If you wish to capture a photo for storage in a particular file container, such as HEIF, you must ensure that the photo codec type you request is valid for that file type. If no codec types are supported for a given fileType, an empty array is returned. If you've not yet added your receiver to an AVCaptureSession with a video source, no codec types are supported.
-        #[method(supportedPhotoCodecTypesForFileType:)]
+        #[unsafe(method(supportedPhotoCodecTypesForFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedPhotoCodecTypesForFileType(
             &self,
@@ -358,7 +358,7 @@ extern_methods!(
         ///
         ///
         /// If you wish to capture a raw photo for storage using a Bayer RAW or Apple ProRAW pixel format and to be stored in a file container, such as DNG, you must ensure that the codec type you request is valid for that file and pixel format type. If no RAW codec types are supported for a given file type and/or pixel format type, an empty array is returned. If you have not yet added your receiver to an AVCaptureSession with a video source, an empty array is returned.
-        #[method(supportedRawPhotoCodecTypesForRawPhotoPixelFormatType:fileType:)]
+        #[unsafe(method(supportedRawPhotoCodecTypesForRawPhotoPixelFormatType:fileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedRawPhotoCodecTypesForRawPhotoPixelFormatType_fileType(
             &self,
@@ -376,7 +376,7 @@ extern_methods!(
         ///
         ///
         /// If you wish to capture a photo for storage in a particular file container, such as DNG, you must ensure that the RAW pixel format type you request is valid for that file type. If no RAW pixel format types are supported for a given fileType, an empty array is returned. If you've not yet added your receiver to an AVCaptureSession with a video source, no pixel format types are supported.
-        #[method(supportedRawPhotoPixelFormatTypesForFileType:)]
+        #[unsafe(method(supportedRawPhotoPixelFormatTypesForFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedRawPhotoPixelFormatTypesForFileType(
             &self,
@@ -391,12 +391,12 @@ extern_methods!(
         /// Changing the maxPhotoQualityPrioritization while the session is running can result in a lengthy rebuild of the session in which video preview is disrupted.
         ///
         /// Setting the maxPhotoQualityPrioritization to .quality will turn on optical image stabilization if the -isHighPhotoQualitySupported of the source device's -activeFormat is true.
-        #[method(maxPhotoQualityPrioritization)]
+        #[unsafe(method(maxPhotoQualityPrioritization))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxPhotoQualityPrioritization(&self) -> AVCapturePhotoQualityPrioritization;
 
         /// Setter for [`maxPhotoQualityPrioritization`][Self::maxPhotoQualityPrioritization].
-        #[method(setMaxPhotoQualityPrioritization:)]
+        #[unsafe(method(setMaxPhotoQualityPrioritization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxPhotoQualityPrioritization(
             &self,
@@ -407,12 +407,12 @@ extern_methods!(
         ///
         ///
         /// Fast capture prioritization allows capture quality to be automatically reduced from the selected AVCapturePhotoQualityPrioritization to ensure the photo output can keep up when captures are requested in rapid succession. Fast capture prioritization is only supported for certain AVCaptureSession sessionPresets and AVCaptureDevice activeFormats and only when responsiveCaptureEnabled is YES. When switching cameras or formats this property may change. When this property changes from YES to NO, fastCapturePrioritizationEnabled also reverts to NO. If you've previously opted in for fast capture prioritization and then change configurations, you may need to set fastCapturePrioritizationEnabled = YES again.
-        #[method(isFastCapturePrioritizationSupported)]
+        #[unsafe(method(isFastCapturePrioritizationSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFastCapturePrioritizationSupported(&self) -> bool;
 
         /// Setter for [`isFastCapturePrioritizationSupported`][Self::isFastCapturePrioritizationSupported].
-        #[method(setFastCapturePrioritizationSupported:)]
+        #[unsafe(method(setFastCapturePrioritizationSupported:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFastCapturePrioritizationSupported(
             &self,
@@ -423,12 +423,12 @@ extern_methods!(
         ///
         ///
         /// This property defaults to NO. This property may only be set to YES if fastCapturePrioritizationSupported is YES, otherwise an NSInvalidArgumentException is thrown. By setting this property to YES, the photo output prepares itself to automatically reduce capture quality from the selected AVCapturePhotoQualityPrioritization when needed to keep up with rapid capture requests. In many cases the slightly reduced quality is preferable to missing the moment entirely. If you intend to use fast capture prioritization, you should set this property to YES before calling -[AVCaptureSession startRunning] or within -[AVCaptureSession beginConfiguration] and -[AVCaptureSession commitConfiguration] while running.
-        #[method(isFastCapturePrioritizationEnabled)]
+        #[unsafe(method(isFastCapturePrioritizationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFastCapturePrioritizationEnabled(&self) -> bool;
 
         /// Setter for [`isFastCapturePrioritizationEnabled`][Self::isFastCapturePrioritizationEnabled].
-        #[method(setFastCapturePrioritizationEnabled:)]
+        #[unsafe(method(setFastCapturePrioritizationEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFastCapturePrioritizationEnabled(
             &self,
@@ -441,7 +441,7 @@ extern_methods!(
         /// This property may change as the session's -sessionPreset or source device's -activeFormat change. When deferred photo delivery is not supported, your capture requests always resolve their AVCaptureResolvedPhotoSettings.deferredPhotoProxyDimensions to { 0, 0 }. This property is key-value observable.
         ///
         /// Automatic deferred photo delivery can produce a lightweight photo representation, called a "proxy", at the time of capture that can later be processed to completion while improving camera responsiveness.  When it's appropriate for the receiver to deliver a photo proxy for deferred processing, the delegate callback -captureOutput:didFinishCapturingDeferredPhotoProxy:error: will be invoked instead of -captureOutput:didFinishProcessingPhoto:error:.  See the documentation for AVCaptureDeferredPhotoProxy for more details.
-        #[method(isAutoDeferredPhotoDeliverySupported)]
+        #[unsafe(method(isAutoDeferredPhotoDeliverySupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutoDeferredPhotoDeliverySupported(&self) -> bool;
 
@@ -449,12 +449,12 @@ extern_methods!(
         ///
         ///
         /// Setting this value to either YES or NO requires a lengthy reconfiguration of the capture pipeline, so you should set this property before calling -[AVCaptureSession startRunning].  Setting this property to YES throws an NSInvalidArgumentException if autoDeferredPhotoDeliverySupported is NO.
-        #[method(isAutoDeferredPhotoDeliveryEnabled)]
+        #[unsafe(method(isAutoDeferredPhotoDeliveryEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutoDeferredPhotoDeliveryEnabled(&self) -> bool;
 
         /// Setter for [`isAutoDeferredPhotoDeliveryEnabled`][Self::isAutoDeferredPhotoDeliveryEnabled].
-        #[method(setAutoDeferredPhotoDeliveryEnabled:)]
+        #[unsafe(method(setAutoDeferredPhotoDeliveryEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutoDeferredPhotoDeliveryEnabled(
             &self,
@@ -468,7 +468,7 @@ extern_methods!(
         ///
         /// As of iOS 13 hardware, the AVCapturePhotoOutput is capable of applying a variety of multi-image fusion techniques to improve photo quality (reduce noise, preserve detail in low light, freeze motion, etc), all of which have been previously lumped under the stillImageStabilization moniker. This property should no longer be used as it no longer provides meaningful information about the techniques used to improve quality in a photo capture. Instead, you should use -maxPhotoQualityPrioritization to indicate the highest quality prioritization level you might request in a photo capture, understanding that the higher the quality, the longer the potential wait. You may also use AVCapturePhotoSettings' photoQualityPrioritization property to specify a prioritization level for a particular photo capture, and then query the AVCaptureResolvedPhotoSettings photoProcessingTimeRange property to find out how long it might take to receive the resulting photo in your delegate callback.
         #[deprecated]
-        #[method(isStillImageStabilizationSupported)]
+        #[unsafe(method(isStillImageStabilizationSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStillImageStabilizationSupported(&self) -> bool;
 
@@ -479,7 +479,7 @@ extern_methods!(
         ///
         /// As of iOS 13 hardware, the AVCapturePhotoOutput is capable of applying a variety of multi-image fusion techniques to improve photo quality (reduce noise, preserve detail in low light, freeze motion, etc), all of which have been previously lumped under the stillImageStabilization moniker. This property should no longer be used as it no longer provides meaningful information about the techniques used to improve quality in a photo capture. Instead, you should use -maxPhotoQualityPrioritization to indicate the highest quality prioritization level you might request in a photo capture, understanding that the higher the quality, the longer the potential wait. You may also use AVCapturePhotoSettings' photoQualityPrioritization property to specify a prioritization level for a particular photo capture, and then query the AVCaptureResolvedPhotoSettings photoProcessingTimeRange property to find out how long it might take to receive the resulting photo in your delegate callback.
         #[deprecated]
-        #[method(isStillImageStabilizationScene)]
+        #[unsafe(method(isStillImageStabilizationScene))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStillImageStabilizationScene(&self) -> bool;
 
@@ -487,7 +487,7 @@ extern_methods!(
         ///
         ///
         /// This property may change as the session's -sessionPreset or source device's -activeFormat change. When using a virtual AVCaptureDevice, its constituent camera images can be fused together to improve image quality when this property answers YES. When virtual device fusion is not supported by the current configuration, your capture requests always resolve virtualDeviceFusionEnabled to NO. This property is key-value observable.
-        #[method(isVirtualDeviceFusionSupported)]
+        #[unsafe(method(isVirtualDeviceFusionSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVirtualDeviceFusionSupported(&self) -> bool;
 
@@ -496,7 +496,7 @@ extern_methods!(
         ///
         /// This property may change as the session's -sessionPreset or source device's -activeFormat change. When using the AVCaptureDevice with deviceType AVCaptureDeviceTypeBuiltInDualCamera, the wide-angle and telephoto camera images can be fused together to improve image quality in some configurations. When DualCamera image fusion is not supported by the current configuration, your capture requests always resolve dualCameraFusionEnabled to NO. This property is key-value observable. As of iOS 13, this property is deprecated in favor of virtualDeviceFusionSupported.
         #[deprecated]
-        #[method(isDualCameraFusionSupported)]
+        #[unsafe(method(isDualCameraFusionSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDualCameraFusionSupported(&self) -> bool;
 
@@ -504,7 +504,7 @@ extern_methods!(
         ///
         ///
         /// Virtual device constituent photo delivery is only supported for certain AVCaptureSession sessionPresets and AVCaptureDevice activeFormats. When switching cameras or formats this property may change. When this property changes from YES to NO, virtualDeviceConstituentPhotoDeliveryEnabled also reverts to NO. If you've previously opted in for virtual device constituent photo delivery and then change configurations, you may need to set virtualDeviceConstituentPhotoDeliveryEnabled = YES again. This property is key-value observable.
-        #[method(isVirtualDeviceConstituentPhotoDeliverySupported)]
+        #[unsafe(method(isVirtualDeviceConstituentPhotoDeliverySupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVirtualDeviceConstituentPhotoDeliverySupported(&self) -> bool;
 
@@ -513,7 +513,7 @@ extern_methods!(
         ///
         /// DualCamera dual photo delivery is only supported for certain AVCaptureSession sessionPresets and AVCaptureDevice activeFormats. When switching cameras or formats this property may change. When this property changes from YES to NO, dualCameraDualPhotoDeliveryEnabled also reverts to NO. If you've previously opted in for DualCamera dual photo delivery and then change configurations, you may need to set dualCameraDualPhotoDeliveryEnabled = YES again. This property is key-value observable. As of iOS 13, this property is deprecated in favor of virtualDeviceConstituentPhotoDeliverySupported.
         #[deprecated]
-        #[method(isDualCameraDualPhotoDeliverySupported)]
+        #[unsafe(method(isDualCameraDualPhotoDeliverySupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDualCameraDualPhotoDeliverySupported(&self) -> bool;
 
@@ -521,12 +521,12 @@ extern_methods!(
         ///
         ///
         /// Default value is NO. This property may only be set to YES if virtualDeviceConstituentPhotoDeliverySupported is YES. Virtual device constituent photo delivery requires a lengthy reconfiguration of the capture render pipeline, so if you intend to do any constituent photo delivery captures, you should set this property to YES before calling -[AVCaptureSession startRunning]. See also -[AVCapturePhotoSettings virtualDeviceConstituentPhotoDeliveryEnabledDevices].
-        #[method(isVirtualDeviceConstituentPhotoDeliveryEnabled)]
+        #[unsafe(method(isVirtualDeviceConstituentPhotoDeliveryEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVirtualDeviceConstituentPhotoDeliveryEnabled(&self) -> bool;
 
         /// Setter for [`isVirtualDeviceConstituentPhotoDeliveryEnabled`][Self::isVirtualDeviceConstituentPhotoDeliveryEnabled].
-        #[method(setVirtualDeviceConstituentPhotoDeliveryEnabled:)]
+        #[unsafe(method(setVirtualDeviceConstituentPhotoDeliveryEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVirtualDeviceConstituentPhotoDeliveryEnabled(
             &self,
@@ -538,13 +538,13 @@ extern_methods!(
         ///
         /// Default value is NO. This property may only be set to YES if dualCameraDualPhotoDeliverySupported is YES. DualCamera dual photo delivery requires a lengthy reconfiguration of the capture render pipeline, so if you intend to do any dual photo delivery captures, you should set this property to YES before calling -[AVCaptureSession startRunning]. See also -[AVCapturePhotoSettings dualCameraDualPhotoDeliveryEnabled]. As of iOS 13, this property is deprecated in favor of virtualDeviceConstituentPhotoDeliveryEnabled.
         #[deprecated]
-        #[method(isDualCameraDualPhotoDeliveryEnabled)]
+        #[unsafe(method(isDualCameraDualPhotoDeliveryEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDualCameraDualPhotoDeliveryEnabled(&self) -> bool;
 
         /// Setter for [`isDualCameraDualPhotoDeliveryEnabled`][Self::isDualCameraDualPhotoDeliveryEnabled].
         #[deprecated]
-        #[method(setDualCameraDualPhotoDeliveryEnabled:)]
+        #[unsafe(method(setDualCameraDualPhotoDeliveryEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDualCameraDualPhotoDeliveryEnabled(
             &self,
@@ -555,7 +555,7 @@ extern_methods!(
         ///
         ///
         /// Camera calibration data delivery (intrinsics, extrinsics, lens distortion characteristics, etc.) is only supported if virtualDeviceConstituentPhotoDeliveryEnabled is YES and contentAwareDistortionCorrectionEnabled is NO and the source device's geometricDistortionCorrectionEnabled property is set to NO. This property is key-value observable.
-        #[method(isCameraCalibrationDataDeliverySupported)]
+        #[unsafe(method(isCameraCalibrationDataDeliverySupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCameraCalibrationDataDeliverySupported(&self) -> bool;
 
@@ -565,7 +565,7 @@ extern_methods!(
         /// This property supersedes AVCaptureDevice's isFlashModeSupported: It returns an array of AVCaptureFlashMode constants. To test whether a particular flash mode is supported, use NSArray's containsObject API: [photoOutput.supportedFlashModes containsObject:
         /// @
         /// (AVCaptureFlashModeAuto)]. This property is key-value observable.
-        #[method(supportedFlashModes)]
+        #[unsafe(method(supportedFlashModes))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedFlashModes(&self) -> Retained<NSArray<NSNumber>>;
 
@@ -573,7 +573,7 @@ extern_methods!(
         ///
         ///
         /// Flash images may cause subjects' eyes to appear red, golden, or white. Automatic red-eye reduction detects and corrects for reflected light in eyes, at the cost of additional processing time per image. This property may change as the session's -sessionPreset or source device's -activeFormat change. When red-eye reduction is not supported, your capture requests always resolve redEyeReductionEnabled to NO. This property is key-value observable.
-        #[method(isAutoRedEyeReductionSupported)]
+        #[unsafe(method(isAutoRedEyeReductionSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutoRedEyeReductionSupported(&self) -> bool;
 
@@ -581,7 +581,7 @@ extern_methods!(
         ///
         ///
         /// This property reports whether the current scene being previewed by the camera is dark enough to need the flash. If -supportedFlashModes only contains AVCaptureFlashModeOff, isFlashScene always reports NO. You can influence this property's answers by setting the photoSettingsForSceneMonitoring property, indicating the flashMode you wish to monitor. If you set flashMode to AVCaptureFlashModeOff, isFlashScene always reports NO. If you set it to AVCaptureFlashModeAuto or AVCaptureFlashModeOn, isFlashScene answers YES or NO based on the current scene's lighting conditions. By default, this property always returns NO unless you set photoSettingsForSceneMonitoring to a non-nil value. Note that there is some overlap in the light level ranges that benefit from still image stabilization and flash. If your photoSettingsForSceneMonitoring indicate that both still image stabilization and flash scenes should be monitored, still image stabilization takes precedence, and isFlashScene becomes YES at lower overall light levels. This property may be key-value observed.
-        #[method(isFlashScene)]
+        #[unsafe(method(isFlashScene))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFlashScene(&self) -> bool;
 
@@ -589,14 +589,14 @@ extern_methods!(
         ///
         ///
         /// You can influence the return values of isFlashScene and isStillImageStabilizationScene by setting this property, indicating the flashMode and photoQualityPrioritization values that should be considered for scene monitoring. For instance, if you set flashMode to AVCaptureFlashModeOff, isFlashScene always reports NO. If you set it to AVCaptureFlashModeAuto or AVCaptureFlashModeOn, isFlashScene answers YES or NO based on the current scene's lighting conditions. Note that there is some overlap in the light level ranges that benefit from still image stabilization and flash. If your photoSettingsForSceneMonitoring indicate that both still image stabilization and flash scenes should be monitored, still image stabilization takes precedence, and isFlashScene becomes YES at lower overall light levels. The default value for this property is nil. See isStillImageStabilizationScene and isFlashScene for further discussion.
-        #[method(photoSettingsForSceneMonitoring)]
+        #[unsafe(method(photoSettingsForSceneMonitoring))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsForSceneMonitoring(
             &self,
         ) -> Option<Retained<AVCapturePhotoSettings>>;
 
         /// Setter for [`photoSettingsForSceneMonitoring`][Self::photoSettingsForSceneMonitoring].
-        #[method(setPhotoSettingsForSceneMonitoring:)]
+        #[unsafe(method(setPhotoSettingsForSceneMonitoring:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhotoSettingsForSceneMonitoring(
             &self,
@@ -608,13 +608,13 @@ extern_methods!(
         ///
         /// Some AVCaptureDeviceFormats support outputting higher resolution stills than their streaming resolution (See AVCaptureDeviceFormat.highResolutionStillImageDimensions). Under some conditions, AVCaptureSession needs to set up the photo render pipeline differently to support high resolution still image capture. If you intend to take high resolution still images at all, you should set this property to YES before calling -[AVCaptureSession startRunning]. Once you've opted in for high resolution capture, you are free to issue photo capture requests with or without highResolutionCaptureEnabled in the AVCapturePhotoSettings. If you have not set this property to YES and call capturePhotoWithSettings:delegate: with settings.highResolutionCaptureEnabled set to YES, an NSInvalidArgumentException will be thrown.
         #[deprecated = "Use maxPhotoDimensions instead."]
-        #[method(isHighResolutionCaptureEnabled)]
+        #[unsafe(method(isHighResolutionCaptureEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHighResolutionCaptureEnabled(&self) -> bool;
 
         /// Setter for [`isHighResolutionCaptureEnabled`][Self::isHighResolutionCaptureEnabled].
         #[deprecated = "Use maxPhotoDimensions instead."]
-        #[method(setHighResolutionCaptureEnabled:)]
+        #[unsafe(method(setHighResolutionCaptureEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHighResolutionCaptureEnabled(&self, high_resolution_capture_enabled: bool);
 
@@ -624,13 +624,13 @@ extern_methods!(
         ///
         /// Set this property to enable requesting of images up to as large as the specified dimensions. Images returned by AVCapturePhotoOutput may be smaller than these dimensions but will never be larger. Once set, images can be requested with any valid maximum photo dimensions by setting AVCapturePhotoSettings.maxPhotoDimensions on a per photo basis. The dimensions set must match one of the dimensions returned by AVCaptureDeviceFormat.supportedMaxPhotoDimensions for the current active format. Changing this property may trigger a lengthy reconfiguration of the capture render pipeline so it is recommended that this is set before calling -[AVCaptureSession startRunning].
         /// Note: When supported, the 24MP setting (5712, 4284) is only serviced as 24MP when opted-in to autoDeferredPhotoDeliveryEnabled.
-        #[method(maxPhotoDimensions)]
+        #[unsafe(method(maxPhotoDimensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxPhotoDimensions(&self) -> CMVideoDimensions;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`maxPhotoDimensions`][Self::maxPhotoDimensions].
-        #[method(setMaxPhotoDimensions:)]
+        #[unsafe(method(setMaxPhotoDimensions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxPhotoDimensions(&self, max_photo_dimensions: CMVideoDimensions);
 
@@ -638,7 +638,7 @@ extern_methods!(
         ///
         ///
         /// AVCapturePhotoOutput can only satisfy a limited number of image requests in a single bracket without exhausting system resources. The maximum number of photos that may be taken in a single bracket depends on the size and format of the images being captured, and consequently may vary with AVCaptureSession -sessionPreset and AVCaptureDevice -activeFormat. Some formats do not support bracketed capture at all, and thus this property may return a value of 0. This read-only property is key-value observable. If you call -capturePhotoWithSettings:delegate: with a bracketedSettings whose count exceeds -maxBracketedCapturePhotoCount, an NSInvalidArgumentException is thrown.
-        #[method(maxBracketedCapturePhotoCount)]
+        #[unsafe(method(maxBracketedCapturePhotoCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxBracketedCapturePhotoCount(&self) -> NSUInteger;
 
@@ -646,7 +646,7 @@ extern_methods!(
         ///
         ///
         /// The AVCapturePhotoBracketSettings lensStabilizationEnabled property may only be set if this property returns YES. Its value may change as the session's -sessionPreset or input device's -activeFormat changes. This read-only property is key-value observable.
-        #[method(isLensStabilizationDuringBracketedCaptureSupported)]
+        #[unsafe(method(isLensStabilizationDuringBracketedCaptureSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLensStabilizationDuringBracketedCaptureSupported(&self) -> bool;
 
@@ -654,7 +654,7 @@ extern_methods!(
         ///
         ///
         /// Live Photo capture is only supported for certain AVCaptureSession sessionPresets and AVCaptureDevice activeFormats. When switching cameras or formats this property may change. When this property changes from YES to NO, livePhotoCaptureEnabled also reverts to NO. If you've previously opted in for Live Photo capture and then change configurations, you may need to set livePhotoCaptureEnabled = YES again.
-        #[method(isLivePhotoCaptureSupported)]
+        #[unsafe(method(isLivePhotoCaptureSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLivePhotoCaptureSupported(&self) -> bool;
 
@@ -662,12 +662,12 @@ extern_methods!(
         ///
         ///
         /// Default value is NO. This property may only be set to YES if livePhotoCaptureSupported is YES. Live Photo capture requires a lengthy reconfiguration of the capture render pipeline, so if you intend to do any Live Photo captures at all, you should set livePhotoCaptureEnabled to YES before calling -[AVCaptureSession startRunning].
-        #[method(isLivePhotoCaptureEnabled)]
+        #[unsafe(method(isLivePhotoCaptureEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLivePhotoCaptureEnabled(&self) -> bool;
 
         /// Setter for [`isLivePhotoCaptureEnabled`][Self::isLivePhotoCaptureEnabled].
-        #[method(setLivePhotoCaptureEnabled:)]
+        #[unsafe(method(setLivePhotoCaptureEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLivePhotoCaptureEnabled(&self, live_photo_capture_enabled: bool);
 
@@ -675,12 +675,12 @@ extern_methods!(
         ///
         ///
         /// This property allows you to cut current Live Photo movie captures short (for instance, if you suddenly need to do something that you don't want to show up in the Live Photo movie, such as take a non Live Photo capture that makes a shutter sound). By default, livePhotoCaptureSuspended is NO. When you set livePhotoCaptureSuspended = YES, any Live Photo movie captures in progress are trimmed to the current time. Likewise, when you toggle livePhotoCaptureSuspended from YES to NO, subsequent Live Photo movie captures will not contain any samples earlier than the time you un-suspended Live Photo capture. Setting this property to YES throws an NSInvalidArgumentException if livePhotoCaptureEnabled is NO. By default, this property resets to NO when the AVCaptureSession stops. This behavior can be prevented by setting preservesLivePhotoCaptureSuspendedOnSessionStop to YES before stopping the session.
-        #[method(isLivePhotoCaptureSuspended)]
+        #[unsafe(method(isLivePhotoCaptureSuspended))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLivePhotoCaptureSuspended(&self) -> bool;
 
         /// Setter for [`isLivePhotoCaptureSuspended`][Self::isLivePhotoCaptureSuspended].
-        #[method(setLivePhotoCaptureSuspended:)]
+        #[unsafe(method(setLivePhotoCaptureSuspended:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLivePhotoCaptureSuspended(&self, live_photo_capture_suspended: bool);
 
@@ -688,12 +688,12 @@ extern_methods!(
         ///
         ///
         /// Defaults to NO.
-        #[method(preservesLivePhotoCaptureSuspendedOnSessionStop)]
+        #[unsafe(method(preservesLivePhotoCaptureSuspendedOnSessionStop))]
         #[unsafe(method_family = none)]
         pub unsafe fn preservesLivePhotoCaptureSuspendedOnSessionStop(&self) -> bool;
 
         /// Setter for [`preservesLivePhotoCaptureSuspendedOnSessionStop`][Self::preservesLivePhotoCaptureSuspendedOnSessionStop].
-        #[method(setPreservesLivePhotoCaptureSuspendedOnSessionStop:)]
+        #[unsafe(method(setPreservesLivePhotoCaptureSuspendedOnSessionStop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreservesLivePhotoCaptureSuspendedOnSessionStop(
             &self,
@@ -704,12 +704,12 @@ extern_methods!(
         ///
         ///
         /// This property defaults to YES when livePhotoCaptureSupported is YES. Changing this property's value while your session is running will cause a lengthy reconfiguration of the session. You should set livePhotoAutoTrimmingEnabled to YES or NO before calling -[AVCaptureSession startRunning]. When set to YES, Live Photo movies are analyzed in real time and trimmed if there's excessive movement before or after the photo is taken. Nominally, Live Photos are approximately 3 seconds long. With trimming enabled, they may be shorter, depending on movement. This feature prevents common problems such as Live Photo movies containing shoe or pocket shots.
-        #[method(isLivePhotoAutoTrimmingEnabled)]
+        #[unsafe(method(isLivePhotoAutoTrimmingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLivePhotoAutoTrimmingEnabled(&self) -> bool;
 
         /// Setter for [`isLivePhotoAutoTrimmingEnabled`][Self::isLivePhotoAutoTrimmingEnabled].
-        #[method(setLivePhotoAutoTrimmingEnabled:)]
+        #[unsafe(method(setLivePhotoAutoTrimmingEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLivePhotoAutoTrimmingEnabled(
             &self,
@@ -721,7 +721,7 @@ extern_methods!(
         ///
         ///
         /// Prior to iOS 11, all Live Photo movie video tracks are compressed using H.264. Beginning in iOS 11, you can select the Live Photo movie video compression format using one of the AVVideoCodecKey strings presented in this property. The system's default (preferred) video codec is always presented first in the list. If you've not yet added your receiver to an AVCaptureSession with a video source, no codecs are available. This property is key-value observable.
-        #[method(availableLivePhotoVideoCodecTypes)]
+        #[unsafe(method(availableLivePhotoVideoCodecTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableLivePhotoVideoCodecTypes(
             &self,
@@ -740,7 +740,7 @@ extern_methods!(
         ///
         /// AVCapturePhotoOutput's depecrated -captureOutput:didFinishProcessingPhotoSampleBuffer:previewPhotoSampleBuffer:resolvedSettings:bracketSettings:error: callback delivers JPEG photos to clients as CMSampleBuffers. To re-package these buffers in a data format suitable for writing to a JPEG file, you may call this class method, optionally inserting your own metadata into the JPEG CMSampleBuffer first, and optionally passing a preview image to be written to the JPEG file format as a thumbnail image.
         #[deprecated]
-        #[method(JPEGPhotoDataRepresentationForJPEGSampleBuffer:previewPhotoSampleBuffer:)]
+        #[unsafe(method(JPEGPhotoDataRepresentationForJPEGSampleBuffer:previewPhotoSampleBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn JPEGPhotoDataRepresentationForJPEGSampleBuffer_previewPhotoSampleBuffer(
             jpeg_sample_buffer: &CMSampleBuffer,
@@ -760,7 +760,7 @@ extern_methods!(
         ///
         /// AVCapturePhotoOutput's deprecated -captureOutput:didFinishProcessingRawPhotoSampleBuffer:previewPhotoSampleBuffer:resolvedSettings:bracketSettings:error: callback delivers RAW photos to clients as CMSampleBuffers. To re-package these buffers in a data format suitable for writing to a DNG file, you may call this class method, optionally inserting your own metadata into the RAW CMSampleBuffer first, and optionally passing a preview image to be written to the DNG file format as a thumbnail image. Only RAW images from Apple built-in cameras are supported.
         #[deprecated]
-        #[method(DNGPhotoDataRepresentationForRawSampleBuffer:previewPhotoSampleBuffer:)]
+        #[unsafe(method(DNGPhotoDataRepresentationForRawSampleBuffer:previewPhotoSampleBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn DNGPhotoDataRepresentationForRawSampleBuffer_previewPhotoSampleBuffer(
             raw_sample_buffer: &CMSampleBuffer,
@@ -771,7 +771,7 @@ extern_methods!(
         ///
         ///
         /// The rectilinear model used in optical design and by geometric distortion correction only preserves lines but not area, angles, or distance. Thus the wider the field of view of a lens, the greater the areal distortion at the edges of images. Content aware distortion correction, when enabled, intelligently corrects distortions by taking content into consideration, such as faces near the edges of the image. This property returns YES if the session's current configuration allows photos to be captured with content aware distortion correction. When switching cameras or formats or enabling depth data delivery this property may change. When this property changes from YES to NO, contentAwareDistortionCorrectionEnabled also reverts to NO. This property is key-value observable.
-        #[method(isContentAwareDistortionCorrectionSupported)]
+        #[unsafe(method(isContentAwareDistortionCorrectionSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isContentAwareDistortionCorrectionSupported(&self) -> bool;
 
@@ -779,12 +779,12 @@ extern_methods!(
         ///
         ///
         /// Default is NO. Set to YES if you wish content aware distortion correction to be performed on your AVCapturePhotos. This property may only be set to YES if contentAwareDistortionCorrectionSupported is YES. Note that warping the photos to preserve more natural looking content may result in a small change in field of view compared to what you see in the AVCaptureVideoPreviewLayer. The amount of field of view lost or gained is content specific and may vary from photo to photo. Enabling this property requires a lengthy reconfiguration of the capture render pipeline, so you should set this property to YES before calling -[AVCaptureSession startRunning].
-        #[method(isContentAwareDistortionCorrectionEnabled)]
+        #[unsafe(method(isContentAwareDistortionCorrectionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isContentAwareDistortionCorrectionEnabled(&self) -> bool;
 
         /// Setter for [`isContentAwareDistortionCorrectionEnabled`][Self::isContentAwareDistortionCorrectionEnabled].
-        #[method(setContentAwareDistortionCorrectionEnabled:)]
+        #[unsafe(method(setContentAwareDistortionCorrectionEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentAwareDistortionCorrectionEnabled(
             &self,
@@ -795,7 +795,7 @@ extern_methods!(
         ///
         ///
         /// This property returns YES if the session's current configuration allows zero shutter lag. When switching cameras or formats, setting depthDataDeliveryEnabled, or setting virtualDeviceConstituentPhotoDeliveryEnabled this property may change. When this property changes from YES to NO, zeroShutterLagEnabled also reverts to NO. This property is key-value observable.
-        #[method(isZeroShutterLagSupported)]
+        #[unsafe(method(isZeroShutterLagSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isZeroShutterLagSupported(&self) -> bool;
 
@@ -803,12 +803,12 @@ extern_methods!(
         ///
         ///
         /// This property may only be set to YES if zeroShutterLagSupported is YES, otherwise an NSInvalidArgumentException is thrown. For apps linked on or after iOS 17 zero shutter lag is automatically enabled when supported. Enabling zero shutter lag reduces or eliminates shutter lag when using AVCapturePhotoQualityPrioritizationBalanced or Quality at the cost of additional memory usage by the photo output. The timestamp of the AVCapturePhoto may be slightly earlier than when -capturePhotoWithSettings:delegate: was called. To minimize camera shake from the user's tapping gesture it is recommended that -capturePhotoWithSettings:delegate: be called as early as possible when handling the touch down event. Zero shutter lag isn't available when using manual exposure or bracketed capture. Changing this property requires a lengthy reconfiguration of the capture render pipeline, so you should set this property to YES before calling -[AVCaptureSession startRunning] or within -[AVCaptureSession beginConfiguration] and -[AVCaptureSession commitConfiguration] while running.
-        #[method(isZeroShutterLagEnabled)]
+        #[unsafe(method(isZeroShutterLagEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isZeroShutterLagEnabled(&self) -> bool;
 
         /// Setter for [`isZeroShutterLagEnabled`][Self::isZeroShutterLagEnabled].
-        #[method(setZeroShutterLagEnabled:)]
+        #[unsafe(method(setZeroShutterLagEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZeroShutterLagEnabled(&self, zero_shutter_lag_enabled: bool);
 
@@ -816,7 +816,7 @@ extern_methods!(
         ///
         ///
         /// Enabling responsive capture increases peak and sustained capture rates, and reduces shutter lag at the cost of additional memory usage by the photo output. This property returns YES if the session's current configuration allows responsive capture. When switching cameras or formats, enabling depth data delivery, or enabling zero shutter lag this property may change. Responsive capture is only supported when zero shutter lag is enabled. When this property changes from YES to NO, responsiveCaptureEnabled also reverts to NO. This property is key-value observable.
-        #[method(isResponsiveCaptureSupported)]
+        #[unsafe(method(isResponsiveCaptureSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isResponsiveCaptureSupported(&self) -> bool;
 
@@ -824,12 +824,12 @@ extern_methods!(
         ///
         ///
         /// This property may only be set to YES if responsiveCaptureSupported is YES, otherwise an NSInvalidArgumentException is thrown. When responsiveCaptureEnabled is YES the captureReadiness property should be used to determine whether new capture requests can be serviced in a reasonable time and whether the shutter control should be available to the user. Responsive capture adds buffering between the capture and photo processing stages which allows a new capture to start before processing has completed for the previous capture, so be prepared to handle -captureOutput:willBeginCaptureForResolvedSettings: being called before the -captureOutput:didFinishProcessingPhoto: for the prior requests. Processed photos continue to be delivered in the order they were captured. To minimize camera shake from the user's tapping gesture it is recommended that -capturePhotoWithSettings:delegate: be called as early as possible when handling the touch down event. Enabling responsive capture allows the fast capture prioritization feature to be used, which further increases capture rates and reduces preview and recording disruptions. See the fastCapturePrioritizationEnabled property. When requesting uncompressed output using kCVPixelBufferPixelFormatTypeKey in AVCapturePhotoSetting.format the AVCapturePhoto's pixelBuffer is allocated from a pool with enough capacity for that request only, and overlap between capture and processing is disabled. The client must release the AVCapturePhoto and references to the pixelBuffer before capturing again and the pixelBuffer's IOSurface must also no longer be in use. Changing this property requires a lengthy reconfiguration of the capture render pipeline, so you should set this property to YES before calling -[AVCaptureSession startRunning] or within -[AVCaptureSession beginConfiguration] and -[AVCaptureSession commitConfiguration] while running.
-        #[method(isResponsiveCaptureEnabled)]
+        #[unsafe(method(isResponsiveCaptureEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isResponsiveCaptureEnabled(&self) -> bool;
 
         /// Setter for [`isResponsiveCaptureEnabled`][Self::isResponsiveCaptureEnabled].
-        #[method(setResponsiveCaptureEnabled:)]
+        #[unsafe(method(setResponsiveCaptureEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResponsiveCaptureEnabled(&self, responsive_capture_enabled: bool);
 
@@ -837,7 +837,7 @@ extern_methods!(
         ///
         ///
         /// This property can be key-value observed to enable and disable shutter button UI depending on whether the output is ready to capture, which is especially important when the responsiveCaptureEnabled property is YES. When interacting with AVCapturePhotoOutput on a background queue AVCapturePhotoOutputReadinessCoordinator should instead be used to observe readiness changes and perform UI updates. Capturing only when the output is ready limits the number of requests inflight to minimize shutter lag while maintaining the fastest shot to shot time. When the property returns a value other than Ready the output is not ready to capture and the shutter button should be disabled to prevent the user from initiating new requests. The output continues to accept requests when the captureReadiness property returns a value other than Ready, but the request may not be serviced for a longer period. The visual presentation of the shutter button can be customized based on the readiness value. When the user rapidly taps the shutter button the property may transition to NotReadyMomentarily for a brief period. Although the shutter button should be disabled during this period it is short lived enough that dimming or changing the appearance of the shutter is not recommended as it would be visually distracting to the user. Longer running capture types like flash or captures with AVCapturePhotoQualityPrioritizationQuality may prevent the output from capturing for an extended period, indicated by NotReadyWaitingForCapture or NotReadyWaitingForProcessing, which is appropriate to show by dimming or disabling the shutter button. For NotReadyWaitingForProcessing it is also appropriate to show a spinner or other indication that the shutter is busy.
-        #[method(captureReadiness)]
+        #[unsafe(method(captureReadiness))]
         #[unsafe(method_family = none)]
         pub unsafe fn captureReadiness(&self) -> AVCapturePhotoOutputCaptureReadiness;
 
@@ -853,7 +853,7 @@ extern_methods!(
         /// Constant color should not be used in conjunction with locked or manual white balance.
         ///
         /// This property returns YES if the session's current configuration allows photos to be captured with constant color. When switching cameras or formats this property may change. When this property changes from YES to NO, constantColorEnabled also reverts to NO. If you've previously opted in for constant color and then change configurations, you may need to set constantColorEnabled = YES again. This property is key-value observable.
-        #[method(isConstantColorSupported)]
+        #[unsafe(method(isConstantColorSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isConstantColorSupported(&self) -> bool;
 
@@ -861,12 +861,12 @@ extern_methods!(
         ///
         ///
         /// Default is NO. Set to YES to enable support for taking constant color photos. This property may only be set to YES if constantColorSupported is YES. Enabling constant color requires a lengthy reconfiguration of the capture render pipeline, so if you intend to capture constant color photos, you should set this property to YES before calling -[AVCaptureSession startRunning] or within -[AVCaptureSession beginConfiguration] and -[AVCaptureSession commitConfiguration] while running.
-        #[method(isConstantColorEnabled)]
+        #[unsafe(method(isConstantColorEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isConstantColorEnabled(&self) -> bool;
 
         /// Setter for [`isConstantColorEnabled`][Self::isConstantColorEnabled].
-        #[method(setConstantColorEnabled:)]
+        #[unsafe(method(setConstantColorEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstantColorEnabled(&self, constant_color_enabled: bool);
 
@@ -874,7 +874,7 @@ extern_methods!(
         ///
         ///
         /// On iOS, this property returns NO in jurisdictions where shutter sound production cannot be disabled. On all other platforms, it always returns NO.
-        #[method(isShutterSoundSuppressionSupported)]
+        #[unsafe(method(isShutterSoundSuppressionSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isShutterSoundSuppressionSupported(&self) -> bool;
     }
@@ -896,16 +896,16 @@ unsafe impl NSObjectProtocol for AVCapturePhotoOutputReadinessCoordinator {}
 
 extern_methods!(
     unsafe impl AVCapturePhotoOutputReadinessCoordinator {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVCaptureOutputBase")]
-        #[method(initWithPhotoOutput:)]
+        #[unsafe(method(initWithPhotoOutput:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPhotoOutput(
             this: Allocated<Self>,
@@ -916,7 +916,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an object conforming to the AVCapturePhotoOutputReadinessCoordinatorDelegate protocol that will receive a callback when the captureReadiness property changes. Callbacks are delivered on the main queue, allowing UI updates to be done directly in the callback. A callback with the initial value of captureReadiness is delivered when delegate is set.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -924,7 +924,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -935,7 +935,7 @@ extern_methods!(
         ///
         ///
         /// The value incorporates the photo output's captureReadiness and any requests registered using -startTrackingCaptureRequestUsingPhotoSettings:. The value is updated before calling the -readinessCoordinator:captureReadinessDidChange: callback. See AVCapturePhotoOutput's captureReadiness documentation for a discussion of how to update shutter availability and appearance based on the captureReadiness value. This property is key-value observable and all change notifications are delivered on the main queue, allowing UI updates to be done directly in the callback.
-        #[method(captureReadiness)]
+        #[unsafe(method(captureReadiness))]
         #[unsafe(method_family = none)]
         pub unsafe fn captureReadiness(&self) -> AVCapturePhotoOutputCaptureReadiness;
 
@@ -946,7 +946,7 @@ extern_methods!(
         ///
         ///
         /// The captureReadiness property is updated to include the tracked request until the the photo output receives a settings object with the same or a newer uniqueID. It is recommended that the same photo settings be passed to -[AVCapturePhotoOutput capturePhotoWithSettings:delegate] to ensure the captureReadiness value is consistent once the capture begins. When called on the main queue the delegate callback is invoked synchronously before returning to ensure shutter availability is updated immediately and prevent queued touch events from initiating unwanted captures. The -startTrackingCaptureRequestUsingPhotoSettings: method can be called while in the SessionNotRunning state to allow the shutter button to be interactive while the session is being started on a background queue. An NSInvalidArgumentException is thrown if the photo settings are invalid.
-        #[method(startTrackingCaptureRequestUsingPhotoSettings:)]
+        #[unsafe(method(startTrackingCaptureRequestUsingPhotoSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startTrackingCaptureRequestUsingPhotoSettings(
             &self,
@@ -960,7 +960,7 @@ extern_methods!(
         ///
         ///
         /// Tracking automatically stops when -[AVCapturePhotoOutput capturePhotoWithSettings:delegate] is called with a photo settings objects with the same or a newer uniqueID, but in cases where an error or other condition prevents calling -capturePhotoWithSettings:delegate tracking should be explictly stopped to ensure the captureReadiness value is up to date. When called on the main queue the delegate callback is invoked synchronously before returning to ensure shutter availability is updated immediately.
-        #[method(stopTrackingCaptureRequestUsingPhotoSettingsUniqueID:)]
+        #[unsafe(method(stopTrackingCaptureRequestUsingPhotoSettingsUniqueID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopTrackingCaptureRequestUsingPhotoSettingsUniqueID(
             &self,
@@ -984,7 +984,7 @@ extern_protocol!(
         ///
         /// This callback is always delivered on the main queue and is suitable for updating shutter button availability and appearance.
         #[optional]
-        #[method(readinessCoordinator:captureReadinessDidChange:)]
+        #[unsafe(method(readinessCoordinator:captureReadinessDidChange:))]
         #[unsafe(method_family = none)]
         unsafe fn readinessCoordinator_captureReadinessDidChange(
             &self,
@@ -1002,7 +1002,7 @@ extern_methods!(
         ///
         ///
         /// Some cameras and configurations support the delivery of depth data (e.g. disparity maps) along with the photo. This property returns YES if the session's current configuration allows photos to be captured with depth data, from which depth-related filters may be applied. When switching cameras or formats this property may change. When this property changes from YES to NO, depthDataDeliveryEnabled also reverts to NO. If you've previously opted in for depth data delivery and then change configurations, you may need to set depthDataDeliveryEnabled = YES again. This property is key-value observable.
-        #[method(isDepthDataDeliverySupported)]
+        #[unsafe(method(isDepthDataDeliverySupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDepthDataDeliverySupported(&self) -> bool;
 
@@ -1010,12 +1010,12 @@ extern_methods!(
         ///
         ///
         /// Default is NO. Set to YES if you wish depth data to be delivered with your AVCapturePhotos. This property may only be set to YES if depthDataDeliverySupported is YES. Enabling depth data delivery requires a lengthy reconfiguration of the capture render pipeline, so if you intend to capture depth data, you should set this property to YES before calling -[AVCaptureSession startRunning].
-        #[method(isDepthDataDeliveryEnabled)]
+        #[unsafe(method(isDepthDataDeliveryEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDepthDataDeliveryEnabled(&self) -> bool;
 
         /// Setter for [`isDepthDataDeliveryEnabled`][Self::isDepthDataDeliveryEnabled].
-        #[method(setDepthDataDeliveryEnabled:)]
+        #[unsafe(method(setDepthDataDeliveryEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDepthDataDeliveryEnabled(&self, depth_data_delivery_enabled: bool);
 
@@ -1023,7 +1023,7 @@ extern_methods!(
         ///
         ///
         /// Some cameras and configurations support the delivery of a matting image to augment depth data and aid in high quality portrait effect rendering (see AVPortraitEffectsMatte.h). This property returns YES if the session's current configuration allows photos to be captured with a portrait effects matte. When switching cameras or formats this property may change. When this property changes from YES to NO, portraitEffectsMatteDeliveryEnabled also reverts to NO. If you've previously opted in for portrait effects matte delivery and then change configurations, you may need to set portraitEffectsMatteDeliveryEnabled = YES again. This property is key-value observable.
-        #[method(isPortraitEffectsMatteDeliverySupported)]
+        #[unsafe(method(isPortraitEffectsMatteDeliverySupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPortraitEffectsMatteDeliverySupported(&self) -> bool;
 
@@ -1031,12 +1031,12 @@ extern_methods!(
         ///
         ///
         /// Default is NO. Set to YES if you wish portrait effects mattes to be delivered with your AVCapturePhotos. This property may only be set to YES if portraitEffectsMatteDeliverySupported is YES. Portrait effects matte generation requires depth to be present, so when enabling portrait effects matte delivery, you must also set depthDataDeliveryEnabled to YES. Enabling portrait effects matte delivery requires a lengthy reconfiguration of the capture render pipeline, so if you intend to capture portrait effects mattes, you should set this property to YES before calling -[AVCaptureSession startRunning].
-        #[method(isPortraitEffectsMatteDeliveryEnabled)]
+        #[unsafe(method(isPortraitEffectsMatteDeliveryEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPortraitEffectsMatteDeliveryEnabled(&self) -> bool;
 
         /// Setter for [`isPortraitEffectsMatteDeliveryEnabled`][Self::isPortraitEffectsMatteDeliveryEnabled].
-        #[method(setPortraitEffectsMatteDeliveryEnabled:)]
+        #[unsafe(method(setPortraitEffectsMatteDeliveryEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPortraitEffectsMatteDeliveryEnabled(
             &self,
@@ -1048,7 +1048,7 @@ extern_methods!(
         ///
         ///
         /// Some cameras and configurations support the delivery of semantic segmentation matting images (e.g. segmentations of the hair, skin, or teeth in the photo). This property returns an array of AVSemanticSegmentationMatteTypes available given the session's current configuration. When switching cameras or formats this property may change. When this property changes, enabledSemanticSegmentationMatteTypes reverts to an empty array. If you've previously opted in for delivery of one or more semantic segmentation mattes and then change configurations, you need to set up your enabledSemanticSegmentationMatteTypes again. This property is key-value observable.
-        #[method(availableSemanticSegmentationMatteTypes)]
+        #[unsafe(method(availableSemanticSegmentationMatteTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableSemanticSegmentationMatteTypes(
             &self,
@@ -1059,7 +1059,7 @@ extern_methods!(
         ///
         ///
         /// Default is empty array. You may set this to the array of matte types you'd like to be delivered with your AVCapturePhotos. The array may only contain values present in availableSemanticSegmentationMatteTypes. Enabling semantic segmentation matte delivery requires a lengthy reconfiguration of the capture render pipeline, so if you intend to capture semantic segmentation mattes, you should set this property to YES before calling -[AVCaptureSession startRunning].
-        #[method(enabledSemanticSegmentationMatteTypes)]
+        #[unsafe(method(enabledSemanticSegmentationMatteTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn enabledSemanticSegmentationMatteTypes(
             &self,
@@ -1067,7 +1067,7 @@ extern_methods!(
 
         #[cfg(feature = "AVSemanticSegmentationMatte")]
         /// Setter for [`enabledSemanticSegmentationMatteTypes`][Self::enabledSemanticSegmentationMatteTypes].
-        #[method(setEnabledSemanticSegmentationMatteTypes:)]
+        #[unsafe(method(setEnabledSemanticSegmentationMatteTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabledSemanticSegmentationMatteTypes(
             &self,
@@ -1101,7 +1101,7 @@ extern_protocol!(
         ///
         /// This callback is always delivered first for a particular capture request. It is delivered as soon as possible after you call -capturePhotoWithSettings:delegate:, so you can know what to expect in the remainder of your callbacks.
         #[optional]
-        #[method(captureOutput:willBeginCaptureForResolvedSettings:)]
+        #[unsafe(method(captureOutput:willBeginCaptureForResolvedSettings:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_willBeginCaptureForResolvedSettings(
             &self,
@@ -1120,7 +1120,7 @@ extern_protocol!(
         ///
         /// The timing of this callback is analogous to AVCaptureStillImageOutput's capturingStillImage property changing from NO to YES. The callback is delivered right after the shutter sound is heard (note that shutter sounds are suppressed when Live Photos are being captured).
         #[optional]
-        #[method(captureOutput:willCapturePhotoForResolvedSettings:)]
+        #[unsafe(method(captureOutput:willCapturePhotoForResolvedSettings:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_willCapturePhotoForResolvedSettings(
             &self,
@@ -1139,7 +1139,7 @@ extern_protocol!(
         ///
         /// The timing of this callback is analogous to AVCaptureStillImageOutput's capturingStillImage property changing from YES to NO.
         #[optional]
-        #[method(captureOutput:didCapturePhotoForResolvedSettings:)]
+        #[unsafe(method(captureOutput:didCapturePhotoForResolvedSettings:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_didCapturePhotoForResolvedSettings(
             &self,
@@ -1160,7 +1160,7 @@ extern_protocol!(
         ///
         /// This callback fires resolvedSettings.expectedPhotoCount number of times for a given capture request. Note that the photo parameter is always non nil, even if an error is returned. The delivered AVCapturePhoto's rawPhoto property can be queried to know if it's a RAW image or processed image.
         #[optional]
-        #[method(captureOutput:didFinishProcessingPhoto:error:)]
+        #[unsafe(method(captureOutput:didFinishProcessingPhoto:error:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_didFinishProcessingPhoto_error(
             &self,
@@ -1183,7 +1183,7 @@ extern_protocol!(
         ///
         /// Delegates are required to implement this method if they opt in for deferred photo processing, otherwise an NSInvalidArgumentException will be thrown from the -[AVCapturePhotoOutput capturePhotoWithSettings:delegate:] method.
         #[optional]
-        #[method(captureOutput:didFinishCapturingDeferredPhotoProxy:error:)]
+        #[unsafe(method(captureOutput:didFinishCapturingDeferredPhotoProxy:error:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_didFinishCapturingDeferredPhotoProxy_error(
             &self,
@@ -1205,7 +1205,7 @@ extern_protocol!(
         ///
         /// When this callback fires, no new media is being written to the file. If you are displaying a "Live" badge, this is an appropriate time to dismiss it. The movie file itself is not done being written until the -captureOutput:didFinishProcessingLivePhotoToMovieFileAtURL:duration:photoDisplayTime:resolvedSettings:error: callback fires.
         #[optional]
-        #[method(captureOutput:didFinishRecordingLivePhotoMovieForEventualFileAtURL:resolvedSettings:)]
+        #[unsafe(method(captureOutput:didFinishRecordingLivePhotoMovieForEventualFileAtURL:resolvedSettings:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_didFinishRecordingLivePhotoMovieForEventualFileAtURL_resolvedSettings(
             &self,
@@ -1233,7 +1233,7 @@ extern_protocol!(
         ///
         /// When this callback fires, the movie on disk is fully finished and ready for consumption.
         #[optional]
-        #[method(captureOutput:didFinishProcessingLivePhotoToMovieFileAtURL:duration:photoDisplayTime:resolvedSettings:error:)]
+        #[unsafe(method(captureOutput:didFinishProcessingLivePhotoToMovieFileAtURL:duration:photoDisplayTime:resolvedSettings:error:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_didFinishProcessingLivePhotoToMovieFileAtURL_duration_photoDisplayTime_resolvedSettings_error(
             &self,
@@ -1258,7 +1258,7 @@ extern_protocol!(
         ///
         /// This callback always fires last and when it does, you may clean up any state relating to this photo capture.
         #[optional]
-        #[method(captureOutput:didFinishCaptureForResolvedSettings:error:)]
+        #[unsafe(method(captureOutput:didFinishCaptureForResolvedSettings:error:))]
         #[unsafe(method_family = none)]
         unsafe fn captureOutput_didFinishCaptureForResolvedSettings_error(
             &self,
@@ -1298,7 +1298,7 @@ extern_methods!(
         ///
         ///
         /// A default AVCapturePhotoSettings object has a format of AVVideoCodecTypeJPEG, a fileType of AVFileTypeJPEG, and photoQualityPrioritization set to AVCapturePhotoQualityPrioritizationBalanced.
-        #[method(photoSettings)]
+        #[unsafe(method(photoSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettings() -> Retained<Self>;
 
@@ -1311,7 +1311,7 @@ extern_methods!(
         ///
         ///
         /// If you wish an uncompressed format, your dictionary must contain kCVPixelBufferPixelFormatTypeKey, and the format specified must be present in AVCapturePhotoOutput's -availablePhotoPixelFormatTypes array. kCVPixelBufferPixelFormatTypeKey is the only supported key when expressing uncompressed output. If you wish a compressed format, your dictionary must contain AVVideoCodecKey and the codec specified must be present in AVCapturePhotoOutput's -availablePhotoCodecTypes array. If you are specifying a compressed format, the AVVideoCompressionPropertiesKey is also supported, with a payload dictionary containing a single AVVideoQualityKey. Passing a nil format dictionary is analogous to calling +photoSettings.
-        #[method(photoSettingsWithFormat:)]
+        #[unsafe(method(photoSettingsWithFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsWithFormat(
             format: Option<&NSDictionary<NSString, AnyObject>>,
@@ -1326,7 +1326,7 @@ extern_methods!(
         ///
         ///
         /// rawPixelFormatType must be one of the OSTypes contained in AVCapturePhotoOutput's -availableRawPhotoPixelFormatTypes array. See AVCapturePhotoOutput's -capturePhotoWithSettings:delegate: inline documentation for a discussion of restrictions on AVCapturePhotoSettings when requesting RAW capture.
-        #[method(photoSettingsWithRawPixelFormatType:)]
+        #[unsafe(method(photoSettingsWithRawPixelFormatType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsWithRawPixelFormatType(
             raw_pixel_format_type: OSType,
@@ -1343,7 +1343,7 @@ extern_methods!(
         ///
         ///
         /// rawPixelFormatType must be one of the OSTypes contained in AVCapturePhotoOutput's -availableRawPhotoPixelFormatTypes array. If you wish an uncompressed processedFormat, your dictionary must contain kCVPixelBufferPixelFormatTypeKey, and the processedFormat specified must be present in AVCapturePhotoOutput's -availablePhotoPixelFormatTypes array. kCVPixelBufferPixelFormatTypeKey is the only supported key when expressing uncompressed processedFormat. If you wish a compressed format, your dictionary must contain AVVideoCodecKey and the codec specified must be present in AVCapturePhotoOutput's -availablePhotoCodecTypes array. If you are specifying a compressed format, the AVVideoCompressionPropertiesKey is also supported, with a payload dictionary containing a single AVVideoQualityKey. Passing a nil processedFormat dictionary is analogous to calling +photoSettingsWithRawPixelFormatType:. See AVCapturePhotoOutput's -capturePhotoWithSettings:delegate: inline documentation for a discussion of restrictions on AVCapturePhotoSettings when requesting RAW capture.
-        #[method(photoSettingsWithRawPixelFormatType:processedFormat:)]
+        #[unsafe(method(photoSettingsWithRawPixelFormatType:processedFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsWithRawPixelFormatType_processedFormat(
             raw_pixel_format_type: OSType,
@@ -1366,7 +1366,7 @@ extern_methods!(
         ///
         ///
         /// rawPixelFormatType must be one of the OSTypes contained in AVCapturePhotoOutput's -availableRawPhotoPixelFormatTypes array. Set rawPixelFormatType to 0 if you do not desire a RAW photo callback. If you are specifying a rawFileType, it must be present in AVCapturePhotoOutput's -availableRawPhotoFileTypes array. If you wish an uncompressed processedFormat, your dictionary must contain kCVPixelBufferPixelFormatTypeKey, and the processedFormat specified must be present in AVCapturePhotoOutput's -availablePhotoPixelFormatTypes array. kCVPixelBufferPixelFormatTypeKey is the only supported key when expressing uncompressed processedFormat. If you wish a compressed format, your dictionary must contain AVVideoCodecKey and the codec specified must be present in AVCapturePhotoOutput's -availablePhotoCodecTypes array. If you are specifying a compressed format, the AVVideoCompressionPropertiesKey is also supported, with a payload dictionary containing a single AVVideoQualityKey. If you are specifying a processedFileType, it must be present in AVCapturePhotoOutput's -availablePhotoFileTypes array. Pass a nil processedFormat dictionary if you only desire a RAW photo capture. See AVCapturePhotoOutput's -capturePhotoWithSettings:delegate: inline documentation for a discussion of restrictions on AVCapturePhotoSettings when requesting RAW capture.
-        #[method(photoSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:)]
+        #[unsafe(method(photoSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsWithRawPixelFormatType_rawFileType_processedFormat_processedFileType(
             raw_pixel_format_type: OSType,
@@ -1384,7 +1384,7 @@ extern_methods!(
         ///
         ///
         /// Use this factory method to create a clone of an existing photo settings instance, but with a new uniqueID that can safely be passed to AVCapturePhotoOutput -capturePhotoWithSettings:delegate:.
-        #[method(photoSettingsFromPhotoSettings:)]
+        #[unsafe(method(photoSettingsFromPhotoSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsFromPhotoSettings(
             photo_settings: &AVCapturePhotoSettings,
@@ -1394,7 +1394,7 @@ extern_methods!(
         ///
         ///
         /// When you create an instance of AVCapturePhotoSettings, a uniqueID is generated automatically. This uniqueID is guaranteed to be unique for the life time of your process.
-        #[method(uniqueID)]
+        #[unsafe(method(uniqueID))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueID(&self) -> i64;
 
@@ -1402,19 +1402,19 @@ extern_methods!(
         ///
         ///
         /// The format dictionary you passed to one of the creation methods. May be nil if you've specified RAW-only capture.
-        #[method(format)]
+        #[unsafe(method(format))]
         #[unsafe(method_family = none)]
         pub unsafe fn format(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// A dictionary of AVVideoSettings keys specifying the RAW file format to be used for the RAW photo.
         ///
         /// One can specify desired format properties of the RAW file that will be created. Currently only the key AVVideoAppleProRAWBitDepthKey is allowed and the value to which it can be set should be from 8-16.  The AVVideoCodecKey must be present in the receiver's -availableRawPhotoCodecTypes array as well as in -supportedRawPhotoCodecTypesForRawPhotoPixelFormatType:fileType:. AVVideoQualityKey (NSNumber in range [0.0,1.0]) can be optionally set and a value between [0.0,1.0] will use lossy compression with lower values being more lossy resulting in smaller file sizes but lower image quality, while a value of 1.0 will use lossless compression resulting in the largest file size but also the best quality.
-        #[method(rawFileFormat)]
+        #[unsafe(method(rawFileFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn rawFileFormat(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`rawFileFormat`][Self::rawFileFormat].
-        #[method(setRawFileFormat:)]
+        #[unsafe(method(setRawFileFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRawFileFormat(
             &self,
@@ -1426,7 +1426,7 @@ extern_methods!(
         ///
         ///
         /// The formatting of data within a photo buffer is often dependent on the file format intended for storage. For instance, a JPEG encoded photo buffer intended for storage in a JPEG (JPEG File Interchange Format) file differs from JPEG to be stored in HEIF. The HEIF-containerized JPEG buffer is tiled for readback efficiency and partitioned into the box structure dictated by the HEIF file format. Some codecs are only supported by AVCapturePhotoOutput if containerized. For instance, the AVVideoCodecTypeHEVC is only supported with AVFileTypeHEIF and AVFileTypeHEIC formatting. To discover which photo pixel format types and video codecs are supported for a given file type, you may query AVCapturePhotoOutput's -supportedPhotoPixelFormatTypesForFileType:, or -supportedPhotoCodecTypesForFileType: respectively.
-        #[method(processedFileType)]
+        #[unsafe(method(processedFileType))]
         #[unsafe(method_family = none)]
         pub unsafe fn processedFileType(&self) -> Option<Retained<AVFileType>>;
 
@@ -1434,7 +1434,7 @@ extern_methods!(
         ///
         ///
         /// The rawPixelFormatType you specified in one of the creation methods. Returns 0 if you did not specify RAW capture. See AVCapturePhotoOutput's -capturePhotoWithSettings:delegate: inline documentation for a discussion of restrictions on AVCapturePhotoSettings when requesting RAW capture.
-        #[method(rawPhotoPixelFormatType)]
+        #[unsafe(method(rawPhotoPixelFormatType))]
         #[unsafe(method_family = none)]
         pub unsafe fn rawPhotoPixelFormatType(&self) -> OSType;
 
@@ -1443,7 +1443,7 @@ extern_methods!(
         ///
         ///
         /// The formatting of data within a RAW photo buffer may be dependent on the file format intended for storage. To discover which RAW photo pixel format types are supported for a given file type, you may query AVCapturePhotoOutput's -supportedRawPhotoPixelFormatTypesForFileType:.
-        #[method(rawFileType)]
+        #[unsafe(method(rawFileType))]
         #[unsafe(method_family = none)]
         pub unsafe fn rawFileType(&self) -> Option<Retained<AVFileType>>;
 
@@ -1452,13 +1452,13 @@ extern_methods!(
         ///
         ///
         /// flashMode takes the place of the deprecated AVCaptureDevice -flashMode API. Setting AVCaptureDevice.flashMode has no effect on AVCapturePhotoOutput, which only pays attention to the flashMode specified in your AVCapturePhotoSettings. The default value is AVCaptureFlashModeOff. Flash modes are defined in AVCaptureDevice.h. If you specify a flashMode of AVCaptureFlashModeOn, it wins over autoStillImageStabilizationEnabled=YES. When the device becomes very hot, the flash becomes temporarily unavailable until the device cools down (see AVCaptureDevice's -flashAvailable). While the flash is unavailable, AVCapturePhotoOutput's -supportedFlashModes property still reports AVCaptureFlashModeOn and AVCaptureFlashModeAuto as being available, thus allowing you to specify a flashMode of AVCaptureModeOn. You should always check the AVCaptureResolvedPhotoSettings provided to you in the AVCapturePhotoCaptureDelegate callbacks, as the resolved flashEnabled property will tell you definitively if the flash is being used.
-        #[method(flashMode)]
+        #[unsafe(method(flashMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn flashMode(&self) -> AVCaptureFlashMode;
 
         #[cfg(feature = "AVCaptureDevice")]
         /// Setter for [`flashMode`][Self::flashMode].
-        #[method(setFlashMode:)]
+        #[unsafe(method(setFlashMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFlashMode(&self, flash_mode: AVCaptureFlashMode);
 
@@ -1466,12 +1466,12 @@ extern_methods!(
         ///
         ///
         /// Default is YES on platforms that support automatic red-eye reduction unless you are capturing a bracket using AVCapturePhotoBracketSettings or a RAW photo without a processed photo.  For RAW photos with a processed photo the red-eye reduction will be applied to the processed photo only (RAW photos by definition are not processed). When set to YES, red-eye reduction is applied as needed for flash captures if the photo output's autoRedEyeReductionSupported property returns YES.
-        #[method(isAutoRedEyeReductionEnabled)]
+        #[unsafe(method(isAutoRedEyeReductionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutoRedEyeReductionEnabled(&self) -> bool;
 
         /// Setter for [`isAutoRedEyeReductionEnabled`][Self::isAutoRedEyeReductionEnabled].
-        #[method(setAutoRedEyeReductionEnabled:)]
+        #[unsafe(method(setAutoRedEyeReductionEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutoRedEyeReductionEnabled(&self, auto_red_eye_reduction_enabled: bool);
 
@@ -1479,12 +1479,12 @@ extern_methods!(
         ///
         ///
         /// Default value is AVCapturePhotoQualityPrioritizationBalanced. The AVCapturePhotoOutput is capable of applying a variety of techniques to improve photo quality (reduce noise, preserve detail in low light, freeze motion, etc), depending on the source device's activeFormat. Some of these techniques can take significant processing time before the photo is returned to your delegate callback. The photoQualityPrioritization property allows you to specify your preferred quality vs speed of delivery. By default, speed and quality are considered to be of equal importance. When you specify AVCapturePhotoQualityPrioritizationSpeed, you indicate that speed should be prioritized at the expense of quality. Likewise, when you choose AVCapturePhotoQualityPrioritizationQuality, you signal your willingness to prioritize the very best quality at the expense of speed, and your readiness to wait (perhaps significantly) longer for the photo to be returned to your delegate.
-        #[method(photoQualityPrioritization)]
+        #[unsafe(method(photoQualityPrioritization))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoQualityPrioritization(&self) -> AVCapturePhotoQualityPrioritization;
 
         /// Setter for [`photoQualityPrioritization`][Self::photoQualityPrioritization].
-        #[method(setPhotoQualityPrioritization:)]
+        #[unsafe(method(setPhotoQualityPrioritization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhotoQualityPrioritization(
             &self,
@@ -1498,13 +1498,13 @@ extern_methods!(
         ///
         /// As of iOS 13 hardware, the AVCapturePhotoOutput is capable of applying a variety of multi-image fusion techniques to improve photo quality (reduce noise, preserve detail in low light, freeze motion, etc), all of which have been previously lumped under the stillImageStabilization moniker. This property should no longer be used as it no longer provides meaningful information about the techniques used to improve quality in a photo capture. Instead, you should use -photoQualityPrioritization to indicate your preferred quality vs speed.
         #[deprecated]
-        #[method(isAutoStillImageStabilizationEnabled)]
+        #[unsafe(method(isAutoStillImageStabilizationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutoStillImageStabilizationEnabled(&self) -> bool;
 
         /// Setter for [`isAutoStillImageStabilizationEnabled`][Self::isAutoStillImageStabilizationEnabled].
         #[deprecated]
-        #[method(setAutoStillImageStabilizationEnabled:)]
+        #[unsafe(method(setAutoStillImageStabilizationEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutoStillImageStabilizationEnabled(
             &self,
@@ -1515,12 +1515,12 @@ extern_methods!(
         ///
         ///
         /// Default is YES unless you are capturing a RAW photo (RAW photos may not be processed by definition) or a bracket using AVCapturePhotoBracketSettings. When set to YES, and -[AVCapturePhotoOutput isVirtualDeviceFusionSupported] is also YES, constituent camera images of a virtual device may be fused to improve still image quality, depending on the current zoom factor, light levels, and focus position. You may determine whether virtual device fusion is enabled for a particular capture request by inspecting the virtualDeviceFusionEnabled property of the AVCaptureResolvedPhotoSettings. Note that when using the deprecated AVCaptureStillImageOutput interface with a virtual device, autoVirtualDeviceFusionEnabled fusion is always enabled if supported, and may not be turned off.
-        #[method(isAutoVirtualDeviceFusionEnabled)]
+        #[unsafe(method(isAutoVirtualDeviceFusionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutoVirtualDeviceFusionEnabled(&self) -> bool;
 
         /// Setter for [`isAutoVirtualDeviceFusionEnabled`][Self::isAutoVirtualDeviceFusionEnabled].
-        #[method(setAutoVirtualDeviceFusionEnabled:)]
+        #[unsafe(method(setAutoVirtualDeviceFusionEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutoVirtualDeviceFusionEnabled(
             &self,
@@ -1532,13 +1532,13 @@ extern_methods!(
         ///
         /// Default is YES unless you are capturing a RAW photo (RAW photos may not be processed by definition) or a bracket using AVCapturePhotoBracketSettings. When set to YES, and -[AVCapturePhotoOutput isDualCameraFusionSupported] is also YES, wide-angle and telephoto images may be fused to improve still image quality, depending on the current zoom factor, light levels, and focus position. You may determine whether DualCamera fusion is enabled for a particular capture request by inspecting the dualCameraFusionEnabled property of the AVCaptureResolvedPhotoSettings. Note that when using the deprecated AVCaptureStillImageOutput interface with the DualCamera, auto DualCamera fusion is always enabled and may not be turned off. As of iOS 13, this property is deprecated in favor of autoVirtualDeviceFusionEnabled.
         #[deprecated]
-        #[method(isAutoDualCameraFusionEnabled)]
+        #[unsafe(method(isAutoDualCameraFusionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutoDualCameraFusionEnabled(&self) -> bool;
 
         /// Setter for [`isAutoDualCameraFusionEnabled`][Self::isAutoDualCameraFusionEnabled].
         #[deprecated]
-        #[method(setAutoDualCameraFusionEnabled:)]
+        #[unsafe(method(setAutoDualCameraFusionEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutoDualCameraFusionEnabled(&self, auto_dual_camera_fusion_enabled: bool);
 
@@ -1547,7 +1547,7 @@ extern_methods!(
         ///
         ///
         /// Default is empty array. To opt in for constituent device photo delivery, you may set this property to any subset of 2 or more of the devices in virtualDevice.constituentDevices. Your captureOutput:didFinishProcessingPhoto:error: callback will be called n times -- one for each of the devices you include in the array. You may only set this property to a non-nil array if you've set your AVCapturePhotoOutput's virtualDeviceConstituentPhotoDeliveryEnabled property to YES, and your delegate responds to the captureOutput:didFinishProcessingPhoto:error: selector.
-        #[method(virtualDeviceConstituentPhotoDeliveryEnabledDevices)]
+        #[unsafe(method(virtualDeviceConstituentPhotoDeliveryEnabledDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn virtualDeviceConstituentPhotoDeliveryEnabledDevices(
             &self,
@@ -1555,7 +1555,7 @@ extern_methods!(
 
         #[cfg(feature = "AVCaptureDevice")]
         /// Setter for [`virtualDeviceConstituentPhotoDeliveryEnabledDevices`][Self::virtualDeviceConstituentPhotoDeliveryEnabledDevices].
-        #[method(setVirtualDeviceConstituentPhotoDeliveryEnabledDevices:)]
+        #[unsafe(method(setVirtualDeviceConstituentPhotoDeliveryEnabledDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVirtualDeviceConstituentPhotoDeliveryEnabledDevices(
             &self,
@@ -1567,13 +1567,13 @@ extern_methods!(
         ///
         /// Default is NO. When set to YES, your captureOutput:didFinishProcessingPhoto:error: callback will receive twice the number of callbacks, as both the telephoto image(s) and wide-angle image(s) are delivered. You may only set this property to YES if you've set your AVCapturePhotoOutput's dualCameraDualPhotoDeliveryEnabled property to YES, and your delegate responds to the captureOutput:didFinishProcessingPhoto:error: selector. As of iOS 13, this property is deprecated in favor of virtualDeviceConstituentPhotoDeliveryEnabledDevices.
         #[deprecated]
-        #[method(isDualCameraDualPhotoDeliveryEnabled)]
+        #[unsafe(method(isDualCameraDualPhotoDeliveryEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDualCameraDualPhotoDeliveryEnabled(&self) -> bool;
 
         /// Setter for [`isDualCameraDualPhotoDeliveryEnabled`][Self::isDualCameraDualPhotoDeliveryEnabled].
         #[deprecated]
-        #[method(setDualCameraDualPhotoDeliveryEnabled:)]
+        #[unsafe(method(setDualCameraDualPhotoDeliveryEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDualCameraDualPhotoDeliveryEnabled(
             &self,
@@ -1587,13 +1587,13 @@ extern_methods!(
         ///
         /// Starting in iOS 14.5 if you disable geometric distortion correction, the high resolution photo emitted by AVCapturePhotoOutput may be is smaller depending on the format.
         #[deprecated = "Use maxPhotoDimensions instead."]
-        #[method(isHighResolutionPhotoEnabled)]
+        #[unsafe(method(isHighResolutionPhotoEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHighResolutionPhotoEnabled(&self) -> bool;
 
         /// Setter for [`isHighResolutionPhotoEnabled`][Self::isHighResolutionPhotoEnabled].
         #[deprecated = "Use maxPhotoDimensions instead."]
-        #[method(setHighResolutionPhotoEnabled:)]
+        #[unsafe(method(setHighResolutionPhotoEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHighResolutionPhotoEnabled(&self, high_resolution_photo_enabled: bool);
 
@@ -1602,13 +1602,13 @@ extern_methods!(
         ///
         ///
         /// By setting this property you are requesting an image that may be up to as large as the specified dimensions, but no larger. The dimensions set must match one of the dimensions returned by AVCaptureDeviceFormat.supportedMaxPhotoDimensions for the currently configured format and be equal to or smaller than the value of AVCapturePhotoOutput.maxPhotoDimensions. This property defaults to the smallest dimensions returned by AVCaptureDeviceFormat.supportedMaxPhotoDimensions.
-        #[method(maxPhotoDimensions)]
+        #[unsafe(method(maxPhotoDimensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxPhotoDimensions(&self) -> CMVideoDimensions;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`maxPhotoDimensions`][Self::maxPhotoDimensions].
-        #[method(setMaxPhotoDimensions:)]
+        #[unsafe(method(setMaxPhotoDimensions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxPhotoDimensions(&self, max_photo_dimensions: CMVideoDimensions);
 
@@ -1618,12 +1618,12 @@ extern_methods!(
         /// Default is NO. Set to YES if you wish to receive depth data with your photo. Throws an exception if -[AVCapturePhotoOutput depthDataDeliveryEnabled] is not set to YES or your delegate does not respond to the captureOutput:didFinishProcessingPhoto:error: selector. Note that setting this property to YES may add significant processing time to the delivery of your didFinishProcessingPhoto: callback.
         ///
         /// For best rendering results in Apple's Photos.app, portrait photos should be captured with both embedded depth data and a portrait effects matte (see portraitEffectsMatteDeliveryEnabled). When supported, it is recommended to opt in for both of these auxiliary images in your photo captures involving depth.
-        #[method(isDepthDataDeliveryEnabled)]
+        #[unsafe(method(isDepthDataDeliveryEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDepthDataDeliveryEnabled(&self) -> bool;
 
         /// Setter for [`isDepthDataDeliveryEnabled`][Self::isDepthDataDeliveryEnabled].
-        #[method(setDepthDataDeliveryEnabled:)]
+        #[unsafe(method(setDepthDataDeliveryEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDepthDataDeliveryEnabled(&self, depth_data_delivery_enabled: bool);
 
@@ -1631,12 +1631,12 @@ extern_methods!(
         ///
         ///
         /// Default is YES. When depthDataDeliveryEnabled is set to YES, this property specifies whether the included depth data should be written to the resulting photo's internal file structure. Depth data is currently only supported in HEIF and JPEG. This property is ignored if depthDataDeliveryEnabled is set to NO.
-        #[method(embedsDepthDataInPhoto)]
+        #[unsafe(method(embedsDepthDataInPhoto))]
         #[unsafe(method_family = none)]
         pub unsafe fn embedsDepthDataInPhoto(&self) -> bool;
 
         /// Setter for [`embedsDepthDataInPhoto`][Self::embedsDepthDataInPhoto].
-        #[method(setEmbedsDepthDataInPhoto:)]
+        #[unsafe(method(setEmbedsDepthDataInPhoto:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmbedsDepthDataInPhoto(&self, embeds_depth_data_in_photo: bool);
 
@@ -1644,12 +1644,12 @@ extern_methods!(
         ///
         ///
         /// Default is YES. This property is ignored unless depthDataDeliveryEnabled is set to YES. Depth data maps may contain invalid pixel values due to a variety of factors including occlusions and low light. When depthDataFiltered is set to YES, the photo output interpolates missing data, filling in all holes.
-        #[method(isDepthDataFiltered)]
+        #[unsafe(method(isDepthDataFiltered))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDepthDataFiltered(&self) -> bool;
 
         /// Setter for [`isDepthDataFiltered`][Self::isDepthDataFiltered].
-        #[method(setDepthDataFiltered:)]
+        #[unsafe(method(setDepthDataFiltered:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDepthDataFiltered(&self, depth_data_filtered: bool);
 
@@ -1657,12 +1657,12 @@ extern_methods!(
         ///
         ///
         /// Default is NO. Set to YES if you wish to receive camera calibration data with your photo. Camera calibration data is delivered as a property of an AVCapturePhoto, so if you are using the CMSampleBuffer delegate callbacks rather than -captureOutput:didFinishProcessingPhoto:error:, an exception is thrown. Also, you may only set this property to YES if your AVCapturePhotoOutput's cameraCalibrationDataDeliverySupported property is YES and 2 or more devices are selected for virtual device constituent photo delivery. When requesting virtual device constituent photo delivery plus camera calibration data, the photos for each constituent device each contain camera calibration data. Note that AVCameraCalibrationData can be delivered as a property of an AVCapturePhoto or an AVDepthData, thus your delegate must respond to the captureOutput:didFinishProcessingPhoto:error: selector.
-        #[method(isCameraCalibrationDataDeliveryEnabled)]
+        #[unsafe(method(isCameraCalibrationDataDeliveryEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCameraCalibrationDataDeliveryEnabled(&self) -> bool;
 
         /// Setter for [`isCameraCalibrationDataDeliveryEnabled`][Self::isCameraCalibrationDataDeliveryEnabled].
-        #[method(setCameraCalibrationDataDeliveryEnabled:)]
+        #[unsafe(method(setCameraCalibrationDataDeliveryEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCameraCalibrationDataDeliveryEnabled(
             &self,
@@ -1675,12 +1675,12 @@ extern_methods!(
         /// Default is NO. Set to YES if you wish to receive a portrait effects matte with your photo. Throws an exception if -[AVCapturePhotoOutput portraitEffectsMatteDeliveryEnabled] is not set to YES or your delegate does not respond to the captureOutput:didFinishProcessingPhoto:error: selector. Portrait effects matte generation requires depth to be present, so if you wish to enable portrait effects matte delivery, you must set depthDataDeliveryEnabled to YES. Setting this property to YES does not guarantee that a portrait effects matte will be present in the resulting AVCapturePhoto. As the property name implies, the matte is primarily used to improve the rendering quality of portrait effects on the image. If the photo's content lacks a clear foreground subject, no portrait effects matte is generated, and the -[AVCapturePhoto portraitEffectsMatte] property returns nil. Note that setting this property to YES may add significant processing time to the delivery of your didFinishProcessingPhoto: callback.
         ///
         /// For best rendering results in Apple's Photos.app, portrait photos should be captured with both embedded depth data (see depthDataDeliveryEnabled) and a portrait effects matte. When supported, it is recommended to opt in for both of these auxiliary images in your photo captures involving depth.
-        #[method(isPortraitEffectsMatteDeliveryEnabled)]
+        #[unsafe(method(isPortraitEffectsMatteDeliveryEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPortraitEffectsMatteDeliveryEnabled(&self) -> bool;
 
         /// Setter for [`isPortraitEffectsMatteDeliveryEnabled`][Self::isPortraitEffectsMatteDeliveryEnabled].
-        #[method(setPortraitEffectsMatteDeliveryEnabled:)]
+        #[unsafe(method(setPortraitEffectsMatteDeliveryEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPortraitEffectsMatteDeliveryEnabled(
             &self,
@@ -1691,12 +1691,12 @@ extern_methods!(
         ///
         ///
         /// Default is YES. When portraitEffectsMatteDeliveryEnabled is set to YES, this property specifies whether the included portrait effects matte should be written to the resulting photo's internal file structure. Portrait effects mattes are currently only supported in HEIF and JPEG. This property is ignored if portraitEffectsMatteDeliveryEnabled is set to NO.
-        #[method(embedsPortraitEffectsMatteInPhoto)]
+        #[unsafe(method(embedsPortraitEffectsMatteInPhoto))]
         #[unsafe(method_family = none)]
         pub unsafe fn embedsPortraitEffectsMatteInPhoto(&self) -> bool;
 
         /// Setter for [`embedsPortraitEffectsMatteInPhoto`][Self::embedsPortraitEffectsMatteInPhoto].
-        #[method(setEmbedsPortraitEffectsMatteInPhoto:)]
+        #[unsafe(method(setEmbedsPortraitEffectsMatteInPhoto:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmbedsPortraitEffectsMatteInPhoto(
             &self,
@@ -1708,7 +1708,7 @@ extern_methods!(
         ///
         ///
         /// Default is empty array. You may set this property to an array of AVSemanticSegmentationMatteTypes you'd like to capture. Throws an exception if -[AVCapturePhotoOutput enabledSemanticSegmentationMatteTypes] does not contain any of the AVSemanticSegmentationMatteTypes specified. In other words, when setting up a capture session, you opt in for the superset of segmentation matte types you might like to receive, and then on a shot-by-shot basis, you may opt in to all or a subset of the previously specified types by setting this property. An exception is also thrown during -[AVCapturePhotoOutput capturePhotoWithSettings:delegate:] if your delegate does not respond to the captureOutput:didFinishProcessingPhoto:error: selector. Setting this property to YES does not guarantee that the specified mattes will be present in the resulting AVCapturePhoto. If the photo's content lacks any persons, for instance, no hair, skin, or teeth mattes are generated, and the -[AVCapturePhoto semanticSegmentationMatteForType:] property returns nil. Note that setting this property to YES may add significant processing time to the delivery of your didFinishProcessingPhoto: callback.
-        #[method(enabledSemanticSegmentationMatteTypes)]
+        #[unsafe(method(enabledSemanticSegmentationMatteTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn enabledSemanticSegmentationMatteTypes(
             &self,
@@ -1716,7 +1716,7 @@ extern_methods!(
 
         #[cfg(feature = "AVSemanticSegmentationMatte")]
         /// Setter for [`enabledSemanticSegmentationMatteTypes`][Self::enabledSemanticSegmentationMatteTypes].
-        #[method(setEnabledSemanticSegmentationMatteTypes:)]
+        #[unsafe(method(setEnabledSemanticSegmentationMatteTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabledSemanticSegmentationMatteTypes(
             &self,
@@ -1727,12 +1727,12 @@ extern_methods!(
         ///
         ///
         /// Default is YES. This property specifies whether the captured semantic segmentation mattes should be written to the resulting photo's internal file structure. Semantic segmentation mattes are currently only supported in HEIF and JPEG. This property is ignored if enabledSemanticSegmentationMatteTypes is set to an empty array.
-        #[method(embedsSemanticSegmentationMattesInPhoto)]
+        #[unsafe(method(embedsSemanticSegmentationMattesInPhoto))]
         #[unsafe(method_family = none)]
         pub unsafe fn embedsSemanticSegmentationMattesInPhoto(&self) -> bool;
 
         /// Setter for [`embedsSemanticSegmentationMattesInPhoto`][Self::embedsSemanticSegmentationMattesInPhoto].
-        #[method(setEmbedsSemanticSegmentationMattesInPhoto:)]
+        #[unsafe(method(setEmbedsSemanticSegmentationMattesInPhoto:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmbedsSemanticSegmentationMattesInPhoto(
             &self,
@@ -1747,12 +1747,12 @@ extern_methods!(
         /// /CGImageProperties.h>. AVCapturePhotoOutput inserts a base set of metadata into each photo it captures, such as kCGImagePropertyOrientation, kCGImagePropertyExifDictionary, and kCGImagePropertyMakerAppleDictionary. You may specify metadata keys and values that should be written to each photo in the capture request. If you've specified metadata that also appears in AVCapturePhotoOutput's base set, your value replaces the base value. An NSInvalidArgumentException is thrown if you specify keys other than those found in
         /// <ImageIO
         /// /CGImageProperties.h>.
-        #[method(metadata)]
+        #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`metadata`][Self::metadata].
-        #[method(setMetadata:)]
+        #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: &NSDictionary<NSString, AnyObject>);
 
@@ -1760,12 +1760,12 @@ extern_methods!(
         ///
         ///
         /// A Live Photo movie is a short movie (with audio, if you've added an audio input to your session) containing the moments right before and after the still photo. A QuickTime movie file will be written to disk at the URL specified if it is a valid file URL accessible to your app's sandbox. You may only set this property if AVCapturePhotoOutput's livePhotoCaptureSupported property is YES. When you specify a Live Photo, your AVCapturePhotoCaptureDelegate object must implement -captureOutput:didFinishProcessingLivePhotoToMovieFileAtURL:duration:photoDisplayTime:resolvedSettings:error:.
-        #[method(livePhotoMovieFileURL)]
+        #[unsafe(method(livePhotoMovieFileURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn livePhotoMovieFileURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`livePhotoMovieFileURL`][Self::livePhotoMovieFileURL].
-        #[method(setLivePhotoMovieFileURL:)]
+        #[unsafe(method(setLivePhotoMovieFileURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLivePhotoMovieFileURL(&self, live_photo_movie_file_url: Option<&NSURL>);
 
@@ -1774,13 +1774,13 @@ extern_methods!(
         ///
         ///
         /// Prior to iOS 11, all Live Photo movie video tracks are compressed using H.264. Beginning in iOS 11, you can select the Live Photo movie video compression format by specifying one of the strings present in AVCapturePhotoOutput's availableLivePhotoVideoCodecTypes array.
-        #[method(livePhotoVideoCodecType)]
+        #[unsafe(method(livePhotoVideoCodecType))]
         #[unsafe(method_family = none)]
         pub unsafe fn livePhotoVideoCodecType(&self) -> Retained<AVVideoCodecType>;
 
         #[cfg(feature = "AVVideoSettings")]
         /// Setter for [`livePhotoVideoCodecType`][Self::livePhotoVideoCodecType].
-        #[method(setLivePhotoVideoCodecType:)]
+        #[unsafe(method(setLivePhotoVideoCodecType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLivePhotoVideoCodecType(
             &self,
@@ -1792,13 +1792,13 @@ extern_methods!(
         ///
         ///
         /// An array of AVMetadataItems to be inserted into the top level of the Live Photo movie. The receiver makes immutable copies of the AVMetadataItems in the array. Live Photo movies always contain a AVMetadataQuickTimeMetadataKeyContentIdentifier which allow them to be paired with a similar identifier in the MakerNote of the photo complement. AVCapturePhotoSettings generates a unique content identifier for you. If you provide a metadata array containing an AVMetadataItem with keyspace = AVMetadataKeySpaceQuickTimeMetadata and key = AVMetadataQuickTimeMetadataKeyContentIdentifier, an NSInvalidArgumentException is thrown.
-        #[method(livePhotoMovieMetadata)]
+        #[unsafe(method(livePhotoMovieMetadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn livePhotoMovieMetadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
         /// Setter for [`livePhotoMovieMetadata`][Self::livePhotoMovieMetadata].
-        #[method(setLivePhotoMovieMetadata:)]
+        #[unsafe(method(setLivePhotoMovieMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLivePhotoMovieMetadata(
             &self,
@@ -1809,7 +1809,7 @@ extern_methods!(
         ///
         ///
         /// The array is sorted such that the preview format requiring the fewest conversions is presented first.
-        #[method(availablePreviewPhotoPixelFormatTypes)]
+        #[unsafe(method(availablePreviewPhotoPixelFormatTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availablePreviewPhotoPixelFormatTypes(&self) -> Retained<NSArray<NSNumber>>;
 
@@ -1817,14 +1817,14 @@ extern_methods!(
         ///
         ///
         /// A dictionary of pixel buffer attributes specifying a smaller version of the RAW or processed photo for preview purposes. The kCVPixelBufferPixelFormatTypeKey is required and must be present in the receiver's -availablePreviewPhotoPixelFormatTypes array. Optional keys are { kCVPixelBufferWidthKey | kCVPixelBufferHeightKey }. If you wish to specify dimensions, you must add both width and height. Width and height are only honored up to the display dimensions. If you specify a width and height whose aspect ratio differs from the RAW or processed photo, the larger of the two dimensions is honored and aspect ratio of the RAW or processed photo is always preserved.
-        #[method(previewPhotoFormat)]
+        #[unsafe(method(previewPhotoFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewPhotoFormat(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`previewPhotoFormat`][Self::previewPhotoFormat].
-        #[method(setPreviewPhotoFormat:)]
+        #[unsafe(method(setPreviewPhotoFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewPhotoFormat(
             &self,
@@ -1836,7 +1836,7 @@ extern_methods!(
         ///
         ///
         /// The array is sorted such that the thumbnail codec type that is most backward compatible is listed first.
-        #[method(availableEmbeddedThumbnailPhotoCodecTypes)]
+        #[unsafe(method(availableEmbeddedThumbnailPhotoCodecTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableEmbeddedThumbnailPhotoCodecTypes(
             &self,
@@ -1846,14 +1846,14 @@ extern_methods!(
         ///
         ///
         /// A dictionary of AVVideoSettings keys specifying a thumbnail (usually smaller) version of the processed photo to be embedded in that image before calling the AVCapturePhotoCaptureDelegate. This image is sometimes referred to as a "thumbnail image". The AVVideoCodecKey is required and must be present in the receiver's -availableEmbeddedThumbnailPhotoCodecTypes array. Optional keys are { AVVideoWidthKey | AVVideoHeightKey }. If you wish to specify dimensions, you must specify both width and height. If you specify a width and height whose aspect ratio differs from the processed photo, the larger of the two dimensions is honored and aspect ratio of the RAW or processed photo is always preserved. For RAW captures, use -rawEmbeddedThumbnailPhotoFormat to specify the thumbnail format you'd like to capture in the RAW image. For apps linked on or after iOS 12, the raw thumbnail format must be specified using the -rawEmbeddedThumbnailPhotoFormat API rather than -embeddedThumbnailPhotoFormat. Beginning in iOS 12, HEIC files may contain thumbnails up to the full resolution of the main image.
-        #[method(embeddedThumbnailPhotoFormat)]
+        #[unsafe(method(embeddedThumbnailPhotoFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn embeddedThumbnailPhotoFormat(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`embeddedThumbnailPhotoFormat`][Self::embeddedThumbnailPhotoFormat].
-        #[method(setEmbeddedThumbnailPhotoFormat:)]
+        #[unsafe(method(setEmbeddedThumbnailPhotoFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmbeddedThumbnailPhotoFormat(
             &self,
@@ -1865,7 +1865,7 @@ extern_methods!(
         ///
         ///
         /// The array is sorted such that the thumbnail codec type that is most backward compatible is listed first.
-        #[method(availableRawEmbeddedThumbnailPhotoCodecTypes)]
+        #[unsafe(method(availableRawEmbeddedThumbnailPhotoCodecTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableRawEmbeddedThumbnailPhotoCodecTypes(
             &self,
@@ -1875,14 +1875,14 @@ extern_methods!(
         ///
         ///
         /// A dictionary of AVVideoSettings keys specifying a thumbnail (usually smaller) version of the RAW photo to be embedded in that image's DNG before calling back the AVCapturePhotoCaptureDelegate. The AVVideoCodecKey is required and must be present in the receiver's -availableRawEmbeddedThumbnailPhotoCodecTypes array. Optional keys are { AVVideoWidthKey | AVVideoHeightKey }. If you wish to specify dimensions, you must specify both width and height. If you specify a width and height whose aspect ratio differs from the RAW or processed photo, the larger of the two dimensions is honored and aspect ratio of the RAW or processed photo is always preserved. For apps linked on or after iOS 12, the raw thumbnail format must be specified using the -rawEmbeddedThumbnailPhotoFormat API rather than -embeddedThumbnailPhotoFormat. Beginning in iOS 12, DNG files may contain thumbnails up to the full resolution of the RAW image.
-        #[method(rawEmbeddedThumbnailPhotoFormat)]
+        #[unsafe(method(rawEmbeddedThumbnailPhotoFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn rawEmbeddedThumbnailPhotoFormat(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`rawEmbeddedThumbnailPhotoFormat`][Self::rawEmbeddedThumbnailPhotoFormat].
-        #[method(setRawEmbeddedThumbnailPhotoFormat:)]
+        #[unsafe(method(setRawEmbeddedThumbnailPhotoFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRawEmbeddedThumbnailPhotoFormat(
             &self,
@@ -1893,12 +1893,12 @@ extern_methods!(
         ///
         ///
         /// Default is NO. Set to YES if you wish content aware distortion correction to be performed on your AVCapturePhotos, when the photo output deems it necessary. Photos may or may not benefit from distortion correction. For instance, photos lacking faces may be left as is. Setting this property to YES does introduce a small additional amount of latency to the photo processing. You may check your AVCaptureResolvedPhotoSettings to see whether content aware distortion correction will be enabled for a given photo request. Throws an exception if -[AVCapturePhotoOutput contentAwareDistortionCorrectionEnabled] is not set to YES.
-        #[method(isAutoContentAwareDistortionCorrectionEnabled)]
+        #[unsafe(method(isAutoContentAwareDistortionCorrectionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutoContentAwareDistortionCorrectionEnabled(&self) -> bool;
 
         /// Setter for [`isAutoContentAwareDistortionCorrectionEnabled`][Self::isAutoContentAwareDistortionCorrectionEnabled].
-        #[method(setAutoContentAwareDistortionCorrectionEnabled:)]
+        #[unsafe(method(setAutoContentAwareDistortionCorrectionEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutoContentAwareDistortionCorrectionEnabled(
             &self,
@@ -1909,12 +1909,12 @@ extern_methods!(
         ///
         ///
         /// Default is NO. Set to YES if you wish to capture a constant color photo. Throws an exception if -[AVCapturePhotoOutput constantColorEnabled] is not set to YES.
-        #[method(isConstantColorEnabled)]
+        #[unsafe(method(isConstantColorEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isConstantColorEnabled(&self) -> bool;
 
         /// Setter for [`isConstantColorEnabled`][Self::isConstantColorEnabled].
-        #[method(setConstantColorEnabled:)]
+        #[unsafe(method(setConstantColorEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstantColorEnabled(&self, constant_color_enabled: bool);
 
@@ -1922,12 +1922,12 @@ extern_methods!(
         ///
         ///
         /// Default is NO. Set to YES if you wish to receive a fallback photo that can be used in case the main constant color photo's confidence level is too low for your use case.
-        #[method(isConstantColorFallbackPhotoDeliveryEnabled)]
+        #[unsafe(method(isConstantColorFallbackPhotoDeliveryEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isConstantColorFallbackPhotoDeliveryEnabled(&self) -> bool;
 
         /// Setter for [`isConstantColorFallbackPhotoDeliveryEnabled`][Self::isConstantColorFallbackPhotoDeliveryEnabled].
-        #[method(setConstantColorFallbackPhotoDeliveryEnabled:)]
+        #[unsafe(method(setConstantColorFallbackPhotoDeliveryEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstantColorFallbackPhotoDeliveryEnabled(
             &self,
@@ -1938,12 +1938,12 @@ extern_methods!(
         ///
         ///
         /// Default is NO. Set to YES if you wish to suppress AVCapturePhotoOutput's built-in shutter sound for this request. AVCapturePhotoOutput throws an NSInvalidArgumentException in `-capturePhotoWithSettings:` if its `shutterSoundSuppressionSupported` property returns NO.
-        #[method(isShutterSoundSuppressionEnabled)]
+        #[unsafe(method(isShutterSoundSuppressionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isShutterSoundSuppressionEnabled(&self) -> bool;
 
         /// Setter for [`isShutterSoundSuppressionEnabled`][Self::isShutterSoundSuppressionEnabled].
-        #[method(setShutterSoundSuppressionEnabled:)]
+        #[unsafe(method(setShutterSoundSuppressionEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShutterSoundSuppressionEnabled(
             &self,
@@ -1955,11 +1955,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCapturePhotoSettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2009,7 +2009,7 @@ extern_methods!(
         /// An NSInvalidArgumentException is thrown if bracketedSettings is nil, contains zero elements, or mixes and matches different subclasses of AVCaptureBracketedStillImageSettings.
         ///
         /// AVCapturePhotoBracketSettings do not support flashMode, autoStillImageStabilizationEnabled, livePhotoMovieFileURL or livePhotoMovieMetadata.
-        #[method(photoBracketSettingsWithRawPixelFormatType:processedFormat:bracketedSettings:)]
+        #[unsafe(method(photoBracketSettingsWithRawPixelFormatType:processedFormat:bracketedSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoBracketSettingsWithRawPixelFormatType_processedFormat_bracketedSettings(
             raw_pixel_format_type: OSType,
@@ -2039,7 +2039,7 @@ extern_methods!(
         /// An NSInvalidArgumentException is thrown if bracketedSettings is nil, contains zero elements, or mixes and matches different subclasses of AVCaptureBracketedStillImageSettings.
         ///
         /// AVCapturePhotoBracketSettings do not support flashMode, autoStillImageStabilizationEnabled, livePhotoMovieFileURL or livePhotoMovieMetadata.
-        #[method(photoBracketSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:bracketedSettings:)]
+        #[unsafe(method(photoBracketSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:bracketedSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoBracketSettingsWithRawPixelFormatType_rawFileType_processedFormat_processedFileType_bracketedSettings(
             raw_pixel_format_type: OSType,
@@ -2054,7 +2054,7 @@ extern_methods!(
         ///
         ///
         /// This read-only property never returns nil.
-        #[method(bracketedSettings)]
+        #[unsafe(method(bracketedSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn bracketedSettings(
             &self,
@@ -2064,12 +2064,12 @@ extern_methods!(
         ///
         ///
         /// Default value is NO. This property may only be set to YES if AVCapturePhotoOutput's isLensStabilizationDuringBracketedCaptureSupported is YES. When set to YES, AVCapturePhotoOutput holds the lens steady for the duration of the bracket to counter hand shake and produce a sharper bracket of images.
-        #[method(isLensStabilizationEnabled)]
+        #[unsafe(method(isLensStabilizationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLensStabilizationEnabled(&self) -> bool;
 
         /// Setter for [`isLensStabilizationEnabled`][Self::isLensStabilizationEnabled].
-        #[method(setLensStabilizationEnabled:)]
+        #[unsafe(method(setLensStabilizationEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLensStabilizationEnabled(&self, lens_stabilization_enabled: bool);
     }
@@ -2085,7 +2085,7 @@ extern_methods!(
         ///
         ///
         /// A default AVCapturePhotoSettings object has a format of AVVideoCodecTypeJPEG, a fileType of AVFileTypeJPEG, and photoQualityPrioritization set to AVCapturePhotoQualityPrioritizationBalanced.
-        #[method(photoSettings)]
+        #[unsafe(method(photoSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettings() -> Retained<Self>;
 
@@ -2098,7 +2098,7 @@ extern_methods!(
         ///
         ///
         /// If you wish an uncompressed format, your dictionary must contain kCVPixelBufferPixelFormatTypeKey, and the format specified must be present in AVCapturePhotoOutput's -availablePhotoPixelFormatTypes array. kCVPixelBufferPixelFormatTypeKey is the only supported key when expressing uncompressed output. If you wish a compressed format, your dictionary must contain AVVideoCodecKey and the codec specified must be present in AVCapturePhotoOutput's -availablePhotoCodecTypes array. If you are specifying a compressed format, the AVVideoCompressionPropertiesKey is also supported, with a payload dictionary containing a single AVVideoQualityKey. Passing a nil format dictionary is analogous to calling +photoSettings.
-        #[method(photoSettingsWithFormat:)]
+        #[unsafe(method(photoSettingsWithFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsWithFormat(
             format: Option<&NSDictionary<NSString, AnyObject>>,
@@ -2113,7 +2113,7 @@ extern_methods!(
         ///
         ///
         /// rawPixelFormatType must be one of the OSTypes contained in AVCapturePhotoOutput's -availableRawPhotoPixelFormatTypes array. See AVCapturePhotoOutput's -capturePhotoWithSettings:delegate: inline documentation for a discussion of restrictions on AVCapturePhotoSettings when requesting RAW capture.
-        #[method(photoSettingsWithRawPixelFormatType:)]
+        #[unsafe(method(photoSettingsWithRawPixelFormatType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsWithRawPixelFormatType(
             raw_pixel_format_type: OSType,
@@ -2130,7 +2130,7 @@ extern_methods!(
         ///
         ///
         /// rawPixelFormatType must be one of the OSTypes contained in AVCapturePhotoOutput's -availableRawPhotoPixelFormatTypes array. If you wish an uncompressed processedFormat, your dictionary must contain kCVPixelBufferPixelFormatTypeKey, and the processedFormat specified must be present in AVCapturePhotoOutput's -availablePhotoPixelFormatTypes array. kCVPixelBufferPixelFormatTypeKey is the only supported key when expressing uncompressed processedFormat. If you wish a compressed format, your dictionary must contain AVVideoCodecKey and the codec specified must be present in AVCapturePhotoOutput's -availablePhotoCodecTypes array. If you are specifying a compressed format, the AVVideoCompressionPropertiesKey is also supported, with a payload dictionary containing a single AVVideoQualityKey. Passing a nil processedFormat dictionary is analogous to calling +photoSettingsWithRawPixelFormatType:. See AVCapturePhotoOutput's -capturePhotoWithSettings:delegate: inline documentation for a discussion of restrictions on AVCapturePhotoSettings when requesting RAW capture.
-        #[method(photoSettingsWithRawPixelFormatType:processedFormat:)]
+        #[unsafe(method(photoSettingsWithRawPixelFormatType:processedFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsWithRawPixelFormatType_processedFormat(
             raw_pixel_format_type: OSType,
@@ -2153,7 +2153,7 @@ extern_methods!(
         ///
         ///
         /// rawPixelFormatType must be one of the OSTypes contained in AVCapturePhotoOutput's -availableRawPhotoPixelFormatTypes array. Set rawPixelFormatType to 0 if you do not desire a RAW photo callback. If you are specifying a rawFileType, it must be present in AVCapturePhotoOutput's -availableRawPhotoFileTypes array. If you wish an uncompressed processedFormat, your dictionary must contain kCVPixelBufferPixelFormatTypeKey, and the processedFormat specified must be present in AVCapturePhotoOutput's -availablePhotoPixelFormatTypes array. kCVPixelBufferPixelFormatTypeKey is the only supported key when expressing uncompressed processedFormat. If you wish a compressed format, your dictionary must contain AVVideoCodecKey and the codec specified must be present in AVCapturePhotoOutput's -availablePhotoCodecTypes array. If you are specifying a compressed format, the AVVideoCompressionPropertiesKey is also supported, with a payload dictionary containing a single AVVideoQualityKey. If you are specifying a processedFileType, it must be present in AVCapturePhotoOutput's -availablePhotoFileTypes array. Pass a nil processedFormat dictionary if you only desire a RAW photo capture. See AVCapturePhotoOutput's -capturePhotoWithSettings:delegate: inline documentation for a discussion of restrictions on AVCapturePhotoSettings when requesting RAW capture.
-        #[method(photoSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:)]
+        #[unsafe(method(photoSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsWithRawPixelFormatType_rawFileType_processedFormat_processedFileType(
             raw_pixel_format_type: OSType,
@@ -2171,7 +2171,7 @@ extern_methods!(
         ///
         ///
         /// Use this factory method to create a clone of an existing photo settings instance, but with a new uniqueID that can safely be passed to AVCapturePhotoOutput -capturePhotoWithSettings:delegate:.
-        #[method(photoSettingsFromPhotoSettings:)]
+        #[unsafe(method(photoSettingsFromPhotoSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsFromPhotoSettings(
             photo_settings: &AVCapturePhotoSettings,
@@ -2182,11 +2182,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCapturePhotoBracketSettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2208,16 +2208,16 @@ unsafe impl NSObjectProtocol for AVCaptureResolvedPhotoSettings {}
 
 extern_methods!(
     unsafe impl AVCaptureResolvedPhotoSettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// uniqueID matches that of the AVCapturePhotoSettings instance you passed to -capturePhotoWithSettings:delegate:.
-        #[method(uniqueID)]
+        #[unsafe(method(uniqueID))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueID(&self) -> i64;
 
@@ -2226,7 +2226,7 @@ extern_methods!(
         ///
         ///
         /// If you request a RAW capture with no processed companion image, photoDimensions resolve to { 0, 0 }.
-        #[method(photoDimensions)]
+        #[unsafe(method(photoDimensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoDimensions(&self) -> CMVideoDimensions;
 
@@ -2235,7 +2235,7 @@ extern_methods!(
         ///
         ///
         /// If you request a non-RAW capture, rawPhotoDimensions resolve to { 0, 0 }.
-        #[method(rawPhotoDimensions)]
+        #[unsafe(method(rawPhotoDimensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn rawPhotoDimensions(&self) -> CMVideoDimensions;
 
@@ -2244,7 +2244,7 @@ extern_methods!(
         ///
         ///
         /// If you don't request a preview image, previewDimensions resolve to { 0, 0 }.
-        #[method(previewDimensions)]
+        #[unsafe(method(previewDimensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewDimensions(&self) -> CMVideoDimensions;
 
@@ -2253,7 +2253,7 @@ extern_methods!(
         ///
         ///
         /// If you don't request an embedded thumbnail image, embeddedThumbnailDimensions resolve to { 0, 0 }.
-        #[method(embeddedThumbnailDimensions)]
+        #[unsafe(method(embeddedThumbnailDimensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn embeddedThumbnailDimensions(&self) -> CMVideoDimensions;
 
@@ -2262,7 +2262,7 @@ extern_methods!(
         ///
         ///
         /// If you don't request a raw embedded thumbnail image, rawEmbeddedThumbnailDimensions resolve to { 0, 0 }.
-        #[method(rawEmbeddedThumbnailDimensions)]
+        #[unsafe(method(rawEmbeddedThumbnailDimensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn rawEmbeddedThumbnailDimensions(&self) -> CMVideoDimensions;
 
@@ -2271,7 +2271,7 @@ extern_methods!(
         ///
         ///
         /// If you request a portrait effects matte by calling -[AVCapturePhotoSettings setPortraitEffectsMatteDeliveryEnabled:YES], portraitEffectsMatteDimensions resolve to the expected dimensions of the portrait effects matte, assuming one is generated (see -[AVCapturePhotoSettings portraitEffectsMatteDeliveryEnabled] for a discussion of why a portrait effects matte might not be delivered). If you don't request a portrait effects matte, portraitEffectsMatteDimensions always resolve to { 0, 0 }.
-        #[method(portraitEffectsMatteDimensions)]
+        #[unsafe(method(portraitEffectsMatteDimensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn portraitEffectsMatteDimensions(&self) -> CMVideoDimensions;
 
@@ -2280,7 +2280,7 @@ extern_methods!(
         ///
         ///
         /// If you request semantic segmentation mattes by calling -[AVCapturePhotoSettings setEnabledSemanticSegmentationMatteTypes:] with a non-empty array, the dimensions resolve to the expected dimensions for each of the mattes, assuming they are generated (see -[AVCapturePhotoSettings enabledSemanticSegmentationMatteTypes] for a discussion of why a particular matte might not be delivered). If you don't request any semantic segmentation mattes, the result will always be { 0, 0 }.
-        #[method(dimensionsForSemanticSegmentationMatteOfType:)]
+        #[unsafe(method(dimensionsForSemanticSegmentationMatteOfType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dimensionsForSemanticSegmentationMatteOfType(
             &self,
@@ -2292,7 +2292,7 @@ extern_methods!(
         ///
         ///
         /// If you don't request Live Photo capture, livePhotoMovieDimensions resolve to { 0, 0 }.
-        #[method(livePhotoMovieDimensions)]
+        #[unsafe(method(livePhotoMovieDimensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn livePhotoMovieDimensions(&self) -> CMVideoDimensions;
 
@@ -2300,12 +2300,12 @@ extern_methods!(
         ///
         ///
         /// When you specify AVCaptureFlashModeAuto as your AVCapturePhotoSettings.flashMode, you don't know if flash capture will be chosen until you inspect the AVCaptureResolvedPhotoSettings flashEnabled property. If the device becomes too hot, the flash becomes temporarily unavailable. You can key-value observe AVCaptureDevice's flashAvailable property to know when this occurs. If the flash is unavailable due to thermal issues, and you specify a flashMode of AVCaptureFlashModeOn, flashEnabled still resolves to NO until the device has sufficiently cooled off.
-        #[method(isFlashEnabled)]
+        #[unsafe(method(isFlashEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFlashEnabled(&self) -> bool;
 
         /// Indicates whether red-eye reduction will be applied as necessary when capturing the photo if flashEnabled is YES.
-        #[method(isRedEyeReductionEnabled)]
+        #[unsafe(method(isRedEyeReductionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRedEyeReductionEnabled(&self) -> bool;
 
@@ -2314,7 +2314,7 @@ extern_methods!(
         ///
         ///
         /// If you don't opt in to deferred photo delivery, deferredPhotoProxyDimensions resolve to { 0, 0 }.  When an AVCaptureDeferredPhotoProxy is returned, the photoDimensions property of this object represents the dimensions of the final photo.
-        #[method(deferredPhotoProxyDimensions)]
+        #[unsafe(method(deferredPhotoProxyDimensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn deferredPhotoProxyDimensions(&self) -> CMVideoDimensions;
 
@@ -2322,39 +2322,39 @@ extern_methods!(
         ///
         /// As of iOS 13 hardware, the AVCapturePhotoOutput is capable of applying a variety of multi-image fusion techniques to improve photo quality (reduce noise, preserve detail in low light, freeze motion, etc), all of which have been previously lumped under the stillImageStabilization moniker. This property should no longer be used as it no longer provides meaningful information about the techniques used to improve quality in a photo capture. Instead, you should use -photoQualityPrioritization to indicate your preferred quality vs speed when configuring your AVCapturePhotoSettings. You may query -photoProcessingTimeRange to get an indication of how long the photo will take to process before delivery to your delegate.
         #[deprecated]
-        #[method(isStillImageStabilizationEnabled)]
+        #[unsafe(method(isStillImageStabilizationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStillImageStabilizationEnabled(&self) -> bool;
 
         /// Indicates whether fusion of virtual device constituent camera images will be used when capturing the photo, such as the wide-angle and telephoto images on a DualCamera.
-        #[method(isVirtualDeviceFusionEnabled)]
+        #[unsafe(method(isVirtualDeviceFusionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVirtualDeviceFusionEnabled(&self) -> bool;
 
         /// Indicates whether DualCamera wide-angle and telephoto image fusion will be employed when capturing the photo. As of iOS 13, this property is deprecated in favor of virtualDeviceFusionEnabled.
         #[deprecated]
-        #[method(isDualCameraFusionEnabled)]
+        #[unsafe(method(isDualCameraFusionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDualCameraFusionEnabled(&self) -> bool;
 
         /// Indicates the number of times your -captureOutput:didFinishProcessingPhoto:error: callback will be called. For instance, if you've requested an auto exposure bracket of 3 with JPEG and RAW, the expectedPhotoCount is 6.
-        #[method(expectedPhotoCount)]
+        #[unsafe(method(expectedPhotoCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectedPhotoCount(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-core-media")]
         /// Indicates the processing time range you can expect for this photo to be delivered to your delegate. the .start field of the CMTimeRange is zero-based. In other words, if photoProcessingTimeRange.start is equal to .5 seconds, then the minimum processing time for this photo is .5 seconds. The .start field plus the .duration field of the CMTimeRange indicate the max expected processing time for this photo. Consider implementing a UI affordance if the max processing time is uncomfortably long.
-        #[method(photoProcessingTimeRange)]
+        #[unsafe(method(photoProcessingTimeRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoProcessingTimeRange(&self) -> CMTimeRange;
 
         /// Indicates whether content aware distortion correction will be employed when capturing the photo.
-        #[method(isContentAwareDistortionCorrectionEnabled)]
+        #[unsafe(method(isContentAwareDistortionCorrectionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isContentAwareDistortionCorrectionEnabled(&self) -> bool;
 
         /// Indicates whether fast capture prioritization will be employed when capturing the photo.
-        #[method(isFastCapturePrioritizationEnabled)]
+        #[unsafe(method(isFastCapturePrioritizationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFastCapturePrioritizationEnabled(&self) -> bool;
     }
@@ -2376,11 +2376,11 @@ unsafe impl NSObjectProtocol for AVCapturePhoto {}
 
 extern_methods!(
     unsafe impl AVCapturePhoto {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -2389,7 +2389,7 @@ extern_methods!(
         ///
         ///
         /// The timestamp property indicates the time the image was captured, and is analogous to CMSampleBufferGetPresentationTimeStamp(). If an error was provided in the -captureOutput:didFinishingProcessingPhoto:error: callback, timestamp returns kCMTimeInvalid.
-        #[method(timestamp)]
+        #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> CMTime;
 
@@ -2397,7 +2397,7 @@ extern_methods!(
         ///
         ///
         /// Your AVCapturePhotoCaptureDelegate's -captureOutput:didFinishingProcessingPhoto:error: method may be called one or more times with image results, including RAW or non-RAW images. This property distinguishes RAW from non-RAW image results, for instance, if you've requested a RAW + JPEG capture.
-        #[method(isRawPhoto)]
+        #[unsafe(method(isRawPhoto))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRawPhoto(&self) -> bool;
 
@@ -2406,7 +2406,7 @@ extern_methods!(
         ///
         ///
         /// Uncompressed captures, such as '420f' or 'BGRA', Bayer RAW captures, such as 'bgg4', or Apple ProRAW captures, such as 'l64r', present pixel data as a CVPixelBuffer. See AVCapturePhotoOutput's -appleProRAWEnabled for a discussion on the differences between Bayer RAW and Apple ProRAW. This property is analogous to CMSampleBufferGetImageBuffer(). The pixel buffer contains only the minimal attachments required for correct display. Compressed captures, such as 'jpeg', return nil.
-        #[method(pixelBuffer)]
+        #[unsafe(method(pixelBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
 
@@ -2415,7 +2415,7 @@ extern_methods!(
         ///
         ///
         /// If you requested a preview image by calling -[AVCapturePhotoSettings setPreviewPhotoFormat:] with a non-nil value, this property offers access to the resulting preview image pixel data, and is analogous to CMSampleBufferGetImageBuffer(). The pixel buffer contains only the minimal attachments required for correct display. Nil is returned if you did not request a preview image.
-        #[method(previewPixelBuffer)]
+        #[unsafe(method(previewPixelBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewPixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
 
@@ -2423,7 +2423,7 @@ extern_methods!(
         ///
         ///
         /// If you requested an embedded thumbnail image by calling -[AVCapturePhotoSettings setEmbeddedThumbnailPhotoFormat:] with a non-nil value, this property offers access to the resolved embedded thumbnail AVVideoSettings dictionary. Nil is returned if you did not request an embedded thumbnail image.
-        #[method(embeddedThumbnailPhotoFormat)]
+        #[unsafe(method(embeddedThumbnailPhotoFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn embeddedThumbnailPhotoFormat(
             &self,
@@ -2434,7 +2434,7 @@ extern_methods!(
         ///
         ///
         /// If you requested depth data delivery by calling -[AVCapturePhotoSettings setDepthDataDeliveryEnabled:YES], this property offers access to the resulting AVDepthData object. Nil is returned if you did not request depth data delivery. Note that the depth data is only embedded in the photo's internal file format container if you set -[AVCapturePhotoSettings setEmbedsDepthDataInPhoto:YES].
-        #[method(depthData)]
+        #[unsafe(method(depthData))]
         #[unsafe(method_family = none)]
         pub unsafe fn depthData(&self) -> Option<Retained<AVDepthData>>;
 
@@ -2443,7 +2443,7 @@ extern_methods!(
         ///
         ///
         /// If you requested portrait effects matte delivery by calling -[AVCapturePhotoSettings setPortraitEffectsMatteDeliveryEnabled:YES], this property offers access to the resulting AVPortraitEffectsMatte object. Nil is returned if you did not request portrait effects matte delivery. Note that the portrait effects matte is only embedded in the photo's internal file format container if you set -[AVCapturePhotoSettings setEmbedsPortraitEffectsMatteInPhoto:YES].
-        #[method(portraitEffectsMatte)]
+        #[unsafe(method(portraitEffectsMatte))]
         #[unsafe(method_family = none)]
         pub unsafe fn portraitEffectsMatte(&self) -> Option<Retained<AVPortraitEffectsMatte>>;
 
@@ -2457,7 +2457,7 @@ extern_methods!(
         ///
         ///
         /// If you requested one or more semantic segmentation mattes by calling -[AVCapturePhotoSettings setEnabledSemanticSegmentationMatteTypes:] with a non-empty array of types, this property offers access to the resulting AVSemanticSegmentationMatte objects. Nil is returned if you did not request semantic segmentation matte delivery, or if no mattes of the specified type are available. Note that semantic segmentation mattes are only embedded in the photo's internal file format container if you call -[AVCapturePhotoSettings setEmbedsSemanticSegmentationMattesInPhoto:YES].
-        #[method(semanticSegmentationMatteForType:)]
+        #[unsafe(method(semanticSegmentationMatteForType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn semanticSegmentationMatteForType(
             &self,
@@ -2470,7 +2470,7 @@ extern_methods!(
         /// Valid metadata keys are found in
         /// <ImageIO
         /// /CGImageProperties.h>, such as kCGImagePropertyOrientation, kCGImagePropertyExifDictionary, kCGImagePropertyMakerAppleDictionary, etc.
-        #[method(metadata)]
+        #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
@@ -2479,7 +2479,7 @@ extern_methods!(
         ///
         ///
         /// Camera calibration data is only present if you set AVCapturePhotoSettings.setCameraCalibrationDataDeliveryEnabled to YES. When requesting virtual device constituent photo delivery plus cameraCalibrationDataDeliveryEnabled, camera calibration information is delivered with all resultant photos and is specific to the constituent device producing that photo.
-        #[method(cameraCalibrationData)]
+        #[unsafe(method(cameraCalibrationData))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraCalibrationData(&self) -> Option<Retained<AVCameraCalibrationData>>;
 
@@ -2487,7 +2487,7 @@ extern_methods!(
         ///
         ///
         /// Even in the event of an error, the resolved settings are always non nil.
-        #[method(resolvedSettings)]
+        #[unsafe(method(resolvedSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn resolvedSettings(&self) -> Retained<AVCaptureResolvedPhotoSettings>;
 
@@ -2495,7 +2495,7 @@ extern_methods!(
         ///
         ///
         /// The resolvedSettings.expectedPhotoCount property indicates the total number of images that will be returned for a given capture request. This property indicates this photo's index (1-based). When you receive a -captureOutput:didFinishProcessingPhoto:error: callback with a photo whose photoCount matches resolvedSettings.expectedPhotoCount, you know you've received the last one for the given capture request.
-        #[method(photoCount)]
+        #[unsafe(method(photoCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoCount(&self) -> NSInteger;
 
@@ -2504,7 +2504,7 @@ extern_methods!(
         ///
         ///
         /// When taking a virtual device constituent photo capture, you may query this property to find out the source type of the photo. For instance, on a DualCamera, resulting photos will be of sourceDeviceType AVCaptureDeviceTypeBuiltInWideCamera, or AVCaptureDeviceTypeBuiltInTelephotoCamera. For all other types of capture, the source device type is equal to the -[AVCaptureDevice deviceType] of the AVCaptureDevice to which the AVCapturePhotoOutput is connected. Returns nil if the source of the photo is not an AVCaptureDevice.
-        #[method(sourceDeviceType)]
+        #[unsafe(method(sourceDeviceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceDeviceType(&self) -> Option<Retained<AVCaptureDeviceType>>;
 
@@ -2513,7 +2513,7 @@ extern_methods!(
         ///
         ///
         /// NULL is returned for any non constant color photos.
-        #[method(constantColorConfidenceMap)]
+        #[unsafe(method(constantColorConfidenceMap))]
         #[unsafe(method_family = none)]
         pub unsafe fn constantColorConfidenceMap(&self) -> Option<Retained<CVPixelBuffer>>;
 
@@ -2525,12 +2525,12 @@ extern_methods!(
         /// In most use cases (document scanning for example), the central region of the photo is considered more important than the peripherals, therefore the confidence level of the central pixels are weighted more heavily than pixels on the edges of the photo.
         ///
         /// Use constantColorConfidenceMap for more use case specific analyses of the confidence level.
-        #[method(constantColorCenterWeightedMeanConfidenceLevel)]
+        #[unsafe(method(constantColorCenterWeightedMeanConfidenceLevel))]
         #[unsafe(method_family = none)]
         pub unsafe fn constantColorCenterWeightedMeanConfidenceLevel(&self) -> c_float;
 
         /// Indicates whether this photo is a fallback photo for a constant color capture.
-        #[method(isConstantColorFallbackPhoto)]
+        #[unsafe(method(isConstantColorFallbackPhoto))]
         #[unsafe(method_family = none)]
         pub unsafe fn isConstantColorFallbackPhoto(&self) -> bool;
     }
@@ -2543,7 +2543,7 @@ extern_methods!(
         ///
         ///
         /// Returns: An NSData containing bits in the file container's format, or nil if the flattening process fails.
-        #[method(fileDataRepresentation)]
+        #[unsafe(method(fileDataRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileDataRepresentation(&self) -> Option<Retained<NSData>>;
 
@@ -2553,7 +2553,7 @@ extern_methods!(
         /// Parameter `customizer`: An object conforming to the AVCapturePhotoFileDataRepresentationCustomizer protocol that will be called synchronously to provide customization of metadata written to the container format. An NSInvalidArgumentException is thrown if you pass nil.
         ///
         /// Returns: An NSData containing bits in the file container's format, or nil if the flattening process fails.
-        #[method(fileDataRepresentationWithCustomizer:)]
+        #[unsafe(method(fileDataRepresentationWithCustomizer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileDataRepresentationWithCustomizer(
             &self,
@@ -2578,7 +2578,7 @@ extern_methods!(
         ///
         /// Returns: An NSData containing bits in the file container's format, or nil if the flattening process fails.
         #[deprecated]
-        #[method(fileDataRepresentationWithReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:)]
+        #[unsafe(method(fileDataRepresentationWithReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileDataRepresentationWithReplacementMetadata_replacementEmbeddedThumbnailPhotoFormat_replacementEmbeddedThumbnailPixelBuffer_replacementDepthData(
             &self,
@@ -2596,7 +2596,7 @@ extern_methods!(
         ///
         ///
         /// Each time you access this method, AVCapturePhoto generates a new CGImageRef. When backed by a compressed container (such as HEIC), the CGImageRepresentation is decoded lazily as needed. When backed by an uncompressed format such as BGRA, it is copied into a separate backing buffer whose lifetime is not tied to that of the AVCapturePhoto. For a 12 megapixel image, a BGRA CGImage represents ~48 megabytes per call. If you only intend to use the CGImage for on-screen rendering, use the previewCGImageRepresentation instead. Note that the physical rotation of the CGImageRef matches that of the main image. Exif orientation has not been applied. If you wish to apply rotation when working with UIImage, you can do so by querying the photo's metadata[kCGImagePropertyOrientation] value, and passing it as the orientation parameter to +[UIImage imageWithCGImage:scale:orientation:]. RAW images always return a CGImageRepresentation of nil. If you wish to make a CGImageRef from a RAW image, use CIRAWFilter in the CoreImage framework.
-        #[method(CGImageRepresentation)]
+        #[unsafe(method(CGImageRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn CGImageRepresentation(&self) -> Option<Retained<CGImage>>;
 
@@ -2608,7 +2608,7 @@ extern_methods!(
         ///
         ///
         /// Each time you access this method, AVCapturePhoto generates a new CGImageRef. This CGImageRepresentation is a RGB rendering of the previewPixelBuffer property. If you did not request a preview photo by setting the -[AVCapturePhotoSettings previewPhotoFormat] property, this method returns nil. Note that the physical rotation of the CGImageRef matches that of the main image. Exif orientation has not been applied. If you wish to apply rotation when working with UIImage, you can do so by querying the photo's metadata[kCGImagePropertyOrientation] value, and passing it as the orientation parameter to +[UIImage imageWithCGImage:scale:orientation:].
-        #[method(previewCGImageRepresentation)]
+        #[unsafe(method(previewCGImageRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewCGImageRepresentation(&self) -> Option<Retained<CGImage>>;
     }
@@ -2661,7 +2661,7 @@ extern_methods!(
         ///
         ///
         /// When specifying a bracketed capture using AVCapturePhotoBracketSettings, you specify an array of AVCaptureBracketedStillImageSettings -- one per image in the bracket. This property indicates the AVCaptureBracketedStillImageSettings associated with this particular photo, or nil if this photo is not part of a bracketed capture.
-        #[method(bracketSettings)]
+        #[unsafe(method(bracketSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn bracketSettings(
             &self,
@@ -2671,7 +2671,7 @@ extern_methods!(
         ///
         ///
         /// If this photo is part of a bracketed capture (invoked using AVCapturePhotoBracketSettings), this property indicates the current result's count in the sequence, starting with 1 for the first result, or 0 if this photo is not part of a bracketed capture.
-        #[method(sequenceCount)]
+        #[unsafe(method(sequenceCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn sequenceCount(&self) -> NSInteger;
 
@@ -2679,7 +2679,7 @@ extern_methods!(
         ///
         ///
         /// In configurations where lens stabilization (OIS) is unsupported, AVCaptureLensStabilizationStatusUnsupported is returned. If lens stabilization is supported, but this photo is not part of a bracketed capture in which -[AVCapturePhotoBracketSettings setLensStabilizationEnabled:YES] was called, AVCaptureLensStabilizationStatusOff is returned. Otherwise a lens stabilization status is returned indicating how lens stabilization was applied during the capture.
-        #[method(lensStabilizationStatus)]
+        #[unsafe(method(lensStabilizationStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn lensStabilizationStatus(&self) -> AVCaptureLensStabilizationStatus;
     }
@@ -2747,11 +2747,11 @@ unsafe impl NSObjectProtocol for AVCaptureDeferredPhotoProxy {}
 
 extern_methods!(
     unsafe impl AVCaptureDeferredPhotoProxy {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2779,7 +2779,7 @@ extern_protocol!(
         ///
         /// This callback is optional. If your delegate does not implement this callback, the existing metadata in the in-memory AVCapturePhoto container will be written to the file data representation.
         #[optional]
-        #[method(replacementMetadataForPhoto:)]
+        #[unsafe(method(replacementMetadataForPhoto:))]
         #[unsafe(method_family = none)]
         unsafe fn replacementMetadataForPhoto(
             &self,
@@ -2801,7 +2801,7 @@ extern_protocol!(
         ///
         /// This callback is optional. If your delegate does not implement this callback, the existing embedded thumbnail photo in the in-memory AVCapturePhoto container will be written to the file data representation.
         #[optional]
-        #[method(replacementEmbeddedThumbnailPixelBufferWithPhotoFormat:forPhoto:)]
+        #[unsafe(method(replacementEmbeddedThumbnailPixelBufferWithPhotoFormat:forPhoto:))]
         #[unsafe(method_family = none)]
         unsafe fn replacementEmbeddedThumbnailPixelBufferWithPhotoFormat_forPhoto(
             &self,
@@ -2822,7 +2822,7 @@ extern_protocol!(
         ///
         /// This callback is optional. If your delegate does not implement this callback, the existing depth data in the in-memory AVCapturePhoto container will be written to the file data representation.
         #[optional]
-        #[method(replacementDepthDataForPhoto:)]
+        #[unsafe(method(replacementDepthDataForPhoto:))]
         #[unsafe(method_family = none)]
         unsafe fn replacementDepthDataForPhoto(
             &self,
@@ -2840,7 +2840,7 @@ extern_protocol!(
         ///
         /// This callback is optional. If your delegate does not implement this callback, the existing portrait effects matte in the in-memory AVCapturePhoto container will be written to the file data representation.
         #[optional]
-        #[method(replacementPortraitEffectsMatteForPhoto:)]
+        #[unsafe(method(replacementPortraitEffectsMatteForPhoto:))]
         #[unsafe(method_family = none)]
         unsafe fn replacementPortraitEffectsMatteForPhoto(
             &self,
@@ -2860,7 +2860,7 @@ extern_protocol!(
         ///
         /// This callback is optional. If your delegate does not implement this callback, the existing semantic segmentation matte of the specified type in the in-memory AVCapturePhoto container will be written to the file data representation.
         #[optional]
-        #[method(replacementSemanticSegmentationMatteOfType:forPhoto:)]
+        #[unsafe(method(replacementSemanticSegmentationMatteOfType:forPhoto:))]
         #[unsafe(method_family = none)]
         unsafe fn replacementSemanticSegmentationMatteOfType_forPhoto(
             &self,
@@ -2887,7 +2887,7 @@ extern_protocol!(
         ///
         /// This callback is optional. If your delegate does not implement this callback, the default compression settings for the file type will be used.
         #[optional]
-        #[method(replacementAppleProRAWCompressionSettingsForPhoto:defaultSettings:maximumBitDepth:)]
+        #[unsafe(method(replacementAppleProRAWCompressionSettingsForPhoto:defaultSettings:maximumBitDepth:))]
         #[unsafe(method_family = none)]
         unsafe fn replacementAppleProRAWCompressionSettingsForPhoto_defaultSettings_maximumBitDepth(
             &self,

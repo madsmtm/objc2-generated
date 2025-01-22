@@ -18,7 +18,7 @@ extern_protocol!(
         /// Or the type of project types that promised to provide subtypes.
         ///
         /// Returns: An array of subtype descriptions for the projectType.
-        #[method(subtypesForProjectType:)]
+        #[unsafe(method(subtypesForProjectType:))]
         #[unsafe(method_family = none)]
         unsafe fn subtypesForProjectType(
             &self,
@@ -32,7 +32,7 @@ extern_protocol!(
         ///
         /// Returns: Return the current PHProjectTypeDescription for the given project type.
         /// The returned PHProjectTypeDescription's projectType has to be equal to the given projectType.
-        #[method(typeDescriptionForProjectType:)]
+        #[unsafe(method(typeDescriptionForProjectType:))]
         #[unsafe(method_family = none)]
         unsafe fn typeDescriptionForProjectType(
             &self,
@@ -46,7 +46,7 @@ extern_protocol!(
         /// it's the parent project type of the currently visible subtype descriptions.
         ///
         /// Returns: Return a footer text for the projectType.
-        #[method(footerTextForSubtypesOfProjectType:)]
+        #[unsafe(method(footerTextForSubtypesOfProjectType:))]
         #[unsafe(method_family = none)]
         unsafe fn footerTextForSubtypesOfProjectType(
             &self,
@@ -56,7 +56,7 @@ extern_protocol!(
         /// Called by the system when the data source is no longer needed.
         /// After this call the data source is no longer strongly referenced by the extension context.
         #[optional]
-        #[method(extensionWillDiscardDataSource)]
+        #[unsafe(method(extensionWillDiscardDataSource))]
         #[unsafe(method_family = none)]
         unsafe fn extensionWillDiscardDataSource(&self);
     }
@@ -72,7 +72,7 @@ extern_protocol!(
         ///
         /// Parameter `projectType`: The project type to invalidate.
         /// Use PHProjectTypeUndefined to invalidate the root level.
-        #[method(invalidateTypeDescriptionForProjectType:)]
+        #[unsafe(method(invalidateTypeDescriptionForProjectType:))]
         #[unsafe(method_family = none)]
         unsafe fn invalidateTypeDescriptionForProjectType(&self, project_type: &PHProjectType);
 
@@ -81,7 +81,7 @@ extern_protocol!(
         ///
         /// Parameter `projectType`: The project type of the level to invalidate.
         /// Use PHProjectTypeUndefined to invalidate the root level footer text.
-        #[method(invalidateFooterTextForSubtypesOfProjectType:)]
+        #[unsafe(method(invalidateFooterTextForSubtypesOfProjectType:))]
         #[unsafe(method_family = none)]
         unsafe fn invalidateFooterTextForSubtypesOfProjectType(&self, project_type: &PHProjectType);
     }

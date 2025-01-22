@@ -24,7 +24,7 @@ unsafe impl NSObjectProtocol for NSButtonTouchBarItem {}
 extern_methods!(
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSButtonTouchBarItem {
-        #[method(buttonTouchBarItemWithIdentifier:title:target:action:)]
+        #[unsafe(method(buttonTouchBarItemWithIdentifier:title:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_title_target_action(
             identifier: &NSTouchBarItemIdentifier,
@@ -35,7 +35,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method(buttonTouchBarItemWithIdentifier:image:target:action:)]
+        #[unsafe(method(buttonTouchBarItemWithIdentifier:image:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_image_target_action(
             identifier: &NSTouchBarItemIdentifier,
@@ -46,7 +46,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method(buttonTouchBarItemWithIdentifier:title:image:target:action:)]
+        #[unsafe(method(buttonTouchBarItemWithIdentifier:title:image:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_title_image_target_action(
             identifier: &NSTouchBarItemIdentifier,
@@ -57,72 +57,72 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "NSImage")]
-        #[method(image)]
+        #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`image`][Self::image].
-        #[method(setImage:)]
+        #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
         #[cfg(feature = "NSColor")]
-        #[method(bezelColor)]
+        #[unsafe(method(bezelColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn bezelColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`bezelColor`][Self::bezelColor].
-        #[method(setBezelColor:)]
+        #[unsafe(method(setBezelColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBezelColor(&self, bezel_color: Option<&NSColor>);
 
-        #[method(target)]
+        #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`target`][Self::target].
-        #[method(setTarget:)]
+        #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
-        #[method(action)]
+        #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
         /// Setter for [`action`][Self::action].
-        #[method(setAction:)]
+        #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         /// The localized string labelling this item during user customization. The default value is empty string.
-        #[method(customizationLabel)]
+        #[unsafe(method(customizationLabel))]
         #[unsafe(method_family = none)]
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
-        #[method(setCustomizationLabel:)]
+        #[unsafe(method(setCustomizationLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     }
@@ -132,21 +132,21 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSButtonTouchBarItem {
-        #[method(initWithIdentifier:)]
+        #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -156,7 +156,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSButtonTouchBarItem {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

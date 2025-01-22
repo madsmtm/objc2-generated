@@ -32,7 +32,7 @@ unsafe impl NSObjectProtocol for AVAudioMix {}
 
 extern_methods!(
     unsafe impl AVAudioMix {
-        #[method(inputParameters)]
+        #[unsafe(method(inputParameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputParameters(&self) -> Retained<NSArray<AVAudioMixInputParameters>>;
     }
@@ -41,11 +41,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioMix {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -74,19 +74,19 @@ unsafe impl NSObjectProtocol for AVMutableAudioMix {}
 
 extern_methods!(
     unsafe impl AVMutableAudioMix {
-        #[method(audioMix)]
+        #[unsafe(method(audioMix))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioMix() -> Retained<Self>;
 
         /// Indicates parameters for inputs to the mix; an NSArray of instances of AVAudioMixInputParameters.
         ///
         /// Note that an instance of AVAudioMixInputParameters is not required for each audio track that contributes to the mix; audio for those without associated AVAudioMixInputParameters will be included in the mix, processed according to default behavior.
-        #[method(inputParameters)]
+        #[unsafe(method(inputParameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputParameters(&self) -> Retained<NSArray<AVAudioMixInputParameters>>;
 
         /// Setter for [`inputParameters`][Self::inputParameters].
-        #[method(setInputParameters:)]
+        #[unsafe(method(setInputParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputParameters(
             &self,
@@ -98,11 +98,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMutableAudioMix {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -133,7 +133,7 @@ extern_methods!(
     unsafe impl AVAudioMixInputParameters {
         #[cfg(feature = "objc2-core-media")]
         /// Indicates the trackID of the audio track to which the parameters should be applied.
-        #[method(trackID)]
+        #[unsafe(method(trackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
 
@@ -142,13 +142,13 @@ extern_methods!(
         ///
         /// Constants for various time pitch algorithms, e.g. AVAudioTimePitchSpectral, are defined in AVAudioProcessingSettings.h.
         /// Can be nil, in which case the audioTimePitchAlgorithm set on the AVPlayerItem, AVAssetExportSession, or AVAssetReaderAudioMixOutput on which the AVAudioMix is set will be used for the associated track.
-        #[method(audioTimePitchAlgorithm)]
+        #[unsafe(method(audioTimePitchAlgorithm))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioTimePitchAlgorithm(&self)
             -> Option<Retained<AVAudioTimePitchAlgorithm>>;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(getVolumeRampForTime:startVolume:endVolume:timeRange:)]
+        #[unsafe(method(getVolumeRampForTime:startVolume:endVolume:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getVolumeRampForTime_startVolume_endVolume_timeRange(
             &self,
@@ -163,11 +163,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioMixInputParameters {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -197,25 +197,25 @@ unsafe impl NSObjectProtocol for AVMutableAudioMixInputParameters {}
 extern_methods!(
     unsafe impl AVMutableAudioMixInputParameters {
         #[cfg(feature = "AVAssetTrack")]
-        #[method(audioMixInputParametersWithTrack:)]
+        #[unsafe(method(audioMixInputParametersWithTrack:))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioMixInputParametersWithTrack(
             track: Option<&AVAssetTrack>,
         ) -> Retained<Self>;
 
-        #[method(audioMixInputParameters)]
+        #[unsafe(method(audioMixInputParameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioMixInputParameters() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Indicates the trackID of the audio track to which the parameters should be applied.
-        #[method(trackID)]
+        #[unsafe(method(trackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`trackID`][Self::trackID].
-        #[method(setTrackID:)]
+        #[unsafe(method(setTrackID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrackID(&self, track_id: CMPersistentTrackID);
 
@@ -224,14 +224,14 @@ extern_methods!(
         ///
         /// Constants for various time pitch algorithms, e.g. AVAudioTimePitchSpectral, are defined in AVAudioProcessingSettings.h.
         /// Can be nil, in which case the audioTimePitchAlgorithm set on the AVPlayerItem, AVAssetExportSession, or AVAssetReaderAudioMixOutput on which the AVAudioMix is set will be used for the associated track.
-        #[method(audioTimePitchAlgorithm)]
+        #[unsafe(method(audioTimePitchAlgorithm))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioTimePitchAlgorithm(&self)
             -> Option<Retained<AVAudioTimePitchAlgorithm>>;
 
         #[cfg(feature = "AVAudioProcessingSettings")]
         /// Setter for [`audioTimePitchAlgorithm`][Self::audioTimePitchAlgorithm].
-        #[method(setAudioTimePitchAlgorithm:)]
+        #[unsafe(method(setAudioTimePitchAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioTimePitchAlgorithm(
             &self,
@@ -239,7 +239,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(setVolumeRampFromStartVolume:toEndVolume:timeRange:)]
+        #[unsafe(method(setVolumeRampFromStartVolume:toEndVolume:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVolumeRampFromStartVolume_toEndVolume_timeRange(
             &self,
@@ -249,7 +249,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(setVolume:atTime:)]
+        #[unsafe(method(setVolume:atTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVolume_atTime(&self, volume: c_float, time: CMTime);
     }
@@ -258,11 +258,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMutableAudioMixInputParameters {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

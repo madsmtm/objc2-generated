@@ -131,7 +131,7 @@ unsafe impl SCNBoundingVolume for SCNNode {}
 extern_methods!(
     unsafe impl SCNNode {
         /// Creates and initializes a node instance.
-        #[method(node)]
+        #[unsafe(method(node))]
         #[unsafe(method_family = none)]
         pub unsafe fn node() -> Retained<Self>;
 
@@ -139,7 +139,7 @@ extern_methods!(
         /// Creates and initializes a node instance with the specified geometry attached.
         ///
         /// Parameter `geometry`: The geometry to attach.
-        #[method(nodeWithGeometry:)]
+        #[unsafe(method(nodeWithGeometry:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithGeometry(geometry: Option<&SCNGeometry>) -> Retained<SCNNode>;
 
@@ -149,81 +149,81 @@ extern_methods!(
         /// The copied nodes will share their attached objects (light, geometry, camera, ...) with the original instances;
         /// if you want, for example, to change the materials of the copy independently of the original object, you'll
         /// have to copy the geometry of the node separately.
-        #[method(clone)]
+        #[unsafe(method(clone))]
         #[unsafe(method_family = none)]
         pub unsafe fn clone(&self) -> Retained<Self>;
 
-        #[method(flattenedClone)]
+        #[unsafe(method(flattenedClone))]
         #[unsafe(method_family = none)]
         pub unsafe fn flattenedClone(&self) -> Retained<Self>;
 
         /// Determines the name of the receiver.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "SCNLight")]
         /// Determines the light attached to the receiver.
-        #[method(light)]
+        #[unsafe(method(light))]
         #[unsafe(method_family = none)]
         pub unsafe fn light(&self) -> Option<Retained<SCNLight>>;
 
         #[cfg(feature = "SCNLight")]
         /// Setter for [`light`][Self::light].
-        #[method(setLight:)]
+        #[unsafe(method(setLight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLight(&self, light: Option<&SCNLight>);
 
         #[cfg(feature = "SCNCamera")]
         /// Determines the camera attached to the receiver.
-        #[method(camera)]
+        #[unsafe(method(camera))]
         #[unsafe(method_family = none)]
         pub unsafe fn camera(&self) -> Option<Retained<SCNCamera>>;
 
         #[cfg(feature = "SCNCamera")]
         /// Setter for [`camera`][Self::camera].
-        #[method(setCamera:)]
+        #[unsafe(method(setCamera:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCamera(&self, camera: Option<&SCNCamera>);
 
         #[cfg(feature = "SCNGeometry")]
         /// Returns the geometry attached to the receiver.
-        #[method(geometry)]
+        #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry(&self) -> Option<Retained<SCNGeometry>>;
 
         #[cfg(feature = "SCNGeometry")]
         /// Setter for [`geometry`][Self::geometry].
-        #[method(setGeometry:)]
+        #[unsafe(method(setGeometry:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGeometry(&self, geometry: Option<&SCNGeometry>);
 
         #[cfg(feature = "SCNSkinner")]
         /// Returns the skinner attached to the receiver.
-        #[method(skinner)]
+        #[unsafe(method(skinner))]
         #[unsafe(method_family = none)]
         pub unsafe fn skinner(&self) -> Option<Retained<SCNSkinner>>;
 
         #[cfg(feature = "SCNSkinner")]
         /// Setter for [`skinner`][Self::skinner].
-        #[method(setSkinner:)]
+        #[unsafe(method(setSkinner:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSkinner(&self, skinner: Option<&SCNSkinner>);
 
         #[cfg(feature = "SCNMorpher")]
         /// Returns the morpher attached to the receiver.
-        #[method(morpher)]
+        #[unsafe(method(morpher))]
         #[unsafe(method_family = none)]
         pub unsafe fn morpher(&self) -> Option<Retained<SCNMorpher>>;
 
         #[cfg(feature = "SCNMorpher")]
         /// Setter for [`morpher`][Self::morpher].
-        #[method(setMorpher:)]
+        #[unsafe(method(setMorpher:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMorpher(&self, morpher: Option<&SCNMorpher>);
 
@@ -232,51 +232,51 @@ extern_methods!(
         /// Determines the receiver's transform. Animatable.
         ///
         /// The transform is the combination of the position, rotation and scale defined below. So when the transform is set, the receiver's position, rotation and scale are changed to match the new transform.
-        #[method(transform)]
+        #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> SCNMatrix4;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`transform`][Self::transform].
-        #[method(setTransform:)]
+        #[unsafe(method(setTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransform(&self, transform: SCNMatrix4);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Determines the receiver's transform in world space (relative to the scene's root node). Animatable.
-        #[method(worldTransform)]
+        #[unsafe(method(worldTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn worldTransform(&self) -> SCNMatrix4;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
-        #[method(setWorldTransform:)]
+        #[unsafe(method(setWorldTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWorldTransform(&self, world_transform: SCNMatrix4);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Determines the receiver's position. Animatable.
-        #[method(position)]
+        #[unsafe(method(position))]
         #[unsafe(method_family = none)]
         pub unsafe fn position(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`position`][Self::position].
-        #[method(setPosition:)]
+        #[unsafe(method(setPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPosition(&self, position: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Determines the receiver's position in world space (relative to the scene's root node).
-        #[method(worldPosition)]
+        #[unsafe(method(worldPosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn worldPosition(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`worldPosition`][Self::worldPosition].
-        #[method(setWorldPosition:)]
+        #[unsafe(method(setWorldPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWorldPosition(&self, world_position: SCNVector3);
 
@@ -284,37 +284,37 @@ extern_methods!(
         /// Determines the receiver's rotation. Animatable.
         ///
         /// The rotation is axis angle rotation. The three first components are the axis, the fourth one is the rotation (in radian).
-        #[method(rotation)]
+        #[unsafe(method(rotation))]
         #[unsafe(method_family = none)]
         pub unsafe fn rotation(&self) -> SCNVector4;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`rotation`][Self::rotation].
-        #[method(setRotation:)]
+        #[unsafe(method(setRotation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRotation(&self, rotation: SCNVector4);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Determines the receiver's orientation as a unit quaternion. Animatable.
-        #[method(orientation)]
+        #[unsafe(method(orientation))]
         #[unsafe(method_family = none)]
         pub unsafe fn orientation(&self) -> SCNQuaternion;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`orientation`][Self::orientation].
-        #[method(setOrientation:)]
+        #[unsafe(method(setOrientation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrientation(&self, orientation: SCNQuaternion);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Determines the receiver's orientation in world space (relative to the scene's root node). Animatable.
-        #[method(worldOrientation)]
+        #[unsafe(method(worldOrientation))]
         #[unsafe(method_family = none)]
         pub unsafe fn worldOrientation(&self) -> SCNQuaternion;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`worldOrientation`][Self::worldOrientation].
-        #[method(setWorldOrientation:)]
+        #[unsafe(method(setWorldOrientation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWorldOrientation(&self, world_orientation: SCNQuaternion);
 
@@ -329,110 +329,110 @@ extern_methods!(
         /// 1. first roll
         /// 2. then yaw
         /// 3. then pitch
-        #[method(eulerAngles)]
+        #[unsafe(method(eulerAngles))]
         #[unsafe(method_family = none)]
         pub unsafe fn eulerAngles(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`eulerAngles`][Self::eulerAngles].
-        #[method(setEulerAngles:)]
+        #[unsafe(method(setEulerAngles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEulerAngles(&self, euler_angles: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Determines the receiver's scale. Animatable.
-        #[method(scale)]
+        #[unsafe(method(scale))]
         #[unsafe(method_family = none)]
         pub unsafe fn scale(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`scale`][Self::scale].
-        #[method(setScale:)]
+        #[unsafe(method(setScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScale(&self, scale: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Determines the receiver's pivot. Animatable.
-        #[method(pivot)]
+        #[unsafe(method(pivot))]
         #[unsafe(method_family = none)]
         pub unsafe fn pivot(&self) -> SCNMatrix4;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`pivot`][Self::pivot].
-        #[method(setPivot:)]
+        #[unsafe(method(setPivot:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPivot(&self, pivot: SCNMatrix4);
 
         /// Determines whether the receiver is displayed. Defaults to NO. Animatable.
-        #[method(isHidden)]
+        #[unsafe(method(isHidden))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
 
         /// Setter for [`isHidden`][Self::isHidden].
-        #[method(setHidden:)]
+        #[unsafe(method(setHidden:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines the opacity of the receiver. Default is 1. Animatable.
-        #[method(opacity)]
+        #[unsafe(method(opacity))]
         #[unsafe(method_family = none)]
         pub unsafe fn opacity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`opacity`][Self::opacity].
-        #[method(setOpacity:)]
+        #[unsafe(method(setOpacity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOpacity(&self, opacity: CGFloat);
 
         /// Determines the rendering order of the receiver.
         ///
         /// Nodes with greater rendering orders are rendered last. Defaults to 0.
-        #[method(renderingOrder)]
+        #[unsafe(method(renderingOrder))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderingOrder(&self) -> NSInteger;
 
         /// Setter for [`renderingOrder`][Self::renderingOrder].
-        #[method(setRenderingOrder:)]
+        #[unsafe(method(setRenderingOrder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRenderingOrder(&self, rendering_order: NSInteger);
 
         /// Determines if the node is rendered in shadow maps. Defaults to YES.
-        #[method(castsShadow)]
+        #[unsafe(method(castsShadow))]
         #[unsafe(method_family = none)]
         pub unsafe fn castsShadow(&self) -> bool;
 
         /// Setter for [`castsShadow`][Self::castsShadow].
-        #[method(setCastsShadow:)]
+        #[unsafe(method(setCastsShadow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCastsShadow(&self, casts_shadow: bool);
 
         /// Communicates to SceneKit’s rendering system about how you want to move content in your scene; it does not affect your ability to change the node’s position or add animations or physics to the node. Defaults to SCNMovabilityHintFixed.
-        #[method(movabilityHint)]
+        #[unsafe(method(movabilityHint))]
         #[unsafe(method_family = none)]
         pub unsafe fn movabilityHint(&self) -> SCNMovabilityHint;
 
         /// Setter for [`movabilityHint`][Self::movabilityHint].
-        #[method(setMovabilityHint:)]
+        #[unsafe(method(setMovabilityHint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMovabilityHint(&self, movability_hint: SCNMovabilityHint);
 
         /// Returns the parent node of the receiver.
-        #[method(parentNode)]
+        #[unsafe(method(parentNode))]
         #[unsafe(method_family = none)]
         pub unsafe fn parentNode(&self) -> Option<Retained<SCNNode>>;
 
         /// Returns the child node array of the receiver.
-        #[method(childNodes)]
+        #[unsafe(method(childNodes))]
         #[unsafe(method_family = none)]
         pub unsafe fn childNodes(&self) -> Retained<NSArray<SCNNode>>;
 
         /// Appends the node to the receiver’s childNodes array.
         ///
         /// Parameter `child`: The node to be added to the receiver’s childNodes array.
-        #[method(addChildNode:)]
+        #[unsafe(method(addChildNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addChildNode(&self, child: &SCNNode);
 
@@ -441,12 +441,12 @@ extern_methods!(
         /// Parameter `child`: The node to insert.
         ///
         /// Parameter `index`: Index in the childNodes array to insert the node.
-        #[method(insertChildNode:atIndex:)]
+        #[unsafe(method(insertChildNode:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertChildNode_atIndex(&self, child: &SCNNode, index: NSUInteger);
 
         /// Removes the node from the childNodes array of the receiver’s parentNode.
-        #[method(removeFromParentNode)]
+        #[unsafe(method(removeFromParentNode))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromParentNode(&self);
 
@@ -457,7 +457,7 @@ extern_methods!(
         /// Parameter `oldChild`: The node to replace in the childNodes array.
         ///
         /// Parameter `newChild`: The new node that will replace the previous one.
-        #[method(replaceChildNode:with:)]
+        #[unsafe(method(replaceChildNode:with:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceChildNode_with(&self, old_child: &SCNNode, new_child: &SCNNode);
 
@@ -468,7 +468,7 @@ extern_methods!(
         /// Parameter `name`: The name of the node you are searching for.
         ///
         /// Parameter `recursively`: Set to YES if you want the search to look through the sub-nodes recursively.
-        #[method(childNodeWithName:recursively:)]
+        #[unsafe(method(childNodeWithName:recursively:))]
         #[unsafe(method_family = none)]
         pub unsafe fn childNodeWithName_recursively(
             &self,
@@ -482,7 +482,7 @@ extern_methods!(
         /// The search is recursive and uses a pre-order tree traversal.
         ///
         /// Parameter `predicate`: The block to apply to child nodes of the receiver. The block takes two arguments: "child" is a child node and "stop" is a reference to a Boolean value. The block can set the value to YES to stop further processing of the node hierarchy. The stop argument is an out-only argument. You should only ever set this Boolean to YES within the Block. The Block returns a Boolean value that indicates whether "child" passed the test.
-        #[method(childNodesPassingTest:)]
+        #[unsafe(method(childNodesPassingTest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn childNodesPassingTest(
             &self,
@@ -495,7 +495,7 @@ extern_methods!(
         /// The search is recursive and uses a pre-order tree traversal.
         ///
         /// Parameter `block`: The block to apply to child nodes of the receiver. The block takes two arguments: "child" is a child node and "stop" is a reference to a Boolean value. The block can set the value to YES to stop further processing of the node hierarchy. The stop argument is an out-only argument. You should only ever set this Boolean to YES within the Block.
-        #[method(enumerateChildNodesUsingBlock:)]
+        #[unsafe(method(enumerateChildNodesUsingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateChildNodesUsingBlock(
             &self,
@@ -508,7 +508,7 @@ extern_methods!(
         /// The search is recursive and uses a pre-order tree traversal.
         ///
         /// Parameter `block`: The block to apply to the receiver and its child nodes. The block takes two arguments: "node" is a node in the hierarchy of the receiver (including the receiver) and "stop" is a reference to a Boolean value. The block can set the value to YES to stop further processing of the node hierarchy. The stop argument is an out-only argument. You should only ever set this Boolean to YES within the Block.
-        #[method(enumerateHierarchyUsingBlock:)]
+        #[unsafe(method(enumerateHierarchyUsingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateHierarchyUsingBlock(
             &self,
@@ -521,7 +521,7 @@ extern_methods!(
         /// Parameter `position`: A position specified in the local coordinate system of the receiver.
         ///
         /// Parameter `node`: The node into whose coordinate system "position" is to be converted. If "node" is nil, this method instead converts to world coordinates.
-        #[method(convertPosition:toNode:)]
+        #[unsafe(method(convertPosition:toNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertPosition_toNode(
             &self,
@@ -535,7 +535,7 @@ extern_methods!(
         /// Parameter `position`: A position specified in the local coordinate system of "node".
         ///
         /// Parameter `node`: The node from whose coordinate system "position" is to be converted. If "node" is nil, this method instead converts from world coordinates.
-        #[method(convertPosition:fromNode:)]
+        #[unsafe(method(convertPosition:fromNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertPosition_fromNode(
             &self,
@@ -553,7 +553,7 @@ extern_methods!(
         ///
         ///
         /// Returns: vector transformed from receiver local space to node local space.
-        #[method(convertVector:toNode:)]
+        #[unsafe(method(convertVector:toNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertVector_toNode(
             &self,
@@ -571,7 +571,7 @@ extern_methods!(
         ///
         ///
         /// Returns: vector transformed from node space to reveiver local space.
-        #[method(convertVector:fromNode:)]
+        #[unsafe(method(convertVector:fromNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertVector_fromNode(
             &self,
@@ -586,7 +586,7 @@ extern_methods!(
         /// Parameter `transform`: A transform specified in the local coordinate system of the receiver.
         ///
         /// Parameter `node`: The node into whose coordinate system "transform" is to be converted. If "node" is nil, this method instead converts to world coordinates.
-        #[method(convertTransform:toNode:)]
+        #[unsafe(method(convertTransform:toNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertTransform_toNode(
             &self,
@@ -601,7 +601,7 @@ extern_methods!(
         /// Parameter `transform`: A transform specified in the local coordinate system of "node".
         ///
         /// Parameter `node`: The node from whose coordinate system "transform" is to be converted. If "node" is nil, this method instead converts from world coordinates.
-        #[method(convertTransform:fromNode:)]
+        #[unsafe(method(convertTransform:fromNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertTransform_fromNode(
             &self,
@@ -613,13 +613,13 @@ extern_methods!(
         /// The description of the physics body of the receiver.
         ///
         /// Default is nil.
-        #[method(physicsBody)]
+        #[unsafe(method(physicsBody))]
         #[unsafe(method_family = none)]
         pub unsafe fn physicsBody(&self) -> Option<Retained<SCNPhysicsBody>>;
 
         #[cfg(feature = "SCNPhysicsBody")]
         /// Setter for [`physicsBody`][Self::physicsBody].
-        #[method(setPhysicsBody:)]
+        #[unsafe(method(setPhysicsBody:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhysicsBody(&self, physics_body: Option<&SCNPhysicsBody>);
 
@@ -627,13 +627,13 @@ extern_methods!(
         /// The description of the physics field of the receiver.
         ///
         /// Default is nil.
-        #[method(physicsField)]
+        #[unsafe(method(physicsField))]
         #[unsafe(method_family = none)]
         pub unsafe fn physicsField(&self) -> Option<Retained<SCNPhysicsField>>;
 
         #[cfg(feature = "SCNPhysicsField")]
         /// Setter for [`physicsField`][Self::physicsField].
-        #[method(setPhysicsField:)]
+        #[unsafe(method(setPhysicsField:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhysicsField(&self, physics_field: Option<&SCNPhysicsField>);
 
@@ -641,13 +641,13 @@ extern_methods!(
         /// An array of SCNConstraint that are applied to the receiver.
         ///
         /// Adding or removing a constraint can be implicitly animated based on the current transaction.
-        #[method(constraints)]
+        #[unsafe(method(constraints))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraints(&self) -> Option<Retained<NSArray<SCNConstraint>>>;
 
         #[cfg(feature = "SCNConstraint")]
         /// Setter for [`constraints`][Self::constraints].
-        #[method(setConstraints:)]
+        #[unsafe(method(setConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstraints(&self, constraints: Option<&NSArray<SCNConstraint>>);
 
@@ -656,14 +656,14 @@ extern_methods!(
         /// An array of Core Image filters that are applied to the rendering of the receiver and its child nodes. Animatable.
         ///
         /// Defaults to nil. Filter properties should be modified by calling setValue:forKeyPath: on each node that the filter is attached to. If the inputs of the filter are modified directly after the filter is attached to a node, the behavior is undefined.
-        #[method(filters)]
+        #[unsafe(method(filters))]
         #[unsafe(method_family = none)]
         pub unsafe fn filters(&self) -> Option<Retained<NSArray<CIFilter>>>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`filters`][Self::filters].
-        #[method(setFilters:)]
+        #[unsafe(method(setFilters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilters(&self, filters: Option<&NSArray<CIFilter>>);
 
@@ -672,17 +672,17 @@ extern_methods!(
         /// Returns a copy of the node containing all the properties as they were at the start of the current transaction, with any active animations applied.
         /// This gives a close approximation to the version of the node that is currently displayed.
         /// The effect of attempting to modify the returned node in any way is undefined. The returned node has no parent and no child nodes.
-        #[method(presentationNode)]
+        #[unsafe(method(presentationNode))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentationNode(&self) -> Retained<SCNNode>;
 
         /// Controls whether or not the node's actions and animations are updated or paused. Defaults to NO.
-        #[method(isPaused)]
+        #[unsafe(method(isPaused))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPaused(&self) -> bool;
 
         /// Setter for [`isPaused`][Self::isPaused].
-        #[method(setPaused:)]
+        #[unsafe(method(setPaused:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaused(&self, paused: bool);
 
@@ -691,14 +691,14 @@ extern_methods!(
         /// Setting a renderer delegate prevents the SceneKit renderer from drawing the node and lets you use custom OpenGL code instead.
         /// The preferred way to customize the rendering is to tweak the material properties of the different materials of the node's geometry. SCNMaterial conforms to the SCNShadable protocol and allows for more advanced rendering using GLSL.
         /// You would typically use a renderer delegate with a node that has no geometry and only serves as a location in space. An example would be attaching a particle system to that node and render it with custom OpenGL code.
-        #[method(rendererDelegate)]
+        #[unsafe(method(rendererDelegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn rendererDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn SCNNodeRendererDelegate>>>;
 
         /// Setter for [`rendererDelegate`][Self::rendererDelegate].
-        #[method(setRendererDelegate:)]
+        #[unsafe(method(setRendererDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRendererDelegate(
             &self,
@@ -719,7 +719,7 @@ extern_methods!(
         /// Parameter `options`: Optional parameters (see the "Hit test options" section in SCNSceneRenderer.h for the available options).
         ///
         /// See SCNSceneRenderer.h for a screen-space hit testing method.
-        #[method(hitTestWithSegmentFromPoint:toPoint:options:)]
+        #[unsafe(method(hitTestWithSegmentFromPoint:toPoint:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hitTestWithSegmentFromPoint_toPoint_options(
             &self,
@@ -734,12 +734,12 @@ extern_methods!(
         /// 1. exclude nodes from the influence of a given light (see SCNLight.categoryBitMask)
         /// 2. include/exclude nodes from render passes (see SCNTechnique.h)
         /// 3. specify which nodes to use when hit-testing (see SCNHitTestOptionCategoryBitMask)
-        #[method(categoryBitMask)]
+        #[unsafe(method(categoryBitMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn categoryBitMask(&self) -> NSUInteger;
 
         /// Setter for [`categoryBitMask`][Self::categoryBitMask].
-        #[method(setCategoryBitMask:)]
+        #[unsafe(method(setCategoryBitMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategoryBitMask(&self, category_bit_mask: NSUInteger);
     }
@@ -748,11 +748,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNNode {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -763,37 +763,37 @@ extern_methods!(
     unsafe impl SCNNode {
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// The local unit Y axis (0, 1, 0).
-        #[method(localUp)]
+        #[unsafe(method(localUp))]
         #[unsafe(method_family = none)]
         pub unsafe fn localUp() -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// The local unit X axis (1, 0, 0).
-        #[method(localRight)]
+        #[unsafe(method(localRight))]
         #[unsafe(method_family = none)]
         pub unsafe fn localRight() -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// The local unit -Z axis (0, 0, -1).
-        #[method(localFront)]
+        #[unsafe(method(localFront))]
         #[unsafe(method_family = none)]
         pub unsafe fn localFront() -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// The local unit Y axis (0, 1, 0) in world space.
-        #[method(worldUp)]
+        #[unsafe(method(worldUp))]
         #[unsafe(method_family = none)]
         pub unsafe fn worldUp(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// The local unit X axis (1, 0, 0) in world space.
-        #[method(worldRight)]
+        #[unsafe(method(worldRight))]
         #[unsafe(method_family = none)]
         pub unsafe fn worldRight(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// The local unit -Z axis (0, 0, -1) in world space.
-        #[method(worldFront)]
+        #[unsafe(method(worldFront))]
         #[unsafe(method_family = none)]
         pub unsafe fn worldFront(&self) -> SCNVector3;
 
@@ -802,7 +802,7 @@ extern_methods!(
         /// and localFront [SCNNode localFront].
         ///
         /// Parameter `worldTarget`: target position in world space.
-        #[method(lookAt:)]
+        #[unsafe(method(lookAt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lookAt(&self, world_target: SCNVector3);
 
@@ -817,7 +817,7 @@ extern_methods!(
         /// Parameter `worldUp`: the up vector in world space.
         ///
         /// Parameter `localFront`: the front vector in local space.
-        #[method(lookAt:up:localFront:)]
+        #[unsafe(method(lookAt:up:localFront:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lookAt_up_localFront(
             &self,
@@ -831,7 +831,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `translation`: the translation in local space.
-        #[method(localTranslateBy:)]
+        #[unsafe(method(localTranslateBy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn localTranslateBy(&self, translation: SCNVector3);
 
@@ -840,7 +840,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `rotation`: rotation in local space.
-        #[method(localRotateBy:)]
+        #[unsafe(method(localRotateBy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn localRotateBy(&self, rotation: SCNQuaternion);
 
@@ -851,7 +851,7 @@ extern_methods!(
         /// Parameter `worldRotation`: rotation to apply in world space.
         ///
         /// Parameter `worldTarget`: position of the target in world space.
-        #[method(rotateBy:aroundTarget:)]
+        #[unsafe(method(rotateBy:aroundTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rotateBy_aroundTarget(
             &self,
@@ -879,7 +879,7 @@ extern_protocol!(
         ///
         /// Parameter `arguments`: A dictionary whose values are SCNMatrix4 matrices wrapped in NSValue objects.
         #[optional]
-        #[method(renderNode:renderer:arguments:)]
+        #[unsafe(method(renderNode:renderer:arguments:))]
         #[unsafe(method_family = none)]
         unsafe fn renderNode_renderer_arguments(
             &self,
@@ -899,12 +899,12 @@ extern_methods!(
     /// Focus
     unsafe impl SCNNode {
         /// Controls the behavior of the receiver regarding the UIFocus system. Defaults to SCNNodeFocusBehaviorNone.
-        #[method(focusBehavior)]
+        #[unsafe(method(focusBehavior))]
         #[unsafe(method_family = none)]
         pub unsafe fn focusBehavior(&self) -> SCNNodeFocusBehavior;
 
         /// Setter for [`focusBehavior`][Self::focusBehavior].
-        #[method(setFocusBehavior:)]
+        #[unsafe(method(setFocusBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocusBehavior(&self, focus_behavior: SCNNodeFocusBehavior);
     }

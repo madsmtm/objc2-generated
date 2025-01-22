@@ -27,7 +27,7 @@ extern_methods!(
         /// The content mode used when loading this webpage.
         ///
         /// The value is either WKContentModeMobile or WKContentModeDesktop.
-        #[method(effectiveContentMode)]
+        #[unsafe(method(effectiveContentMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectiveContentMode(&self) -> WKContentMode;
     }
@@ -36,11 +36,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKNavigation {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

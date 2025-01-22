@@ -33,7 +33,7 @@ extern_methods!(
         ///
         ///
         /// This method allows you to programmatically launch the Desk View application from your own application UI. If the Desk View application is already running, this method brings it to the front. If the Desk View application is minimized in the Dock, this method un-minimizes it and brings it to the front.
-        #[method(presentWithCompletionHandler:)]
+        #[unsafe(method(presentWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentWithCompletionHandler(
             &self,
@@ -51,7 +51,7 @@ extern_methods!(
         ///
         ///
         /// This method allows you to programmatically launch the Desk View application from your own application UI. If the Desk View application is already running, this method brings it to the front. If the Desk View application is minimized in the Dock, this method un-minimizes it and brings it to the front.
-        #[method(presentWithLaunchConfiguration:completionHandler:)]
+        #[unsafe(method(presentWithLaunchConfiguration:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentWithLaunchConfiguration_completionHandler(
             &self,
@@ -64,11 +64,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCaptureDeskViewApplication {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -95,13 +95,13 @@ extern_methods!(
         ///
         ///
         /// Default value is CGRectZero. The app will use a default value in this case (the user's previously selected position). mainWindowFrame is specified in global screen coordinates. When launching the Desk View application from a Mac Catalyst app, window origin is top left. When launched from a native macOS app, window origin is bottom left.
-        #[method(mainWindowFrame)]
+        #[unsafe(method(mainWindowFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn mainWindowFrame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`mainWindowFrame`][Self::mainWindowFrame].
-        #[method(setMainWindowFrame:)]
+        #[unsafe(method(setMainWindowFrame:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMainWindowFrame(&self, main_window_frame: CGRect);
 
@@ -109,12 +109,12 @@ extern_methods!(
         ///
         ///
         /// The Desk View application launches in set up mode, showing the full field of view of an Ultra Wide camera with a superimposed trapezoid indicating the desk region crop that will be shown once set up is complete. By default, your presentWithLaunchConfiguration:completionHandler:'s completionHandler fires after the Desk View application is launched and visible to the user. By setting this property to YES, your completionHandler only fires when the user has completed set up mode and transitioned to the cropped Desk View mode.
-        #[method(requiresSetUpModeCompletion)]
+        #[unsafe(method(requiresSetUpModeCompletion))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresSetUpModeCompletion(&self) -> bool;
 
         /// Setter for [`requiresSetUpModeCompletion`][Self::requiresSetUpModeCompletion].
-        #[method(setRequiresSetUpModeCompletion:)]
+        #[unsafe(method(setRequiresSetUpModeCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiresSetUpModeCompletion(&self, requires_set_up_mode_completion: bool);
     }
@@ -123,11 +123,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCaptureDeskViewApplicationLaunchConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

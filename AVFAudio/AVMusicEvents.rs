@@ -27,11 +27,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMusicEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -71,7 +71,7 @@ extern_methods!(
         /// Parameter `velocity`: The MIDI velocity.  Range: 0-127 with zero indicating a note-off event.
         ///
         /// Parameter `duration`: The duration in beats for this note.  Range: Any non-negative number.
-        #[method(initWithChannel:key:velocity:duration:)]
+        #[unsafe(method(initWithChannel:key:velocity:duration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithChannel_key_velocity_duration(
             this: Allocated<Self>,
@@ -82,44 +82,44 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The MIDI channel for the event.  Range: 0-15.
-        #[method(channel)]
+        #[unsafe(method(channel))]
         #[unsafe(method_family = none)]
         pub unsafe fn channel(&self) -> u32;
 
         /// Setter for [`channel`][Self::channel].
-        #[method(setChannel:)]
+        #[unsafe(method(setChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChannel(&self, channel: u32);
 
         /// The MIDI key number for the event.  Range: 0-127.
-        #[method(key)]
+        #[unsafe(method(key))]
         #[unsafe(method_family = none)]
         pub unsafe fn key(&self) -> u32;
 
         /// Setter for [`key`][Self::key].
-        #[method(setKey:)]
+        #[unsafe(method(setKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKey(&self, key: u32);
 
         /// The MIDI velocity for the event.  Range: 0-127.
-        #[method(velocity)]
+        #[unsafe(method(velocity))]
         #[unsafe(method_family = none)]
         pub unsafe fn velocity(&self) -> u32;
 
         /// Setter for [`velocity`][Self::velocity].
-        #[method(setVelocity:)]
+        #[unsafe(method(setVelocity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVelocity(&self, velocity: u32);
 
         #[cfg(feature = "AVAudioTypes")]
         /// The duration of the event in AVMusicTimeStamp beats.  Range: Any non-negative number.
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> AVMusicTimeStamp;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`duration`][Self::duration].
-        #[method(setDuration:)]
+        #[unsafe(method(setDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDuration(&self, duration: AVMusicTimeStamp);
     }
@@ -128,11 +128,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMIDINoteEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -152,12 +152,12 @@ unsafe impl NSObjectProtocol for AVMIDIChannelEvent {}
 extern_methods!(
     unsafe impl AVMIDIChannelEvent {
         /// The MIDI channel for the event.  Range: 0-15.
-        #[method(channel)]
+        #[unsafe(method(channel))]
         #[unsafe(method_family = none)]
         pub unsafe fn channel(&self) -> u32;
 
         /// Setter for [`channel`][Self::channel].
-        #[method(setChannel:)]
+        #[unsafe(method(setChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChannel(&self, channel: u32);
     }
@@ -166,11 +166,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMIDIChannelEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -284,7 +284,7 @@ extern_methods!(
         /// Parameter `messageType`: The AVMIDIControlChangeMessageType indicating which MIDI control change message to send.
         ///
         /// Parameter `value`: The value for this control change.  Range: Depends on the type (see the General MIDI specification).
-        #[method(initWithChannel:messageType:value:)]
+        #[unsafe(method(initWithChannel:messageType:value:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithChannel_messageType_value(
             this: Allocated<Self>,
@@ -294,12 +294,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The type of control change message, specified as an AVMIDIControlChangeMessageType.
-        #[method(messageType)]
+        #[unsafe(method(messageType))]
         #[unsafe(method_family = none)]
         pub unsafe fn messageType(&self) -> AVMIDIControlChangeMessageType;
 
         /// The value of the control change event.  The range of this value depends on the type (see the General MIDI specification).
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> u32;
     }
@@ -308,11 +308,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMIDIControlChangeEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -338,7 +338,7 @@ extern_methods!(
         /// Parameter `key`: The MIDI key number to which the pressure should be applied.
         ///
         /// Parameter `pressure`: The poly pressure value.
-        #[method(initWithChannel:key:pressure:)]
+        #[unsafe(method(initWithChannel:key:pressure:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithChannel_key_pressure(
             this: Allocated<Self>,
@@ -348,22 +348,22 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The MIDI key number.
-        #[method(key)]
+        #[unsafe(method(key))]
         #[unsafe(method_family = none)]
         pub unsafe fn key(&self) -> u32;
 
         /// Setter for [`key`][Self::key].
-        #[method(setKey:)]
+        #[unsafe(method(setKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKey(&self, key: u32);
 
         /// The poly pressure value for the requested key.
-        #[method(pressure)]
+        #[unsafe(method(pressure))]
         #[unsafe(method_family = none)]
         pub unsafe fn pressure(&self) -> u32;
 
         /// Setter for [`pressure`][Self::pressure].
-        #[method(setPressure:)]
+        #[unsafe(method(setPressure:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPressure(&self, pressure: u32);
     }
@@ -372,11 +372,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMIDIPolyPressureEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -405,7 +405,7 @@ extern_methods!(
         ///
         /// Per the General MIDI specification, the actual instrument that is chosen will depend on optional
         /// AVMIDIControlChangeMessageTypeBankSelect events sent prior to this program change.
-        #[method(initWithChannel:programNumber:)]
+        #[unsafe(method(initWithChannel:programNumber:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithChannel_programNumber(
             this: Allocated<Self>,
@@ -414,12 +414,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The MIDI program number.  Range: 0-127.
-        #[method(programNumber)]
+        #[unsafe(method(programNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn programNumber(&self) -> u32;
 
         /// Setter for [`programNumber`][Self::programNumber].
-        #[method(setProgramNumber:)]
+        #[unsafe(method(setProgramNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgramNumber(&self, program_number: u32);
     }
@@ -428,11 +428,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMIDIProgramChangeEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -459,7 +459,7 @@ extern_methods!(
         /// Parameter `channel`: The MIDI channel for the message.  Range: 0-15.
         ///
         /// Parameter `pressure`: The MIDI channel pressure.  Range: 0-127.
-        #[method(initWithChannel:pressure:)]
+        #[unsafe(method(initWithChannel:pressure:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithChannel_pressure(
             this: Allocated<Self>,
@@ -468,12 +468,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The MIDI channel pressure.
-        #[method(pressure)]
+        #[unsafe(method(pressure))]
         #[unsafe(method_family = none)]
         pub unsafe fn pressure(&self) -> u32;
 
         /// Setter for [`pressure`][Self::pressure].
-        #[method(setPressure:)]
+        #[unsafe(method(setPressure:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPressure(&self, pressure: u32);
     }
@@ -482,11 +482,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMIDIChannelPressureEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -513,7 +513,7 @@ extern_methods!(
         /// Parameter `channel`: The MIDI channel for the message.  Range: 0-15.
         ///
         /// Parameter `value`: The pitch bend value.  Range: 0-16383 (midpoint 8192).
-        #[method(initWithChannel:value:)]
+        #[unsafe(method(initWithChannel:value:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithChannel_value(
             this: Allocated<Self>,
@@ -522,12 +522,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The value of the pitch bend event.  Range: 0-16383 (midpoint 8192).
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> u32;
 
         /// Setter for [`value`][Self::value].
-        #[method(setValue:)]
+        #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: u32);
     }
@@ -536,11 +536,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMIDIPitchBendEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -564,12 +564,12 @@ extern_methods!(
         /// Initialize the event with an NSData.
         ///
         /// Parameter `data`: An NSData object containing the raw contents of the system exclusive event.
-        #[method(initWithData:)]
+        #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
         /// The size of the raw data associated with this system exclusive event.
-        #[method(sizeInBytes)]
+        #[unsafe(method(sizeInBytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn sizeInBytes(&self) -> u32;
     }
@@ -578,11 +578,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMIDISysexEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -663,7 +663,7 @@ extern_methods!(
         /// Parameter `type`: A AVMIDIMetaEventType indicating which type of Meta-Event.
         ///
         /// Parameter `data`: An NSData object containing the raw contents of the Meta-Event.
-        #[method(initWithType:data:)]
+        #[unsafe(method(initWithType:data:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_data(
             this: Allocated<Self>,
@@ -672,7 +672,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The type of Meta-Event, specified as an AVMIDIMetaEventType.
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> AVMIDIMetaEventType;
     }
@@ -681,11 +681,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMIDIMetaEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -712,12 +712,12 @@ extern_methods!(
         /// Initialize the event with an NSData.
         ///
         /// Parameter `data`: An NSData object containing the contents to be returned via the AVMusicTrack's user callback.
-        #[method(initWithData:)]
+        #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
         /// The size of the data associated with this user event.
-        #[method(sizeInBytes)]
+        #[unsafe(method(sizeInBytes))]
         #[unsafe(method_family = none)]
         pub unsafe fn sizeInBytes(&self) -> u32;
     }
@@ -726,11 +726,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMusicUserEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -775,7 +775,7 @@ extern_methods!(
         /// Range: normally between 0 and 15, but may be higher if the AVMusicTrack's destinationAudioUnit supports more channels.
         ///
         /// Parameter `duration`: The duration of this event in AVMusicTimeStamp beats.  Range:  Any nonnegative number.
-        #[method(initWithMIDINote:velocity:groupID:duration:)]
+        #[unsafe(method(initWithMIDINote:velocity:groupID:duration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMIDINote_velocity_groupID_duration(
             this: Allocated<Self>,
@@ -791,7 +791,7 @@ extern_methods!(
         /// This initializer is identical to initWithMIDINote:velocity:groupID:duration with the addition of
         /// an instrumentID parameter which will allow for the possibility of an externally-created custom instrument.
         /// If this initializer is used, instrumentID should be set to AVExtendedNoteOnEventDefaultInstrument for now.
-        #[method(initWithMIDINote:velocity:instrumentID:groupID:duration:)]
+        #[unsafe(method(initWithMIDINote:velocity:instrumentID:groupID:duration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMIDINote_velocity_instrumentID_groupID_duration(
             this: Allocated<Self>,
@@ -805,58 +805,58 @@ extern_methods!(
         /// The MIDI note number represented as a floating point.  If the instrument within the AVMusicTrack's
         /// destinationAudioUnit supports fractional values, this may be used to generate arbitrary
         /// macro- and micro-tunings.  Range: Destination-dependent, usually 0.0 - 127.0.
-        #[method(midiNote)]
+        #[unsafe(method(midiNote))]
         #[unsafe(method_family = none)]
         pub unsafe fn midiNote(&self) -> c_float;
 
         /// Setter for [`midiNote`][Self::midiNote].
-        #[method(setMidiNote:)]
+        #[unsafe(method(setMidiNote:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMidiNote(&self, midi_note: c_float);
 
         /// The MIDI velocity represented as a floating point.  If the instrument within the AVMusicTrack's
         /// destinationAudioUnit supports fractional values, this may be used to generate very precise changes
         /// in gain, etc.  Range: Destination-dependent, usually 0.0 - 127.0.
-        #[method(velocity)]
+        #[unsafe(method(velocity))]
         #[unsafe(method_family = none)]
         pub unsafe fn velocity(&self) -> c_float;
 
         /// Setter for [`velocity`][Self::velocity].
-        #[method(setVelocity:)]
+        #[unsafe(method(setVelocity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVelocity(&self, velocity: c_float);
 
         /// This should be set to AVExtendedNoteOnEventDefaultInstrument.
-        #[method(instrumentID)]
+        #[unsafe(method(instrumentID))]
         #[unsafe(method_family = none)]
         pub unsafe fn instrumentID(&self) -> u32;
 
         /// Setter for [`instrumentID`][Self::instrumentID].
-        #[method(setInstrumentID:)]
+        #[unsafe(method(setInstrumentID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstrumentID(&self, instrument_id: u32);
 
         /// This represents the audio unit channel (i.e., Group Scope) which should handle this event.
         /// Range: normally between 0 and 15, but may be higher if the AVMusicTrack's destinationAudioUnit
         /// supports more channels.
-        #[method(groupID)]
+        #[unsafe(method(groupID))]
         #[unsafe(method_family = none)]
         pub unsafe fn groupID(&self) -> u32;
 
         /// Setter for [`groupID`][Self::groupID].
-        #[method(setGroupID:)]
+        #[unsafe(method(setGroupID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGroupID(&self, group_id: u32);
 
         #[cfg(feature = "AVAudioTypes")]
         /// The duration of this event in AVMusicTimeStamp beats.  Range:  Any nonnegative number.
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> AVMusicTimeStamp;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`duration`][Self::duration].
-        #[method(setDuration:)]
+        #[unsafe(method(setDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDuration(&self, duration: AVMusicTimeStamp);
     }
@@ -865,11 +865,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVExtendedNoteOnEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -905,7 +905,7 @@ extern_methods!(
         /// Parameter `element`: The element index within the scope (see AudioUnitElement).
         ///
         /// Parameter `value`: The value of the parameter to be set.  Range:  Dependent on parameter.
-        #[method(initWithParameterID:scope:element:value:)]
+        #[unsafe(method(initWithParameterID:scope:element:value:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithParameterID_scope_element_value(
             this: Allocated<Self>,
@@ -916,42 +916,42 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The ID of the parameter (see AudioUnitParameterID).
-        #[method(parameterID)]
+        #[unsafe(method(parameterID))]
         #[unsafe(method_family = none)]
         pub unsafe fn parameterID(&self) -> u32;
 
         /// Setter for [`parameterID`][Self::parameterID].
-        #[method(setParameterID:)]
+        #[unsafe(method(setParameterID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParameterID(&self, parameter_id: u32);
 
         /// The audio unit scope for the parameter (see AudioUnitScope).
-        #[method(scope)]
+        #[unsafe(method(scope))]
         #[unsafe(method_family = none)]
         pub unsafe fn scope(&self) -> u32;
 
         /// Setter for [`scope`][Self::scope].
-        #[method(setScope:)]
+        #[unsafe(method(setScope:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScope(&self, scope: u32);
 
         /// The element index within the scope (see AudioUnitElement).
-        #[method(element)]
+        #[unsafe(method(element))]
         #[unsafe(method_family = none)]
         pub unsafe fn element(&self) -> u32;
 
         /// Setter for [`element`][Self::element].
-        #[method(setElement:)]
+        #[unsafe(method(setElement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setElement(&self, element: u32);
 
         /// The value of the parameter to be set.  Range:  Dependent on parameter.
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> c_float;
 
         /// Setter for [`value`][Self::value].
-        #[method(setValue:)]
+        #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: c_float);
     }
@@ -960,11 +960,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVParameterEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -997,7 +997,7 @@ extern_methods!(
         ///
         /// The dictionary passed to this initializer will be copied and is not editable once the event is
         /// created.
-        #[method(initWithScope:element:dictionary:)]
+        #[unsafe(method(initWithScope:element:dictionary:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithScope_element_dictionary(
             this: Allocated<Self>,
@@ -1007,27 +1007,27 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The audio unit scope for the parameter (see AudioUnitScope).  This should always be set to Global.
-        #[method(scope)]
+        #[unsafe(method(scope))]
         #[unsafe(method_family = none)]
         pub unsafe fn scope(&self) -> u32;
 
         /// Setter for [`scope`][Self::scope].
-        #[method(setScope:)]
+        #[unsafe(method(setScope:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScope(&self, scope: u32);
 
         /// The element index within the scope (see AudioUnitElement).  This should usually be set to 0.
-        #[method(element)]
+        #[unsafe(method(element))]
         #[unsafe(method_family = none)]
         pub unsafe fn element(&self) -> u32;
 
         /// Setter for [`element`][Self::element].
-        #[method(setElement:)]
+        #[unsafe(method(setElement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setElement(&self, element: u32);
 
         /// An NSDictionary containing the preset.
-        #[method(presetDictionary)]
+        #[unsafe(method(presetDictionary))]
         #[unsafe(method_family = none)]
         pub unsafe fn presetDictionary(&self) -> Retained<NSDictionary>;
     }
@@ -1036,11 +1036,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAUPresetEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1066,17 +1066,17 @@ extern_methods!(
         ///
         /// Parameter `tempo`: The new tempo in beats-per-minute.  Range:  Any positive value.
         /// The new tempo will begin at the timestamp for this event.
-        #[method(initWithTempo:)]
+        #[unsafe(method(initWithTempo:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTempo(this: Allocated<Self>, tempo: c_double) -> Retained<Self>;
 
         /// The new tempo in beats-per-minute.  Range:  Any positive value.
-        #[method(tempo)]
+        #[unsafe(method(tempo))]
         #[unsafe(method_family = none)]
         pub unsafe fn tempo(&self) -> c_double;
 
         /// Setter for [`tempo`][Self::tempo].
-        #[method(setTempo:)]
+        #[unsafe(method(setTempo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTempo(&self, tempo: c_double);
     }
@@ -1085,11 +1085,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVExtendedTempoEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

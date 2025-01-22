@@ -67,11 +67,11 @@ unsafe impl NSSecureCoding for UIListSeparatorConfiguration {}
 
 extern_methods!(
     unsafe impl UIListSeparatorConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
@@ -79,7 +79,7 @@ extern_methods!(
         /// Initializes a list separator configuration with the appropriate defaults for the passed in list appearance.
         ///
         /// Parameter `listAppearance`: The appearance of the list consuming this separator configuration
-        #[method(initWithListAppearance:)]
+        #[unsafe(method(initWithListAppearance:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithListAppearance(
             this: Allocated<Self>,
@@ -87,12 +87,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The visibility of the top separator for the item that this configuration is applied to.
-        #[method(topSeparatorVisibility)]
+        #[unsafe(method(topSeparatorVisibility))]
         #[unsafe(method_family = none)]
         pub unsafe fn topSeparatorVisibility(&self) -> UIListSeparatorVisibility;
 
         /// Setter for [`topSeparatorVisibility`][Self::topSeparatorVisibility].
-        #[method(setTopSeparatorVisibility:)]
+        #[unsafe(method(setTopSeparatorVisibility:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTopSeparatorVisibility(
             &self,
@@ -100,12 +100,12 @@ extern_methods!(
         );
 
         /// The visibility of the bottom separator for the item that this configuration is applied to.
-        #[method(bottomSeparatorVisibility)]
+        #[unsafe(method(bottomSeparatorVisibility))]
         #[unsafe(method_family = none)]
         pub unsafe fn bottomSeparatorVisibility(&self) -> UIListSeparatorVisibility;
 
         /// Setter for [`bottomSeparatorVisibility`][Self::bottomSeparatorVisibility].
-        #[method(setBottomSeparatorVisibility:)]
+        #[unsafe(method(setBottomSeparatorVisibility:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBottomSeparatorVisibility(
             &self,
@@ -114,25 +114,25 @@ extern_methods!(
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Insets to apply to the top separator of the item that this configuration is applied to. Defaults to UIListSeparatorAutomaticInsets.
-        #[method(topSeparatorInsets)]
+        #[unsafe(method(topSeparatorInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn topSeparatorInsets(&self) -> NSDirectionalEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`topSeparatorInsets`][Self::topSeparatorInsets].
-        #[method(setTopSeparatorInsets:)]
+        #[unsafe(method(setTopSeparatorInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTopSeparatorInsets(&self, top_separator_insets: NSDirectionalEdgeInsets);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Insets to apply to the bottom separator of the item that this configuration is applied to. Defaults to UIListSeparatorAutomaticInsets.
-        #[method(bottomSeparatorInsets)]
+        #[unsafe(method(bottomSeparatorInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn bottomSeparatorInsets(&self) -> NSDirectionalEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`bottomSeparatorInsets`][Self::bottomSeparatorInsets].
-        #[method(setBottomSeparatorInsets:)]
+        #[unsafe(method(setBottomSeparatorInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBottomSeparatorInsets(
             &self,
@@ -141,37 +141,37 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The color to use for the separators for the item this configuration is applied to.
-        #[method(color)]
+        #[unsafe(method(color))]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`color`][Self::color].
-        #[method(setColor:)]
+        #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: &UIColor);
 
         #[cfg(feature = "UIColor")]
         /// The color to use for the separators for the item this configuration is applied to, when the item is in a multiple selection group.
-        #[method(multipleSelectionColor)]
+        #[unsafe(method(multipleSelectionColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn multipleSelectionColor(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`multipleSelectionColor`][Self::multipleSelectionColor].
-        #[method(setMultipleSelectionColor:)]
+        #[unsafe(method(setMultipleSelectionColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMultipleSelectionColor(&self, multiple_selection_color: &UIColor);
 
         #[cfg(feature = "UIVisualEffect")]
         /// The visual effect to use for the separators of the item this configuration is applied to.
-        #[method(visualEffect)]
+        #[unsafe(method(visualEffect))]
         #[unsafe(method_family = none)]
         pub unsafe fn visualEffect(&self) -> Option<Retained<UIVisualEffect>>;
 
         #[cfg(feature = "UIVisualEffect")]
         /// Setter for [`visualEffect`][Self::visualEffect].
-        #[method(setVisualEffect:)]
+        #[unsafe(method(setVisualEffect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVisualEffect(&self, visual_effect: Option<&UIVisualEffect>);
     }

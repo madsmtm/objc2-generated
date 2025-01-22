@@ -164,7 +164,7 @@ extern_methods!(
         ///
         /// See: extendedGamepad
         #[deprecated = "controllerPausedHandler has been deprecated. Use the Menu button found on the controller's profile, if it exists."]
-        #[method(controllerPausedHandler)]
+        #[unsafe(method(controllerPausedHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn controllerPausedHandler(
             &self,
@@ -173,7 +173,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Setter for [`controllerPausedHandler`][Self::controllerPausedHandler].
         #[deprecated = "controllerPausedHandler has been deprecated. Use the Menu button found on the controller's profile, if it exists."]
-        #[method(setControllerPausedHandler:)]
+        #[unsafe(method(setControllerPausedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setControllerPausedHandler(
             &self,
@@ -185,7 +185,7 @@ extern_methods!(
         ///
         /// Note: This is useful for single player games where you only care about whether an input is pressed, and not where it came from. You
         /// will still need to register for changes to GCController.current so that your UI can remain up-to-date with the current controller.
-        #[method(current)]
+        #[unsafe(method(current))]
         #[unsafe(method_family = none)]
         pub unsafe fn current() -> Option<Retained<GCController>>;
 
@@ -197,19 +197,19 @@ extern_methods!(
         ///
         /// Note: Starting with macOS Big Sur 11.3, shouldMonitorBackgroundEvents will be NO by default. For applications built prior to macOS Big Sur 11.3,
         /// (or running on devices with an earlier version of macOS), shouldMonitorBackgroundEvents will be YES by default. On iOS and tvOS, this property is ignored.
-        #[method(shouldMonitorBackgroundEvents)]
+        #[unsafe(method(shouldMonitorBackgroundEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldMonitorBackgroundEvents() -> bool;
 
         /// Setter for [`shouldMonitorBackgroundEvents`][Self::shouldMonitorBackgroundEvents].
-        #[method(setShouldMonitorBackgroundEvents:)]
+        #[unsafe(method(setShouldMonitorBackgroundEvents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldMonitorBackgroundEvents(should_monitor_background_events: bool);
 
         /// A controller may be form fitting or otherwise closely attached to the device. This closeness to other inputs on the device
         /// may suggest that interaction with the device may use other inputs easily. This is presented to developers to allow them to
         /// make informed decisions about UI and interactions to choose for their game in this situation.
-        #[method(isAttachedToDevice)]
+        #[unsafe(method(isAttachedToDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAttachedToDevice(&self) -> bool;
 
@@ -223,7 +223,7 @@ extern_methods!(
         /// See: controllerWithExtendedGamepad
         ///
         /// See: capture
-        #[method(isSnapshot)]
+        #[unsafe(method(isSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSnapshot(&self) -> bool;
 
@@ -236,18 +236,18 @@ extern_methods!(
         /// with regards to a system.
         ///
         /// Negative values less than GCControllerPlayerIndexUnset will just map back to GCControllerPlayerIndexUnset when read back.
-        #[method(playerIndex)]
+        #[unsafe(method(playerIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerIndex(&self) -> GCControllerPlayerIndex;
 
         /// Setter for [`playerIndex`][Self::playerIndex].
-        #[method(setPlayerIndex:)]
+        #[unsafe(method(setPlayerIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlayerIndex(&self, player_index: GCControllerPlayerIndex);
 
         #[cfg(feature = "GCControllerInput")]
         /// Gets the input profile for the controller.
-        #[method(input)]
+        #[unsafe(method(input))]
         #[unsafe(method_family = none)]
         pub unsafe fn input(&self) -> Retained<GCControllerLiveInput>;
 
@@ -256,7 +256,7 @@ extern_methods!(
         ///
         /// This property is useful when you try to notify your user to change or charge controller before it runs out of battery life
         /// or simply display the current battery level and status.
-        #[method(battery)]
+        #[unsafe(method(battery))]
         #[unsafe(method_family = none)]
         pub unsafe fn battery(&self) -> Option<Retained<GCDeviceBattery>>;
 
@@ -269,7 +269,7 @@ extern_methods!(
         /// See: microGamepad
         ///
         /// See: extendedGamepad
-        #[method(physicalInputProfile)]
+        #[unsafe(method(physicalInputProfile))]
         #[unsafe(method_family = none)]
         pub unsafe fn physicalInputProfile(&self) -> Retained<GCPhysicalInputProfile>;
 
@@ -290,17 +290,17 @@ extern_methods!(
         ///
         /// See: motion
         #[deprecated]
-        #[method(gamepad)]
+        #[unsafe(method(gamepad))]
         #[unsafe(method_family = none)]
         pub unsafe fn gamepad(&self) -> Option<Retained<GCGamepad>>;
 
         #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
-        #[method(microGamepad)]
+        #[unsafe(method(microGamepad))]
         #[unsafe(method_family = none)]
         pub unsafe fn microGamepad(&self) -> Option<Retained<GCMicroGamepad>>;
 
         #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
-        #[method(extendedGamepad)]
+        #[unsafe(method(extendedGamepad))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedGamepad(&self) -> Option<Retained<GCExtendedGamepad>>;
 
@@ -313,7 +313,7 @@ extern_methods!(
         /// See: gamepad
         ///
         /// See: extendedGamepad
-        #[method(motion)]
+        #[unsafe(method(motion))]
         #[unsafe(method_family = none)]
         pub unsafe fn motion(&self) -> Option<Retained<GCMotion>>;
 
@@ -322,7 +322,7 @@ extern_methods!(
         ///
         /// A controller's light can be used to signal information to the player, such as using different light colors based on the player
         /// index. It can also be used to react to in-game events and enhance user immersion.
-        #[method(light)]
+        #[unsafe(method(light))]
         #[unsafe(method_family = none)]
         pub unsafe fn light(&self) -> Option<Retained<GCDeviceLight>>;
 
@@ -333,7 +333,7 @@ extern_methods!(
         ///
         ///
         /// Note: Haptics are a drain on the controller's battery, and can be distracting when used excessively.
-        #[method(haptics)]
+        #[unsafe(method(haptics))]
         #[unsafe(method_family = none)]
         pub unsafe fn haptics(&self) -> Option<Retained<GCDeviceHaptics>>;
 
@@ -346,7 +346,7 @@ extern_methods!(
         /// See: snapshot
         ///
         /// Returns: A new controller with the duplicated state vector of the current controller
-        #[method(capture)]
+        #[unsafe(method(capture))]
         #[unsafe(method_family = none)]
         pub unsafe fn capture(&self) -> Retained<GCController>;
 
@@ -356,7 +356,7 @@ extern_methods!(
         /// See: GCControllerDidConnectNotification
         ///
         /// See: GCControllerDidDisconnectNotification
-        #[method(controllers)]
+        #[unsafe(method(controllers))]
         #[unsafe(method_family = none)]
         pub unsafe fn controllers() -> Retained<NSArray<GCController>>;
 
@@ -386,7 +386,7 @@ extern_methods!(
         /// See: stopWirelessControllerDiscovery
         ///
         /// See: controllers
-        #[method(startWirelessControllerDiscoveryWithCompletionHandler:)]
+        #[unsafe(method(startWirelessControllerDiscoveryWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWirelessControllerDiscoveryWithCompletionHandler(
             completion_handler: Option<&block2::Block<dyn Fn()>>,
@@ -399,7 +399,7 @@ extern_methods!(
         ///
         ///
         /// See: startWirelessControllerDiscoveryWithCompletionHandler:
-        #[method(stopWirelessControllerDiscovery)]
+        #[unsafe(method(stopWirelessControllerDiscovery))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopWirelessControllerDiscovery();
 
@@ -411,7 +411,7 @@ extern_methods!(
         /// See: snapshot
         ///
         /// Returns: A new controller with a micro gamepad profile
-        #[method(controllerWithMicroGamepad)]
+        #[unsafe(method(controllerWithMicroGamepad))]
         #[unsafe(method_family = none)]
         pub unsafe fn controllerWithMicroGamepad() -> Retained<GCController>;
 
@@ -423,7 +423,7 @@ extern_methods!(
         /// See: snapshot
         ///
         /// Returns: A new controller with an extended gamepad profile
-        #[method(controllerWithExtendedGamepad)]
+        #[unsafe(method(controllerWithExtendedGamepad))]
         #[unsafe(method_family = none)]
         pub unsafe fn controllerWithExtendedGamepad() -> Retained<GCController>;
     }
@@ -432,11 +432,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -78,46 +78,46 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLMetaElement {
         #[deprecated]
-        #[method(content)]
+        #[unsafe(method(content))]
         #[unsafe(method_family = none)]
         pub unsafe fn content(&self) -> Retained<NSString>;
 
         /// Setter for [`content`][Self::content].
         #[deprecated]
-        #[method(setContent:)]
+        #[unsafe(method(setContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContent(&self, content: Option<&NSString>);
 
         #[deprecated]
-        #[method(httpEquiv)]
+        #[unsafe(method(httpEquiv))]
         #[unsafe(method_family = none)]
         pub unsafe fn httpEquiv(&self) -> Retained<NSString>;
 
         /// Setter for [`httpEquiv`][Self::httpEquiv].
         #[deprecated]
-        #[method(setHttpEquiv:)]
+        #[unsafe(method(setHttpEquiv:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHttpEquiv(&self, http_equiv: Option<&NSString>);
 
         #[deprecated]
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         #[deprecated]
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[deprecated]
-        #[method(scheme)]
+        #[unsafe(method(scheme))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheme(&self) -> Retained<NSString>;
 
         /// Setter for [`scheme`][Self::scheme].
         #[deprecated]
-        #[method(setScheme:)]
+        #[unsafe(method(setScheme:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScheme(&self, scheme: Option<&NSString>);
     }
@@ -134,7 +134,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLMetaElement {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -150,7 +150,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLMetaElement {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

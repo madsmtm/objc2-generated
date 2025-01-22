@@ -141,17 +141,17 @@ extern_methods!(
     ))]
     unsafe impl HKGAD7Assessment {
         /// Answers on the GAD-7 assessment. There are exactly 7 answers, one for each multiple choice question. Each answer is of type `HKGAD7AssessmentAnswer`.
-        #[method(answers)]
+        #[unsafe(method(answers))]
         #[unsafe(method_family = none)]
         pub unsafe fn answers(&self) -> Retained<NSArray<NSNumber>>;
 
         /// The risk determined by the score on a GAD-7 assessment.
-        #[method(risk)]
+        #[unsafe(method(risk))]
         #[unsafe(method_family = none)]
         pub unsafe fn risk(&self) -> HKGAD7AssessmentRisk;
 
         /// Creates a new GAD-7 sample. There must be exactly 7 elements in answers, each answer must be of type `HKGAD7AssessmentAnswer`.
-        #[method(assessmentWithDate:answers:)]
+        #[unsafe(method(assessmentWithDate:answers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assessmentWithDate_answers(
             date: &NSDate,
@@ -159,7 +159,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Creates a new GAD-7 sample. There must be exactly 7 elements in answers, each answer must be of type `HKGAD7AssessmentAnswer`.
-        #[method(assessmentWithDate:answers:metadata:)]
+        #[unsafe(method(assessmentWithDate:answers:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assessmentWithDate_answers_metadata(
             date: &NSDate,
@@ -167,11 +167,11 @@ extern_methods!(
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

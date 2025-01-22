@@ -58,14 +58,14 @@ unsafe impl NSObjectProtocol for CMFallDetectionEvent {}
 
 extern_methods!(
     unsafe impl CMFallDetectionEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// date
         ///
         /// The time a fall was detected
-        #[method(date)]
+        #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
@@ -74,7 +74,7 @@ extern_methods!(
         /// enum value representing how the Fall Detection event was resolved
         ///
         /// See also: CMFallDetectionEventResolution
-        #[method(resolution)]
+        #[unsafe(method(resolution))]
         #[unsafe(method_family = none)]
         pub unsafe fn resolution(&self) -> CMFallDetectionEventUserResolution;
     }
@@ -83,7 +83,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMFallDetectionEvent {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -26,13 +26,13 @@ extern_methods!(
     #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
     unsafe impl UIScreenEdgePanGestureRecognizer {
         #[cfg(feature = "UIGeometry")]
-        #[method(edges)]
+        #[unsafe(method(edges))]
         #[unsafe(method_family = none)]
         pub unsafe fn edges(&self) -> UIRectEdge;
 
         #[cfg(feature = "UIGeometry")]
         /// Setter for [`edges`][Self::edges].
-        #[method(setEdges:)]
+        #[unsafe(method(setEdges:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEdges(&self, edges: UIRectEdge);
     }
@@ -42,7 +42,7 @@ extern_methods!(
     /// Methods declared on superclass `UIGestureRecognizer`
     #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
     unsafe impl UIScreenEdgePanGestureRecognizer {
-        #[method(initWithTarget:action:)]
+        #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
             this: Allocated<Self>,
@@ -50,11 +50,11 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -67,7 +67,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
     unsafe impl UIScreenEdgePanGestureRecognizer {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -21,30 +21,30 @@ unsafe impl NSObjectProtocol for UIMenuSystem {}
 extern_methods!(
     unsafe impl UIMenuSystem {
         /// The main command system.
-        #[method(mainSystem)]
+        #[unsafe(method(mainSystem))]
         #[unsafe(method_family = none)]
         pub unsafe fn mainSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
 
         /// The context command system.
-        #[method(contextSystem)]
+        #[unsafe(method(contextSystem))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Trigger a rebuild of this system at a suitable time.
-        #[method(setNeedsRebuild)]
+        #[unsafe(method(setNeedsRebuild))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeedsRebuild(&self);
 
         /// Trigger a revalidate of this system at a suitable time.
-        #[method(setNeedsRevalidate)]
+        #[unsafe(method(setNeedsRevalidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeedsRevalidate(&self);
     }

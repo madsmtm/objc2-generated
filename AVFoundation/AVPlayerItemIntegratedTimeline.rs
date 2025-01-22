@@ -54,16 +54,16 @@ unsafe impl NSObjectProtocol for AVPlayerItemSegment {}
 
 extern_methods!(
     unsafe impl AVPlayerItemSegment {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The type of content this segment represents.
-        #[method(segmentType)]
+        #[unsafe(method(segmentType))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentType(&self) -> AVPlayerItemSegmentType;
 
@@ -71,21 +71,21 @@ extern_methods!(
         /// The timeMapping for this segment.
         ///
         /// The timeMapping source timeRange represents the start and duration in the segment source's timeline (ie: primary item timeline or interstitial event). The target timeRange represents the start point and duration in the integrated timeline. For interstitial events which occupy a single point, the target's duration will be kCMTimeZero.
-        #[method(timeMapping)]
+        #[unsafe(method(timeMapping))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeMapping(&self) -> CMTimeMapping;
 
         /// This property provides a collection of time ranges for the segment if media data is readily available. The ranges provided might be discontinuous.
         ///
         /// Returns an NSArray of NSValues containing CMTimeRanges. Loaded time ranges will be within the timeMapping's target timeRange. Loaded time ranges will be empty for interstitial events that occupy a single point in time.
-        #[method(loadedTimeRanges)]
+        #[unsafe(method(loadedTimeRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
 
         /// The date this segment starts at.
         ///
         /// The date this segment starts at. This value will be nil if the primary item does not contain dates.
-        #[method(startDate)]
+        #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
@@ -93,7 +93,7 @@ extern_methods!(
         /// The associated interstitial event for this segment.
         ///
         /// The associated interstitial event for this segment. This value will be nil for segments representing playback of the primary itme.
-        #[method(interstitialEvent)]
+        #[unsafe(method(interstitialEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEvent(&self) -> Option<Retained<AVPlayerInterstitialEvent>>;
     }
@@ -120,11 +120,11 @@ unsafe impl NSObjectProtocol for AVPlayerItemIntegratedTimelineSnapshot {}
 
 extern_methods!(
     unsafe impl AVPlayerItemIntegratedTimelineSnapshot {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -133,19 +133,19 @@ extern_methods!(
         ///
         /// This property returns the duration totaling the primary item and scheduled interstitial events and taking into account the interstitial event's playoutLimit and resumption offset.
         /// Before loading the duration of the primary item, the value of this property is kCMTimeInvalid. For livestreams, this value will be kCMTimeIndefinite.
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> CMTime;
 
         /// Returns the current AVPlayerItemSegment playback is traversing.
-        #[method(currentSegment)]
+        #[unsafe(method(currentSegment))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentSegment(&self) -> Option<Retained<AVPlayerItemSegment>>;
 
         /// Returns an array of AVPlayerItemSegment for the snapshot.
         ///
         /// Returns an array of AVPlayerItemSegment. The segments are presented in chronological order, contiguous from the previous element, and non-overlapping.
-        #[method(segments)]
+        #[unsafe(method(segments))]
         #[unsafe(method_family = none)]
         pub unsafe fn segments(&self) -> Retained<NSArray<AVPlayerItemSegment>>;
 
@@ -153,12 +153,12 @@ extern_methods!(
         /// Returns the current time on the integrated timeline when the snapshot was taken.
         ///
         /// Returns the current time on the integrated timeline when the snapshot was taken. CurrentTime will not change as playback progresses.
-        #[method(currentTime)]
+        #[unsafe(method(currentTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentTime(&self) -> CMTime;
 
         /// Returns the  current date when the snapshot was taken, or nil if playback is not mapped to any date.
-        #[method(currentDate)]
+        #[unsafe(method(currentDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentDate(&self) -> Option<Retained<NSDate>>;
 
@@ -172,7 +172,7 @@ extern_methods!(
         /// Parameter `segmentOffsetOut`: Output parameter for offset in segment.
         ///
         /// Provides mapping from time to segment and offset in the segment's timeMapping target. For time that correlates to the start of multiple segments, this will return the first one.
-        #[method(mapTime:toSegment:atSegmentOffset:)]
+        #[unsafe(method(mapTime:toSegment:atSegmentOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mapTime_toSegment_atSegmentOffset(
             &self,
@@ -203,18 +203,18 @@ unsafe impl NSObjectProtocol for AVPlayerItemIntegratedTimeline {}
 
 extern_methods!(
     unsafe impl AVPlayerItemIntegratedTimeline {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// This property provides an immutable representation of the timeline state at time of request.
         ///
         /// Returns an immutable representation of the timeline state at time of request. A timeline snapshot provides accessors for obtaining inspectable details of the timeline.  Because a snapshot is immutable, the snapshot's properties will not update as playback continues.
-        #[method(currentSnapshot)]
+        #[unsafe(method(currentSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentSnapshot(&self) -> Retained<AVPlayerItemIntegratedTimelineSnapshot>;
 
@@ -222,12 +222,12 @@ extern_methods!(
         /// Returns the current time on the integrated timeline.
         ///
         /// Returns the current time on the integrated timeline. During playback of interstitial events that occupy a single point, currentTime will not change.
-        #[method(currentTime)]
+        #[unsafe(method(currentTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentTime(&self) -> CMTime;
 
         /// Returns the date of current playback, or nil if playback is not mapped to any date.
-        #[method(currentDate)]
+        #[unsafe(method(currentDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentDate(&self) -> Option<Retained<NSDate>>;
     }
@@ -248,7 +248,7 @@ extern_methods!(
         /// Parameter `completionHandler`: CompletionHandler callback after seek completes. Success will be true if the playhead moved to the new time.
         ///
         /// The integrated timeline seeks to the the range of [time-beforeTolerance, time+afterTolerance] will be attributed to a segment and AVPlayerItem that falls in that range. You can request sample accurate seeking by passing a time value of kCMTimeZero for both toleranceBefore and toleranceAfter.
-        #[method(seekToTime:toleranceBefore:toleranceAfter:completionHandler:)]
+        #[unsafe(method(seekToTime:toleranceBefore:toleranceAfter:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_toleranceBefore_toleranceAfter_completionHandler(
             &self,
@@ -266,7 +266,7 @@ extern_methods!(
         /// Parameter `completionHandler`: CompletionHandler callback after seek completes. Success will be true if the playhead moved to the new date.
         ///
         /// The integrated timeline will seek playhead to the coresponding date.
-        #[method(seekToDate:completionHandler:)]
+        #[unsafe(method(seekToDate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToDate_completionHandler(
             &self,
@@ -289,7 +289,7 @@ extern_methods!(
         /// Cancels a previously registered time observer.
         ///
         /// Parameter `observer`: An object returned by a previous call to -addPeriodicTimeObserverForInterval or -addBoundaryTimeObserverForSegment.
-        #[method(removeTimeObserver:)]
+        #[unsafe(method(removeTimeObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTimeObserver(
             &self,
@@ -340,7 +340,7 @@ extern_methods!(
     #[cfg(feature = "AVPlayerItem")]
     unsafe impl AVPlayerItem {
         /// Obtain an instance of AVPlayerItemIntegratedTimeline representing the timing and control of playback of the item with its scheduled AVPlayerInterstitialEvents. This value will return nil for AVPlayerItems in an interstitial player.
-        #[method(integratedTimeline)]
+        #[unsafe(method(integratedTimeline))]
         #[unsafe(method_family = none)]
         pub unsafe fn integratedTimeline(&self) -> Retained<AVPlayerItemIntegratedTimeline>;
     }

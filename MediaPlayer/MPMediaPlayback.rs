@@ -9,53 +9,53 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplayback?language=objc)
     pub unsafe trait MPMediaPlayback {
-        #[method(prepareToPlay)]
+        #[unsafe(method(prepareToPlay))]
         #[unsafe(method_family = none)]
         unsafe fn prepareToPlay(&self);
 
-        #[method(isPreparedToPlay)]
+        #[unsafe(method(isPreparedToPlay))]
         #[unsafe(method_family = none)]
         unsafe fn isPreparedToPlay(&self) -> bool;
 
-        #[method(play)]
+        #[unsafe(method(play))]
         #[unsafe(method_family = none)]
         unsafe fn play(&self);
 
-        #[method(pause)]
+        #[unsafe(method(pause))]
         #[unsafe(method_family = none)]
         unsafe fn pause(&self);
 
-        #[method(stop)]
+        #[unsafe(method(stop))]
         #[unsafe(method_family = none)]
         unsafe fn stop(&self);
 
-        #[method(currentPlaybackTime)]
+        #[unsafe(method(currentPlaybackTime))]
         #[unsafe(method_family = none)]
         unsafe fn currentPlaybackTime(&self) -> NSTimeInterval;
 
         /// Setter for [`currentPlaybackTime`][Self::currentPlaybackTime].
-        #[method(setCurrentPlaybackTime:)]
+        #[unsafe(method(setCurrentPlaybackTime:))]
         #[unsafe(method_family = none)]
         unsafe fn setCurrentPlaybackTime(&self, current_playback_time: NSTimeInterval);
 
-        #[method(currentPlaybackRate)]
+        #[unsafe(method(currentPlaybackRate))]
         #[unsafe(method_family = none)]
         unsafe fn currentPlaybackRate(&self) -> c_float;
 
         /// Setter for [`currentPlaybackRate`][Self::currentPlaybackRate].
-        #[method(setCurrentPlaybackRate:)]
+        #[unsafe(method(setCurrentPlaybackRate:))]
         #[unsafe(method_family = none)]
         unsafe fn setCurrentPlaybackRate(&self, current_playback_rate: c_float);
 
-        #[method(beginSeekingForward)]
+        #[unsafe(method(beginSeekingForward))]
         #[unsafe(method_family = none)]
         unsafe fn beginSeekingForward(&self);
 
-        #[method(beginSeekingBackward)]
+        #[unsafe(method(beginSeekingBackward))]
         #[unsafe(method_family = none)]
         unsafe fn beginSeekingBackward(&self);
 
-        #[method(endSeeking)]
+        #[unsafe(method(endSeeking))]
         #[unsafe(method_family = none)]
         unsafe fn endSeeking(&self);
     }

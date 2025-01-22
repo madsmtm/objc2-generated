@@ -36,20 +36,20 @@ extern_methods!(
     unsafe impl PHProjectTypeDescription {
         #[cfg(feature = "PhotosUITypes")]
         /// Identifier for the project type info. These should be added to the extensible string enum defined in PhotosUITypes.h.
-        #[method(projectType)]
+        #[unsafe(method(projectType))]
         #[unsafe(method_family = none)]
         pub unsafe fn projectType(&self) -> Retained<PHProjectType>;
 
         /// Localized title and description of the project type to be displayed to the user. The title is required, but description is optional.
-        #[method(localizedTitle)]
+        #[unsafe(method(localizedTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
-        #[method(localizedDescription)]
+        #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
-        #[method(localizedAttributedDescription)]
+        #[unsafe(method(localizedAttributedDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedAttributedDescription(&self)
             -> Option<Retained<NSAttributedString>>;
@@ -57,25 +57,25 @@ extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Optional image to be associated with the project type in the picker; PNG images are recommended.
-        #[method(image)]
+        #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         /// Array of type descriptions for subtype descriptions, may be empty.
-        #[method(subtypeDescriptions)]
+        #[unsafe(method(subtypeDescriptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtypeDescriptions(&self) -> Retained<NSArray<PHProjectTypeDescription>>;
 
         /// For spase instances canProvideSubtypes is an indicator if subtypes can be fetched from the data source.
         /// If subtypeDescriptions is not empty it will also return YES.
-        #[method(canProvideSubtypes)]
+        #[unsafe(method(canProvideSubtypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn canProvideSubtypes(&self) -> bool;
 
         #[cfg(all(feature = "PhotosUITypes", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Designated initalizer for instances with the full subtype hierarchy upfront.
-        #[method(initWithProjectType:title:description:image:subtypeDescriptions:)]
+        #[unsafe(method(initWithProjectType:title:description:image:subtypeDescriptions:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithProjectType_title_description_image_subtypeDescriptions(
             this: Allocated<Self>,
@@ -90,7 +90,7 @@ extern_methods!(
         #[cfg(target_os = "macos")]
         /// Designated initalizer for instances with the full subtype hierarchy upfront and
         /// an attributed string for the description text.
-        #[method(initWithProjectType:title:attributedDescription:image:subtypeDescriptions:)]
+        #[unsafe(method(initWithProjectType:title:attributedDescription:image:subtypeDescriptions:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithProjectType_title_attributedDescription_image_subtypeDescriptions(
             this: Allocated<Self>,
@@ -104,7 +104,7 @@ extern_methods!(
         #[cfg(all(feature = "PhotosUITypes", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Convenience initializer without subtype descriptions.
-        #[method(initWithProjectType:title:description:image:)]
+        #[unsafe(method(initWithProjectType:title:description:image:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithProjectType_title_description_image(
             this: Allocated<Self>,
@@ -117,7 +117,7 @@ extern_methods!(
         #[cfg(all(feature = "PhotosUITypes", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Designated initalizer for instances with lazily fetched subtypes.
-        #[method(initWithProjectType:title:description:image:canProvideSubtypes:)]
+        #[unsafe(method(initWithProjectType:title:description:image:canProvideSubtypes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithProjectType_title_description_image_canProvideSubtypes(
             this: Allocated<Self>,
@@ -132,7 +132,7 @@ extern_methods!(
         #[cfg(target_os = "macos")]
         /// Designated initalizer for instances with lazily fetched subtypes and
         /// an attributed string for the description text.
-        #[method(initWithProjectType:title:attributedDescription:image:canProvideSubtypes:)]
+        #[unsafe(method(initWithProjectType:title:attributedDescription:image:canProvideSubtypes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithProjectType_title_attributedDescription_image_canProvideSubtypes(
             this: Allocated<Self>,
@@ -143,11 +143,11 @@ extern_methods!(
             can_provide_subtypes: bool,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

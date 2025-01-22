@@ -13,7 +13,7 @@ extern_protocol!(
         #[cfg(all(feature = "CLLocation", feature = "CLLocationManager"))]
         #[deprecated = "Implement -locationManager:didUpdateLocations: instead"]
         #[optional]
-        #[method(locationManager:didUpdateToLocation:fromLocation:)]
+        #[unsafe(method(locationManager:didUpdateToLocation:fromLocation:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_didUpdateToLocation_fromLocation(
             &self,
@@ -24,7 +24,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "CLLocation", feature = "CLLocationManager"))]
         #[optional]
-        #[method(locationManager:didUpdateLocations:)]
+        #[unsafe(method(locationManager:didUpdateLocations:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_didUpdateLocations(
             &self,
@@ -34,7 +34,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "CLHeading", feature = "CLLocationManager"))]
         #[optional]
-        #[method(locationManager:didUpdateHeading:)]
+        #[unsafe(method(locationManager:didUpdateHeading:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_didUpdateHeading(
             &self,
@@ -44,7 +44,7 @@ extern_protocol!(
 
         #[cfg(feature = "CLLocationManager")]
         #[optional]
-        #[method(locationManagerShouldDisplayHeadingCalibration:)]
+        #[unsafe(method(locationManagerShouldDisplayHeadingCalibration:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManagerShouldDisplayHeadingCalibration(
             &self,
@@ -53,7 +53,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "CLLocationManager", feature = "CLRegion"))]
         #[optional]
-        #[method(locationManager:didDetermineState:forRegion:)]
+        #[unsafe(method(locationManager:didDetermineState:forRegion:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_didDetermineState_forRegion(
             &self,
@@ -69,7 +69,7 @@ extern_protocol!(
         ))]
         #[deprecated]
         #[optional]
-        #[method(locationManager:didRangeBeacons:inRegion:)]
+        #[unsafe(method(locationManager:didRangeBeacons:inRegion:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_didRangeBeacons_inRegion(
             &self,
@@ -85,7 +85,7 @@ extern_protocol!(
         ))]
         #[deprecated]
         #[optional]
-        #[method(locationManager:rangingBeaconsDidFailForRegion:withError:)]
+        #[unsafe(method(locationManager:rangingBeaconsDidFailForRegion:withError:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_rangingBeaconsDidFailForRegion_withError(
             &self,
@@ -102,7 +102,7 @@ extern_protocol!(
             feature = "CLLocationManager"
         ))]
         #[optional]
-        #[method(locationManager:didRangeBeacons:satisfyingConstraint:)]
+        #[unsafe(method(locationManager:didRangeBeacons:satisfyingConstraint:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_didRangeBeacons_satisfyingConstraint(
             &self,
@@ -118,7 +118,7 @@ extern_protocol!(
             feature = "CLLocationManager"
         ))]
         #[optional]
-        #[method(locationManager:didFailRangingBeaconsForConstraint:error:)]
+        #[unsafe(method(locationManager:didFailRangingBeaconsForConstraint:error:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_didFailRangingBeaconsForConstraint_error(
             &self,
@@ -129,7 +129,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "CLLocationManager", feature = "CLRegion"))]
         #[optional]
-        #[method(locationManager:didEnterRegion:)]
+        #[unsafe(method(locationManager:didEnterRegion:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_didEnterRegion(
             &self,
@@ -139,7 +139,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "CLLocationManager", feature = "CLRegion"))]
         #[optional]
-        #[method(locationManager:didExitRegion:)]
+        #[unsafe(method(locationManager:didExitRegion:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_didExitRegion(
             &self,
@@ -149,7 +149,7 @@ extern_protocol!(
 
         #[cfg(feature = "CLLocationManager")]
         #[optional]
-        #[method(locationManager:didFailWithError:)]
+        #[unsafe(method(locationManager:didFailWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_didFailWithError(
             &self,
@@ -159,7 +159,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "CLLocationManager", feature = "CLRegion"))]
         #[optional]
-        #[method(locationManager:monitoringDidFailForRegion:withError:)]
+        #[unsafe(method(locationManager:monitoringDidFailForRegion:withError:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_monitoringDidFailForRegion_withError(
             &self,
@@ -171,7 +171,7 @@ extern_protocol!(
         #[cfg(feature = "CLLocationManager")]
         #[deprecated]
         #[optional]
-        #[method(locationManager:didChangeAuthorizationStatus:)]
+        #[unsafe(method(locationManager:didChangeAuthorizationStatus:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_didChangeAuthorizationStatus(
             &self,
@@ -181,13 +181,13 @@ extern_protocol!(
 
         #[cfg(feature = "CLLocationManager")]
         #[optional]
-        #[method(locationManagerDidChangeAuthorization:)]
+        #[unsafe(method(locationManagerDidChangeAuthorization:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManagerDidChangeAuthorization(&self, manager: &CLLocationManager);
 
         #[cfg(all(feature = "CLLocationManager", feature = "CLRegion"))]
         #[optional]
-        #[method(locationManager:didStartMonitoringForRegion:)]
+        #[unsafe(method(locationManager:didStartMonitoringForRegion:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_didStartMonitoringForRegion(
             &self,
@@ -197,19 +197,19 @@ extern_protocol!(
 
         #[cfg(feature = "CLLocationManager")]
         #[optional]
-        #[method(locationManagerDidPauseLocationUpdates:)]
+        #[unsafe(method(locationManagerDidPauseLocationUpdates:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManagerDidPauseLocationUpdates(&self, manager: &CLLocationManager);
 
         #[cfg(feature = "CLLocationManager")]
         #[optional]
-        #[method(locationManagerDidResumeLocationUpdates:)]
+        #[unsafe(method(locationManagerDidResumeLocationUpdates:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManagerDidResumeLocationUpdates(&self, manager: &CLLocationManager);
 
         #[cfg(feature = "CLLocationManager")]
         #[optional]
-        #[method(locationManager:didFinishDeferredUpdatesWithError:)]
+        #[unsafe(method(locationManager:didFinishDeferredUpdatesWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_didFinishDeferredUpdatesWithError(
             &self,
@@ -219,7 +219,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "CLLocationManager", feature = "CLVisit"))]
         #[optional]
-        #[method(locationManager:didVisit:)]
+        #[unsafe(method(locationManager:didVisit:))]
         #[unsafe(method_family = none)]
         unsafe fn locationManager_didVisit(&self, manager: &CLLocationManager, visit: &CLVisit);
     }

@@ -23,7 +23,7 @@ extern_protocol!(
         /// "
         /// Filter View"];
         /// }
-        #[method(interfaceVersion)]
+        #[unsafe(method(interfaceVersion))]
         #[unsafe(method_family = none)]
         unsafe fn interfaceVersion(&self) -> c_uint;
     }

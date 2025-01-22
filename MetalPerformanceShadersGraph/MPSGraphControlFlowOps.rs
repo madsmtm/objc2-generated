@@ -106,7 +106,7 @@ extern_methods!(
         /// - dependentBlock: MPSGraphControlFlowDependencyBlock which is provided by caller to create dependent ops
         /// - name: name of scope
         /// - Returns: A valid MPSGraphTensor array with results returned from dependentBlock forwarded
-        #[method(controlDependencyWithOperations:dependentBlock:name:)]
+        #[unsafe(method(controlDependencyWithOperations:dependentBlock:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn controlDependencyWithOperations_dependentBlock_name(
             &self,
@@ -125,7 +125,7 @@ extern_methods!(
         /// - name: name of operation
         /// - Returns: results If no error, the tensors returned by user. If not empty, user must define both then/else block,
         /// both should have same number of arguments and each corresponding argument should have same elementTypes.
-        #[method(ifWithPredicateTensor:thenBlock:elseBlock:name:)]
+        #[unsafe(method(ifWithPredicateTensor:thenBlock:elseBlock:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ifWithPredicateTensor_thenBlock_elseBlock_name(
             &self,
@@ -144,7 +144,7 @@ extern_methods!(
         /// - after: `afterBlock`, this will execute after the condition evaluation.
         /// - name: name of operation.
         /// - Returns: A valid MPSGraphTensor array with results returned from the conditionBlock depending on the predicate tensor.
-        #[method(whileWithInitialInputs:before:after:name:)]
+        #[unsafe(method(whileWithInitialInputs:before:after:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn whileWithInitialInputs_before_after_name(
             &self,
@@ -165,7 +165,7 @@ extern_methods!(
         /// - body: This block will execute the body of the for loop.
         /// - name: name of operation.
         /// - Returns: A valid `MPSGraphTensor` array with same count and corresponding element types as `initialIterationArguments` and return types of the for loop.
-        #[method(forLoopWithLowerBound:upperBound:step:initialBodyArguments:body:name:)]
+        #[unsafe(method(forLoopWithLowerBound:upperBound:step:initialBodyArguments:body:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn forLoopWithLowerBound_upperBound_step_initialBodyArguments_body_name(
             &self,
@@ -186,7 +186,7 @@ extern_methods!(
         /// - body: bodyBlock, this will execute the body of the for loop, index will go from 0 to numberOfIterations-1
         /// - name: name of operation
         /// - Returns: A valid MPSGraphTensor array with same count and corresponding elementTypes as initialIterationArguments and return types of the for loop
-        #[method(forLoopWithNumberOfIterations:initialBodyArguments:body:name:)]
+        #[unsafe(method(forLoopWithNumberOfIterations:initialBodyArguments:body:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn forLoopWithNumberOfIterations_initialBodyArguments_body_name(
             &self,

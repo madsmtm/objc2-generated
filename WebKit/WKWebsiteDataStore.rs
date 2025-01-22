@@ -27,7 +27,7 @@ unsafe impl NSSecureCoding for WKWebsiteDataStore {}
 
 extern_methods!(
     unsafe impl WKWebsiteDataStore {
-        #[method(defaultDataStore)]
+        #[unsafe(method(defaultDataStore))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultDataStore(mtm: MainThreadMarker) -> Retained<WKWebsiteDataStore>;
 
@@ -35,26 +35,26 @@ extern_methods!(
         ///
         /// If a WKWebView is associated with a non-persistent data store, no data will
         /// be written to the file system. This is useful for implementing "private browsing" in a web view.
-        #[method(nonPersistentDataStore)]
+        #[unsafe(method(nonPersistentDataStore))]
         #[unsafe(method_family = none)]
         pub unsafe fn nonPersistentDataStore(mtm: MainThreadMarker)
             -> Retained<WKWebsiteDataStore>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(&self) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Whether the data store is persistent or not.
-        #[method(isPersistent)]
+        #[unsafe(method(isPersistent))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPersistent(&self) -> bool;
 
         /// Returns a set of all available website data types.
-        #[method(allWebsiteDataTypes)]
+        #[unsafe(method(allWebsiteDataTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn allWebsiteDataTypes(mtm: MainThreadMarker) -> Retained<NSSet<NSString>>;
 
@@ -64,7 +64,7 @@ extern_methods!(
         /// Parameter `dataTypes`: The website data types to fetch records for.
         ///
         /// Parameter `completionHandler`: A block to invoke when the data records have been fetched.
-        #[method(fetchDataRecordsOfTypes:completionHandler:)]
+        #[unsafe(method(fetchDataRecordsOfTypes:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchDataRecordsOfTypes_completionHandler(
             &self,
@@ -80,7 +80,7 @@ extern_methods!(
         /// Parameter `dataRecords`: The website data records to delete website data for.
         ///
         /// Parameter `completionHandler`: A block to invoke when the website data for the records has been removed.
-        #[method(removeDataOfTypes:forDataRecords:completionHandler:)]
+        #[unsafe(method(removeDataOfTypes:forDataRecords:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeDataOfTypes_forDataRecords_completionHandler(
             &self,
@@ -97,7 +97,7 @@ extern_methods!(
         /// Parameter `date`: A date. All website data modified after this date will be removed.
         ///
         /// Parameter `completionHandler`: A block to invoke when the website data has been removed.
-        #[method(removeDataOfTypes:modifiedSince:completionHandler:)]
+        #[unsafe(method(removeDataOfTypes:modifiedSince:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeDataOfTypes_modifiedSince_completionHandler(
             &self,
@@ -108,14 +108,14 @@ extern_methods!(
 
         #[cfg(feature = "WKHTTPCookieStore")]
         /// Returns the cookie store representing HTTP cookies in this website data store.
-        #[method(httpCookieStore)]
+        #[unsafe(method(httpCookieStore))]
         #[unsafe(method_family = none)]
         pub unsafe fn httpCookieStore(&self) -> Retained<WKHTTPCookieStore>;
 
         /// Get identifier for a data store.
         ///
         /// Returns nil for default and non-persistent data store .
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSUUID>>;
 
@@ -125,7 +125,7 @@ extern_methods!(
         ///
         /// If a data store with this identifier does not exist yet, it will be created. Throws exception if identifier
         /// is 0.
-        #[method(dataStoreForIdentifier:)]
+        #[unsafe(method(dataStoreForIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataStoreForIdentifier(
             identifier: &NSUUID,
@@ -141,7 +141,7 @@ extern_methods!(
         ///
         /// This should be called when the data store is not used any more. Returns error if removal fails
         /// to complete. WKWebView using the data store must be released before removal.
-        #[method(removeDataStoreForIdentifier:completionHandler:)]
+        #[unsafe(method(removeDataStoreForIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeDataStoreForIdentifier_completionHandler(
             identifier: &NSUUID,
@@ -155,7 +155,7 @@ extern_methods!(
         /// Parameter `completionHandler`: A block to invoke with an array of identifiers when the operation completes.
         ///
         /// Default or non-persistent data store do not have an identifier.
-        #[method(fetchAllDataStoreIdentifiers:)]
+        #[unsafe(method(fetchAllDataStoreIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllDataStoreIdentifiers(
             completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<NSUUID>>)>,
@@ -167,7 +167,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKWebsiteDataStore {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new_class(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -186,44 +186,44 @@ unsafe impl NSSecureCoding for UIButtonConfiguration {}
 
 extern_methods!(
     unsafe impl UIButtonConfiguration {
-        #[method(plainButtonConfiguration)]
+        #[unsafe(method(plainButtonConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn plainButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(tintedButtonConfiguration)]
+        #[unsafe(method(tintedButtonConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn tintedButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(grayButtonConfiguration)]
+        #[unsafe(method(grayButtonConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn grayButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(filledButtonConfiguration)]
+        #[unsafe(method(filledButtonConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn filledButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(borderlessButtonConfiguration)]
+        #[unsafe(method(borderlessButtonConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderlessButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(borderedButtonConfiguration)]
+        #[unsafe(method(borderedButtonConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderedButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(borderedTintedButtonConfiguration)]
+        #[unsafe(method(borderedTintedButtonConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderedTintedButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(borderedProminentButtonConfiguration)]
+        #[unsafe(method(borderedProminentButtonConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderedProminentButtonConfiguration(mtm: MainThreadMarker)
             -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -234,83 +234,83 @@ extern_methods!(
             feature = "UIView"
         ))]
         /// Returns a copy of the configuration updated based on the given button, by applying the configuration's default values for that button's state to any properties that have not been customized.
-        #[method(updatedConfigurationForButton:)]
+        #[unsafe(method(updatedConfigurationForButton:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updatedConfigurationForButton(&self, button: &UIButton) -> Retained<Self>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// A UIBackgroundConfiguration describing the button's background. UIKit provides a value by default with values appropriate for a UIButton.
-        #[method(background)]
+        #[unsafe(method(background))]
         #[unsafe(method_family = none)]
         pub unsafe fn background(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Setter for [`background`][Self::background].
-        #[method(setBackground:)]
+        #[unsafe(method(setBackground:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackground(&self, background: &UIBackgroundConfiguration);
 
         /// The corner style controls how background.cornerRadius is interpreted by the button. Defaults to `Dynamic`.
-        #[method(cornerStyle)]
+        #[unsafe(method(cornerStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn cornerStyle(&self) -> UIButtonConfigurationCornerStyle;
 
         /// Setter for [`cornerStyle`][Self::cornerStyle].
-        #[method(setCornerStyle:)]
+        #[unsafe(method(setCornerStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCornerStyle(&self, corner_style: UIButtonConfigurationCornerStyle);
 
         /// Determines the metrics and ideal size of the button. Clients may resize the button arbitrarily regardless of this value.
-        #[method(buttonSize)]
+        #[unsafe(method(buttonSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonSize(&self) -> UIButtonConfigurationSize;
 
         /// Setter for [`buttonSize`][Self::buttonSize].
-        #[method(setButtonSize:)]
+        #[unsafe(method(setButtonSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setButtonSize(&self, button_size: UIButtonConfigurationSize);
 
-        #[method(macIdiomStyle)]
+        #[unsafe(method(macIdiomStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn macIdiomStyle(&self) -> UIButtonConfigurationMacIdiomStyle;
 
         /// Setter for [`macIdiomStyle`][Self::macIdiomStyle].
-        #[method(setMacIdiomStyle:)]
+        #[unsafe(method(setMacIdiomStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMacIdiomStyle(&self, mac_idiom_style: UIButtonConfigurationMacIdiomStyle);
 
         #[cfg(feature = "UIColor")]
         /// The base color to use for foreground elements. This color may be modified before being passed to a transformer, and finally applied to specific elements. Setting nil will cede full control to the configuration to select a color appropriate to the style.
-        #[method(baseForegroundColor)]
+        #[unsafe(method(baseForegroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseForegroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`baseForegroundColor`][Self::baseForegroundColor].
-        #[method(setBaseForegroundColor:)]
+        #[unsafe(method(setBaseForegroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBaseForegroundColor(&self, base_foreground_color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
         /// The base color to use for background elements. This color may be modified before being passed to a transformer, and finally applied to specific elements. Setting nil will cede full control to the configuration to select a color appropriate to the style.
-        #[method(baseBackgroundColor)]
+        #[unsafe(method(baseBackgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseBackgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`baseBackgroundColor`][Self::baseBackgroundColor].
-        #[method(setBaseBackgroundColor:)]
+        #[unsafe(method(setBaseBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBaseBackgroundColor(&self, base_background_color: Option<&UIColor>);
 
         #[cfg(feature = "UIImage")]
-        #[method(image)]
+        #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`image`][Self::image].
-        #[method(setImage:)]
+        #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
@@ -319,7 +319,7 @@ extern_methods!(
             feature = "UIConfigurationColorTransformer",
             feature = "block2"
         ))]
-        #[method(imageColorTransformer)]
+        #[unsafe(method(imageColorTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageColorTransformer(&self) -> UIConfigurationColorTransformer;
 
@@ -329,7 +329,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`imageColorTransformer`][Self::imageColorTransformer].
-        #[method(setImageColorTransformer:)]
+        #[unsafe(method(setImageColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageColorTransformer(
             &self,
@@ -340,7 +340,7 @@ extern_methods!(
             feature = "UIImageConfiguration",
             feature = "UIImageSymbolConfiguration"
         ))]
-        #[method(preferredSymbolConfigurationForImage)]
+        #[unsafe(method(preferredSymbolConfigurationForImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredSymbolConfigurationForImage(
             &self,
@@ -351,7 +351,7 @@ extern_methods!(
             feature = "UIImageSymbolConfiguration"
         ))]
         /// Setter for [`preferredSymbolConfigurationForImage`][Self::preferredSymbolConfigurationForImage].
-        #[method(setPreferredSymbolConfigurationForImage:)]
+        #[unsafe(method(setPreferredSymbolConfigurationForImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredSymbolConfigurationForImage(
             &self,
@@ -359,12 +359,12 @@ extern_methods!(
         );
 
         /// Shows an activity indicator in place of an image. Its placement is controlled by the imagePlacement property.
-        #[method(showsActivityIndicator)]
+        #[unsafe(method(showsActivityIndicator))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsActivityIndicator(&self) -> bool;
 
         /// Setter for [`showsActivityIndicator`][Self::showsActivityIndicator].
-        #[method(setShowsActivityIndicator:)]
+        #[unsafe(method(setShowsActivityIndicator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsActivityIndicator(&self, shows_activity_indicator: bool);
 
@@ -373,7 +373,7 @@ extern_methods!(
             feature = "UIConfigurationColorTransformer",
             feature = "block2"
         ))]
-        #[method(activityIndicatorColorTransformer)]
+        #[unsafe(method(activityIndicatorColorTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn activityIndicatorColorTransformer(&self) -> UIConfigurationColorTransformer;
 
@@ -383,33 +383,33 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`activityIndicatorColorTransformer`][Self::activityIndicatorColorTransformer].
-        #[method(setActivityIndicatorColorTransformer:)]
+        #[unsafe(method(setActivityIndicatorColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivityIndicatorColorTransformer(
             &self,
             activity_indicator_color_transformer: UIConfigurationColorTransformer,
         );
 
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[method(attributedTitle)]
+        #[unsafe(method(attributedTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
-        #[method(setAttributedTitle:)]
+        #[unsafe(method(setAttributedTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
         #[cfg(feature = "block2")]
-        #[method(titleTextAttributesTransformer)]
+        #[unsafe(method(titleTextAttributesTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleTextAttributesTransformer(
             &self,
@@ -417,7 +417,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`titleTextAttributesTransformer`][Self::titleTextAttributesTransformer].
-        #[method(setTitleTextAttributesTransformer:)]
+        #[unsafe(method(setTitleTextAttributesTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleTextAttributesTransformer(
             &self,
@@ -426,31 +426,31 @@ extern_methods!(
 
         #[cfg(feature = "NSParagraphStyle")]
         /// Default is WordWrapping. WordWrapping and CharWrapping both allow for multi-line text, other modes will restrict the title to a single line of text.
-        #[method(titleLineBreakMode)]
+        #[unsafe(method(titleLineBreakMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleLineBreakMode(&self) -> NSLineBreakMode;
 
         #[cfg(feature = "NSParagraphStyle")]
         /// Setter for [`titleLineBreakMode`][Self::titleLineBreakMode].
-        #[method(setTitleLineBreakMode:)]
+        #[unsafe(method(setTitleLineBreakMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleLineBreakMode(&self, title_line_break_mode: NSLineBreakMode);
 
-        #[method(subtitle)]
+        #[unsafe(method(subtitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
-        #[method(setSubtitle:)]
+        #[unsafe(method(setSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
-        #[method(attributedSubtitle)]
+        #[unsafe(method(attributedSubtitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedSubtitle(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedSubtitle`][Self::attributedSubtitle].
-        #[method(setAttributedSubtitle:)]
+        #[unsafe(method(setAttributedSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedSubtitle(
             &self,
@@ -458,7 +458,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(subtitleTextAttributesTransformer)]
+        #[unsafe(method(subtitleTextAttributesTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitleTextAttributesTransformer(
             &self,
@@ -466,7 +466,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`subtitleTextAttributesTransformer`][Self::subtitleTextAttributesTransformer].
-        #[method(setSubtitleTextAttributesTransformer:)]
+        #[unsafe(method(setSubtitleTextAttributesTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitleTextAttributesTransformer(
             &self,
@@ -475,23 +475,23 @@ extern_methods!(
 
         #[cfg(feature = "NSParagraphStyle")]
         /// Default is WordWrapping. WordWrapping and CharWrapping both allow for multi-line text, other modes will restrict the subtitle to a single line of text.
-        #[method(subtitleLineBreakMode)]
+        #[unsafe(method(subtitleLineBreakMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitleLineBreakMode(&self) -> NSLineBreakMode;
 
         #[cfg(feature = "NSParagraphStyle")]
         /// Setter for [`subtitleLineBreakMode`][Self::subtitleLineBreakMode].
-        #[method(setSubtitleLineBreakMode:)]
+        #[unsafe(method(setSubtitleLineBreakMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitleLineBreakMode(&self, subtitle_line_break_mode: NSLineBreakMode);
 
         /// What kind of indicator should the button show. Default value is .automatic.
-        #[method(indicator)]
+        #[unsafe(method(indicator))]
         #[unsafe(method_family = none)]
         pub unsafe fn indicator(&self) -> UIButtonConfigurationIndicator;
 
         /// Setter for [`indicator`][Self::indicator].
-        #[method(setIndicator:)]
+        #[unsafe(method(setIndicator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndicator(&self, indicator: UIButtonConfigurationIndicator);
 
@@ -500,7 +500,7 @@ extern_methods!(
             feature = "UIConfigurationColorTransformer",
             feature = "block2"
         ))]
-        #[method(indicatorColorTransformer)]
+        #[unsafe(method(indicatorColorTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn indicatorColorTransformer(&self) -> UIConfigurationColorTransformer;
 
@@ -510,7 +510,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`indicatorColorTransformer`][Self::indicatorColorTransformer].
-        #[method(setIndicatorColorTransformer:)]
+        #[unsafe(method(setIndicatorColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndicatorColorTransformer(
             &self,
@@ -519,42 +519,42 @@ extern_methods!(
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Insets from the bounds of the button to create the content region. Defaults styles provide insets based on the button size.
-        #[method(contentInsets)]
+        #[unsafe(method(contentInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentInsets(&self) -> NSDirectionalEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`contentInsets`][Self::contentInsets].
-        #[method(setContentInsets:)]
+        #[unsafe(method(setContentInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentInsets(&self, content_insets: NSDirectionalEdgeInsets);
 
         /// Restore the default content insets.
-        #[method(setDefaultContentInsets)]
+        #[unsafe(method(setDefaultContentInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultContentInsets(&self);
 
         #[cfg(feature = "UIGeometry")]
         /// Defaults to Leading, only single edge values (top/leading/bottom/trailing) are supported.
-        #[method(imagePlacement)]
+        #[unsafe(method(imagePlacement))]
         #[unsafe(method_family = none)]
         pub unsafe fn imagePlacement(&self) -> NSDirectionalRectEdge;
 
         #[cfg(feature = "UIGeometry")]
         /// Setter for [`imagePlacement`][Self::imagePlacement].
-        #[method(setImagePlacement:)]
+        #[unsafe(method(setImagePlacement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImagePlacement(&self, image_placement: NSDirectionalRectEdge);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// When a button has both image and text content, this value is the padding between the image and the text.
-        #[method(imagePadding)]
+        #[unsafe(method(imagePadding))]
         #[unsafe(method_family = none)]
         pub unsafe fn imagePadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`imagePadding`][Self::imagePadding].
-        #[method(setImagePadding:)]
+        #[unsafe(method(setImagePadding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImagePadding(&self, image_padding: CGFloat);
 
@@ -562,25 +562,25 @@ extern_methods!(
         /// When a button has both a title
         /// &
         /// subtitle, this value is the padding between those titles.
-        #[method(titlePadding)]
+        #[unsafe(method(titlePadding))]
         #[unsafe(method_family = none)]
         pub unsafe fn titlePadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`titlePadding`][Self::titlePadding].
-        #[method(setTitlePadding:)]
+        #[unsafe(method(setTitlePadding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitlePadding(&self, title_padding: CGFloat);
 
         /// The alignment to use for relative layout between title
         /// &
         /// subtitle.
-        #[method(titleAlignment)]
+        #[unsafe(method(titleAlignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleAlignment(&self) -> UIButtonConfigurationTitleAlignment;
 
         /// Setter for [`titleAlignment`][Self::titleAlignment].
-        #[method(setTitleAlignment:)]
+        #[unsafe(method(setTitleAlignment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleAlignment(
             &self,
@@ -588,12 +588,12 @@ extern_methods!(
         );
 
         /// If the style should automatically update when the button is selected. Default varies by style. Disable to customize selection behavior.
-        #[method(automaticallyUpdateForSelection)]
+        #[unsafe(method(automaticallyUpdateForSelection))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticallyUpdateForSelection(&self) -> bool;
 
         /// Setter for [`automaticallyUpdateForSelection`][Self::automaticallyUpdateForSelection].
-        #[method(setAutomaticallyUpdateForSelection:)]
+        #[unsafe(method(setAutomaticallyUpdateForSelection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyUpdateForSelection(
             &self,

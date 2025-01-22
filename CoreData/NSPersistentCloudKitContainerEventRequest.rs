@@ -30,39 +30,39 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSPersistentCloudKitContainerEventRequest {
         #[cfg(feature = "NSPersistentStoreResult")]
-        #[method(resultType)]
+        #[unsafe(method(resultType))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultType(&self) -> NSPersistentCloudKitContainerEventResultType;
 
         #[cfg(feature = "NSPersistentStoreResult")]
         /// Setter for [`resultType`][Self::resultType].
-        #[method(setResultType:)]
+        #[unsafe(method(setResultType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResultType(
             &self,
             result_type: NSPersistentCloudKitContainerEventResultType,
         );
 
-        #[method(fetchEventsAfterDate:)]
+        #[unsafe(method(fetchEventsAfterDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchEventsAfterDate(date: &NSDate) -> Retained<Self>;
 
         #[cfg(feature = "NSPersistentCloudKitContainerEvent")]
-        #[method(fetchEventsAfterEvent:)]
+        #[unsafe(method(fetchEventsAfterEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchEventsAfterEvent(
             event: Option<&NSPersistentCloudKitContainerEvent>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSFetchRequest")]
-        #[method(fetchEventsMatchingFetchRequest:)]
+        #[unsafe(method(fetchEventsMatchingFetchRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchEventsMatchingFetchRequest(
             fetch_request: &NSFetchRequest,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSFetchRequest")]
-        #[method(fetchRequestForEvents)]
+        #[unsafe(method(fetchRequestForEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRequestForEvents() -> Retained<NSFetchRequest>;
     }
@@ -72,11 +72,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSPersistentCloudKitContainerEventRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

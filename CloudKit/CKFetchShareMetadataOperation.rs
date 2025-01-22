@@ -27,23 +27,23 @@ unsafe impl NSObjectProtocol for CKFetchShareMetadataOperation {}
 extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareMetadataOperation {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithShareURLs:)]
+        #[unsafe(method(initWithShareURLs:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithShareURLs(
             this: Allocated<Self>,
             share_ur_ls: &NSArray<NSURL>,
         ) -> Retained<Self>;
 
-        #[method(shareURLs)]
+        #[unsafe(method(shareURLs))]
         #[unsafe(method_family = none)]
         pub unsafe fn shareURLs(&self) -> Option<Retained<NSArray<NSURL>>>;
 
         /// Setter for [`shareURLs`][Self::shareURLs].
-        #[method(setShareURLs:)]
+        #[unsafe(method(setShareURLs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShareURLs(&self, share_ur_ls: Option<&NSArray<NSURL>>);
 
@@ -56,12 +56,12 @@ extern_methods!(
         /// `NO.`The resulting
         /// `CKShareMetadata`will have a
         /// `rootRecordID`property regardless of the value of this property.
-        #[method(shouldFetchRootRecord)]
+        #[unsafe(method(shouldFetchRootRecord))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldFetchRootRecord(&self) -> bool;
 
         /// Setter for [`shouldFetchRootRecord`][Self::shouldFetchRootRecord].
-        #[method(setShouldFetchRootRecord:)]
+        #[unsafe(method(setShouldFetchRootRecord:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldFetchRootRecord(&self, should_fetch_root_record: bool);
 
@@ -74,13 +74,13 @@ extern_methods!(
         /// `YES.`If nil, declares the entire root record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
         /// Defaults to
         /// `nil.`
-        #[method(rootRecordDesiredKeys)]
+        #[unsafe(method(rootRecordDesiredKeys))]
         #[unsafe(method_family = none)]
         pub unsafe fn rootRecordDesiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`rootRecordDesiredKeys`][Self::rootRecordDesiredKeys].
-        #[method(setRootRecordDesiredKeys:)]
+        #[unsafe(method(setRootRecordDesiredKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRootRecordDesiredKeys(
             &self,
@@ -95,7 +95,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(perShareMetadataBlock)]
+        #[unsafe(method(perShareMetadataBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perShareMetadataBlock(
             &self,
@@ -103,7 +103,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKShareMetadata", feature = "block2"))]
         /// Setter for [`perShareMetadataBlock`][Self::perShareMetadataBlock].
-        #[method(setPerShareMetadataBlock:)]
+        #[unsafe(method(setPerShareMetadataBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerShareMetadataBlock(
             &self,
@@ -131,7 +131,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(fetchShareMetadataCompletionBlock)]
+        #[unsafe(method(fetchShareMetadataCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchShareMetadataCompletionBlock(
             &self,
@@ -139,7 +139,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`fetchShareMetadataCompletionBlock`][Self::fetchShareMetadataCompletionBlock].
-        #[method(setFetchShareMetadataCompletionBlock:)]
+        #[unsafe(method(setFetchShareMetadataCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchShareMetadataCompletionBlock(
             &self,
@@ -152,7 +152,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareMetadataOperation {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

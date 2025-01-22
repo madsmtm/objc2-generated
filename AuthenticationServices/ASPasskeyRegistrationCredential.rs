@@ -40,7 +40,7 @@ extern_methods!(
         /// Parameter `credentialID`: The unique identifier for this passkey.
         ///
         /// Parameter `attestationObject`: The attestation object for this passkey registration result.
-        #[method(initWithRelyingParty:clientDataHash:credentialID:attestationObject:)]
+        #[unsafe(method(initWithRelyingParty:clientDataHash:credentialID:attestationObject:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRelyingParty_clientDataHash_credentialID_attestationObject(
             this: Allocated<Self>,
@@ -62,7 +62,7 @@ extern_methods!(
         /// Parameter `attestationObject`: The attestation object for this passkey registration result.
         ///
         /// Parameter `extensionOutput`: The output of WebAuthn extensions processed by the credential provider.
-        #[method(initWithRelyingParty:clientDataHash:credentialID:attestationObject:extensionOutput:)]
+        #[unsafe(method(initWithRelyingParty:clientDataHash:credentialID:attestationObject:extensionOutput:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRelyingParty_clientDataHash_credentialID_attestationObject_extensionOutput(
             this: Allocated<Self>,
@@ -82,7 +82,7 @@ extern_methods!(
         /// Parameter `credentialID`: The unique identifier for this passkey.
         ///
         /// Parameter `attestationObject`: The attestation object for this passkey registration result.
-        #[method(credentialWithRelyingParty:clientDataHash:credentialID:attestationObject:)]
+        #[unsafe(method(credentialWithRelyingParty:clientDataHash:credentialID:attestationObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn credentialWithRelyingParty_clientDataHash_credentialID_attestationObject(
             relying_party: &NSString,
@@ -92,28 +92,28 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The relying party identifier associated with this passkey.
-        #[method(relyingParty)]
+        #[unsafe(method(relyingParty))]
         #[unsafe(method_family = none)]
         pub unsafe fn relyingParty(&self) -> Retained<NSString>;
 
         /// The hash of the client data for this registration result.
-        #[method(clientDataHash)]
+        #[unsafe(method(clientDataHash))]
         #[unsafe(method_family = none)]
         pub unsafe fn clientDataHash(&self) -> Retained<NSData>;
 
         /// The raw credential identifier of this passkey.
-        #[method(credentialID)]
+        #[unsafe(method(credentialID))]
         #[unsafe(method_family = none)]
         pub unsafe fn credentialID(&self) -> Retained<NSData>;
 
         /// The attestation object for this passkey registration result.
-        #[method(attestationObject)]
+        #[unsafe(method(attestationObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn attestationObject(&self) -> Retained<NSData>;
 
         #[cfg(feature = "ASPasskeyRegistrationCredentialExtensionOutput")]
         /// The outputs for WebAuthn extensions processed by the credential provider.
-        #[method(extensionOutput)]
+        #[unsafe(method(extensionOutput))]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionOutput(
             &self,
@@ -121,7 +121,7 @@ extern_methods!(
 
         #[cfg(feature = "ASPasskeyRegistrationCredentialExtensionOutput")]
         /// Setter for [`extensionOutput`][Self::extensionOutput].
-        #[method(setExtensionOutput:)]
+        #[unsafe(method(setExtensionOutput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtensionOutput(
             &self,
@@ -133,11 +133,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasskeyRegistrationCredential {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

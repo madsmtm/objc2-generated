@@ -21,11 +21,11 @@ unsafe impl NSObjectProtocol for HMAccessoryOwnershipToken {}
 
 extern_methods!(
     unsafe impl HMAccessoryOwnershipToken {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -40,7 +40,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Returns an ownership token object.
-        #[method(initWithData:)]
+        #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Retained<Self>>;
     }
@@ -61,11 +61,11 @@ unsafe impl NSObjectProtocol for HMAccessorySetupPayload {}
 
 extern_methods!(
     unsafe impl HMAccessorySetupPayload {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -76,7 +76,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Returns an accessory setup payload object if successful or nil on error.
-        #[method(initWithURL:)]
+        #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(
             this: Allocated<Self>,
@@ -93,7 +93,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Returns an accessory setup payload object if successful or nil on error.
-        #[method(initWithURL:ownershipToken:)]
+        #[unsafe(method(initWithURL:ownershipToken:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_ownershipToken(
             this: Allocated<Self>,

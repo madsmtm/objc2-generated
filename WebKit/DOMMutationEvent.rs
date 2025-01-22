@@ -62,27 +62,27 @@ extern_methods!(
     unsafe impl DOMMutationEvent {
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(relatedNode)]
+        #[unsafe(method(relatedNode))]
         #[unsafe(method_family = none)]
         pub unsafe fn relatedNode(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
-        #[method(prevValue)]
+        #[unsafe(method(prevValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn prevValue(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method(attrName)]
+        #[unsafe(method(attrName))]
         #[unsafe(method_family = none)]
         pub unsafe fn attrName(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method(attrChange)]
+        #[unsafe(method(attrChange))]
         #[unsafe(method_family = none)]
         pub unsafe fn attrChange(&self) -> c_ushort;
 
         #[cfg(feature = "DOMNode")]
-        #[method(initMutationEvent:canBubble:cancelable:relatedNode:prevValue:newValue:attrName:attrChange:)]
+        #[unsafe(method(initMutationEvent:canBubble:cancelable:relatedNode:prevValue:newValue:attrName:attrChange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn initMutationEvent_canBubble_cancelable_relatedNode_prevValue_newValue_attrName_attrChange(
             &self,
@@ -107,7 +107,7 @@ extern_methods!(
     ))]
     unsafe impl DOMMutationEvent {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -121,7 +121,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMMutationEvent {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -137,7 +137,7 @@ extern_methods!(
     unsafe impl DOMMutationEvent {
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(initMutationEvent::::::::)]
+        #[unsafe(method(initMutationEvent::::::::))]
         #[unsafe(method_family = none)]
         pub unsafe fn initMutationEvent(
             &self,

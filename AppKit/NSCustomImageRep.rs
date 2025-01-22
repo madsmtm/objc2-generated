@@ -32,7 +32,7 @@ extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCustomImageRep {
         #[cfg(feature = "block2")]
-        #[method(initWithSize:flipped:drawingHandler:)]
+        #[unsafe(method(initWithSize:flipped:drawingHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSize_flipped_drawingHandler(
             this: Allocated<Self>,
@@ -42,11 +42,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method(drawingHandler)]
+        #[unsafe(method(drawingHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawingHandler(&self) -> *mut block2::Block<dyn Fn(NSRect) -> Bool>;
 
-        #[method(initWithDrawSelector:delegate:)]
+        #[unsafe(method(initWithDrawSelector:delegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDrawSelector_delegate(
             this: Allocated<Self>,
@@ -54,11 +54,11 @@ extern_methods!(
             delegate: &AnyObject,
         ) -> Retained<Self>;
 
-        #[method(drawSelector)]
+        #[unsafe(method(drawSelector))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawSelector(&self) -> Option<Sel>;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
     }
@@ -68,11 +68,11 @@ extern_methods!(
     /// Methods declared on superclass `NSImageRep`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCustomImageRep {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -85,7 +85,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCustomImageRep {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

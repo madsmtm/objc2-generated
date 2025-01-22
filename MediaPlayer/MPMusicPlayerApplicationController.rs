@@ -18,16 +18,16 @@ unsafe impl NSObjectProtocol for MPMusicPlayerControllerQueue {}
 
 extern_methods!(
     unsafe impl MPMusicPlayerControllerQueue {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
-        #[method(items)]
+        #[unsafe(method(items))]
         #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<MPMediaItem>>;
     }
@@ -49,7 +49,7 @@ extern_methods!(
             feature = "MPMediaItem",
             feature = "MPMusicPlayerQueueDescriptor"
         ))]
-        #[method(insertQueueDescriptor:afterItem:)]
+        #[unsafe(method(insertQueueDescriptor:afterItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertQueueDescriptor_afterItem(
             &self,
@@ -58,7 +58,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
-        #[method(removeItem:)]
+        #[unsafe(method(removeItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeItem(&self, item: &MPMediaItem);
     }
@@ -67,11 +67,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPMusicPlayerControllerQueue`
     unsafe impl MPMusicPlayerControllerMutableQueue {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -95,7 +95,7 @@ extern_methods!(
     #[cfg(feature = "MPMusicPlayerController")]
     unsafe impl MPMusicPlayerApplicationController {
         #[cfg(feature = "block2")]
-        #[method(performQueueTransaction:completionHandler:)]
+        #[unsafe(method(performQueueTransaction:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performQueueTransaction_completionHandler(
             &self,
@@ -111,11 +111,11 @@ extern_methods!(
     /// Methods declared on superclass `MPMusicPlayerController`
     #[cfg(feature = "MPMusicPlayerController")]
     unsafe impl MPMusicPlayerApplicationController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

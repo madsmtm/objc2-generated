@@ -26,14 +26,14 @@ unsafe impl NSSecureCoding for ILCallCommunication {}
 extern_methods!(
     #[cfg(feature = "ILCommunication")]
     unsafe impl ILCallCommunication {
-        #[method(isEqualToCallCommunication:)]
+        #[unsafe(method(isEqualToCallCommunication:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToCallCommunication(
             &self,
             communication: &ILCallCommunication,
         ) -> bool;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -43,7 +43,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "ILCommunication")]
     unsafe impl ILCallCommunication {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

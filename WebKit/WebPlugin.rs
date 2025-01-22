@@ -16,7 +16,7 @@ extern_category!(
         ///
         /// This method must be only called once per instance of the plug-in
         /// object and must be called before any other methods in this protocol.
-        #[method(webPlugInInitialize)]
+        #[unsafe(method(webPlugInInitialize))]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInInitialize(&self);
 
@@ -27,7 +27,7 @@ extern_category!(
         /// This method may called more than once, provided that the application has
         /// already called webPlugInInitialize and that each call to webPlugInStart is followed
         /// by a call to webPlugInStop.
-        #[method(webPlugInStart)]
+        #[unsafe(method(webPlugInStart))]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInStart(&self);
 
@@ -37,7 +37,7 @@ extern_category!(
         /// called more than once, provided that the application has already called
         /// webPlugInInitialize and that each call to webPlugInStop is preceded by a call to
         /// webPlugInStart.
-        #[method(webPlugInStop)]
+        #[unsafe(method(webPlugInStop))]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInStop(&self);
 
@@ -48,13 +48,13 @@ extern_category!(
         /// it in this mehthod.  This method must be only called once per instance of the
         /// plug-in object.  No other methods in this interface may be called after the
         /// application has called webPlugInDestroy.
-        #[method(webPlugInDestroy)]
+        #[unsafe(method(webPlugInDestroy))]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInDestroy(&self);
 
         /// Informs the plug-in whether or not it is selected.  This is typically
         /// used to allow the plug-in to alter it's appearance when selected.
-        #[method(webPlugInSetIsSelected:)]
+        #[unsafe(method(webPlugInSetIsSelected:))]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInSetIsSelected(&self, is_selected: bool);
 
@@ -64,7 +64,7 @@ extern_category!(
         ///
         /// Returns: Returns the object that exposes the plug-in's interface.  The class of this
         /// object can implement methods from the WebScripting informal protocol.
-        #[method(objectForWebScript)]
+        #[unsafe(method(objectForWebScript))]
         #[unsafe(method_family = none)]
         unsafe fn objectForWebScript(&self) -> Option<Retained<AnyObject>>;
 
@@ -73,7 +73,7 @@ extern_category!(
         ///
         /// This method is only sent to the plug-in if the
         /// WebPlugInShouldLoadMainResourceKey argument passed to the plug-in was NO.
-        #[method(webPlugInMainResourceDidReceiveResponse:)]
+        #[unsafe(method(webPlugInMainResourceDidReceiveResponse:))]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInMainResourceDidReceiveResponse(&self, response: Option<&NSURLResponse>);
 
@@ -82,7 +82,7 @@ extern_category!(
         ///
         /// This method is only sent to the plug-in if the
         /// WebPlugInShouldLoadMainResourceKey argument passed to the plug-in was NO.
-        #[method(webPlugInMainResourceDidReceiveData:)]
+        #[unsafe(method(webPlugInMainResourceDidReceiveData:))]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInMainResourceDidReceiveData(&self, data: Option<&NSData>);
 
@@ -91,7 +91,7 @@ extern_category!(
         ///
         /// This method is only sent to the plug-in if the
         /// WebPlugInShouldLoadMainResourceKey argument passed to the plug-in was NO.
-        #[method(webPlugInMainResourceDidFailWithError:)]
+        #[unsafe(method(webPlugInMainResourceDidFailWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInMainResourceDidFailWithError(&self, error: Option<&NSError>);
 
@@ -100,7 +100,7 @@ extern_category!(
         ///
         /// This method is only sent to the plug-in if the
         /// WebPlugInShouldLoadMainResourceKey argument passed to the plug-in was NO.
-        #[method(webPlugInMainResourceDidFinishLoading)]
+        #[unsafe(method(webPlugInMainResourceDidFinishLoading))]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInMainResourceDidFinishLoading(&self);
     }

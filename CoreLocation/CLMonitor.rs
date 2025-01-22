@@ -23,23 +23,23 @@ unsafe impl NSObjectProtocol for CLMonitor {}
 extern_methods!(
     unsafe impl CLMonitor {
         #[cfg(all(feature = "CLMonitorConfiguration", feature = "block2"))]
-        #[method(requestMonitorWithConfiguration:completion:)]
+        #[unsafe(method(requestMonitorWithConfiguration:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestMonitorWithConfiguration_completion(
             config: &CLMonitorConfiguration,
             completion_handler: &block2::Block<dyn Fn(NonNull<CLMonitor>)>,
         );
 
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method(monitoredIdentifiers)]
+        #[unsafe(method(monitoredIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn monitoredIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "CLCondition")]
-        #[method(addConditionForMonitoring:identifier:)]
+        #[unsafe(method(addConditionForMonitoring:identifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addConditionForMonitoring_identifier(
             &self,
@@ -48,7 +48,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CLCondition", feature = "CLMonitoringEvent"))]
-        #[method(addConditionForMonitoring:identifier:assumedState:)]
+        #[unsafe(method(addConditionForMonitoring:identifier:assumedState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addConditionForMonitoring_identifier_assumedState(
             &self,
@@ -57,23 +57,23 @@ extern_methods!(
             state: CLMonitoringState,
         );
 
-        #[method(removeConditionFromMonitoringWithIdentifier:)]
+        #[unsafe(method(removeConditionFromMonitoringWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeConditionFromMonitoringWithIdentifier(&self, identifier: &NSString);
 
         #[cfg(feature = "CLMonitoringRecord")]
-        #[method(monitoringRecordForIdentifier:)]
+        #[unsafe(method(monitoringRecordForIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn monitoringRecordForIdentifier(
             &self,
             identifier: &NSString,
         ) -> Option<Retained<CLMonitoringRecord>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

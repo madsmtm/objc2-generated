@@ -39,188 +39,188 @@ unsafe impl NSObjectProtocol for NSArrayController {}
 extern_methods!(
     #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSArrayController {
-        #[method(rearrangeObjects)]
+        #[unsafe(method(rearrangeObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn rearrangeObjects(&self);
 
-        #[method(automaticallyRearrangesObjects)]
+        #[unsafe(method(automaticallyRearrangesObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticallyRearrangesObjects(&self) -> bool;
 
         /// Setter for [`automaticallyRearrangesObjects`][Self::automaticallyRearrangesObjects].
-        #[method(setAutomaticallyRearrangesObjects:)]
+        #[unsafe(method(setAutomaticallyRearrangesObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyRearrangesObjects(
             &self,
             automatically_rearranges_objects: bool,
         );
 
-        #[method(automaticRearrangementKeyPaths)]
+        #[unsafe(method(automaticRearrangementKeyPaths))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticRearrangementKeyPaths(&self) -> Option<Retained<NSArray<NSString>>>;
 
-        #[method(didChangeArrangementCriteria)]
+        #[unsafe(method(didChangeArrangementCriteria))]
         #[unsafe(method_family = none)]
         pub unsafe fn didChangeArrangementCriteria(&self);
 
-        #[method(sortDescriptors)]
+        #[unsafe(method(sortDescriptors))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptors(&self) -> Retained<NSArray<NSSortDescriptor>>;
 
         /// Setter for [`sortDescriptors`][Self::sortDescriptors].
-        #[method(setSortDescriptors:)]
+        #[unsafe(method(setSortDescriptors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
-        #[method(filterPredicate)]
+        #[unsafe(method(filterPredicate))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterPredicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`filterPredicate`][Self::filterPredicate].
-        #[method(setFilterPredicate:)]
+        #[unsafe(method(setFilterPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilterPredicate(&self, filter_predicate: Option<&NSPredicate>);
 
-        #[method(clearsFilterPredicateOnInsertion)]
+        #[unsafe(method(clearsFilterPredicateOnInsertion))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearsFilterPredicateOnInsertion(&self) -> bool;
 
         /// Setter for [`clearsFilterPredicateOnInsertion`][Self::clearsFilterPredicateOnInsertion].
-        #[method(setClearsFilterPredicateOnInsertion:)]
+        #[unsafe(method(setClearsFilterPredicateOnInsertion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClearsFilterPredicateOnInsertion(
             &self,
             clears_filter_predicate_on_insertion: bool,
         );
 
-        #[method(arrangeObjects:)]
+        #[unsafe(method(arrangeObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn arrangeObjects(&self, objects: &NSArray) -> Retained<NSArray>;
 
-        #[method(arrangedObjects)]
+        #[unsafe(method(arrangedObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn arrangedObjects(&self) -> Retained<AnyObject>;
 
-        #[method(avoidsEmptySelection)]
+        #[unsafe(method(avoidsEmptySelection))]
         #[unsafe(method_family = none)]
         pub unsafe fn avoidsEmptySelection(&self) -> bool;
 
         /// Setter for [`avoidsEmptySelection`][Self::avoidsEmptySelection].
-        #[method(setAvoidsEmptySelection:)]
+        #[unsafe(method(setAvoidsEmptySelection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAvoidsEmptySelection(&self, avoids_empty_selection: bool);
 
-        #[method(preservesSelection)]
+        #[unsafe(method(preservesSelection))]
         #[unsafe(method_family = none)]
         pub unsafe fn preservesSelection(&self) -> bool;
 
         /// Setter for [`preservesSelection`][Self::preservesSelection].
-        #[method(setPreservesSelection:)]
+        #[unsafe(method(setPreservesSelection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreservesSelection(&self, preserves_selection: bool);
 
-        #[method(selectsInsertedObjects)]
+        #[unsafe(method(selectsInsertedObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectsInsertedObjects(&self) -> bool;
 
         /// Setter for [`selectsInsertedObjects`][Self::selectsInsertedObjects].
-        #[method(setSelectsInsertedObjects:)]
+        #[unsafe(method(setSelectsInsertedObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectsInsertedObjects(&self, selects_inserted_objects: bool);
 
-        #[method(alwaysUsesMultipleValuesMarker)]
+        #[unsafe(method(alwaysUsesMultipleValuesMarker))]
         #[unsafe(method_family = none)]
         pub unsafe fn alwaysUsesMultipleValuesMarker(&self) -> bool;
 
         /// Setter for [`alwaysUsesMultipleValuesMarker`][Self::alwaysUsesMultipleValuesMarker].
-        #[method(setAlwaysUsesMultipleValuesMarker:)]
+        #[unsafe(method(setAlwaysUsesMultipleValuesMarker:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlwaysUsesMultipleValuesMarker(
             &self,
             always_uses_multiple_values_marker: bool,
         );
 
-        #[method(setSelectionIndexes:)]
+        #[unsafe(method(setSelectionIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionIndexes(&self, indexes: &NSIndexSet) -> bool;
 
-        #[method(selectionIndexes)]
+        #[unsafe(method(selectionIndexes))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectionIndexes(&self) -> Retained<NSIndexSet>;
 
-        #[method(setSelectionIndex:)]
+        #[unsafe(method(setSelectionIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionIndex(&self, index: NSUInteger) -> bool;
 
-        #[method(selectionIndex)]
+        #[unsafe(method(selectionIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectionIndex(&self) -> NSUInteger;
 
-        #[method(addSelectionIndexes:)]
+        #[unsafe(method(addSelectionIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSelectionIndexes(&self, indexes: &NSIndexSet) -> bool;
 
-        #[method(removeSelectionIndexes:)]
+        #[unsafe(method(removeSelectionIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeSelectionIndexes(&self, indexes: &NSIndexSet) -> bool;
 
-        #[method(setSelectedObjects:)]
+        #[unsafe(method(setSelectedObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedObjects(&self, objects: &NSArray) -> bool;
 
-        #[method(selectedObjects)]
+        #[unsafe(method(selectedObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedObjects(&self) -> Retained<NSArray>;
 
-        #[method(addSelectedObjects:)]
+        #[unsafe(method(addSelectedObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSelectedObjects(&self, objects: &NSArray) -> bool;
 
-        #[method(removeSelectedObjects:)]
+        #[unsafe(method(removeSelectedObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeSelectedObjects(&self, objects: &NSArray) -> bool;
 
-        #[method(add:)]
+        #[unsafe(method(add:))]
         #[unsafe(method_family = none)]
         pub unsafe fn add(&self, sender: Option<&AnyObject>);
 
-        #[method(remove:)]
+        #[unsafe(method(remove:))]
         #[unsafe(method_family = none)]
         pub unsafe fn remove(&self, sender: Option<&AnyObject>);
 
-        #[method(insert:)]
+        #[unsafe(method(insert:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insert(&self, sender: Option<&AnyObject>);
 
-        #[method(canInsert)]
+        #[unsafe(method(canInsert))]
         #[unsafe(method_family = none)]
         pub unsafe fn canInsert(&self) -> bool;
 
-        #[method(selectNext:)]
+        #[unsafe(method(selectNext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectNext(&self, sender: Option<&AnyObject>);
 
-        #[method(selectPrevious:)]
+        #[unsafe(method(selectPrevious:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectPrevious(&self, sender: Option<&AnyObject>);
 
-        #[method(canSelectNext)]
+        #[unsafe(method(canSelectNext))]
         #[unsafe(method_family = none)]
         pub unsafe fn canSelectNext(&self) -> bool;
 
-        #[method(canSelectPrevious)]
+        #[unsafe(method(canSelectPrevious))]
         #[unsafe(method_family = none)]
         pub unsafe fn canSelectPrevious(&self) -> bool;
 
-        #[method(addObject:)]
+        #[unsafe(method(addObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObject(&self, object: &AnyObject);
 
-        #[method(addObjects:)]
+        #[unsafe(method(addObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObjects(&self, objects: &NSArray);
 
-        #[method(insertObject:atArrangedObjectIndex:)]
+        #[unsafe(method(insertObject:atArrangedObjectIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertObject_atArrangedObjectIndex(
             &self,
@@ -228,7 +228,7 @@ extern_methods!(
             index: NSUInteger,
         );
 
-        #[method(insertObjects:atArrangedObjectIndexes:)]
+        #[unsafe(method(insertObjects:atArrangedObjectIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertObjects_atArrangedObjectIndexes(
             &self,
@@ -236,19 +236,19 @@ extern_methods!(
             indexes: &NSIndexSet,
         );
 
-        #[method(removeObjectAtArrangedObjectIndex:)]
+        #[unsafe(method(removeObjectAtArrangedObjectIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObjectAtArrangedObjectIndex(&self, index: NSUInteger);
 
-        #[method(removeObjectsAtArrangedObjectIndexes:)]
+        #[unsafe(method(removeObjectsAtArrangedObjectIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObjectsAtArrangedObjectIndexes(&self, indexes: &NSIndexSet);
 
-        #[method(removeObject:)]
+        #[unsafe(method(removeObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObject(&self, object: &AnyObject);
 
-        #[method(removeObjects:)]
+        #[unsafe(method(removeObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObjects(&self, objects: &NSArray);
     }
@@ -258,14 +258,14 @@ extern_methods!(
     /// Methods declared on superclass `NSObjectController`
     #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSArrayController {
-        #[method(initWithContent:)]
+        #[unsafe(method(initWithContent:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(
             this: Allocated<Self>,
             content: Option<&AnyObject>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -278,7 +278,7 @@ extern_methods!(
     /// Methods declared on superclass `NSController`
     #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSArrayController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -288,7 +288,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSArrayController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

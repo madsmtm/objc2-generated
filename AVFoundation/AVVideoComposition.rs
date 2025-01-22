@@ -85,7 +85,7 @@ extern_methods!(
         ///
         /// If the specified asset has no video tracks, this method will return an AVVideoComposition instance with an empty collection of instructions.
         #[deprecated = "Use videoCompositionWithPropertiesOfAsset:completionHandler: instead"]
-        #[method(videoCompositionWithPropertiesOfAsset:)]
+        #[unsafe(method(videoCompositionWithPropertiesOfAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset(
             asset: &AVAsset,
@@ -107,7 +107,7 @@ extern_methods!(
         /// - A nil animationTool.
         ///
         /// If the specified asset has no video tracks, this method will return an AVVideoComposition instance with an empty collection of instructions.
-        #[method(videoCompositionWithPropertiesOfAsset:completionHandler:)]
+        #[unsafe(method(videoCompositionWithPropertiesOfAsset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_completionHandler(
             asset: &AVAsset,
@@ -115,42 +115,42 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVVideoCompositing")]
-        #[method(customVideoCompositorClass)]
+        #[unsafe(method(customVideoCompositorClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn customVideoCompositorClass(&self) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(frameDuration)]
+        #[unsafe(method(frameDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(sourceTrackIDForFrameTiming)]
+        #[unsafe(method(sourceTrackIDForFrameTiming))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceTrackIDForFrameTiming(&self) -> CMPersistentTrackID;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(renderSize)]
+        #[unsafe(method(renderSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderSize(&self) -> CGSize;
 
-        #[method(renderScale)]
+        #[unsafe(method(renderScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderScale(&self) -> c_float;
 
         #[cfg(feature = "AVVideoCompositing")]
-        #[method(instructions)]
+        #[unsafe(method(instructions))]
         #[unsafe(method_family = none)]
         pub unsafe fn instructions(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn AVVideoCompositionInstructionProtocol>>>;
 
-        #[method(animationTool)]
+        #[unsafe(method(animationTool))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationTool(&self)
             -> Option<Retained<AVVideoCompositionCoreAnimationTool>>;
 
-        #[method(sourceSampleDataTrackIDs)]
+        #[unsafe(method(sourceSampleDataTrackIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceSampleDataTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
     }
@@ -159,11 +159,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVVideoComposition {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -172,19 +172,19 @@ extern_methods!(
 extern_methods!(
     /// AVVideoCompositionColorimetery
     unsafe impl AVVideoComposition {
-        #[method(colorPrimaries)]
+        #[unsafe(method(colorPrimaries))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorPrimaries(&self) -> Option<Retained<NSString>>;
 
-        #[method(colorYCbCrMatrix)]
+        #[unsafe(method(colorYCbCrMatrix))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorYCbCrMatrix(&self) -> Option<Retained<NSString>>;
 
-        #[method(colorTransferFunction)]
+        #[unsafe(method(colorTransferFunction))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorTransferFunction(&self) -> Option<Retained<NSString>>;
 
-        #[method(perFrameHDRDisplayMetadataPolicy)]
+        #[unsafe(method(perFrameHDRDisplayMetadataPolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn perFrameHDRDisplayMetadataPolicy(
             &self,
@@ -236,7 +236,7 @@ extern_methods!(
         /// [request finishWithError:err];
         /// }];
         #[deprecated = "Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler: instead"]
-        #[method(videoCompositionWithAsset:applyingCIFiltersWithHandler:)]
+        #[unsafe(method(videoCompositionWithAsset:applyingCIFiltersWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler(
             asset: &AVAsset,
@@ -290,7 +290,7 @@ extern_methods!(
         /// else {
         /// // handle error
         /// }];
-        #[method(videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:)]
+        #[unsafe(method(videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler(
             asset: &AVAsset,
@@ -323,7 +323,7 @@ unsafe impl NSObjectProtocol for AVMutableVideoComposition {}
 
 extern_methods!(
     unsafe impl AVMutableVideoComposition {
-        #[method(videoComposition)]
+        #[unsafe(method(videoComposition))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoComposition() -> Retained<AVMutableVideoComposition>;
 
@@ -344,7 +344,7 @@ extern_methods!(
         ///
         /// If the specified asset has no video tracks, this method will return an AVMutableVideoComposition instance with an empty collection of instructions.
         #[deprecated = "Use videoCompositionWithPropertiesOfAsset:completionHandler: instead"]
-        #[method(videoCompositionWithPropertiesOfAsset:)]
+        #[unsafe(method(videoCompositionWithPropertiesOfAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset(
             asset: &AVAsset,
@@ -366,7 +366,7 @@ extern_methods!(
         /// - A nil animationTool.
         ///
         /// If the specified asset has no video tracks, this method will return an AVMutableVideoComposition instance with an empty collection of instructions.
-        #[method(videoCompositionWithPropertiesOfAsset:completionHandler:)]
+        #[unsafe(method(videoCompositionWithPropertiesOfAsset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_completionHandler(
             asset: &AVAsset,
@@ -391,7 +391,7 @@ extern_methods!(
         /// myPrototypeInstruction.backgroundColor = myCGColorRef; // Do not use constant CGColorRef colors here.
         /// myVideoComposition = [AVVideoComposition videoCompositionWithPropertiesOfAsset:myAsset prototypeInstruction:myPrototypeInstruction];
         #[deprecated = "Use videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler: instead"]
-        #[method(videoCompositionWithPropertiesOfAsset:prototypeInstruction:)]
+        #[unsafe(method(videoCompositionWithPropertiesOfAsset:prototypeInstruction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_prototypeInstruction(
             asset: &AVAsset,
@@ -420,7 +420,7 @@ extern_methods!(
         /// // handle error
         /// }
         /// }];
-        #[method(videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler:)]
+        #[unsafe(method(videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_prototypeInstruction_completionHandler(
             asset: &AVAsset,
@@ -431,13 +431,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVVideoCompositing")]
-        #[method(customVideoCompositorClass)]
+        #[unsafe(method(customVideoCompositorClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn customVideoCompositorClass(&self) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "AVVideoCompositing")]
         /// Setter for [`customVideoCompositorClass`][Self::customVideoCompositorClass].
-        #[method(setCustomVideoCompositorClass:)]
+        #[unsafe(method(setCustomVideoCompositorClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomVideoCompositorClass(
             &self,
@@ -445,24 +445,24 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(frameDuration)]
+        #[unsafe(method(frameDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`frameDuration`][Self::frameDuration].
-        #[method(setFrameDuration:)]
+        #[unsafe(method(setFrameDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFrameDuration(&self, frame_duration: CMTime);
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(sourceTrackIDForFrameTiming)]
+        #[unsafe(method(sourceTrackIDForFrameTiming))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceTrackIDForFrameTiming(&self) -> CMPersistentTrackID;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`sourceTrackIDForFrameTiming`][Self::sourceTrackIDForFrameTiming].
-        #[method(setSourceTrackIDForFrameTiming:)]
+        #[unsafe(method(setSourceTrackIDForFrameTiming:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceTrackIDForFrameTiming(
             &self,
@@ -470,27 +470,27 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(renderSize)]
+        #[unsafe(method(renderSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`renderSize`][Self::renderSize].
-        #[method(setRenderSize:)]
+        #[unsafe(method(setRenderSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRenderSize(&self, render_size: CGSize);
 
-        #[method(renderScale)]
+        #[unsafe(method(renderScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderScale(&self) -> c_float;
 
         /// Setter for [`renderScale`][Self::renderScale].
-        #[method(setRenderScale:)]
+        #[unsafe(method(setRenderScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRenderScale(&self, render_scale: c_float);
 
         #[cfg(feature = "AVVideoCompositing")]
-        #[method(instructions)]
+        #[unsafe(method(instructions))]
         #[unsafe(method_family = none)]
         pub unsafe fn instructions(
             &self,
@@ -498,32 +498,32 @@ extern_methods!(
 
         #[cfg(feature = "AVVideoCompositing")]
         /// Setter for [`instructions`][Self::instructions].
-        #[method(setInstructions:)]
+        #[unsafe(method(setInstructions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstructions(
             &self,
             instructions: &NSArray<ProtocolObject<dyn AVVideoCompositionInstructionProtocol>>,
         );
 
-        #[method(animationTool)]
+        #[unsafe(method(animationTool))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationTool(&self)
             -> Option<Retained<AVVideoCompositionCoreAnimationTool>>;
 
         /// Setter for [`animationTool`][Self::animationTool].
-        #[method(setAnimationTool:)]
+        #[unsafe(method(setAnimationTool:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationTool(
             &self,
             animation_tool: Option<&AVVideoCompositionCoreAnimationTool>,
         );
 
-        #[method(sourceSampleDataTrackIDs)]
+        #[unsafe(method(sourceSampleDataTrackIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceSampleDataTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`sourceSampleDataTrackIDs`][Self::sourceSampleDataTrackIDs].
-        #[method(setSourceSampleDataTrackIDs:)]
+        #[unsafe(method(setSourceSampleDataTrackIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceSampleDataTrackIDs(
             &self,
@@ -535,11 +535,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMutableVideoComposition {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -548,41 +548,41 @@ extern_methods!(
 extern_methods!(
     /// AVMutableVideoCompositionColorimetery
     unsafe impl AVMutableVideoComposition {
-        #[method(colorPrimaries)]
+        #[unsafe(method(colorPrimaries))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorPrimaries(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`colorPrimaries`][Self::colorPrimaries].
-        #[method(setColorPrimaries:)]
+        #[unsafe(method(setColorPrimaries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorPrimaries(&self, color_primaries: Option<&NSString>);
 
-        #[method(colorYCbCrMatrix)]
+        #[unsafe(method(colorYCbCrMatrix))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorYCbCrMatrix(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`colorYCbCrMatrix`][Self::colorYCbCrMatrix].
-        #[method(setColorYCbCrMatrix:)]
+        #[unsafe(method(setColorYCbCrMatrix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorYCbCrMatrix(&self, color_y_cb_cr_matrix: Option<&NSString>);
 
-        #[method(colorTransferFunction)]
+        #[unsafe(method(colorTransferFunction))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorTransferFunction(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`colorTransferFunction`][Self::colorTransferFunction].
-        #[method(setColorTransferFunction:)]
+        #[unsafe(method(setColorTransferFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorTransferFunction(&self, color_transfer_function: Option<&NSString>);
 
-        #[method(perFrameHDRDisplayMetadataPolicy)]
+        #[unsafe(method(perFrameHDRDisplayMetadataPolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn perFrameHDRDisplayMetadataPolicy(
             &self,
         ) -> Retained<AVVideoCompositionPerFrameHDRDisplayMetadataPolicy>;
 
         /// Setter for [`perFrameHDRDisplayMetadataPolicy`][Self::perFrameHDRDisplayMetadataPolicy].
-        #[method(setPerFrameHDRDisplayMetadataPolicy:)]
+        #[unsafe(method(setPerFrameHDRDisplayMetadataPolicy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerFrameHDRDisplayMetadataPolicy(
             &self,
@@ -633,7 +633,7 @@ extern_methods!(
         /// [request finishWithError:err];
         /// }];
         #[deprecated = "Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler: instead"]
-        #[method(videoCompositionWithAsset:applyingCIFiltersWithHandler:)]
+        #[unsafe(method(videoCompositionWithAsset:applyingCIFiltersWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler(
             asset: &AVAsset,
@@ -685,7 +685,7 @@ extern_methods!(
         /// else {
         /// // handle error
         /// }];
-        #[method(videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:)]
+        #[unsafe(method(videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler(
             asset: &AVAsset,
@@ -728,35 +728,35 @@ unsafe impl NSSecureCoding for AVVideoCompositionInstruction {}
 extern_methods!(
     unsafe impl AVVideoCompositionInstruction {
         #[cfg(feature = "objc2-core-media")]
-        #[method(timeRange)]
+        #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(backgroundColor)]
+        #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<CGColor>>;
 
-        #[method(layerInstructions)]
+        #[unsafe(method(layerInstructions))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerInstructions(
             &self,
         ) -> Retained<NSArray<AVVideoCompositionLayerInstruction>>;
 
-        #[method(enablePostProcessing)]
+        #[unsafe(method(enablePostProcessing))]
         #[unsafe(method_family = none)]
         pub unsafe fn enablePostProcessing(&self) -> bool;
 
-        #[method(requiredSourceTrackIDs)]
+        #[unsafe(method(requiredSourceTrackIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiredSourceTrackIDs(&self) -> Retained<NSArray<NSValue>>;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(passthroughTrackID)]
+        #[unsafe(method(passthroughTrackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn passthroughTrackID(&self) -> CMPersistentTrackID;
 
-        #[method(requiredSourceSampleDataTrackIDs)]
+        #[unsafe(method(requiredSourceSampleDataTrackIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiredSourceSampleDataTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
     }
@@ -765,11 +765,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVVideoCompositionInstruction {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -805,61 +805,61 @@ unsafe impl NSSecureCoding for AVMutableVideoCompositionInstruction {}
 
 extern_methods!(
     unsafe impl AVMutableVideoCompositionInstruction {
-        #[method(videoCompositionInstruction)]
+        #[unsafe(method(videoCompositionInstruction))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionInstruction() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(timeRange)]
+        #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`timeRange`][Self::timeRange].
-        #[method(setTimeRange:)]
+        #[unsafe(method(setTimeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeRange(&self, time_range: CMTimeRange);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(backgroundColor)]
+        #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
-        #[method(setBackgroundColor:)]
+        #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&CGColor>);
 
-        #[method(layerInstructions)]
+        #[unsafe(method(layerInstructions))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerInstructions(
             &self,
         ) -> Retained<NSArray<AVVideoCompositionLayerInstruction>>;
 
         /// Setter for [`layerInstructions`][Self::layerInstructions].
-        #[method(setLayerInstructions:)]
+        #[unsafe(method(setLayerInstructions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLayerInstructions(
             &self,
             layer_instructions: &NSArray<AVVideoCompositionLayerInstruction>,
         );
 
-        #[method(enablePostProcessing)]
+        #[unsafe(method(enablePostProcessing))]
         #[unsafe(method_family = none)]
         pub unsafe fn enablePostProcessing(&self) -> bool;
 
         /// Setter for [`enablePostProcessing`][Self::enablePostProcessing].
-        #[method(setEnablePostProcessing:)]
+        #[unsafe(method(setEnablePostProcessing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnablePostProcessing(&self, enable_post_processing: bool);
 
-        #[method(requiredSourceSampleDataTrackIDs)]
+        #[unsafe(method(requiredSourceSampleDataTrackIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiredSourceSampleDataTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`requiredSourceSampleDataTrackIDs`][Self::requiredSourceSampleDataTrackIDs].
-        #[method(setRequiredSourceSampleDataTrackIDs:)]
+        #[unsafe(method(setRequiredSourceSampleDataTrackIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiredSourceSampleDataTrackIDs(
             &self,
@@ -871,11 +871,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMutableVideoCompositionInstruction {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -909,12 +909,12 @@ unsafe impl NSSecureCoding for AVVideoCompositionLayerInstruction {}
 extern_methods!(
     unsafe impl AVVideoCompositionLayerInstruction {
         #[cfg(feature = "objc2-core-media")]
-        #[method(trackID)]
+        #[unsafe(method(trackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
-        #[method(getTransformRampForTime:startTransform:endTransform:timeRange:)]
+        #[unsafe(method(getTransformRampForTime:startTransform:endTransform:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getTransformRampForTime_startTransform_endTransform_timeRange(
             &self,
@@ -925,7 +925,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(getOpacityRampForTime:startOpacity:endOpacity:timeRange:)]
+        #[unsafe(method(getOpacityRampForTime:startOpacity:endOpacity:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getOpacityRampForTime_startOpacity_endOpacity_timeRange(
             &self,
@@ -936,7 +936,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
-        #[method(getCropRectangleRampForTime:startCropRectangle:endCropRectangle:timeRange:)]
+        #[unsafe(method(getCropRectangleRampForTime:startCropRectangle:endCropRectangle:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCropRectangleRampForTime_startCropRectangle_endCropRectangle_timeRange(
             &self,
@@ -951,11 +951,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVVideoCompositionLayerInstruction {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -989,29 +989,29 @@ unsafe impl NSSecureCoding for AVMutableVideoCompositionLayerInstruction {}
 extern_methods!(
     unsafe impl AVMutableVideoCompositionLayerInstruction {
         #[cfg(feature = "AVAssetTrack")]
-        #[method(videoCompositionLayerInstructionWithAssetTrack:)]
+        #[unsafe(method(videoCompositionLayerInstructionWithAssetTrack:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionLayerInstructionWithAssetTrack(
             track: &AVAssetTrack,
         ) -> Retained<Self>;
 
-        #[method(videoCompositionLayerInstruction)]
+        #[unsafe(method(videoCompositionLayerInstruction))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionLayerInstruction() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(trackID)]
+        #[unsafe(method(trackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`trackID`][Self::trackID].
-        #[method(setTrackID:)]
+        #[unsafe(method(setTrackID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrackID(&self, track_id: CMPersistentTrackID);
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
-        #[method(setTransformRampFromStartTransform:toEndTransform:timeRange:)]
+        #[unsafe(method(setTransformRampFromStartTransform:toEndTransform:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransformRampFromStartTransform_toEndTransform_timeRange(
             &self,
@@ -1021,12 +1021,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
-        #[method(setTransform:atTime:)]
+        #[unsafe(method(setTransform:atTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransform_atTime(&self, transform: CGAffineTransform, time: CMTime);
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(setOpacityRampFromStartOpacity:toEndOpacity:timeRange:)]
+        #[unsafe(method(setOpacityRampFromStartOpacity:toEndOpacity:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOpacityRampFromStartOpacity_toEndOpacity_timeRange(
             &self,
@@ -1036,12 +1036,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(setOpacity:atTime:)]
+        #[unsafe(method(setOpacity:atTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOpacity_atTime(&self, opacity: c_float, time: CMTime);
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
-        #[method(setCropRectangleRampFromStartCropRectangle:toEndCropRectangle:timeRange:)]
+        #[unsafe(method(setCropRectangleRampFromStartCropRectangle:toEndCropRectangle:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCropRectangleRampFromStartCropRectangle_toEndCropRectangle_timeRange(
             &self,
@@ -1051,7 +1051,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
-        #[method(setCropRectangle:atTime:)]
+        #[unsafe(method(setCropRectangle:atTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCropRectangle_atTime(&self, crop_rectangle: CGRect, time: CMTime);
     }
@@ -1060,11 +1060,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMutableVideoCompositionLayerInstruction {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1102,7 +1102,7 @@ extern_methods!(
         /// -contentsAreFlipped method). It may be required to insert a CALayer with its geometryFlipped property set
         /// to YES in the layer hierarchy to get the same result when attaching a CALayer to a AVVideoCompositionCoreAnimationTool
         /// as when using it to back a UIView.
-        #[method(videoCompositionCoreAnimationToolWithAdditionalLayer:asTrackID:)]
+        #[unsafe(method(videoCompositionCoreAnimationToolWithAdditionalLayer:asTrackID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionCoreAnimationToolWithAdditionalLayer_asTrackID(
             layer: &CALayer,
@@ -1120,7 +1120,7 @@ extern_methods!(
         /// -contentsAreFlipped method). It may be required to insert a CALayer with its geometryFlipped property set
         /// to YES in the layer hierarchy to get the same result when attaching a CALayer to a AVVideoCompositionCoreAnimationTool
         /// as when using it to back a UIView.
-        #[method(videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:inLayer:)]
+        #[unsafe(method(videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:inLayer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer_inLayer(
             video_layer: &CALayer,
@@ -1138,7 +1138,7 @@ extern_methods!(
         /// -contentsAreFlipped method). It may be required to insert a CALayer with its geometryFlipped property set
         /// to YES in the layer hierarchy to get the same result when attaching a CALayer to a AVVideoCompositionCoreAnimationTool
         /// as when using it to back a UIView.
-        #[method(videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayers:inLayer:)]
+        #[unsafe(method(videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayers:inLayer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayers_inLayer(
             video_layers: &NSArray<CALayer>,
@@ -1150,11 +1150,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVVideoCompositionCoreAnimationTool {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1166,7 +1166,7 @@ extern_methods!(
     unsafe impl AVAsset {
         #[cfg(feature = "objc2-core-media")]
         #[deprecated = "Use findUnusedTrackIDWithCompletionHandler: instead"]
-        #[method(unusedTrackID)]
+        #[unsafe(method(unusedTrackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn unusedTrackID(&self) -> CMPersistentTrackID;
 
@@ -1174,7 +1174,7 @@ extern_methods!(
         /// Loads a track ID that will not collide with any existing track
         ///
         /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending the track ID or an error.
-        #[method(findUnusedTrackIDWithCompletionHandler:)]
+        #[unsafe(method(findUnusedTrackIDWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findUnusedTrackIDWithCompletionHandler(
             &self,
@@ -1200,7 +1200,7 @@ extern_methods!(
         /// In the course of validation, the receiver will invoke its validationDelegate with reference to any trouble spots in the video composition.
         /// An exception will be raised if the delegate modifies the receiver's array of instructions or the array of layerInstructions of any AVVideoCompositionInstruction contained therein during validation.
         #[deprecated = "Use isValidForTracks:assetDuration:timeRange:validationDelegate: instead"]
-        #[method(isValidForAsset:timeRange:validationDelegate:)]
+        #[unsafe(method(isValidForAsset:timeRange:validationDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isValidForAsset_timeRange_validationDelegate(
             &self,
@@ -1223,7 +1223,7 @@ extern_methods!(
         /// In the course of validation, the receiver will invoke its validationDelegate with reference to any trouble spots in the video composition.
         /// An exception will be raised if the delegate modifies the receiver's array of instructions or the array of layerInstructions of any AVVideoCompositionInstruction contained therein during validation.
         #[deprecated]
-        #[method(determineValidityForAsset:timeRange:validationDelegate:completionHandler:)]
+        #[unsafe(method(determineValidityForAsset:timeRange:validationDelegate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn determineValidityForAsset_timeRange_validationDelegate_completionHandler(
             &self,
@@ -1246,7 +1246,7 @@ extern_methods!(
         ///
         /// In the course of validation, the receiver will invoke its validationDelegate with reference to any trouble spots in the video composition.
         /// An exception will be raised if the delegate modifies the receiver's array of instructions or the array of layerInstructions of any AVVideoCompositionInstruction contained therein during validation.
-        #[method(isValidForTracks:assetDuration:timeRange:validationDelegate:)]
+        #[unsafe(method(isValidForTracks:assetDuration:timeRange:validationDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isValidForTracks_assetDuration_timeRange_validationDelegate(
             &self,
@@ -1265,7 +1265,7 @@ extern_protocol!(
         ///
         /// Returns: An indication of whether the AVVideoComposition should continue validation in order to report additional problems that may exist.
         #[optional]
-        #[method(videoComposition:shouldContinueValidatingAfterFindingInvalidValueForKey:)]
+        #[unsafe(method(videoComposition:shouldContinueValidatingAfterFindingInvalidValueForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn videoComposition_shouldContinueValidatingAfterFindingInvalidValueForKey(
             &self,
@@ -1278,7 +1278,7 @@ extern_protocol!(
         ///
         /// Returns: An indication of whether the AVVideoComposition should continue validation in order to report additional problems that may exist.
         #[optional]
-        #[method(videoComposition:shouldContinueValidatingAfterFindingEmptyTimeRange:)]
+        #[unsafe(method(videoComposition:shouldContinueValidatingAfterFindingEmptyTimeRange:))]
         #[unsafe(method_family = none)]
         unsafe fn videoComposition_shouldContinueValidatingAfterFindingEmptyTimeRange(
             &self,
@@ -1293,7 +1293,7 @@ extern_protocol!(
         ///
         /// Returns: An indication of whether the AVVideoComposition should continue validation in order to report additional problems that may exist.
         #[optional]
-        #[method(videoComposition:shouldContinueValidatingAfterFindingInvalidTimeRangeInInstruction:)]
+        #[unsafe(method(videoComposition:shouldContinueValidatingAfterFindingInvalidTimeRangeInInstruction:))]
         #[unsafe(method_family = none)]
         unsafe fn videoComposition_shouldContinueValidatingAfterFindingInvalidTimeRangeInInstruction(
             &self,
@@ -1308,7 +1308,7 @@ extern_protocol!(
         ///
         /// Returns: An indication of whether the AVVideoComposition should continue validation in order to report additional problems that may exist.
         #[optional]
-        #[method(videoComposition:shouldContinueValidatingAfterFindingInvalidTrackIDInInstruction:layerInstruction:asset:)]
+        #[unsafe(method(videoComposition:shouldContinueValidatingAfterFindingInvalidTrackIDInInstruction:layerInstruction:asset:))]
         #[unsafe(method_family = none)]
         unsafe fn videoComposition_shouldContinueValidatingAfterFindingInvalidTrackIDInInstruction_layerInstruction_asset(
             &self,

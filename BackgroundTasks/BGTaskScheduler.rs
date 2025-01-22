@@ -90,16 +90,16 @@ unsafe impl NSObjectProtocol for BGTaskScheduler {}
 
 extern_methods!(
     unsafe impl BGTaskScheduler {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The shared background task scheduler instance.
-        #[method(sharedScheduler)]
+        #[unsafe(method(sharedScheduler))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedScheduler() -> Retained<BGTaskScheduler>;
 
@@ -117,7 +117,7 @@ extern_methods!(
         /// - taskRequest: A background task request object specifying the task
         /// - error: On input, a pointer to an error object. If an error occurs, this pointer is set to an error object containing the error information. Specify `nil` for this parameter to ignore the error information.
         /// identifier and optional configuration information.
-        #[method(submitTaskRequest:error:_)]
+        #[unsafe(method(submitTaskRequest:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn submitTaskRequest_error(
             &self,
@@ -128,12 +128,12 @@ extern_methods!(
         ///
         /// - Parameters:
         /// - identifier: The string identifier of the task request to cancel.
-        #[method(cancelTaskRequestWithIdentifier:)]
+        #[unsafe(method(cancelTaskRequestWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelTaskRequestWithIdentifier(&self, identifier: &NSString);
 
         /// Cancel all scheduled task requests.
-        #[method(cancelAllTaskRequests)]
+        #[unsafe(method(cancelAllTaskRequests))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelAllTaskRequests(&self);
 
@@ -150,7 +150,7 @@ extern_methods!(
         /// The objects passed in the array are copies of the existing requests. Changing the
         /// attributes of a request has no effect. To change the attributes submit a new
         /// task request using ``BGTaskScheduler/submitTaskRequest:error:``.
-        #[method(getPendingTaskRequestsWithCompletionHandler:)]
+        #[unsafe(method(getPendingTaskRequestsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPendingTaskRequestsWithCompletionHandler(
             &self,

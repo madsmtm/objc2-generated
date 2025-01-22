@@ -55,19 +55,19 @@ extern_methods!(
     unsafe impl MIDIUMPCIProfile {
         #[cfg(feature = "objc2-foundation")]
         /// The name of the MIDI-CI proifle.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "MIDIMessages", feature = "MIDIUMPCI"))]
         /// C struct representation of MIDI-CI Profile ID.
-        #[method(profileID)]
+        #[unsafe(method(profileID))]
         #[unsafe(method_family = none)]
         pub unsafe fn profileID(&self) -> MIDICIProfileID;
 
         #[cfg(feature = "MIDIUMPCI")]
         /// The type of MIDI-CI Profile, i.e., single-channel, multichannel, Group, or Function Block.
-        #[method(profileType)]
+        #[unsafe(method(profileType))]
         #[unsafe(method_family = none)]
         pub unsafe fn profileType(&self) -> MIDICIProfileType;
 
@@ -75,35 +75,35 @@ extern_methods!(
         /// For Group profiles defined on Function Blocks, the value to be added to the lowest
         /// Function Block UMP Group for messaging (e.g., a Group Profile defined on the second
         /// Group of a Function Block has a groupOffset of 1).
-        #[method(groupOffset)]
+        #[unsafe(method(groupOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn groupOffset(&self) -> MIDIUMPGroupNumber;
 
         #[cfg(feature = "MIDIMessages")]
         /// The first channel number supported on the Profile.
-        #[method(firstChannel)]
+        #[unsafe(method(firstChannel))]
         #[unsafe(method_family = none)]
         pub unsafe fn firstChannel(&self) -> MIDIChannelNumber;
 
         #[cfg(feature = "MIDIMessages")]
         /// The number of channels currently enabled on the Profile. When the profile is disabled,
         /// this value is set to 0.
-        #[method(enabledChannelCount)]
+        #[unsafe(method(enabledChannelCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn enabledChannelCount(&self) -> MIDIUInteger14;
 
         #[cfg(feature = "MIDIMessages")]
         /// The total number of channels supported by the Profile.
-        #[method(totalChannelCount)]
+        #[unsafe(method(totalChannelCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalChannelCount(&self) -> MIDIUInteger14;
 
         /// The enable state of the Profile.
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -125,7 +125,7 @@ extern_methods!(
         /// The result of this operation, if any, is received via the profile notification
         /// posted by the MIDICIDeviceManager.
         /// Returns YES if the request is valid and the request was dispatched.
-        #[method(setProfileState:enabledChannelCount:error:_)]
+        #[unsafe(method(setProfileState:enabledChannelCount:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProfileState_enabledChannelCount_error(
             &self,
@@ -140,7 +140,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDIUMPCIProfile {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

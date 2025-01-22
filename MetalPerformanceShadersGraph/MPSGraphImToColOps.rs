@@ -38,113 +38,113 @@ extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphImToColOpDescriptor {
         /// The property that defines the kernel size in width dimension.
-        #[method(kernelWidth)]
+        #[unsafe(method(kernelWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWidth(&self) -> NSUInteger;
 
         /// Setter for [`kernelWidth`][Self::kernelWidth].
-        #[method(setKernelWidth:)]
+        #[unsafe(method(setKernelWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKernelWidth(&self, kernel_width: NSUInteger);
 
         /// The property that defines the kernel size  in height dimension.
-        #[method(kernelHeight)]
+        #[unsafe(method(kernelHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelHeight(&self) -> NSUInteger;
 
         /// Setter for [`kernelHeight`][Self::kernelHeight].
-        #[method(setKernelHeight:)]
+        #[unsafe(method(setKernelHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKernelHeight(&self, kernel_height: NSUInteger);
 
         /// The property that defines the stride in width dimension.
-        #[method(strideInX)]
+        #[unsafe(method(strideInX))]
         #[unsafe(method_family = none)]
         pub unsafe fn strideInX(&self) -> NSUInteger;
 
         /// Setter for [`strideInX`][Self::strideInX].
-        #[method(setStrideInX:)]
+        #[unsafe(method(setStrideInX:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrideInX(&self, stride_in_x: NSUInteger);
 
         /// The property that defines the stride in height dimension.
-        #[method(strideInY)]
+        #[unsafe(method(strideInY))]
         #[unsafe(method_family = none)]
         pub unsafe fn strideInY(&self) -> NSUInteger;
 
         /// Setter for [`strideInY`][Self::strideInY].
-        #[method(setStrideInY:)]
+        #[unsafe(method(setStrideInY:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrideInY(&self, stride_in_y: NSUInteger);
 
         /// The property that defines the dilation in width dimension.
-        #[method(dilationRateInX)]
+        #[unsafe(method(dilationRateInX))]
         #[unsafe(method_family = none)]
         pub unsafe fn dilationRateInX(&self) -> NSUInteger;
 
         /// Setter for [`dilationRateInX`][Self::dilationRateInX].
-        #[method(setDilationRateInX:)]
+        #[unsafe(method(setDilationRateInX:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDilationRateInX(&self, dilation_rate_in_x: NSUInteger);
 
         /// The property that defines the dilation in height dimension.
-        #[method(dilationRateInY)]
+        #[unsafe(method(dilationRateInY))]
         #[unsafe(method_family = none)]
         pub unsafe fn dilationRateInY(&self) -> NSUInteger;
 
         /// Setter for [`dilationRateInY`][Self::dilationRateInY].
-        #[method(setDilationRateInY:)]
+        #[unsafe(method(setDilationRateInY:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDilationRateInY(&self, dilation_rate_in_y: NSUInteger);
 
         /// The property that defines the padding in width dimension on the left side.
-        #[method(paddingLeft)]
+        #[unsafe(method(paddingLeft))]
         #[unsafe(method_family = none)]
         pub unsafe fn paddingLeft(&self) -> NSUInteger;
 
         /// Setter for [`paddingLeft`][Self::paddingLeft].
-        #[method(setPaddingLeft:)]
+        #[unsafe(method(setPaddingLeft:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingLeft(&self, padding_left: NSUInteger);
 
         /// The property that defines the padding in width dimension on the right side.
-        #[method(paddingRight)]
+        #[unsafe(method(paddingRight))]
         #[unsafe(method_family = none)]
         pub unsafe fn paddingRight(&self) -> NSUInteger;
 
         /// Setter for [`paddingRight`][Self::paddingRight].
-        #[method(setPaddingRight:)]
+        #[unsafe(method(setPaddingRight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingRight(&self, padding_right: NSUInteger);
 
         /// The property that defines the padding in height dimension at the top.
-        #[method(paddingTop)]
+        #[unsafe(method(paddingTop))]
         #[unsafe(method_family = none)]
         pub unsafe fn paddingTop(&self) -> NSUInteger;
 
         /// Setter for [`paddingTop`][Self::paddingTop].
-        #[method(setPaddingTop:)]
+        #[unsafe(method(setPaddingTop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingTop(&self, padding_top: NSUInteger);
 
         /// The property that defines the padding in height dimension at the bottom.
-        #[method(paddingBottom)]
+        #[unsafe(method(paddingBottom))]
         #[unsafe(method_family = none)]
         pub unsafe fn paddingBottom(&self) -> NSUInteger;
 
         /// Setter for [`paddingBottom`][Self::paddingBottom].
-        #[method(setPaddingBottom:)]
+        #[unsafe(method(setPaddingBottom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingBottom(&self, padding_bottom: NSUInteger);
 
         /// The property that defines the layout of source or output  tensor.
         /// e.g. `batch x channels x width x height` for `NCHW` layout
-        #[method(dataLayout)]
+        #[unsafe(method(dataLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataLayout(&self) -> MPSGraphTensorNamedDataLayout;
 
         /// Setter for [`dataLayout`][Self::dataLayout].
-        #[method(setDataLayout:)]
+        #[unsafe(method(setDataLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataLayout(&self, data_layout: MPSGraphTensorNamedDataLayout);
 
@@ -162,7 +162,7 @@ extern_methods!(
         /// - paddingBottom: See `paddingBottom` property.
         /// - dataLayout: See `dataLayout` property.
         /// - Returns: A valid MPSGraphImToColOpDescriptor on autoreleasepool.
-        #[method(descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:dataLayout:)]
+        #[unsafe(method(descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:dataLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithKernelWidth_kernelHeight_strideInX_strideInY_dilationRateInX_dilationRateInY_paddingLeft_paddingRight_paddingTop_paddingBottom_dataLayout(
             kernel_width: NSUInteger,
@@ -188,7 +188,7 @@ extern_methods!(
         /// - dilationRateInY: See `dilationRateInY` property.
         /// - dataLayout: See `dataLayout` property.
         /// - Returns: A valid MPSGraphImToColOpDescriptor on autoreleasepool.
-        #[method(descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:dataLayout:)]
+        #[unsafe(method(descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:dataLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithKernelWidth_kernelHeight_strideInX_strideInY_dilationRateInX_dilationRateInY_dataLayout(
             kernel_width: NSUInteger,
@@ -206,7 +206,7 @@ extern_methods!(
         /// - paddingRight: See `paddingRight` property.
         /// - paddingTop: See `paddingTop` property.
         /// - paddingBottom: See `paddingBottom` property.
-        #[method(setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:)]
+        #[unsafe(method(setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExplicitPaddingWithPaddingLeft_paddingRight_paddingTop_paddingBottom(
             &self,
@@ -222,11 +222,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphImToColOpDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -244,7 +244,7 @@ extern_methods!(
         /// - descriptor: The descriptor object that specifies the parameters of the operation.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method(imToColWithSourceTensor:descriptor:name:)]
+        #[unsafe(method(imToColWithSourceTensor:descriptor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imToColWithSourceTensor_descriptor_name(
             &self,
@@ -265,7 +265,7 @@ extern_methods!(
         /// - descriptor: The descriptor object that specifies the parameters of the operation.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method(colToImWithSourceTensor:outputShape:descriptor:name:)]
+        #[unsafe(method(colToImWithSourceTensor:outputShape:descriptor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn colToImWithSourceTensor_outputShape_descriptor_name(
             &self,

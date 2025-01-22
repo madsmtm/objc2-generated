@@ -186,11 +186,11 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIButton {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -207,7 +207,7 @@ extern_methods!(
         /// image as the button's title
         /// &
         /// image.
-        #[method(initWithFrame:primaryAction:)]
+        #[unsafe(method(initWithFrame:primaryAction:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,
@@ -215,7 +215,7 @@ extern_methods!(
             primary_action: Option<&UIAction>,
         ) -> Retained<Self>;
 
-        #[method(buttonWithType:)]
+        #[unsafe(method(buttonWithType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithType(
             button_type: UIButtonType,
@@ -223,7 +223,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
-        #[method(systemButtonWithImage:target:action:)]
+        #[unsafe(method(systemButtonWithImage:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemButtonWithImage_target_action(
             image: &UIImage,
@@ -238,7 +238,7 @@ extern_methods!(
         /// image as the button's title
         /// &
         /// image.
-        #[method(systemButtonWithPrimaryAction:)]
+        #[unsafe(method(systemButtonWithPrimaryAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemButtonWithPrimaryAction(
             primary_action: Option<&UIAction>,
@@ -251,7 +251,7 @@ extern_methods!(
         /// image as the button's title
         /// &
         /// image.
-        #[method(buttonWithType:primaryAction:)]
+        #[unsafe(method(buttonWithType:primaryAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithType_primaryAction(
             button_type: UIButtonType,
@@ -265,7 +265,7 @@ extern_methods!(
             feature = "UIMenuElement"
         ))]
         /// Construct a new UIButton. `configuration` will be installed on the created button, and `primaryAction` added to handle the .primaryActionTriggered control event. If `primaryAction` has a title or image, they will be copied to `configuration`
-        #[method(buttonWithConfiguration:primaryAction:)]
+        #[unsafe(method(buttonWithConfiguration:primaryAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithConfiguration_primaryAction(
             configuration: &UIButtonConfiguration,
@@ -274,35 +274,35 @@ extern_methods!(
 
         #[cfg(feature = "UIButtonConfiguration")]
         /// Setting a non-nil value for `configuration` will opt into configuration-based behavior on UIButton, update the button in a platform specific manner, and enable/disable some API.
-        #[method(configuration)]
+        #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Option<Retained<UIButtonConfiguration>>;
 
         #[cfg(feature = "UIButtonConfiguration")]
         /// Setter for [`configuration`][Self::configuration].
-        #[method(setConfiguration:)]
+        #[unsafe(method(setConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration(&self, configuration: Option<&UIButtonConfiguration>);
 
         /// Requests the view update its configuration for its current state. This method is called automatically when the button's state may have changed, as well as in other circumstances where an update may be required. Multiple requests may be coalesced into a single update at the appropriate time.
-        #[method(setNeedsUpdateConfiguration)]
+        #[unsafe(method(setNeedsUpdateConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeedsUpdateConfiguration(&self);
 
         /// Subclasses should override this method and update the button's `configuration`. This method should not be called directly, use `setNeedsUpdateConfiguration` to request an update.
-        #[method(updateConfiguration)]
+        #[unsafe(method(updateConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateConfiguration(&self);
 
         #[cfg(feature = "block2")]
         /// Block-based equivalent to overriding -updateConfiguration in a subclass. Setting this handler will force the button into configuration-based behavior (see the `configuration` property). This block is called after `-updateConfiguration`
-        #[method(configurationUpdateHandler)]
+        #[unsafe(method(configurationUpdateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationUpdateHandler(&self) -> UIButtonConfigurationUpdateHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`configurationUpdateHandler`][Self::configurationUpdateHandler].
-        #[method(setConfigurationUpdateHandler:)]
+        #[unsafe(method(setConfigurationUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfigurationUpdateHandler(
             &self,
@@ -310,12 +310,12 @@ extern_methods!(
         );
 
         /// When YES, the button will automatically call -updatedConfigurationForButton: on its `configuration ` when the button's state changes, and apply the updated configuration to the button. The default value is YES.
-        #[method(automaticallyUpdatesConfiguration)]
+        #[unsafe(method(automaticallyUpdatesConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticallyUpdatesConfiguration(&self) -> bool;
 
         /// Setter for [`automaticallyUpdatesConfiguration`][Self::automaticallyUpdatesConfiguration].
-        #[method(setAutomaticallyUpdatesConfiguration:)]
+        #[unsafe(method(setAutomaticallyUpdatesConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyUpdatesConfiguration(
             &self,
@@ -323,46 +323,46 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIColor")]
-        #[method(tintColor)]
+        #[unsafe(method(tintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tintColor`][Self::tintColor].
-        #[method(setTintColor:)]
+        #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
-        #[method(buttonType)]
+        #[unsafe(method(buttonType))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonType(&self) -> UIButtonType;
 
         /// If pointer effects are enabled for the button, this will return true when an effect is active.
-        #[method(isHovered)]
+        #[unsafe(method(isHovered))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHovered(&self) -> bool;
 
         /// Returns true while the button is presenting a menu.
-        #[method(isHeld)]
+        #[unsafe(method(isHeld))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHeld(&self) -> bool;
 
-        #[method(role)]
+        #[unsafe(method(role))]
         #[unsafe(method_family = none)]
         pub unsafe fn role(&self) -> UIButtonRole;
 
         /// Setter for [`role`][Self::role].
-        #[method(setRole:)]
+        #[unsafe(method(setRole:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRole(&self, role: UIButtonRole);
 
         /// Enables this button's built-in pointer interaction.
-        #[method(isPointerInteractionEnabled)]
+        #[unsafe(method(isPointerInteractionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPointerInteractionEnabled(&self) -> bool;
 
         /// Setter for [`isPointerInteractionEnabled`][Self::isPointerInteractionEnabled].
-        #[method(setPointerInteractionEnabled:)]
+        #[unsafe(method(setPointerInteractionEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPointerInteractionEnabled(&self, pointer_interaction_enabled: bool);
 
@@ -376,7 +376,7 @@ extern_methods!(
         /// a customized version of the system provided style or return an entirely custom one.
         /// Setting this property automatically enables the button's pointer interaction and sets
         /// `pointerInteractionEnabled`to true.
-        #[method(pointerStyleProvider)]
+        #[unsafe(method(pointerStyleProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointerStyleProvider(&self) -> UIButtonPointerStyleProvider;
 
@@ -386,7 +386,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`pointerStyleProvider`][Self::pointerStyleProvider].
-        #[method(setPointerStyleProvider:)]
+        #[unsafe(method(setPointerStyleProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPointerStyleProvider(
             &self,
@@ -395,25 +395,25 @@ extern_methods!(
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// An optional menu for the button to display. The button will automatically enable or disable its contextMenuInteraction when a non-nil or nil menu is set. Defaults to nil.
-        #[method(menu)]
+        #[unsafe(method(menu))]
         #[unsafe(method_family = none)]
         pub unsafe fn menu(&self) -> Option<Retained<UIMenu>>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Setter for [`menu`][Self::menu].
-        #[method(setMenu:)]
+        #[unsafe(method(setMenu:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMenu(&self, menu: Option<&UIMenu>);
 
         #[cfg(feature = "UIContextMenuConfiguration")]
         /// Preferred menu element ordering strategy for menus displayed by this button.
-        #[method(preferredMenuElementOrder)]
+        #[unsafe(method(preferredMenuElementOrder))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredMenuElementOrder(&self) -> UIContextMenuConfigurationElementOrder;
 
         #[cfg(feature = "UIContextMenuConfiguration")]
         /// Setter for [`preferredMenuElementOrder`][Self::preferredMenuElementOrder].
-        #[method(setPreferredMenuElementOrder:)]
+        #[unsafe(method(setPreferredMenuElementOrder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredMenuElementOrder(
             &self,
@@ -423,29 +423,29 @@ extern_methods!(
         /// Indicates if the button changes selection as its primary action.
         /// This shows the menu as options for selection if a menu is populated and showsMenuAsPrimaryAction is enabled.
         /// If no menu is provided or it is not the primary action, UIControlStateSelected is toggled on and off for the primary action.
-        #[method(changesSelectionAsPrimaryAction)]
+        #[unsafe(method(changesSelectionAsPrimaryAction))]
         #[unsafe(method_family = none)]
         pub unsafe fn changesSelectionAsPrimaryAction(&self) -> bool;
 
         /// Setter for [`changesSelectionAsPrimaryAction`][Self::changesSelectionAsPrimaryAction].
-        #[method(setChangesSelectionAsPrimaryAction:)]
+        #[unsafe(method(setChangesSelectionAsPrimaryAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChangesSelectionAsPrimaryAction(
             &self,
             changes_selection_as_primary_action: bool,
         );
 
-        #[method(setTitle:forState:)]
+        #[unsafe(method(setTitle:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle_forState(&self, title: Option<&NSString>, state: UIControlState);
 
         #[cfg(feature = "UIColor")]
-        #[method(setTitleColor:forState:)]
+        #[unsafe(method(setTitleColor:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleColor_forState(&self, color: Option<&UIColor>, state: UIControlState);
 
         #[cfg(feature = "UIColor")]
-        #[method(setTitleShadowColor:forState:)]
+        #[unsafe(method(setTitleShadowColor:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleShadowColor_forState(
             &self,
@@ -454,12 +454,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIImage")]
-        #[method(setImage:forState:)]
+        #[unsafe(method(setImage:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImage_forState(&self, image: Option<&UIImage>, state: UIControlState);
 
         #[cfg(feature = "UIImage")]
-        #[method(setBackgroundImage:forState:)]
+        #[unsafe(method(setBackgroundImage:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImage_forState(
             &self,
@@ -471,7 +471,7 @@ extern_methods!(
             feature = "UIImageConfiguration",
             feature = "UIImageSymbolConfiguration"
         ))]
-        #[method(setPreferredSymbolConfiguration:forImageInState:)]
+        #[unsafe(method(setPreferredSymbolConfiguration:forImageInState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredSymbolConfiguration_forImageInState(
             &self,
@@ -479,7 +479,7 @@ extern_methods!(
             state: UIControlState,
         );
 
-        #[method(setAttributedTitle:forState:)]
+        #[unsafe(method(setAttributedTitle:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedTitle_forState(
             &self,
@@ -487,18 +487,18 @@ extern_methods!(
             state: UIControlState,
         );
 
-        #[method(titleForState:)]
+        #[unsafe(method(titleForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleForState(&self, state: UIControlState) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIColor")]
-        #[method(titleColorForState:)]
+        #[unsafe(method(titleColorForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleColorForState(&self, state: UIControlState)
             -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
-        #[method(titleShadowColorForState:)]
+        #[unsafe(method(titleShadowColorForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleShadowColorForState(
             &self,
@@ -506,12 +506,12 @@ extern_methods!(
         ) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIImage")]
-        #[method(imageForState:)]
+        #[unsafe(method(imageForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageForState(&self, state: UIControlState) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
-        #[method(backgroundImageForState:)]
+        #[unsafe(method(backgroundImageForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundImageForState(
             &self,
@@ -522,41 +522,41 @@ extern_methods!(
             feature = "UIImageConfiguration",
             feature = "UIImageSymbolConfiguration"
         ))]
-        #[method(preferredSymbolConfigurationForImageInState:)]
+        #[unsafe(method(preferredSymbolConfigurationForImageInState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredSymbolConfigurationForImageInState(
             &self,
             state: UIControlState,
         ) -> Option<Retained<UIImageSymbolConfiguration>>;
 
-        #[method(attributedTitleForState:)]
+        #[unsafe(method(attributedTitleForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedTitleForState(
             &self,
             state: UIControlState,
         ) -> Option<Retained<NSAttributedString>>;
 
-        #[method(currentTitle)]
+        #[unsafe(method(currentTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentTitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIColor")]
-        #[method(currentTitleColor)]
+        #[unsafe(method(currentTitleColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentTitleColor(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
-        #[method(currentTitleShadowColor)]
+        #[unsafe(method(currentTitleShadowColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentTitleShadowColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIImage")]
-        #[method(currentImage)]
+        #[unsafe(method(currentImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
-        #[method(currentBackgroundImage)]
+        #[unsafe(method(currentBackgroundImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentBackgroundImage(&self) -> Option<Retained<UIImage>>;
 
@@ -564,29 +564,29 @@ extern_methods!(
             feature = "UIImageConfiguration",
             feature = "UIImageSymbolConfiguration"
         ))]
-        #[method(currentPreferredSymbolConfiguration)]
+        #[unsafe(method(currentPreferredSymbolConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentPreferredSymbolConfiguration(
             &self,
         ) -> Option<Retained<UIImageSymbolConfiguration>>;
 
-        #[method(currentAttributedTitle)]
+        #[unsafe(method(currentAttributedTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentAttributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "UILabel")]
-        #[method(titleLabel)]
+        #[unsafe(method(titleLabel))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleLabel(&self) -> Option<Retained<UILabel>>;
 
         #[cfg(feature = "UIImageView")]
-        #[method(imageView)]
+        #[unsafe(method(imageView))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageView(&self) -> Option<Retained<UIImageView>>;
 
         #[cfg(feature = "UILabel")]
         /// The label used to display the subtitle, when present.
-        #[method(subtitleLabel)]
+        #[unsafe(method(subtitleLabel))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitleLabel(&self) -> Option<Retained<UILabel>>;
     }
@@ -596,11 +596,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIButton {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -611,90 +611,90 @@ extern_methods!(
     unsafe impl UIButton {
         #[cfg(feature = "UIFont")]
         #[deprecated = "Specify an attributed title with a custom font"]
-        #[method(font)]
+        #[unsafe(method(font))]
         #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Retained<UIFont>;
 
         #[cfg(feature = "UIFont")]
         /// Setter for [`font`][Self::font].
         #[deprecated = "Specify an attributed title with a custom font"]
-        #[method(setFont:)]
+        #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: &UIFont);
 
         #[cfg(feature = "NSParagraphStyle")]
         #[deprecated = "Specify an attributed title with a customized paragraph style"]
-        #[method(lineBreakMode)]
+        #[unsafe(method(lineBreakMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
         #[cfg(feature = "NSParagraphStyle")]
         /// Setter for [`lineBreakMode`][Self::lineBreakMode].
         #[deprecated = "Specify an attributed title with a customized paragraph style"]
-        #[method(setLineBreakMode:)]
+        #[unsafe(method(setLineBreakMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Specify an attributed title with a customized shadow style"]
-        #[method(titleShadowOffset)]
+        #[unsafe(method(titleShadowOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleShadowOffset(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`titleShadowOffset`][Self::titleShadowOffset].
         #[deprecated = "Specify an attributed title with a customized shadow style"]
-        #[method(setTitleShadowOffset:)]
+        #[unsafe(method(setTitleShadowOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleShadowOffset(&self, title_shadow_offset: CGSize);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[deprecated = "This property is ignored when using UIButtonConfiguration"]
-        #[method(contentEdgeInsets)]
+        #[unsafe(method(contentEdgeInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentEdgeInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`contentEdgeInsets`][Self::contentEdgeInsets].
         #[deprecated = "This property is ignored when using UIButtonConfiguration"]
-        #[method(setContentEdgeInsets:)]
+        #[unsafe(method(setContentEdgeInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentEdgeInsets(&self, content_edge_insets: UIEdgeInsets);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[deprecated = "This property is ignored when using UIButtonConfiguration"]
-        #[method(titleEdgeInsets)]
+        #[unsafe(method(titleEdgeInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleEdgeInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`titleEdgeInsets`][Self::titleEdgeInsets].
         #[deprecated = "This property is ignored when using UIButtonConfiguration"]
-        #[method(setTitleEdgeInsets:)]
+        #[unsafe(method(setTitleEdgeInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleEdgeInsets(&self, title_edge_insets: UIEdgeInsets);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[deprecated = "This property is ignored when using UIButtonConfiguration"]
-        #[method(imageEdgeInsets)]
+        #[unsafe(method(imageEdgeInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageEdgeInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`imageEdgeInsets`][Self::imageEdgeInsets].
         #[deprecated = "This property is ignored when using UIButtonConfiguration"]
-        #[method(setImageEdgeInsets:)]
+        #[unsafe(method(setImageEdgeInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageEdgeInsets(&self, image_edge_insets: UIEdgeInsets);
 
         #[deprecated = "This property is ignored when using UIButtonConfiguration, you may customize to replicate this behavior via a configurationUpdateHandler"]
-        #[method(reversesTitleShadowWhenHighlighted)]
+        #[unsafe(method(reversesTitleShadowWhenHighlighted))]
         #[unsafe(method_family = none)]
         pub unsafe fn reversesTitleShadowWhenHighlighted(&self) -> bool;
 
         /// Setter for [`reversesTitleShadowWhenHighlighted`][Self::reversesTitleShadowWhenHighlighted].
         #[deprecated = "This property is ignored when using UIButtonConfiguration, you may customize to replicate this behavior via a configurationUpdateHandler"]
-        #[method(setReversesTitleShadowWhenHighlighted:)]
+        #[unsafe(method(setReversesTitleShadowWhenHighlighted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReversesTitleShadowWhenHighlighted(
             &self,
@@ -702,59 +702,59 @@ extern_methods!(
         );
 
         #[deprecated = "This property is ignored when using UIButtonConfiguration, you may customize to replicate this behavior via a configurationUpdateHandler"]
-        #[method(adjustsImageWhenHighlighted)]
+        #[unsafe(method(adjustsImageWhenHighlighted))]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustsImageWhenHighlighted(&self) -> bool;
 
         /// Setter for [`adjustsImageWhenHighlighted`][Self::adjustsImageWhenHighlighted].
         #[deprecated = "This property is ignored when using UIButtonConfiguration, you may customize to replicate this behavior via a configurationUpdateHandler"]
-        #[method(setAdjustsImageWhenHighlighted:)]
+        #[unsafe(method(setAdjustsImageWhenHighlighted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdjustsImageWhenHighlighted(&self, adjusts_image_when_highlighted: bool);
 
         #[deprecated = "This property is ignored when using UIButtonConfiguration, you may customize to replicate this behavior via a configurationUpdateHandler"]
-        #[method(adjustsImageWhenDisabled)]
+        #[unsafe(method(adjustsImageWhenDisabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustsImageWhenDisabled(&self) -> bool;
 
         /// Setter for [`adjustsImageWhenDisabled`][Self::adjustsImageWhenDisabled].
         #[deprecated = "This property is ignored when using UIButtonConfiguration, you may customize to replicate this behavior via a configurationUpdateHandler"]
-        #[method(setAdjustsImageWhenDisabled:)]
+        #[unsafe(method(setAdjustsImageWhenDisabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdjustsImageWhenDisabled(&self, adjusts_image_when_disabled: bool);
 
         #[deprecated = "This property is ignored when using UIButtonConfiguration"]
-        #[method(showsTouchWhenHighlighted)]
+        #[unsafe(method(showsTouchWhenHighlighted))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsTouchWhenHighlighted(&self) -> bool;
 
         /// Setter for [`showsTouchWhenHighlighted`][Self::showsTouchWhenHighlighted].
         #[deprecated = "This property is ignored when using UIButtonConfiguration"]
-        #[method(setShowsTouchWhenHighlighted:)]
+        #[unsafe(method(setShowsTouchWhenHighlighted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsTouchWhenHighlighted(&self, shows_touch_when_highlighted: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Override layoutSubviews, call super, and position views as you desire."]
-        #[method(backgroundRectForBounds:)]
+        #[unsafe(method(backgroundRectForBounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundRectForBounds(&self, bounds: CGRect) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Override layoutSubviews, call super, and position views as you desire."]
-        #[method(contentRectForBounds:)]
+        #[unsafe(method(contentRectForBounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentRectForBounds(&self, bounds: CGRect) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Override layoutSubviews, call super, and position views as you desire."]
-        #[method(titleRectForContentRect:)]
+        #[unsafe(method(titleRectForContentRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleRectForContentRect(&self, content_rect: CGRect) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Override layoutSubviews, call super, and position views as you desire."]
-        #[method(imageRectForContentRect:)]
+        #[unsafe(method(imageRectForContentRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageRectForContentRect(&self, content_rect: CGRect) -> CGRect;
     }

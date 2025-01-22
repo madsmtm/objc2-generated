@@ -19,44 +19,44 @@ unsafe impl NSObjectProtocol for NSTextCheckingController {}
 extern_methods!(
     unsafe impl NSTextCheckingController {
         #[cfg(all(feature = "NSTextCheckingClient", feature = "NSTextInputClient"))]
-        #[method(initWithClient:)]
+        #[unsafe(method(initWithClient:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithClient(
             this: Allocated<Self>,
             client: &ProtocolObject<dyn NSTextCheckingClient>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSTextCheckingClient", feature = "NSTextInputClient"))]
-        #[method(client)]
+        #[unsafe(method(client))]
         #[unsafe(method_family = none)]
         pub unsafe fn client(&self) -> Retained<ProtocolObject<dyn NSTextCheckingClient>>;
 
-        #[method(invalidate)]
+        #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
 
-        #[method(didChangeTextInRange:)]
+        #[unsafe(method(didChangeTextInRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didChangeTextInRange(&self, range: NSRange);
 
-        #[method(insertedTextInRange:)]
+        #[unsafe(method(insertedTextInRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertedTextInRange(&self, range: NSRange);
 
-        #[method(didChangeSelectedRange)]
+        #[unsafe(method(didChangeSelectedRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn didChangeSelectedRange(&self);
 
-        #[method(considerTextCheckingForRange:)]
+        #[unsafe(method(considerTextCheckingForRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn considerTextCheckingForRange(&self, range: NSRange);
 
         #[cfg(feature = "NSSpellChecker")]
-        #[method(checkTextInRange:types:options:)]
+        #[unsafe(method(checkTextInRange:types:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkTextInRange_types_options(
             &self,
@@ -65,44 +65,44 @@ extern_methods!(
             options: &NSDictionary<NSTextCheckingOptionKey, AnyObject>,
         );
 
-        #[method(checkTextInSelection:)]
+        #[unsafe(method(checkTextInSelection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkTextInSelection(&self, sender: Option<&AnyObject>);
 
-        #[method(checkTextInDocument:)]
+        #[unsafe(method(checkTextInDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkTextInDocument(&self, sender: Option<&AnyObject>);
 
-        #[method(orderFrontSubstitutionsPanel:)]
+        #[unsafe(method(orderFrontSubstitutionsPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontSubstitutionsPanel(&self, sender: Option<&AnyObject>);
 
-        #[method(checkSpelling:)]
+        #[unsafe(method(checkSpelling:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkSpelling(&self, sender: Option<&AnyObject>);
 
-        #[method(showGuessPanel:)]
+        #[unsafe(method(showGuessPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showGuessPanel(&self, sender: Option<&AnyObject>);
 
-        #[method(changeSpelling:)]
+        #[unsafe(method(changeSpelling:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeSpelling(&self, sender: Option<&AnyObject>);
 
-        #[method(ignoreSpelling:)]
+        #[unsafe(method(ignoreSpelling:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ignoreSpelling(&self, sender: Option<&AnyObject>);
 
-        #[method(updateCandidates)]
+        #[unsafe(method(updateCandidates))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateCandidates(&self);
 
-        #[method(validAnnotations)]
+        #[unsafe(method(validAnnotations))]
         #[unsafe(method_family = none)]
         pub unsafe fn validAnnotations(&self) -> Retained<NSArray<NSAttributedStringKey>>;
 
         #[cfg(feature = "NSMenu")]
-        #[method(menuAtIndex:clickedOnSelection:effectiveRange:)]
+        #[unsafe(method(menuAtIndex:clickedOnSelection:effectiveRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn menuAtIndex_clickedOnSelection_effectiveRange(
             &self,
@@ -112,12 +112,12 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSMenu>>;
 
-        #[method(spellCheckerDocumentTag)]
+        #[unsafe(method(spellCheckerDocumentTag))]
         #[unsafe(method_family = none)]
         pub unsafe fn spellCheckerDocumentTag(&self) -> NSInteger;
 
         /// Setter for [`spellCheckerDocumentTag`][Self::spellCheckerDocumentTag].
-        #[method(setSpellCheckerDocumentTag:)]
+        #[unsafe(method(setSpellCheckerDocumentTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpellCheckerDocumentTag(&self, spell_checker_document_tag: NSInteger);
     }
@@ -126,7 +126,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextCheckingController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

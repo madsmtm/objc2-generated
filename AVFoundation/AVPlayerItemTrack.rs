@@ -38,19 +38,19 @@ extern_methods!(
         /// This property is not observable.
         /// Clients must serialize their access to the resulting AVAssetTrack and related objects on the associated AVPlayer's
         /// notification queue.  By default, this queue is the main queue.
-        #[method(assetTrack)]
+        #[unsafe(method(assetTrack))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetTrack(&self) -> Option<Retained<AVAssetTrack>>;
 
         /// Indicates whether the track is enabled for presentation during playback.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
@@ -59,7 +59,7 @@ extern_methods!(
         /// This property is not observable.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
-        #[method(currentVideoFrameRate)]
+        #[unsafe(method(currentVideoFrameRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentVideoFrameRate(&self) -> c_float;
 
@@ -69,12 +69,12 @@ extern_methods!(
         /// You can test whether video being played has multiple fields by examining the underlying AVAssetTrack's format descriptions. See -[AVAssetTrack formatDescriptions] and, for video format descriptions, kCMFormatDescriptionExtension_FieldCount.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
-        #[method(videoFieldMode)]
+        #[unsafe(method(videoFieldMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoFieldMode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`videoFieldMode`][Self::videoFieldMode].
-        #[method(setVideoFieldMode:)]
+        #[unsafe(method(setVideoFieldMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoFieldMode(&self, video_field_mode: Option<&NSString>);
     }
@@ -83,11 +83,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerItemTrack {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -37,19 +37,19 @@ unsafe impl NSObjectProtocol for AVAudioMixerNode {}
 extern_methods!(
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioMixerNode {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The mixer's output volume.
         ///
         /// This accesses the mixer's output volume (0.0-1.0, inclusive).
-        #[method(outputVolume)]
+        #[unsafe(method(outputVolume))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputVolume(&self) -> c_float;
 
         /// Setter for [`outputVolume`][Self::outputVolume].
-        #[method(setOutputVolume:)]
+        #[unsafe(method(setOutputVolume:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputVolume(&self, output_volume: c_float);
 
@@ -57,7 +57,7 @@ extern_methods!(
         /// Find an unused input bus.
         ///
         /// This will find and return the first input bus to which no other node is connected.
-        #[method(nextAvailableInputBus)]
+        #[unsafe(method(nextAvailableInputBus))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextAvailableInputBus(&self) -> AVAudioNodeBus;
     }
@@ -67,7 +67,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioMixerNode {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

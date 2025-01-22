@@ -11,13 +11,13 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlbatchprovider?language=objc)
     pub unsafe trait MLBatchProvider {
         /// Total number of feature providers
-        #[method(count)]
+        #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         unsafe fn count(&self) -> NSInteger;
 
         #[cfg(feature = "MLFeatureProvider")]
         /// Indexed access to collection
-        #[method(featuresAtIndex:)]
+        #[unsafe(method(featuresAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn featuresAtIndex(
             &self,

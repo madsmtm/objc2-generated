@@ -17,14 +17,14 @@ unsafe impl NSObjectProtocol for NSSpellServer {}
 
 extern_methods!(
     unsafe impl NSSpellServer {
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSSpellServerDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -32,7 +32,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method(registerLanguage:byVendor:)]
+        #[unsafe(method(registerLanguage:byVendor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerLanguage_byVendor(
             &self,
@@ -41,7 +41,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method(isWordInUserDictionaries:caseSensitive:)]
+        #[unsafe(method(isWordInUserDictionaries:caseSensitive:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isWordInUserDictionaries_caseSensitive(
             &self,
@@ -49,7 +49,7 @@ extern_methods!(
             flag: bool,
         ) -> bool;
 
-        #[method(run)]
+        #[unsafe(method(run))]
         #[unsafe(method_family = none)]
         pub unsafe fn run(&self);
     }
@@ -58,11 +58,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSpellServer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -91,7 +91,7 @@ extern_protocol!(
     pub unsafe trait NSSpellServerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
         #[optional]
-        #[method(spellServer:findMisspelledWordInString:language:wordCount:countOnly:)]
+        #[unsafe(method(spellServer:findMisspelledWordInString:language:wordCount:countOnly:))]
         #[unsafe(method_family = none)]
         unsafe fn spellServer_findMisspelledWordInString_language_wordCount_countOnly(
             &self,
@@ -104,7 +104,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[optional]
-        #[method(spellServer:suggestGuessesForWord:inLanguage:)]
+        #[unsafe(method(spellServer:suggestGuessesForWord:inLanguage:))]
         #[unsafe(method_family = none)]
         unsafe fn spellServer_suggestGuessesForWord_inLanguage(
             &self,
@@ -115,7 +115,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(spellServer:didLearnWord:inLanguage:)]
+        #[unsafe(method(spellServer:didLearnWord:inLanguage:))]
         #[unsafe(method_family = none)]
         unsafe fn spellServer_didLearnWord_inLanguage(
             &self,
@@ -126,7 +126,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(spellServer:didForgetWord:inLanguage:)]
+        #[unsafe(method(spellServer:didForgetWord:inLanguage:))]
         #[unsafe(method_family = none)]
         unsafe fn spellServer_didForgetWord_inLanguage(
             &self,
@@ -137,7 +137,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSArray", feature = "NSRange", feature = "NSString"))]
         #[optional]
-        #[method(spellServer:suggestCompletionsForPartialWordRange:inString:language:)]
+        #[unsafe(method(spellServer:suggestCompletionsForPartialWordRange:inString:language:))]
         #[unsafe(method_family = none)]
         unsafe fn spellServer_suggestCompletionsForPartialWordRange_inString_language(
             &self,
@@ -154,7 +154,7 @@ extern_protocol!(
             feature = "NSString"
         ))]
         #[optional]
-        #[method(spellServer:checkGrammarInString:language:details:)]
+        #[unsafe(method(spellServer:checkGrammarInString:language:details:))]
         #[unsafe(method_family = none)]
         unsafe fn spellServer_checkGrammarInString_language_details(
             &self,
@@ -172,7 +172,7 @@ extern_protocol!(
             feature = "NSTextCheckingResult"
         ))]
         #[optional]
-        #[method(spellServer:checkString:offset:types:options:orthography:wordCount:)]
+        #[unsafe(method(spellServer:checkString:offset:types:options:orthography:wordCount:))]
         #[unsafe(method_family = none)]
         unsafe fn spellServer_checkString_offset_types_options_orthography_wordCount(
             &self,
@@ -187,7 +187,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(spellServer:recordResponse:toCorrection:forWord:language:)]
+        #[unsafe(method(spellServer:recordResponse:toCorrection:forWord:language:))]
         #[unsafe(method_family = none)]
         unsafe fn spellServer_recordResponse_toCorrection_forWord_language(
             &self,

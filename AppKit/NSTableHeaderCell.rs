@@ -81,7 +81,7 @@ extern_methods!(
     ))]
     unsafe impl NSTableHeaderCell {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method(drawSortIndicatorWithFrame:inView:ascending:priority:)]
+        #[unsafe(method(drawSortIndicatorWithFrame:inView:ascending:priority:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawSortIndicatorWithFrame_inView_ascending_priority(
             &self,
@@ -91,7 +91,7 @@ extern_methods!(
             priority: NSInteger,
         );
 
-        #[method(sortIndicatorRectForBounds:)]
+        #[unsafe(method(sortIndicatorRectForBounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortIndicatorRectForBounds(&self, rect: NSRect) -> NSRect;
     }
@@ -105,16 +105,16 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSTableHeaderCell {
-        #[method(initTextCell:)]
+        #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method(initImageCell:)]
+        #[unsafe(method(initImageCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
@@ -131,7 +131,7 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSTableHeaderCell {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -145,7 +145,7 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSTableHeaderCell {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

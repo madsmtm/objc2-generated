@@ -55,7 +55,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKFriendRequestComposeViewController {
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -63,7 +63,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -77,7 +77,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKFriendRequestComposeViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -88,7 +88,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKFriendRequestComposeViewController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -100,13 +100,13 @@ extern_methods!(
     unsafe impl GKFriendRequestComposeViewController {
         /// Get the maximum number of recipients permitted
         #[deprecated]
-        #[method(maxNumberOfRecipients)]
+        #[unsafe(method(maxNumberOfRecipients))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxNumberOfRecipients(mtm: MainThreadMarker) -> NSUInteger;
 
         /// Specify the message sent to the invitee. A default message will be used if you don't specify one.
         #[deprecated]
-        #[method(setMessage:)]
+        #[unsafe(method(setMessage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
 
@@ -114,22 +114,22 @@ extern_methods!(
         /// Add recipients to the request.
         /// If you don't specify at least one recipient before presenting the view, the recipients field will be made firstResponder, to encourage the user to add some.
         /// If you add more than maxNumberOfRecipients recipients, these methods will throw an exception.
-        #[method(addRecipientPlayers:)]
+        #[unsafe(method(addRecipientPlayers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRecipientPlayers(&self, players: &NSArray<GKPlayer>);
 
         #[deprecated]
-        #[method(addRecipientsWithPlayerIDs:)]
+        #[unsafe(method(addRecipientsWithPlayerIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRecipientsWithPlayerIDs(&self, player_i_ds: &NSArray<NSString>);
 
         #[deprecated]
-        #[method(addRecipientsWithEmailAddresses:)]
+        #[unsafe(method(addRecipientsWithEmailAddresses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRecipientsWithEmailAddresses(&self, email_addresses: &NSArray<NSString>);
 
         #[deprecated]
-        #[method(composeViewDelegate)]
+        #[unsafe(method(composeViewDelegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn composeViewDelegate(
             &self,
@@ -138,7 +138,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`composeViewDelegate`][Self::composeViewDelegate].
         #[deprecated]
-        #[method(setComposeViewDelegate:)]
+        #[unsafe(method(setComposeViewDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setComposeViewDelegate(
             &self,
@@ -159,7 +159,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         /// The compose view has finished
         #[deprecated]
-        #[method(friendRequestComposeViewControllerDidFinish:)]
+        #[unsafe(method(friendRequestComposeViewControllerDidFinish:))]
         #[unsafe(method_family = none)]
         unsafe fn friendRequestComposeViewControllerDidFinish(
             &self,

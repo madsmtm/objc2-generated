@@ -25,7 +25,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Retrieve a player instance representing the active iCloud account for a given iCloud container. Returns nil and an error if the user is not signed in to iCloud or the container is invalid.
         #[deprecated]
-        #[method(getCurrentSignedInPlayerForContainer:completionHandler:)]
+        #[unsafe(method(getCurrentSignedInPlayerForContainer:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCurrentSignedInPlayerForContainer_completionHandler(
             container_name: Option<&NSString>,
@@ -38,11 +38,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GKBasePlayer")]
     unsafe impl GKCloudPlayer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

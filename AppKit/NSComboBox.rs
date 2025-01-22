@@ -39,7 +39,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method(numberOfItemsInComboBox:)]
+        #[unsafe(method(numberOfItemsInComboBox:))]
         #[unsafe(method_family = none)]
         unsafe fn numberOfItemsInComboBox(&self, combo_box: &NSComboBox) -> NSInteger;
 
@@ -50,7 +50,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method(comboBox:objectValueForItemAtIndex:)]
+        #[unsafe(method(comboBox:objectValueForItemAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn comboBox_objectValueForItemAtIndex(
             &self,
@@ -65,7 +65,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method(comboBox:indexOfItemWithStringValue:)]
+        #[unsafe(method(comboBox:indexOfItemWithStringValue:))]
         #[unsafe(method_family = none)]
         unsafe fn comboBox_indexOfItemWithStringValue(
             &self,
@@ -80,7 +80,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method(comboBox:completedString:)]
+        #[unsafe(method(comboBox:completedString:))]
         #[unsafe(method_family = none)]
         unsafe fn comboBox_completedString(
             &self,
@@ -95,22 +95,22 @@ extern_protocol!(
     #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
     pub unsafe trait NSComboBoxDelegate: NSTextFieldDelegate + MainThreadOnly {
         #[optional]
-        #[method(comboBoxWillPopUp:)]
+        #[unsafe(method(comboBoxWillPopUp:))]
         #[unsafe(method_family = none)]
         unsafe fn comboBoxWillPopUp(&self, notification: &NSNotification);
 
         #[optional]
-        #[method(comboBoxWillDismiss:)]
+        #[unsafe(method(comboBoxWillDismiss:))]
         #[unsafe(method_family = none)]
         unsafe fn comboBoxWillDismiss(&self, notification: &NSNotification);
 
         #[optional]
-        #[method(comboBoxSelectionDidChange:)]
+        #[unsafe(method(comboBoxSelectionDidChange:))]
         #[unsafe(method_family = none)]
         unsafe fn comboBoxSelectionDidChange(&self, notification: &NSNotification);
 
         #[optional]
-        #[method(comboBoxSelectionIsChanging:)]
+        #[unsafe(method(comboBoxSelectionIsChanging:))]
         #[unsafe(method_family = none)]
         unsafe fn comboBoxSelectionIsChanging(&self, notification: &NSNotification);
     }
@@ -243,136 +243,136 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSComboBox {
-        #[method(hasVerticalScroller)]
+        #[unsafe(method(hasVerticalScroller))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasVerticalScroller(&self) -> bool;
 
         /// Setter for [`hasVerticalScroller`][Self::hasVerticalScroller].
-        #[method(setHasVerticalScroller:)]
+        #[unsafe(method(setHasVerticalScroller:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHasVerticalScroller(&self, has_vertical_scroller: bool);
 
-        #[method(intercellSpacing)]
+        #[unsafe(method(intercellSpacing))]
         #[unsafe(method_family = none)]
         pub unsafe fn intercellSpacing(&self) -> NSSize;
 
         /// Setter for [`intercellSpacing`][Self::intercellSpacing].
-        #[method(setIntercellSpacing:)]
+        #[unsafe(method(setIntercellSpacing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(itemHeight)]
+        #[unsafe(method(itemHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`itemHeight`][Self::itemHeight].
-        #[method(setItemHeight:)]
+        #[unsafe(method(setItemHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemHeight(&self, item_height: CGFloat);
 
-        #[method(numberOfVisibleItems)]
+        #[unsafe(method(numberOfVisibleItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfVisibleItems(&self) -> NSInteger;
 
         /// Setter for [`numberOfVisibleItems`][Self::numberOfVisibleItems].
-        #[method(setNumberOfVisibleItems:)]
+        #[unsafe(method(setNumberOfVisibleItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfVisibleItems(&self, number_of_visible_items: NSInteger);
 
-        #[method(isButtonBordered)]
+        #[unsafe(method(isButtonBordered))]
         #[unsafe(method_family = none)]
         pub unsafe fn isButtonBordered(&self) -> bool;
 
         /// Setter for [`isButtonBordered`][Self::isButtonBordered].
-        #[method(setButtonBordered:)]
+        #[unsafe(method(setButtonBordered:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setButtonBordered(&self, button_bordered: bool);
 
-        #[method(reloadData)]
+        #[unsafe(method(reloadData))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadData(&self);
 
-        #[method(noteNumberOfItemsChanged)]
+        #[unsafe(method(noteNumberOfItemsChanged))]
         #[unsafe(method_family = none)]
         pub unsafe fn noteNumberOfItemsChanged(&self);
 
-        #[method(usesDataSource)]
+        #[unsafe(method(usesDataSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesDataSource(&self) -> bool;
 
         /// Setter for [`usesDataSource`][Self::usesDataSource].
-        #[method(setUsesDataSource:)]
+        #[unsafe(method(setUsesDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesDataSource(&self, uses_data_source: bool);
 
-        #[method(scrollItemAtIndexToTop:)]
+        #[unsafe(method(scrollItemAtIndexToTop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollItemAtIndexToTop(&self, index: NSInteger);
 
-        #[method(scrollItemAtIndexToVisible:)]
+        #[unsafe(method(scrollItemAtIndexToVisible:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollItemAtIndexToVisible(&self, index: NSInteger);
 
-        #[method(selectItemAtIndex:)]
+        #[unsafe(method(selectItemAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectItemAtIndex(&self, index: NSInteger);
 
-        #[method(deselectItemAtIndex:)]
+        #[unsafe(method(deselectItemAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deselectItemAtIndex(&self, index: NSInteger);
 
-        #[method(indexOfSelectedItem)]
+        #[unsafe(method(indexOfSelectedItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfSelectedItem(&self) -> NSInteger;
 
-        #[method(numberOfItems)]
+        #[unsafe(method(numberOfItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
 
-        #[method(completes)]
+        #[unsafe(method(completes))]
         #[unsafe(method_family = none)]
         pub unsafe fn completes(&self) -> bool;
 
         /// Setter for [`completes`][Self::completes].
-        #[method(setCompletes:)]
+        #[unsafe(method(setCompletes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletes(&self, completes: bool);
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSComboBoxDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSComboBoxDelegate>>);
 
-        #[method(dataSource)]
+        #[unsafe(method(dataSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSComboBoxDataSource>>>;
 
         /// Setter for [`dataSource`][Self::dataSource].
-        #[method(setDataSource:)]
+        #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(
             &self,
             data_source: Option<&ProtocolObject<dyn NSComboBoxDataSource>>,
         );
 
-        #[method(addItemWithObjectValue:)]
+        #[unsafe(method(addItemWithObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addItemWithObjectValue(&self, object: &AnyObject);
 
-        #[method(addItemsWithObjectValues:)]
+        #[unsafe(method(addItemsWithObjectValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addItemsWithObjectValues(&self, objects: &NSArray);
 
-        #[method(insertItemWithObjectValue:atIndex:)]
+        #[unsafe(method(insertItemWithObjectValue:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertItemWithObjectValue_atIndex(
             &self,
@@ -380,35 +380,35 @@ extern_methods!(
             index: NSInteger,
         );
 
-        #[method(removeItemWithObjectValue:)]
+        #[unsafe(method(removeItemWithObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeItemWithObjectValue(&self, object: &AnyObject);
 
-        #[method(removeItemAtIndex:)]
+        #[unsafe(method(removeItemAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeItemAtIndex(&self, index: NSInteger);
 
-        #[method(removeAllItems)]
+        #[unsafe(method(removeAllItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllItems(&self);
 
-        #[method(selectItemWithObjectValue:)]
+        #[unsafe(method(selectItemWithObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectItemWithObjectValue(&self, object: Option<&AnyObject>);
 
-        #[method(itemObjectValueAtIndex:)]
+        #[unsafe(method(itemObjectValueAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemObjectValueAtIndex(&self, index: NSInteger) -> Retained<AnyObject>;
 
-        #[method(objectValueOfSelectedItem)]
+        #[unsafe(method(objectValueOfSelectedItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectValueOfSelectedItem(&self) -> Option<Retained<AnyObject>>;
 
-        #[method(indexOfItemWithObjectValue:)]
+        #[unsafe(method(indexOfItemWithObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfItemWithObjectValue(&self, object: &AnyObject) -> NSInteger;
 
-        #[method(objectValues)]
+        #[unsafe(method(objectValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectValues(&self) -> Retained<NSArray>;
     }
@@ -423,11 +423,11 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSComboBox {
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -445,7 +445,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSComboBox {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -460,7 +460,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSComboBox {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

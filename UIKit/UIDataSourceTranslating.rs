@@ -10,28 +10,28 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatasourcetranslating?language=objc)
     pub unsafe trait UIDataSourceTranslating: NSObjectProtocol + MainThreadOnly {
-        #[method(presentationSectionIndexForDataSourceSectionIndex:)]
+        #[unsafe(method(presentationSectionIndexForDataSourceSectionIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn presentationSectionIndexForDataSourceSectionIndex(
             &self,
             data_source_section_index: NSInteger,
         ) -> NSInteger;
 
-        #[method(dataSourceSectionIndexForPresentationSectionIndex:)]
+        #[unsafe(method(dataSourceSectionIndexForPresentationSectionIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn dataSourceSectionIndexForPresentationSectionIndex(
             &self,
             presentation_section_index: NSInteger,
         ) -> NSInteger;
 
-        #[method(presentationIndexPathForDataSourceIndexPath:)]
+        #[unsafe(method(presentationIndexPathForDataSourceIndexPath:))]
         #[unsafe(method_family = none)]
         unsafe fn presentationIndexPathForDataSourceIndexPath(
             &self,
             data_source_index_path: Option<&NSIndexPath>,
         ) -> Option<Retained<NSIndexPath>>;
 
-        #[method(dataSourceIndexPathForPresentationIndexPath:)]
+        #[unsafe(method(dataSourceIndexPathForPresentationIndexPath:))]
         #[unsafe(method_family = none)]
         unsafe fn dataSourceIndexPathForPresentationIndexPath(
             &self,
@@ -39,7 +39,7 @@ extern_protocol!(
         ) -> Option<Retained<NSIndexPath>>;
 
         #[cfg(feature = "block2")]
-        #[method(performUsingPresentationValues:)]
+        #[unsafe(method(performUsingPresentationValues:))]
         #[unsafe(method_family = none)]
         unsafe fn performUsingPresentationValues(
             &self,

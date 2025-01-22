@@ -81,70 +81,70 @@ unsafe impl NSUserInterfaceItemIdentification for NSSplitView {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSplitView {
-        #[method(isVertical)]
+        #[unsafe(method(isVertical))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVertical(&self) -> bool;
 
         /// Setter for [`isVertical`][Self::isVertical].
-        #[method(setVertical:)]
+        #[unsafe(method(setVertical:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVertical(&self, vertical: bool);
 
-        #[method(dividerStyle)]
+        #[unsafe(method(dividerStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn dividerStyle(&self) -> NSSplitViewDividerStyle;
 
         /// Setter for [`dividerStyle`][Self::dividerStyle].
-        #[method(setDividerStyle:)]
+        #[unsafe(method(setDividerStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDividerStyle(&self, divider_style: NSSplitViewDividerStyle);
 
-        #[method(autosaveName)]
+        #[unsafe(method(autosaveName))]
         #[unsafe(method_family = none)]
         pub unsafe fn autosaveName(&self) -> Option<Retained<NSSplitViewAutosaveName>>;
 
         /// Setter for [`autosaveName`][Self::autosaveName].
-        #[method(setAutosaveName:)]
+        #[unsafe(method(setAutosaveName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSSplitViewAutosaveName>);
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSSplitViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSSplitViewDelegate>>,
         );
 
-        #[method(drawDividerInRect:)]
+        #[unsafe(method(drawDividerInRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawDividerInRect(&self, rect: NSRect);
 
         #[cfg(feature = "NSColor")]
-        #[method(dividerColor)]
+        #[unsafe(method(dividerColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn dividerColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(dividerThickness)]
+        #[unsafe(method(dividerThickness))]
         #[unsafe(method_family = none)]
         pub unsafe fn dividerThickness(&self) -> CGFloat;
 
-        #[method(adjustSubviews)]
+        #[unsafe(method(adjustSubviews))]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustSubviews(&self);
 
-        #[method(isSubviewCollapsed:)]
+        #[unsafe(method(isSubviewCollapsed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSubviewCollapsed(&self, subview: &NSView) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(minPossiblePositionOfDividerAtIndex:)]
+        #[unsafe(method(minPossiblePositionOfDividerAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn minPossiblePositionOfDividerAtIndex(
             &self,
@@ -152,7 +152,7 @@ extern_methods!(
         ) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(maxPossiblePositionOfDividerAtIndex:)]
+        #[unsafe(method(maxPossiblePositionOfDividerAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxPossiblePositionOfDividerAtIndex(
             &self,
@@ -160,7 +160,7 @@ extern_methods!(
         ) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(setPosition:ofDividerAtIndex:)]
+        #[unsafe(method(setPosition:ofDividerAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPosition_ofDividerAtIndex(
             &self,
@@ -169,7 +169,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSLayoutConstraint")]
-        #[method(holdingPriorityForSubviewAtIndex:)]
+        #[unsafe(method(holdingPriorityForSubviewAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn holdingPriorityForSubviewAtIndex(
             &self,
@@ -177,7 +177,7 @@ extern_methods!(
         ) -> NSLayoutPriority;
 
         #[cfg(feature = "NSLayoutConstraint")]
-        #[method(setHoldingPriority:forSubviewAtIndex:)]
+        #[unsafe(method(setHoldingPriority:forSubviewAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHoldingPriority_forSubviewAtIndex(
             &self,
@@ -191,11 +191,11 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSplitView {
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -208,7 +208,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSplitView {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -218,7 +218,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSplitView {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -235,12 +235,12 @@ extern_methods!(
         /// `-arrangedSubviews.`Setting this from NO to YES will cause
         /// `-arrangedSubviews`to become the value of
         /// `-subviews.`
-        #[method(arrangesAllSubviews)]
+        #[unsafe(method(arrangesAllSubviews))]
         #[unsafe(method_family = none)]
         pub unsafe fn arrangesAllSubviews(&self) -> bool;
 
         /// Setter for [`arrangesAllSubviews`][Self::arrangesAllSubviews].
-        #[method(setArrangesAllSubviews:)]
+        #[unsafe(method(setArrangesAllSubviews:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setArrangesAllSubviews(&self, arranges_all_subviews: bool);
 
@@ -250,26 +250,26 @@ extern_methods!(
         /// `-arrangesAllSubviews`is YES, then
         /// `-arrangedSubviews`is identical to
         /// `-subviews.`
-        #[method(arrangedSubviews)]
+        #[unsafe(method(arrangedSubviews))]
         #[unsafe(method_family = none)]
         pub unsafe fn arrangedSubviews(&self) -> Retained<NSArray<NSView>>;
 
         /// Adds a view as arranged split pane. If the view is not a subview of the receiver, it will be added as one.
-        #[method(addArrangedSubview:)]
+        #[unsafe(method(addArrangedSubview:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addArrangedSubview(&self, view: &NSView);
 
         /// Adds a view as an arranged split pane list at the specific index.
         /// If the view is already an arranged split view, it will move the view the specified index (but not move the subview index).
         /// If the view is not a subview of the receiver, it will be added as one (not necessarily at the same index).
-        #[method(insertArrangedSubview:atIndex:)]
+        #[unsafe(method(insertArrangedSubview:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertArrangedSubview_atIndex(&self, view: &NSView, index: NSInteger);
 
         /// Removes a view as arranged split pane. If
         /// `-arrangesAllSubviews`is set to NO, this does not remove the view as a subview.
         /// Removing the view as a subview (either by -[view removeFromSuperview] or setting the receiver's subviews) will automatically remove it as an arranged subview.
-        #[method(removeArrangedSubview:)]
+        #[unsafe(method(removeArrangedSubview:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeArrangedSubview(&self, view: &NSView);
     }
@@ -280,7 +280,7 @@ extern_protocol!(
     pub unsafe trait NSSplitViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method(splitView:canCollapseSubview:)]
+        #[unsafe(method(splitView:canCollapseSubview:))]
         #[unsafe(method_family = none)]
         unsafe fn splitView_canCollapseSubview(
             &self,
@@ -291,7 +291,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "NSSplitView no longer supports collapsing sections via double-click. This delegate method is never called."]
         #[optional]
-        #[method(splitView:shouldCollapseSubview:forDoubleClickOnDividerAtIndex:)]
+        #[unsafe(method(splitView:shouldCollapseSubview:forDoubleClickOnDividerAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex(
             &self,
@@ -306,7 +306,7 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[optional]
-        #[method(splitView:constrainMinCoordinate:ofSubviewAt:)]
+        #[unsafe(method(splitView:constrainMinCoordinate:ofSubviewAt:))]
         #[unsafe(method_family = none)]
         unsafe fn splitView_constrainMinCoordinate_ofSubviewAt(
             &self,
@@ -321,7 +321,7 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[optional]
-        #[method(splitView:constrainMaxCoordinate:ofSubviewAt:)]
+        #[unsafe(method(splitView:constrainMaxCoordinate:ofSubviewAt:))]
         #[unsafe(method_family = none)]
         unsafe fn splitView_constrainMaxCoordinate_ofSubviewAt(
             &self,
@@ -336,7 +336,7 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[optional]
-        #[method(splitView:constrainSplitPosition:ofSubviewAt:)]
+        #[unsafe(method(splitView:constrainSplitPosition:ofSubviewAt:))]
         #[unsafe(method_family = none)]
         unsafe fn splitView_constrainSplitPosition_ofSubviewAt(
             &self,
@@ -347,7 +347,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method(splitView:resizeSubviewsWithOldSize:)]
+        #[unsafe(method(splitView:resizeSubviewsWithOldSize:))]
         #[unsafe(method_family = none)]
         unsafe fn splitView_resizeSubviewsWithOldSize(
             &self,
@@ -357,7 +357,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method(splitView:shouldAdjustSizeOfSubview:)]
+        #[unsafe(method(splitView:shouldAdjustSizeOfSubview:))]
         #[unsafe(method_family = none)]
         unsafe fn splitView_shouldAdjustSizeOfSubview(
             &self,
@@ -367,7 +367,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method(splitView:shouldHideDividerAtIndex:)]
+        #[unsafe(method(splitView:shouldHideDividerAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn splitView_shouldHideDividerAtIndex(
             &self,
@@ -377,7 +377,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method(splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:)]
+        #[unsafe(method(splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn splitView_effectiveRect_forDrawnRect_ofDividerAtIndex(
             &self,
@@ -389,7 +389,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method(splitView:additionalEffectiveRectOfDividerAtIndex:)]
+        #[unsafe(method(splitView:additionalEffectiveRectOfDividerAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn splitView_additionalEffectiveRectOfDividerAtIndex(
             &self,
@@ -398,12 +398,12 @@ extern_protocol!(
         ) -> NSRect;
 
         #[optional]
-        #[method(splitViewWillResizeSubviews:)]
+        #[unsafe(method(splitViewWillResizeSubviews:))]
         #[unsafe(method_family = none)]
         unsafe fn splitViewWillResizeSubviews(&self, notification: &NSNotification);
 
         #[optional]
-        #[method(splitViewDidResizeSubviews:)]
+        #[unsafe(method(splitViewDidResizeSubviews:))]
         #[unsafe(method_family = none)]
         unsafe fn splitViewDidResizeSubviews(&self, notification: &NSNotification);
     }
@@ -424,12 +424,12 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSplitView {
         #[deprecated]
-        #[method(setIsPaneSplitter:)]
+        #[unsafe(method(setIsPaneSplitter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIsPaneSplitter(&self, flag: bool);
 
         #[deprecated]
-        #[method(isPaneSplitter)]
+        #[unsafe(method(isPaneSplitter))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPaneSplitter(&self) -> bool;
     }

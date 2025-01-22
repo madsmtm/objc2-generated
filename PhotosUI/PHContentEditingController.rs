@@ -17,13 +17,13 @@ extern_protocol!(
     pub unsafe trait PHContentEditingController: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
-        #[method(canHandleAdjustmentData:)]
+        #[unsafe(method(canHandleAdjustmentData:))]
         #[unsafe(method_family = none)]
         unsafe fn canHandleAdjustmentData(&self, adjustment_data: &PHAdjustmentData) -> bool;
 
         #[cfg(all(feature = "objc2-app-kit", feature = "objc2-photos"))]
         #[cfg(target_os = "macos")]
-        #[method(startContentEditingWithInput:placeholderImage:)]
+        #[unsafe(method(startContentEditingWithInput:placeholderImage:))]
         #[unsafe(method_family = none)]
         unsafe fn startContentEditingWithInput_placeholderImage(
             &self,
@@ -33,18 +33,18 @@ extern_protocol!(
 
         #[cfg(all(feature = "block2", feature = "objc2-photos"))]
         #[cfg(not(target_os = "watchos"))]
-        #[method(finishContentEditingWithCompletionHandler:)]
+        #[unsafe(method(finishContentEditingWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn finishContentEditingWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut PHContentEditingOutput)>,
         );
 
-        #[method(cancelContentEditing)]
+        #[unsafe(method(cancelContentEditing))]
         #[unsafe(method_family = none)]
         unsafe fn cancelContentEditing(&self);
 
-        #[method(shouldShowCancelConfirmation)]
+        #[unsafe(method(shouldShowCancelConfirmation))]
         #[unsafe(method_family = none)]
         unsafe fn shouldShowCancelConfirmation(&self) -> bool;
     }

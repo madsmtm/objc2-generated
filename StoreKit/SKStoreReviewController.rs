@@ -32,7 +32,7 @@ extern_methods!(
         /// from a button or any other user action. For presenting a write review form, a deep link is
         /// available to the App Store by appending the query params "action=write-review" to a product URL.
         #[deprecated = "Use AppStore.requestReview(in:)"]
-        #[method(requestReview)]
+        #[unsafe(method(requestReview))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestReview();
     }
@@ -41,11 +41,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKStoreReviewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

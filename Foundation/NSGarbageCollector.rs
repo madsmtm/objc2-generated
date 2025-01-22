@@ -19,53 +19,53 @@ unsafe impl NSObjectProtocol for NSGarbageCollector {}
 extern_methods!(
     unsafe impl NSGarbageCollector {
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
-        #[method(defaultCollector)]
+        #[unsafe(method(defaultCollector))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultCollector() -> Retained<AnyObject>;
 
         #[deprecated]
-        #[method(isCollecting)]
+        #[unsafe(method(isCollecting))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCollecting(&self) -> bool;
 
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
-        #[method(disable)]
+        #[unsafe(method(disable))]
         #[unsafe(method_family = none)]
         pub unsafe fn disable(&self);
 
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
-        #[method(enable)]
+        #[unsafe(method(enable))]
         #[unsafe(method_family = none)]
         pub unsafe fn enable(&self);
 
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
-        #[method(collectIfNeeded)]
+        #[unsafe(method(collectIfNeeded))]
         #[unsafe(method_family = none)]
         pub unsafe fn collectIfNeeded(&self);
 
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
-        #[method(collectExhaustively)]
+        #[unsafe(method(collectExhaustively))]
         #[unsafe(method_family = none)]
         pub unsafe fn collectExhaustively(&self);
 
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
-        #[method(disableCollectorForPointer:)]
+        #[unsafe(method(disableCollectorForPointer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableCollectorForPointer(&self, ptr: NonNull<c_void>);
 
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
-        #[method(enableCollectorForPointer:)]
+        #[unsafe(method(enableCollectorForPointer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enableCollectorForPointer(&self, ptr: NonNull<c_void>);
 
         #[cfg(feature = "NSZone")]
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
-        #[method(zone)]
+        #[unsafe(method(zone))]
         #[unsafe(method_family = none)]
         pub unsafe fn zone(&self) -> NonNull<NSZone>;
     }
@@ -74,11 +74,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGarbageCollector {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -42,7 +42,7 @@ unsafe impl NSObjectProtocol for WKInterfaceVolumeControl {}
 extern_methods!(
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceVolumeControl {
-        #[method(initWithOrigin:)]
+        #[unsafe(method(initWithOrigin:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOrigin(
             this: Allocated<Self>,
@@ -50,15 +50,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-ui-kit")]
-        #[method(setTintColor:)]
+        #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
-        #[method(focus)]
+        #[unsafe(method(focus))]
         #[unsafe(method_family = none)]
         pub unsafe fn focus(&self);
 
-        #[method(resignFocus)]
+        #[unsafe(method(resignFocus))]
         #[unsafe(method_family = none)]
         pub unsafe fn resignFocus(&self);
     }
@@ -68,7 +68,7 @@ extern_methods!(
     /// Methods declared on superclass `WKInterfaceObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceVolumeControl {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -78,7 +78,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceVolumeControl {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

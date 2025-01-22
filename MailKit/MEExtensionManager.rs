@@ -20,17 +20,17 @@ unsafe impl NSObjectProtocol for MEExtensionManager {}
 
 extern_methods!(
     unsafe impl MEExtensionManager {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         /// This will call on Mail to reload the content rule list associated with the given identifier. Mail May throttle reloading the content blocker to once every few minutes.
-        #[method(reloadContentBlockerWithIdentifier:completionHandler:)]
+        #[unsafe(method(reloadContentBlockerWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadContentBlockerWithIdentifier_completionHandler(
             identifier: &NSString,
@@ -39,7 +39,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// This will call on Mail to reload the currently visible messages.  Mail may throttle reloading visible messages.
-        #[method(reloadVisibleMessagesWithCompletionHandler:)]
+        #[unsafe(method(reloadVisibleMessagesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadVisibleMessagesWithCompletionHandler(
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,

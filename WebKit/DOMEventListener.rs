@@ -15,7 +15,7 @@ extern_protocol!(
             feature = "WebScriptObject"
         ))]
         #[deprecated]
-        #[method(handleEvent:)]
+        #[unsafe(method(handleEvent:))]
         #[unsafe(method_family = none)]
         unsafe fn handleEvent(&self, event: Option<&DOMEvent>);
     }

@@ -37,7 +37,7 @@ extern_methods!(
         /// Create a new request that can statefully track the homographic registration of two images.
         ///
         /// This is a convenience initializer for a frame analysis spacing of kCMTimeZero and a nil completion handler.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -45,7 +45,7 @@ extern_methods!(
         /// Create a new request that can statefully track the homographic registration of two images.
         ///
         /// This is a convenience initializer for a frame analysis spacing of kCMTimeZero.
-        #[method(initWithCompletionHandler:)]
+        #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -54,7 +54,7 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         /// VNImageHomographicAlignmentObservation results.
-        #[method(results)]
+        #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(
             &self,
@@ -66,7 +66,7 @@ extern_methods!(
     /// Methods declared on superclass `VNStatefulRequest`
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNTrackHomographicImageRegistrationRequest {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -77,7 +77,7 @@ extern_methods!(
         /// Parameter `frameAnalysisSpacing`: The reciprocal of maximum rate at which buffers will be processed. The request will not process buffers that fall within the frameAnalysisSpacing after it has performed the analysis. The analysis is not done by wall time but by analysis of of the time stamps of the samplebuffers being processed.
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method(initWithFrameAnalysisSpacing:completionHandler:)]
+        #[unsafe(method(initWithFrameAnalysisSpacing:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
             this: Allocated<Self>,

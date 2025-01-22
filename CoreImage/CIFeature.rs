@@ -23,13 +23,13 @@ unsafe impl NSObjectProtocol for CIFeature {}
 extern_methods!(
     unsafe impl CIFeature {
         /// The type of the feature.
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The bounds of the feature in the image it was detected in.
-        #[method(bounds)]
+        #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn bounds(&self) -> CGRect;
     }
@@ -38,11 +38,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIFeature {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -96,70 +96,70 @@ extern_methods!(
         /// Note that the left eye is the eye on the left side of the face
         /// from the observer's perspective. It is not the left eye from
         /// the subject's perspective.
-        #[method(bounds)]
+        #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn bounds(&self) -> CGRect;
 
-        #[method(hasLeftEyePosition)]
+        #[unsafe(method(hasLeftEyePosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasLeftEyePosition(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(leftEyePosition)]
+        #[unsafe(method(leftEyePosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn leftEyePosition(&self) -> CGPoint;
 
-        #[method(hasRightEyePosition)]
+        #[unsafe(method(hasRightEyePosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasRightEyePosition(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(rightEyePosition)]
+        #[unsafe(method(rightEyePosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightEyePosition(&self) -> CGPoint;
 
-        #[method(hasMouthPosition)]
+        #[unsafe(method(hasMouthPosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasMouthPosition(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(mouthPosition)]
+        #[unsafe(method(mouthPosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn mouthPosition(&self) -> CGPoint;
 
-        #[method(hasTrackingID)]
+        #[unsafe(method(hasTrackingID))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasTrackingID(&self) -> bool;
 
-        #[method(trackingID)]
+        #[unsafe(method(trackingID))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackingID(&self) -> c_int;
 
-        #[method(hasTrackingFrameCount)]
+        #[unsafe(method(hasTrackingFrameCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasTrackingFrameCount(&self) -> bool;
 
-        #[method(trackingFrameCount)]
+        #[unsafe(method(trackingFrameCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackingFrameCount(&self) -> c_int;
 
-        #[method(hasFaceAngle)]
+        #[unsafe(method(hasFaceAngle))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasFaceAngle(&self) -> bool;
 
-        #[method(faceAngle)]
+        #[unsafe(method(faceAngle))]
         #[unsafe(method_family = none)]
         pub unsafe fn faceAngle(&self) -> c_float;
 
-        #[method(hasSmile)]
+        #[unsafe(method(hasSmile))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasSmile(&self) -> bool;
 
-        #[method(leftEyeClosed)]
+        #[unsafe(method(leftEyeClosed))]
         #[unsafe(method_family = none)]
         pub unsafe fn leftEyeClosed(&self) -> bool;
 
-        #[method(rightEyeClosed)]
+        #[unsafe(method(rightEyeClosed))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightEyeClosed(&self) -> bool;
     }
@@ -168,11 +168,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIFaceFeature {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -193,27 +193,27 @@ unsafe impl NSObjectProtocol for CIRectangleFeature {}
 extern_methods!(
     unsafe impl CIRectangleFeature {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(bounds)]
+        #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(topLeft)]
+        #[unsafe(method(topLeft))]
         #[unsafe(method_family = none)]
         pub unsafe fn topLeft(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(topRight)]
+        #[unsafe(method(topRight))]
         #[unsafe(method_family = none)]
         pub unsafe fn topRight(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(bottomLeft)]
+        #[unsafe(method(bottomLeft))]
         #[unsafe(method_family = none)]
         pub unsafe fn bottomLeft(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(bottomRight)]
+        #[unsafe(method(bottomRight))]
         #[unsafe(method_family = none)]
         pub unsafe fn bottomRight(&self) -> CGPoint;
     }
@@ -222,11 +222,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIRectangleFeature {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -254,36 +254,36 @@ unsafe impl NSSecureCoding for CIQRCodeFeature {}
 extern_methods!(
     unsafe impl CIQRCodeFeature {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(bounds)]
+        #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(topLeft)]
+        #[unsafe(method(topLeft))]
         #[unsafe(method_family = none)]
         pub unsafe fn topLeft(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(topRight)]
+        #[unsafe(method(topRight))]
         #[unsafe(method_family = none)]
         pub unsafe fn topRight(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(bottomLeft)]
+        #[unsafe(method(bottomLeft))]
         #[unsafe(method_family = none)]
         pub unsafe fn bottomLeft(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(bottomRight)]
+        #[unsafe(method(bottomRight))]
         #[unsafe(method_family = none)]
         pub unsafe fn bottomRight(&self) -> CGPoint;
 
-        #[method(messageString)]
+        #[unsafe(method(messageString))]
         #[unsafe(method_family = none)]
         pub unsafe fn messageString(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CIBarcodeDescriptor")]
-        #[method(symbolDescriptor)]
+        #[unsafe(method(symbolDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolDescriptor(&self) -> Option<Retained<CIQRCodeDescriptor>>;
     }
@@ -292,11 +292,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIQRCodeFeature {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -314,31 +314,31 @@ unsafe impl NSObjectProtocol for CITextFeature {}
 extern_methods!(
     unsafe impl CITextFeature {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(bounds)]
+        #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(topLeft)]
+        #[unsafe(method(topLeft))]
         #[unsafe(method_family = none)]
         pub unsafe fn topLeft(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(topRight)]
+        #[unsafe(method(topRight))]
         #[unsafe(method_family = none)]
         pub unsafe fn topRight(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(bottomLeft)]
+        #[unsafe(method(bottomLeft))]
         #[unsafe(method_family = none)]
         pub unsafe fn bottomLeft(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(bottomRight)]
+        #[unsafe(method(bottomRight))]
         #[unsafe(method_family = none)]
         pub unsafe fn bottomRight(&self) -> CGPoint;
 
-        #[method(subFeatures)]
+        #[unsafe(method(subFeatures))]
         #[unsafe(method_family = none)]
         pub unsafe fn subFeatures(&self) -> Option<Retained<NSArray>>;
     }
@@ -347,11 +347,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CITextFeature {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -82,7 +82,7 @@ extern_methods!(
         /// The `readOnly` parameter affects how the disk is exposed to the guest operating system
         /// by the storage controller. If the disk is intended to be used read-only, it is also recommended
         /// to open the file handle as read-only.
-        #[method(initWithFileHandle:readOnly:synchronizationMode:error:_)]
+        #[unsafe(method(initWithFileHandle:readOnly:synchronizationMode:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFileHandle_readOnly_synchronizationMode_error(
             this: Allocated<Self>,
@@ -92,18 +92,18 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// File handle to the underlying disk used for storage by the attachment.
-        #[method(fileHandle)]
+        #[unsafe(method(fileHandle))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileHandle(&self) -> Retained<NSFileHandle>;
 
         /// Whether the underlying disk attachment is read-only.
-        #[method(isReadOnly)]
+        #[unsafe(method(isReadOnly))]
         #[unsafe(method_family = none)]
         pub unsafe fn isReadOnly(&self) -> bool;
 
         #[cfg(feature = "VZDiskSynchronizationMode")]
         /// The mode in which the disk image synchronizes data with the underlying storage device.
-        #[method(synchronizationMode)]
+        #[unsafe(method(synchronizationMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn synchronizationMode(&self) -> VZDiskSynchronizationMode;
     }
@@ -113,11 +113,11 @@ extern_methods!(
     /// Methods declared on superclass `VZStorageDeviceAttachment`
     #[cfg(feature = "VZStorageDeviceAttachment")]
     unsafe impl VZDiskBlockDeviceStorageDeviceAttachment {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

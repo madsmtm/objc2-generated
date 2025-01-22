@@ -48,12 +48,12 @@ extern_methods!(
         /// which results in the exact EDT, so use this only if you need additional performance.
         /// Typical good values are: 32, 64, 96, 128.
         /// Default: FLT_MAX
-        #[method(searchLimitRadius)]
+        #[unsafe(method(searchLimitRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn searchLimitRadius(&self) -> c_float;
 
         /// Setter for [`searchLimitRadius`][Self::searchLimitRadius].
-        #[method(setSearchLimitRadius:)]
+        #[unsafe(method(setSearchLimitRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchLimitRadius(&self, search_limit_radius: c_float);
 
@@ -62,7 +62,7 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on
         ///
         /// Returns: A valid MPSImageEuclideanDistanceTransform object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -82,7 +82,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -104,7 +104,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -117,11 +117,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageEuclideanDistanceTransform {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

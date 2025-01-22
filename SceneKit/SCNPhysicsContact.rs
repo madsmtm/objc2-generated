@@ -21,37 +21,37 @@ unsafe impl NSObjectProtocol for SCNPhysicsContact {}
 extern_methods!(
     unsafe impl SCNPhysicsContact {
         #[cfg(feature = "SCNNode")]
-        #[method(nodeA)]
+        #[unsafe(method(nodeA))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeA(&self) -> Retained<SCNNode>;
 
         #[cfg(feature = "SCNNode")]
-        #[method(nodeB)]
+        #[unsafe(method(nodeB))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeB(&self) -> Retained<SCNNode>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
-        #[method(contactPoint)]
+        #[unsafe(method(contactPoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn contactPoint(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
-        #[method(contactNormal)]
+        #[unsafe(method(contactNormal))]
         #[unsafe(method_family = none)]
         pub unsafe fn contactNormal(&self) -> SCNVector3;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(collisionImpulse)]
+        #[unsafe(method(collisionImpulse))]
         #[unsafe(method_family = none)]
         pub unsafe fn collisionImpulse(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(penetrationDistance)]
+        #[unsafe(method(penetrationDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn penetrationDistance(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(sweepTestFraction)]
+        #[unsafe(method(sweepTestFraction))]
         #[unsafe(method_family = none)]
         pub unsafe fn sweepTestFraction(&self) -> CGFloat;
     }
@@ -60,11 +60,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsContact {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

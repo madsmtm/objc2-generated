@@ -25,23 +25,23 @@ extern_methods!(
     unsafe impl CBService {
         #[cfg(all(feature = "CBPeer", feature = "CBPeripheral"))]
         /// A back-pointer to the peripheral this service belongs to.
-        #[method(peripheral)]
+        #[unsafe(method(peripheral))]
         #[unsafe(method_family = none)]
         pub unsafe fn peripheral(&self) -> Option<Retained<CBPeripheral>>;
 
         /// The type of the service (primary or secondary).
-        #[method(isPrimary)]
+        #[unsafe(method(isPrimary))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPrimary(&self) -> bool;
 
         /// A list of included CBServices that have so far been discovered in this service.
-        #[method(includedServices)]
+        #[unsafe(method(includedServices))]
         #[unsafe(method_family = none)]
         pub unsafe fn includedServices(&self) -> Option<Retained<NSArray<CBService>>>;
 
         #[cfg(feature = "CBCharacteristic")]
         /// A list of CBCharacteristics that have so far been discovered in this service.
-        #[method(characteristics)]
+        #[unsafe(method(characteristics))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristics(&self) -> Option<Retained<NSArray<CBCharacteristic>>>;
     }
@@ -51,7 +51,7 @@ extern_methods!(
     /// Methods declared on superclass `CBAttribute`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBService {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -61,7 +61,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBService {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -94,23 +94,23 @@ unsafe impl NSObjectProtocol for CBMutableService {}
 extern_methods!(
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableService {
-        #[method(includedServices)]
+        #[unsafe(method(includedServices))]
         #[unsafe(method_family = none)]
         pub unsafe fn includedServices(&self) -> Option<Retained<NSArray<CBService>>>;
 
         /// Setter for [`includedServices`][Self::includedServices].
-        #[method(setIncludedServices:)]
+        #[unsafe(method(setIncludedServices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncludedServices(&self, included_services: Option<&NSArray<CBService>>);
 
         #[cfg(feature = "CBCharacteristic")]
-        #[method(characteristics)]
+        #[unsafe(method(characteristics))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristics(&self) -> Option<Retained<NSArray<CBCharacteristic>>>;
 
         #[cfg(feature = "CBCharacteristic")]
         /// Setter for [`characteristics`][Self::characteristics].
-        #[method(setCharacteristics:)]
+        #[unsafe(method(setCharacteristics:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCharacteristics(
             &self,
@@ -124,7 +124,7 @@ extern_methods!(
         ///
         ///
         /// Returns a service, initialized with a service type and UUID.
-        #[method(initWithType:primary:)]
+        #[unsafe(method(initWithType:primary:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_primary(
             this: Allocated<Self>,
@@ -138,7 +138,7 @@ extern_methods!(
     /// Methods declared on superclass `CBAttribute`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableService {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -148,7 +148,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableService {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

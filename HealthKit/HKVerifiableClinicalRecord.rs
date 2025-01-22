@@ -91,63 +91,63 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKVerifiableClinicalRecord {
         /// The types present in this record.
-        #[method(recordTypes)]
+        #[unsafe(method(recordTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordTypes(&self) -> Retained<NSArray<NSString>>;
 
         /// The identifier for the issuer of this record.
-        #[method(issuerIdentifier)]
+        #[unsafe(method(issuerIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn issuerIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HKVerifiableClinicalRecordSubject")]
         /// The subject of this record.
-        #[method(subject)]
+        #[unsafe(method(subject))]
         #[unsafe(method_family = none)]
         pub unsafe fn subject(&self) -> Retained<HKVerifiableClinicalRecordSubject>;
 
         /// The date this record was issued.
-        #[method(issuedDate)]
+        #[unsafe(method(issuedDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn issuedDate(&self) -> Retained<NSDate>;
 
         /// A date most relevant to this record, like when a vaccine was
         /// administered or a test was performed.
-        #[method(relevantDate)]
+        #[unsafe(method(relevantDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn relevantDate(&self) -> Retained<NSDate>;
 
         /// The date this record expires.
-        #[method(expirationDate)]
+        #[unsafe(method(expirationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn expirationDate(&self) -> Option<Retained<NSDate>>;
 
         /// A list of display names for each item contained in this record.
-        #[method(itemNames)]
+        #[unsafe(method(itemNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemNames(&self) -> Retained<NSArray<NSString>>;
 
         /// The type of the source leading to this verifiable record.
-        #[method(sourceType)]
+        #[unsafe(method(sourceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceType(&self) -> Option<Retained<HKVerifiableClinicalRecordSourceType>>;
 
         /// The record's data representation, determined by source type.
-        #[method(dataRepresentation)]
+        #[unsafe(method(dataRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataRepresentation(&self) -> Retained<NSData>;
 
         /// The record's entirety as JSON Web Signature (JWS) data.
         #[deprecated]
-        #[method(JWSRepresentation)]
+        #[unsafe(method(JWSRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn JWSRepresentation(&self) -> Retained<NSData>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

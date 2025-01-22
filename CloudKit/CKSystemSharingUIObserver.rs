@@ -18,16 +18,16 @@ unsafe impl NSObjectProtocol for CKSystemSharingUIObserver {}
 
 extern_methods!(
     unsafe impl CKSystemSharingUIObserver {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKContainer")]
-        #[method(initWithContainer:)]
+        #[unsafe(method(initWithContainer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContainer(
             this: Allocated<Self>,
@@ -54,7 +54,7 @@ extern_methods!(
         /// `share,`and a nonnull
         /// `error`Each
         /// `CKSystemSharingUIObserver`instance has a private serial queue. This queue is used for all callback block invocations.
-        #[method(systemSharingUIDidSaveShareBlock)]
+        #[unsafe(method(systemSharingUIDidSaveShareBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemSharingUIDidSaveShareBlock(
             &self,
@@ -67,7 +67,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`systemSharingUIDidSaveShareBlock`][Self::systemSharingUIDidSaveShareBlock].
-        #[method(setSystemSharingUIDidSaveShareBlock:)]
+        #[unsafe(method(setSystemSharingUIDidSaveShareBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSystemSharingUIDidSaveShareBlock(
             &self,
@@ -83,7 +83,7 @@ extern_methods!(
         ///
         /// Each
         /// `CKSystemSharingUIObserver`instance has a private serial queue. This queue is used for all callback block invocations.
-        #[method(systemSharingUIDidStopSharingBlock)]
+        #[unsafe(method(systemSharingUIDidStopSharingBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemSharingUIDidStopSharingBlock(
             &self,
@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`systemSharingUIDidStopSharingBlock`][Self::systemSharingUIDidStopSharingBlock].
-        #[method(setSystemSharingUIDidStopSharingBlock:)]
+        #[unsafe(method(setSystemSharingUIDidStopSharingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSystemSharingUIDidStopSharingBlock(
             &self,

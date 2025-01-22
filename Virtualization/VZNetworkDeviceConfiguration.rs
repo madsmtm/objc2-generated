@@ -32,23 +32,23 @@ unsafe impl NSObjectProtocol for VZNetworkDeviceConfiguration {}
 
 extern_methods!(
     unsafe impl VZNetworkDeviceConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZMACAddress")]
         /// The media access control address of the device. The default is a random, locally administered, unicast address.
-        #[method(MACAddress)]
+        #[unsafe(method(MACAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn MACAddress(&self) -> Retained<VZMACAddress>;
 
         #[cfg(feature = "VZMACAddress")]
         /// Setter for [`MACAddress`][Self::MACAddress].
-        #[method(setMACAddress:)]
+        #[unsafe(method(setMACAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMACAddress(&self, mac_address: &VZMACAddress);
 
@@ -60,13 +60,13 @@ extern_methods!(
         /// See: VZFileHandleNetworkDeviceAttachment
         ///
         /// See: VZNATNetworkDeviceAttachment
-        #[method(attachment)]
+        #[unsafe(method(attachment))]
         #[unsafe(method_family = none)]
         pub unsafe fn attachment(&self) -> Option<Retained<VZNetworkDeviceAttachment>>;
 
         #[cfg(feature = "VZNetworkDeviceAttachment")]
         /// Setter for [`attachment`][Self::attachment].
-        #[method(setAttachment:)]
+        #[unsafe(method(setAttachment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttachment(&self, attachment: Option<&VZNetworkDeviceAttachment>);
     }

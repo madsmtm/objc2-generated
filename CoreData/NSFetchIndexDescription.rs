@@ -27,7 +27,7 @@ unsafe impl NSObjectProtocol for NSFetchIndexDescription {}
 extern_methods!(
     unsafe impl NSFetchIndexDescription {
         #[cfg(feature = "NSFetchIndexElementDescription")]
-        #[method(initWithName:elements:)]
+        #[unsafe(method(initWithName:elements:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_elements(
             this: Allocated<Self>,
@@ -35,37 +35,37 @@ extern_methods!(
             elements: Option<&NSArray<NSFetchIndexElementDescription>>,
         ) -> Retained<Self>;
 
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
 
         #[cfg(feature = "NSFetchIndexElementDescription")]
-        #[method(elements)]
+        #[unsafe(method(elements))]
         #[unsafe(method_family = none)]
         pub unsafe fn elements(&self) -> Retained<NSArray<NSFetchIndexElementDescription>>;
 
         #[cfg(feature = "NSFetchIndexElementDescription")]
         /// Setter for [`elements`][Self::elements].
-        #[method(setElements:)]
+        #[unsafe(method(setElements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setElements(&self, elements: &NSArray<NSFetchIndexElementDescription>);
 
         #[cfg(feature = "NSEntityDescription")]
-        #[method(entity)]
+        #[unsafe(method(entity))]
         #[unsafe(method_family = none)]
         pub unsafe fn entity(&self) -> Option<Retained<NSEntityDescription>>;
 
-        #[method(partialIndexPredicate)]
+        #[unsafe(method(partialIndexPredicate))]
         #[unsafe(method_family = none)]
         pub unsafe fn partialIndexPredicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`partialIndexPredicate`][Self::partialIndexPredicate].
-        #[method(setPartialIndexPredicate:)]
+        #[unsafe(method(setPartialIndexPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPartialIndexPredicate(
             &self,
@@ -77,11 +77,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFetchIndexDescription {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

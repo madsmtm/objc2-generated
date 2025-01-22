@@ -26,13 +26,13 @@ extern_methods!(
     unsafe impl PHProjectExtensionContext {
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
-        #[method(photoLibrary)]
+        #[unsafe(method(photoLibrary))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoLibrary(&self) -> Retained<PHPhotoLibrary>;
 
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
-        #[method(project)]
+        #[unsafe(method(project))]
         #[unsafe(method_family = none)]
         pub unsafe fn project(&self) -> Retained<PHProject>;
 
@@ -45,7 +45,7 @@ extern_methods!(
         /// Note: The extension should observe library changes to get notified when assets are changed/edited.
         ///
         /// See: PHPhotoLibraryChangeObserver
-        #[method(showEditorForAsset:)]
+        #[unsafe(method(showEditorForAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showEditorForAsset(&self, asset: &PHAsset);
 
@@ -61,7 +61,7 @@ extern_methods!(
         /// updatedProjectInfo is the updated project info, if the update was cancelled it might be nil.
         ///
         /// Returns: NSProgress which can be observed, if it's canceled the original project info is returned.
-        #[method(updatedProjectInfoFromProjectInfo:completion:)]
+        #[unsafe(method(updatedProjectInfoFromProjectInfo:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updatedProjectInfoFromProjectInfo_completion(
             &self,
@@ -74,11 +74,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHProjectExtensionContext {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

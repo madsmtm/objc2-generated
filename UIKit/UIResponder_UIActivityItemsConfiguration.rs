@@ -10,7 +10,7 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIResponder {
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
-        #[method(activityItemsConfiguration)]
+        #[unsafe(method(activityItemsConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn activityItemsConfiguration(
             &self,
@@ -18,7 +18,7 @@ extern_methods!(
 
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
         /// Setter for [`activityItemsConfiguration`][Self::activityItemsConfiguration].
-        #[method(setActivityItemsConfiguration:)]
+        #[unsafe(method(setActivityItemsConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivityItemsConfiguration(
             &self,

@@ -50,7 +50,7 @@ unsafe impl NSObjectProtocol for MEComposeContext {}
 extern_methods!(
     unsafe impl MEComposeContext {
         /// A unique identifier for the compose context.
-        #[method(contextID)]
+        #[unsafe(method(contextID))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextID(&self) -> Retained<NSUUID>;
 
@@ -59,32 +59,32 @@ extern_methods!(
         /// It is
         /// `nil`for
         /// `MEComposeUserActionNewMessage`actions.
-        #[method(originalMessage)]
+        #[unsafe(method(originalMessage))]
         #[unsafe(method_family = none)]
         pub unsafe fn originalMessage(&self) -> Option<Retained<MEMessage>>;
 
         /// Indicates the action performed by the user that created this compose context.
-        #[method(action)]
+        #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> MEComposeUserAction;
 
         /// Boolean that indicates the message is encrypted by a Message Security extension.
-        #[method(isEncrypted)]
+        #[unsafe(method(isEncrypted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEncrypted(&self) -> bool;
 
         /// Boolean that indicates if the user wants to encrypt the message.
-        #[method(shouldEncrypt)]
+        #[unsafe(method(shouldEncrypt))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldEncrypt(&self) -> bool;
 
         /// Boolean that indicates the message is signed by a Message Security extension.
-        #[method(isSigned)]
+        #[unsafe(method(isSigned))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSigned(&self) -> bool;
 
         /// A Boolean that indicates if the user wants to sign the message.
-        #[method(shouldSign)]
+        #[unsafe(method(shouldSign))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldSign(&self) -> bool;
     }
@@ -93,11 +93,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MEComposeContext {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

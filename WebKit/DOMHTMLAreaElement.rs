@@ -78,111 +78,111 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLAreaElement {
         #[deprecated]
-        #[method(alt)]
+        #[unsafe(method(alt))]
         #[unsafe(method_family = none)]
         pub unsafe fn alt(&self) -> Retained<NSString>;
 
         /// Setter for [`alt`][Self::alt].
         #[deprecated]
-        #[method(setAlt:)]
+        #[unsafe(method(setAlt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlt(&self, alt: Option<&NSString>);
 
         #[deprecated]
-        #[method(coords)]
+        #[unsafe(method(coords))]
         #[unsafe(method_family = none)]
         pub unsafe fn coords(&self) -> Retained<NSString>;
 
         /// Setter for [`coords`][Self::coords].
         #[deprecated]
-        #[method(setCoords:)]
+        #[unsafe(method(setCoords:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCoords(&self, coords: Option<&NSString>);
 
         #[deprecated]
-        #[method(noHref)]
+        #[unsafe(method(noHref))]
         #[unsafe(method_family = none)]
         pub unsafe fn noHref(&self) -> bool;
 
         /// Setter for [`noHref`][Self::noHref].
         #[deprecated]
-        #[method(setNoHref:)]
+        #[unsafe(method(setNoHref:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNoHref(&self, no_href: bool);
 
         #[deprecated]
-        #[method(shape)]
+        #[unsafe(method(shape))]
         #[unsafe(method_family = none)]
         pub unsafe fn shape(&self) -> Retained<NSString>;
 
         /// Setter for [`shape`][Self::shape].
         #[deprecated]
-        #[method(setShape:)]
+        #[unsafe(method(setShape:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShape(&self, shape: Option<&NSString>);
 
         #[deprecated]
-        #[method(target)]
+        #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Retained<NSString>;
 
         /// Setter for [`target`][Self::target].
         #[deprecated]
-        #[method(setTarget:)]
+        #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&NSString>);
 
         #[deprecated]
-        #[method(accessKey)]
+        #[unsafe(method(accessKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         /// Setter for [`accessKey`][Self::accessKey].
         #[deprecated]
-        #[method(setAccessKey:)]
+        #[unsafe(method(setAccessKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
 
-        #[method(absoluteLinkURL)]
+        #[unsafe(method(absoluteLinkURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn absoluteLinkURL(&self) -> Retained<NSURL>;
 
         #[deprecated]
-        #[method(href)]
+        #[unsafe(method(href))]
         #[unsafe(method_family = none)]
         pub unsafe fn href(&self) -> Retained<NSString>;
 
         /// Setter for [`href`][Self::href].
         #[deprecated]
-        #[method(setHref:)]
+        #[unsafe(method(setHref:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHref(&self, href: Option<&NSString>);
 
-        #[method(protocol)]
+        #[unsafe(method(protocol))]
         #[unsafe(method_family = none)]
         pub unsafe fn protocol(&self) -> Retained<NSString>;
 
-        #[method(host)]
+        #[unsafe(method(host))]
         #[unsafe(method_family = none)]
         pub unsafe fn host(&self) -> Retained<NSString>;
 
-        #[method(hostname)]
+        #[unsafe(method(hostname))]
         #[unsafe(method_family = none)]
         pub unsafe fn hostname(&self) -> Retained<NSString>;
 
-        #[method(port)]
+        #[unsafe(method(port))]
         #[unsafe(method_family = none)]
         pub unsafe fn port(&self) -> Retained<NSString>;
 
-        #[method(pathname)]
+        #[unsafe(method(pathname))]
         #[unsafe(method_family = none)]
         pub unsafe fn pathname(&self) -> Retained<NSString>;
 
-        #[method(search)]
+        #[unsafe(method(search))]
         #[unsafe(method_family = none)]
         pub unsafe fn search(&self) -> Retained<NSString>;
 
-        #[method(hashName)]
+        #[unsafe(method(hashName))]
         #[unsafe(method_family = none)]
         pub unsafe fn hashName(&self) -> Retained<NSString>;
     }
@@ -199,7 +199,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLAreaElement {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -215,7 +215,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLAreaElement {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

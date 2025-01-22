@@ -47,7 +47,7 @@ extern_methods!(
         /// Parameter `healthStore`: Specifies the HKHealthStore object to use for building the series.
         ///
         /// Parameter `device`: The optional device represents the HKDevice from which the data is provided.
-        #[method(initWithHealthStore:device:)]
+        #[unsafe(method(initWithHealthStore:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHealthStore_device(
             this: Allocated<Self>,
@@ -69,7 +69,7 @@ extern_methods!(
         /// NO, then error is non-nil. An error here is considered fatal and the series builder will be complete.
         /// If data was previously saved, then the HKWorkoutRoute may be retrieved by the
         /// finishRouteWithMetadata: method.
-        #[method(insertRouteData:completion:)]
+        #[unsafe(method(insertRouteData:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertRouteData_completion(
             &self,
@@ -91,7 +91,7 @@ extern_methods!(
         /// metadata has been added to the builder successfully. If success is NO, error will be non-null and
         /// will contain the error encountered during the insertion operation. When an error occurs, the builder's
         /// metadata will remain unchanged.
-        #[method(addMetadata:completion:)]
+        #[unsafe(method(addMetadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMetadata_completion(
             &self,
@@ -126,7 +126,7 @@ extern_methods!(
         /// error will indicate why the series could not be returned including database inaccessibility during
         /// device lock. Subsequent requests for the HKWorkoutRoute can be made through HKSampleQuery or similar
         /// queries. workoutRoute cannot be associated to another workout.
-        #[method(finishRouteWithWorkout:metadata:completion:)]
+        #[unsafe(method(finishRouteWithWorkout:metadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishRouteWithWorkout_metadata_completion(
             &self,
@@ -142,7 +142,7 @@ extern_methods!(
     #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl HKWorkoutRouteBuilder {
         /// Use only subclass initializer methods.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -152,7 +152,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl HKWorkoutRouteBuilder {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

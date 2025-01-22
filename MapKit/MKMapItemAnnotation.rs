@@ -19,16 +19,16 @@ unsafe impl NSObjectProtocol for MKMapItemAnnotation {}
 
 extern_methods!(
     unsafe impl MKMapItemAnnotation {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MKMapItem")]
-        #[method(initWithMapItem:)]
+        #[unsafe(method(initWithMapItem:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMapItem(
             this: Allocated<Self>,
@@ -36,7 +36,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MKMapItem")]
-        #[method(mapItem)]
+        #[unsafe(method(mapItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn mapItem(&self) -> Retained<MKMapItem>;
     }

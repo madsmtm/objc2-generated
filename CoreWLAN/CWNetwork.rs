@@ -39,7 +39,7 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method(ssid)]
+        #[unsafe(method(ssid))]
         #[unsafe(method_family = none)]
         pub unsafe fn ssid(&self) -> Option<Retained<NSString>>;
 
@@ -53,7 +53,7 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method(ssidData)]
+        #[unsafe(method(ssidData))]
         #[unsafe(method_family = none)]
         pub unsafe fn ssidData(&self) -> Option<Retained<NSData>>;
 
@@ -67,28 +67,28 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method(bssid)]
+        #[unsafe(method(bssid))]
         #[unsafe(method_family = none)]
         pub unsafe fn bssid(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CWChannel")]
         /// The operating channel of the Wi-Fi device.
-        #[method(wlanChannel)]
+        #[unsafe(method(wlanChannel))]
         #[unsafe(method_family = none)]
         pub unsafe fn wlanChannel(&self) -> Option<Retained<CWChannel>>;
 
         /// Returns the received signal strength indication (RSSI) measurement (dBm) for the Wi-Fi device.
-        #[method(rssiValue)]
+        #[unsafe(method(rssiValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn rssiValue(&self) -> NSInteger;
 
         /// Returns the noise measurement (dBm) for the Wi-Fi device.
-        #[method(noiseMeasurement)]
+        #[unsafe(method(noiseMeasurement))]
         #[unsafe(method_family = none)]
         pub unsafe fn noiseMeasurement(&self) -> NSInteger;
 
         /// Returns information element data included in beacon or probe response frames.
-        #[method(informationElementData)]
+        #[unsafe(method(informationElementData))]
         #[unsafe(method_family = none)]
         pub unsafe fn informationElementData(&self) -> Option<Retained<NSData>>;
 
@@ -99,12 +99,12 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method(countryCode)]
+        #[unsafe(method(countryCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn countryCode(&self) -> Option<Retained<NSString>>;
 
         /// Returns the beacon interval (ms) for the Wi-Fi device.
-        #[method(beaconInterval)]
+        #[unsafe(method(beaconInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn beaconInterval(&self) -> NSInteger;
 
@@ -112,7 +112,7 @@ extern_methods!(
         ///
         ///
         /// Indicates whether or not the Wi-Fi device is participating in an independent basic service set (IBSS), or ad-hoc Wi-Fi network.
-        #[method(ibss)]
+        #[unsafe(method(ibss))]
         #[unsafe(method_family = none)]
         pub unsafe fn ibss(&self) -> bool;
 
@@ -134,7 +134,7 @@ extern_methods!(
         /// bssid
         /// </i>
         /// properties are equal.
-        #[method(isEqualToNetwork:)]
+        #[unsafe(method(isEqualToNetwork:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToNetwork(&self, network: &CWNetwork) -> bool;
 
@@ -153,7 +153,7 @@ extern_methods!(
         ///
         ///
         /// Determine which security types a Wi-Fi device supports.
-        #[method(supportsSecurity:)]
+        #[unsafe(method(supportsSecurity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsSecurity(&self, security: CWSecurity) -> bool;
 
@@ -165,7 +165,7 @@ extern_methods!(
         ///
         ///
         /// Determine which PHY modes a Wi-Fi device supports.
-        #[method(supportsPHYMode:)]
+        #[unsafe(method(supportsPHYMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsPHYMode(&self, phy_mode: CWPHYMode) -> bool;
     }
@@ -174,11 +174,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWNetwork {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

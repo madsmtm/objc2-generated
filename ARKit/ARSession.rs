@@ -74,30 +74,30 @@ extern_methods!(
         ///
         ///
         /// The identifier may change after calling runWithConfiguration.
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
 
         /// A delegate for receiving ARSession updates.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn ARSessionDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn ARSessionDelegate>>);
 
         #[cfg(feature = "ARFrame")]
         /// The current frame of the session.
-        #[method(currentFrame)]
+        #[unsafe(method(currentFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentFrame(&self) -> Option<Retained<ARFrame>>;
 
         #[cfg(feature = "ARConfiguration")]
         /// The configuration currently being used by the session.
-        #[method(configuration)]
+        #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Option<Retained<ARConfiguration>>;
 
@@ -108,7 +108,7 @@ extern_methods!(
         /// transition immediately to using the new configuration.
         ///
         /// Parameter `configuration`: The configuration to use.
-        #[method(runWithConfiguration:)]
+        #[unsafe(method(runWithConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runWithConfiguration(&self, configuration: &ARConfiguration);
 
@@ -122,7 +122,7 @@ extern_methods!(
         /// Parameter `configuration`: The configuration to use.
         ///
         /// Parameter `options`: The run options to use.
-        #[method(runWithConfiguration:options:)]
+        #[unsafe(method(runWithConfiguration:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runWithConfiguration_options(
             &self,
@@ -134,7 +134,7 @@ extern_methods!(
         ///
         /// Once paused, no more updates will be received from the
         /// session until run is called again.
-        #[method(pause)]
+        #[unsafe(method(pause))]
         #[unsafe(method_family = none)]
         pub unsafe fn pause(&self);
 
@@ -144,7 +144,7 @@ extern_methods!(
         /// The anchor will be added in the next frame update.
         ///
         /// Parameter `anchor`: The anchor to add.
-        #[method(addAnchor:)]
+        #[unsafe(method(addAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAnchor(&self, anchor: &ARAnchor);
 
@@ -154,7 +154,7 @@ extern_methods!(
         /// The anchor will be removed from subsequent frame updates.
         ///
         /// Parameter `anchor`: The anchor to remove.
-        #[method(removeAnchor:)]
+        #[unsafe(method(removeAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAnchor(&self, anchor: &ARAnchor);
 
@@ -171,7 +171,7 @@ extern_methods!(
         /// on the session's delegate queue. The completion handler takes the following parameters:
         /// worldMap - The current world map or nil if unavailable.
         /// error - An error that indicates why the world map is unavailable, or nil if a world map was provided.
-        #[method(getCurrentWorldMapWithCompletionHandler:)]
+        #[unsafe(method(getCurrentWorldMapWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCurrentWorldMapWithCompletionHandler(
             &self,
@@ -188,7 +188,7 @@ extern_methods!(
         /// Parameter `query`: Raycast query used for raycasting.
         ///
         /// Returns: List of raycast results, sorted from nearest to farthest (in distance from the camera). The results could be empty if raycast fails.
-        #[method(raycast:)]
+        #[unsafe(method(raycast:))]
         #[unsafe(method_family = none)]
         pub unsafe fn raycast(&self, query: &ARRaycastQuery) -> Retained<NSArray<ARRaycastResult>>;
 
@@ -211,7 +211,7 @@ extern_methods!(
         ///
         /// Returns: Tracked raycast object used to update or stop raycasting. This could be nil if the raycast fails or if the
         /// configuration is not `ARWorldTrackingConfiguration` or its subclasses.
-        #[method(trackedRaycast:updateHandler:)]
+        #[unsafe(method(trackedRaycast:updateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackedRaycast_updateHandler(
             &self,
@@ -229,7 +229,7 @@ extern_methods!(
         /// Parameter `collaborationData`: Collaboration data for updating the session.
         ///
         /// See: ARCollaborationData
-        #[method(updateWithCollaborationData:)]
+        #[unsafe(method(updateWithCollaborationData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateWithCollaborationData(&self, collaboration_data: &ARCollaborationData);
 
@@ -242,7 +242,7 @@ extern_methods!(
         /// See: -[ARVideoFormat isRecommendedForHighResolutionFrameCapturing]
         ///
         /// Parameter `completion`: Block being called when the call completes.
-        #[method(captureHighResolutionFrameWithCompletion:)]
+        #[unsafe(method(captureHighResolutionFrameWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captureHighResolutionFrameWithCompletion(
             &self,
@@ -256,11 +256,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl ARSession {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -281,7 +281,7 @@ extern_protocol!(
         ///
         /// Parameter `error`: The error being reported (see ARError.h).
         #[optional]
-        #[method(session:didFailWithError:)]
+        #[unsafe(method(session:didFailWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didFailWithError(&self, session: &ARSession, error: &NSError);
 
@@ -293,7 +293,7 @@ extern_protocol!(
         ///
         /// Parameter `camera`: The camera that changed tracking states.
         #[optional]
-        #[method(session:cameraDidChangeTrackingState:)]
+        #[unsafe(method(session:cameraDidChangeTrackingState:))]
         #[unsafe(method_family = none)]
         unsafe fn session_cameraDidChangeTrackingState(
             &self,
@@ -312,7 +312,7 @@ extern_protocol!(
         ///
         /// Parameter `session`: The session that was interrupted.
         #[optional]
-        #[method(sessionWasInterrupted:)]
+        #[unsafe(method(sessionWasInterrupted:))]
         #[unsafe(method_family = none)]
         unsafe fn sessionWasInterrupted(&self, session: &ARSession);
 
@@ -326,7 +326,7 @@ extern_protocol!(
         ///
         /// Parameter `session`: The session that was interrupted.
         #[optional]
-        #[method(sessionInterruptionEnded:)]
+        #[unsafe(method(sessionInterruptionEnded:))]
         #[unsafe(method_family = none)]
         unsafe fn sessionInterruptionEnded(&self, session: &ARSession);
 
@@ -345,7 +345,7 @@ extern_protocol!(
         ///
         /// Returns: Return YES to begin relocalizing.
         #[optional]
-        #[method(sessionShouldAttemptRelocalization:)]
+        #[unsafe(method(sessionShouldAttemptRelocalization:))]
         #[unsafe(method_family = none)]
         unsafe fn sessionShouldAttemptRelocalization(&self, session: &ARSession) -> bool;
 
@@ -357,7 +357,7 @@ extern_protocol!(
         ///
         /// Parameter `audioSampleBuffer`: The captured audio sample buffer.
         #[optional]
-        #[method(session:didOutputAudioSampleBuffer:)]
+        #[unsafe(method(session:didOutputAudioSampleBuffer:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didOutputAudioSampleBuffer(
             &self,
@@ -378,7 +378,7 @@ extern_protocol!(
         ///
         /// See: ARCollaborationData
         #[optional]
-        #[method(session:didOutputCollaborationData:)]
+        #[unsafe(method(session:didOutputCollaborationData:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didOutputCollaborationData(
             &self,
@@ -394,7 +394,7 @@ extern_protocol!(
         ///
         /// Parameter `geoTrackingStatus`: Latest geo tracking status.
         #[optional]
-        #[method(session:didChangeGeoTrackingStatus:)]
+        #[unsafe(method(session:didChangeGeoTrackingStatus:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didChangeGeoTrackingStatus(
             &self,
@@ -417,7 +417,7 @@ extern_protocol!(
         ///
         /// Parameter `frame`: The frame that has been updated.
         #[optional]
-        #[method(session:didUpdateFrame:)]
+        #[unsafe(method(session:didUpdateFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didUpdateFrame(&self, session: &ARSession, frame: &ARFrame);
 
@@ -429,7 +429,7 @@ extern_protocol!(
         ///
         /// Parameter `anchors`: An array of added anchors.
         #[optional]
-        #[method(session:didAddAnchors:)]
+        #[unsafe(method(session:didAddAnchors:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didAddAnchors(&self, session: &ARSession, anchors: &NSArray<ARAnchor>);
 
@@ -441,7 +441,7 @@ extern_protocol!(
         ///
         /// Parameter `anchors`: An array of updated anchors.
         #[optional]
-        #[method(session:didUpdateAnchors:)]
+        #[unsafe(method(session:didUpdateAnchors:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didUpdateAnchors(&self, session: &ARSession, anchors: &NSArray<ARAnchor>);
 
@@ -453,7 +453,7 @@ extern_protocol!(
         ///
         /// Parameter `anchors`: An array of removed anchors.
         #[optional]
-        #[method(session:didRemoveAnchors:)]
+        #[unsafe(method(session:didRemoveAnchors:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didRemoveAnchors(&self, session: &ARSession, anchors: &NSArray<ARAnchor>);
     }
@@ -468,7 +468,7 @@ extern_protocol!(
     pub unsafe trait ARSessionProviding: NSObjectProtocol {
         /// To ensure session changes are detected, Swift classes should mark this property as `
         /// ` and `dynamic`
-        #[method(session)]
+        #[unsafe(method(session))]
         #[unsafe(method_family = none)]
         unsafe fn session(&self) -> Retained<ARSession>;
     }

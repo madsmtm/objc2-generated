@@ -31,44 +31,44 @@ extern_methods!(
         #[cfg(feature = "UIHoverEffect")]
         /// The effect to apply to the view with this style. Use `UIHoverAutomaticEffect`
         /// to apply a system-default effect to the view.
-        #[method(effect)]
+        #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
         pub unsafe fn effect(&self) -> Retained<ProtocolObject<dyn UIHoverEffect>>;
 
         #[cfg(feature = "UIHoverEffect")]
         /// Setter for [`effect`][Self::effect].
-        #[method(setEffect:)]
+        #[unsafe(method(setEffect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEffect(&self, effect: &ProtocolObject<dyn UIHoverEffect>);
 
         #[cfg(feature = "UIShape")]
         /// The shape to use for the hover effect. If a `nil` shape is used, a
         /// system-default shape will be chosen based on the view.
-        #[method(shape)]
+        #[unsafe(method(shape))]
         #[unsafe(method_family = none)]
         pub unsafe fn shape(&self) -> Option<Retained<UIShape>>;
 
         #[cfg(feature = "UIShape")]
         /// Setter for [`shape`][Self::shape].
-        #[method(setShape:)]
+        #[unsafe(method(setShape:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShape(&self, shape: Option<&UIShape>);
 
         /// Whether the effect to apply to the view with this style is enabled.
         /// Use this property to temporarily disable a view's hover effect without
         /// removing it from the view entirely.
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(all(feature = "UIHoverEffect", feature = "UIShape"))]
         /// Creates a hover style with the provided effect and shape.
-        #[method(styleWithEffect:shape:)]
+        #[unsafe(method(styleWithEffect:shape:))]
         #[unsafe(method_family = none)]
         pub unsafe fn styleWithEffect_shape(
             effect: &ProtocolObject<dyn UIHoverEffect>,
@@ -77,7 +77,7 @@ extern_methods!(
 
         #[cfg(feature = "UIShape")]
         /// Creates a hover style with the provided shape and a `UIHoverAutomaticEffect`.
-        #[method(styleWithShape:)]
+        #[unsafe(method(styleWithShape:))]
         #[unsafe(method_family = none)]
         pub unsafe fn styleWithShape(
             shape: Option<&UIShape>,
@@ -85,15 +85,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Creates a hover style with the default shape and a `UIHoverAutomaticEffect`.
-        #[method(automaticStyle)]
+        #[unsafe(method(automaticStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticStyle(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -106,12 +106,12 @@ extern_methods!(
         /// The hover style associated with this view. Defaults to `nil`,
         /// indicating that this view should not have any hover effect.
         /// Subclasses may configure this style to use a different default value.
-        #[method(hoverStyle)]
+        #[unsafe(method(hoverStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn hoverStyle(&self) -> Option<Retained<UIHoverStyle>>;
 
         /// Setter for [`hoverStyle`][Self::hoverStyle].
-        #[method(setHoverStyle:)]
+        #[unsafe(method(setHoverStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHoverStyle(&self, hover_style: Option<&UIHoverStyle>);
     }

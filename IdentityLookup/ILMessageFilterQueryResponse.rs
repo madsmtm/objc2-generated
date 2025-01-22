@@ -26,25 +26,25 @@ extern_methods!(
     unsafe impl ILMessageFilterQueryResponse {
         #[cfg(feature = "ILMessageFilterAction")]
         /// Action to take for the received message.
-        #[method(action)]
+        #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> ILMessageFilterAction;
 
         #[cfg(feature = "ILMessageFilterAction")]
         /// Setter for [`action`][Self::action].
-        #[method(setAction:)]
+        #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: ILMessageFilterAction);
 
         #[cfg(feature = "ILMessageFilterAction")]
         /// SubAction to take for the received message.
-        #[method(subAction)]
+        #[unsafe(method(subAction))]
         #[unsafe(method_family = none)]
         pub unsafe fn subAction(&self) -> ILMessageFilterSubAction;
 
         #[cfg(feature = "ILMessageFilterAction")]
         /// Setter for [`subAction`][Self::subAction].
-        #[method(setSubAction:)]
+        #[unsafe(method(setSubAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubAction(&self, sub_action: ILMessageFilterSubAction);
     }
@@ -53,11 +53,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ILMessageFilterQueryResponse {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

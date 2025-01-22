@@ -45,31 +45,31 @@ unsafe impl NSObjectProtocol for AEAssessmentApplication {}
 
 extern_methods!(
     unsafe impl AEAssessmentApplication {
-        #[method(bundleIdentifier)]
+        #[unsafe(method(bundleIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
 
-        #[method(teamIdentifier)]
+        #[unsafe(method(teamIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn teamIdentifier(&self) -> Option<Retained<NSString>>;
 
-        #[method(requiresSignatureValidation)]
+        #[unsafe(method(requiresSignatureValidation))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresSignatureValidation(&self) -> bool;
 
         /// Setter for [`requiresSignatureValidation`][Self::requiresSignatureValidation].
-        #[method(setRequiresSignatureValidation:)]
+        #[unsafe(method(setRequiresSignatureValidation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiresSignatureValidation(&self, requires_signature_validation: bool);
 
-        #[method(initWithBundleIdentifier:)]
+        #[unsafe(method(initWithBundleIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBundleIdentifier(
             this: Allocated<Self>,
             bundle_identifier: &NSString,
         ) -> Retained<Self>;
 
-        #[method(initWithBundleIdentifier:teamIdentifier:)]
+        #[unsafe(method(initWithBundleIdentifier:teamIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBundleIdentifier_teamIdentifier(
             this: Allocated<Self>,
@@ -77,11 +77,11 @@ extern_methods!(
             team_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -128,100 +128,100 @@ unsafe impl NSObjectProtocol for AEAssessmentConfiguration {}
 
 extern_methods!(
     unsafe impl AEAssessmentConfiguration {
-        #[method(autocorrectMode)]
+        #[unsafe(method(autocorrectMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn autocorrectMode(&self) -> AEAutocorrectMode;
 
         /// Setter for [`autocorrectMode`][Self::autocorrectMode].
-        #[method(setAutocorrectMode:)]
+        #[unsafe(method(setAutocorrectMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutocorrectMode(&self, autocorrect_mode: AEAutocorrectMode);
 
-        #[method(allowsSpellCheck)]
+        #[unsafe(method(allowsSpellCheck))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsSpellCheck(&self) -> bool;
 
         /// Setter for [`allowsSpellCheck`][Self::allowsSpellCheck].
-        #[method(setAllowsSpellCheck:)]
+        #[unsafe(method(setAllowsSpellCheck:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsSpellCheck(&self, allows_spell_check: bool);
 
-        #[method(allowsPredictiveKeyboard)]
+        #[unsafe(method(allowsPredictiveKeyboard))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsPredictiveKeyboard(&self) -> bool;
 
         /// Setter for [`allowsPredictiveKeyboard`][Self::allowsPredictiveKeyboard].
-        #[method(setAllowsPredictiveKeyboard:)]
+        #[unsafe(method(setAllowsPredictiveKeyboard:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsPredictiveKeyboard(&self, allows_predictive_keyboard: bool);
 
-        #[method(allowsKeyboardShortcuts)]
+        #[unsafe(method(allowsKeyboardShortcuts))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsKeyboardShortcuts(&self) -> bool;
 
         /// Setter for [`allowsKeyboardShortcuts`][Self::allowsKeyboardShortcuts].
-        #[method(setAllowsKeyboardShortcuts:)]
+        #[unsafe(method(setAllowsKeyboardShortcuts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsKeyboardShortcuts(&self, allows_keyboard_shortcuts: bool);
 
-        #[method(allowsActivityContinuation)]
+        #[unsafe(method(allowsActivityContinuation))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsActivityContinuation(&self) -> bool;
 
         /// Setter for [`allowsActivityContinuation`][Self::allowsActivityContinuation].
-        #[method(setAllowsActivityContinuation:)]
+        #[unsafe(method(setAllowsActivityContinuation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsActivityContinuation(&self, allows_activity_continuation: bool);
 
-        #[method(allowsDictation)]
+        #[unsafe(method(allowsDictation))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsDictation(&self) -> bool;
 
         /// Setter for [`allowsDictation`][Self::allowsDictation].
-        #[method(setAllowsDictation:)]
+        #[unsafe(method(setAllowsDictation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsDictation(&self, allows_dictation: bool);
 
-        #[method(allowsAccessibilitySpeech)]
+        #[unsafe(method(allowsAccessibilitySpeech))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsAccessibilitySpeech(&self) -> bool;
 
         /// Setter for [`allowsAccessibilitySpeech`][Self::allowsAccessibilitySpeech].
-        #[method(setAllowsAccessibilitySpeech:)]
+        #[unsafe(method(setAllowsAccessibilitySpeech:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsAccessibilitySpeech(&self, allows_accessibility_speech: bool);
 
-        #[method(allowsPasswordAutoFill)]
+        #[unsafe(method(allowsPasswordAutoFill))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsPasswordAutoFill(&self) -> bool;
 
         /// Setter for [`allowsPasswordAutoFill`][Self::allowsPasswordAutoFill].
-        #[method(setAllowsPasswordAutoFill:)]
+        #[unsafe(method(setAllowsPasswordAutoFill:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsPasswordAutoFill(&self, allows_password_auto_fill: bool);
 
-        #[method(allowsContinuousPathKeyboard)]
+        #[unsafe(method(allowsContinuousPathKeyboard))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsContinuousPathKeyboard(&self) -> bool;
 
         /// Setter for [`allowsContinuousPathKeyboard`][Self::allowsContinuousPathKeyboard].
-        #[method(setAllowsContinuousPathKeyboard:)]
+        #[unsafe(method(setAllowsContinuousPathKeyboard:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsContinuousPathKeyboard(&self, allows_continuous_path_keyboard: bool);
 
-        #[method(mainParticipantConfiguration)]
+        #[unsafe(method(mainParticipantConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn mainParticipantConfiguration(
             &self,
         ) -> Retained<AEAssessmentParticipantConfiguration>;
 
-        #[method(configurationsByApplication)]
+        #[unsafe(method(configurationsByApplication))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationsByApplication(
             &self,
         ) -> Retained<NSDictionary<AEAssessmentApplication, AEAssessmentParticipantConfiguration>>;
 
-        #[method(setConfiguration:forApplication:)]
+        #[unsafe(method(setConfiguration:forApplication:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration_forApplication(
             &self,
@@ -229,7 +229,7 @@ extern_methods!(
             application: &AEAssessmentApplication,
         );
 
-        #[method(removeApplication:)]
+        #[unsafe(method(removeApplication:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeApplication(&self, application: &AEAssessmentApplication);
     }
@@ -238,11 +238,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AEAssessmentConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -265,32 +265,32 @@ unsafe impl NSObjectProtocol for AEAssessmentParticipantConfiguration {}
 
 extern_methods!(
     unsafe impl AEAssessmentParticipantConfiguration {
-        #[method(allowsNetworkAccess)]
+        #[unsafe(method(allowsNetworkAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsNetworkAccess(&self) -> bool;
 
         /// Setter for [`allowsNetworkAccess`][Self::allowsNetworkAccess].
-        #[method(setAllowsNetworkAccess:)]
+        #[unsafe(method(setAllowsNetworkAccess:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsNetworkAccess(&self, allows_network_access: bool);
 
-        #[method(configurationInfo)]
+        #[unsafe(method(configurationInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`configurationInfo`][Self::configurationInfo].
-        #[method(setConfigurationInfo:)]
+        #[unsafe(method(setConfigurationInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfigurationInfo(
             &self,
             configuration_info: &NSDictionary<NSString, AnyObject>,
         );
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -307,15 +307,15 @@ unsafe impl NSObjectProtocol for AEAssessmentSession {}
 
 extern_methods!(
     unsafe impl AEAssessmentSession {
-        #[method(supportsMultipleParticipants)]
+        #[unsafe(method(supportsMultipleParticipants))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsMultipleParticipants() -> bool;
 
-        #[method(supportsConfigurationUpdates)]
+        #[unsafe(method(supportsConfigurationUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsConfigurationUpdates() -> bool;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -323,45 +323,45 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn AEAssessmentSessionDelegate>>,
         );
 
-        #[method(configuration)]
+        #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<AEAssessmentConfiguration>;
 
-        #[method(isActive)]
+        #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isActive(&self) -> bool;
 
-        #[method(initWithConfiguration:)]
+        #[unsafe(method(initWithConfiguration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &AEAssessmentConfiguration,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(begin)]
+        #[unsafe(method(begin))]
         #[unsafe(method_family = none)]
         pub unsafe fn begin(&self);
 
-        #[method(end)]
+        #[unsafe(method(end))]
         #[unsafe(method_family = none)]
         pub unsafe fn end(&self);
 
-        #[method(updateToConfiguration:)]
+        #[unsafe(method(updateToConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateToConfiguration(&self, configuration: &AEAssessmentConfiguration);
     }
@@ -371,12 +371,12 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate?language=objc)
     pub unsafe trait AEAssessmentSessionDelegate: NSObjectProtocol {
         #[optional]
-        #[method(assessmentSessionDidBegin:)]
+        #[unsafe(method(assessmentSessionDidBegin:))]
         #[unsafe(method_family = none)]
         unsafe fn assessmentSessionDidBegin(&self, session: &AEAssessmentSession);
 
         #[optional]
-        #[method(assessmentSession:failedToBeginWithError:)]
+        #[unsafe(method(assessmentSession:failedToBeginWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn assessmentSession_failedToBeginWithError(
             &self,
@@ -385,7 +385,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(assessmentSession:wasInterruptedWithError:)]
+        #[unsafe(method(assessmentSession:wasInterruptedWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn assessmentSession_wasInterruptedWithError(
             &self,
@@ -394,17 +394,17 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(assessmentSessionDidEnd:)]
+        #[unsafe(method(assessmentSessionDidEnd:))]
         #[unsafe(method_family = none)]
         unsafe fn assessmentSessionDidEnd(&self, session: &AEAssessmentSession);
 
         #[optional]
-        #[method(assessmentSessionDidUpdate:)]
+        #[unsafe(method(assessmentSessionDidUpdate:))]
         #[unsafe(method_family = none)]
         unsafe fn assessmentSessionDidUpdate(&self, session: &AEAssessmentSession);
 
         #[optional]
-        #[method(assessmentSession:failedToUpdateToConfiguration:error:)]
+        #[unsafe(method(assessmentSession:failedToUpdateToConfiguration:error:))]
         #[unsafe(method_family = none)]
         unsafe fn assessmentSession_failedToUpdateToConfiguration_error(
             &self,

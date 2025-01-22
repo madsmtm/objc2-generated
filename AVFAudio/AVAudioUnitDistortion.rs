@@ -99,7 +99,7 @@ extern_methods!(
     unsafe impl AVAudioUnitDistortion {
         /// Load a distortion preset.
         /// Default:    AVAudioUnitDistortionPresetDrumsBitBrush
-        #[method(loadFactoryPreset:)]
+        #[unsafe(method(loadFactoryPreset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFactoryPreset(&self, preset: AVAudioUnitDistortionPreset);
 
@@ -107,12 +107,12 @@ extern_methods!(
         /// Range:      -80 -> 20
         /// Default:    -6
         /// Unit:       dB
-        #[method(preGain)]
+        #[unsafe(method(preGain))]
         #[unsafe(method_family = none)]
         pub unsafe fn preGain(&self) -> c_float;
 
         /// Setter for [`preGain`][Self::preGain].
-        #[method(setPreGain:)]
+        #[unsafe(method(setPreGain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreGain(&self, pre_gain: c_float);
 
@@ -120,12 +120,12 @@ extern_methods!(
         /// Range:      0 (all dry) -> 100 (all distorted)
         /// Default:    50
         /// Unit:       Percent
-        #[method(wetDryMix)]
+        #[unsafe(method(wetDryMix))]
         #[unsafe(method_family = none)]
         pub unsafe fn wetDryMix(&self) -> c_float;
 
         /// Setter for [`wetDryMix`][Self::wetDryMix].
-        #[method(setWetDryMix:)]
+        #[unsafe(method(setWetDryMix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWetDryMix(&self, wet_dry_mix: c_float);
     }
@@ -152,7 +152,7 @@ extern_methods!(
         /// kAudioUnitType_Panner
         /// kAudioUnitType_RemoteEffect
         /// kAudioUnitType_RemoteMusicEffect
-        #[method(initWithAudioComponentDescription:)]
+        #[unsafe(method(initWithAudioComponentDescription:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
@@ -169,11 +169,11 @@ extern_methods!(
         feature = "AVAudioUnitEffect"
     ))]
     unsafe impl AVAudioUnitDistortion {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

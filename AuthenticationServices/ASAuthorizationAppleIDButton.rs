@@ -87,7 +87,7 @@ unsafe impl NSUserInterfaceItemIdentification for ASAuthorizationAppleIDButton {
 extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[method(buttonWithType:style:)]
+        #[unsafe(method(buttonWithType:style:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithType_style(
             r#type: ASAuthorizationAppleIDButtonType,
@@ -95,7 +95,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method(initWithAuthorizationButtonType:authorizationButtonStyle:)]
+        #[unsafe(method(initWithAuthorizationButtonType:authorizationButtonStyle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAuthorizationButtonType_authorizationButtonStyle(
             this: Allocated<Self>,
@@ -105,13 +105,13 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Set a custom corner radius to be used by this button.
-        #[method(cornerRadius)]
+        #[unsafe(method(cornerRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn cornerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`cornerRadius`][Self::cornerRadius].
-        #[method(setCornerRadius:)]
+        #[unsafe(method(setCornerRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
     }
@@ -121,11 +121,11 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -138,7 +138,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -148,7 +148,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

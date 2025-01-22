@@ -46,7 +46,7 @@ unsafe impl NSObjectProtocol for HMCharacteristicThresholdRangeEvent {}
 extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMCharacteristicThresholdRangeEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -62,7 +62,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the characteristic event.
-        #[method(initWithCharacteristic:thresholdRange:)]
+        #[unsafe(method(initWithCharacteristic:thresholdRange:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCharacteristic_thresholdRange(
             this: Allocated<Self>,
@@ -72,13 +72,13 @@ extern_methods!(
 
         #[cfg(feature = "HMCharacteristic")]
         /// The characteristic associated with the event.
-        #[method(characteristic)]
+        #[unsafe(method(characteristic))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
 
         #[cfg(feature = "HMNumberRange")]
         /// The range of the characteristic value that triggers the event.
-        #[method(thresholdRange)]
+        #[unsafe(method(thresholdRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn thresholdRange(&self) -> Retained<HMNumberRange>;
     }
@@ -89,7 +89,7 @@ extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMCharacteristicThresholdRangeEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -134,31 +134,31 @@ unsafe impl NSObjectProtocol for HMMutableCharacteristicThresholdRangeEvent {}
 extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMMutableCharacteristicThresholdRangeEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// The characteristic associated with the event.
-        #[method(characteristic)]
+        #[unsafe(method(characteristic))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Setter for [`characteristic`][Self::characteristic].
-        #[method(setCharacteristic:)]
+        #[unsafe(method(setCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCharacteristic(&self, characteristic: &HMCharacteristic);
 
         #[cfg(feature = "HMNumberRange")]
         /// The range of the characteristic value that triggers the event.
-        #[method(thresholdRange)]
+        #[unsafe(method(thresholdRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn thresholdRange(&self) -> Retained<HMNumberRange>;
 
         #[cfg(feature = "HMNumberRange")]
         /// Setter for [`thresholdRange`][Self::thresholdRange].
-        #[method(setThresholdRange:)]
+        #[unsafe(method(setThresholdRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setThresholdRange(&self, threshold_range: &HMNumberRange);
     }
@@ -180,7 +180,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the characteristic event.
-        #[method(initWithCharacteristic:thresholdRange:)]
+        #[unsafe(method(initWithCharacteristic:thresholdRange:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCharacteristic_thresholdRange(
             this: Allocated<Self>,
@@ -195,7 +195,7 @@ extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMMutableCharacteristicThresholdRangeEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -36,7 +36,7 @@ extern_methods!(
             feature = "UIImageSymbolConfiguration"
         ))]
         /// The symbol configuration to use.
-        #[method(preferredSymbolConfiguration)]
+        #[unsafe(method(preferredSymbolConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredSymbolConfiguration(
             &self,
@@ -47,7 +47,7 @@ extern_methods!(
             feature = "UIImageSymbolConfiguration"
         ))]
         /// Setter for [`preferredSymbolConfiguration`][Self::preferredSymbolConfiguration].
-        #[method(setPreferredSymbolConfiguration:)]
+        #[unsafe(method(setPreferredSymbolConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredSymbolConfiguration(
             &self,
@@ -56,13 +56,13 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The tintColor to apply to the image view. Nil will use the image view's normal inherited tintColor.
-        #[method(tintColor)]
+        #[unsafe(method(tintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tintColor`][Self::tintColor].
-        #[method(setTintColor:)]
+        #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
@@ -72,7 +72,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Optional color transformer that is used to resolve the tint color. A nil value means the `tintColor` is used as-is.
-        #[method(tintColorTransformer)]
+        #[unsafe(method(tintColorTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn tintColorTransformer(&self) -> UIConfigurationColorTransformer;
 
@@ -82,7 +82,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`tintColorTransformer`][Self::tintColorTransformer].
-        #[method(setTintColorTransformer:)]
+        #[unsafe(method(setTintColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColorTransformer(
             &self,
@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// Returns the resolved image tint color for the specified tint color of the view, based on the `tintColor` and `tintColorTransformer`.
-        #[method(resolvedTintColorForTintColor:)]
+        #[unsafe(method(resolvedTintColorForTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resolvedTintColorForTintColor(
             &self,
@@ -102,13 +102,13 @@ extern_methods!(
         /// The preferred corner radius (using a continuous corner curve) for the image.
         /// Default is 0. If the image is too small to fit the requested radius, the corner curve
         /// and radius will be adjusted to fit.
-        #[method(cornerRadius)]
+        #[unsafe(method(cornerRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn cornerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`cornerRadius`][Self::cornerRadius].
-        #[method(setCornerRadius:)]
+        #[unsafe(method(setCornerRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
 
@@ -116,13 +116,13 @@ extern_methods!(
         /// Enforces a maximum size for the image. The default value is CGSizeZero. A zero width or
         /// height means the size is unconstrained on that dimension. If the image exceeds this size
         /// on either dimension, its size will be reduced proportionately (maintaining aspect ratio).
-        #[method(maximumSize)]
+        #[unsafe(method(maximumSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumSize`][Self::maximumSize].
-        #[method(setMaximumSize:)]
+        #[unsafe(method(setMaximumSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumSize(&self, maximum_size: CGSize);
 
@@ -146,23 +146,23 @@ extern_methods!(
         /// reservedLayoutSize.width is ignored by content views at Accessibility Dynamic Type
         /// sizes, and the reservedLayoutSize.height is ignored when using the special Accessibility
         /// Dynamic Type layout where text wraps around the image.
-        #[method(reservedLayoutSize)]
+        #[unsafe(method(reservedLayoutSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn reservedLayoutSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`reservedLayoutSize`][Self::reservedLayoutSize].
-        #[method(setReservedLayoutSize:)]
+        #[unsafe(method(setReservedLayoutSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReservedLayoutSize(&self, reserved_layout_size: CGSize);
 
         /// Prevents the image from inverting its colors when the accessibility setting is enabled.
-        #[method(accessibilityIgnoresInvertColors)]
+        #[unsafe(method(accessibilityIgnoresInvertColors))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityIgnoresInvertColors(&self) -> bool;
 
         /// Setter for [`accessibilityIgnoresInvertColors`][Self::accessibilityIgnoresInvertColors].
-        #[method(setAccessibilityIgnoresInvertColors:)]
+        #[unsafe(method(setAccessibilityIgnoresInvertColors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityIgnoresInvertColors(
             &self,
@@ -171,25 +171,25 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The width of the stroke to draw around the image. Default is `0.0`.
-        #[method(strokeWidth)]
+        #[unsafe(method(strokeWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`strokeWidth`][Self::strokeWidth].
-        #[method(setStrokeWidth:)]
+        #[unsafe(method(setStrokeWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeWidth(&self, stroke_width: CGFloat);
 
         #[cfg(feature = "UIColor")]
         /// Configures the color of the stroke. A nil value uses the view's tint color; use `clearColor` for no color (transparent).
-        #[method(strokeColor)]
+        #[unsafe(method(strokeColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`strokeColor`][Self::strokeColor].
-        #[method(setStrokeColor:)]
+        #[unsafe(method(setStrokeColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeColor(&self, stroke_color: Option<&UIColor>);
 
@@ -199,7 +199,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Optional color transformer that is used to resolve the stroke color. A nil value means the `strokeColor` is used as-is.
-        #[method(strokeColorTransformer)]
+        #[unsafe(method(strokeColorTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeColorTransformer(&self) -> UIConfigurationColorTransformer;
 
@@ -209,7 +209,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`strokeColorTransformer`][Self::strokeColorTransformer].
-        #[method(setStrokeColorTransformer:)]
+        #[unsafe(method(setStrokeColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeColorTransformer(
             &self,
@@ -218,7 +218,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// Returns the resolved stroke color for the specified tint color, based on the `strokeColor` and `strokeColorTransformer`.
-        #[method(resolvedStrokeColorForTintColor:)]
+        #[unsafe(method(resolvedStrokeColorForTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resolvedStrokeColorForTintColor(
             &self,
@@ -230,11 +230,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIListContentImageProperties {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

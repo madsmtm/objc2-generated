@@ -23,12 +23,12 @@ unsafe impl NSObjectProtocol for UIScreenMode {}
 extern_methods!(
     unsafe impl UIScreenMode {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(size)]
+        #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(pixelAspectRatio)]
+        #[unsafe(method(pixelAspectRatio))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelAspectRatio(&self) -> CGFloat;
     }
@@ -37,11 +37,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIScreenMode {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

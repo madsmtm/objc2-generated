@@ -77,142 +77,142 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLTextAreaElement {
-        #[method(autofocus)]
+        #[unsafe(method(autofocus))]
         #[unsafe(method_family = none)]
         pub unsafe fn autofocus(&self) -> bool;
 
         /// Setter for [`autofocus`][Self::autofocus].
-        #[method(setAutofocus:)]
+        #[unsafe(method(setAutofocus:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutofocus(&self, autofocus: bool);
 
         #[deprecated]
-        #[method(disabled)]
+        #[unsafe(method(disabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn disabled(&self) -> bool;
 
         /// Setter for [`disabled`][Self::disabled].
         #[deprecated]
-        #[method(setDisabled:)]
+        #[unsafe(method(setDisabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisabled(&self, disabled: bool);
 
         #[cfg(feature = "DOMHTMLFormElement")]
         #[deprecated]
-        #[method(form)]
+        #[unsafe(method(form))]
         #[unsafe(method_family = none)]
         pub unsafe fn form(&self) -> Option<Retained<DOMHTMLFormElement>>;
 
         #[deprecated]
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         #[deprecated]
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[deprecated]
-        #[method(readOnly)]
+        #[unsafe(method(readOnly))]
         #[unsafe(method_family = none)]
         pub unsafe fn readOnly(&self) -> bool;
 
         /// Setter for [`readOnly`][Self::readOnly].
         #[deprecated]
-        #[method(setReadOnly:)]
+        #[unsafe(method(setReadOnly:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReadOnly(&self, read_only: bool);
 
         #[deprecated]
-        #[method(rows)]
+        #[unsafe(method(rows))]
         #[unsafe(method_family = none)]
         pub unsafe fn rows(&self) -> c_int;
 
         /// Setter for [`rows`][Self::rows].
         #[deprecated]
-        #[method(setRows:)]
+        #[unsafe(method(setRows:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRows(&self, rows: c_int);
 
         #[deprecated]
-        #[method(cols)]
+        #[unsafe(method(cols))]
         #[unsafe(method_family = none)]
         pub unsafe fn cols(&self) -> c_int;
 
         /// Setter for [`cols`][Self::cols].
         #[deprecated]
-        #[method(setCols:)]
+        #[unsafe(method(setCols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCols(&self, cols: c_int);
 
         #[deprecated]
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method(defaultValue)]
+        #[unsafe(method(defaultValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultValue(&self) -> Retained<NSString>;
 
         /// Setter for [`defaultValue`][Self::defaultValue].
         #[deprecated]
-        #[method(setDefaultValue:)]
+        #[unsafe(method(setDefaultValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultValue(&self, default_value: Option<&NSString>);
 
         #[deprecated]
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
         /// Setter for [`value`][Self::value].
         #[deprecated]
-        #[method(setValue:)]
+        #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);
 
-        #[method(willValidate)]
+        #[unsafe(method(willValidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn willValidate(&self) -> bool;
 
-        #[method(selectionStart)]
+        #[unsafe(method(selectionStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectionStart(&self) -> c_int;
 
         /// Setter for [`selectionStart`][Self::selectionStart].
-        #[method(setSelectionStart:)]
+        #[unsafe(method(setSelectionStart:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionStart(&self, selection_start: c_int);
 
-        #[method(selectionEnd)]
+        #[unsafe(method(selectionEnd))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectionEnd(&self) -> c_int;
 
         /// Setter for [`selectionEnd`][Self::selectionEnd].
-        #[method(setSelectionEnd:)]
+        #[unsafe(method(setSelectionEnd:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionEnd(&self, selection_end: c_int);
 
         #[deprecated]
-        #[method(accessKey)]
+        #[unsafe(method(accessKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         /// Setter for [`accessKey`][Self::accessKey].
         #[deprecated]
-        #[method(setAccessKey:)]
+        #[unsafe(method(setAccessKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
 
         #[deprecated]
-        #[method(select)]
+        #[unsafe(method(select))]
         #[unsafe(method_family = none)]
         pub unsafe fn select(&self);
 
-        #[method(setSelectionRange:end:)]
+        #[unsafe(method(setSelectionRange:end:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionRange_end(&self, start: c_int, end: c_int);
     }
@@ -229,7 +229,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTextAreaElement {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -245,7 +245,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLTextAreaElement {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

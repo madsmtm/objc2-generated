@@ -23,17 +23,17 @@ extern_methods!(
     #[cfg(feature = "UICalendarSelection")]
     unsafe impl UICalendarSelectionMultiDate {
         /// The currently selected dates in the Calendar view.
-        #[method(selectedDates)]
+        #[unsafe(method(selectedDates))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedDates(&self) -> Retained<NSArray<NSDateComponents>>;
 
         /// Setter for [`selectedDates`][Self::selectedDates].
-        #[method(setSelectedDates:)]
+        #[unsafe(method(setSelectedDates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedDates(&self, selected_dates: &NSArray<NSDateComponents>);
 
         /// Sets the dates to display in the calendar, with an option to animate the setting.
-        #[method(setSelectedDates:animated:)]
+        #[unsafe(method(setSelectedDates:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedDates_animated(
             &self,
@@ -42,14 +42,14 @@ extern_methods!(
         );
 
         /// The object that acts as the delegate of the calendar view selection
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICalendarSelectionMultiDateDelegate>>>;
 
         /// Creates a new multi-date selection with the specified delegate.
-        #[method(initWithDelegate:)]
+        #[unsafe(method(initWithDelegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
@@ -62,11 +62,11 @@ extern_methods!(
     /// Methods declared on superclass `UICalendarSelection`
     #[cfg(feature = "UICalendarSelection")]
     unsafe impl UICalendarSelectionMultiDate {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -82,7 +82,7 @@ extern_protocol!(
         /// Parameter `selection`: The
         /// `UICalendarSelectionMultiDate`
         /// Parameter `dateComponents`: The date that was selected by the user.
-        #[method(multiDateSelection:didSelectDate:)]
+        #[unsafe(method(multiDateSelection:didSelectDate:))]
         #[unsafe(method_family = none)]
         unsafe fn multiDateSelection_didSelectDate(
             &self,
@@ -97,7 +97,7 @@ extern_protocol!(
         /// Parameter `selection`: The
         /// `UICalendarSelectionMultiDate`
         /// Parameter `dateComponents`: The date that was deselected by the user.
-        #[method(multiDateSelection:didDeselectDate:)]
+        #[unsafe(method(multiDateSelection:didDeselectDate:))]
         #[unsafe(method_family = none)]
         unsafe fn multiDateSelection_didDeselectDate(
             &self,
@@ -116,7 +116,7 @@ extern_protocol!(
         ///
         /// Returns: YES if the date can be selected, NO otherwise.
         #[optional]
-        #[method(multiDateSelection:canSelectDate:)]
+        #[unsafe(method(multiDateSelection:canSelectDate:))]
         #[unsafe(method_family = none)]
         unsafe fn multiDateSelection_canSelectDate(
             &self,
@@ -135,7 +135,7 @@ extern_protocol!(
         ///
         /// Returns: YES if the date can be deselected, NO otherwise.
         #[optional]
-        #[method(multiDateSelection:canDeselectDate:)]
+        #[unsafe(method(multiDateSelection:canDeselectDate:))]
         #[unsafe(method_family = none)]
         unsafe fn multiDateSelection_canDeselectDate(
             &self,

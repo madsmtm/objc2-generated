@@ -52,38 +52,38 @@ unsafe impl NSObjectProtocol for HMHome {}
 
 extern_methods!(
     unsafe impl HMHome {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Delegate that receives updates on the state of the home.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn HMHomeDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn HMHomeDelegate>>);
 
         /// The name of the home.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Specifies whether this home is the primary home.
-        #[method(isPrimary)]
+        #[unsafe(method(isPrimary))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPrimary(&self) -> bool;
 
         /// Specifies the state of the home hub.
-        #[method(homeHubState)]
+        #[unsafe(method(homeHubState))]
         #[unsafe(method_family = none)]
         pub unsafe fn homeHubState(&self) -> HMHomeHubState;
 
         /// A unique identifier for the home.
-        #[method(uniqueIdentifier)]
+        #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
@@ -97,7 +97,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(updateName:completionHandler:)]
+        #[unsafe(method(updateName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateName_completionHandler(
             &self,
@@ -110,7 +110,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMHome {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -121,7 +121,7 @@ extern_methods!(
     unsafe impl HMHome {
         #[cfg(feature = "HMAccessory")]
         /// Array of HMAccessory objects that represents all accessories added to the home.
-        #[method(accessories)]
+        #[unsafe(method(accessories))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessories(&self) -> Retained<NSArray<HMAccessory>>;
 
@@ -135,7 +135,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(addAccessory:completionHandler:)]
+        #[unsafe(method(addAccessory:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAccessory_completionHandler(
             &self,
@@ -153,7 +153,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(removeAccessory:completionHandler:)]
+        #[unsafe(method(removeAccessory:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAccessory_completionHandler(
             &self,
@@ -178,7 +178,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(assignAccessory:toRoom:completionHandler:)]
+        #[unsafe(method(assignAccessory:toRoom:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assignAccessory_toRoom_completionHandler(
             &self,
@@ -196,7 +196,7 @@ extern_methods!(
         ///
         /// Returns: Array of HMService objects that match the specified service types,
         /// nil if no matching services were found.
-        #[method(servicesWithTypes:)]
+        #[unsafe(method(servicesWithTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn servicesWithTypes(
             &self,
@@ -217,7 +217,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(unblockAccessory:completionHandler:)]
+        #[unsafe(method(unblockAccessory:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unblockAccessory_completionHandler(
             &self,
@@ -234,7 +234,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[deprecated = "Use -[HMAccessorySetupManager performAccessorySetupUsingRequest:completionHandler:] instead"]
-        #[method(addAndSetupAccessoriesWithCompletionHandler:)]
+        #[unsafe(method(addAndSetupAccessoriesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAndSetupAccessoriesWithCompletionHandler(
             &self,
@@ -256,7 +256,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[deprecated = "Use -[HMAccessorySetupManager performAccessorySetupUsingRequest:completionHandler:] instead"]
-        #[method(addAndSetupAccessoriesWithPayload:completionHandler:)]
+        #[unsafe(method(addAndSetupAccessoriesWithPayload:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAndSetupAccessoriesWithPayload_completionHandler(
             &self,
@@ -265,7 +265,7 @@ extern_methods!(
         );
 
         /// True if this home supports all of the requirements for adding a network router.
-        #[method(supportsAddingNetworkRouter)]
+        #[unsafe(method(supportsAddingNetworkRouter))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsAddingNetworkRouter(&self) -> bool;
     }
@@ -276,14 +276,14 @@ extern_methods!(
     unsafe impl HMHome {
         #[cfg(feature = "HMUser")]
         /// HMUser object representing the current user of the home.
-        #[method(currentUser)]
+        #[unsafe(method(currentUser))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentUser(&self) -> Retained<HMUser>;
 
         #[cfg(feature = "HMUser")]
         /// Array of HMUser objects that represent all users associated with the home.
         #[deprecated = "No longer supported."]
-        #[method(users)]
+        #[unsafe(method(users))]
         #[unsafe(method_family = none)]
         pub unsafe fn users(&self) -> Retained<NSArray<HMUser>>;
 
@@ -299,7 +299,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success. If the user does not have administrator privileges the error code will be set to
         /// HMErrorCodeInsufficientPrivileges.
-        #[method(manageUsersWithCompletionHandler:)]
+        #[unsafe(method(manageUsersWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn manageUsersWithCompletionHandler(
             &self,
@@ -316,7 +316,7 @@ extern_methods!(
         /// will be nil on success. The userInfo dictionary will contain the HMUserFailedAccessoriesKey which provides
         /// more details on the accessories that failed to add the user.
         #[deprecated]
-        #[method(addUserWithCompletionHandler:)]
+        #[unsafe(method(addUserWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addUserWithCompletionHandler(
             &self,
@@ -335,7 +335,7 @@ extern_methods!(
         /// will be nil on success. The userInfo dictionary will contain the HMUserFailedAccessoriesKey which provides
         /// more details on the accessories that failed to remove the user.
         #[deprecated]
-        #[method(removeUser:completionHandler:)]
+        #[unsafe(method(removeUser:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeUser_completionHandler(
             &self,
@@ -349,7 +349,7 @@ extern_methods!(
             feature = "HMUser"
         ))]
         /// Retrieve the access level of the user associated with the home.
-        #[method(homeAccessControlForUser:)]
+        #[unsafe(method(homeAccessControlForUser:))]
         #[unsafe(method_family = none)]
         pub unsafe fn homeAccessControlForUser(
             &self,
@@ -363,7 +363,7 @@ extern_methods!(
     unsafe impl HMHome {
         #[cfg(feature = "HMRoom")]
         /// Array of HMRoom objects that represents all rooms in the home.
-        #[method(rooms)]
+        #[unsafe(method(rooms))]
         #[unsafe(method_family = none)]
         pub unsafe fn rooms(&self) -> Retained<NSArray<HMRoom>>;
 
@@ -378,7 +378,7 @@ extern_methods!(
         /// The HMRoom is the new room added to the home.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(addRoomWithName:completionHandler:)]
+        #[unsafe(method(addRoomWithName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRoomWithName_completionHandler(
             &self,
@@ -401,7 +401,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(removeRoom:completionHandler:)]
+        #[unsafe(method(removeRoom:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRoom_completionHandler(
             &self,
@@ -415,7 +415,7 @@ extern_methods!(
         ///
         ///
         /// Returns: HMRoom that represents the home.
-        #[method(roomForEntireHome)]
+        #[unsafe(method(roomForEntireHome))]
         #[unsafe(method_family = none)]
         pub unsafe fn roomForEntireHome(&self) -> Retained<HMRoom>;
     }
@@ -426,7 +426,7 @@ extern_methods!(
     unsafe impl HMHome {
         #[cfg(feature = "HMZone")]
         /// Array of HMZone objects that represents all the zones in the home.
-        #[method(zones)]
+        #[unsafe(method(zones))]
         #[unsafe(method_family = none)]
         pub unsafe fn zones(&self) -> Retained<NSArray<HMZone>>;
 
@@ -441,7 +441,7 @@ extern_methods!(
         /// The HMZone is the new zone added to the home.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(addZoneWithName:completionHandler:)]
+        #[unsafe(method(addZoneWithName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addZoneWithName_completionHandler(
             &self,
@@ -459,7 +459,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(removeZone:completionHandler:)]
+        #[unsafe(method(removeZone:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeZone_completionHandler(
             &self,
@@ -474,7 +474,7 @@ extern_methods!(
     unsafe impl HMHome {
         #[cfg(feature = "HMServiceGroup")]
         /// Array of HMServiceGroup objects that represents all service groups in the home.
-        #[method(serviceGroups)]
+        #[unsafe(method(serviceGroups))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceGroups(&self) -> Retained<NSArray<HMServiceGroup>>;
 
@@ -489,7 +489,7 @@ extern_methods!(
         /// The HMServiceGroup is the new service group added to the home.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(addServiceGroupWithName:completionHandler:)]
+        #[unsafe(method(addServiceGroupWithName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addServiceGroupWithName_completionHandler(
             &self,
@@ -507,7 +507,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(removeServiceGroup:completionHandler:)]
+        #[unsafe(method(removeServiceGroup:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeServiceGroup_completionHandler(
             &self,
@@ -522,7 +522,7 @@ extern_methods!(
     unsafe impl HMHome {
         #[cfg(feature = "HMActionSet")]
         /// Array of HMActionSet objects that represents all the action sets in the home.
-        #[method(actionSets)]
+        #[unsafe(method(actionSets))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionSets(&self) -> Retained<NSArray<HMActionSet>>;
 
@@ -537,7 +537,7 @@ extern_methods!(
         /// The HMActionSet parameter is the new action set added to the home.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(addActionSetWithName:completionHandler:)]
+        #[unsafe(method(addActionSetWithName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addActionSetWithName_completionHandler(
             &self,
@@ -555,7 +555,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(removeActionSet:completionHandler:)]
+        #[unsafe(method(removeActionSet:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeActionSet_completionHandler(
             &self,
@@ -573,7 +573,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(executeActionSet:completionHandler:)]
+        #[unsafe(method(executeActionSet:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeActionSet_completionHandler(
             &self,
@@ -591,7 +591,7 @@ extern_methods!(
         ///
         /// Returns: Reference to the built-in action set corresponding to type argument,
         /// nil if no matching action set is found.
-        #[method(builtinActionSetOfType:)]
+        #[unsafe(method(builtinActionSetOfType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn builtinActionSetOfType(
             &self,
@@ -605,7 +605,7 @@ extern_methods!(
     unsafe impl HMHome {
         #[cfg(feature = "HMTrigger")]
         /// Array of HMTrigger objects that represents all the triggers in the home.
-        #[method(triggers)]
+        #[unsafe(method(triggers))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggers(&self) -> Retained<NSArray<HMTrigger>>;
 
@@ -626,7 +626,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         /// Errors when no Home Hub is associated with the home
-        #[method(addTrigger:completionHandler:)]
+        #[unsafe(method(addTrigger:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTrigger_completionHandler(
             &self,
@@ -644,7 +644,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(removeTrigger:completionHandler:)]
+        #[unsafe(method(removeTrigger:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTrigger_completionHandler(
             &self,
@@ -660,7 +660,7 @@ extern_methods!(
         /// Identifier of the Matter controller associated with this home.
         /// This property can be passed as the first argument to +[MTRDeviceController sharedControllerWithId:xpcConnectBlock:] method
         /// to get a MTRDeviceController object.
-        #[method(matterControllerID)]
+        #[unsafe(method(matterControllerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn matterControllerID(&self) -> Retained<NSString>;
 
@@ -668,7 +668,7 @@ extern_methods!(
         /// Block generating XPC connection on demand through which to access the Matter controller associated with this home.
         /// This property can be passed as the second argument to +[MTRDeviceController sharedControllerWithId:xpcConnectBlock:] method
         /// to get a MTRDeviceController object.
-        #[method(matterControllerXPCConnectBlock)]
+        #[unsafe(method(matterControllerXPCConnectBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn matterControllerXPCConnectBlock(
             &self,
@@ -677,7 +677,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Block generating XPC connection on demand through which to access the Matter controller associated with this home.
         /// This property can be passed as part of an MTRXPCDeviceControllerParameters to create an MTRDeviceController that will have access to the Apple Home Fabric.
-        #[method(matterStartupParametersXPCConnectBlock)]
+        #[unsafe(method(matterStartupParametersXPCConnectBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn matterStartupParametersXPCConnectBlock(
             &self,
@@ -696,7 +696,7 @@ extern_protocol!(
         ///
         /// Parameter `home`: Sender of this message.
         #[optional]
-        #[method(homeDidUpdateName:)]
+        #[unsafe(method(homeDidUpdateName:))]
         #[unsafe(method_family = none)]
         unsafe fn homeDidUpdateName(&self, home: &HMHome);
 
@@ -705,7 +705,7 @@ extern_protocol!(
         ///
         /// Parameter `home`: Sender of the message.
         #[optional]
-        #[method(homeDidUpdateAccessControlForCurrentUser:)]
+        #[unsafe(method(homeDidUpdateAccessControlForCurrentUser:))]
         #[unsafe(method_family = none)]
         unsafe fn homeDidUpdateAccessControlForCurrentUser(&self, home: &HMHome);
 
@@ -718,7 +718,7 @@ extern_protocol!(
         ///
         /// Parameter `accessory`: Accessory that was added to the home.
         #[optional]
-        #[method(home:didAddAccessory:)]
+        #[unsafe(method(home:didAddAccessory:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didAddAccessory(&self, home: &HMHome, accessory: &HMAccessory);
 
@@ -731,7 +731,7 @@ extern_protocol!(
         ///
         /// Parameter `accessory`: Accessory that was removed from the home.
         #[optional]
-        #[method(home:didRemoveAccessory:)]
+        #[unsafe(method(home:didRemoveAccessory:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didRemoveAccessory(&self, home: &HMHome, accessory: &HMAccessory);
 
@@ -744,7 +744,7 @@ extern_protocol!(
         ///
         /// Parameter `user`: User who was granted access to the home.
         #[optional]
-        #[method(home:didAddUser:)]
+        #[unsafe(method(home:didAddUser:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didAddUser(&self, home: &HMHome, user: &HMUser);
 
@@ -757,7 +757,7 @@ extern_protocol!(
         ///
         /// Parameter `user`: User whose access was revoked from the home.
         #[optional]
-        #[method(home:didRemoveUser:)]
+        #[unsafe(method(home:didRemoveUser:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didRemoveUser(&self, home: &HMHome, user: &HMUser);
 
@@ -773,7 +773,7 @@ extern_protocol!(
         ///
         /// Parameter `accessory`: Accessory that was assigned a new room.
         #[optional]
-        #[method(home:didUpdateRoom:forAccessory:)]
+        #[unsafe(method(home:didUpdateRoom:forAccessory:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didUpdateRoom_forAccessory(
             &self,
@@ -791,7 +791,7 @@ extern_protocol!(
         ///
         /// Parameter `room`: Room that was added to the home.
         #[optional]
-        #[method(home:didAddRoom:)]
+        #[unsafe(method(home:didAddRoom:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didAddRoom(&self, home: &HMHome, room: &HMRoom);
 
@@ -804,7 +804,7 @@ extern_protocol!(
         ///
         /// Parameter `room`: Room that was removed from the home.
         #[optional]
-        #[method(home:didRemoveRoom:)]
+        #[unsafe(method(home:didRemoveRoom:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didRemoveRoom(&self, home: &HMHome, room: &HMRoom);
 
@@ -817,7 +817,7 @@ extern_protocol!(
         ///
         /// Parameter `room`: Room that was modified.
         #[optional]
-        #[method(home:didUpdateNameForRoom:)]
+        #[unsafe(method(home:didUpdateNameForRoom:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didUpdateNameForRoom(&self, home: &HMHome, room: &HMRoom);
 
@@ -830,7 +830,7 @@ extern_protocol!(
         ///
         /// Parameter `zone`: Zone that was added to the home.
         #[optional]
-        #[method(home:didAddZone:)]
+        #[unsafe(method(home:didAddZone:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didAddZone(&self, home: &HMHome, zone: &HMZone);
 
@@ -843,7 +843,7 @@ extern_protocol!(
         ///
         /// Parameter `zone`: Zone that was removed from the home.
         #[optional]
-        #[method(home:didRemoveZone:)]
+        #[unsafe(method(home:didRemoveZone:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didRemoveZone(&self, home: &HMHome, zone: &HMZone);
 
@@ -856,7 +856,7 @@ extern_protocol!(
         ///
         /// Parameter `zone`: Zone that was modified.
         #[optional]
-        #[method(home:didUpdateNameForZone:)]
+        #[unsafe(method(home:didUpdateNameForZone:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didUpdateNameForZone(&self, home: &HMHome, zone: &HMZone);
 
@@ -872,7 +872,7 @@ extern_protocol!(
         ///
         /// Parameter `zone`: Zone that was modified.
         #[optional]
-        #[method(home:didAddRoom:toZone:)]
+        #[unsafe(method(home:didAddRoom:toZone:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didAddRoom_toZone(&self, home: &HMHome, room: &HMRoom, zone: &HMZone);
 
@@ -888,7 +888,7 @@ extern_protocol!(
         ///
         /// Parameter `zone`: Zone that was modified.
         #[optional]
-        #[method(home:didRemoveRoom:fromZone:)]
+        #[unsafe(method(home:didRemoveRoom:fromZone:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didRemoveRoom_fromZone(&self, home: &HMHome, room: &HMRoom, zone: &HMZone);
 
@@ -901,7 +901,7 @@ extern_protocol!(
         ///
         /// Parameter `group`: Service group that was added to the home.
         #[optional]
-        #[method(home:didAddServiceGroup:)]
+        #[unsafe(method(home:didAddServiceGroup:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didAddServiceGroup(&self, home: &HMHome, group: &HMServiceGroup);
 
@@ -914,7 +914,7 @@ extern_protocol!(
         ///
         /// Parameter `group`: Service group that was removed from the home.
         #[optional]
-        #[method(home:didRemoveServiceGroup:)]
+        #[unsafe(method(home:didRemoveServiceGroup:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didRemoveServiceGroup(&self, home: &HMHome, group: &HMServiceGroup);
 
@@ -927,7 +927,7 @@ extern_protocol!(
         ///
         /// Parameter `group`: The service group that was modified.
         #[optional]
-        #[method(home:didUpdateNameForServiceGroup:)]
+        #[unsafe(method(home:didUpdateNameForServiceGroup:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didUpdateNameForServiceGroup(&self, home: &HMHome, group: &HMServiceGroup);
 
@@ -943,7 +943,7 @@ extern_protocol!(
         ///
         /// Parameter `group`: Service group that was modified.
         #[optional]
-        #[method(home:didAddService:toServiceGroup:)]
+        #[unsafe(method(home:didAddService:toServiceGroup:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didAddService_toServiceGroup(
             &self,
@@ -964,7 +964,7 @@ extern_protocol!(
         ///
         /// Parameter `group`: Service group that was modified.
         #[optional]
-        #[method(home:didRemoveService:fromServiceGroup:)]
+        #[unsafe(method(home:didRemoveService:fromServiceGroup:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didRemoveService_fromServiceGroup(
             &self,
@@ -982,7 +982,7 @@ extern_protocol!(
         ///
         /// Parameter `actionSet`: Action set that was added to the home.
         #[optional]
-        #[method(home:didAddActionSet:)]
+        #[unsafe(method(home:didAddActionSet:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didAddActionSet(&self, home: &HMHome, action_set: &HMActionSet);
 
@@ -995,7 +995,7 @@ extern_protocol!(
         ///
         /// Parameter `actionSet`: Action set that was removed from the home.
         #[optional]
-        #[method(home:didRemoveActionSet:)]
+        #[unsafe(method(home:didRemoveActionSet:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didRemoveActionSet(&self, home: &HMHome, action_set: &HMActionSet);
 
@@ -1008,7 +1008,7 @@ extern_protocol!(
         ///
         /// Parameter `actionSet`: Action set that was modified.
         #[optional]
-        #[method(home:didUpdateNameForActionSet:)]
+        #[unsafe(method(home:didUpdateNameForActionSet:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didUpdateNameForActionSet(&self, home: &HMHome, action_set: &HMActionSet);
 
@@ -1022,7 +1022,7 @@ extern_protocol!(
         ///
         /// Parameter `actionSet`: Action set that was modified.
         #[optional]
-        #[method(home:didUpdateActionsForActionSet:)]
+        #[unsafe(method(home:didUpdateActionsForActionSet:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didUpdateActionsForActionSet(&self, home: &HMHome, action_set: &HMActionSet);
 
@@ -1035,7 +1035,7 @@ extern_protocol!(
         ///
         /// Parameter `trigger`: Trigger that was added to the home.
         #[optional]
-        #[method(home:didAddTrigger:)]
+        #[unsafe(method(home:didAddTrigger:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didAddTrigger(&self, home: &HMHome, trigger: &HMTrigger);
 
@@ -1048,7 +1048,7 @@ extern_protocol!(
         ///
         /// Parameter `trigger`: Trigger that was removed from the home.
         #[optional]
-        #[method(home:didRemoveTrigger:)]
+        #[unsafe(method(home:didRemoveTrigger:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didRemoveTrigger(&self, home: &HMHome, trigger: &HMTrigger);
 
@@ -1061,7 +1061,7 @@ extern_protocol!(
         ///
         /// Parameter `trigger`: Trigger that was modified.
         #[optional]
-        #[method(home:didUpdateNameForTrigger:)]
+        #[unsafe(method(home:didUpdateNameForTrigger:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didUpdateNameForTrigger(&self, home: &HMHome, trigger: &HMTrigger);
 
@@ -1076,7 +1076,7 @@ extern_protocol!(
         ///
         /// Parameter `trigger`: The trigger that was updated.
         #[optional]
-        #[method(home:didUpdateTrigger:)]
+        #[unsafe(method(home:didUpdateTrigger:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didUpdateTrigger(&self, home: &HMHome, trigger: &HMTrigger);
 
@@ -1089,7 +1089,7 @@ extern_protocol!(
         ///
         /// Parameter `accessory`: Accessory that was unblocked
         #[optional]
-        #[method(home:didUnblockAccessory:)]
+        #[unsafe(method(home:didUnblockAccessory:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didUnblockAccessory(&self, home: &HMHome, accessory: &HMAccessory);
 
@@ -1106,7 +1106,7 @@ extern_protocol!(
         ///
         /// Parameter `accessory`: Accessory that encountered the error
         #[optional]
-        #[method(home:didEncounterError:forAccessory:)]
+        #[unsafe(method(home:didEncounterError:forAccessory:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didEncounterError_forAccessory(
             &self,
@@ -1123,7 +1123,7 @@ extern_protocol!(
         ///
         /// Parameter `homeHubState`: The new home hub state.
         #[optional]
-        #[method(home:didUpdateHomeHubState:)]
+        #[unsafe(method(home:didUpdateHomeHubState:))]
         #[unsafe(method_family = none)]
         unsafe fn home_didUpdateHomeHubState(&self, home: &HMHome, home_hub_state: HMHomeHubState);
 
@@ -1135,7 +1135,7 @@ extern_protocol!(
         ///
         /// Parameter `home`: Sender of the message.
         #[optional]
-        #[method(homeDidUpdateSupportedFeatures:)]
+        #[unsafe(method(homeDidUpdateSupportedFeatures:))]
         #[unsafe(method_family = none)]
         unsafe fn homeDidUpdateSupportedFeatures(&self, home: &HMHome);
     }

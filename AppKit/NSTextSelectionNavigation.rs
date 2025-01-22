@@ -142,54 +142,54 @@ unsafe impl NSObjectProtocol for NSTextSelectionNavigation {}
 
 extern_methods!(
     unsafe impl NSTextSelectionNavigation {
-        #[method(initWithDataSource:)]
+        #[unsafe(method(initWithDataSource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDataSource(
             this: Allocated<Self>,
             data_source: &ProtocolObject<dyn NSTextSelectionDataSource>,
         ) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(textSelectionDataSource)]
+        #[unsafe(method(textSelectionDataSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn textSelectionDataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextSelectionDataSource>>>;
 
-        #[method(allowsNonContiguousRanges)]
+        #[unsafe(method(allowsNonContiguousRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsNonContiguousRanges(&self) -> bool;
 
         /// Setter for [`allowsNonContiguousRanges`][Self::allowsNonContiguousRanges].
-        #[method(setAllowsNonContiguousRanges:)]
+        #[unsafe(method(setAllowsNonContiguousRanges:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsNonContiguousRanges(&self, allows_non_contiguous_ranges: bool);
 
-        #[method(rotatesCoordinateSystemForLayoutOrientation)]
+        #[unsafe(method(rotatesCoordinateSystemForLayoutOrientation))]
         #[unsafe(method_family = none)]
         pub unsafe fn rotatesCoordinateSystemForLayoutOrientation(&self) -> bool;
 
         /// Setter for [`rotatesCoordinateSystemForLayoutOrientation`][Self::rotatesCoordinateSystemForLayoutOrientation].
-        #[method(setRotatesCoordinateSystemForLayoutOrientation:)]
+        #[unsafe(method(setRotatesCoordinateSystemForLayoutOrientation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRotatesCoordinateSystemForLayoutOrientation(
             &self,
             rotates_coordinate_system_for_layout_orientation: bool,
         );
 
-        #[method(flushLayoutCache)]
+        #[unsafe(method(flushLayoutCache))]
         #[unsafe(method_family = none)]
         pub unsafe fn flushLayoutCache(&self);
 
         #[cfg(feature = "NSTextSelection")]
-        #[method(destinationSelectionForTextSelection:direction:destination:extending:confined:)]
+        #[unsafe(method(destinationSelectionForTextSelection:direction:destination:extending:confined:))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationSelectionForTextSelection_direction_destination_extending_confined(
             &self,
@@ -205,7 +205,7 @@ extern_methods!(
             feature = "NSTextSelection",
             feature = "objc2-core-foundation"
         ))]
-        #[method(textSelectionsInteractingAtPoint:inContainerAtLocation:anchors:modifiers:selecting:bounds:)]
+        #[unsafe(method(textSelectionsInteractingAtPoint:inContainerAtLocation:anchors:modifiers:selecting:bounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textSelectionsInteractingAtPoint_inContainerAtLocation_anchors_modifiers_selecting_bounds(
             &self,
@@ -218,7 +218,7 @@ extern_methods!(
         ) -> Retained<NSArray<NSTextSelection>>;
 
         #[cfg(feature = "NSTextSelection")]
-        #[method(textSelectionForSelectionGranularity:enclosingTextSelection:)]
+        #[unsafe(method(textSelectionForSelectionGranularity:enclosingTextSelection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textSelectionForSelectionGranularity_enclosingTextSelection(
             &self,
@@ -231,7 +231,7 @@ extern_methods!(
             feature = "NSTextSelection",
             feature = "objc2-core-foundation"
         ))]
-        #[method(textSelectionForSelectionGranularity:enclosingPoint:inContainerAtLocation:)]
+        #[unsafe(method(textSelectionForSelectionGranularity:enclosingPoint:inContainerAtLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textSelectionForSelectionGranularity_enclosingPoint_inContainerAtLocation(
             &self,
@@ -241,7 +241,7 @@ extern_methods!(
         ) -> Option<Retained<NSTextSelection>>;
 
         #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
-        #[method(resolvedInsertionLocationForTextSelection:writingDirection:)]
+        #[unsafe(method(resolvedInsertionLocationForTextSelection:writingDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resolvedInsertionLocationForTextSelection_writingDirection(
             &self,
@@ -250,7 +250,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
-        #[method(deletionRangesForTextSelection:direction:destination:allowsDecomposition:)]
+        #[unsafe(method(deletionRangesForTextSelection:direction:destination:allowsDecomposition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deletionRangesForTextSelection_direction_destination_allowsDecomposition(
             &self,
@@ -266,12 +266,12 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectiondatasource?language=objc)
     pub unsafe trait NSTextSelectionDataSource: NSObjectProtocol {
         #[cfg(feature = "NSTextRange")]
-        #[method(documentRange)]
+        #[unsafe(method(documentRange))]
         #[unsafe(method_family = none)]
         unsafe fn documentRange(&self) -> Retained<NSTextRange>;
 
         #[cfg(all(feature = "NSTextRange", feature = "block2"))]
-        #[method(enumerateSubstringsFromLocation:options:usingBlock:)]
+        #[unsafe(method(enumerateSubstringsFromLocation:options:usingBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn enumerateSubstringsFromLocation_options_usingBlock(
             &self,
@@ -283,7 +283,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
-        #[method(textRangeForSelectionGranularity:enclosingLocation:)]
+        #[unsafe(method(textRangeForSelectionGranularity:enclosingLocation:))]
         #[unsafe(method_family = none)]
         unsafe fn textRangeForSelectionGranularity_enclosingLocation(
             &self,
@@ -292,7 +292,7 @@ extern_protocol!(
         ) -> Option<Retained<NSTextRange>>;
 
         #[cfg(feature = "NSTextRange")]
-        #[method(locationFromLocation:withOffset:)]
+        #[unsafe(method(locationFromLocation:withOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn locationFromLocation_withOffset(
             &self,
@@ -301,7 +301,7 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(feature = "NSTextRange")]
-        #[method(offsetFromLocation:toLocation:)]
+        #[unsafe(method(offsetFromLocation:toLocation:))]
         #[unsafe(method_family = none)]
         unsafe fn offsetFromLocation_toLocation(
             &self,
@@ -310,7 +310,7 @@ extern_protocol!(
         ) -> NSInteger;
 
         #[cfg(feature = "NSTextRange")]
-        #[method(baseWritingDirectionAtLocation:)]
+        #[unsafe(method(baseWritingDirectionAtLocation:))]
         #[unsafe(method_family = none)]
         unsafe fn baseWritingDirectionAtLocation(
             &self,
@@ -322,7 +322,7 @@ extern_protocol!(
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
-        #[method(enumerateCaretOffsetsInLineFragmentAtLocation:usingBlock:)]
+        #[unsafe(method(enumerateCaretOffsetsInLineFragmentAtLocation:usingBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn enumerateCaretOffsetsInLineFragmentAtLocation_usingBlock(
             &self,
@@ -334,7 +334,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSTextRange", feature = "objc2-core-foundation"))]
-        #[method(lineFragmentRangeForPoint:inContainerAtLocation:)]
+        #[unsafe(method(lineFragmentRangeForPoint:inContainerAtLocation:))]
         #[unsafe(method_family = none)]
         unsafe fn lineFragmentRangeForPoint_inContainerAtLocation(
             &self,
@@ -344,7 +344,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSTextRange", feature = "block2"))]
         #[optional]
-        #[method(enumerateContainerBoundariesFromLocation:reverse:usingBlock:)]
+        #[unsafe(method(enumerateContainerBoundariesFromLocation:reverse:usingBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn enumerateContainerBoundariesFromLocation_reverse_usingBlock(
             &self,
@@ -357,7 +357,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSTextRange")]
         #[optional]
-        #[method(textLayoutOrientationAtLocation:)]
+        #[unsafe(method(textLayoutOrientationAtLocation:))]
         #[unsafe(method_family = none)]
         unsafe fn textLayoutOrientationAtLocation(
             &self,

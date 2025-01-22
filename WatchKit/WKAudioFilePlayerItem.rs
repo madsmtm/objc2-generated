@@ -66,13 +66,13 @@ unsafe impl NSObjectProtocol for WKAudioFilePlayerItem {}
 extern_methods!(
     unsafe impl WKAudioFilePlayerItem {
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "WKAudioFileAsset")]
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method(playerItemWithAsset:)]
+        #[unsafe(method(playerItemWithAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerItemWithAsset(
             asset: &WKAudioFileAsset,
@@ -80,27 +80,27 @@ extern_methods!(
 
         #[cfg(feature = "WKAudioFileAsset")]
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method(asset)]
+        #[unsafe(method(asset))]
         #[unsafe(method_family = none)]
         pub unsafe fn asset(&self) -> Retained<WKAudioFileAsset>;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method(status)]
+        #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> WKAudioFilePlayerItemStatus;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method(error)]
+        #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method(currentTime)]
+        #[unsafe(method(currentTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentTime(&self) -> NSTimeInterval;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method(setCurrentTime:)]
+        #[unsafe(method(setCurrentTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentTime(&self, current_time: NSTimeInterval);
     }
@@ -109,7 +109,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKAudioFilePlayerItem {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

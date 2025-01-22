@@ -25,170 +25,170 @@ unsafe impl NSObjectProtocol for MTLFXTemporalScalerDescriptor {}
 
 extern_methods!(
     unsafe impl MTLFXTemporalScalerDescriptor {
-        #[method(colorTextureFormat)]
+        #[unsafe(method(colorTextureFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
 
         /// Setter for [`colorTextureFormat`][Self::colorTextureFormat].
-        #[method(setColorTextureFormat:)]
+        #[unsafe(method(setColorTextureFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorTextureFormat(&self, color_texture_format: MTLPixelFormat);
 
-        #[method(depthTextureFormat)]
+        #[unsafe(method(depthTextureFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn depthTextureFormat(&self) -> MTLPixelFormat;
 
         /// Setter for [`depthTextureFormat`][Self::depthTextureFormat].
-        #[method(setDepthTextureFormat:)]
+        #[unsafe(method(setDepthTextureFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDepthTextureFormat(&self, depth_texture_format: MTLPixelFormat);
 
-        #[method(motionTextureFormat)]
+        #[unsafe(method(motionTextureFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn motionTextureFormat(&self) -> MTLPixelFormat;
 
         /// Setter for [`motionTextureFormat`][Self::motionTextureFormat].
-        #[method(setMotionTextureFormat:)]
+        #[unsafe(method(setMotionTextureFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMotionTextureFormat(&self, motion_texture_format: MTLPixelFormat);
 
-        #[method(outputTextureFormat)]
+        #[unsafe(method(outputTextureFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
 
         /// Setter for [`outputTextureFormat`][Self::outputTextureFormat].
-        #[method(setOutputTextureFormat:)]
+        #[unsafe(method(setOutputTextureFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputTextureFormat(&self, output_texture_format: MTLPixelFormat);
 
-        #[method(inputWidth)]
+        #[unsafe(method(inputWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputWidth(&self) -> NSUInteger;
 
         /// Setter for [`inputWidth`][Self::inputWidth].
-        #[method(setInputWidth:)]
+        #[unsafe(method(setInputWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputWidth(&self, input_width: NSUInteger);
 
-        #[method(inputHeight)]
+        #[unsafe(method(inputHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputHeight(&self) -> NSUInteger;
 
         /// Setter for [`inputHeight`][Self::inputHeight].
-        #[method(setInputHeight:)]
+        #[unsafe(method(setInputHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputHeight(&self, input_height: NSUInteger);
 
-        #[method(outputWidth)]
+        #[unsafe(method(outputWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputWidth(&self) -> NSUInteger;
 
         /// Setter for [`outputWidth`][Self::outputWidth].
-        #[method(setOutputWidth:)]
+        #[unsafe(method(setOutputWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputWidth(&self, output_width: NSUInteger);
 
-        #[method(outputHeight)]
+        #[unsafe(method(outputHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputHeight(&self) -> NSUInteger;
 
         /// Setter for [`outputHeight`][Self::outputHeight].
-        #[method(setOutputHeight:)]
+        #[unsafe(method(setOutputHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputHeight(&self, output_height: NSUInteger);
 
-        #[method(isAutoExposureEnabled)]
+        #[unsafe(method(isAutoExposureEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutoExposureEnabled(&self) -> bool;
 
         /// Setter for [`isAutoExposureEnabled`][Self::isAutoExposureEnabled].
-        #[method(setAutoExposureEnabled:)]
+        #[unsafe(method(setAutoExposureEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutoExposureEnabled(&self, auto_exposure_enabled: bool);
 
-        #[method(requiresSynchronousInitialization)]
+        #[unsafe(method(requiresSynchronousInitialization))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresSynchronousInitialization(&self) -> bool;
 
         /// Setter for [`requiresSynchronousInitialization`][Self::requiresSynchronousInitialization].
-        #[method(setRequiresSynchronousInitialization:)]
+        #[unsafe(method(setRequiresSynchronousInitialization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiresSynchronousInitialization(
             &self,
             requires_synchronous_initialization: bool,
         );
 
-        #[method(isInputContentPropertiesEnabled)]
+        #[unsafe(method(isInputContentPropertiesEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isInputContentPropertiesEnabled(&self) -> bool;
 
         /// Setter for [`isInputContentPropertiesEnabled`][Self::isInputContentPropertiesEnabled].
-        #[method(setInputContentPropertiesEnabled:)]
+        #[unsafe(method(setInputContentPropertiesEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputContentPropertiesEnabled(
             &self,
             input_content_properties_enabled: bool,
         );
 
-        #[method(inputContentMinScale)]
+        #[unsafe(method(inputContentMinScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputContentMinScale(&self) -> c_float;
 
         /// Setter for [`inputContentMinScale`][Self::inputContentMinScale].
-        #[method(setInputContentMinScale:)]
+        #[unsafe(method(setInputContentMinScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputContentMinScale(&self, input_content_min_scale: c_float);
 
-        #[method(inputContentMaxScale)]
+        #[unsafe(method(inputContentMaxScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputContentMaxScale(&self) -> c_float;
 
         /// Setter for [`inputContentMaxScale`][Self::inputContentMaxScale].
-        #[method(setInputContentMaxScale:)]
+        #[unsafe(method(setInputContentMaxScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputContentMaxScale(&self, input_content_max_scale: c_float);
 
-        #[method(isReactiveMaskTextureEnabled)]
+        #[unsafe(method(isReactiveMaskTextureEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isReactiveMaskTextureEnabled(&self) -> bool;
 
         /// Setter for [`isReactiveMaskTextureEnabled`][Self::isReactiveMaskTextureEnabled].
-        #[method(setReactiveMaskTextureEnabled:)]
+        #[unsafe(method(setReactiveMaskTextureEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReactiveMaskTextureEnabled(&self, reactive_mask_texture_enabled: bool);
 
-        #[method(reactiveMaskTextureFormat)]
+        #[unsafe(method(reactiveMaskTextureFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn reactiveMaskTextureFormat(&self) -> MTLPixelFormat;
 
         /// Setter for [`reactiveMaskTextureFormat`][Self::reactiveMaskTextureFormat].
-        #[method(setReactiveMaskTextureFormat:)]
+        #[unsafe(method(setReactiveMaskTextureFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReactiveMaskTextureFormat(
             &self,
             reactive_mask_texture_format: MTLPixelFormat,
         );
 
-        #[method(newTemporalScalerWithDevice:)]
+        #[unsafe(method(newTemporalScalerWithDevice:))]
         #[unsafe(method_family = new)]
         pub unsafe fn newTemporalScalerWithDevice(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<ProtocolObject<dyn MTLFXTemporalScaler>>>;
 
-        #[method(supportedInputContentMinScaleForDevice:)]
+        #[unsafe(method(supportedInputContentMinScaleForDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedInputContentMinScaleForDevice(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> c_float;
 
-        #[method(supportedInputContentMaxScaleForDevice:)]
+        #[unsafe(method(supportedInputContentMaxScaleForDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedInputContentMaxScaleForDevice(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> c_float;
 
-        #[method(supportsDevice:)]
+        #[unsafe(method(supportsDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsDevice(device: &ProtocolObject<dyn MTLDevice>) -> bool;
     }
@@ -197,11 +197,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLFXTemporalScalerDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -210,217 +210,217 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscaler?language=objc)
     pub unsafe trait MTLFXTemporalScaler: NSObjectProtocol {
-        #[method(colorTextureUsage)]
+        #[unsafe(method(colorTextureUsage))]
         #[unsafe(method_family = none)]
         unsafe fn colorTextureUsage(&self) -> MTLTextureUsage;
 
-        #[method(depthTextureUsage)]
+        #[unsafe(method(depthTextureUsage))]
         #[unsafe(method_family = none)]
         unsafe fn depthTextureUsage(&self) -> MTLTextureUsage;
 
-        #[method(motionTextureUsage)]
+        #[unsafe(method(motionTextureUsage))]
         #[unsafe(method_family = none)]
         unsafe fn motionTextureUsage(&self) -> MTLTextureUsage;
 
-        #[method(reactiveTextureUsage)]
+        #[unsafe(method(reactiveTextureUsage))]
         #[unsafe(method_family = none)]
         unsafe fn reactiveTextureUsage(&self) -> MTLTextureUsage;
 
-        #[method(outputTextureUsage)]
+        #[unsafe(method(outputTextureUsage))]
         #[unsafe(method_family = none)]
         unsafe fn outputTextureUsage(&self) -> MTLTextureUsage;
 
-        #[method(inputContentWidth)]
+        #[unsafe(method(inputContentWidth))]
         #[unsafe(method_family = none)]
         unsafe fn inputContentWidth(&self) -> NSUInteger;
 
         /// Setter for [`inputContentWidth`][Self::inputContentWidth].
-        #[method(setInputContentWidth:)]
+        #[unsafe(method(setInputContentWidth:))]
         #[unsafe(method_family = none)]
         unsafe fn setInputContentWidth(&self, input_content_width: NSUInteger);
 
-        #[method(inputContentHeight)]
+        #[unsafe(method(inputContentHeight))]
         #[unsafe(method_family = none)]
         unsafe fn inputContentHeight(&self) -> NSUInteger;
 
         /// Setter for [`inputContentHeight`][Self::inputContentHeight].
-        #[method(setInputContentHeight:)]
+        #[unsafe(method(setInputContentHeight:))]
         #[unsafe(method_family = none)]
         unsafe fn setInputContentHeight(&self, input_content_height: NSUInteger);
 
-        #[method(colorTexture)]
+        #[unsafe(method(colorTexture))]
         #[unsafe(method_family = none)]
         unsafe fn colorTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`colorTexture`][Self::colorTexture].
-        #[method(setColorTexture:)]
+        #[unsafe(method(setColorTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
-        #[method(depthTexture)]
+        #[unsafe(method(depthTexture))]
         #[unsafe(method_family = none)]
         unsafe fn depthTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`depthTexture`][Self::depthTexture].
-        #[method(setDepthTexture:)]
+        #[unsafe(method(setDepthTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setDepthTexture(&self, depth_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
-        #[method(motionTexture)]
+        #[unsafe(method(motionTexture))]
         #[unsafe(method_family = none)]
         unsafe fn motionTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`motionTexture`][Self::motionTexture].
-        #[method(setMotionTexture:)]
+        #[unsafe(method(setMotionTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setMotionTexture(&self, motion_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
-        #[method(outputTexture)]
+        #[unsafe(method(outputTexture))]
         #[unsafe(method_family = none)]
         unsafe fn outputTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`outputTexture`][Self::outputTexture].
-        #[method(setOutputTexture:)]
+        #[unsafe(method(setOutputTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
-        #[method(exposureTexture)]
+        #[unsafe(method(exposureTexture))]
         #[unsafe(method_family = none)]
         unsafe fn exposureTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`exposureTexture`][Self::exposureTexture].
-        #[method(setExposureTexture:)]
+        #[unsafe(method(setExposureTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setExposureTexture(
             &self,
             exposure_texture: Option<&ProtocolObject<dyn MTLTexture>>,
         );
 
-        #[method(reactiveMaskTexture)]
+        #[unsafe(method(reactiveMaskTexture))]
         #[unsafe(method_family = none)]
         unsafe fn reactiveMaskTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`reactiveMaskTexture`][Self::reactiveMaskTexture].
-        #[method(setReactiveMaskTexture:)]
+        #[unsafe(method(setReactiveMaskTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setReactiveMaskTexture(
             &self,
             reactive_mask_texture: Option<&ProtocolObject<dyn MTLTexture>>,
         );
 
-        #[method(preExposure)]
+        #[unsafe(method(preExposure))]
         #[unsafe(method_family = none)]
         unsafe fn preExposure(&self) -> c_float;
 
         /// Setter for [`preExposure`][Self::preExposure].
-        #[method(setPreExposure:)]
+        #[unsafe(method(setPreExposure:))]
         #[unsafe(method_family = none)]
         unsafe fn setPreExposure(&self, pre_exposure: c_float);
 
-        #[method(jitterOffsetX)]
+        #[unsafe(method(jitterOffsetX))]
         #[unsafe(method_family = none)]
         unsafe fn jitterOffsetX(&self) -> c_float;
 
         /// Setter for [`jitterOffsetX`][Self::jitterOffsetX].
-        #[method(setJitterOffsetX:)]
+        #[unsafe(method(setJitterOffsetX:))]
         #[unsafe(method_family = none)]
         unsafe fn setJitterOffsetX(&self, jitter_offset_x: c_float);
 
-        #[method(jitterOffsetY)]
+        #[unsafe(method(jitterOffsetY))]
         #[unsafe(method_family = none)]
         unsafe fn jitterOffsetY(&self) -> c_float;
 
         /// Setter for [`jitterOffsetY`][Self::jitterOffsetY].
-        #[method(setJitterOffsetY:)]
+        #[unsafe(method(setJitterOffsetY:))]
         #[unsafe(method_family = none)]
         unsafe fn setJitterOffsetY(&self, jitter_offset_y: c_float);
 
-        #[method(motionVectorScaleX)]
+        #[unsafe(method(motionVectorScaleX))]
         #[unsafe(method_family = none)]
         unsafe fn motionVectorScaleX(&self) -> c_float;
 
         /// Setter for [`motionVectorScaleX`][Self::motionVectorScaleX].
-        #[method(setMotionVectorScaleX:)]
+        #[unsafe(method(setMotionVectorScaleX:))]
         #[unsafe(method_family = none)]
         unsafe fn setMotionVectorScaleX(&self, motion_vector_scale_x: c_float);
 
-        #[method(motionVectorScaleY)]
+        #[unsafe(method(motionVectorScaleY))]
         #[unsafe(method_family = none)]
         unsafe fn motionVectorScaleY(&self) -> c_float;
 
         /// Setter for [`motionVectorScaleY`][Self::motionVectorScaleY].
-        #[method(setMotionVectorScaleY:)]
+        #[unsafe(method(setMotionVectorScaleY:))]
         #[unsafe(method_family = none)]
         unsafe fn setMotionVectorScaleY(&self, motion_vector_scale_y: c_float);
 
-        #[method(reset)]
+        #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
         unsafe fn reset(&self) -> bool;
 
         /// Setter for [`reset`][Self::reset].
-        #[method(setReset:)]
+        #[unsafe(method(setReset:))]
         #[unsafe(method_family = none)]
         unsafe fn setReset(&self, reset: bool);
 
-        #[method(isDepthReversed)]
+        #[unsafe(method(isDepthReversed))]
         #[unsafe(method_family = none)]
         unsafe fn isDepthReversed(&self) -> bool;
 
         /// Setter for [`isDepthReversed`][Self::isDepthReversed].
-        #[method(setDepthReversed:)]
+        #[unsafe(method(setDepthReversed:))]
         #[unsafe(method_family = none)]
         unsafe fn setDepthReversed(&self, depth_reversed: bool);
 
-        #[method(colorTextureFormat)]
+        #[unsafe(method(colorTextureFormat))]
         #[unsafe(method_family = none)]
         unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
 
-        #[method(depthTextureFormat)]
+        #[unsafe(method(depthTextureFormat))]
         #[unsafe(method_family = none)]
         unsafe fn depthTextureFormat(&self) -> MTLPixelFormat;
 
-        #[method(motionTextureFormat)]
+        #[unsafe(method(motionTextureFormat))]
         #[unsafe(method_family = none)]
         unsafe fn motionTextureFormat(&self) -> MTLPixelFormat;
 
-        #[method(outputTextureFormat)]
+        #[unsafe(method(outputTextureFormat))]
         #[unsafe(method_family = none)]
         unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
 
-        #[method(inputWidth)]
+        #[unsafe(method(inputWidth))]
         #[unsafe(method_family = none)]
         unsafe fn inputWidth(&self) -> NSUInteger;
 
-        #[method(inputHeight)]
+        #[unsafe(method(inputHeight))]
         #[unsafe(method_family = none)]
         unsafe fn inputHeight(&self) -> NSUInteger;
 
-        #[method(outputWidth)]
+        #[unsafe(method(outputWidth))]
         #[unsafe(method_family = none)]
         unsafe fn outputWidth(&self) -> NSUInteger;
 
-        #[method(outputHeight)]
+        #[unsafe(method(outputHeight))]
         #[unsafe(method_family = none)]
         unsafe fn outputHeight(&self) -> NSUInteger;
 
-        #[method(inputContentMinScale)]
+        #[unsafe(method(inputContentMinScale))]
         #[unsafe(method_family = none)]
         unsafe fn inputContentMinScale(&self) -> c_float;
 
-        #[method(inputContentMaxScale)]
+        #[unsafe(method(inputContentMaxScale))]
         #[unsafe(method_family = none)]
         unsafe fn inputContentMaxScale(&self) -> c_float;
 
-        #[method(fence)]
+        #[unsafe(method(fence))]
         #[unsafe(method_family = none)]
         unsafe fn fence(&self) -> Option<Retained<ProtocolObject<dyn MTLFence>>>;
 
         /// Setter for [`fence`][Self::fence].
-        #[method(setFence:)]
+        #[unsafe(method(setFence:))]
         #[unsafe(method_family = none)]
         unsafe fn setFence(&self, fence: Option<&ProtocolObject<dyn MTLFence>>);
 
-        #[method(encodeToCommandBuffer:)]
+        #[unsafe(method(encodeToCommandBuffer:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeToCommandBuffer(
             &self,

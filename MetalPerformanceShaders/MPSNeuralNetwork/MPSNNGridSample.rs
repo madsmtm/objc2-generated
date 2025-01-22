@@ -39,12 +39,12 @@ extern_methods!(
         /// This determines whether the pixel locations from the grid are used as the input coordinate (if set to YES) or
         /// is added to the input coordinate (if set to NO).
         /// The default value is YES.
-        #[method(useGridValueAsInputCoordinate)]
+        #[unsafe(method(useGridValueAsInputCoordinate))]
         #[unsafe(method_family = none)]
         pub unsafe fn useGridValueAsInputCoordinate(&self) -> bool;
 
         /// Setter for [`useGridValueAsInputCoordinate`][Self::useGridValueAsInputCoordinate].
-        #[method(setUseGridValueAsInputCoordinate:)]
+        #[unsafe(method(setUseGridValueAsInputCoordinate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUseGridValueAsInputCoordinate(
             &self,
@@ -56,7 +56,7 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on
         ///
         /// Returns: A valid MPSNNGridSample object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -76,7 +76,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -98,7 +98,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -111,11 +111,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNGridSample {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -65,11 +65,11 @@ unsafe impl NSObjectProtocol for AVSemanticSegmentationMatte {}
 
 extern_methods!(
     unsafe impl AVSemanticSegmentationMatte {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -89,7 +89,7 @@ extern_methods!(
         ///
         ///
         /// When using ImageIO framework's CGImageSource API to read from a HEIF or JPEG file containing a semantic segmentation matte, AVSemanticSegmentationMatte can be instantiated using the result of CGImageSourceCopyAuxiliaryDataInfoAtIndex, which returns a CFDictionary of primitive segmentation matte information.
-        #[method(semanticSegmentationMatteFromImageSourceAuxiliaryDataType:dictionaryRepresentation:error:_)]
+        #[unsafe(method(semanticSegmentationMatteFromImageSourceAuxiliaryDataType:dictionaryRepresentation:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn semanticSegmentationMatteFromImageSourceAuxiliaryDataType_dictionaryRepresentation_error(
             image_source_auxiliary_data_type: &CFString,
@@ -100,7 +100,7 @@ extern_methods!(
         ///
         ///
         /// An AVSemanticSegmentationMatte's matteType is immutable for the life of the object.
-        #[method(matteType)]
+        #[unsafe(method(matteType))]
         #[unsafe(method_family = none)]
         pub unsafe fn matteType(&self) -> Retained<AVSemanticSegmentationMatteType>;
 
@@ -116,7 +116,7 @@ extern_methods!(
         ///
         ///
         /// When applying complex edits to media containing a semantic segmentation matte, you may create a derivative matte with arbitrary transforms applied to it, then use this initializer to create a new AVSemanticSegmentationMatte.
-        #[method(semanticSegmentationMatteByReplacingSemanticSegmentationMatteWithPixelBuffer:error:_)]
+        #[unsafe(method(semanticSegmentationMatteByReplacingSemanticSegmentationMatteWithPixelBuffer:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn semanticSegmentationMatteByReplacingSemanticSegmentationMatteWithPixelBuffer_error(
             &self,
@@ -134,7 +134,7 @@ extern_methods!(
         ///
         ///
         /// When using ImageIO framework's CGImageDestination API to write semantic segmentation matte information to a HEIF or JPEG file, you may use this method to generate a dictionary of primitive map information consumed by CGImageDestinationAddAuxiliaryDataInfo.
-        #[method(dictionaryRepresentationForAuxiliaryDataType:)]
+        #[unsafe(method(dictionaryRepresentationForAuxiliaryDataType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentationForAuxiliaryDataType(
             &self,
@@ -145,7 +145,7 @@ extern_methods!(
         ///
         ///
         /// Currently the only supported CV pixel format type for the matting image is kCVPixelFormatType_OneComponent8.
-        #[method(pixelFormatType)]
+        #[unsafe(method(pixelFormatType))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelFormatType(&self) -> OSType;
 
@@ -154,7 +154,7 @@ extern_methods!(
         ///
         ///
         /// The pixel format can be queried using the pixelFormatType property.
-        #[method(mattingImage)]
+        #[unsafe(method(mattingImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn mattingImage(&self) -> Retained<CVPixelBuffer>;
     }

@@ -23,7 +23,7 @@ extern_methods!(
     unsafe impl LARightStore {
         /// Shared instance of
         /// `LARightStore.`
-        #[method(sharedStore)]
+        #[unsafe(method(sharedStore))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedStore() -> Retained<LARightStore>;
 
@@ -33,7 +33,7 @@ extern_methods!(
         /// Parameter `identifier`: Identifier associated with a previously stored right.
         ///
         /// Parameter `handler`: Completion handler with the fetched right or an error on failure.
-        #[method(rightForIdentifier:completion:)]
+        #[unsafe(method(rightForIdentifier:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightForIdentifier_completion(
             &self,
@@ -49,7 +49,7 @@ extern_methods!(
         /// Parameter `identifier`: Identifier to be associated with the right. Useful for later retrieval.
         ///
         /// Parameter `handler`: Completion handler with the persisted right or an error on failure.
-        #[method(saveRight:identifier:completion:)]
+        #[unsafe(method(saveRight:identifier:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveRight_identifier_completion(
             &self,
@@ -68,7 +68,7 @@ extern_methods!(
         /// Parameter `secret`: Secret data to be associated with the provided right.
         ///
         /// Parameter `handler`: Completion handler with the persisted right or an error on failure.
-        #[method(saveRight:identifier:secret:completion:)]
+        #[unsafe(method(saveRight:identifier:secret:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveRight_identifier_secret_completion(
             &self,
@@ -84,7 +84,7 @@ extern_methods!(
         /// Parameter `right`: `LAPersistedRight`instance to remove.
         ///
         /// Parameter `handler`: Completion handler with an error on failure.
-        #[method(removeRight:completion:)]
+        #[unsafe(method(removeRight:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRight_completion(
             &self,
@@ -99,7 +99,7 @@ extern_methods!(
         /// `LAPersistedRight`instance to remove.
         ///
         /// Parameter `handler`: Completion handler with an error on failure.
-        #[method(removeRightForIdentifier:completion:)]
+        #[unsafe(method(removeRightForIdentifier:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRightForIdentifier_completion(
             &self,
@@ -111,7 +111,7 @@ extern_methods!(
         /// Removes all rights stored by the client
         ///
         /// Parameter `handler`: Completion handler with an error on failure.
-        #[method(removeAllRightsWithCompletion:)]
+        #[unsafe(method(removeAllRightsWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllRightsWithCompletion(
             &self,
@@ -120,13 +120,13 @@ extern_methods!(
 
         /// Clients should rely on the
         /// `shared`instance instead
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Clients should rely on the
         /// `shared`instance instead
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

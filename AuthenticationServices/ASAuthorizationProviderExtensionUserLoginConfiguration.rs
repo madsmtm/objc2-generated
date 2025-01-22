@@ -18,28 +18,28 @@ unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionUserLoginConfig
 
 extern_methods!(
     unsafe impl ASAuthorizationProviderExtensionUserLoginConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The user name to use when authenticating with the identity provider.
-        #[method(loginUserName)]
+        #[unsafe(method(loginUserName))]
         #[unsafe(method_family = none)]
         pub unsafe fn loginUserName(&self) -> Retained<NSString>;
 
         /// Setter for [`loginUserName`][Self::loginUserName].
-        #[method(setLoginUserName:)]
+        #[unsafe(method(setLoginUserName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLoginUserName(&self, login_user_name: &NSString);
 
         /// Creates an instance with the required values.
         ///
         /// Parameter `loginUserName`: The login user name to use.
-        #[method(initWithLoginUserName:)]
+        #[unsafe(method(initWithLoginUserName:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLoginUserName(
             this: Allocated<Self>,
@@ -53,7 +53,7 @@ extern_methods!(
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
-        #[method(setCustomAssertionRequestHeaderClaims:returningError:_)]
+        #[unsafe(method(setCustomAssertionRequestHeaderClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomAssertionRequestHeaderClaims_returningError(
             &self,
@@ -67,7 +67,7 @@ extern_methods!(
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
-        #[method(setCustomAssertionRequestBodyClaims:returningError:_)]
+        #[unsafe(method(setCustomAssertionRequestBodyClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomAssertionRequestBodyClaims_returningError(
             &self,
@@ -81,7 +81,7 @@ extern_methods!(
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
-        #[method(setCustomLoginRequestHeaderClaims:returningError:_)]
+        #[unsafe(method(setCustomLoginRequestHeaderClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomLoginRequestHeaderClaims_returningError(
             &self,
@@ -95,7 +95,7 @@ extern_methods!(
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
-        #[method(setCustomLoginRequestBodyClaims:returningError:_)]
+        #[unsafe(method(setCustomLoginRequestBodyClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomLoginRequestBodyClaims_returningError(
             &self,

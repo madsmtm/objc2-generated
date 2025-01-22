@@ -69,20 +69,20 @@ unsafe impl NSObjectProtocol for AVAudioEnvironmentDistanceAttenuationParameters
 
 extern_methods!(
     unsafe impl AVAudioEnvironmentDistanceAttenuationParameters {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Type of distance attenuation model
         ///
         /// Default:    AVAudioEnvironmentDistanceAttenuationModelInverse
-        #[method(distanceAttenuationModel)]
+        #[unsafe(method(distanceAttenuationModel))]
         #[unsafe(method_family = none)]
         pub unsafe fn distanceAttenuationModel(&self)
             -> AVAudioEnvironmentDistanceAttenuationModel;
 
         /// Setter for [`distanceAttenuationModel`][Self::distanceAttenuationModel].
-        #[method(setDistanceAttenuationModel:)]
+        #[unsafe(method(setDistanceAttenuationModel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDistanceAttenuationModel(
             &self,
@@ -94,12 +94,12 @@ extern_methods!(
         /// Default:    1.0 meter
         /// Models:     AVAudioEnvironmentDistanceAttenuationModelInverse,
         /// AVAudioEnvironmentDistanceAttenuationModelLinear
-        #[method(referenceDistance)]
+        #[unsafe(method(referenceDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceDistance(&self) -> c_float;
 
         /// Setter for [`referenceDistance`][Self::referenceDistance].
-        #[method(setReferenceDistance:)]
+        #[unsafe(method(setReferenceDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReferenceDistance(&self, reference_distance: c_float);
 
@@ -107,12 +107,12 @@ extern_methods!(
         ///
         /// Default:    100000.0 meters
         /// Models:     AVAudioEnvironmentDistanceAttenuationModelLinear
-        #[method(maximumDistance)]
+        #[unsafe(method(maximumDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumDistance(&self) -> c_float;
 
         /// Setter for [`maximumDistance`][Self::maximumDistance].
-        #[method(setMaximumDistance:)]
+        #[unsafe(method(setMaximumDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumDistance(&self, maximum_distance: c_float);
 
@@ -124,12 +124,12 @@ extern_methods!(
         /// Models:     AVAudioEnvironmentDistanceAttenuationModelExponential
         /// AVAudioEnvironmentDistanceAttenuationModelInverse
         /// AVAudioEnvironmentDistanceAttenuationModelLinear
-        #[method(rolloffFactor)]
+        #[unsafe(method(rolloffFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn rolloffFactor(&self) -> c_float;
 
         /// Setter for [`rolloffFactor`][Self::rolloffFactor].
-        #[method(setRolloffFactor:)]
+        #[unsafe(method(setRolloffFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRolloffFactor(&self, rolloff_factor: c_float);
     }
@@ -138,7 +138,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioEnvironmentDistanceAttenuationParameters {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -169,19 +169,19 @@ unsafe impl NSObjectProtocol for AVAudioEnvironmentReverbParameters {}
 
 extern_methods!(
     unsafe impl AVAudioEnvironmentReverbParameters {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Turns on/off the reverb
         ///
         /// Default:    NO
-        #[method(enable)]
+        #[unsafe(method(enable))]
         #[unsafe(method_family = none)]
         pub unsafe fn enable(&self) -> bool;
 
         /// Setter for [`enable`][Self::enable].
-        #[method(setEnable:)]
+        #[unsafe(method(setEnable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnable(&self, enable: bool);
 
@@ -189,18 +189,18 @@ extern_methods!(
         ///
         /// Range:      -40 to 40 dB
         /// Default:    0.0
-        #[method(level)]
+        #[unsafe(method(level))]
         #[unsafe(method_family = none)]
         pub unsafe fn level(&self) -> c_float;
 
         /// Setter for [`level`][Self::level].
-        #[method(setLevel:)]
+        #[unsafe(method(setLevel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLevel(&self, level: c_float);
 
         #[cfg(feature = "AVAudioUnitEQ")]
         /// filter that applies to the output of the reverb
-        #[method(filterParameters)]
+        #[unsafe(method(filterParameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterParameters(&self) -> Retained<AVAudioUnitEQFilterParameters>;
 
@@ -211,7 +211,7 @@ extern_methods!(
         ///
         /// Loading a factory reverb preset changes the sound of the reverb. This works independently
         /// of the filter which follows the reverb in the signal chain.
-        #[method(loadFactoryReverbPreset:)]
+        #[unsafe(method(loadFactoryReverbPreset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFactoryReverbPreset(&self, preset: AVAudioUnitReverbPreset);
     }
@@ -220,7 +220,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioEnvironmentReverbParameters {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -312,7 +312,7 @@ unsafe impl NSObjectProtocol for AVAudioEnvironmentNode {}
 extern_methods!(
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioEnvironmentNode {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -327,24 +327,24 @@ extern_methods!(
         /// notifications and update the output type accordingly.
         ///
         /// Default:    AVAudio3DMixingOutputTypeAuto
-        #[method(outputType)]
+        #[unsafe(method(outputType))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputType(&self) -> AVAudioEnvironmentOutputType;
 
         /// Setter for [`outputType`][Self::outputType].
-        #[method(setOutputType:)]
+        #[unsafe(method(setOutputType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputType(&self, output_type: AVAudioEnvironmentOutputType);
 
         /// The mixer's output volume.
         ///
         /// This accesses the mixer's output volume (0.0-1.0, inclusive).
-        #[method(outputVolume)]
+        #[unsafe(method(outputVolume))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputVolume(&self) -> c_float;
 
         /// Setter for [`outputVolume`][Self::outputVolume].
-        #[method(setOutputVolume:)]
+        #[unsafe(method(setOutputVolume:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputVolume(&self, output_volume: c_float);
 
@@ -352,7 +352,7 @@ extern_methods!(
         /// Find an unused input bus
         ///
         /// This will find and return the first input bus to which no other node is connected.
-        #[method(nextAvailableInputBus)]
+        #[unsafe(method(nextAvailableInputBus))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextAvailableInputBus(&self) -> AVAudioNodeBus;
 
@@ -365,13 +365,13 @@ extern_methods!(
         /// x: 0.0
         /// y: 0.0
         /// z: 0.0
-        #[method(listenerPosition)]
+        #[unsafe(method(listenerPosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn listenerPosition(&self) -> AVAudio3DPoint;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`listenerPosition`][Self::listenerPosition].
-        #[method(setListenerPosition:)]
+        #[unsafe(method(setListenerPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListenerPosition(&self, listener_position: AVAudio3DPoint);
 
@@ -383,13 +383,13 @@ extern_methods!(
         /// The default orientation is with the listener looking directly along the negative Z axis.
         /// forward: (0, 0, -1)
         /// up:      (0, 1, 0)
-        #[method(listenerVectorOrientation)]
+        #[unsafe(method(listenerVectorOrientation))]
         #[unsafe(method_family = none)]
         pub unsafe fn listenerVectorOrientation(&self) -> AVAudio3DVectorOrientation;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`listenerVectorOrientation`][Self::listenerVectorOrientation].
-        #[method(setListenerVectorOrientation:)]
+        #[unsafe(method(setListenerVectorOrientation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListenerVectorOrientation(
             &self,
@@ -406,13 +406,13 @@ extern_methods!(
         /// yaw: 0.0
         /// pitch: 0.0
         /// roll: 0.0
-        #[method(listenerAngularOrientation)]
+        #[unsafe(method(listenerAngularOrientation))]
         #[unsafe(method_family = none)]
         pub unsafe fn listenerAngularOrientation(&self) -> AVAudio3DAngularOrientation;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`listenerAngularOrientation`][Self::listenerAngularOrientation].
-        #[method(setListenerAngularOrientation:)]
+        #[unsafe(method(setListenerAngularOrientation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListenerAngularOrientation(
             &self,
@@ -420,14 +420,14 @@ extern_methods!(
         );
 
         /// The distance attenuation parameters for the environment
-        #[method(distanceAttenuationParameters)]
+        #[unsafe(method(distanceAttenuationParameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn distanceAttenuationParameters(
             &self,
         ) -> Retained<AVAudioEnvironmentDistanceAttenuationParameters>;
 
         /// The reverb parameters for the environment
-        #[method(reverbParameters)]
+        #[unsafe(method(reverbParameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn reverbParameters(&self) -> Retained<AVAudioEnvironmentReverbParameters>;
 
@@ -445,17 +445,17 @@ extern_methods!(
         ///
         /// This information should be retrieved after a successful connection to the destination node
         /// via the engine's connect method.
-        #[method(applicableRenderingAlgorithms)]
+        #[unsafe(method(applicableRenderingAlgorithms))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicableRenderingAlgorithms(&self) -> Retained<NSArray<NSNumber>>;
 
         /// On capable devices, listener orientation will be automatically rotated based on user's head-orientation if enabled.
-        #[method(isListenerHeadTrackingEnabled)]
+        #[unsafe(method(isListenerHeadTrackingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isListenerHeadTrackingEnabled(&self) -> bool;
 
         /// Setter for [`isListenerHeadTrackingEnabled`][Self::isListenerHeadTrackingEnabled].
-        #[method(setListenerHeadTrackingEnabled:)]
+        #[unsafe(method(setListenerHeadTrackingEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListenerHeadTrackingEnabled(&self, listener_head_tracking_enabled: bool);
     }
@@ -465,7 +465,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioEnvironmentNode {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

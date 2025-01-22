@@ -8,7 +8,7 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfastenumeration?language=objc)
     pub unsafe trait NSFastEnumeration {
-        #[method(countByEnumeratingWithState:objects:count:)]
+        #[unsafe(method(countByEnumeratingWithState:objects:count:))]
         #[unsafe(method_family = none)]
         unsafe fn countByEnumeratingWithState_objects_count(
             &self,
@@ -32,7 +32,7 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSEnumerator<ObjectType> {}
 
 extern_methods!(
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
-        #[method(nextObject)]
+        #[unsafe(method(nextObject))]
         #[unsafe(method_family = none)]
         pub fn nextObject(&self) -> Option<Retained<ObjectType>>;
     }
@@ -41,11 +41,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -55,7 +55,7 @@ extern_methods!(
     /// NSExtendedEnumerator
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
         #[cfg(feature = "NSArray")]
-        #[method(allObjects)]
+        #[unsafe(method(allObjects))]
         #[unsafe(method_family = none)]
         pub fn allObjects(&self) -> Retained<NSArray<ObjectType>>;
     }

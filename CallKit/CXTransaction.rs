@@ -29,23 +29,23 @@ unsafe impl NSSecureCoding for CXTransaction {}
 extern_methods!(
     unsafe impl CXTransaction {
         /// Unique ID
-        #[method(UUID)]
+        #[unsafe(method(UUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         /// Whether all actions have been completed
-        #[method(isComplete)]
+        #[unsafe(method(isComplete))]
         #[unsafe(method_family = none)]
         pub unsafe fn isComplete(&self) -> bool;
 
         #[cfg(feature = "CXAction")]
         /// The list of actions contained by the receiver
-        #[method(actions)]
+        #[unsafe(method(actions))]
         #[unsafe(method_family = none)]
         pub unsafe fn actions(&self) -> Retained<NSArray<CXAction>>;
 
         #[cfg(feature = "CXAction")]
-        #[method(initWithActions:)]
+        #[unsafe(method(initWithActions:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithActions(
             this: Allocated<Self>,
@@ -53,13 +53,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CXAction")]
-        #[method(initWithAction:)]
+        #[unsafe(method(initWithAction:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAction(this: Allocated<Self>, action: &CXAction) -> Retained<Self>;
 
         #[cfg(feature = "CXAction")]
         /// Add the provided action to the receiver's list of actions
-        #[method(addAction:)]
+        #[unsafe(method(addAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAction(&self, action: &CXAction);
     }
@@ -68,11 +68,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXTransaction {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

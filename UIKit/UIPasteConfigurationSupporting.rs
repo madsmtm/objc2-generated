@@ -13,23 +13,23 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "UIPasteConfiguration")]
-        #[method(pasteConfiguration)]
+        #[unsafe(method(pasteConfiguration))]
         #[unsafe(method_family = none)]
         unsafe fn pasteConfiguration(&self) -> Option<Retained<UIPasteConfiguration>>;
 
         #[cfg(feature = "UIPasteConfiguration")]
         /// Setter for [`pasteConfiguration`][Self::pasteConfiguration].
-        #[method(setPasteConfiguration:)]
+        #[unsafe(method(setPasteConfiguration:))]
         #[unsafe(method_family = none)]
         unsafe fn setPasteConfiguration(&self, paste_configuration: Option<&UIPasteConfiguration>);
 
         #[optional]
-        #[method(pasteItemProviders:)]
+        #[unsafe(method(pasteItemProviders:))]
         #[unsafe(method_family = none)]
         unsafe fn pasteItemProviders(&self, item_providers: &NSArray<NSItemProvider>);
 
         #[optional]
-        #[method(canPasteItemProviders:)]
+        #[unsafe(method(canPasteItemProviders:))]
         #[unsafe(method_family = none)]
         unsafe fn canPasteItemProviders(&self, item_providers: &NSArray<NSItemProvider>) -> bool;
     }

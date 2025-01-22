@@ -46,35 +46,35 @@ unsafe impl NSSecureCoding for MPMediaLibrary {}
 
 extern_methods!(
     unsafe impl MPMediaLibrary {
-        #[method(defaultMediaLibrary)]
+        #[unsafe(method(defaultMediaLibrary))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultMediaLibrary() -> Retained<MPMediaLibrary>;
 
-        #[method(lastModifiedDate)]
+        #[unsafe(method(lastModifiedDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastModifiedDate(&self) -> Retained<NSDate>;
 
-        #[method(beginGeneratingLibraryChangeNotifications)]
+        #[unsafe(method(beginGeneratingLibraryChangeNotifications))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginGeneratingLibraryChangeNotifications(&self);
 
-        #[method(endGeneratingLibraryChangeNotifications)]
+        #[unsafe(method(endGeneratingLibraryChangeNotifications))]
         #[unsafe(method_family = none)]
         pub unsafe fn endGeneratingLibraryChangeNotifications(&self);
 
-        #[method(authorizationStatus)]
+        #[unsafe(method(authorizationStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus() -> MPMediaLibraryAuthorizationStatus;
 
         #[cfg(feature = "block2")]
-        #[method(requestAuthorization:)]
+        #[unsafe(method(requestAuthorization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorization(
             completion_handler: &block2::Block<dyn Fn(MPMediaLibraryAuthorizationStatus)>,
         );
 
         #[cfg(all(feature = "MPMediaEntity", feature = "block2"))]
-        #[method(addItemWithProductID:completionHandler:)]
+        #[unsafe(method(addItemWithProductID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addItemWithProductID_completionHandler(
             &self,
@@ -96,7 +96,7 @@ extern_methods!(
         ///
         ///
         /// The UUID should typically be pre-generated to avoid creating a new playlist with every call.
-        #[method(getPlaylistWithUUID:creationMetadata:completionHandler:)]
+        #[unsafe(method(getPlaylistWithUUID:creationMetadata:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPlaylistWithUUID_creationMetadata_completionHandler(
             &self,
@@ -110,11 +110,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPMediaLibrary {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

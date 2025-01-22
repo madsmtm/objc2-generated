@@ -82,46 +82,46 @@ extern_methods!(
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl MKPinAnnotationView {
-        #[method(redPinColor)]
+        #[unsafe(method(redPinColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn redPinColor(mtm: MainThreadMarker) -> Retained<NSColor>;
 
-        #[method(greenPinColor)]
+        #[unsafe(method(greenPinColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn greenPinColor(mtm: MainThreadMarker) -> Retained<NSColor>;
 
-        #[method(purplePinColor)]
+        #[unsafe(method(purplePinColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn purplePinColor(mtm: MainThreadMarker) -> Retained<NSColor>;
 
-        #[method(pinTintColor)]
+        #[unsafe(method(pinTintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn pinTintColor(&self) -> Option<Retained<NSColor>>;
 
         /// Setter for [`pinTintColor`][Self::pinTintColor].
-        #[method(setPinTintColor:)]
+        #[unsafe(method(setPinTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPinTintColor(&self, pin_tint_color: Option<&NSColor>);
 
         #[deprecated]
-        #[method(animatesDrop)]
+        #[unsafe(method(animatesDrop))]
         #[unsafe(method_family = none)]
         pub unsafe fn animatesDrop(&self) -> bool;
 
         /// Setter for [`animatesDrop`][Self::animatesDrop].
         #[deprecated]
-        #[method(setAnimatesDrop:)]
+        #[unsafe(method(setAnimatesDrop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimatesDrop(&self, animates_drop: bool);
 
         #[deprecated = "Use pinTintColor instead"]
-        #[method(pinColor)]
+        #[unsafe(method(pinColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn pinColor(&self) -> MKPinAnnotationColor;
 
         /// Setter for [`pinColor`][Self::pinColor].
         #[deprecated = "Use pinTintColor instead"]
-        #[method(setPinColor:)]
+        #[unsafe(method(setPinColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPinColor(&self, pin_color: MKPinAnnotationColor);
     }
@@ -133,7 +133,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKPinAnnotationView {
         #[cfg(feature = "MKAnnotation")]
-        #[method(initWithAnnotation:reuseIdentifier:)]
+        #[unsafe(method(initWithAnnotation:reuseIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAnnotation_reuseIdentifier(
             this: Allocated<Self>,
@@ -141,7 +141,7 @@ extern_methods!(
             reuse_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -155,7 +155,7 @@ extern_methods!(
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl MKPinAnnotationView {
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
@@ -166,7 +166,7 @@ extern_methods!(
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl MKPinAnnotationView {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -177,7 +177,7 @@ extern_methods!(
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl MKPinAnnotationView {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

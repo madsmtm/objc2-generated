@@ -35,7 +35,7 @@ extern_methods!(
         /// Parameter `outError`: on exit, if an error occurs, a description of the error
         ///
         /// This opens the file for reading using the standard format (deinterleaved floating point).
-        #[method(initForReading:error:_)]
+        #[unsafe(method(initForReading:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initForReading_error(
             this: Allocated<Self>,
@@ -52,7 +52,7 @@ extern_methods!(
         /// Parameter `interleaved`: whether to use an interleaved processing format
         ///
         /// Parameter `outError`: on exit, if an error occurs, a description of the error
-        #[method(initForReading:commonFormat:interleaved:error:_)]
+        #[unsafe(method(initForReading:commonFormat:interleaved:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initForReading_commonFormat_interleaved_error(
             this: Allocated<Self>,
@@ -75,7 +75,7 @@ extern_methods!(
         /// inferred from the file extension. Will overwrite a file at the specified URL if a file exists.
         ///
         /// This opens the file for writing using the standard format (deinterleaved floating point).
-        #[method(initForWriting:settings:error:_)]
+        #[unsafe(method(initForWriting:settings:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initForWriting_settings_error(
             this: Allocated<Self>,
@@ -100,7 +100,7 @@ extern_methods!(
         ///
         /// The file type to create can be set through the corresponding settings key. If not set, it will be
         /// inferred from the file extension. Will overwrite a file at the specified URL if a file exists.
-        #[method(initForWriting:settings:commonFormat:interleaved:error:_)]
+        #[unsafe(method(initForWriting:settings:commonFormat:interleaved:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initForWriting_settings_commonFormat_interleaved_error(
             this: Allocated<Self>,
@@ -120,7 +120,7 @@ extern_methods!(
         /// when the file's header is updated.
         ///
         /// Note: Once closed, further file read or write operations will fail with kAudio_FileNotFoundError.
-        #[method(close)]
+        #[unsafe(method(close))]
         #[unsafe(method_family = none)]
         pub unsafe fn close(&self);
 
@@ -136,7 +136,7 @@ extern_methods!(
         ///
         /// Reading sequentially from framePosition, attempts to fill the buffer to its capacity. On
         /// return, the buffer's length indicates the number of sample frames successfully read.
-        #[method(readIntoBuffer:error:_)]
+        #[unsafe(method(readIntoBuffer:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn readIntoBuffer_error(
             &self,
@@ -156,7 +156,7 @@ extern_methods!(
         /// Returns: YES for success.
         ///
         /// Like `readIntoBuffer:error:`, but can be used to read fewer frames than buffer.frameCapacity.
-        #[method(readIntoBuffer:frameCount:error:_)]
+        #[unsafe(method(readIntoBuffer:frameCount:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn readIntoBuffer_frameCount_error(
             &self,
@@ -175,7 +175,7 @@ extern_methods!(
         /// Returns: YES for success.
         ///
         /// Writes sequentially. The buffer's frameLength signifies how much of the buffer is to be written.
-        #[method(writeFromBuffer:error:_)]
+        #[unsafe(method(writeFromBuffer:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeFromBuffer_error(
             &self,
@@ -183,24 +183,24 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         /// Whether the file is open or not.
-        #[method(isOpen)]
+        #[unsafe(method(isOpen))]
         #[unsafe(method_family = none)]
         pub unsafe fn isOpen(&self) -> bool;
 
         /// The URL the file is reading or writing.
-        #[method(url)]
+        #[unsafe(method(url))]
         #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Retained<NSURL>;
 
         #[cfg(feature = "AVAudioFormat")]
         /// The on-disk format of the file.
-        #[method(fileFormat)]
+        #[unsafe(method(fileFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileFormat(&self) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "AVAudioFormat")]
         /// The processing format of the file.
-        #[method(processingFormat)]
+        #[unsafe(method(processingFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn processingFormat(&self) -> Retained<AVAudioFormat>;
 
@@ -208,7 +208,7 @@ extern_methods!(
         /// The number of sample frames in the file.
         ///
         /// Note: this can be expensive to compute for the first time.
-        #[method(length)]
+        #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> AVAudioFramePosition;
 
@@ -216,13 +216,13 @@ extern_methods!(
         /// The position in the file at which the next read or write will occur.
         ///
         /// Set framePosition to perform a seek before a read or write. A read or write operation advances the frame position by the number of frames read or written.
-        #[method(framePosition)]
+        #[unsafe(method(framePosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn framePosition(&self) -> AVAudioFramePosition;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`framePosition`][Self::framePosition].
-        #[method(setFramePosition:)]
+        #[unsafe(method(setFramePosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFramePosition(&self, frame_position: AVAudioFramePosition);
     }
@@ -231,11 +231,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioFile {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

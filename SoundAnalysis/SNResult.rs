@@ -23,7 +23,7 @@ extern_protocol!(
         /// Provides a new analysis result to the client with the specified time range
         ///
         /// This function will be called each time a new analysis result is available. Different types of analysis may produce results at different rates, spanning different time ranges.
-        #[method(request:didProduceResult:)]
+        #[unsafe(method(request:didProduceResult:))]
         #[unsafe(method_family = none)]
         unsafe fn request_didProduceResult(
             &self,
@@ -36,7 +36,7 @@ extern_protocol!(
         ///
         /// If an error is produced by a request, that request will not produce any more results, and is in a terminal state. The request:didFailWithError and requestDidComplete methods are mutually exclusive.
         #[optional]
-        #[method(request:didFailWithError:)]
+        #[unsafe(method(request:didFailWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn request_didFailWithError(
             &self,
@@ -49,7 +49,7 @@ extern_protocol!(
         ///
         /// If an analysis request completes normally, that request will not produce any more results, and is in a terminal state. The request:didFailWithError and requestDidComplete methods are mutually exclusive.
         #[optional]
-        #[method(requestDidComplete:)]
+        #[unsafe(method(requestDidComplete:))]
         #[unsafe(method_family = none)]
         unsafe fn requestDidComplete(&self, request: &ProtocolObject<dyn SNRequest>);
     }

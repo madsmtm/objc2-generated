@@ -27,15 +27,15 @@ unsafe impl UIInteraction for UIScribbleInteraction {}
 
 extern_methods!(
     unsafe impl UIScribbleInteraction {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(initWithDelegate:)]
+        #[unsafe(method(initWithDelegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
@@ -43,19 +43,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The delegate for the interaction, specified on init.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIScribbleInteractionDelegate>>>;
 
         /// : Indicates if the user is actively writing. It will be set to YES in between calls to scribbleInteractionWillBeginWriting: and scribbleInteractionDidFinishWriting:
-        #[method(isHandlingWriting)]
+        #[unsafe(method(isHandlingWriting))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHandlingWriting(&self) -> bool;
 
         /// A readonly class property that indicates the user is likely to use Apple Pencil and Scribble to enter text instead of the keyboard. In this case it is recommended to adjust the layout of UI elements that are not optimal for direct handwriting input. For example, small or resizable text fields that expect more than a few words could be made taller and reserve some whitespace at the bottom.
-        #[method(isPencilInputExpected)]
+        #[unsafe(method(isPencilInputExpected))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPencilInputExpected(mtm: MainThreadMarker) -> bool;
     }
@@ -77,7 +77,7 @@ extern_protocol!(
         ///
         /// Returns: Return NO to disallow writing at the specified location.
         #[optional]
-        #[method(scribbleInteraction:shouldBeginAtLocation:)]
+        #[unsafe(method(scribbleInteraction:shouldBeginAtLocation:))]
         #[unsafe(method_family = none)]
         unsafe fn scribbleInteraction_shouldBeginAtLocation(
             &self,
@@ -92,7 +92,7 @@ extern_protocol!(
         ///
         /// Returns: Return YES to delay focusing the text input.
         #[optional]
-        #[method(scribbleInteractionShouldDelayFocus:)]
+        #[unsafe(method(scribbleInteractionShouldDelayFocus:))]
         #[unsafe(method_family = none)]
         unsafe fn scribbleInteractionShouldDelayFocus(
             &self,
@@ -103,7 +103,7 @@ extern_protocol!(
         ///
         /// Parameter `interaction`: The interaction notifying about writing state changes.
         #[optional]
-        #[method(scribbleInteractionWillBeginWriting:)]
+        #[unsafe(method(scribbleInteractionWillBeginWriting:))]
         #[unsafe(method_family = none)]
         unsafe fn scribbleInteractionWillBeginWriting(&self, interaction: &UIScribbleInteraction);
 
@@ -111,7 +111,7 @@ extern_protocol!(
         ///
         /// Parameter `interaction`: The interaction notifying about writing state changes.
         #[optional]
-        #[method(scribbleInteractionDidFinishWriting:)]
+        #[unsafe(method(scribbleInteractionDidFinishWriting:))]
         #[unsafe(method_family = none)]
         unsafe fn scribbleInteractionDidFinishWriting(&self, interaction: &UIScribbleInteraction);
     }

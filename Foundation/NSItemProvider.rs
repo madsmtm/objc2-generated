@@ -54,19 +54,19 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderwriting?language=objc)
     pub unsafe trait NSItemProviderWriting: NSObjectProtocol {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method(writableTypeIdentifiersForItemProvider)]
+        #[unsafe(method(writableTypeIdentifiersForItemProvider))]
         #[unsafe(method_family = none)]
         unsafe fn writableTypeIdentifiersForItemProvider_class() -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[optional]
-        #[method(writableTypeIdentifiersForItemProvider)]
+        #[unsafe(method(writableTypeIdentifiersForItemProvider))]
         #[unsafe(method_family = none)]
         unsafe fn writableTypeIdentifiersForItemProvider(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(itemProviderVisibilityForRepresentationWithTypeIdentifier:)]
+        #[unsafe(method(itemProviderVisibilityForRepresentationWithTypeIdentifier:))]
         #[unsafe(method_family = none)]
         unsafe fn itemProviderVisibilityForRepresentationWithTypeIdentifier_class(
             type_identifier: &NSString,
@@ -74,7 +74,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(itemProviderVisibilityForRepresentationWithTypeIdentifier:)]
+        #[unsafe(method(itemProviderVisibilityForRepresentationWithTypeIdentifier:))]
         #[unsafe(method_family = none)]
         unsafe fn itemProviderVisibilityForRepresentationWithTypeIdentifier(
             &self,
@@ -88,7 +88,7 @@ extern_protocol!(
             feature = "NSString",
             feature = "block2"
         ))]
-        #[method(loadDataWithTypeIdentifier:forItemProviderCompletionHandler:)]
+        #[unsafe(method(loadDataWithTypeIdentifier:forItemProviderCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadDataWithTypeIdentifier_forItemProviderCompletionHandler(
             &self,
@@ -102,12 +102,12 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderreading?language=objc)
     pub unsafe trait NSItemProviderReading: NSObjectProtocol {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method(readableTypeIdentifiersForItemProvider)]
+        #[unsafe(method(readableTypeIdentifiersForItemProvider))]
         #[unsafe(method_family = none)]
         unsafe fn readableTypeIdentifiersForItemProvider() -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSString"))]
-        #[method(objectWithItemProviderData:typeIdentifier:error:_)]
+        #[unsafe(method(objectWithItemProviderData:typeIdentifier:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn objectWithItemProviderData_typeIdentifier_error(
             data: &NSData,
@@ -150,7 +150,7 @@ unsafe impl NSObjectProtocol for NSItemProvider {}
 
 extern_methods!(
     unsafe impl NSItemProvider {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -161,7 +161,7 @@ extern_methods!(
             feature = "NSString",
             feature = "block2"
         ))]
-        #[method(registerDataRepresentationForTypeIdentifier:visibility:loadHandler:)]
+        #[unsafe(method(registerDataRepresentationForTypeIdentifier:visibility:loadHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerDataRepresentationForTypeIdentifier_visibility_loadHandler(
             &self,
@@ -181,7 +181,7 @@ extern_methods!(
             feature = "NSURL",
             feature = "block2"
         ))]
-        #[method(registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:)]
+        #[unsafe(method(registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerFileRepresentationForTypeIdentifier_fileOptions_visibility_loadHandler(
             &self,
@@ -196,12 +196,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method(registeredTypeIdentifiers)]
+        #[unsafe(method(registeredTypeIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn registeredTypeIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method(registeredTypeIdentifiersWithFileOptions:)]
+        #[unsafe(method(registeredTypeIdentifiersWithFileOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registeredTypeIdentifiersWithFileOptions(
             &self,
@@ -209,12 +209,12 @@ extern_methods!(
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method(hasItemConformingToTypeIdentifier:)]
+        #[unsafe(method(hasItemConformingToTypeIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasItemConformingToTypeIdentifier(&self, type_identifier: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method(hasRepresentationConformingToTypeIdentifier:fileOptions:)]
+        #[unsafe(method(hasRepresentationConformingToTypeIdentifier:fileOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasRepresentationConformingToTypeIdentifier_fileOptions(
             &self,
@@ -229,7 +229,7 @@ extern_methods!(
             feature = "NSString",
             feature = "block2"
         ))]
-        #[method(loadDataRepresentationForTypeIdentifier:completionHandler:)]
+        #[unsafe(method(loadDataRepresentationForTypeIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadDataRepresentationForTypeIdentifier_completionHandler(
             &self,
@@ -244,7 +244,7 @@ extern_methods!(
             feature = "NSURL",
             feature = "block2"
         ))]
-        #[method(loadFileRepresentationForTypeIdentifier:completionHandler:)]
+        #[unsafe(method(loadFileRepresentationForTypeIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFileRepresentationForTypeIdentifier_completionHandler(
             &self,
@@ -259,7 +259,7 @@ extern_methods!(
             feature = "NSURL",
             feature = "block2"
         ))]
-        #[method(loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:)]
+        #[unsafe(method(loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadInPlaceFileRepresentationForTypeIdentifier_completionHandler(
             &self,
@@ -268,24 +268,24 @@ extern_methods!(
         ) -> Retained<NSProgress>;
 
         #[cfg(feature = "NSString")]
-        #[method(suggestedName)]
+        #[unsafe(method(suggestedName))]
         #[unsafe(method_family = none)]
         pub unsafe fn suggestedName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`suggestedName`][Self::suggestedName].
-        #[method(setSuggestedName:)]
+        #[unsafe(method(setSuggestedName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuggestedName(&self, suggested_name: Option<&NSString>);
 
-        #[method(initWithObject:)]
+        #[unsafe(method(initWithObject:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObject(
             this: Allocated<Self>,
             object: &ProtocolObject<dyn NSItemProviderWriting>,
         ) -> Retained<Self>;
 
-        #[method(registerObject:visibility:)]
+        #[unsafe(method(registerObject:visibility:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerObject_visibility(
             &self,
@@ -294,7 +294,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSObject", feature = "NSString"))]
-        #[method(initWithItem:typeIdentifier:)]
+        #[unsafe(method(initWithItem:typeIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItem_typeIdentifier(
             this: Allocated<Self>,
@@ -303,7 +303,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
-        #[method(initWithContentsOfURL:)]
+        #[unsafe(method(initWithContentsOfURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
@@ -317,7 +317,7 @@ extern_methods!(
             feature = "NSString",
             feature = "block2"
         ))]
-        #[method(registerItemForTypeIdentifier:loadHandler:)]
+        #[unsafe(method(registerItemForTypeIdentifier:loadHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerItemForTypeIdentifier_loadHandler(
             &self,
@@ -332,7 +332,7 @@ extern_methods!(
             feature = "NSString",
             feature = "block2"
         ))]
-        #[method(loadItemForTypeIdentifier:options:completionHandler:)]
+        #[unsafe(method(loadItemForTypeIdentifier:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadItemForTypeIdentifier_options_completionHandler(
             &self,
@@ -346,7 +346,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSItemProvider {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -367,7 +367,7 @@ extern_methods!(
             feature = "NSObject",
             feature = "block2"
         ))]
-        #[method(previewImageHandler)]
+        #[unsafe(method(previewImageHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewImageHandler(&self) -> NSItemProviderLoadHandler;
 
@@ -378,7 +378,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`previewImageHandler`][Self::previewImageHandler].
-        #[method(setPreviewImageHandler:)]
+        #[unsafe(method(setPreviewImageHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewImageHandler(
             &self,
@@ -391,7 +391,7 @@ extern_methods!(
             feature = "NSObject",
             feature = "block2"
         ))]
-        #[method(loadPreviewImageWithOptions:completionHandler:)]
+        #[unsafe(method(loadPreviewImageWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadPreviewImageWithOptions_completionHandler(
             &self,

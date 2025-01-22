@@ -552,45 +552,45 @@ unsafe impl NSSecureCoding for CIFilter {}
 extern_methods!(
     unsafe impl CIFilter {
         #[cfg(feature = "CIImage")]
-        #[method(outputImage)]
+        #[unsafe(method(outputImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputImage(&self) -> Option<Retained<CIImage>>;
 
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
 
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         /// Returns an array containing the names of all inputs in the filter.
-        #[method(inputKeys)]
+        #[unsafe(method(inputKeys))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputKeys(&self) -> Retained<NSArray<NSString>>;
 
         /// Returns an array containing the names of all outputs in the filter.
-        #[method(outputKeys)]
+        #[unsafe(method(outputKeys))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputKeys(&self) -> Retained<NSArray<NSString>>;
 
         /// Sets all inputs to their default values (where default values are defined, other inputs are left as-is).
-        #[method(setDefaults)]
+        #[unsafe(method(setDefaults))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaults(&self);
 
         /// Returns a dictionary containing key/value pairs describing the filter. (see description of keys below)
-        #[method(attributes)]
+        #[unsafe(method(attributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributes(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
@@ -606,7 +606,7 @@ extern_methods!(
         /// Parameter `args`: Array of arguments that are applied to the kernel
         ///
         /// Parameter `dict`: Array of additional options
-        #[method(apply:arguments:options:)]
+        #[unsafe(method(apply:arguments:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn apply_arguments_options(
             &self,
@@ -620,11 +620,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIFilter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -635,12 +635,12 @@ extern_protocol!(
     #[name = "CIFilter"]
     pub unsafe trait CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method(outputImage)]
+        #[unsafe(method(outputImage))]
         #[unsafe(method_family = none)]
         unsafe fn outputImage(&self) -> Option<Retained<CIImage>>;
 
         #[optional]
-        #[method(customAttributes)]
+        #[unsafe(method(customAttributes))]
         #[unsafe(method_family = none)]
         unsafe fn customAttributes() -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
     }
@@ -654,7 +654,7 @@ extern_methods!(
         /// Creates a new filter of type 'name'.
         /// On OSX, all input values will be undefined.
         /// On iOS, all input values will be set to default values.
-        #[method(filterWithName:)]
+        #[unsafe(method(filterWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterWithName(name: &NSString) -> Option<Retained<CIFilter>>;
 
@@ -662,7 +662,7 @@ extern_methods!(
         /// The filter's input parameters are set from the dictionary of key-value pairs.
         /// On OSX, any of the filter input parameters not specified in the dictionary will be undefined.
         /// On iOS, any of the filter input parameters not specified in the dictionary will be set to default values.
-        #[method(filterWithName:withInputParameters:)]
+        #[unsafe(method(filterWithName:withInputParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterWithName_withInputParameters(
             name: &NSString,
@@ -670,14 +670,14 @@ extern_methods!(
         ) -> Option<Retained<CIFilter>>;
 
         /// Returns an array containing all published filter names in a category.
-        #[method(filterNamesInCategory:)]
+        #[unsafe(method(filterNamesInCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterNamesInCategory(
             category: Option<&NSString>,
         ) -> Retained<NSArray<NSString>>;
 
         /// Returns an array containing all published filter names that belong to all listed categories.
-        #[method(filterNamesInCategories:)]
+        #[unsafe(method(filterNamesInCategories:))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterNamesInCategories(
             categories: Option<&NSArray<NSString>>,
@@ -691,7 +691,7 @@ extern_methods!(
         /// The class attributes must have a kCIAttributeFilterCategories key associated with a set of categories.
         ///
         /// Parameter `attributes`: Dictionary of the registration attributes of the filter. See below for attribute keys.
-        #[method(registerFilterName:constructor:classAttributes:)]
+        #[unsafe(method(registerFilterName:constructor:classAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerFilterName_constructor_classAttributes(
             name: &NSString,
@@ -700,19 +700,19 @@ extern_methods!(
         );
 
         /// Returns the localized name of a filter for display in the UI.
-        #[method(localizedNameForFilterName:)]
+        #[unsafe(method(localizedNameForFilterName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedNameForFilterName(
             filter_name: &NSString,
         ) -> Option<Retained<NSString>>;
 
         /// Returns the localized name of a category for display in the UI.
-        #[method(localizedNameForCategory:)]
+        #[unsafe(method(localizedNameForCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedNameForCategory(category: &NSString) -> Retained<NSString>;
 
         /// Returns the localized description of a filter for display in the UI.
-        #[method(localizedDescriptionForFilterName:)]
+        #[unsafe(method(localizedDescriptionForFilterName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescriptionForFilterName(
             filter_name: &NSString,
@@ -721,7 +721,7 @@ extern_methods!(
         /// Returns the URL to the localized reference documentation describing the filter.
         ///
         /// The URL can be a local file or a remote document on a webserver. It is possible, that this method returns nil (like filters that predate this feature). A client of this API has to handle this case gracefully.
-        #[method(localizedReferenceDocumentationForFilterName:)]
+        #[unsafe(method(localizedReferenceDocumentationForFilterName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedReferenceDocumentationForFilterName(
             filter_name: &NSString,
@@ -735,7 +735,7 @@ extern_methods!(
     unsafe impl CIFilter {
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
-        #[method(serializedXMPFromFilters:inputImageExtent:)]
+        #[unsafe(method(serializedXMPFromFilters:inputImageExtent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn serializedXMPFromFilters_inputImageExtent(
             filters: &NSArray<CIFilter>,

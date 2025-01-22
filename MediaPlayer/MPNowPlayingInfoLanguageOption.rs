@@ -89,7 +89,7 @@ unsafe impl NSObjectProtocol for MPNowPlayingInfoLanguageOption {}
 
 extern_methods!(
     unsafe impl MPNowPlayingInfoLanguageOption {
-        #[method(initWithType:languageTag:characteristics:displayName:identifier:)]
+        #[unsafe(method(initWithType:languageTag:characteristics:displayName:identifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_languageTag_characteristics_displayName_identifier(
             this: Allocated<Self>,
@@ -103,19 +103,19 @@ extern_methods!(
         /// Represents a special case that is used to
         /// represent the best legible language option based on system preferences.
         /// See AVPlayerItem-selectMediaOptionAutomaticallyInMediaSelectionGroup
-        #[method(isAutomaticLegibleLanguageOption)]
+        #[unsafe(method(isAutomaticLegibleLanguageOption))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutomaticLegibleLanguageOption(&self) -> bool;
 
         /// Represents a special case that is used to
         /// represent the best audible language option based on system preferences.
         /// See AVPlayerItem-selectMediaOptionAutomaticallyInMediaSelectionGroup
-        #[method(isAutomaticAudibleLanguageOption)]
+        #[unsafe(method(isAutomaticAudibleLanguageOption))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutomaticAudibleLanguageOption(&self) -> bool;
 
         /// The type of language option.
-        #[method(languageOptionType)]
+        #[unsafe(method(languageOptionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn languageOptionType(&self) -> MPNowPlayingInfoLanguageOptionType;
 
@@ -123,23 +123,23 @@ extern_methods!(
         /// A nil languageTag reprsents that this option should be disabled.
         /// A languageTag with the value of MPLangaugeOptionAutoLangaugeTag represents
         /// that the best langauge based on the system preferences should be used.
-        #[method(languageTag)]
+        #[unsafe(method(languageTag))]
         #[unsafe(method_family = none)]
         pub unsafe fn languageTag(&self) -> Option<Retained<NSString>>;
 
         /// Characteristics describing the content of the language options.
         /// See the LanguageOptionCharacteristics for the most commonly used values.
-        #[method(languageOptionCharacteristics)]
+        #[unsafe(method(languageOptionCharacteristics))]
         #[unsafe(method_family = none)]
         pub unsafe fn languageOptionCharacteristics(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// A user presentable display name for this option.
-        #[method(displayName)]
+        #[unsafe(method(displayName))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
         /// A unique identifier representing this option.
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
     }
@@ -148,11 +148,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPNowPlayingInfoLanguageOption {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -169,7 +169,7 @@ unsafe impl NSObjectProtocol for MPNowPlayingInfoLanguageOptionGroup {}
 
 extern_methods!(
     unsafe impl MPNowPlayingInfoLanguageOptionGroup {
-        #[method(initWithLanguageOptions:defaultLanguageOption:allowEmptySelection:)]
+        #[unsafe(method(initWithLanguageOptions:defaultLanguageOption:allowEmptySelection:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLanguageOptions_defaultLanguageOption_allowEmptySelection(
             this: Allocated<Self>,
@@ -179,19 +179,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The available language options within this group.
-        #[method(languageOptions)]
+        #[unsafe(method(languageOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn languageOptions(&self) -> Retained<NSArray<MPNowPlayingInfoLanguageOption>>;
 
         /// The default language option, if any, within this group.
-        #[method(defaultLanguageOption)]
+        #[unsafe(method(defaultLanguageOption))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultLanguageOption(
             &self,
         ) -> Option<Retained<MPNowPlayingInfoLanguageOption>>;
 
         /// Indicates whether a selection in this group is required at all times.
-        #[method(allowEmptySelection)]
+        #[unsafe(method(allowEmptySelection))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowEmptySelection(&self) -> bool;
     }
@@ -200,11 +200,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPNowPlayingInfoLanguageOptionGroup {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

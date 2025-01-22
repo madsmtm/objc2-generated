@@ -35,7 +35,7 @@ extern_protocol!(
         ///
         /// Warning: You cannot use `BADownloadManager` to manually schedule downloads using this method. All downloads to enqueue must be returned.
         #[optional]
-        #[method(downloadsForRequest:manifestURL:extensionInfo:)]
+        #[unsafe(method(downloadsForRequest:manifestURL:extensionInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn downloadsForRequest_manifestURL_extensionInfo(
             &self,
@@ -47,7 +47,7 @@ extern_protocol!(
         #[cfg(all(feature = "BADownload", feature = "block2"))]
         /// Download is about to begin but requires an authentication challenge to continue.
         #[optional]
-        #[method(backgroundDownload:didReceiveChallenge:completionHandler:)]
+        #[unsafe(method(backgroundDownload:didReceiveChallenge:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn backgroundDownload_didReceiveChallenge_completionHandler(
             &self,
@@ -68,7 +68,7 @@ extern_protocol!(
         ///
         /// Parameter `error`: The error that caused the failure.
         #[optional]
-        #[method(backgroundDownload:failedWithError:)]
+        #[unsafe(method(backgroundDownload:failedWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn backgroundDownload_failedWithError(&self, download: &BADownload, error: &NSError);
 
@@ -86,7 +86,7 @@ extern_protocol!(
         /// Warning: The file is marked by the system for deletion when the device becomes low on storage. Avoid copying or modifying
         /// the file, as this may remove the system's ability to delete the file.
         #[optional]
-        #[method(backgroundDownload:finishedWithFileURL:)]
+        #[unsafe(method(backgroundDownload:finishedWithFileURL:))]
         #[unsafe(method_family = none)]
         unsafe fn backgroundDownload_finishedWithFileURL(
             &self,
@@ -103,7 +103,7 @@ extern_protocol!(
         /// Do not rely on this method being invoked before the extension is terminated.
         #[deprecated = "extensionWillTerminate will not be invoked in all applicable circumstances and should not be relied upon."]
         #[optional]
-        #[method(extensionWillTerminate)]
+        #[unsafe(method(extensionWillTerminate))]
         #[unsafe(method_family = none)]
         unsafe fn extensionWillTerminate(&self);
     }

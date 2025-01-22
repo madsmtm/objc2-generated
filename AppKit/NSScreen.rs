@@ -23,66 +23,66 @@ unsafe impl NSObjectProtocol for NSScreen {}
 
 extern_methods!(
     unsafe impl NSScreen {
-        #[method(screens)]
+        #[unsafe(method(screens))]
         #[unsafe(method_family = none)]
         pub fn screens(mtm: MainThreadMarker) -> Retained<NSArray<NSScreen>>;
 
-        #[method(mainScreen)]
+        #[unsafe(method(mainScreen))]
         #[unsafe(method_family = none)]
         pub fn mainScreen(mtm: MainThreadMarker) -> Option<Retained<NSScreen>>;
 
-        #[method(deepestScreen)]
+        #[unsafe(method(deepestScreen))]
         #[unsafe(method_family = none)]
         pub unsafe fn deepestScreen(mtm: MainThreadMarker) -> Option<Retained<NSScreen>>;
 
-        #[method(screensHaveSeparateSpaces)]
+        #[unsafe(method(screensHaveSeparateSpaces))]
         #[unsafe(method_family = none)]
         pub unsafe fn screensHaveSeparateSpaces(mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "NSGraphics")]
-        #[method(depth)]
+        #[unsafe(method(depth))]
         #[unsafe(method_family = none)]
         pub unsafe fn depth(&self) -> NSWindowDepth;
 
-        #[method(frame)]
+        #[unsafe(method(frame))]
         #[unsafe(method_family = none)]
         pub fn frame(&self) -> NSRect;
 
-        #[method(visibleFrame)]
+        #[unsafe(method(visibleFrame))]
         #[unsafe(method_family = none)]
         pub fn visibleFrame(&self) -> NSRect;
 
         #[cfg(feature = "NSGraphics")]
-        #[method(deviceDescription)]
+        #[unsafe(method(deviceDescription))]
         #[unsafe(method_family = none)]
         pub fn deviceDescription(
             &self,
         ) -> Retained<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
 
         #[cfg(feature = "NSColorSpace")]
-        #[method(colorSpace)]
+        #[unsafe(method(colorSpace))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorSpace(&self) -> Option<Retained<NSColorSpace>>;
 
         #[cfg(feature = "NSGraphics")]
-        #[method(supportedWindowDepths)]
+        #[unsafe(method(supportedWindowDepths))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedWindowDepths(&self) -> NonNull<NSWindowDepth>;
 
         #[cfg(feature = "NSGraphics")]
-        #[method(canRepresentDisplayGamut:)]
+        #[unsafe(method(canRepresentDisplayGamut:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canRepresentDisplayGamut(&self, display_gamut: NSDisplayGamut) -> bool;
 
-        #[method(convertRectToBacking:)]
+        #[unsafe(method(convertRectToBacking:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertRectToBacking(&self, rect: NSRect) -> NSRect;
 
-        #[method(convertRectFromBacking:)]
+        #[unsafe(method(convertRectFromBacking:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertRectFromBacking(&self, rect: NSRect) -> NSRect;
 
-        #[method(backingAlignedRect:options:)]
+        #[unsafe(method(backingAlignedRect:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn backingAlignedRect_options(
             &self,
@@ -91,23 +91,23 @@ extern_methods!(
         ) -> NSRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(backingScaleFactor)]
+        #[unsafe(method(backingScaleFactor))]
         #[unsafe(method_family = none)]
         pub fn backingScaleFactor(&self) -> CGFloat;
 
-        #[method(localizedName)]
+        #[unsafe(method(localizedName))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedName(&self) -> Retained<NSString>;
 
-        #[method(safeAreaInsets)]
+        #[unsafe(method(safeAreaInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn safeAreaInsets(&self) -> NSEdgeInsets;
 
-        #[method(auxiliaryTopLeftArea)]
+        #[unsafe(method(auxiliaryTopLeftArea))]
         #[unsafe(method_family = none)]
         pub unsafe fn auxiliaryTopLeftArea(&self) -> NSRect;
 
-        #[method(auxiliaryTopRightArea)]
+        #[unsafe(method(auxiliaryTopRightArea))]
         #[unsafe(method_family = none)]
         pub unsafe fn auxiliaryTopRightArea(&self) -> NSRect;
     }
@@ -116,11 +116,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScreen {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -134,17 +134,17 @@ extern "C" {
 extern_methods!(
     unsafe impl NSScreen {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(maximumExtendedDynamicRangeColorComponentValue)]
+        #[unsafe(method(maximumExtendedDynamicRangeColorComponentValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumExtendedDynamicRangeColorComponentValue(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(maximumPotentialExtendedDynamicRangeColorComponentValue)]
+        #[unsafe(method(maximumPotentialExtendedDynamicRangeColorComponentValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumPotentialExtendedDynamicRangeColorComponentValue(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(maximumReferenceExtendedDynamicRangeColorComponentValue)]
+        #[unsafe(method(maximumReferenceExtendedDynamicRangeColorComponentValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumReferenceExtendedDynamicRangeColorComponentValue(&self) -> CGFloat;
     }
@@ -153,7 +153,7 @@ extern_methods!(
 extern_methods!(
     unsafe impl NSScreen {
         /// The maximum frames per second this screen supports.
-        #[method(maximumFramesPerSecond)]
+        #[unsafe(method(maximumFramesPerSecond))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumFramesPerSecond(&self) -> NSInteger;
 
@@ -161,26 +161,26 @@ extern_methods!(
         ///
         /// This is the shortest amount of time a frame will be present on screen.
         /// minimumRefreshInterval and maximumRefreshInterval will be the same for displays that do not support variable refresh rates.
-        #[method(minimumRefreshInterval)]
+        #[unsafe(method(minimumRefreshInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumRefreshInterval(&self) -> NSTimeInterval;
 
         /// The maximum refresh interval this screen supports, in seconds.
         ///
         /// minimumRefreshInterval and maximumRefreshInterval will be the same for displays that do not support variable refresh rates.
-        #[method(maximumRefreshInterval)]
+        #[unsafe(method(maximumRefreshInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumRefreshInterval(&self) -> NSTimeInterval;
 
         /// The update granularity of the screen's current mode, in seconds.
         ///
         /// The display will update at the next boundary defined by the granularity, after the minimum refresh interval has been reached. When 0, the display can update at any time between the minimum and maximum refresh rate intervals of the screen. Fixed refresh rate screen modes will return the refresh interval as the update granularity (e.g. 16.66ms for 60Hz refresh rates), meaning updates only occur at refresh rate boundaries.
-        #[method(displayUpdateGranularity)]
+        #[unsafe(method(displayUpdateGranularity))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayUpdateGranularity(&self) -> NSTimeInterval;
 
         /// The time at which the last framebuffer update occurred on the display, in seconds since startup that the system has been awake.
-        #[method(lastDisplayUpdateTimestamp)]
+        #[unsafe(method(lastDisplayUpdateTimestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastDisplayUpdateTimestamp(&self) -> NSTimeInterval;
     }
@@ -191,7 +191,7 @@ extern_methods!(
     unsafe impl NSScreen {
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
-        #[method(displayLinkWithTarget:selector:)]
+        #[unsafe(method(displayLinkWithTarget:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayLinkWithTarget_selector(
             &self,
@@ -206,7 +206,7 @@ extern_methods!(
     unsafe impl NSScreen {
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Use -convertRectToBacking: or -backingScaleFactor instead"]
-        #[method(userSpaceScaleFactor)]
+        #[unsafe(method(userSpaceScaleFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn userSpaceScaleFactor(&self) -> CGFloat;
     }

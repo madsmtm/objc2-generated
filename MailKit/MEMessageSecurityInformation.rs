@@ -25,45 +25,45 @@ extern_methods!(
     unsafe impl MEMessageSecurityInformation {
         #[cfg(feature = "MEMessageSigner")]
         /// The signers of the message
-        #[method(signers)]
+        #[unsafe(method(signers))]
         #[unsafe(method_family = none)]
         pub unsafe fn signers(&self) -> Retained<NSArray<MEMessageSigner>>;
 
         /// Whether or not the message was encrypted.
-        #[method(isEncrypted)]
+        #[unsafe(method(isEncrypted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEncrypted(&self) -> bool;
 
         /// Any signing error that occured when decoding the message.
-        #[method(signingError)]
+        #[unsafe(method(signingError))]
         #[unsafe(method_family = none)]
         pub unsafe fn signingError(&self) -> Option<Retained<NSError>>;
 
         /// Any encryption error that occured when decoding the message.
-        #[method(encryptionError)]
+        #[unsafe(method(encryptionError))]
         #[unsafe(method_family = none)]
         pub unsafe fn encryptionError(&self) -> Option<Retained<NSError>>;
 
         /// Whether or not Mail should block loading remote content for the message by default. The user will have the option to load remote content manually.
-        #[method(shouldBlockRemoteContent)]
+        #[unsafe(method(shouldBlockRemoteContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldBlockRemoteContent(&self) -> bool;
 
         /// A localized string containing the reason for blocking remote content.
-        #[method(localizedRemoteContentBlockingReason)]
+        #[unsafe(method(localizedRemoteContentBlockingReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedRemoteContentBlockingReason(&self) -> Option<Retained<NSString>>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MEMessageSigner")]
-        #[method(initWithSigners:isEncrypted:signingError:encryptionError:)]
+        #[unsafe(method(initWithSigners:isEncrypted:signingError:encryptionError:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSigners_isEncrypted_signingError_encryptionError(
             this: Allocated<Self>,
@@ -74,7 +74,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MEMessageSigner")]
-        #[method(initWithSigners:isEncrypted:signingError:encryptionError:shouldBlockRemoteContent:localizedRemoteContentBlockingReason:)]
+        #[unsafe(method(initWithSigners:isEncrypted:signingError:encryptionError:shouldBlockRemoteContent:localizedRemoteContentBlockingReason:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSigners_isEncrypted_signingError_encryptionError_shouldBlockRemoteContent_localizedRemoteContentBlockingReason(
             this: Allocated<Self>,

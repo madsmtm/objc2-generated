@@ -28,84 +28,84 @@ unsafe impl NSObjectProtocol for UIPrintFormatter {}
 extern_methods!(
     unsafe impl UIPrintFormatter {
         #[cfg(feature = "UIPrintPageRenderer")]
-        #[method(printPageRenderer)]
+        #[unsafe(method(printPageRenderer))]
         #[unsafe(method_family = none)]
         pub unsafe fn printPageRenderer(&self) -> Option<Retained<UIPrintPageRenderer>>;
 
-        #[method(removeFromPrintPageRenderer)]
+        #[unsafe(method(removeFromPrintPageRenderer))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromPrintPageRenderer(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(maximumContentHeight)]
+        #[unsafe(method(maximumContentHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumContentHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumContentHeight`][Self::maximumContentHeight].
-        #[method(setMaximumContentHeight:)]
+        #[unsafe(method(setMaximumContentHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumContentHeight(&self, maximum_content_height: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(maximumContentWidth)]
+        #[unsafe(method(maximumContentWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumContentWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumContentWidth`][Self::maximumContentWidth].
-        #[method(setMaximumContentWidth:)]
+        #[unsafe(method(setMaximumContentWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumContentWidth(&self, maximum_content_width: CGFloat);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[deprecated]
-        #[method(contentInsets)]
+        #[unsafe(method(contentInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`contentInsets`][Self::contentInsets].
         #[deprecated]
-        #[method(setContentInsets:)]
+        #[unsafe(method(setContentInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentInsets(&self, content_insets: UIEdgeInsets);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method(perPageContentInsets)]
+        #[unsafe(method(perPageContentInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn perPageContentInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`perPageContentInsets`][Self::perPageContentInsets].
-        #[method(setPerPageContentInsets:)]
+        #[unsafe(method(setPerPageContentInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerPageContentInsets(&self, per_page_content_insets: UIEdgeInsets);
 
-        #[method(startPage)]
+        #[unsafe(method(startPage))]
         #[unsafe(method_family = none)]
         pub unsafe fn startPage(&self) -> NSInteger;
 
         /// Setter for [`startPage`][Self::startPage].
-        #[method(setStartPage:)]
+        #[unsafe(method(setStartPage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartPage(&self, start_page: NSInteger);
 
-        #[method(pageCount)]
+        #[unsafe(method(pageCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn pageCount(&self) -> NSInteger;
 
-        #[method(requiresMainThread)]
+        #[unsafe(method(requiresMainThread))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresMainThread(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(rectForPageAtIndex:)]
+        #[unsafe(method(rectForPageAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rectForPageAtIndex(&self, page_index: NSInteger) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(drawInRect:forPageAtIndex:)]
+        #[unsafe(method(drawInRect:forPageAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawInRect_forPageAtIndex(&self, rect: CGRect, page_index: NSInteger);
     }
@@ -114,11 +114,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrintFormatter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -142,65 +142,65 @@ unsafe impl NSObjectProtocol for UISimpleTextPrintFormatter {}
 
 extern_methods!(
     unsafe impl UISimpleTextPrintFormatter {
-        #[method(initWithText:)]
+        #[unsafe(method(initWithText:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithText(this: Allocated<Self>, text: &NSString) -> Retained<Self>;
 
-        #[method(initWithAttributedText:)]
+        #[unsafe(method(initWithAttributedText:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedText(
             this: Allocated<Self>,
             attributed_text: &NSAttributedString,
         ) -> Retained<Self>;
 
-        #[method(text)]
+        #[unsafe(method(text))]
         #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
-        #[method(setText:)]
+        #[unsafe(method(setText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
-        #[method(attributedText)]
+        #[unsafe(method(attributedText))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedText`][Self::attributedText].
-        #[method(setAttributedText:)]
+        #[unsafe(method(setAttributedText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
         #[cfg(feature = "UIFont")]
-        #[method(font)]
+        #[unsafe(method(font))]
         #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Option<Retained<UIFont>>;
 
         #[cfg(feature = "UIFont")]
         /// Setter for [`font`][Self::font].
-        #[method(setFont:)]
+        #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: Option<&UIFont>);
 
         #[cfg(feature = "UIColor")]
-        #[method(color)]
+        #[unsafe(method(color))]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`color`][Self::color].
-        #[method(setColor:)]
+        #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: Option<&UIColor>);
 
         #[cfg(feature = "NSText")]
-        #[method(textAlignment)]
+        #[unsafe(method(textAlignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn textAlignment(&self) -> NSTextAlignment;
 
         #[cfg(feature = "NSText")]
         /// Setter for [`textAlignment`][Self::textAlignment].
-        #[method(setTextAlignment:)]
+        #[unsafe(method(setTextAlignment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAlignment(&self, text_alignment: NSTextAlignment);
     }
@@ -209,11 +209,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISimpleTextPrintFormatter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -237,19 +237,19 @@ unsafe impl NSObjectProtocol for UIMarkupTextPrintFormatter {}
 
 extern_methods!(
     unsafe impl UIMarkupTextPrintFormatter {
-        #[method(initWithMarkupText:)]
+        #[unsafe(method(initWithMarkupText:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMarkupText(
             this: Allocated<Self>,
             markup_text: &NSString,
         ) -> Retained<Self>;
 
-        #[method(markupText)]
+        #[unsafe(method(markupText))]
         #[unsafe(method_family = none)]
         pub unsafe fn markupText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`markupText`][Self::markupText].
-        #[method(setMarkupText:)]
+        #[unsafe(method(setMarkupText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarkupText(&self, markup_text: Option<&NSString>);
     }
@@ -258,11 +258,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIMarkupTextPrintFormatter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -287,7 +287,7 @@ unsafe impl NSObjectProtocol for UIViewPrintFormatter {}
 extern_methods!(
     unsafe impl UIViewPrintFormatter {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method(view)]
+        #[unsafe(method(view))]
         #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Retained<UIView>;
     }
@@ -296,11 +296,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIViewPrintFormatter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -310,12 +310,12 @@ extern_methods!(
     /// UIPrintFormatter
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIView {
-        #[method(viewPrintFormatter)]
+        #[unsafe(method(viewPrintFormatter))]
         #[unsafe(method_family = none)]
         pub unsafe fn viewPrintFormatter(&self) -> Retained<UIViewPrintFormatter>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(drawRect:forViewPrintFormatter:)]
+        #[unsafe(method(drawRect:forViewPrintFormatter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawRect_forViewPrintFormatter(
             &self,

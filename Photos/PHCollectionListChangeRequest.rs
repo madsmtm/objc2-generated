@@ -21,24 +21,24 @@ unsafe impl NSObjectProtocol for PHCollectionListChangeRequest {}
 extern_methods!(
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHCollectionListChangeRequest {
-        #[method(creationRequestForCollectionListWithTitle:)]
+        #[unsafe(method(creationRequestForCollectionListWithTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationRequestForCollectionListWithTitle(title: &NSString)
             -> Retained<Self>;
 
         #[cfg(feature = "PHObject")]
-        #[method(placeholderForCreatedCollectionList)]
+        #[unsafe(method(placeholderForCreatedCollectionList))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderForCreatedCollectionList(&self) -> Retained<PHObjectPlaceholder>;
 
-        #[method(deleteCollectionLists:)]
+        #[unsafe(method(deleteCollectionLists:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteCollectionLists(
             collection_lists: &ProtocolObject<dyn NSFastEnumeration>,
         );
 
         #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
-        #[method(changeRequestForCollectionList:)]
+        #[unsafe(method(changeRequestForCollectionList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForCollectionList(
             collection_list: &PHCollectionList,
@@ -49,7 +49,7 @@ extern_methods!(
             feature = "PHFetchResult",
             feature = "PHObject"
         ))]
-        #[method(changeRequestForCollectionList:childCollections:)]
+        #[unsafe(method(changeRequestForCollectionList:childCollections:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForCollectionList_childCollections(
             collection_list: &PHCollectionList,
@@ -61,29 +61,29 @@ extern_methods!(
             feature = "PHFetchResult",
             feature = "PHObject"
         ))]
-        #[method(changeRequestForTopLevelCollectionListUserCollections:)]
+        #[unsafe(method(changeRequestForTopLevelCollectionListUserCollections:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForTopLevelCollectionListUserCollections(
             child_collections: &PHFetchResult<PHCollection>,
         ) -> Option<Retained<Self>>;
 
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
-        #[method(addChildCollections:)]
+        #[unsafe(method(addChildCollections:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addChildCollections(
             &self,
             collections: &ProtocolObject<dyn NSFastEnumeration>,
         );
 
-        #[method(insertChildCollections:atIndexes:)]
+        #[unsafe(method(insertChildCollections:atIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertChildCollections_atIndexes(
             &self,
@@ -91,18 +91,18 @@ extern_methods!(
             indexes: &NSIndexSet,
         );
 
-        #[method(removeChildCollections:)]
+        #[unsafe(method(removeChildCollections:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeChildCollections(
             &self,
             collections: &ProtocolObject<dyn NSFastEnumeration>,
         );
 
-        #[method(removeChildCollectionsAtIndexes:)]
+        #[unsafe(method(removeChildCollectionsAtIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeChildCollectionsAtIndexes(&self, indexes: &NSIndexSet);
 
-        #[method(replaceChildCollectionsAtIndexes:withChildCollections:)]
+        #[unsafe(method(replaceChildCollectionsAtIndexes:withChildCollections:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceChildCollectionsAtIndexes_withChildCollections(
             &self,
@@ -110,7 +110,7 @@ extern_methods!(
             collections: &ProtocolObject<dyn NSFastEnumeration>,
         );
 
-        #[method(moveChildCollectionsAtIndexes:toIndex:)]
+        #[unsafe(method(moveChildCollectionsAtIndexes:toIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveChildCollectionsAtIndexes_toIndex(
             &self,
@@ -124,11 +124,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHCollectionListChangeRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

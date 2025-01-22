@@ -44,24 +44,24 @@ unsafe impl NSUserInterfaceItemIdentification for AMWorkflowView {}
 extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowView {
-        #[method(isEditable)]
+        #[unsafe(method(isEditable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEditable(&self) -> bool;
 
         /// Setter for [`isEditable`][Self::isEditable].
-        #[method(setEditable:)]
+        #[unsafe(method(setEditable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEditable(&self, editable: bool);
 
         #[cfg(feature = "AMWorkflowController")]
-        #[method(workflowController)]
+        #[unsafe(method(workflowController))]
         #[unsafe(method_family = none)]
         pub unsafe fn workflowController(&self) -> Option<Retained<AMWorkflowController>>;
 
         #[cfg(feature = "AMWorkflowController")]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`workflowController`][Self::workflowController].
-        #[method(setWorkflowController:)]
+        #[unsafe(method(setWorkflowController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWorkflowController(
             &self,
@@ -74,11 +74,11 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowView {
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -91,7 +91,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowView {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -101,7 +101,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowView {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

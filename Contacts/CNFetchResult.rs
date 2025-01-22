@@ -17,19 +17,19 @@ unsafe impl<ValueType: ?Sized> NSObjectProtocol for CNFetchResult<ValueType> {}
 
 extern_methods!(
     unsafe impl<ValueType: Message> CNFetchResult<ValueType> {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Retained<ValueType>;
 
-        #[method(currentHistoryToken)]
+        #[unsafe(method(currentHistoryToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentHistoryToken(&self) -> Retained<NSData>;
     }

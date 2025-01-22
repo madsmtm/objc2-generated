@@ -29,7 +29,7 @@ extern_methods!(
     #[cfg(feature = "VZDirectoryShare")]
     unsafe impl VZMultipleDirectoryShare {
         /// Initialize the directory share with an empty set of directories.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -41,7 +41,7 @@ extern_methods!(
         /// The dictionary string keys will be the name for the directory. The keys must be valid names or an exception will be raised.
         ///
         /// See: +[VZMultipleDirectoryShare validateName:error:]
-        #[method(initWithDirectories:)]
+        #[unsafe(method(initWithDirectories:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDirectories(
             this: Allocated<Self>,
@@ -54,7 +54,7 @@ extern_methods!(
         /// The dictionary string keys will be the name for the directory. The keys must be valid names or an exception will be raised.
         ///
         /// See: +[VZMultipleDirectoryShare validateName:error:]
-        #[method(directories)]
+        #[unsafe(method(directories))]
         #[unsafe(method_family = none)]
         pub unsafe fn directories(&self) -> Retained<NSDictionary<NSString, VZSharedDirectory>>;
 
@@ -67,7 +67,7 @@ extern_methods!(
         /// The name must not be empty, have characters unsafe for file systems, be longer than NAME_MAX, or other restrictions.
         ///
         /// See: +[VZMultipleDirectoryShare canonicalizedNameFromName:]
-        #[method(validateName:error:_)]
+        #[unsafe(method(validateName:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateName_error(name: &NSString) -> Result<(), Retained<NSError>>;
 
@@ -78,7 +78,7 @@ extern_methods!(
         /// This returns nil when it cannot produce a valid name. When not nil, the result is a valid directory name.
         ///
         /// See: +[VZMultipleDirectoryShare validateName:error:]
-        #[method(canonicalizedNameFromName:)]
+        #[unsafe(method(canonicalizedNameFromName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canonicalizedNameFromName(name: &NSString) -> Option<Retained<NSString>>;
     }
@@ -88,7 +88,7 @@ extern_methods!(
     /// Methods declared on superclass `VZDirectoryShare`
     #[cfg(feature = "VZDirectoryShare")]
     unsafe impl VZMultipleDirectoryShare {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

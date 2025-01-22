@@ -24,12 +24,12 @@ unsafe impl NSObjectProtocol for CMHeadphoneMotionManager {}
 extern_methods!(
     unsafe impl CMHeadphoneMotionManager {
         #[cfg(feature = "CMAuthorization")]
-        #[method(authorizationStatus)]
+        #[unsafe(method(authorizationStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus() -> CMAuthorizationStatus;
 
         #[cfg(feature = "CMHeadphoneMotionManagerDelegate")]
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -38,36 +38,36 @@ extern_methods!(
         #[cfg(feature = "CMHeadphoneMotionManagerDelegate")]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn CMHeadphoneMotionManagerDelegate>>,
         );
 
-        #[method(isConnectionStatusActive)]
+        #[unsafe(method(isConnectionStatusActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isConnectionStatusActive(&self) -> bool;
 
-        #[method(isDeviceMotionAvailable)]
+        #[unsafe(method(isDeviceMotionAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDeviceMotionAvailable(&self) -> bool;
 
-        #[method(isDeviceMotionActive)]
+        #[unsafe(method(isDeviceMotionActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDeviceMotionActive(&self) -> bool;
 
         #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem"))]
-        #[method(deviceMotion)]
+        #[unsafe(method(deviceMotion))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceMotion(&self) -> Option<Retained<CMDeviceMotion>>;
 
-        #[method(startDeviceMotionUpdates)]
+        #[unsafe(method(startDeviceMotionUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDeviceMotionUpdates(&self);
 
         #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem", feature = "block2"))]
-        #[method(startDeviceMotionUpdatesToQueue:withHandler:)]
+        #[unsafe(method(startDeviceMotionUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDeviceMotionUpdatesToQueue_withHandler(
             &self,
@@ -75,15 +75,15 @@ extern_methods!(
             handler: CMHeadphoneDeviceMotionHandler,
         );
 
-        #[method(stopDeviceMotionUpdates)]
+        #[unsafe(method(stopDeviceMotionUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopDeviceMotionUpdates(&self);
 
-        #[method(startConnectionStatusUpdates)]
+        #[unsafe(method(startConnectionStatusUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn startConnectionStatusUpdates(&self);
 
-        #[method(stopConnectionStatusUpdates)]
+        #[unsafe(method(stopConnectionStatusUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopConnectionStatusUpdates(&self);
     }
@@ -92,11 +92,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMHeadphoneMotionManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -31,7 +31,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl ASAccountAuthenticationModificationViewController {
         #[cfg(feature = "ASAccountAuthenticationModificationExtensionContext")]
-        #[method(extensionContext)]
+        #[unsafe(method(extensionContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionContext(
             &self,
@@ -55,7 +55,7 @@ extern_methods!(
         /// with the ASExtensionErrorCodeUserCanceled error code. The existingCredential parameter will have
         /// an empty password for in-app upgrades. The extension should check if a user is already logged in by
         /// checking a data container shared with its containing app.
-        #[method(convertAccountToSignInWithAppleWithoutUserInteractionForServiceIdentifier:existingCredential:userInfo:)]
+        #[unsafe(method(convertAccountToSignInWithAppleWithoutUserInteractionForServiceIdentifier:existingCredential:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertAccountToSignInWithAppleWithoutUserInteractionForServiceIdentifier_existingCredential_userInfo(
             &self,
@@ -83,7 +83,7 @@ extern_methods!(
         /// extension UI. The existingCredential parameter will have an empty password for in-app upgrades. The
         /// extension should check if a user is already logged in by checking state in a data container shared
         /// with its containing app.
-        #[method(prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier:existingCredential:userInfo:)]
+        #[unsafe(method(prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier:existingCredential:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier_existingCredential_userInfo(
             &self,
@@ -114,7 +114,7 @@ extern_methods!(
         /// canceled with the ASExtensionErrorCodeUserCanceled error code. The existingCredential parameter
         /// will have an empty password for in-app upgrades. The extension should check if a user is already
         /// logged in by checking a data container shared with its containing app.
-        #[method(changePasswordWithoutUserInteractionForServiceIdentifier:existingCredential:newPassword:userInfo:)]
+        #[unsafe(method(changePasswordWithoutUserInteractionForServiceIdentifier:existingCredential:newPassword:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changePasswordWithoutUserInteractionForServiceIdentifier_existingCredential_newPassword_userInfo(
             &self,
@@ -147,7 +147,7 @@ extern_methods!(
         /// extension's Info.plist. The existingCredential parameter will have an empty password for in-app upgrades.
         /// The extension should check if a user is already logged in by checking state in a data container shared
         /// with its containing app.
-        #[method(prepareInterfaceToChangePasswordForServiceIdentifier:existingCredential:newPassword:userInfo:)]
+        #[unsafe(method(prepareInterfaceToChangePasswordForServiceIdentifier:existingCredential:newPassword:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareInterfaceToChangePasswordForServiceIdentifier_existingCredential_newPassword_userInfo(
             &self,
@@ -164,7 +164,7 @@ extern_methods!(
         /// Override this method to do any cleanup work before the request is canceled. The implementation of this
         /// method should still cancel the request with the ASExtensionErrorCodeUserCanceled error code once the
         /// cleanup work is completed. If the request is not canceled in 10 seconds, the system will cancel the request.
-        #[method(cancelRequest)]
+        #[unsafe(method(cancelRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelRequest(&self);
     }
@@ -174,7 +174,7 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(target_os = "macos")]
     unsafe impl ASAccountAuthenticationModificationViewController {
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -182,7 +182,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -195,7 +195,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(target_os = "macos")]
     unsafe impl ASAccountAuthenticationModificationViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -205,7 +205,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(target_os = "macos")]
     unsafe impl ASAccountAuthenticationModificationViewController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -26,11 +26,11 @@ unsafe impl NSObjectProtocol for AVPortraitEffectsMatte {}
 
 extern_methods!(
     unsafe impl AVPortraitEffectsMatte {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -45,7 +45,7 @@ extern_methods!(
         ///
         ///
         /// When using ImageIO framework's CGImageSource API to read from a HEIF or JPEG file containing a portrait effects matte, AVPortraitEffectsMatte can be instantiated using the result of CGImageSourceCopyAuxiliaryDataInfoAtIndex, which returns a CFDictionary of primitive map information.
-        #[method(portraitEffectsMatteFromDictionaryRepresentation:error:_)]
+        #[unsafe(method(portraitEffectsMatteFromDictionaryRepresentation:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn portraitEffectsMatteFromDictionaryRepresentation_error(
             image_source_aux_data_info_dictionary: &NSDictionary,
@@ -63,7 +63,7 @@ extern_methods!(
         ///
         ///
         /// When applying complex edits to media containing a portrait effects matte, you may create a derivative matte with arbitrary transforms applied to it, then use this initializer to create a new AVPortraitEffectsMatte.
-        #[method(portraitEffectsMatteByReplacingPortraitEffectsMatteWithPixelBuffer:error:_)]
+        #[unsafe(method(portraitEffectsMatteByReplacingPortraitEffectsMatteWithPixelBuffer:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn portraitEffectsMatteByReplacingPortraitEffectsMatteWithPixelBuffer_error(
             &self,
@@ -79,7 +79,7 @@ extern_methods!(
         ///
         ///
         /// When using ImageIO framework's CGImageDestination API to write portrait effects matte information to a HEIF or JPEG file, you may use this method to generate a dictionary of primitive map information consumed by CGImageDestinationAddAuxiliaryDataInfo.
-        #[method(dictionaryRepresentationForAuxiliaryDataType:)]
+        #[unsafe(method(dictionaryRepresentationForAuxiliaryDataType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentationForAuxiliaryDataType(
             &self,
@@ -90,7 +90,7 @@ extern_methods!(
         ///
         ///
         /// Currently the only supported CV pixel format type for the matting image is kCVPixelFormatType_OneComponent8.
-        #[method(pixelFormatType)]
+        #[unsafe(method(pixelFormatType))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelFormatType(&self) -> OSType;
 
@@ -99,7 +99,7 @@ extern_methods!(
         ///
         ///
         /// The pixel format can be queried using the pixelFormatType property.
-        #[method(mattingImage)]
+        #[unsafe(method(mattingImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn mattingImage(&self) -> Retained<CVPixelBuffer>;
     }

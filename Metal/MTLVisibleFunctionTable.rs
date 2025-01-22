@@ -25,17 +25,17 @@ unsafe impl NSObjectProtocol for MTLVisibleFunctionTableDescriptor {}
 extern_methods!(
     unsafe impl MTLVisibleFunctionTableDescriptor {
         /// Create an autoreleased visible function table descriptor
-        #[method(visibleFunctionTableDescriptor)]
+        #[unsafe(method(visibleFunctionTableDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn visibleFunctionTableDescriptor() -> Retained<MTLVisibleFunctionTableDescriptor>;
 
         /// The number of functions in the table.
-        #[method(functionCount)]
+        #[unsafe(method(functionCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn functionCount(&self) -> NSUInteger;
 
         /// Setter for [`functionCount`][Self::functionCount].
-        #[method(setFunctionCount:)]
+        #[unsafe(method(setFunctionCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFunctionCount(&self, function_count: NSUInteger);
     }
@@ -44,11 +44,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVisibleFunctionTableDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -60,12 +60,12 @@ extern_protocol!(
     pub unsafe trait MTLVisibleFunctionTable: MTLResource {
         #[cfg(feature = "MTLTypes")]
         /// Handle of the GPU resource suitable for storing in an Argument Buffer
-        #[method(gpuResourceID)]
+        #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
         #[cfg(feature = "MTLFunctionHandle")]
-        #[method(setFunction:atIndex:)]
+        #[unsafe(method(setFunction:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFunction_atIndex(
             &self,
@@ -74,7 +74,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLFunctionHandle")]
-        #[method(setFunctions:withRange:)]
+        #[unsafe(method(setFunctions:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setFunctions_withRange(
             &self,

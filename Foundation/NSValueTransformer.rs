@@ -59,7 +59,7 @@ unsafe impl NSObjectProtocol for NSValueTransformer {}
 extern_methods!(
     unsafe impl NSValueTransformer {
         #[cfg(feature = "NSString")]
-        #[method(setValueTransformer:forName:)]
+        #[unsafe(method(setValueTransformer:forName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueTransformer_forName(
             transformer: Option<&NSValueTransformer>,
@@ -67,33 +67,33 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method(valueTransformerForName:)]
+        #[unsafe(method(valueTransformerForName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueTransformerForName(
             name: &NSValueTransformerName,
         ) -> Option<Retained<NSValueTransformer>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method(valueTransformerNames)]
+        #[unsafe(method(valueTransformerNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueTransformerNames() -> Retained<NSArray<NSValueTransformerName>>;
 
-        #[method(transformedValueClass)]
+        #[unsafe(method(transformedValueClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn transformedValueClass() -> &'static AnyClass;
 
-        #[method(allowsReverseTransformation)]
+        #[unsafe(method(allowsReverseTransformation))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsReverseTransformation() -> bool;
 
-        #[method(transformedValue:)]
+        #[unsafe(method(transformedValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn transformedValue(
             &self,
             value: Option<&AnyObject>,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method(reverseTransformedValue:)]
+        #[unsafe(method(reverseTransformedValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reverseTransformedValue(
             &self,
@@ -105,11 +105,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSValueTransformer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -138,7 +138,7 @@ extern_methods!(
         /// `NSArray,``NSDictionary,``NSSet,``NSString,``NSNumber,``NSDate,``NSData,``NSURL,``NSUUID,`and
         /// `NSNull.`
         /// Can be overridden by subclasses to provide an expanded or different set of allowed transformation classes.
-        #[method(allowedTopLevelClasses)]
+        #[unsafe(method(allowedTopLevelClasses))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedTopLevelClasses() -> Retained<NSArray<AnyClass>>;
     }
@@ -147,11 +147,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSecureUnarchiveFromDataTransformer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

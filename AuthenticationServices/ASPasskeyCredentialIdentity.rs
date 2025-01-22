@@ -34,7 +34,7 @@ unsafe impl NSSecureCoding for ASPasskeyCredentialIdentity {}
 
 extern_methods!(
     unsafe impl ASPasskeyCredentialIdentity {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -49,7 +49,7 @@ extern_methods!(
         /// Parameter `userHandle`: user handle data of this passkey credential.
         ///
         /// Parameter `recordIdentifier`: identifier used by credential provider extension to identify this credential.
-        #[method(initWithRelyingPartyIdentifier:userName:credentialID:userHandle:recordIdentifier:)]
+        #[unsafe(method(initWithRelyingPartyIdentifier:userName:credentialID:userHandle:recordIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRelyingPartyIdentifier_userName_credentialID_userHandle_recordIdentifier(
             this: Allocated<Self>,
@@ -71,7 +71,7 @@ extern_methods!(
         /// Parameter `userHandle`: user handle data of this passkey credential.
         ///
         /// Parameter `recordIdentifier`: identifier used by credential provider extension to identify this credential.
-        #[method(identityWithRelyingPartyIdentifier:userName:credentialID:userHandle:recordIdentifier:)]
+        #[unsafe(method(identityWithRelyingPartyIdentifier:userName:credentialID:userHandle:recordIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn identityWithRelyingPartyIdentifier_userName_credentialID_userHandle_recordIdentifier(
             relying_party_identifier: &NSString,
@@ -84,28 +84,28 @@ extern_methods!(
         /// The relying party identifier of this passkey credential.
         ///
         /// This field is reported as the serviceIdentifier property of ASCredentialIdentity.
-        #[method(relyingPartyIdentifier)]
+        #[unsafe(method(relyingPartyIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
         /// The user name of this passkey credential.
         ///
         /// This field is reported as the user property of ASCredentialIdentity.
-        #[method(userName)]
+        #[unsafe(method(userName))]
         #[unsafe(method_family = none)]
         pub unsafe fn userName(&self) -> Retained<NSString>;
 
         /// The credential ID of this passkey credential.
         ///
         /// This field is used to identify the correct credential to use based on relying party request parameters.
-        #[method(credentialID)]
+        #[unsafe(method(credentialID))]
         #[unsafe(method_family = none)]
         pub unsafe fn credentialID(&self) -> Retained<NSData>;
 
         /// The user handle of this passkey credential.
         ///
         /// This field is used to identify the correct credential to use based on relying party request parameters.
-        #[method(userHandle)]
+        #[unsafe(method(userHandle))]
         #[unsafe(method_family = none)]
         pub unsafe fn userHandle(&self) -> Retained<NSData>;
 
@@ -114,7 +114,7 @@ extern_methods!(
         /// Returns: The record identifier.
         ///
         /// You can utilize the record identifier to uniquely identify the credential identity in your local database.
-        #[method(recordIdentifier)]
+        #[unsafe(method(recordIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordIdentifier(&self) -> Option<Retained<NSString>>;
 
@@ -124,12 +124,12 @@ extern_methods!(
         /// if two identities have the same service identifier. A credential identity with a larger rank value
         /// precedes one with a smaller value if both credential identities have the same service identifier.
         /// The default value of this property is 0.
-        #[method(rank)]
+        #[unsafe(method(rank))]
         #[unsafe(method_family = none)]
         pub unsafe fn rank(&self) -> NSInteger;
 
         /// Setter for [`rank`][Self::rank].
-        #[method(setRank:)]
+        #[unsafe(method(setRank:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRank(&self, rank: NSInteger);
     }
@@ -138,7 +138,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasskeyCredentialIdentity {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -167,31 +167,31 @@ unsafe impl SCNAnimatable for SCNLight {}
 extern_methods!(
     unsafe impl SCNLight {
         /// Creates and returns a light instance.
-        #[method(light)]
+        #[unsafe(method(light))]
         #[unsafe(method_family = none)]
         pub unsafe fn light() -> Retained<Self>;
 
         /// Specifies the receiver's type.
         ///
         /// Defaults to SCNLightTypeOmni on iOS 8 and later, and on macOS 10.10 and later (otherwise defaults to SCNLightTypeAmbient).
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<SCNLightType>;
 
         /// Setter for [`type`][Self::type].
-        #[method(setType:)]
+        #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: &SCNLightType);
 
         /// Specifies the receiver's color (NSColor or CGColorRef). Animatable. Defaults to white.
         ///
         /// The initial value is a NSColor. The renderer multiplies the light's color is by the color derived from the light's temperature.
-        #[method(color)]
+        #[unsafe(method(color))]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Retained<AnyObject>;
 
         /// Setter for [`color`][Self::color].
-        #[method(setColor:)]
+        #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: &AnyObject);
 
@@ -199,13 +199,13 @@ extern_methods!(
         /// Specifies the receiver's temperature.
         ///
         /// This specifies the temperature of the light in Kelvin. The renderer multiplies the light's color by the color derived from the light's temperature. Defaults to 6500 (pure white). Animatable.
-        #[method(temperature)]
+        #[unsafe(method(temperature))]
         #[unsafe(method_family = none)]
         pub unsafe fn temperature(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`temperature`][Self::temperature].
-        #[method(setTemperature:)]
+        #[unsafe(method(setTemperature:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTemperature(&self, temperature: CGFloat);
 
@@ -213,59 +213,59 @@ extern_methods!(
         /// Specifies the receiver's intensity.
         ///
         /// This intensity is used to modulate the light color. When used with a physically-based material, this corresponds to the luminous flux of the light, expressed in lumens (lm). Defaults to 1000. Animatable.
-        #[method(intensity)]
+        #[unsafe(method(intensity))]
         #[unsafe(method_family = none)]
         pub unsafe fn intensity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`intensity`][Self::intensity].
-        #[method(setIntensity:)]
+        #[unsafe(method(setIntensity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIntensity(&self, intensity: CGFloat);
 
         /// Determines the name of the receiver.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         /// Determines whether the receiver casts a shadow. Defaults to NO.
         ///
         /// Shadows are only supported by spot and directional lights.
-        #[method(castsShadow)]
+        #[unsafe(method(castsShadow))]
         #[unsafe(method_family = none)]
         pub unsafe fn castsShadow(&self) -> bool;
 
         /// Setter for [`castsShadow`][Self::castsShadow].
-        #[method(setCastsShadow:)]
+        #[unsafe(method(setCastsShadow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCastsShadow(&self, casts_shadow: bool);
 
         /// Specifies the color (CGColorRef or NSColor) of the shadow casted by the receiver. Defaults to black. Animatable.
         ///
         /// On iOS 9 or earlier and macOS 10.11 or earlier, this defaults to black 50% transparent.
-        #[method(shadowColor)]
+        #[unsafe(method(shadowColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn shadowColor(&self) -> Retained<AnyObject>;
 
         /// Setter for [`shadowColor`][Self::shadowColor].
-        #[method(setShadowColor:)]
+        #[unsafe(method(setShadowColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowColor(&self, shadow_color: &AnyObject);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Specifies the sample radius used to render the receiver’s shadow. Default value is 3.0. Animatable.
-        #[method(shadowRadius)]
+        #[unsafe(method(shadowRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn shadowRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`shadowRadius`][Self::shadowRadius].
-        #[method(setShadowRadius:)]
+        #[unsafe(method(setShadowRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowRadius(&self, shadow_radius: CGFloat);
 
@@ -273,13 +273,13 @@ extern_methods!(
         /// Specifies the size of the shadow map.
         ///
         /// The larger the shadow map is the more precise the shadows are but the slower the computation is. If set to {0,0} the size of the shadow map is automatically chosen. Defaults to {0,0}.
-        #[method(shadowMapSize)]
+        #[unsafe(method(shadowMapSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn shadowMapSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`shadowMapSize`][Self::shadowMapSize].
-        #[method(setShadowMapSize:)]
+        #[unsafe(method(setShadowMapSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowMapSize(&self, shadow_map_size: CGSize);
 
@@ -287,44 +287,44 @@ extern_methods!(
         ///
         /// On macOS 10.11 or earlier, the shadowSampleCount defaults to 16. On iOS 9 or earlier it defaults to 1.0.
         /// On macOS 10.12, iOS 10 and greater, when the shadowSampleCount is set to 0, a default sample count is chosen depending on the platform.
-        #[method(shadowSampleCount)]
+        #[unsafe(method(shadowSampleCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn shadowSampleCount(&self) -> NSUInteger;
 
         /// Setter for [`shadowSampleCount`][Self::shadowSampleCount].
-        #[method(setShadowSampleCount:)]
+        #[unsafe(method(setShadowSampleCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowSampleCount(&self, shadow_sample_count: NSUInteger);
 
         /// Specified the mode to use to cast shadows. See above for the available modes and their description. Defaults to SCNShadowModeDefered on 10.9 and before, defaults to SCNShadowModeForward otherwise.
-        #[method(shadowMode)]
+        #[unsafe(method(shadowMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn shadowMode(&self) -> SCNShadowMode;
 
         /// Setter for [`shadowMode`][Self::shadowMode].
-        #[method(setShadowMode:)]
+        #[unsafe(method(setShadowMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowMode(&self, shadow_mode: SCNShadowMode);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Specifies the correction to apply to the shadow map to correct acne artefacts. It is multiplied by an implementation-specific value to create a constant depth offset. Defaults to 1.0
-        #[method(shadowBias)]
+        #[unsafe(method(shadowBias))]
         #[unsafe(method_family = none)]
         pub unsafe fn shadowBias(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`shadowBias`][Self::shadowBias].
-        #[method(setShadowBias:)]
+        #[unsafe(method(setShadowBias:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowBias(&self, shadow_bias: CGFloat);
 
         /// Specifies if the shadow map projection should be done automatically or manually by the user. Defaults to YES.
-        #[method(automaticallyAdjustsShadowProjection)]
+        #[unsafe(method(automaticallyAdjustsShadowProjection))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticallyAdjustsShadowProjection(&self) -> bool;
 
         /// Setter for [`automaticallyAdjustsShadowProjection`][Self::automaticallyAdjustsShadowProjection].
-        #[method(setAutomaticallyAdjustsShadowProjection:)]
+        #[unsafe(method(setAutomaticallyAdjustsShadowProjection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyAdjustsShadowProjection(
             &self,
@@ -333,56 +333,56 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Specifies the maximum distance from the viewpoint from which the shadows for the receiver light won't be computed. Defaults to 100.0.
-        #[method(maximumShadowDistance)]
+        #[unsafe(method(maximumShadowDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumShadowDistance(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumShadowDistance`][Self::maximumShadowDistance].
-        #[method(setMaximumShadowDistance:)]
+        #[unsafe(method(setMaximumShadowDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumShadowDistance(&self, maximum_shadow_distance: CGFloat);
 
         /// Render only back faces of the shadow caster when enabled. Defaults to NO.
         /// This is a behavior change from previous releases.
-        #[method(forcesBackFaceCasters)]
+        #[unsafe(method(forcesBackFaceCasters))]
         #[unsafe(method_family = none)]
         pub unsafe fn forcesBackFaceCasters(&self) -> bool;
 
         /// Setter for [`forcesBackFaceCasters`][Self::forcesBackFaceCasters].
-        #[method(setForcesBackFaceCasters:)]
+        #[unsafe(method(setForcesBackFaceCasters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setForcesBackFaceCasters(&self, forces_back_face_casters: bool);
 
         /// Use the sample distribution of the main rendering to better fit the shadow frusta. Defaults to NO.
-        #[method(sampleDistributedShadowMaps)]
+        #[unsafe(method(sampleDistributedShadowMaps))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleDistributedShadowMaps(&self) -> bool;
 
         /// Setter for [`sampleDistributedShadowMaps`][Self::sampleDistributedShadowMaps].
-        #[method(setSampleDistributedShadowMaps:)]
+        #[unsafe(method(setSampleDistributedShadowMaps:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSampleDistributedShadowMaps(&self, sample_distributed_shadow_maps: bool);
 
         /// Specifies the number of distinct shadow maps that will be computed for the receiver light. Defaults to 1. Maximum is 4.
-        #[method(shadowCascadeCount)]
+        #[unsafe(method(shadowCascadeCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn shadowCascadeCount(&self) -> NSUInteger;
 
         /// Setter for [`shadowCascadeCount`][Self::shadowCascadeCount].
-        #[method(setShadowCascadeCount:)]
+        #[unsafe(method(setShadowCascadeCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowCascadeCount(&self, shadow_cascade_count: NSUInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Specifies a factor to interpolate between linear splitting (0) and logarithmic splitting (1). Defaults to 0.15.
-        #[method(shadowCascadeSplittingFactor)]
+        #[unsafe(method(shadowCascadeSplittingFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn shadowCascadeSplittingFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`shadowCascadeSplittingFactor`][Self::shadowCascadeSplittingFactor].
-        #[method(setShadowCascadeSplittingFactor:)]
+        #[unsafe(method(setShadowCascadeSplittingFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowCascadeSplittingFactor(
             &self,
@@ -393,168 +393,168 @@ extern_methods!(
         /// Specifies the orthographic scale used to render from the directional light into the shadow map. Defaults to 1.
         ///
         /// This is only applicable for directional lights.
-        #[method(orthographicScale)]
+        #[unsafe(method(orthographicScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn orthographicScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`orthographicScale`][Self::orthographicScale].
-        #[method(setOrthographicScale:)]
+        #[unsafe(method(setOrthographicScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrthographicScale(&self, orthographic_scale: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Specifies the minimal distance between the light and the surface to cast shadow on. If a surface is closer to the light than this minimal distance, then the surface won't be shadowed. The near value must be different than zero. Animatable. Defaults to 1.
-        #[method(zNear)]
+        #[unsafe(method(zNear))]
         #[unsafe(method_family = none)]
         pub unsafe fn zNear(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`zNear`][Self::zNear].
-        #[method(setZNear:)]
+        #[unsafe(method(setZNear:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZNear(&self, z_near: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Specifies the maximal distance between the light and a visible surface to cast shadow on. If a surface is further from the light than this maximal distance, then the surface won't be shadowed. Animatable. Defaults to 100.
-        #[method(zFar)]
+        #[unsafe(method(zFar))]
         #[unsafe(method_family = none)]
         pub unsafe fn zFar(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`zFar`][Self::zFar].
-        #[method(setZFar:)]
+        #[unsafe(method(setZFar:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZFar(&self, z_far: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The distance at which the attenuation starts (Omni or Spot light types only). Animatable. Defaults to 0.
-        #[method(attenuationStartDistance)]
+        #[unsafe(method(attenuationStartDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn attenuationStartDistance(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`attenuationStartDistance`][Self::attenuationStartDistance].
-        #[method(setAttenuationStartDistance:)]
+        #[unsafe(method(setAttenuationStartDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttenuationStartDistance(&self, attenuation_start_distance: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The distance at which the attenuation ends (Omni or Spot light types only). Animatable. Defaults to 0.
-        #[method(attenuationEndDistance)]
+        #[unsafe(method(attenuationEndDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn attenuationEndDistance(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`attenuationEndDistance`][Self::attenuationEndDistance].
-        #[method(setAttenuationEndDistance:)]
+        #[unsafe(method(setAttenuationEndDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttenuationEndDistance(&self, attenuation_end_distance: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Specifies the attenuation between the start and end attenuation distances. 0 means a constant attenuation, 1 a linear attenuation and 2 a quadratic attenuation, but any positive value will work (Omni or Spot light types only). Animatable. Defaults to 2.
-        #[method(attenuationFalloffExponent)]
+        #[unsafe(method(attenuationFalloffExponent))]
         #[unsafe(method_family = none)]
         pub unsafe fn attenuationFalloffExponent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`attenuationFalloffExponent`][Self::attenuationFalloffExponent].
-        #[method(setAttenuationFalloffExponent:)]
+        #[unsafe(method(setAttenuationFalloffExponent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttenuationFalloffExponent(&self, attenuation_falloff_exponent: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The angle in degrees between the spot direction and the lit element below which the lighting is at full strength. Animatable. Defaults to 0.
-        #[method(spotInnerAngle)]
+        #[unsafe(method(spotInnerAngle))]
         #[unsafe(method_family = none)]
         pub unsafe fn spotInnerAngle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`spotInnerAngle`][Self::spotInnerAngle].
-        #[method(setSpotInnerAngle:)]
+        #[unsafe(method(setSpotInnerAngle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpotInnerAngle(&self, spot_inner_angle: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The angle in degrees between the spot direction and the lit element after which the lighting is at zero strength. Animatable. Defaults to 45 degrees.
-        #[method(spotOuterAngle)]
+        #[unsafe(method(spotOuterAngle))]
         #[unsafe(method_family = none)]
         pub unsafe fn spotOuterAngle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`spotOuterAngle`][Self::spotOuterAngle].
-        #[method(setSpotOuterAngle:)]
+        #[unsafe(method(setSpotOuterAngle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpotOuterAngle(&self, spot_outer_angle: CGFloat);
 
         /// Specifies the IES file from which the shape, direction, and intensity of illumination is determined. Defaults to nil.
-        #[method(IESProfileURL)]
+        #[unsafe(method(IESProfileURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn IESProfileURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`IESProfileURL`][Self::IESProfileURL].
-        #[method(setIESProfileURL:)]
+        #[unsafe(method(setIESProfileURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIESProfileURL(&self, ies_profile_url: Option<&NSURL>);
 
         /// The receiver's spherical harmonics coefficients.
         ///
         /// Currently spherical harmonics are only supported by light probes (SCNLightTypeProbe). The data is an array of 27 32-bit floating-point values, containing three non-interleaved data sets corresponding to the red, green, and blue sets of coefficients.
-        #[method(sphericalHarmonicsCoefficients)]
+        #[unsafe(method(sphericalHarmonicsCoefficients))]
         #[unsafe(method_family = none)]
         pub unsafe fn sphericalHarmonicsCoefficients(&self) -> Retained<NSData>;
 
-        #[method(probeType)]
+        #[unsafe(method(probeType))]
         #[unsafe(method_family = none)]
         pub unsafe fn probeType(&self) -> SCNLightProbeType;
 
         /// Setter for [`probeType`][Self::probeType].
-        #[method(setProbeType:)]
+        #[unsafe(method(setProbeType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProbeType(&self, probe_type: SCNLightProbeType);
 
-        #[method(probeUpdateType)]
+        #[unsafe(method(probeUpdateType))]
         #[unsafe(method_family = none)]
         pub unsafe fn probeUpdateType(&self) -> SCNLightProbeUpdateType;
 
         /// Setter for [`probeUpdateType`][Self::probeUpdateType].
-        #[method(setProbeUpdateType:)]
+        #[unsafe(method(setProbeUpdateType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProbeUpdateType(&self, probe_update_type: SCNLightProbeUpdateType);
 
-        #[method(parallaxCorrectionEnabled)]
+        #[unsafe(method(parallaxCorrectionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn parallaxCorrectionEnabled(&self) -> bool;
 
         /// Setter for [`parallaxCorrectionEnabled`][Self::parallaxCorrectionEnabled].
-        #[method(setParallaxCorrectionEnabled:)]
+        #[unsafe(method(setParallaxCorrectionEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParallaxCorrectionEnabled(&self, parallax_correction_enabled: bool);
 
         #[cfg(feature = "SCNMaterialProperty")]
-        #[method(probeEnvironment)]
+        #[unsafe(method(probeEnvironment))]
         #[unsafe(method_family = none)]
         pub unsafe fn probeEnvironment(&self) -> Option<Retained<SCNMaterialProperty>>;
 
         /// Determines the shape of a light of type SCNLightTypeArea. Defaults to SCNLightAreaTypeRectangle.
-        #[method(areaType)]
+        #[unsafe(method(areaType))]
         #[unsafe(method_family = none)]
         pub unsafe fn areaType(&self) -> SCNLightAreaType;
 
         /// Setter for [`areaType`][Self::areaType].
-        #[method(setAreaType:)]
+        #[unsafe(method(setAreaType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAreaType(&self, area_type: SCNLightAreaType);
 
         /// Determines the shape of light of an area light of type SCNLightAreaTypePolygon. Defaults nil.
         ///
         /// An array of CGPoint values corresponding to the coordinates of the polygon's vertices in the XY plane.
-        #[method(areaPolygonVertices)]
+        #[unsafe(method(areaPolygonVertices))]
         #[unsafe(method_family = none)]
         pub unsafe fn areaPolygonVertices(&self) -> Option<Retained<NSArray<NSValue>>>;
 
         /// Setter for [`areaPolygonVertices`][Self::areaPolygonVertices].
-        #[method(setAreaPolygonVertices:)]
+        #[unsafe(method(setAreaPolygonVertices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAreaPolygonVertices(
             &self,
@@ -562,24 +562,24 @@ extern_methods!(
         );
 
         /// Determines whether the shape of a light of type SCNLightTypeArea is drawn in the scene. Defaults to YES.
-        #[method(drawsArea)]
+        #[unsafe(method(drawsArea))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawsArea(&self) -> bool;
 
         /// Setter for [`drawsArea`][Self::drawsArea].
-        #[method(setDrawsArea:)]
+        #[unsafe(method(setDrawsArea:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDrawsArea(&self, draws_area: bool);
 
         /// Determines whether a light of type SCNLightTypeArea is double-sided. Defaults NO.
         ///
         /// Area lights of type SCNLightAreaTypeRectangle or SCNLightAreaTypePolygon emit light along the -Z axis. When set to YES, they also emit light along the +Z axis.
-        #[method(doubleSided)]
+        #[unsafe(method(doubleSided))]
         #[unsafe(method_family = none)]
         pub unsafe fn doubleSided(&self) -> bool;
 
         /// Setter for [`doubleSided`][Self::doubleSided].
-        #[method(setDoubleSided:)]
+        #[unsafe(method(setDoubleSided:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDoubleSided(&self, double_sided: bool);
 
@@ -587,17 +587,17 @@ extern_methods!(
         /// Specifies the gobo (or "cookie") of the light, used to control the shape of emitted light.
         ///
         /// Gobos are only supported by spot lights.
-        #[method(gobo)]
+        #[unsafe(method(gobo))]
         #[unsafe(method_family = none)]
         pub unsafe fn gobo(&self) -> Option<Retained<SCNMaterialProperty>>;
 
         /// Determines the node categories that will be lit by the receiver. Defaults to all bit set.
-        #[method(categoryBitMask)]
+        #[unsafe(method(categoryBitMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn categoryBitMask(&self) -> NSUInteger;
 
         /// Setter for [`categoryBitMask`][Self::categoryBitMask].
-        #[method(setCategoryBitMask:)]
+        #[unsafe(method(setCategoryBitMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategoryBitMask(&self, category_bit_mask: NSUInteger);
     }
@@ -606,11 +606,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNLight {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -18,7 +18,7 @@ extern_protocol!(
     pub unsafe trait GCDevicePhysicalInputState: NSObjectProtocol {
         #[cfg(feature = "GCDevice")]
         /// The device that this profile is mapping input from.
-        #[method(device)]
+        #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn GCDevice>>>;
 
@@ -30,7 +30,7 @@ extern_protocol!(
         /// `lastEventTimestamp`of
         /// the inputs from two different devices can be compared to determine which event
         /// occurred first.
-        #[method(lastEventTimestamp)]
+        #[unsafe(method(lastEventTimestamp))]
         #[unsafe(method_family = none)]
         unsafe fn lastEventTimestamp(&self) -> NSTimeInterval;
 
@@ -44,14 +44,14 @@ extern_protocol!(
         ///
         /// Note: If the system has gone to sleep between when the event occurred and when this
         /// property is read, the returned value may not reflect the true latency.
-        #[method(lastEventLatency)]
+        #[unsafe(method(lastEventLatency))]
         #[unsafe(method_family = none)]
         unsafe fn lastEventLatency(&self) -> NSTimeInterval;
 
         #[cfg(all(feature = "GCInputNames", feature = "GCPhysicalInputElement"))]
         /// The following properties allow for runtime lookup of any input element on a
         /// profile, when provided with a valid alias.
-        #[method(elements)]
+        #[unsafe(method(elements))]
         #[unsafe(method_family = none)]
         unsafe fn elements(
             &self,
@@ -64,7 +64,7 @@ extern_protocol!(
             feature = "GCInputNames",
             feature = "GCPhysicalInputElement"
         ))]
-        #[method(buttons)]
+        #[unsafe(method(buttons))]
         #[unsafe(method_family = none)]
         unsafe fn buttons(
             &self,
@@ -75,7 +75,7 @@ extern_protocol!(
             feature = "GCInputNames",
             feature = "GCPhysicalInputElement"
         ))]
-        #[method(axes)]
+        #[unsafe(method(axes))]
         #[unsafe(method_family = none)]
         unsafe fn axes(
             &self,
@@ -86,7 +86,7 @@ extern_protocol!(
             feature = "GCPhysicalInputElement",
             feature = "GCSwitchElement"
         ))]
-        #[method(switches)]
+        #[unsafe(method(switches))]
         #[unsafe(method_family = none)]
         unsafe fn switches(
             &self,
@@ -97,7 +97,7 @@ extern_protocol!(
             feature = "GCInputNames",
             feature = "GCPhysicalInputElement"
         ))]
-        #[method(dpads)]
+        #[unsafe(method(dpads))]
         #[unsafe(method_family = none)]
         unsafe fn dpads(
             &self,
@@ -112,7 +112,7 @@ extern_protocol!(
         ///
         ///
         /// Note: Equivalent to -elements
-        #[method(objectForKeyedSubscript:)]
+        #[unsafe(method(objectForKeyedSubscript:))]
         #[unsafe(method_family = none)]
         unsafe fn objectForKeyedSubscript(
             &self,

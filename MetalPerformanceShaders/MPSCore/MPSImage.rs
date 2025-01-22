@@ -33,71 +33,71 @@ extern_methods!(
         /// The width of the CNN image.
         ///
         /// The formal width of the CNN image in pixels.  Default = 1.
-        #[method(width)]
+        #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> NSUInteger;
 
         /// Setter for [`width`][Self::width].
-        #[method(setWidth:)]
+        #[unsafe(method(setWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: NSUInteger);
 
         /// The height of the CNN image.
         ///
         /// The formal height of the CNN image in pixels. Default = 1.
-        #[method(height)]
+        #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> NSUInteger;
 
         /// Setter for [`height`][Self::height].
-        #[method(setHeight:)]
+        #[unsafe(method(setHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeight(&self, height: NSUInteger);
 
         /// The number of feature channels per pixel.  Default = 1.
-        #[method(featureChannels)]
+        #[unsafe(method(featureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn featureChannels(&self) -> NSUInteger;
 
         /// Setter for [`featureChannels`][Self::featureChannels].
-        #[method(setFeatureChannels:)]
+        #[unsafe(method(setFeatureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFeatureChannels(&self, feature_channels: NSUInteger);
 
         /// The number of images for batch processing.   Default = 1.
-        #[method(numberOfImages)]
+        #[unsafe(method(numberOfImages))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfImages(&self) -> NSUInteger;
 
         /// Setter for [`numberOfImages`][Self::numberOfImages].
-        #[method(setNumberOfImages:)]
+        #[unsafe(method(setNumberOfImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfImages(&self, number_of_images: NSUInteger);
 
         /// The MTLPixelFormat expected for the underlying texture.
-        #[method(pixelFormat)]
+        #[unsafe(method(pixelFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelFormat(&self) -> MTLPixelFormat;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// The storage format to use for each channel in the image.
-        #[method(channelFormat)]
+        #[unsafe(method(channelFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelFormat(&self) -> MPSImageFeatureChannelFormat;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`channelFormat`][Self::channelFormat].
-        #[method(setChannelFormat:)]
+        #[unsafe(method(setChannelFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChannelFormat(&self, channel_format: MPSImageFeatureChannelFormat);
 
         /// Options to specify CPU cache mode of texture resource. Default = MTLCPUCacheModeDefaultCache
-        #[method(cpuCacheMode)]
+        #[unsafe(method(cpuCacheMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn cpuCacheMode(&self) -> MTLCPUCacheMode;
 
         /// Setter for [`cpuCacheMode`][Self::cpuCacheMode].
-        #[method(setCpuCacheMode:)]
+        #[unsafe(method(setCpuCacheMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCpuCacheMode(&self, cpu_cache_mode: MTLCPUCacheMode);
 
@@ -111,28 +111,28 @@ extern_methods!(
         ///             MTLStorageModeShared not supported on Mac OSX.
         ///             See Metal headers for synchronization requirements when using StorageModeManaged
         /// ```
-        #[method(storageMode)]
+        #[unsafe(method(storageMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn storageMode(&self) -> MTLStorageMode;
 
         /// Setter for [`storageMode`][Self::storageMode].
-        #[method(setStorageMode:)]
+        #[unsafe(method(setStorageMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStorageMode(&self, storage_mode: MTLStorageMode);
 
         /// Description of texture usage.  Default = MTLTextureUsageShaderRead/Write
-        #[method(usage)]
+        #[unsafe(method(usage))]
         #[unsafe(method_family = none)]
         pub unsafe fn usage(&self) -> MTLTextureUsage;
 
         /// Setter for [`usage`][Self::usage].
-        #[method(setUsage:)]
+        #[unsafe(method(setUsage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsage(&self, usage: MTLTextureUsage);
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Create a MPSImageDescriptor for a single read/write cnn image.
-        #[method(imageDescriptorWithChannelFormat:width:height:featureChannels:)]
+        #[unsafe(method(imageDescriptorWithChannelFormat:width:height:featureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageDescriptorWithChannelFormat_width_height_featureChannels(
             channel_format: MPSImageFeatureChannelFormat,
@@ -143,7 +143,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Create a MPSImageDescriptor for a read/write cnn image with option to set usage and batch size (numberOfImages).
-        #[method(imageDescriptorWithChannelFormat:width:height:featureChannels:numberOfImages:usage:)]
+        #[unsafe(method(imageDescriptorWithChannelFormat:width:height:featureChannels:numberOfImages:usage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageDescriptorWithChannelFormat_width_height_featureChannels_numberOfImages_usage(
             channel_format: MPSImageFeatureChannelFormat,
@@ -154,7 +154,7 @@ extern_methods!(
             usage: MTLTextureUsage,
         ) -> Retained<Self>;
 
-        #[method(copyWithZone:)]
+        #[unsafe(method(copyWithZone:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone(&self, zone: *mut NSZone) -> Retained<Self>;
     }
@@ -163,11 +163,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSImageDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -329,7 +329,7 @@ extern_protocol!(
         ///
         ///
         /// Returns: A valid MPSImage or MPSTemporaryImage. It will be automatically released when the command buffer completes.
-        #[method(imageForCommandBuffer:imageDescriptor:kernel:)]
+        #[unsafe(method(imageForCommandBuffer:imageDescriptor:kernel:))]
         #[unsafe(method_family = none)]
         unsafe fn imageForCommandBuffer_imageDescriptor_kernel(
             &self,
@@ -358,7 +358,7 @@ extern_protocol!(
         ///
         /// Returns: A valid MPSImage or MPSTemporaryImage. It will be automatically released when the command buffer completes.
         #[optional]
-        #[method(imageBatchForCommandBuffer:imageDescriptor:kernel:count:)]
+        #[unsafe(method(imageBatchForCommandBuffer:imageDescriptor:kernel:count:))]
         #[unsafe(method_family = none)]
         unsafe fn imageBatchForCommandBuffer_imageDescriptor_kernel_count(
             &self,
@@ -525,38 +525,38 @@ unsafe impl NSObjectProtocol for MPSImage {}
 extern_methods!(
     unsafe impl MPSImage {
         /// Get a well known MPSImageAllocator that makes MPSImages
-        #[method(defaultAllocator)]
+        #[unsafe(method(defaultAllocator))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultAllocator() -> Retained<ProtocolObject<dyn MPSImageAllocator>>;
 
         /// The device on which the MPSImage will be used
-        #[method(device)]
+        #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// The formal width of the image in pixels.
-        #[method(width)]
+        #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> NSUInteger;
 
         /// The formal height of the image in pixels.
-        #[method(height)]
+        #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> NSUInteger;
 
         /// The number of feature channels per pixel.
-        #[method(featureChannels)]
+        #[unsafe(method(featureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn featureChannels(&self) -> NSUInteger;
 
         /// numberOfImages for batch processing
-        #[method(numberOfImages)]
+        #[unsafe(method(numberOfImages))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfImages(&self) -> NSUInteger;
 
         /// The type of the underlying texture, typically MTLTextureType2D
         /// or MTLTextureType2DArray
-        #[method(textureType)]
+        #[unsafe(method(textureType))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureType(&self) -> MTLTextureType;
 
@@ -565,7 +565,7 @@ extern_methods!(
         /// Note that in some cases, this value may be misleading. For example,
         /// float16 data (BFloat16) is sometimes stored in MTLPixelFormatRGBA16Unorm
         /// Please consult the featureChannelFormat.
-        #[method(pixelFormat)]
+        #[unsafe(method(pixelFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelFormat(&self) -> MTLPixelFormat;
 
@@ -576,24 +576,24 @@ extern_methods!(
         /// bit of precision for the sign bit, etc. For formats like MTLPixelFormatB5G6R5Unorm
         /// it is the precision of the most precise channel, in this case 6.  When this
         /// information is unavailable, typically compressed formats, 0 will be returned.
-        #[method(precision)]
+        #[unsafe(method(precision))]
         #[unsafe(method_family = none)]
         pub unsafe fn precision(&self) -> NSUInteger;
 
         /// Description of texture usage.
-        #[method(usage)]
+        #[unsafe(method(usage))]
         #[unsafe(method_family = none)]
         pub unsafe fn usage(&self) -> MTLTextureUsage;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// The true encoding of the feature channels
-        #[method(featureChannelFormat)]
+        #[unsafe(method(featureChannelFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn featureChannelFormat(&self) -> MPSImageFeatureChannelFormat;
 
         /// Number of bytes from the first byte of one pixel to the first byte of the next
         /// pixel in storage order.  (Includes padding.)
-        #[method(pixelSize)]
+        #[unsafe(method(pixelSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelSize(&self) -> usize;
 
@@ -607,17 +607,17 @@ extern_methods!(
         /// property except when strictly necessary. [MPSCNNKernel encode...] calls typically cause
         /// their arguments to become allocated. Likewise, MPSImages initialized with -initWithTexture:
         /// featureChannels: have already been allocated.
-        #[method(texture)]
+        #[unsafe(method(texture))]
         #[unsafe(method_family = none)]
         pub unsafe fn texture(&self) -> Retained<ProtocolObject<dyn MTLTexture>>;
 
         /// A string to help identify this object.
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
@@ -626,7 +626,7 @@ extern_methods!(
         /// This will point to the original image if this image was created using
         /// -batchRepresentation, -batchRepresentationWithRange: or
         /// -subImageWithFeatureChannelRange:.
-        #[method(parent)]
+        #[unsafe(method(parent))]
         #[unsafe(method_family = none)]
         pub unsafe fn parent(&self) -> Option<Retained<MPSImage>>;
 
@@ -640,7 +640,7 @@ extern_methods!(
         ///
         /// Storage to store data needed is allocated lazily on first use of MPSImage or
         /// when application calls MPSImage.texture
-        #[method(initWithDevice:imageDescriptor:)]
+        #[unsafe(method(initWithDevice:imageDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_imageDescriptor(
             this: Allocated<Self>,
@@ -664,7 +664,7 @@ extern_methods!(
         ///
         /// Returns: A MPSImage that references a subregion of the texel storage in parent instead of
         /// using its own storage.
-        #[method(initWithParentImage:sliceRange:featureChannels:)]
+        #[unsafe(method(initWithParentImage:sliceRange:featureChannels:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithParentImage_sliceRange_featureChannels(
             this: Allocated<Self>,
@@ -702,7 +702,7 @@ extern_methods!(
         /// other libraries such as that drawn from a JPEG or PNG, featureChannels should
         /// be set to number of valid color channel e.g. for RGB data, even thought MTLPixelFormat will be
         /// MTLPixelFormatRGBA, featureChannels should be set to 3.
-        #[method(initWithTexture:featureChannels:)]
+        #[unsafe(method(initWithTexture:featureChannels:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTexture_featureChannels(
             this: Allocated<Self>,
@@ -710,7 +710,7 @@ extern_methods!(
             feature_channels: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -746,7 +746,7 @@ extern_methods!(
         /// Parameter `subRange`: The range of images in the original image from which the batch will be derived.
         ///
         /// Returns: A MPSImageBatch referencing a subregion of the original batch image.
-        #[method(batchRepresentationWithSubRange:)]
+        #[unsafe(method(batchRepresentationWithSubRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn batchRepresentationWithSubRange(
             &self,
@@ -760,11 +760,11 @@ extern_methods!(
         /// will decrement the appropriate counter on the parent.
         ///
         /// Returns: A MPSImageBatch aliasing the texel storage in the original batch image
-        #[method(batchRepresentation)]
+        #[unsafe(method(batchRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn batchRepresentation(&self) -> Retained<MPSImageBatch>;
 
-        #[method(subImageWithFeatureChannelRange:)]
+        #[unsafe(method(subImageWithFeatureChannelRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn subImageWithFeatureChannelRange(&self, range: NSRange) -> Retained<MPSImage>;
 
@@ -789,7 +789,7 @@ extern_methods!(
         /// MPSImage is created with -initWithTexture:featureChannels:, in
         /// which case 0 will be returned. 0 will also be returned if
         /// it is a sub-image or sub-batch (.parent is not nil).
-        #[method(resourceSize)]
+        #[unsafe(method(resourceSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceSize(&self) -> NSUInteger;
 
@@ -798,7 +798,7 @@ extern_methods!(
         /// Usage is per [MTLResource setPurgeableState:], except that the MTLTexture might be
         /// MPSPurgeableStateAllocationDeferred, which means there is no texture to mark volatile / nonvolatile.
         /// Attempts to set purgeability on MTLTextures that have not been allocated will be ignored.
-        #[method(setPurgeableState:)]
+        #[unsafe(method(setPurgeableState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPurgeableState(&self, state: MPSPurgeableState) -> MPSPurgeableState;
 
@@ -822,7 +822,7 @@ extern_methods!(
         ///
         /// Use the enum to set data is coming in with what order. The data type will be determined by the pixelFormat
         /// defined in the Image Descriptor.
-        #[method(readBytes:dataLayout:bytesPerRow:region:featureChannelInfo:imageIndex:)]
+        #[unsafe(method(readBytes:dataLayout:bytesPerRow:region:featureChannelInfo:imageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readBytes_dataLayout_bytesPerRow_region_featureChannelInfo_imageIndex(
             &self,
@@ -856,7 +856,7 @@ extern_methods!(
         /// your dataBytes buffer is given by dataLayout. Each image may be stored as either a series of planar images (a series of single WxH images, one per
         /// feature channel) or a single chunky image, WxHxfeature_channels. BytesPerRow and BytesPerImage are there to allow some padding between
         /// successive rows and successive images. No padding is allowed between successive feature channels.
-        #[method(writeBytes:dataLayout:bytesPerRow:region:featureChannelInfo:imageIndex:)]
+        #[unsafe(method(writeBytes:dataLayout:bytesPerRow:region:featureChannelInfo:imageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeBytes_dataLayout_bytesPerRow_region_featureChannelInfo_imageIndex(
             &self,
@@ -894,7 +894,7 @@ extern_methods!(
         /// your dataBytes buffer is given by dataLayout. Each image may be stored as either a series of planar images (a series of single WxH images, one per
         /// feature channel) or a single chunky image, WxHxfeature_channels. BytesPerRow and BytesPerImage are there to allow some padding between
         /// successive rows and successive images. No padding is allowed between successive feature channels.
-        #[method(writeBytes:dataLayout:bytesPerColumn:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:)]
+        #[unsafe(method(writeBytes:dataLayout:bytesPerColumn:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeBytes_dataLayout_bytesPerColumn_bytesPerRow_bytesPerImage_region_featureChannelInfo_imageIndex(
             &self,
@@ -940,7 +940,7 @@ extern_methods!(
         /// also be a featureChannelStride in addition to bytesPerRow and bytesPerImage. With the current design, when we finish the
         /// last feature channel, the next byte will contain the 0th feature channel for the next texel or slice, depending
         /// on packing order. This method can not be used to modify some but not all of the feature channels in an image.
-        #[method(readBytes:dataLayout:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:)]
+        #[unsafe(method(readBytes:dataLayout:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readBytes_dataLayout_bytesPerRow_bytesPerImage_region_featureChannelInfo_imageIndex(
             &self,
@@ -982,7 +982,7 @@ extern_methods!(
         /// also be a featureChannelStride in addition to bytesPerRow and bytesPerImage. With the current design, when we finish the
         /// last feature channel, the next byte will contain the 0th feature channel for the next texel or slice, depending
         /// on packing order. This method can not be used to modify some but not all of the feature channels in an image.
-        #[method(writeBytes:dataLayout:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:)]
+        #[unsafe(method(writeBytes:dataLayout:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeBytes_dataLayout_bytesPerRow_bytesPerImage_region_featureChannelInfo_imageIndex(
             &self,
@@ -1007,7 +1007,7 @@ extern_methods!(
         ///
         /// Use the enum to set data is coming in with what order. The data type will be determined by the pixelFormat
         /// defined in the Image Descriptor. Region is full image, buffer width and height is same as MPSImage width and height.
-        #[method(readBytes:dataLayout:imageIndex:)]
+        #[unsafe(method(readBytes:dataLayout:imageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readBytes_dataLayout_imageIndex(
             &self,
@@ -1028,7 +1028,7 @@ extern_methods!(
         ///
         /// Use the enum to set data is coming in with what order. The data type will be determined by the pixelFormat
         /// defined in the Image Descriptor. Region is full image, buffer width and height is same as MPSImage width and height.
-        #[method(writeBytes:dataLayout:imageIndex:)]
+        #[unsafe(method(writeBytes:dataLayout:imageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeBytes_dataLayout_imageIndex(
             &self,
@@ -1047,7 +1047,7 @@ extern_methods!(
         /// It is more efficient to use this method than to attempt to do this yourself with the texture property.
         ///
         /// Parameter `commandBuffer`: The commandbuffer on which to synchronize
-        #[method(synchronizeOnCommandBuffer:)]
+        #[unsafe(method(synchronizeOnCommandBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn synchronizeOnCommandBuffer(
             &self,
@@ -1059,7 +1059,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSImage {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1176,7 +1176,7 @@ unsafe impl NSObjectProtocol for MPSTemporaryImage {}
 extern_methods!(
     unsafe impl MPSTemporaryImage {
         /// Get a well known MPSImageAllocator that makes MPSTemporaryImages
-        #[method(defaultAllocator)]
+        #[unsafe(method(defaultAllocator))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultAllocator() -> Retained<ProtocolObject<dyn MPSImageAllocator>>;
 
@@ -1192,7 +1192,7 @@ extern_methods!(
         /// Returns: A valid MPSTemporaryImage.  The object will be released when the command buffer
         /// is committed. The underlying texture will become invalid before this time
         /// due to the action of the readCount property.
-        #[method(temporaryImageWithCommandBuffer:imageDescriptor:)]
+        #[unsafe(method(temporaryImageWithCommandBuffer:imageDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryImageWithCommandBuffer_imageDescriptor(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1219,7 +1219,7 @@ extern_methods!(
         /// Returns: A valid MPSTemporaryImage.  The object will be released when the command buffer
         /// is committed. The underlying texture will become invalid before this time
         /// due to the action of the readCount property.
-        #[method(temporaryImageWithCommandBuffer:textureDescriptor:)]
+        #[unsafe(method(temporaryImageWithCommandBuffer:textureDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryImageWithCommandBuffer_textureDescriptor(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1247,7 +1247,7 @@ extern_methods!(
         /// Returns: A valid MPSTemporaryImage.  The object will be released when the command buffer
         /// is committed. The underlying texture will become invalid before this time
         /// due to the action of the readCount property.
-        #[method(temporaryImageWithCommandBuffer:textureDescriptor:featureChannels:)]
+        #[unsafe(method(temporaryImageWithCommandBuffer:textureDescriptor:featureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryImageWithCommandBuffer_textureDescriptor_featureChannels(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1274,7 +1274,7 @@ extern_methods!(
         /// Parameter `commandBuffer`: The command buffer on which the MPSTemporaryImages will be used
         ///
         /// Parameter `descriptorList`: A NSArray of MPSImageDescriptors, indicating images that will be created
-        #[method(prefetchStorageWithCommandBuffer:imageDescriptorList:)]
+        #[unsafe(method(prefetchStorageWithCommandBuffer:imageDescriptorList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prefetchStorageWithCommandBuffer_imageDescriptorList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1282,7 +1282,7 @@ extern_methods!(
         );
 
         /// Unavailable. Use temporaryImageForCommandBuffer:textureDescriptor: or -temporaryImageForCommandBuffer:imageDescriptor: instead.
-        #[method(initWithTexture:featureChannels:)]
+        #[unsafe(method(initWithTexture:featureChannels:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTexture_featureChannels(
             this: Allocated<Self>,
@@ -1291,7 +1291,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Unavailable. Use itemporaryImageForCommandBuffer:textureDescriptor: instead.
-        #[method(initWithDevice:imageDescriptor:)]
+        #[unsafe(method(initWithDevice:imageDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_imageDescriptor(
             this: Allocated<Self>,
@@ -1299,12 +1299,12 @@ extern_methods!(
             image_descriptor: &MPSImageDescriptor,
         ) -> Retained<Self>;
 
-        #[method(readCount)]
+        #[unsafe(method(readCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn readCount(&self) -> NSUInteger;
 
         /// Setter for [`readCount`][Self::readCount].
-        #[method(setReadCount:)]
+        #[unsafe(method(setReadCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReadCount(&self, read_count: NSUInteger);
     }
@@ -1329,7 +1329,7 @@ extern_methods!(
         ///
         /// Returns: A MPSImage that references a subregion of the texel storage in parent instead of
         /// using its own storage.
-        #[method(initWithParentImage:sliceRange:featureChannels:)]
+        #[unsafe(method(initWithParentImage:sliceRange:featureChannels:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithParentImage_sliceRange_featureChannels(
             this: Allocated<Self>,
@@ -1338,7 +1338,7 @@ extern_methods!(
             feature_channels: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -1347,7 +1347,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSTemporaryImage {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

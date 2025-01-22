@@ -21,12 +21,12 @@ unsafe impl NSObjectProtocol for CKModifySubscriptionsOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifySubscriptionsOperation {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
-        #[method(initWithSubscriptionsToSave:subscriptionIDsToDelete:)]
+        #[unsafe(method(initWithSubscriptionsToSave:subscriptionIDsToDelete:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSubscriptionsToSave_subscriptionIDsToDelete(
             this: Allocated<Self>,
@@ -35,13 +35,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
-        #[method(subscriptionsToSave)]
+        #[unsafe(method(subscriptionsToSave))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionsToSave(&self) -> Option<Retained<NSArray<CKSubscription>>>;
 
         #[cfg(feature = "CKSubscription")]
         /// Setter for [`subscriptionsToSave`][Self::subscriptionsToSave].
-        #[method(setSubscriptionsToSave:)]
+        #[unsafe(method(setSubscriptionsToSave:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubscriptionsToSave(
             &self,
@@ -49,14 +49,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "CKSubscription")]
-        #[method(subscriptionIDsToDelete)]
+        #[unsafe(method(subscriptionIDsToDelete))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionIDsToDelete(&self)
             -> Option<Retained<NSArray<CKSubscriptionID>>>;
 
         #[cfg(feature = "CKSubscription")]
         /// Setter for [`subscriptionIDsToDelete`][Self::subscriptionIDsToDelete].
-        #[method(setSubscriptionIDsToDelete:)]
+        #[unsafe(method(setSubscriptionIDsToDelete:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubscriptionIDsToDelete(
             &self,
@@ -71,7 +71,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(perSubscriptionSaveBlock)]
+        #[unsafe(method(perSubscriptionSaveBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perSubscriptionSaveBlock(
             &self,
@@ -79,7 +79,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         /// Setter for [`perSubscriptionSaveBlock`][Self::perSubscriptionSaveBlock].
-        #[method(setPerSubscriptionSaveBlock:)]
+        #[unsafe(method(setPerSubscriptionSaveBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerSubscriptionSaveBlock(
             &self,
@@ -98,7 +98,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(perSubscriptionDeleteBlock)]
+        #[unsafe(method(perSubscriptionDeleteBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perSubscriptionDeleteBlock(
             &self,
@@ -106,7 +106,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         /// Setter for [`perSubscriptionDeleteBlock`][Self::perSubscriptionDeleteBlock].
-        #[method(setPerSubscriptionDeleteBlock:)]
+        #[unsafe(method(setPerSubscriptionDeleteBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerSubscriptionDeleteBlock(
             &self,
@@ -136,7 +136,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(modifySubscriptionsCompletionBlock)]
+        #[unsafe(method(modifySubscriptionsCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifySubscriptionsCompletionBlock(
             &self,
@@ -146,7 +146,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
         /// Setter for [`modifySubscriptionsCompletionBlock`][Self::modifySubscriptionsCompletionBlock].
-        #[method(setModifySubscriptionsCompletionBlock:)]
+        #[unsafe(method(setModifySubscriptionsCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModifySubscriptionsCompletionBlock(
             &self,
@@ -167,7 +167,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifySubscriptionsOperation {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

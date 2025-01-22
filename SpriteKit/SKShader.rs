@@ -32,7 +32,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `source`: the source code for the custom fragment shader.
-        #[method(initWithSource:)]
+        #[unsafe(method(initWithSource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSource(this: Allocated<Self>, source: &NSString) -> Retained<Self>;
 
@@ -43,7 +43,7 @@ extern_methods!(
         /// Parameter `source`: the source code for the custom fragment shader.
         ///
         /// Parameter `uniforms`: the array of uniforms supplied to this shader
-        #[method(initWithSource:uniforms:)]
+        #[unsafe(method(initWithSource:uniforms:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSource_uniforms(
             this: Allocated<Self>,
@@ -51,16 +51,16 @@ extern_methods!(
             uniforms: &NSArray<SKUniform>,
         ) -> Retained<Self>;
 
-        #[method(shader)]
+        #[unsafe(method(shader))]
         #[unsafe(method_family = none)]
         pub unsafe fn shader() -> Retained<Self>;
 
-        #[method(shaderWithSource:)]
+        #[unsafe(method(shaderWithSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shaderWithSource(source: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "SKUniform")]
-        #[method(shaderWithSource:uniforms:)]
+        #[unsafe(method(shaderWithSource:uniforms:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shaderWithSource_uniforms(
             source: &NSString,
@@ -76,7 +76,7 @@ extern_methods!(
         /// error:NULL]];
         ///
         /// The encoding is assumed to be NSUTF8StringEncoding.
-        #[method(shaderWithFileNamed:)]
+        #[unsafe(method(shaderWithFileNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shaderWithFileNamed(name: &NSString) -> Retained<Self>;
 
@@ -103,12 +103,12 @@ extern_methods!(
         /// Sample shader source that produces the same result are SpriteKit's normal rendering:
         ///
         /// "void main() { gl_FragColor = SKDefaultShading(); }"
-        #[method(source)]
+        #[unsafe(method(source))]
         #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`source`][Self::source].
-        #[method(setSource:)]
+        #[unsafe(method(setSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSource(&self, source: Option<&NSString>);
 
@@ -117,38 +117,38 @@ extern_methods!(
         /// There is no need to declare them in you source, just use them by name.
         ///
         /// All uniforms declared must be used within the source.
-        #[method(uniforms)]
+        #[unsafe(method(uniforms))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniforms(&self) -> Retained<NSArray<SKUniform>>;
 
         #[cfg(feature = "SKUniform")]
         /// Setter for [`uniforms`][Self::uniforms].
-        #[method(setUniforms:)]
+        #[unsafe(method(setUniforms:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUniforms(&self, uniforms: &NSArray<SKUniform>);
 
         #[cfg(feature = "SKUniform")]
-        #[method(addUniform:)]
+        #[unsafe(method(addUniform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addUniform(&self, uniform: &SKUniform);
 
         #[cfg(feature = "SKUniform")]
-        #[method(uniformNamed:)]
+        #[unsafe(method(uniformNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniformNamed(&self, name: &NSString) -> Option<Retained<SKUniform>>;
 
-        #[method(removeUniformNamed:)]
+        #[unsafe(method(removeUniformNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeUniformNamed(&self, name: &NSString);
 
         #[cfg(feature = "SKAttribute")]
-        #[method(attributes)]
+        #[unsafe(method(attributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributes(&self) -> Retained<NSArray<SKAttribute>>;
 
         #[cfg(feature = "SKAttribute")]
         /// Setter for [`attributes`][Self::attributes].
-        #[method(setAttributes:)]
+        #[unsafe(method(setAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributes(&self, attributes: &NSArray<SKAttribute>);
     }
@@ -157,11 +157,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKShader {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

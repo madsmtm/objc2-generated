@@ -34,42 +34,42 @@ extern_methods!(
         /// The application call stack tree associated with this crash.
         ///
         /// This call stack tree includes those stack frames present at the time of the crash.
-        #[method(callStackTree)]
+        #[unsafe(method(callStackTree))]
         #[unsafe(method_family = none)]
         pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
 
         /// The termination reason associated with this crash.
         ///
         /// Exit reason information specified when a process is terminated. Key system components, both inside and outside of a process, will terminate the process upon encountering a fatal error (e.g. a bad code signature, a missing dependent library, or accessing privacy sensitive information without the proper entitlement).
-        #[method(terminationReason)]
+        #[unsafe(method(terminationReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn terminationReason(&self) -> Option<Retained<NSString>>;
 
         /// Details about memory that the app incorrectly accessed in relation to other sections of the app’s virtual memory address space.
         ///
         /// This property is set when a bad memory access crash occurs.
-        #[method(virtualMemoryRegionInfo)]
+        #[unsafe(method(virtualMemoryRegionInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn virtualMemoryRegionInfo(&self) -> Option<Retained<NSString>>;
 
         /// The name of the Mach exception that terminated the app.
         ///
         /// See: sys/exception_types.h
-        #[method(exceptionType)]
+        #[unsafe(method(exceptionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn exceptionType(&self) -> Option<Retained<NSNumber>>;
 
         /// Processor specific information about the exception encoded into one or more 64-bit hexadecimal numbers
         ///
         /// See: sys/exception_types.h
-        #[method(exceptionCode)]
+        #[unsafe(method(exceptionCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn exceptionCode(&self) -> Option<Retained<NSNumber>>;
 
         /// The signal associated with this crash.
         ///
         /// See: sys/signal.h
-        #[method(signal)]
+        #[unsafe(method(signal))]
         #[unsafe(method_family = none)]
         pub unsafe fn signal(&self) -> Option<Retained<NSNumber>>;
 
@@ -78,7 +78,7 @@ extern_methods!(
         ///
         /// See: <MetricKit
         /// /MXCrashDiagnosticObjectiveCExceptionReason.h>
-        #[method(exceptionReason)]
+        #[unsafe(method(exceptionReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn exceptionReason(
             &self,
@@ -90,11 +90,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXCrashDiagnostic {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

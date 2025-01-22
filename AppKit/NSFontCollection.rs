@@ -82,23 +82,23 @@ unsafe impl NSObjectProtocol for NSFontCollection {}
 extern_methods!(
     unsafe impl NSFontCollection {
         #[cfg(feature = "NSFontDescriptor")]
-        #[method(fontCollectionWithDescriptors:)]
+        #[unsafe(method(fontCollectionWithDescriptors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontCollectionWithDescriptors(
             query_descriptors: &NSArray<NSFontDescriptor>,
         ) -> Retained<NSFontCollection>;
 
-        #[method(fontCollectionWithAllAvailableDescriptors)]
+        #[unsafe(method(fontCollectionWithAllAvailableDescriptors))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontCollectionWithAllAvailableDescriptors() -> Retained<NSFontCollection>;
 
-        #[method(fontCollectionWithLocale:)]
+        #[unsafe(method(fontCollectionWithLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontCollectionWithLocale(
             locale: &NSLocale,
         ) -> Option<Retained<NSFontCollection>>;
 
-        #[method(showFontCollection:withName:visibility:error:_)]
+        #[unsafe(method(showFontCollection:withName:visibility:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn showFontCollection_withName_visibility_error(
             collection: &NSFontCollection,
@@ -106,14 +106,14 @@ extern_methods!(
             visibility: NSFontCollectionVisibility,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method(hideFontCollectionWithName:visibility:error:_)]
+        #[unsafe(method(hideFontCollectionWithName:visibility:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn hideFontCollectionWithName_visibility_error(
             name: &NSFontCollectionName,
             visibility: NSFontCollectionVisibility,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method(renameFontCollectionWithName:visibility:toName:error:_)]
+        #[unsafe(method(renameFontCollectionWithName:visibility:toName:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn renameFontCollectionWithName_visibility_toName_error(
             old_name: &NSFontCollectionName,
@@ -121,17 +121,17 @@ extern_methods!(
             new_name: &NSFontCollectionName,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method(allFontCollectionNames)]
+        #[unsafe(method(allFontCollectionNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn allFontCollectionNames() -> Retained<NSArray<NSFontCollectionName>>;
 
-        #[method(fontCollectionWithName:)]
+        #[unsafe(method(fontCollectionWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontCollectionWithName(
             name: &NSFontCollectionName,
         ) -> Option<Retained<NSFontCollection>>;
 
-        #[method(fontCollectionWithName:visibility:)]
+        #[unsafe(method(fontCollectionWithName:visibility:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontCollectionWithName_visibility(
             name: &NSFontCollectionName,
@@ -139,22 +139,22 @@ extern_methods!(
         ) -> Option<Retained<NSFontCollection>>;
 
         #[cfg(feature = "NSFontDescriptor")]
-        #[method(queryDescriptors)]
+        #[unsafe(method(queryDescriptors))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryDescriptors(&self) -> Option<Retained<NSArray<NSFontDescriptor>>>;
 
         #[cfg(feature = "NSFontDescriptor")]
-        #[method(exclusionDescriptors)]
+        #[unsafe(method(exclusionDescriptors))]
         #[unsafe(method_family = none)]
         pub unsafe fn exclusionDescriptors(&self) -> Option<Retained<NSArray<NSFontDescriptor>>>;
 
         #[cfg(feature = "NSFontDescriptor")]
-        #[method(matchingDescriptors)]
+        #[unsafe(method(matchingDescriptors))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchingDescriptors(&self) -> Option<Retained<NSArray<NSFontDescriptor>>>;
 
         #[cfg(feature = "NSFontDescriptor")]
-        #[method(matchingDescriptorsWithOptions:)]
+        #[unsafe(method(matchingDescriptorsWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchingDescriptorsWithOptions(
             &self,
@@ -162,7 +162,7 @@ extern_methods!(
         ) -> Option<Retained<NSArray<NSFontDescriptor>>>;
 
         #[cfg(feature = "NSFontDescriptor")]
-        #[method(matchingDescriptorsForFamily:)]
+        #[unsafe(method(matchingDescriptorsForFamily:))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchingDescriptorsForFamily(
             &self,
@@ -170,7 +170,7 @@ extern_methods!(
         ) -> Option<Retained<NSArray<NSFontDescriptor>>>;
 
         #[cfg(feature = "NSFontDescriptor")]
-        #[method(matchingDescriptorsForFamily:options:)]
+        #[unsafe(method(matchingDescriptorsForFamily:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchingDescriptorsForFamily_options(
             &self,
@@ -183,11 +183,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFontCollection {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -219,30 +219,30 @@ unsafe impl NSObjectProtocol for NSMutableFontCollection {}
 extern_methods!(
     unsafe impl NSMutableFontCollection {
         #[cfg(feature = "NSFontDescriptor")]
-        #[method(fontCollectionWithDescriptors:)]
+        #[unsafe(method(fontCollectionWithDescriptors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontCollectionWithDescriptors(
             query_descriptors: &NSArray<NSFontDescriptor>,
         ) -> Retained<NSMutableFontCollection>;
 
-        #[method(fontCollectionWithAllAvailableDescriptors)]
+        #[unsafe(method(fontCollectionWithAllAvailableDescriptors))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontCollectionWithAllAvailableDescriptors(
         ) -> Retained<NSMutableFontCollection>;
 
-        #[method(fontCollectionWithLocale:)]
+        #[unsafe(method(fontCollectionWithLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontCollectionWithLocale(
             locale: &NSLocale,
         ) -> Retained<NSMutableFontCollection>;
 
-        #[method(fontCollectionWithName:)]
+        #[unsafe(method(fontCollectionWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontCollectionWithName(
             name: &NSFontCollectionName,
         ) -> Option<Retained<NSMutableFontCollection>>;
 
-        #[method(fontCollectionWithName:visibility:)]
+        #[unsafe(method(fontCollectionWithName:visibility:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontCollectionWithName_visibility(
             name: &NSFontCollectionName,
@@ -250,13 +250,13 @@ extern_methods!(
         ) -> Option<Retained<NSMutableFontCollection>>;
 
         #[cfg(feature = "NSFontDescriptor")]
-        #[method(queryDescriptors)]
+        #[unsafe(method(queryDescriptors))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryDescriptors(&self) -> Option<Retained<NSArray<NSFontDescriptor>>>;
 
         #[cfg(feature = "NSFontDescriptor")]
         /// Setter for [`queryDescriptors`][Self::queryDescriptors].
-        #[method(setQueryDescriptors:)]
+        #[unsafe(method(setQueryDescriptors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQueryDescriptors(
             &self,
@@ -264,13 +264,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSFontDescriptor")]
-        #[method(exclusionDescriptors)]
+        #[unsafe(method(exclusionDescriptors))]
         #[unsafe(method_family = none)]
         pub unsafe fn exclusionDescriptors(&self) -> Option<Retained<NSArray<NSFontDescriptor>>>;
 
         #[cfg(feature = "NSFontDescriptor")]
         /// Setter for [`exclusionDescriptors`][Self::exclusionDescriptors].
-        #[method(setExclusionDescriptors:)]
+        #[unsafe(method(setExclusionDescriptors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExclusionDescriptors(
             &self,
@@ -278,12 +278,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSFontDescriptor")]
-        #[method(addQueryForDescriptors:)]
+        #[unsafe(method(addQueryForDescriptors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addQueryForDescriptors(&self, descriptors: &NSArray<NSFontDescriptor>);
 
         #[cfg(feature = "NSFontDescriptor")]
-        #[method(removeQueryForDescriptors:)]
+        #[unsafe(method(removeQueryForDescriptors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeQueryForDescriptors(&self, descriptors: &NSArray<NSFontDescriptor>);
     }
@@ -292,11 +292,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMutableFontCollection {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

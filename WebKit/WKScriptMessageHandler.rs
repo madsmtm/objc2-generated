@@ -19,7 +19,7 @@ extern_protocol!(
         /// delegate method.
         ///
         /// Parameter `message`: The script message received.
-        #[method(userContentController:didReceiveScriptMessage:)]
+        #[unsafe(method(userContentController:didReceiveScriptMessage:))]
         #[unsafe(method_family = none)]
         unsafe fn userContentController_didReceiveScriptMessage(
             &self,

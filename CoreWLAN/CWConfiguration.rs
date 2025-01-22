@@ -48,7 +48,7 @@ extern_methods!(
         ///
         ///
         /// The order of the ordered set corresponds to the order the preferred networks list.
-        #[method(networkProfiles)]
+        #[unsafe(method(networkProfiles))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkProfiles(&self) -> Retained<NSOrderedSet<CWNetworkProfile>>;
 
@@ -60,7 +60,7 @@ extern_methods!(
         ///
         /// If YES, the user may be prompted to enter an administrator password upon attempting to join a Wi-Fi network.
         /// This preference is enforced at the API layer.
-        #[method(requireAdministratorForAssociation)]
+        #[unsafe(method(requireAdministratorForAssociation))]
         #[unsafe(method_family = none)]
         pub unsafe fn requireAdministratorForAssociation(&self) -> bool;
 
@@ -72,7 +72,7 @@ extern_methods!(
         ///
         /// If YES, the user may be prompted to enter an administrator password upon attempting to turn Wi-Fi on or off.
         /// This preference is enforced at the API layer.
-        #[method(requireAdministratorForPower)]
+        #[unsafe(method(requireAdministratorForPower))]
         #[unsafe(method_family = none)]
         pub unsafe fn requireAdministratorForPower(&self) -> bool;
 
@@ -84,7 +84,7 @@ extern_methods!(
         ///
         /// If YES, the user may be prompted to enter an administrator password upon attempting to create an IBSS network.
         /// This preference is enforced at the API layer.
-        #[method(requireAdministratorForIBSSMode)]
+        #[unsafe(method(requireAdministratorForIBSSMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn requireAdministratorForIBSSMode(&self) -> bool;
 
@@ -92,17 +92,17 @@ extern_methods!(
         ///
         ///
         /// Returns the preference to remember all Wi-Fi networks joined unless otherwise specified by the user when joining a particular Wi-Fi network.
-        #[method(rememberJoinedNetworks)]
+        #[unsafe(method(rememberJoinedNetworks))]
         #[unsafe(method_family = none)]
         pub unsafe fn rememberJoinedNetworks(&self) -> bool;
 
         /// Convenience method for getting a CWConfiguration object.
-        #[method(configuration)]
+        #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration() -> Retained<Self>;
 
         /// Initializes a CWConfiguration object.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -113,7 +113,7 @@ extern_methods!(
         ///
         ///
         /// Initializes a CWConfiguration object with the properties of an existing CWConfiguration object.
-        #[method(initWithConfiguration:)]
+        #[unsafe(method(initWithConfiguration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
@@ -127,7 +127,7 @@ extern_methods!(
         ///
         ///
         /// Convenience method for getting a CWConfiguration object initialized with the properties of an existing CWConfiguration object.
-        #[method(configurationWithConfiguration:)]
+        #[unsafe(method(configurationWithConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationWithConfiguration(
             configuration: &CWConfiguration,
@@ -143,7 +143,7 @@ extern_methods!(
         ///
         ///
         /// CWConfiguration objects are considered equal if all their corresponding properties are equal.
-        #[method(isEqualToConfiguration:)]
+        #[unsafe(method(isEqualToConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToConfiguration(&self, configuration: &CWConfiguration) -> bool;
     }
@@ -152,7 +152,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -192,23 +192,23 @@ extern_methods!(
     unsafe impl CWMutableConfiguration {
         #[cfg(feature = "CWNetworkProfile")]
         /// Add, remove, or update the preferred networks list.
-        #[method(networkProfiles)]
+        #[unsafe(method(networkProfiles))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkProfiles(&self) -> Retained<NSOrderedSet<CWNetworkProfile>>;
 
         #[cfg(feature = "CWNetworkProfile")]
         /// Setter for [`networkProfiles`][Self::networkProfiles].
-        #[method(setNetworkProfiles:)]
+        #[unsafe(method(setNetworkProfiles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNetworkProfiles(&self, network_profiles: &NSOrderedSet<CWNetworkProfile>);
 
         /// Set the preference to require an administrator password to change networks.
-        #[method(requireAdministratorForAssociation)]
+        #[unsafe(method(requireAdministratorForAssociation))]
         #[unsafe(method_family = none)]
         pub unsafe fn requireAdministratorForAssociation(&self) -> bool;
 
         /// Setter for [`requireAdministratorForAssociation`][Self::requireAdministratorForAssociation].
-        #[method(setRequireAdministratorForAssociation:)]
+        #[unsafe(method(setRequireAdministratorForAssociation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequireAdministratorForAssociation(
             &self,
@@ -216,24 +216,24 @@ extern_methods!(
         );
 
         /// Set the preference to require an administrator password to change the interface power state.
-        #[method(requireAdministratorForPower)]
+        #[unsafe(method(requireAdministratorForPower))]
         #[unsafe(method_family = none)]
         pub unsafe fn requireAdministratorForPower(&self) -> bool;
 
         /// Setter for [`requireAdministratorForPower`][Self::requireAdministratorForPower].
-        #[method(setRequireAdministratorForPower:)]
+        #[unsafe(method(setRequireAdministratorForPower:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequireAdministratorForPower(&self, require_administrator_for_power: bool);
 
         /// Set the preference to require an administrator password to change networks.
         #[deprecated]
-        #[method(requireAdministratorForIBSSMode)]
+        #[unsafe(method(requireAdministratorForIBSSMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn requireAdministratorForIBSSMode(&self) -> bool;
 
         /// Setter for [`requireAdministratorForIBSSMode`][Self::requireAdministratorForIBSSMode].
         #[deprecated]
-        #[method(setRequireAdministratorForIBSSMode:)]
+        #[unsafe(method(setRequireAdministratorForIBSSMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequireAdministratorForIBSSMode(
             &self,
@@ -241,12 +241,12 @@ extern_methods!(
         );
 
         /// Set the preference to require an administrator password to create a computer-to-computer network.
-        #[method(rememberJoinedNetworks)]
+        #[unsafe(method(rememberJoinedNetworks))]
         #[unsafe(method_family = none)]
         pub unsafe fn rememberJoinedNetworks(&self) -> bool;
 
         /// Setter for [`rememberJoinedNetworks`][Self::rememberJoinedNetworks].
-        #[method(setRememberJoinedNetworks:)]
+        #[unsafe(method(setRememberJoinedNetworks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRememberJoinedNetworks(&self, remember_joined_networks: bool);
     }
@@ -256,12 +256,12 @@ extern_methods!(
     /// Methods declared on superclass `CWConfiguration`
     unsafe impl CWMutableConfiguration {
         /// Convenience method for getting a CWConfiguration object.
-        #[method(configuration)]
+        #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration() -> Retained<Self>;
 
         /// Initializes a CWConfiguration object.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -272,7 +272,7 @@ extern_methods!(
         ///
         ///
         /// Initializes a CWConfiguration object with the properties of an existing CWConfiguration object.
-        #[method(initWithConfiguration:)]
+        #[unsafe(method(initWithConfiguration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
@@ -286,7 +286,7 @@ extern_methods!(
         ///
         ///
         /// Convenience method for getting a CWConfiguration object initialized with the properties of an existing CWConfiguration object.
-        #[method(configurationWithConfiguration:)]
+        #[unsafe(method(configurationWithConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationWithConfiguration(
             configuration: &CWConfiguration,
@@ -297,7 +297,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWMutableConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

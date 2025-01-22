@@ -30,12 +30,12 @@ unsafe impl NSObjectProtocol for NSXMLDTD {}
 extern_methods!(
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDTD {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSXMLNodeOptions")]
-        #[method(initWithKind:options:)]
+        #[unsafe(method(initWithKind:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKind_options(
             this: Allocated<Self>,
@@ -44,7 +44,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "NSXMLNodeOptions"))]
-        #[method(initWithContentsOfURL:options:error:_)]
+        #[unsafe(method(initWithContentsOfURL:options:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Allocated<Self>,
@@ -53,7 +53,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSXMLNodeOptions"))]
-        #[method(initWithData:options:error:_)]
+        #[unsafe(method(initWithData:options:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_options_error(
             this: Allocated<Self>,
@@ -63,36 +63,36 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Sets the public id. This identifier should be in the default catalog in /etc/xml/catalog or in a path specified by the environment variable XML_CATALOG_FILES. When the public id is set the system id must also be set.
-        #[method(publicID)]
+        #[unsafe(method(publicID))]
         #[unsafe(method_family = none)]
         pub unsafe fn publicID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`publicID`][Self::publicID].
-        #[method(setPublicID:)]
+        #[unsafe(method(setPublicID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPublicID(&self, public_id: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
         /// Sets the system id. This should be a URL that points to a valid DTD.
-        #[method(systemID)]
+        #[unsafe(method(systemID))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`systemID`][Self::systemID].
-        #[method(setSystemID:)]
+        #[unsafe(method(setSystemID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSystemID(&self, system_id: Option<&NSString>);
 
         /// Inserts a child at a particular index.
-        #[method(insertChild:atIndex:)]
+        #[unsafe(method(insertChild:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertChild_atIndex(&self, child: &NSXMLNode, index: NSUInteger);
 
         #[cfg(feature = "NSArray")]
         /// Insert several children at a particular index.
-        #[method(insertChildren:atIndex:)]
+        #[unsafe(method(insertChildren:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertChildren_atIndex(
             &self,
@@ -101,29 +101,29 @@ extern_methods!(
         );
 
         /// Removes a child at a particular index.
-        #[method(removeChildAtIndex:)]
+        #[unsafe(method(removeChildAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeChildAtIndex(&self, index: NSUInteger);
 
         #[cfg(feature = "NSArray")]
         /// Removes all existing children and replaces them with the new children. Set children to nil to simply remove all children.
-        #[method(setChildren:)]
+        #[unsafe(method(setChildren:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChildren(&self, children: Option<&NSArray<NSXMLNode>>);
 
         /// Adds a child to the end of the existing children.
-        #[method(addChild:)]
+        #[unsafe(method(addChild:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addChild(&self, child: &NSXMLNode);
 
         /// Replaces a child at a particular index with another child.
-        #[method(replaceChildAtIndex:withNode:)]
+        #[unsafe(method(replaceChildAtIndex:withNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceChildAtIndex_withNode(&self, index: NSUInteger, node: &NSXMLNode);
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
         /// Returns the entity declaration matching this name.
-        #[method(entityDeclarationForName:)]
+        #[unsafe(method(entityDeclarationForName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn entityDeclarationForName(
             &self,
@@ -132,7 +132,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
         /// Returns the notation declaration matching this name.
-        #[method(notationDeclarationForName:)]
+        #[unsafe(method(notationDeclarationForName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notationDeclarationForName(
             &self,
@@ -141,7 +141,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
         /// Returns the element declaration matching this name.
-        #[method(elementDeclarationForName:)]
+        #[unsafe(method(elementDeclarationForName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementDeclarationForName(
             &self,
@@ -150,7 +150,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
         /// Returns the attribute declaration matching this name.
-        #[method(attributeDeclarationForName:elementName:)]
+        #[unsafe(method(attributeDeclarationForName:elementName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeDeclarationForName_elementName(
             &self,
@@ -189,7 +189,7 @@ extern_methods!(
         /// &
         /// </li>
         /// </ul>
-        #[method(predefinedEntityDeclarationForName:)]
+        #[unsafe(method(predefinedEntityDeclarationForName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predefinedEntityDeclarationForName(
             name: &NSString,
@@ -208,7 +208,7 @@ extern_methods!(
         /// ```
         ///
         /// with options set to NSXMLNodeOptionsNone
-        #[method(initWithKind:)]
+        #[unsafe(method(initWithKind:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
     }
@@ -218,7 +218,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDTD {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -24,7 +24,7 @@ unsafe impl NSObjectProtocol for SKPaymentQueue {}
 extern_methods!(
     unsafe impl SKPaymentQueue {
         #[deprecated = "No longer supported"]
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -33,7 +33,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "No longer supported"]
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -42,33 +42,33 @@ extern_methods!(
 
         #[cfg(feature = "SKStorefront")]
         #[deprecated = "Use Storefront.current"]
-        #[method(storefront)]
+        #[unsafe(method(storefront))]
         #[unsafe(method_family = none)]
         pub unsafe fn storefront(&self) -> Option<Retained<SKStorefront>>;
 
         #[deprecated = "No longer supported"]
-        #[method(defaultQueue)]
+        #[unsafe(method(defaultQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultQueue() -> Retained<Self>;
 
         #[deprecated = "Use AppStore.canMakePayments"]
-        #[method(canMakePayments)]
+        #[unsafe(method(canMakePayments))]
         #[unsafe(method_family = none)]
         pub unsafe fn canMakePayments() -> bool;
 
         #[cfg(feature = "SKPayment")]
         #[deprecated = "Use Product.purchase(confirmIn:options:)"]
-        #[method(addPayment:)]
+        #[unsafe(method(addPayment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPayment(&self, payment: &SKPayment);
 
         #[deprecated = "Use AppStore.sync()"]
-        #[method(restoreCompletedTransactions)]
+        #[unsafe(method(restoreCompletedTransactions))]
         #[unsafe(method_family = none)]
         pub unsafe fn restoreCompletedTransactions(&self);
 
         #[deprecated = "Use AppStore.sync()"]
-        #[method(restoreCompletedTransactionsWithApplicationUsername:)]
+        #[unsafe(method(restoreCompletedTransactionsWithApplicationUsername:))]
         #[unsafe(method_family = none)]
         pub unsafe fn restoreCompletedTransactionsWithApplicationUsername(
             &self,
@@ -77,36 +77,36 @@ extern_methods!(
 
         #[cfg(feature = "SKPaymentTransaction")]
         #[deprecated = "Use Transaction.finish()"]
-        #[method(finishTransaction:)]
+        #[unsafe(method(finishTransaction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishTransaction(&self, transaction: &SKPaymentTransaction);
 
         #[cfg(feature = "SKDownload")]
         #[deprecated = "Hosted content is no longer supported"]
-        #[method(startDownloads:)]
+        #[unsafe(method(startDownloads:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDownloads(&self, downloads: &NSArray<SKDownload>);
 
         #[cfg(feature = "SKDownload")]
         #[deprecated = "Hosted content is no longer supported"]
-        #[method(pauseDownloads:)]
+        #[unsafe(method(pauseDownloads:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pauseDownloads(&self, downloads: &NSArray<SKDownload>);
 
         #[cfg(feature = "SKDownload")]
         #[deprecated = "Hosted content is no longer supported"]
-        #[method(resumeDownloads:)]
+        #[unsafe(method(resumeDownloads:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resumeDownloads(&self, downloads: &NSArray<SKDownload>);
 
         #[cfg(feature = "SKDownload")]
         #[deprecated = "Hosted content is no longer supported"]
-        #[method(cancelDownloads:)]
+        #[unsafe(method(cancelDownloads:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelDownloads(&self, downloads: &NSArray<SKDownload>);
 
         #[deprecated = "Use Transaction.updates or PurchaseResult from Product.purchase(confirmIn:options:)"]
-        #[method(addTransactionObserver:)]
+        #[unsafe(method(addTransactionObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTransactionObserver(
             &self,
@@ -114,7 +114,7 @@ extern_methods!(
         );
 
         #[deprecated = "No longer supported"]
-        #[method(removeTransactionObserver:)]
+        #[unsafe(method(removeTransactionObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTransactionObserver(
             &self,
@@ -122,7 +122,7 @@ extern_methods!(
         );
 
         #[deprecated = "Use Transaction.updates or PurchaseResult from Product.purchase(confirmIn:options:)"]
-        #[method(transactionObservers)]
+        #[unsafe(method(transactionObservers))]
         #[unsafe(method_family = none)]
         pub unsafe fn transactionObservers(
             &self,
@@ -130,17 +130,17 @@ extern_methods!(
 
         #[cfg(feature = "SKPaymentTransaction")]
         #[deprecated = "Use Transaction.unfinished"]
-        #[method(transactions)]
+        #[unsafe(method(transactions))]
         #[unsafe(method_family = none)]
         pub unsafe fn transactions(&self) -> Retained<NSArray<SKPaymentTransaction>>;
 
         #[deprecated = "Use Message.messages and Message.display(in:)"]
-        #[method(showPriceConsentIfNeeded)]
+        #[unsafe(method(showPriceConsentIfNeeded))]
         #[unsafe(method_family = none)]
         pub unsafe fn showPriceConsentIfNeeded(&self);
 
         #[deprecated = "Use AppStore.presentOfferCodeRedeemSheet(in:)"]
-        #[method(presentCodeRedemptionSheet)]
+        #[unsafe(method(presentCodeRedemptionSheet))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentCodeRedemptionSheet(&self);
     }
@@ -149,11 +149,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPaymentQueue {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -166,7 +166,7 @@ extern_protocol!(
         #[cfg(all(feature = "SKPaymentTransaction", feature = "SKStorefront"))]
         #[deprecated = "Pass Product.PurchaseOption.onStorefrontChange(shouldContinuePurchase:) to product.purchase(options:)"]
         #[optional]
-        #[method(paymentQueue:shouldContinueTransaction:inStorefront:)]
+        #[unsafe(method(paymentQueue:shouldContinueTransaction:inStorefront:))]
         #[unsafe(method_family = none)]
         unsafe fn paymentQueue_shouldContinueTransaction_inStorefront(
             &self,
@@ -177,7 +177,7 @@ extern_protocol!(
 
         #[deprecated = "Use Message.messages and Message.display(in:)"]
         #[optional]
-        #[method(paymentQueueShouldShowPriceConsent:)]
+        #[unsafe(method(paymentQueueShouldShowPriceConsent:))]
         #[unsafe(method_family = none)]
         unsafe fn paymentQueueShouldShowPriceConsent(&self, payment_queue: &SKPaymentQueue)
             -> bool;
@@ -190,7 +190,7 @@ extern_protocol!(
     pub unsafe trait SKPaymentTransactionObserver: NSObjectProtocol {
         #[cfg(feature = "SKPaymentTransaction")]
         #[deprecated = "Use StoreKit 2 Transaction APIs"]
-        #[method(paymentQueue:updatedTransactions:)]
+        #[unsafe(method(paymentQueue:updatedTransactions:))]
         #[unsafe(method_family = none)]
         unsafe fn paymentQueue_updatedTransactions(
             &self,
@@ -201,7 +201,7 @@ extern_protocol!(
         #[cfg(feature = "SKPaymentTransaction")]
         #[deprecated = "Use StoreKit 2 Transaction APIs"]
         #[optional]
-        #[method(paymentQueue:removedTransactions:)]
+        #[unsafe(method(paymentQueue:removedTransactions:))]
         #[unsafe(method_family = none)]
         unsafe fn paymentQueue_removedTransactions(
             &self,
@@ -211,7 +211,7 @@ extern_protocol!(
 
         #[deprecated = "Use AppStore.sync()"]
         #[optional]
-        #[method(paymentQueue:restoreCompletedTransactionsFailedWithError:)]
+        #[unsafe(method(paymentQueue:restoreCompletedTransactionsFailedWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn paymentQueue_restoreCompletedTransactionsFailedWithError(
             &self,
@@ -221,14 +221,14 @@ extern_protocol!(
 
         #[deprecated = "Use AppStore.sync()"]
         #[optional]
-        #[method(paymentQueueRestoreCompletedTransactionsFinished:)]
+        #[unsafe(method(paymentQueueRestoreCompletedTransactionsFinished:))]
         #[unsafe(method_family = none)]
         unsafe fn paymentQueueRestoreCompletedTransactionsFinished(&self, queue: &SKPaymentQueue);
 
         #[cfg(feature = "SKDownload")]
         #[deprecated = "Hosted content is no longer supported"]
         #[optional]
-        #[method(paymentQueue:updatedDownloads:)]
+        #[unsafe(method(paymentQueue:updatedDownloads:))]
         #[unsafe(method_family = none)]
         unsafe fn paymentQueue_updatedDownloads(
             &self,
@@ -239,7 +239,7 @@ extern_protocol!(
         #[cfg(all(feature = "SKPayment", feature = "SKProduct"))]
         #[deprecated = "Use PurchaseIntent.intents"]
         #[optional]
-        #[method(paymentQueue:shouldAddStorePayment:forProduct:)]
+        #[unsafe(method(paymentQueue:shouldAddStorePayment:forProduct:))]
         #[unsafe(method_family = none)]
         unsafe fn paymentQueue_shouldAddStorePayment_forProduct(
             &self,
@@ -250,13 +250,13 @@ extern_protocol!(
 
         #[deprecated = "Use Storefront.updates"]
         #[optional]
-        #[method(paymentQueueDidChangeStorefront:)]
+        #[unsafe(method(paymentQueueDidChangeStorefront:))]
         #[unsafe(method_family = none)]
         unsafe fn paymentQueueDidChangeStorefront(&self, queue: &SKPaymentQueue);
 
         #[deprecated = "Use Transaction.updates"]
         #[optional]
-        #[method(paymentQueue:didRevokeEntitlementsForProductIdentifiers:)]
+        #[unsafe(method(paymentQueue:didRevokeEntitlementsForProductIdentifiers:))]
         #[unsafe(method_family = none)]
         unsafe fn paymentQueue_didRevokeEntitlementsForProductIdentifiers(
             &self,

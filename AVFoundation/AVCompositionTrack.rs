@@ -41,7 +41,7 @@ extern_methods!(
         ///
         /// Note that timeMapping.target.start of the first AVCompositionTrackSegment must be kCMTimeZero, and the timeMapping.target.start of each subsequent AVCompositionTrackSegment must equal CMTimeRangeGetEnd(the previous AVCompositionTrackSegment's timeMapping.target).
         /// Use -validateTrackSegments:error: to perform a test to ensure that an array of AVCompositionTrackSegments conforms to this rule.
-        #[method(segments)]
+        #[unsafe(method(segments))]
         #[unsafe(method_family = none)]
         pub unsafe fn segments(&self) -> Retained<NSArray<AVCompositionTrackSegment>>;
 
@@ -57,7 +57,7 @@ extern_methods!(
         /// Returns: An AVCompositionTrackSegment.
         ///
         /// If the trackTime does not map to a sample presentation time (e.g. it's outside the track's timeRange), the segment closest in time to the specified trackTime is returned.
-        #[method(segmentForTrackTime:)]
+        #[unsafe(method(segmentForTrackTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentForTrackTime(
             &self,
@@ -67,7 +67,7 @@ extern_methods!(
         /// An array of AVCompositionTrackFormatDescriptionReplacement objects indicating original format descriptions and their replacements.
         ///
         /// The value of this property is an array of AVCompositionTrackFormatDescriptionReplacement objects, each of which specifies an original format description together with its replacement format description (as specified by a previous call to -replaceFormatDescription:withFormatDescription:). Only format descriptions that are to be replaced will occur as the originalFormatDescription elements in the AVCompositionTrackFormatDescriptionReplacement objects in this array.
-        #[method(formatDescriptionReplacements)]
+        #[unsafe(method(formatDescriptionReplacements))]
         #[unsafe(method_family = none)]
         pub unsafe fn formatDescriptionReplacements(
             &self,
@@ -79,11 +79,11 @@ extern_methods!(
     /// Methods declared on superclass `AVAssetTrack`
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVCompositionTrack {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -115,12 +115,12 @@ extern_methods!(
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMutableCompositionTrack {
         /// Specifies whether the track is enabled or disabled.  Default is YES.
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
@@ -129,37 +129,37 @@ extern_methods!(
         ///
         /// If not set, the value is the naturalTimeScale of the first non-empty edit, or 600 if there are no non-empty edits.
         /// Set to 0 to revert to default behavior.
-        #[method(naturalTimeScale)]
+        #[unsafe(method(naturalTimeScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn naturalTimeScale(&self) -> CMTimeScale;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`naturalTimeScale`][Self::naturalTimeScale].
-        #[method(setNaturalTimeScale:)]
+        #[unsafe(method(setNaturalTimeScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNaturalTimeScale(&self, natural_time_scale: CMTimeScale);
 
         /// Indicates the language associated with the track, as an ISO 639-2/T language code.
         ///
         /// The default value is nil.
-        #[method(languageCode)]
+        #[unsafe(method(languageCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn languageCode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`languageCode`][Self::languageCode].
-        #[method(setLanguageCode:)]
+        #[unsafe(method(setLanguageCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLanguageCode(&self, language_code: Option<&NSString>);
 
         /// Indicates the language tag associated with the track, as an IETF BCP 47 (RFC 4646) language identifier.
         ///
         /// The default value is nil.
-        #[method(extendedLanguageTag)]
+        #[unsafe(method(extendedLanguageTag))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`extendedLanguageTag`][Self::extendedLanguageTag].
-        #[method(setExtendedLanguageTag:)]
+        #[unsafe(method(setExtendedLanguageTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtendedLanguageTag(&self, extended_language_tag: Option<&NSString>);
 
@@ -167,25 +167,25 @@ extern_methods!(
         /// The preferred transformation of the visual media data for display purposes.
         ///
         /// The default value is CGAffineTransformIdentity.
-        #[method(preferredTransform)]
+        #[unsafe(method(preferredTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredTransform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`preferredTransform`][Self::preferredTransform].
-        #[method(setPreferredTransform:)]
+        #[unsafe(method(setPreferredTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredTransform(&self, preferred_transform: CGAffineTransform);
 
         /// The preferred volume of the audible media data.
         ///
         /// The default value is 1.0.
-        #[method(preferredVolume)]
+        #[unsafe(method(preferredVolume))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredVolume(&self) -> c_float;
 
         /// Setter for [`preferredVolume`][Self::preferredVolume].
-        #[method(setPreferredVolume:)]
+        #[unsafe(method(setPreferredVolume:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredVolume(&self, preferred_volume: c_float);
 
@@ -194,13 +194,13 @@ extern_methods!(
         ///
         /// Note that timeMapping.target.start of the first AVCompositionTrackSegment must be kCMTimeZero, and the timeMapping.target.start of each subsequent AVCompositionTrackSegment must equal CMTimeRangeGetEnd(the previous AVCompositionTrackSegment's timeMapping.target).
         /// Use -validateTrackSegments:error: to perform a test to ensure that an array of AVCompositionTrackSegments conforms to this rule.
-        #[method(segments)]
+        #[unsafe(method(segments))]
         #[unsafe(method_family = none)]
         pub unsafe fn segments(&self) -> Retained<NSArray<AVCompositionTrackSegment>>;
 
         #[cfg(all(feature = "AVAssetTrackSegment", feature = "AVCompositionTrackSegment"))]
         /// Setter for [`segments`][Self::segments].
-        #[method(setSegments:)]
+        #[unsafe(method(setSegments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSegments(&self, segments: Option<&NSArray<AVCompositionTrackSegment>>);
 
@@ -220,7 +220,7 @@ extern_methods!(
         /// You provide a reference to an AVAssetTrack and the timeRange within it that you want to insert. You specify the start time in the target composition track at which the timeRange should be inserted.
         ///
         /// Note that the inserted track timeRange will be presented at its natural duration and rate. It can be scaled to a different duration (and presented at a different rate) via -scaleTimeRange:toDuration:.
-        #[method(insertTimeRange:ofTrack:atTime:error:_)]
+        #[unsafe(method(insertTimeRange:ofTrack:atTime:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertTimeRange_ofTrack_atTime_error(
             &self,
@@ -244,7 +244,7 @@ extern_methods!(
         ///
         /// This method is equivalent to (but more efficient than) calling -insertTimeRange:ofTrack:atTime:error: for each timeRange/track pair. If this method returns an error, none of the time ranges will be inserted into the composition track. To specify an empty time range, pass NSNull for the track and a time range of starting at kCMTimeInvalid with a duration of the desired empty edit.
         /// This method throws an exception if time ranges and tracks to not have the same array count.
-        #[method(insertTimeRanges:ofTracks:atTime:error:_)]
+        #[unsafe(method(insertTimeRanges:ofTracks:atTime:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertTimeRanges_ofTracks_atTime_error(
             &self,
@@ -261,7 +261,7 @@ extern_methods!(
         /// If you insert an empty timeRange into the track, any media that was presented during that interval prior to the insertion will be presented instead immediately afterward.
         /// The exact meaning of the term "empty timeRange" depends upon the mediaType of the track. For example, an empty timeRange in a sound track presents silence.
         /// Note that you cannot add empty time ranges to the end of a composition track.
-        #[method(insertEmptyTimeRange:)]
+        #[unsafe(method(insertEmptyTimeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertEmptyTimeRange(&self, time_range: CMTimeRange);
 
@@ -271,7 +271,7 @@ extern_methods!(
         /// Parameter `timeRange`: Specifies the timeRange to be removed.
         ///
         /// Removal of a timeRange does not cause the track to be removed from the composition. Instead it removes or truncates track segments that intersect with the timeRange.
-        #[method(removeTimeRange:)]
+        #[unsafe(method(removeTimeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTimeRange(&self, time_range: CMTimeRange);
 
@@ -283,7 +283,7 @@ extern_methods!(
         /// Parameter `duration`: Specifies the new duration of the timeRange.
         ///
         /// Each trackSegment affected by the scaling operation will be presented at a rate equal to source.duration / target.duration of its resulting timeMapping.
-        #[method(scaleTimeRange:toDuration:)]
+        #[unsafe(method(scaleTimeRange:toDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleTimeRange_toDuration(&self, time_range: CMTimeRange, duration: CMTime);
 
@@ -299,7 +299,7 @@ extern_methods!(
         /// Returns: YES if validation suceeds, otherwise NO.
         ///
         /// The array is tested for suitability for setting as the value of the trackSegments property. If a portion of an existing trackSegments array is to be modified, the modification can be made via an instance of NSMutableArray, and the resulting array can be tested via -validateTrackSegments:error:.
-        #[method(validateTrackSegments:error:_)]
+        #[unsafe(method(validateTrackSegments:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateTrackSegments_error(
             &self,
@@ -311,7 +311,7 @@ extern_methods!(
         /// Parameter `compositionTrack`: An AVCompositionTrack object that is to be associated with the receiver.
         ///
         /// Parameter `trackAssociationType`: The type of track association to add between the receiver and the specified compositionTrack (for instance, AVTrackAssociationTypeChapterList).
-        #[method(addTrackAssociationToTrack:type:)]
+        #[unsafe(method(addTrackAssociationToTrack:type:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTrackAssociationToTrack_type(
             &self,
@@ -324,7 +324,7 @@ extern_methods!(
         /// Parameter `compositionTrack`: An AVCompositionTrack object that is associated with the receiver.
         ///
         /// Parameter `trackAssociationType`: The type of track association to remove between the receiver and the specified compositionTrack (for instance, AVTrackAssociationTypeChapterList).
-        #[method(removeTrackAssociationToTrack:type:)]
+        #[unsafe(method(removeTrackAssociationToTrack:type:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTrackAssociationToTrack_type(
             &self,
@@ -338,11 +338,11 @@ extern_methods!(
     /// Methods declared on superclass `AVAssetTrack`
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMutableCompositionTrack {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -373,13 +373,13 @@ extern_methods!(
     unsafe impl AVCompositionTrackFormatDescriptionReplacement {
         #[cfg(feature = "objc2-core-media")]
         /// The original format description.
-        #[method(originalFormatDescription)]
+        #[unsafe(method(originalFormatDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn originalFormatDescription(&self) -> Retained<CMFormatDescription>;
 
         #[cfg(feature = "objc2-core-media")]
         /// The replacement format description.
-        #[method(replacementFormatDescription)]
+        #[unsafe(method(replacementFormatDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn replacementFormatDescription(&self) -> Retained<CMFormatDescription>;
     }
@@ -388,11 +388,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCompositionTrackFormatDescriptionReplacement {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -411,7 +411,7 @@ extern_methods!(
         ///
         /// You can use this method to make surgical changes to a track's format descriptions, such as adding format description extensions to a format description or changing the audio channel layout of an audio track. You should note that a format description can have extensions of type kCMFormatDescriptionExtension_VerbatimSampleDescription and kCMFormatDescriptionExtension_VerbatimISOSampleEntry; if you modify a copy of a format description, you should delete those extensions from the copy or your changes might be ignored. Also note that format description replacements are not transferred when performing editing operations on AVMutableCompositionTrack objects; for instance, inserting a range of a composition track into another composition track does not transfer any replacement format descriptions.
         /// This method throws an exception if the media type of the replacement does not match the original format description.
-        #[method(replaceFormatDescription:withFormatDescription:)]
+        #[unsafe(method(replaceFormatDescription:withFormatDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceFormatDescription_withFormatDescription(
             &self,
@@ -429,7 +429,7 @@ extern_methods!(
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVCompositionTrack {
         #[cfg(feature = "AVMediaFormat")]
-        #[method(hasMediaCharacteristic:)]
+        #[unsafe(method(hasMediaCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasMediaCharacteristic(
             &self,
@@ -437,19 +437,19 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(samplePresentationTimeForTrackTime:)]
+        #[unsafe(method(samplePresentationTimeForTrackTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn samplePresentationTimeForTrackTime(&self, track_time: CMTime) -> CMTime;
 
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVMetadataItem"))]
-        #[method(metadataForFormat:)]
+        #[unsafe(method(metadataForFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataForFormat(
             &self,
             format: &AVMetadataFormat,
         ) -> Retained<NSArray<AVMetadataItem>>;
 
-        #[method(associatedTracksOfType:)]
+        #[unsafe(method(associatedTracksOfType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn associatedTracksOfType(
             &self,

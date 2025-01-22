@@ -12,7 +12,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextviewportlayoutcontrollerdelegate?language=objc)
     pub unsafe trait NSTextViewportLayoutControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(viewportBoundsForTextViewportLayoutController:)]
+        #[unsafe(method(viewportBoundsForTextViewportLayoutController:))]
         #[unsafe(method_family = none)]
         unsafe fn viewportBoundsForTextViewportLayoutController(
             &self,
@@ -20,7 +20,7 @@ extern_protocol!(
         ) -> CGRect;
 
         #[cfg(feature = "NSTextLayoutFragment")]
-        #[method(textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:)]
+        #[unsafe(method(textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:))]
         #[unsafe(method_family = none)]
         unsafe fn textViewportLayoutController_configureRenderingSurfaceForTextLayoutFragment(
             &self,
@@ -29,7 +29,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(textViewportLayoutControllerWillLayout:)]
+        #[unsafe(method(textViewportLayoutControllerWillLayout:))]
         #[unsafe(method_family = none)]
         unsafe fn textViewportLayoutControllerWillLayout(
             &self,
@@ -37,7 +37,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(textViewportLayoutControllerDidLayout:)]
+        #[unsafe(method(textViewportLayoutControllerDidLayout:))]
         #[unsafe(method_family = none)]
         unsafe fn textViewportLayoutControllerDidLayout(
             &self,
@@ -58,22 +58,22 @@ unsafe impl NSObjectProtocol for NSTextViewportLayoutController {}
 extern_methods!(
     unsafe impl NSTextViewportLayoutController {
         #[cfg(feature = "NSTextLayoutManager")]
-        #[method(initWithTextLayoutManager:)]
+        #[unsafe(method(initWithTextLayoutManager:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTextLayoutManager(
             this: Allocated<Self>,
             text_layout_manager: &NSTextLayoutManager,
         ) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -81,7 +81,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -89,26 +89,26 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSTextLayoutManager")]
-        #[method(textLayoutManager)]
+        #[unsafe(method(textLayoutManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(viewportBounds)]
+        #[unsafe(method(viewportBounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn viewportBounds(&self) -> CGRect;
 
         #[cfg(feature = "NSTextRange")]
-        #[method(viewportRange)]
+        #[unsafe(method(viewportRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn viewportRange(&self) -> Option<Retained<NSTextRange>>;
 
-        #[method(layoutViewport)]
+        #[unsafe(method(layoutViewport))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutViewport(&self);
 
         #[cfg(all(feature = "NSTextRange", feature = "objc2-core-foundation"))]
-        #[method(relocateViewportToTextLocation:)]
+        #[unsafe(method(relocateViewportToTextLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn relocateViewportToTextLocation(
             &self,
@@ -116,7 +116,7 @@ extern_methods!(
         ) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(adjustViewportByVerticalOffset:)]
+        #[unsafe(method(adjustViewportByVerticalOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustViewportByVerticalOffset(&self, vertical_offset: CGFloat);
     }

@@ -70,7 +70,7 @@ extern_methods!(
         /// Provides the file types the AVMovie class understands.
         ///
         /// Returns: An NSArray of UTIs identifying the file types the AVMovie class understands.
-        #[method(movieTypes)]
+        #[unsafe(method(movieTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieTypes() -> Retained<NSArray<AVFileType>>;
 
@@ -85,7 +85,7 @@ extern_methods!(
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
-        #[method(movieWithURL:options:)]
+        #[unsafe(method(movieWithURL:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithURL_options(
             url: &NSURL,
@@ -103,7 +103,7 @@ extern_methods!(
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
-        #[method(initWithURL:options:)]
+        #[unsafe(method(initWithURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options(
             this: Allocated<Self>,
@@ -121,7 +121,7 @@ extern_methods!(
         ///
         /// You can use this method to operate on movie headers that are not stored in files; this might include movie headers on the pasteboard (which do not contain media data). In general you should avoid loading an entire movie file with its media data into an instance of NSData! By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
-        #[method(movieWithData:options:)]
+        #[unsafe(method(movieWithData:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithData_options(
             data: &NSData,
@@ -139,7 +139,7 @@ extern_methods!(
         /// You can use this method to operate on movie headers that are not stored in files. In general you should avoid loading an entire movie file with its media data into an instance of NSData!
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
-        #[method(initWithData:options:)]
+        #[unsafe(method(initWithData:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_options(
             this: Allocated<Self>,
@@ -148,19 +148,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The URL with which the instance of AVMovie was initialized; may be nil.
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// The data block with which the instance of AVMovie was initialized; may be nil.
-        #[method(data)]
+        #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
         /// The default storage container for media data added to a movie.
         ///
         /// The value of this property is an AVMediaDataStorage object that indicates where sample data that is added to a movie should be written by default.
-        #[method(defaultMediaDataStorage)]
+        #[unsafe(method(defaultMediaDataStorage))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultMediaDataStorage(&self) -> Option<Retained<AVMediaDataStorage>>;
 
@@ -168,21 +168,21 @@ extern_methods!(
         /// The tracks in a movie.
         ///
         /// The value of this property is an array of tracks the movie contains; the tracks are of type AVMovieTrack.
-        #[method(tracks)]
+        #[unsafe(method(tracks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVMovieTrack>>;
 
         /// Indicates whether the movie file is capable of being extended by fragments.
         ///
         /// The value of this property is YES if an 'mvex' box is present in the 'moov' box. The 'mvex' box is necessary in order to signal the possible presence of later 'moof' boxes.
-        #[method(canContainMovieFragments)]
+        #[unsafe(method(canContainMovieFragments))]
         #[unsafe(method_family = none)]
         pub unsafe fn canContainMovieFragments(&self) -> bool;
 
         /// Indicates whether the movie file is extended by at least one movie fragment.
         ///
         /// The value of this property is YES if canContainMovieFragments is YES and at least one 'moof' box is present after the 'moov' box.
-        #[method(containsMovieFragments)]
+        #[unsafe(method(containsMovieFragments))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsMovieFragments(&self) -> bool;
     }
@@ -199,7 +199,7 @@ extern_methods!(
         /// Returns: An instance of AVAsset.
         ///
         /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
-        #[method(assetWithURL:)]
+        #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
     }
@@ -209,11 +209,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAsset")]
     unsafe impl AVMovie {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -263,7 +263,7 @@ extern_methods!(
         /// Returns: An NSData object.
         ///
         /// The movie header will be a pure reference movie, with no base URL, suitable for use on the pasteboard.
-        #[method(movieHeaderWithFileType:error:_)]
+        #[unsafe(method(movieHeaderWithFileType:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieHeaderWithFileType_error(
             &self,
@@ -282,7 +282,7 @@ extern_methods!(
         /// Parameter `outError`: If an error occurs writing the movie header, describes the nature of the failure.
         ///
         /// Note that modifications to instances of AVMutableMovie, to their constituent AVMutableMovieTracks, or to their collections of metadata are committed to storage when their movie headers are written.
-        #[method(writeMovieHeaderToURL:fileType:options:error:_)]
+        #[unsafe(method(writeMovieHeaderToURL:fileType:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeMovieHeaderToURL_fileType_options_error(
             &self,
@@ -297,7 +297,7 @@ extern_methods!(
         /// Parameter `fileType`: A UTI indicating a movie file format (e.g. AVFileTypeQuickTimeMovie for a QuickTime movie).
         ///
         /// This method returns a BOOL that indicates whether a movie header of the specified type can be created for the receiver. For example, this method returns NO if the movie contains tracks whose media types or media subtypes are not allowed by the specified file type.
-        #[method(isCompatibleWithFileType:)]
+        #[unsafe(method(isCompatibleWithFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCompatibleWithFileType(&self, file_type: &AVFileType) -> bool;
     }
@@ -322,7 +322,7 @@ extern_methods!(
         /// "
         /// tracks" has been loaded
         #[deprecated = "Use loadTrackWithTrackID:completionHandler: instead"]
-        #[method(trackWithTrackID:)]
+        #[unsafe(method(trackWithTrackID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackWithTrackID(
             &self,
@@ -340,7 +340,7 @@ extern_methods!(
         /// Parameter `trackID`: The trackID of the requested AVMovieTrack.
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
-        #[method(loadTrackWithTrackID:completionHandler:)]
+        #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
@@ -363,7 +363,7 @@ extern_methods!(
         /// "
         /// tracks" has been loaded
         #[deprecated = "Use loadTracksWithMediaType:completionHandler: instead"]
-        #[method(tracksWithMediaType:)]
+        #[unsafe(method(tracksWithMediaType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracksWithMediaType(
             &self,
@@ -381,7 +381,7 @@ extern_methods!(
         /// Parameter `mediaType`: The media type according to which AVAsset filters its AVMovieTracks. (Media types are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
-        #[method(loadTracksWithMediaType:completionHandler:)]
+        #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
@@ -404,7 +404,7 @@ extern_methods!(
         /// "
         /// tracks" has been loaded
         #[deprecated = "Use loadTracksWithMediaCharacteristic:completionHandler: instead"]
-        #[method(tracksWithMediaCharacteristic:)]
+        #[unsafe(method(tracksWithMediaCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracksWithMediaCharacteristic(
             &self,
@@ -422,7 +422,7 @@ extern_methods!(
         /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVMovieTracks. (Media characteristics are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
-        #[method(loadTracksWithMediaCharacteristic:completionHandler:)]
+        #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
@@ -483,7 +483,7 @@ extern_methods!(
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMutableMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
-        #[method(movieWithURL:options:error:_)]
+        #[unsafe(method(movieWithURL:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithURL_options_error(
             url: &NSURL,
@@ -503,7 +503,7 @@ extern_methods!(
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMutableMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
-        #[method(initWithURL:options:error:_)]
+        #[unsafe(method(initWithURL:options:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options_error(
             this: Allocated<Self>,
@@ -524,7 +524,7 @@ extern_methods!(
         /// You can use this method to operate on movie headers that are not stored in files. In general you should avoid loading an entire movie file with its media data into an instance of NSData!
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMutableMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
-        #[method(movieWithData:options:error:_)]
+        #[unsafe(method(movieWithData:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithData_options_error(
             data: &NSData,
@@ -544,7 +544,7 @@ extern_methods!(
         /// You can use this method to operate on movie headers that are not stored in files. In general you should avoid loading an entire movie file with its media data into an instance of NSData!
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMutableMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
-        #[method(initWithData:options:error:_)]
+        #[unsafe(method(initWithData:options:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_options_error(
             this: Allocated<Self>,
@@ -564,7 +564,7 @@ extern_methods!(
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
-        #[method(movieWithSettingsFromMovie:options:error:_)]
+        #[unsafe(method(movieWithSettingsFromMovie:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithSettingsFromMovie_options_error(
             movie: Option<&AVMovie>,
@@ -583,7 +583,7 @@ extern_methods!(
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
-        #[method(initWithSettingsFromMovie:options:error:_)]
+        #[unsafe(method(initWithSettingsFromMovie:options:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSettingsFromMovie_options_error(
             this: Allocated<Self>,
@@ -592,34 +592,34 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// The natural rate at which the movie is to be played; often but not always 1.0.
-        #[method(preferredRate)]
+        #[unsafe(method(preferredRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredRate(&self) -> c_float;
 
         /// Setter for [`preferredRate`][Self::preferredRate].
-        #[method(setPreferredRate:)]
+        #[unsafe(method(setPreferredRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredRate(&self, preferred_rate: c_float);
 
         /// The preferred volume of the audible media data of the movie; often but not always 1.0.
-        #[method(preferredVolume)]
+        #[unsafe(method(preferredVolume))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredVolume(&self) -> c_float;
 
         /// Setter for [`preferredVolume`][Self::preferredVolume].
-        #[method(setPreferredVolume:)]
+        #[unsafe(method(setPreferredVolume:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredVolume(&self, preferred_volume: c_float);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// A CGAffineTransform indicating the transform specified in the movie's storage container as the preferred transformation of the visual media data for display purposes; the value is often but not always CGAffineTransformIdentity.
-        #[method(preferredTransform)]
+        #[unsafe(method(preferredTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredTransform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`preferredTransform`][Self::preferredTransform].
-        #[method(setPreferredTransform:)]
+        #[unsafe(method(setPreferredTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredTransform(&self, preferred_transform: CGAffineTransform);
 
@@ -630,13 +630,13 @@ extern_methods!(
         /// contains a single audio track should typically have the movie time scale set to the media time scale of that track.
         ///
         /// This property should be set on a new empty movie before any edits are performed on the movie.
-        #[method(timescale)]
+        #[unsafe(method(timescale))]
         #[unsafe(method_family = none)]
         pub unsafe fn timescale(&self) -> CMTimeScale;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`timescale`][Self::timescale].
-        #[method(setTimescale:)]
+        #[unsafe(method(setTimescale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimescale(&self, timescale: CMTimeScale);
 
@@ -644,7 +644,7 @@ extern_methods!(
         /// The tracks in a mutable movie.
         ///
         /// The value of this property is an array of tracks the mutable movie contains; the tracks are of type AVMutableMovieTrack.
-        #[method(tracks)]
+        #[unsafe(method(tracks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVMutableMovieTrack>>;
     }
@@ -665,7 +665,7 @@ extern_methods!(
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
-        #[method(movieWithURL:options:)]
+        #[unsafe(method(movieWithURL:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithURL_options(
             url: &NSURL,
@@ -683,7 +683,7 @@ extern_methods!(
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
-        #[method(initWithURL:options:)]
+        #[unsafe(method(initWithURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options(
             this: Allocated<Self>,
@@ -701,7 +701,7 @@ extern_methods!(
         ///
         /// You can use this method to operate on movie headers that are not stored in files; this might include movie headers on the pasteboard (which do not contain media data). In general you should avoid loading an entire movie file with its media data into an instance of NSData! By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
-        #[method(movieWithData:options:)]
+        #[unsafe(method(movieWithData:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithData_options(
             data: &NSData,
@@ -719,7 +719,7 @@ extern_methods!(
         /// You can use this method to operate on movie headers that are not stored in files. In general you should avoid loading an entire movie file with its media data into an instance of NSData!
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
-        #[method(initWithData:options:)]
+        #[unsafe(method(initWithData:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_options(
             this: Allocated<Self>,
@@ -740,7 +740,7 @@ extern_methods!(
         /// Returns: An instance of AVAsset.
         ///
         /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
-        #[method(assetWithURL:)]
+        #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
     }
@@ -750,11 +750,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAsset")]
     unsafe impl AVMutableMovie {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -767,24 +767,24 @@ extern_methods!(
         /// Whether a movie has been modified.
         ///
         /// The value of this property is a BOOL that indicates whether the AVMutableMovie object has been modified since it was created, was last written, or had its modified state cleared via a call to setModified:NO.
-        #[method(isModified)]
+        #[unsafe(method(isModified))]
         #[unsafe(method_family = none)]
         pub unsafe fn isModified(&self) -> bool;
 
         /// Setter for [`isModified`][Self::isModified].
-        #[method(setModified:)]
+        #[unsafe(method(setModified:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModified(&self, modified: bool);
 
         /// The default storage container for media data added to a movie.
         ///
         /// The value of this property is an AVMediaDataStorage object that indicates where sample data that is added to a movie should be written, for any track for whose mediaDataStorage property is nil.
-        #[method(defaultMediaDataStorage)]
+        #[unsafe(method(defaultMediaDataStorage))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultMediaDataStorage(&self) -> Option<Retained<AVMediaDataStorage>>;
 
         /// Setter for [`defaultMediaDataStorage`][Self::defaultMediaDataStorage].
-        #[method(setDefaultMediaDataStorage:)]
+        #[unsafe(method(setDefaultMediaDataStorage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultMediaDataStorage(
             &self,
@@ -795,13 +795,13 @@ extern_methods!(
         /// A CMTime that indicates the duration for interleaving runs of samples of each track.
         ///
         /// The default interleaving period is 0.5 seconds.
-        #[method(interleavingPeriod)]
+        #[unsafe(method(interleavingPeriod))]
         #[unsafe(method_family = none)]
         pub unsafe fn interleavingPeriod(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`interleavingPeriod`][Self::interleavingPeriod].
-        #[method(setInterleavingPeriod:)]
+        #[unsafe(method(setInterleavingPeriod:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInterleavingPeriod(&self, interleaving_period: CMTime);
 
@@ -828,7 +828,7 @@ extern_methods!(
         /// This method may add new tracks to the target movie to ensure that all tracks of the asset are represented in the inserted timeRange.
         /// Existing content at the specified startTime will be pushed out by the duration of timeRange.
         /// Note that metadata will not be automatically copied.
-        #[method(insertTimeRange:ofAsset:atTime:copySampleData:error:_)]
+        #[unsafe(method(insertTimeRange:ofAsset:atTime:copySampleData:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertTimeRange_ofAsset_atTime_copySampleData_error(
             &self,
@@ -842,7 +842,7 @@ extern_methods!(
         /// Adds an empty time range to the target movie.
         ///
         /// Parameter `timeRange`: The time range to be made empty. Note that you cannot add empty time ranges to the end of a movie.
-        #[method(insertEmptyTimeRange:)]
+        #[unsafe(method(insertEmptyTimeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertEmptyTimeRange(&self, time_range: CMTimeRange);
 
@@ -850,7 +850,7 @@ extern_methods!(
         /// Removes a specified time range from a movie.
         ///
         /// Parameter `timeRange`: The time range to be removed.
-        #[method(removeTimeRange:)]
+        #[unsafe(method(removeTimeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTimeRange(&self, time_range: CMTimeRange);
 
@@ -860,7 +860,7 @@ extern_methods!(
         /// Parameter `timeRange`: The time range to be scaled.
         ///
         /// Parameter `duration`: The new duration of the time range.
-        #[method(scaleTimeRange:toDuration:)]
+        #[unsafe(method(scaleTimeRange:toDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleTimeRange_toDuration(&self, time_range: CMTimeRange, duration: CMTime);
     }
@@ -885,7 +885,7 @@ extern_methods!(
         /// number for which media data must be presented in parallel. If media data of the same type is to be presented
         /// serially, even from multiple assets, a single track of that media type should be used. This method,
         /// -mutableTrackCompatibleWithTrack:, can help the client to identify an existing target track for an insertion.
-        #[method(mutableTrackCompatibleWithTrack:)]
+        #[unsafe(method(mutableTrackCompatibleWithTrack:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mutableTrackCompatibleWithTrack(
             &self,
@@ -910,7 +910,7 @@ extern_methods!(
         /// The trackID of the newly added track is a property of the returned instance of AVMutableMovieTrack.
         /// This method throws an exception if media type is not equal to the track's media type, or if any option is invalid.
         /// Note that metadata will not be automatically copied.
-        #[method(addMutableTrackWithMediaType:copySettingsFromTrack:options:)]
+        #[unsafe(method(addMutableTrackWithMediaType:copySettingsFromTrack:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMutableTrackWithMediaType_copySettingsFromTrack_options(
             &self,
@@ -930,7 +930,7 @@ extern_methods!(
         ///
         /// This method creates one or more empty tracks in the target movie and configures those tracks with settings (such as track userdata and metadata, width, height, and preferred volume) copied from the source tracks in the existingTracks array. Also, properties involving pairs of tracks (such as track references) are copied from the source tracks to the target tracks.
         /// This method throws an exception if any option is invalid.
-        #[method(addMutableTracksCopyingSettingsFromTracks:options:)]
+        #[unsafe(method(addMutableTracksCopyingSettingsFromTracks:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMutableTracksCopyingSettingsFromTracks_options(
             &self,
@@ -942,7 +942,7 @@ extern_methods!(
         /// Removes a track from the target movie.
         ///
         /// Parameter `track`: The track to be removed.
-        #[method(removeTrack:)]
+        #[unsafe(method(removeTrack:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTrack(&self, track: &AVMovieTrack);
     }
@@ -956,13 +956,13 @@ extern_methods!(
         /// A collection of metadata stored by the movie.
         ///
         /// The value of this property is an array of AVMetadataItem objects representing the collection of metadata stored by the movie.
-        #[method(metadata)]
+        #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
         /// Setter for [`metadata`][Self::metadata].
-        #[method(setMetadata:)]
+        #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: &NSArray<AVMetadataItem>);
     }
@@ -986,7 +986,7 @@ extern_methods!(
         /// Becomes callable without blocking when the key
         /// "
         /// tracks" has been loaded
-        #[method(trackWithTrackID:)]
+        #[unsafe(method(trackWithTrackID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackWithTrackID(
             &self,
@@ -1004,7 +1004,7 @@ extern_methods!(
         /// Parameter `trackID`: The trackID of the requested AVMutableMovieTrack.
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
-        #[method(loadTrackWithTrackID:completionHandler:)]
+        #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
@@ -1026,7 +1026,7 @@ extern_methods!(
         /// Becomes callable without blocking when the key
         /// "
         /// tracks" has been loaded
-        #[method(tracksWithMediaType:)]
+        #[unsafe(method(tracksWithMediaType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracksWithMediaType(
             &self,
@@ -1044,7 +1044,7 @@ extern_methods!(
         /// Parameter `mediaType`: The media type according to which AVAsset filters its AVMutableMovieTracks. (Media types are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
-        #[method(loadTracksWithMediaType:completionHandler:)]
+        #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
@@ -1068,7 +1068,7 @@ extern_methods!(
         /// Becomes callable without blocking when the key
         /// "
         /// tracks" has been loaded
-        #[method(tracksWithMediaCharacteristic:)]
+        #[unsafe(method(tracksWithMediaCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracksWithMediaCharacteristic(
             &self,
@@ -1086,7 +1086,7 @@ extern_methods!(
         /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVMutableMovieTracks. (Media characteristics are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
-        #[method(loadTracksWithMediaCharacteristic:completionHandler:)]
+        #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
@@ -1117,11 +1117,11 @@ unsafe impl NSObjectProtocol for AVMediaDataStorage {}
 
 extern_methods!(
     unsafe impl AVMediaDataStorage {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -1132,7 +1132,7 @@ extern_methods!(
         /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMediaDataStorage object. Currently no keys are defined.
         ///
         /// Returns: An AVMediaDataStorage object
-        #[method(initWithURL:options:)]
+        #[unsafe(method(initWithURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options(
             this: Allocated<Self>,
@@ -1141,7 +1141,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The URL from which the receiver was initialized; may be nil.
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
     }
@@ -1204,7 +1204,7 @@ extern_methods!(
         /// The tracks in a movie.
         ///
         /// The value of this property is an array of tracks the movie contains; the tracks are of type AVFragmentedMovieTrack.
-        #[method(tracks)]
+        #[unsafe(method(tracks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVFragmentedMovieTrack>>;
     }
@@ -1225,7 +1225,7 @@ extern_methods!(
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
-        #[method(movieWithURL:options:)]
+        #[unsafe(method(movieWithURL:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithURL_options(
             url: &NSURL,
@@ -1243,7 +1243,7 @@ extern_methods!(
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
-        #[method(initWithURL:options:)]
+        #[unsafe(method(initWithURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options(
             this: Allocated<Self>,
@@ -1261,7 +1261,7 @@ extern_methods!(
         ///
         /// You can use this method to operate on movie headers that are not stored in files; this might include movie headers on the pasteboard (which do not contain media data). In general you should avoid loading an entire movie file with its media data into an instance of NSData! By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
-        #[method(movieWithData:options:)]
+        #[unsafe(method(movieWithData:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithData_options(
             data: &NSData,
@@ -1279,7 +1279,7 @@ extern_methods!(
         /// You can use this method to operate on movie headers that are not stored in files. In general you should avoid loading an entire movie file with its media data into an instance of NSData!
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
-        #[method(initWithData:options:)]
+        #[unsafe(method(initWithData:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_options(
             this: Allocated<Self>,
@@ -1300,7 +1300,7 @@ extern_methods!(
         /// Returns: An instance of AVAsset.
         ///
         /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
-        #[method(assetWithURL:)]
+        #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
     }
@@ -1310,11 +1310,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAsset")]
     unsafe impl AVFragmentedMovie {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1339,7 +1339,7 @@ extern_methods!(
         /// "
         /// tracks" has been loaded
         #[deprecated = "Use loadTrackWithTrackID:completionHandler: instead"]
-        #[method(trackWithTrackID:)]
+        #[unsafe(method(trackWithTrackID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackWithTrackID(
             &self,
@@ -1357,7 +1357,7 @@ extern_methods!(
         /// Parameter `trackID`: The trackID of the requested AVFragmentedMovieTrack.
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
-        #[method(loadTrackWithTrackID:completionHandler:)]
+        #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
@@ -1380,7 +1380,7 @@ extern_methods!(
         /// "
         /// tracks" has been loaded
         #[deprecated = "Use loadTracksWithMediaType:completionHandler: instead"]
-        #[method(tracksWithMediaType:)]
+        #[unsafe(method(tracksWithMediaType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracksWithMediaType(
             &self,
@@ -1398,7 +1398,7 @@ extern_methods!(
         /// Parameter `mediaType`: The media type according to which AVAsset filters its AVFragmentedMovieTracks. (Media types are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
-        #[method(loadTracksWithMediaType:completionHandler:)]
+        #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
@@ -1423,7 +1423,7 @@ extern_methods!(
         /// "
         /// tracks" has been loaded
         #[deprecated = "loadTracksWithMediaCharacteristic:completionHandler:"]
-        #[method(tracksWithMediaCharacteristic:)]
+        #[unsafe(method(tracksWithMediaCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracksWithMediaCharacteristic(
             &self,
@@ -1441,7 +1441,7 @@ extern_methods!(
         /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVFragmentedMovieTracks. (Media characteristics are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
-        #[method(loadTracksWithMediaCharacteristic:completionHandler:)]
+        #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
@@ -1478,7 +1478,7 @@ extern_methods!(
         /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedMovieMinder.
         ///
         /// Returns: A new instance of AVFragmentedMovieMinder.
-        #[method(fragmentedMovieMinderWithMovie:mindingInterval:)]
+        #[unsafe(method(fragmentedMovieMinderWithMovie:mindingInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fragmentedMovieMinderWithMovie_mindingInterval(
             movie: &AVFragmentedMovie,
@@ -1492,7 +1492,7 @@ extern_methods!(
         /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedMovieMinder.
         ///
         /// Returns: A new instance of AVFragmentedMovieMinder.
-        #[method(initWithMovie:mindingInterval:)]
+        #[unsafe(method(initWithMovie:mindingInterval:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMovie_mindingInterval(
             this: Allocated<Self>,
@@ -1501,31 +1501,31 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// An NSTimeInterval indicating how often a check for additional movie fragments should be performed. The default interval is 10.0.
-        #[method(mindingInterval)]
+        #[unsafe(method(mindingInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn mindingInterval(&self) -> NSTimeInterval;
 
         /// Setter for [`mindingInterval`][Self::mindingInterval].
-        #[method(setMindingInterval:)]
+        #[unsafe(method(setMindingInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMindingInterval(&self, minding_interval: NSTimeInterval);
 
         /// An NSArray of the AVFragmentedMovie objects being minded.
-        #[method(movies)]
+        #[unsafe(method(movies))]
         #[unsafe(method_family = none)]
         pub unsafe fn movies(&self) -> Retained<NSArray<AVFragmentedMovie>>;
 
         /// Adds a fragmented movie to the array of movies being minded.
         ///
         /// Parameter `movie`: The fragmented movie to add to the minder.
-        #[method(addFragmentedMovie:)]
+        #[unsafe(method(addFragmentedMovie:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addFragmentedMovie(&self, movie: &AVFragmentedMovie);
 
         /// Removes a fragmented movie from the array of movies being minded.
         ///
         /// Parameter `movie`: The fragmented movie to remove from the minder.
-        #[method(removeFragmentedMovie:)]
+        #[unsafe(method(removeFragmentedMovie:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFragmentedMovie(&self, movie: &AVFragmentedMovie);
     }
@@ -1542,7 +1542,7 @@ extern_methods!(
         /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedAssetMinder.
         ///
         /// Returns: A new instance of AVFragmentedAssetMinder.
-        #[method(fragmentedAssetMinderWithAsset:mindingInterval:)]
+        #[unsafe(method(fragmentedAssetMinderWithAsset:mindingInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fragmentedAssetMinderWithAsset_mindingInterval(
             asset: &AVAsset,
@@ -1556,7 +1556,7 @@ extern_methods!(
         /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedAssetMinder.
         ///
         /// Returns: A new instance of AVFragmentedAssetMinder.
-        #[method(initWithAsset:mindingInterval:)]
+        #[unsafe(method(initWithAsset:mindingInterval:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset_mindingInterval(
             this: Allocated<Self>,
@@ -1570,11 +1570,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAsset")]
     unsafe impl AVFragmentedMovieMinder {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1588,7 +1588,7 @@ extern_methods!(
     #[cfg(feature = "AVAsset")]
     unsafe impl AVMutableMovie {
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVMetadataItem"))]
-        #[method(metadataForFormat:)]
+        #[unsafe(method(metadataForFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataForFormat(
             &self,
@@ -1596,7 +1596,7 @@ extern_methods!(
         ) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVTimedMetadataGroup"))]
-        #[method(chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:)]
+        #[unsafe(method(chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn chapterMetadataGroupsWithTitleLocale_containingItemsWithCommonKeys(
             &self,
@@ -1605,7 +1605,7 @@ extern_methods!(
         ) -> Retained<NSArray<AVTimedMetadataGroup>>;
 
         #[cfg(feature = "AVTimedMetadataGroup")]
-        #[method(chapterMetadataGroupsBestMatchingPreferredLanguages:)]
+        #[unsafe(method(chapterMetadataGroupsBestMatchingPreferredLanguages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn chapterMetadataGroupsBestMatchingPreferredLanguages(
             &self,
@@ -1613,7 +1613,7 @@ extern_methods!(
         ) -> Retained<NSArray<AVTimedMetadataGroup>>;
 
         #[cfg(all(feature = "AVMediaFormat", feature = "AVMediaSelectionGroup"))]
-        #[method(mediaSelectionGroupForMediaCharacteristic:)]
+        #[unsafe(method(mediaSelectionGroupForMediaCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionGroupForMediaCharacteristic(
             &self,
@@ -1621,7 +1621,7 @@ extern_methods!(
         ) -> Option<Retained<AVMediaSelectionGroup>>;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(unusedTrackID)]
+        #[unsafe(method(unusedTrackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn unusedTrackID(&self) -> CMPersistentTrackID;
     }

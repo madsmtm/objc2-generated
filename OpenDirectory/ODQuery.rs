@@ -18,7 +18,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerydelegate?language=objc)
     pub unsafe trait ODQueryDelegate: NSObjectProtocol {
-        #[method(query:foundResults:error:)]
+        #[unsafe(method(query:foundResults:error:))]
         #[unsafe(method_family = none)]
         unsafe fn query_foundResults_error(
             &self,
@@ -61,7 +61,7 @@ extern_methods!(
         /// can either be NSString or NSData or an NSArray of either NSString or NSData.  Passing nil for
         /// returnAttributes is equivalent to passing kODAttributeTypeStandardOnly.  outError is optional parameter,
         /// nil can be passed if error details are not needed.
-        #[method(queryWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:)]
+        #[unsafe(method(queryWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryWithNode_forRecordTypes_attribute_matchType_queryValues_returnAttributes_maximumResults_error(
             in_node: Option<&ODNode>,
@@ -85,7 +85,7 @@ extern_methods!(
         /// can either be NSString or NSData or an NSArray of either NSString or NSData.  Passing nil for
         /// returnAttributes is equivalent to passing kODAttributeTypeStandardOnly. outError is optional parameter,
         /// nil can be passed if error details are not needed.
-        #[method(initWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:)]
+        #[unsafe(method(initWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNode_forRecordTypes_attribute_matchType_queryValues_returnAttributes_maximumResults_error(
             this: Allocated<Self>,
@@ -105,7 +105,7 @@ extern_methods!(
         /// will block the call until all results are returned or an error occurs.  YES can be passed at any time
         /// even if previous calls were made with NO.  outError is optional parameter, nil can be passed if error
         /// details are not needed.
-        #[method(resultsAllowingPartial:error:)]
+        #[unsafe(method(resultsAllowingPartial:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultsAllowingPartial_error(
             &self,
@@ -116,12 +116,12 @@ extern_methods!(
         /// The currently set delegate
         ///
         /// The query delegate which will receive asynchronous query results.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn ODQueryDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn ODQueryDelegate>>);
 
@@ -129,7 +129,7 @@ extern_methods!(
         ///
         /// Adds the query object to the specified NSRunLoop to receive asynchronous results.  A delegate must be set
         /// in advance otherwise results may be lost due to the lack of a receiver.
-        #[method(scheduleInRunLoop:forMode:)]
+        #[unsafe(method(scheduleInRunLoop:forMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
@@ -140,7 +140,7 @@ extern_methods!(
         /// Removes the query object from the specified NSRunLoop
         ///
         /// Removes the query object from the specified NSRunLoop.
-        #[method(removeFromRunLoop:forMode:)]
+        #[unsafe(method(removeFromRunLoop:forMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromRunLoop_forMode(
             &self,
@@ -154,19 +154,19 @@ extern_methods!(
         /// is currently scheduled on a RunLoop, then the delegate will be called with inResults == nil and
         /// [inError code] == kODErrorQuerySynchronize and [inError domain] == ODFrameworkErrorDomain, signifying that
         /// all existing results should be thrown away in preparation for new results.
-        #[method(synchronize)]
+        #[unsafe(method(synchronize))]
         #[unsafe(method_family = none)]
         pub unsafe fn synchronize(&self);
 
         /// The NSOperationQueue on which asynchronous results are delivered to the delegate.
         ///
         /// The NSOperationQueue on which asynchronous results are delivered to the delegate.
-        #[method(operationQueue)]
+        #[unsafe(method(operationQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn operationQueue(&self) -> Option<Retained<NSOperationQueue>>;
 
         /// Setter for [`operationQueue`][Self::operationQueue].
-        #[method(setOperationQueue:)]
+        #[unsafe(method(setOperationQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOperationQueue(&self, operation_queue: Option<&NSOperationQueue>);
     }
@@ -175,11 +175,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ODQuery {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

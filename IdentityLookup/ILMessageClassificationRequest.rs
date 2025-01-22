@@ -27,11 +27,11 @@ extern_methods!(
     #[cfg(feature = "ILClassificationRequest")]
     unsafe impl ILMessageClassificationRequest {
         #[cfg(all(feature = "ILCommunication", feature = "ILMessageCommunication"))]
-        #[method(messageCommunications)]
+        #[unsafe(method(messageCommunications))]
         #[unsafe(method_family = none)]
         pub unsafe fn messageCommunications(&self) -> Retained<NSArray<ILMessageCommunication>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -41,7 +41,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "ILClassificationRequest")]
     unsafe impl ILMessageClassificationRequest {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -25,12 +25,12 @@ unsafe impl NSPasteboardWriting for NSPasteboardItem {}
 extern_methods!(
     unsafe impl NSPasteboardItem {
         #[cfg(feature = "NSPasteboard")]
-        #[method(types)]
+        #[unsafe(method(types))]
         #[unsafe(method_family = none)]
         pub unsafe fn types(&self) -> Retained<NSArray<NSPasteboardType>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method(availableTypeFromArray:)]
+        #[unsafe(method(availableTypeFromArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableTypeFromArray(
             &self,
@@ -38,7 +38,7 @@ extern_methods!(
         ) -> Option<Retained<NSPasteboardType>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method(setDataProvider:forTypes:)]
+        #[unsafe(method(setDataProvider:forTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataProvider_forTypes(
             &self,
@@ -47,12 +47,12 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method(setData:forType:)]
+        #[unsafe(method(setData:forType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setData_forType(&self, data: &NSData, r#type: &NSPasteboardType) -> bool;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method(setString:forType:)]
+        #[unsafe(method(setString:forType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setString_forType(
             &self,
@@ -61,7 +61,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method(setPropertyList:forType:)]
+        #[unsafe(method(setPropertyList:forType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertyList_forType(
             &self,
@@ -70,18 +70,18 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method(dataForType:)]
+        #[unsafe(method(dataForType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataForType(&self, r#type: &NSPasteboardType) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method(stringForType:)]
+        #[unsafe(method(stringForType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringForType(&self, r#type: &NSPasteboardType)
             -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method(propertyListForType:)]
+        #[unsafe(method(propertyListForType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyListForType(
             &self,
@@ -93,11 +93,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPasteboardItem {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -107,7 +107,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarditemdataprovider?language=objc)
     pub unsafe trait NSPasteboardItemDataProvider: NSObjectProtocol {
         #[cfg(feature = "NSPasteboard")]
-        #[method(pasteboard:item:provideDataForType:)]
+        #[unsafe(method(pasteboard:item:provideDataForType:))]
         #[unsafe(method_family = none)]
         unsafe fn pasteboard_item_provideDataForType(
             &self,
@@ -118,7 +118,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSPasteboard")]
         #[optional]
-        #[method(pasteboardFinishedWithDataProvider:)]
+        #[unsafe(method(pasteboardFinishedWithDataProvider:))]
         #[unsafe(method_family = none)]
         unsafe fn pasteboardFinishedWithDataProvider(&self, pasteboard: &NSPasteboard);
     }

@@ -9,11 +9,11 @@ extern_methods!(
     /// UISceneEnhancedStateRestoration
     #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
     unsafe impl UIScene {
-        #[method(extendStateRestoration)]
+        #[unsafe(method(extendStateRestoration))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendStateRestoration(&self);
 
-        #[method(completeStateRestoration)]
+        #[unsafe(method(completeStateRestoration))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeStateRestoration(&self);
     }

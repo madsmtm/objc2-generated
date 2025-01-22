@@ -23,20 +23,20 @@ unsafe impl NSObjectProtocol for SNClassification {}
 extern_methods!(
     unsafe impl SNClassification {
         /// The identifier of a classification request. An example classification could be a string like 'laughter' or 'applause'. The string is defined in the model that was used for the classification. Usually these are technical labels that are not localized and not meant to be used directly to be presented to an end user in the UI.
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// The level of confidence normalized to [0, 1], where 1 is most confident
-        #[method(confidence)]
+        #[unsafe(method(confidence))]
         #[unsafe(method_family = none)]
         pub unsafe fn confidence(&self) -> c_double;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -59,7 +59,7 @@ unsafe impl SNResult for SNClassificationResult {}
 extern_methods!(
     unsafe impl SNClassificationResult {
         /// All classification candidates, sorted with highest confidence first.
-        #[method(classifications)]
+        #[unsafe(method(classifications))]
         #[unsafe(method_family = none)]
         pub unsafe fn classifications(&self) -> Retained<NSArray<SNClassification>>;
 
@@ -67,15 +67,15 @@ extern_methods!(
         /// The time range in the client-provided audio stream to which this classification result corresponds
         ///
         /// Each CMTime contains of a value (audio frame count) and timescale (client sample rate). This enables the client to precisely identify the frame range in the original audio stream to which this result corresponds. Time ranges will often be in the past compared to the frame count of the most recent audio buffer provided to the analyzer, due to the inherent audio buffering operations required to deliver a full block of audio to an MLModel.
-        #[method(timeRange)]
+        #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -84,7 +84,7 @@ extern_methods!(
         /// - Parameter identifier: An identifier on which to query for a particular classification candidate. The query will match to any classification candidate whose `identifier` property (see `identifier` property of `SNClassification`) contains a value equal to the provided argument.
         ///
         /// - Returns: The classification candidate which has the specified identifier, if it exists. If no such candidate exists, `nil` will be returned.
-        #[method(classificationForIdentifier:)]
+        #[unsafe(method(classificationForIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn classificationForIdentifier(
             &self,

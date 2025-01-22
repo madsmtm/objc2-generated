@@ -28,60 +28,60 @@ unsafe impl NSObjectProtocol for MLCMultiheadAttentionDescriptor {}
 extern_methods!(
     unsafe impl MLCMultiheadAttentionDescriptor {
         #[deprecated]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// model or embedding dimension
         #[deprecated]
-        #[method(modelDimension)]
+        #[unsafe(method(modelDimension))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelDimension(&self) -> NSUInteger;
 
         /// total dimension of key space, Default = modelDimension
         #[deprecated]
-        #[method(keyDimension)]
+        #[unsafe(method(keyDimension))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyDimension(&self) -> NSUInteger;
 
         /// total dimension of value space, Default = modelDimension
         #[deprecated]
-        #[method(valueDimension)]
+        #[unsafe(method(valueDimension))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueDimension(&self) -> NSUInteger;
 
         /// number of parallel attention heads
         #[deprecated]
-        #[method(headCount)]
+        #[unsafe(method(headCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn headCount(&self) -> NSUInteger;
 
         /// a droupout layer applied to the output projection weights. Default = 0.0
         #[deprecated]
-        #[method(dropout)]
+        #[unsafe(method(dropout))]
         #[unsafe(method_family = none)]
         pub unsafe fn dropout(&self) -> c_float;
 
         /// if true, bias is used for query/key/value/output projections. Default = true
         #[deprecated]
-        #[method(hasBiases)]
+        #[unsafe(method(hasBiases))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasBiases(&self) -> bool;
 
         /// if true, an array of biases is added to key and value respectively. Default = false
         #[deprecated]
-        #[method(hasAttentionBiases)]
+        #[unsafe(method(hasAttentionBiases))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasAttentionBiases(&self) -> bool;
 
         /// if true, a row of zeroes is added to projected key and value. Default = false
         #[deprecated]
-        #[method(addsZeroAttention)]
+        #[unsafe(method(addsZeroAttention))]
         #[unsafe(method_family = none)]
         pub unsafe fn addsZeroAttention(&self) -> bool;
 
@@ -105,7 +105,7 @@ extern_methods!(
         ///
         /// Returns: A new MultiheadAttention layer descriptor
         #[deprecated]
-        #[method(descriptorWithModelDimension:keyDimension:valueDimension:headCount:dropout:hasBiases:hasAttentionBiases:addsZeroAttention:)]
+        #[unsafe(method(descriptorWithModelDimension:keyDimension:valueDimension:headCount:dropout:hasBiases:hasAttentionBiases:addsZeroAttention:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithModelDimension_keyDimension_valueDimension_headCount_dropout_hasBiases_hasAttentionBiases_addsZeroAttention(
             model_dimension: NSUInteger,
@@ -126,7 +126,7 @@ extern_methods!(
         ///
         /// Returns: A valid MultiheadAttention layer descriptor
         #[deprecated]
-        #[method(descriptorWithModelDimension:headCount:)]
+        #[unsafe(method(descriptorWithModelDimension:headCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithModelDimension_headCount(
             model_dimension: NSUInteger,

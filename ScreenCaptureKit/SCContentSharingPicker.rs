@@ -53,12 +53,12 @@ unsafe impl<NSCopying: ?Sized> NSObjectProtocol for SCContentSharingPickerConfig
 extern_methods!(
     unsafe impl<NSCopying: Message> SCContentSharingPickerConfiguration<NSCopying> {
         /// allowedPickerModes Limits the type of selections available to the user when the picker is presented. Default is 0, no excluded picking modes
-        #[method(allowedPickerModes)]
+        #[unsafe(method(allowedPickerModes))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedPickerModes(&self) -> SCContentSharingPickerMode;
 
         /// Setter for [`allowedPickerModes`][Self::allowedPickerModes].
-        #[method(setAllowedPickerModes:)]
+        #[unsafe(method(setAllowedPickerModes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedPickerModes(
             &self,
@@ -66,32 +66,32 @@ extern_methods!(
         );
 
         /// excludedWindowIDs Excludes CGWindowIDs for picking
-        #[method(excludedWindowIDs)]
+        #[unsafe(method(excludedWindowIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludedWindowIDs(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`excludedWindowIDs`][Self::excludedWindowIDs].
-        #[method(setExcludedWindowIDs:)]
+        #[unsafe(method(setExcludedWindowIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedWindowIDs(&self, excluded_window_i_ds: &NSArray<NSNumber>);
 
         /// excludedBundleIDs Excludes bundle IDs for picking
-        #[method(excludedBundleIDs)]
+        #[unsafe(method(excludedBundleIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludedBundleIDs(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`excludedBundleIDs`][Self::excludedBundleIDs].
-        #[method(setExcludedBundleIDs:)]
+        #[unsafe(method(setExcludedBundleIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedBundleIDs(&self, excluded_bundle_i_ds: &NSArray<NSString>);
 
         /// allowsChangingSelectedContent Controls if the user can make updates to the content filter after the initial selection. Defaults is YES.
-        #[method(allowsChangingSelectedContent)]
+        #[unsafe(method(allowsChangingSelectedContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsChangingSelectedContent(&self) -> bool;
 
         /// Setter for [`allowsChangingSelectedContent`][Self::allowsChangingSelectedContent].
-        #[method(setAllowsChangingSelectedContent:)]
+        #[unsafe(method(setAllowsChangingSelectedContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsChangingSelectedContent(
             &self,
@@ -103,11 +103,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<NSCopying: Message> SCContentSharingPickerConfiguration<NSCopying> {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -128,26 +128,26 @@ unsafe impl NSObjectProtocol for SCContentSharingPicker {}
 
 extern_methods!(
     unsafe impl SCContentSharingPicker {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// sharedPicker the singleton shared picker for the application
-        #[method(sharedPicker)]
+        #[unsafe(method(sharedPicker))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedPicker() -> Retained<SCContentSharingPicker>;
 
         /// defaultConfiguration for the content sharing picker. If a stream does not have a configuration, the default configuration will be used.
-        #[method(defaultConfiguration)]
+        #[unsafe(method(defaultConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultConfiguration(&self) -> Retained<SCContentSharingPickerConfiguration>;
 
         /// Setter for [`defaultConfiguration`][Self::defaultConfiguration].
-        #[method(setDefaultConfiguration:)]
+        #[unsafe(method(setDefaultConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultConfiguration(
             &self,
@@ -155,22 +155,22 @@ extern_methods!(
         );
 
         /// maximumStreamCount An integer value that, if set, limits when Control Center will show the UI to present a picker with no associated stream. If set to 0, Control Center will never ever show UI to present a picker without an associated stream.
-        #[method(maximumStreamCount)]
+        #[unsafe(method(maximumStreamCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumStreamCount(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`maximumStreamCount`][Self::maximumStreamCount].
-        #[method(setMaximumStreamCount:)]
+        #[unsafe(method(setMaximumStreamCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumStreamCount(&self, maximum_stream_count: Option<&NSNumber>);
 
         /// active A picker needs to be marked as active for its UI to appear. If `startPickingContent` is called and the picker is not marked as active, the picker will not appear.
-        #[method(isActive)]
+        #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isActive(&self) -> bool;
 
         /// Setter for [`isActive`][Self::isActive].
-        #[method(setActive:)]
+        #[unsafe(method(setActive:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActive(&self, active: bool);
 
@@ -179,7 +179,7 @@ extern_methods!(
         /// Parameter `observer`: the observer object that adheres to SCContentSharingPickerObserver protocol
         ///
         /// Adds an observer object that will receive the results of user interaction with a displayed picker
-        #[method(addObserver:)]
+        #[unsafe(method(addObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserver(
             &self,
@@ -191,7 +191,7 @@ extern_methods!(
         /// Parameter `observer`: the observer object that adheres to SCContentSharingPickerObserver protocol
         ///
         /// Removes an observer object that will receive the results of user interaction with a displayed picker
-        #[method(removeObserver:)]
+        #[unsafe(method(removeObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObserver(
             &self,
@@ -206,7 +206,7 @@ extern_methods!(
         /// Parameter `stream`: stream for optional picking configuration
         ///
         /// Sets optional configuration for the picker for a specific stream. If this is not set, the stream will use the defaultConfiguration instead
-        #[method(setConfiguration:forStream:)]
+        #[unsafe(method(setConfiguration:forStream:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration_forStream(
             &self,
@@ -217,7 +217,7 @@ extern_methods!(
         /// present
         ///
         /// show content sharing picker to get content for updating a new stream
-        #[method(present)]
+        #[unsafe(method(present))]
         #[unsafe(method_family = none)]
         pub unsafe fn present(&self);
 
@@ -227,7 +227,7 @@ extern_methods!(
         /// Parameter `contentStyle`: the mode in which picking should start
         ///
         /// Takes a person straight into picking particular windows or displays
-        #[method(presentPickerUsingContentStyle:)]
+        #[unsafe(method(presentPickerUsingContentStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentPickerUsingContentStyle(&self, content_style: SCShareableContentStyle);
 
@@ -237,7 +237,7 @@ extern_methods!(
         /// Parameter `stream`: the stream to update
         ///
         /// show content sharing picker with an existing stream
-        #[method(presentPickerForStream:)]
+        #[unsafe(method(presentPickerForStream:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentPickerForStream(&self, stream: &SCStream);
 
@@ -249,7 +249,7 @@ extern_methods!(
         /// Parameter `contentStyle`: the mode in which picking should start
         ///
         /// Takes a person straight into picking particular windows or displays
-        #[method(presentPickerForStream:usingContentStyle:)]
+        #[unsafe(method(presentPickerForStream:usingContentStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentPickerForStream_usingContentStyle(
             &self,
@@ -274,7 +274,7 @@ extern_protocol!(
         /// Parameter `stream`: the optional associated stream for this picker
         ///
         /// the observer callback method when the picker has been canceled with no selection.
-        #[method(contentSharingPicker:didCancelForStream:)]
+        #[unsafe(method(contentSharingPicker:didCancelForStream:))]
         #[unsafe(method_family = none)]
         unsafe fn contentSharingPicker_didCancelForStream(
             &self,
@@ -292,7 +292,7 @@ extern_protocol!(
         /// Parameter `stream`: the updated stream
         ///
         /// the observer callback method when the user has finished updating content for a stream
-        #[method(contentSharingPicker:didUpdateWithFilter:forStream:)]
+        #[unsafe(method(contentSharingPicker:didUpdateWithFilter:forStream:))]
         #[unsafe(method_family = none)]
         unsafe fn contentSharingPicker_didUpdateWithFilter_forStream(
             &self,
@@ -306,7 +306,7 @@ extern_protocol!(
         /// Parameter `error`: the error denoted for the failure to start picker
         ///
         /// the observer callback method when the picker was asked to start but failed to do so.
-        #[method(contentSharingPickerStartDidFailWithError:)]
+        #[unsafe(method(contentSharingPickerStartDidFailWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn contentSharingPickerStartDidFailWithError(&self, error: &NSError);
     }

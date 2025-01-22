@@ -35,18 +35,18 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectTextRectanglesRequest {
         /// Specify whether or not the bounding boxes of individual characters should also be returned in the resultant VNTextObservations. Default is NO.
-        #[method(reportCharacterBoxes)]
+        #[unsafe(method(reportCharacterBoxes))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportCharacterBoxes(&self) -> bool;
 
         /// Setter for [`reportCharacterBoxes`][Self::reportCharacterBoxes].
-        #[method(setReportCharacterBoxes:)]
+        #[unsafe(method(setReportCharacterBoxes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReportCharacterBoxes(&self, report_character_boxes: bool);
 
         #[cfg(feature = "VNObservation")]
         /// VNTextObservation results.
-        #[method(results)]
+        #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNTextObservation>>>;
     }
@@ -57,7 +57,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectTextRectanglesRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -66,7 +66,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method(initWithCompletionHandler:)]
+        #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -79,7 +79,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectTextRectanglesRequest {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

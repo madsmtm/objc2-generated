@@ -31,19 +31,19 @@ unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for NSMeasurement<
 
 extern_methods!(
     unsafe impl<UnitType: Message> NSMeasurement<UnitType> {
-        #[method(unit)]
+        #[unsafe(method(unit))]
         #[unsafe(method_family = none)]
         pub unsafe fn unit(&self) -> Retained<UnitType>;
 
-        #[method(doubleValue)]
+        #[unsafe(method(doubleValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn doubleValue(&self) -> c_double;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithDoubleValue:unit:)]
+        #[unsafe(method(initWithDoubleValue:unit:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDoubleValue_unit(
             this: Allocated<Self>,
@@ -52,26 +52,26 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSUnit")]
-        #[method(canBeConvertedToUnit:)]
+        #[unsafe(method(canBeConvertedToUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canBeConvertedToUnit(&self, unit: &NSUnit) -> bool;
 
         #[cfg(feature = "NSUnit")]
-        #[method(measurementByConvertingToUnit:)]
+        #[unsafe(method(measurementByConvertingToUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn measurementByConvertingToUnit(
             &self,
             unit: &NSUnit,
         ) -> Retained<NSMeasurement>;
 
-        #[method(measurementByAddingMeasurement:)]
+        #[unsafe(method(measurementByAddingMeasurement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn measurementByAddingMeasurement(
             &self,
             measurement: &NSMeasurement<UnitType>,
         ) -> Retained<NSMeasurement<UnitType>>;
 
-        #[method(measurementBySubtractingMeasurement:)]
+        #[unsafe(method(measurementBySubtractingMeasurement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn measurementBySubtractingMeasurement(
             &self,
@@ -83,7 +83,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<UnitType: Message> NSMeasurement<UnitType> {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -73,7 +73,7 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayIdentity {
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -95,7 +95,7 @@ extern_methods!(
         /// due to existing slices or transposes nil is returned. If aliasing is successful, then a new arrayview of `sourceArray`
         /// is returned; If `sourceArray` is a `MPSTemporaryArray` then a `MPSTemporaryArray` is returned referencing the same data,
         /// otherwise a `MPSNDArray` type result is returned.
-        #[method(reshapeWithCommandBuffer:sourceArray:shape:destinationArray:)]
+        #[unsafe(method(reshapeWithCommandBuffer:sourceArray:shape:destinationArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reshapeWithCommandBuffer_sourceArray_shape_destinationArray(
             &self,
@@ -105,7 +105,7 @@ extern_methods!(
             destination_array: Option<&MPSNDArray>,
         ) -> Option<Retained<MPSNDArray>>;
 
-        #[method(reshapeWithCommandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:)]
+        #[unsafe(method(reshapeWithCommandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reshapeWithCommandBuffer_sourceArray_dimensionCount_dimensionSizes_destinationArray(
             &self,
@@ -117,7 +117,7 @@ extern_methods!(
         ) -> Option<Retained<MPSNDArray>>;
 
         #[cfg(feature = "MPSCoreTypes")]
-        #[method(reshapeWithCommandEncoder:commandBuffer:sourceArray:shape:destinationArray:)]
+        #[unsafe(method(reshapeWithCommandEncoder:commandBuffer:sourceArray:shape:destinationArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reshapeWithCommandEncoder_commandBuffer_sourceArray_shape_destinationArray(
             &self,
@@ -128,7 +128,7 @@ extern_methods!(
             destination_array: Option<&MPSNDArray>,
         ) -> Option<Retained<MPSNDArray>>;
 
-        #[method(reshapeWithCommandEncoder:commandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:)]
+        #[unsafe(method(reshapeWithCommandEncoder:commandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reshapeWithCommandEncoder_commandBuffer_sourceArray_dimensionCount_dimensionSizes_destinationArray(
             &self,
@@ -150,7 +150,7 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayIdentity {
-        #[method(initWithDevice:sourceCount:)]
+        #[unsafe(method(initWithDevice:sourceCount:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
@@ -158,7 +158,7 @@ extern_methods!(
             count: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -184,7 +184,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -201,11 +201,11 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayIdentity {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

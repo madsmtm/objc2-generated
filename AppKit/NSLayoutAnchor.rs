@@ -29,7 +29,7 @@ extern_methods!(
     unsafe impl<AnchorType: Message> NSLayoutAnchor<AnchorType> {
         #[cfg(feature = "NSLayoutConstraint")]
         #[must_use]
-        #[method(constraintEqualToAnchor:)]
+        #[unsafe(method(constraintEqualToAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintEqualToAnchor(
             &self,
@@ -38,7 +38,7 @@ extern_methods!(
 
         #[cfg(feature = "NSLayoutConstraint")]
         #[must_use]
-        #[method(constraintGreaterThanOrEqualToAnchor:)]
+        #[unsafe(method(constraintGreaterThanOrEqualToAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintGreaterThanOrEqualToAnchor(
             &self,
@@ -47,7 +47,7 @@ extern_methods!(
 
         #[cfg(feature = "NSLayoutConstraint")]
         #[must_use]
-        #[method(constraintLessThanOrEqualToAnchor:)]
+        #[unsafe(method(constraintLessThanOrEqualToAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintLessThanOrEqualToAnchor(
             &self,
@@ -56,7 +56,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintEqualToAnchor:constant:)]
+        #[unsafe(method(constraintEqualToAnchor:constant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintEqualToAnchor_constant(
             &self,
@@ -66,7 +66,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintGreaterThanOrEqualToAnchor:constant:)]
+        #[unsafe(method(constraintGreaterThanOrEqualToAnchor:constant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintGreaterThanOrEqualToAnchor_constant(
             &self,
@@ -76,7 +76,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintLessThanOrEqualToAnchor:constant:)]
+        #[unsafe(method(constraintLessThanOrEqualToAnchor:constant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintLessThanOrEqualToAnchor_constant(
             &self,
@@ -84,20 +84,20 @@ extern_methods!(
             c: CGFloat,
         ) -> Retained<NSLayoutConstraint>;
 
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method(item)]
+        #[unsafe(method(item))]
         #[unsafe(method_family = none)]
         pub unsafe fn item(&self) -> Option<Retained<AnyObject>>;
 
-        #[method(hasAmbiguousLayout)]
+        #[unsafe(method(hasAmbiguousLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasAmbiguousLayout(&self) -> bool;
 
         #[cfg(feature = "NSLayoutConstraint")]
-        #[method(constraintsAffectingLayout)]
+        #[unsafe(method(constraintsAffectingLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintsAffectingLayout(&self) -> Retained<NSArray<NSLayoutConstraint>>;
     }
@@ -106,11 +106,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<AnchorType: Message> NSLayoutAnchor<AnchorType> {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -135,7 +135,7 @@ unsafe impl NSObjectProtocol for NSLayoutXAxisAnchor {}
 
 extern_methods!(
     unsafe impl NSLayoutXAxisAnchor {
-        #[method(anchorWithOffsetToAnchor:)]
+        #[unsafe(method(anchorWithOffsetToAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn anchorWithOffsetToAnchor(
             &self,
@@ -144,7 +144,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintEqualToSystemSpacingAfterAnchor:multiplier:)]
+        #[unsafe(method(constraintEqualToSystemSpacingAfterAnchor:multiplier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintEqualToSystemSpacingAfterAnchor_multiplier(
             &self,
@@ -154,7 +154,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:multiplier:)]
+        #[unsafe(method(constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:multiplier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintGreaterThanOrEqualToSystemSpacingAfterAnchor_multiplier(
             &self,
@@ -164,7 +164,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintLessThanOrEqualToSystemSpacingAfterAnchor:multiplier:)]
+        #[unsafe(method(constraintLessThanOrEqualToSystemSpacingAfterAnchor:multiplier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintLessThanOrEqualToSystemSpacingAfterAnchor_multiplier(
             &self,
@@ -177,11 +177,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSLayoutXAxisAnchor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -206,7 +206,7 @@ unsafe impl NSObjectProtocol for NSLayoutYAxisAnchor {}
 
 extern_methods!(
     unsafe impl NSLayoutYAxisAnchor {
-        #[method(anchorWithOffsetToAnchor:)]
+        #[unsafe(method(anchorWithOffsetToAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn anchorWithOffsetToAnchor(
             &self,
@@ -215,7 +215,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintEqualToSystemSpacingBelowAnchor:multiplier:)]
+        #[unsafe(method(constraintEqualToSystemSpacingBelowAnchor:multiplier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintEqualToSystemSpacingBelowAnchor_multiplier(
             &self,
@@ -225,7 +225,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintGreaterThanOrEqualToSystemSpacingBelowAnchor:multiplier:)]
+        #[unsafe(method(constraintGreaterThanOrEqualToSystemSpacingBelowAnchor:multiplier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintGreaterThanOrEqualToSystemSpacingBelowAnchor_multiplier(
             &self,
@@ -235,7 +235,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintLessThanOrEqualToSystemSpacingBelowAnchor:multiplier:)]
+        #[unsafe(method(constraintLessThanOrEqualToSystemSpacingBelowAnchor:multiplier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintLessThanOrEqualToSystemSpacingBelowAnchor_multiplier(
             &self,
@@ -248,11 +248,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSLayoutYAxisAnchor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -279,13 +279,13 @@ extern_methods!(
     unsafe impl NSLayoutDimension {
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintEqualToConstant:)]
+        #[unsafe(method(constraintEqualToConstant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintEqualToConstant(&self, c: CGFloat) -> Retained<NSLayoutConstraint>;
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintGreaterThanOrEqualToConstant:)]
+        #[unsafe(method(constraintGreaterThanOrEqualToConstant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintGreaterThanOrEqualToConstant(
             &self,
@@ -294,7 +294,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintLessThanOrEqualToConstant:)]
+        #[unsafe(method(constraintLessThanOrEqualToConstant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintLessThanOrEqualToConstant(
             &self,
@@ -303,7 +303,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintEqualToAnchor:multiplier:)]
+        #[unsafe(method(constraintEqualToAnchor:multiplier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintEqualToAnchor_multiplier(
             &self,
@@ -313,7 +313,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintGreaterThanOrEqualToAnchor:multiplier:)]
+        #[unsafe(method(constraintGreaterThanOrEqualToAnchor:multiplier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintGreaterThanOrEqualToAnchor_multiplier(
             &self,
@@ -323,7 +323,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintLessThanOrEqualToAnchor:multiplier:)]
+        #[unsafe(method(constraintLessThanOrEqualToAnchor:multiplier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintLessThanOrEqualToAnchor_multiplier(
             &self,
@@ -333,7 +333,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintEqualToAnchor:multiplier:constant:)]
+        #[unsafe(method(constraintEqualToAnchor:multiplier:constant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintEqualToAnchor_multiplier_constant(
             &self,
@@ -344,7 +344,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintGreaterThanOrEqualToAnchor:multiplier:constant:)]
+        #[unsafe(method(constraintGreaterThanOrEqualToAnchor:multiplier:constant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintGreaterThanOrEqualToAnchor_multiplier_constant(
             &self,
@@ -355,7 +355,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[must_use]
-        #[method(constraintLessThanOrEqualToAnchor:multiplier:constant:)]
+        #[unsafe(method(constraintLessThanOrEqualToAnchor:multiplier:constant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintLessThanOrEqualToAnchor_multiplier_constant(
             &self,
@@ -369,11 +369,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSLayoutDimension {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

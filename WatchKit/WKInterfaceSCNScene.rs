@@ -28,19 +28,19 @@ extern_methods!(
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceSCNScene {
         #[deprecated = "Use SceneKit.SceneView instead."]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-scene-kit")]
         /// Specifies the scene of the receiver
-        #[method(scene)]
+        #[unsafe(method(scene))]
         #[unsafe(method_family = none)]
         pub unsafe fn scene(&self) -> Option<Retained<SCNScene>>;
 
         #[cfg(feature = "objc2-scene-kit")]
         /// Setter for [`scene`][Self::scene].
-        #[method(setScene:)]
+        #[unsafe(method(setScene:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScene(&self, scene: Option<&SCNScene>);
 
@@ -48,7 +48,7 @@ extern_methods!(
         /// Draws the contents of the view and returns them as a new image object
         ///
         /// This method is thread-safe and may be called at any time.
-        #[method(snapshot)]
+        #[unsafe(method(snapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshot(&self) -> Retained<UIImage>;
 
@@ -56,24 +56,24 @@ extern_methods!(
         ///
         /// When your application sets its preferred frame rate, the view chooses a frame rate as close to that as possible based on the capabilities of the screen the view is displayed on. The actual frame rate chosen is usually a factor of the maximum refresh rate of the screen to provide a consistent frame rate. For example, if the maximum refresh rate of the screen is 60 frames per second, that is also the highest frame rate the view sets as the actual frame rate. However, if you ask for a lower frame rate, it might choose 30, 20, 15 or some other factor to be the actual frame rate. Your application should choose a frame rate that it can consistently maintain.
         /// The default value is 0 which means the display link will fire at the native cadence of the display hardware.
-        #[method(preferredFramesPerSecond)]
+        #[unsafe(method(preferredFramesPerSecond))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredFramesPerSecond(&self) -> NSInteger;
 
         /// Setter for [`preferredFramesPerSecond`][Self::preferredFramesPerSecond].
-        #[method(setPreferredFramesPerSecond:)]
+        #[unsafe(method(setPreferredFramesPerSecond:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredFramesPerSecond(&self, preferred_frames_per_second: NSInteger);
 
         #[cfg(feature = "objc2-scene-kit")]
         /// Defaults to SCNAntialiasingModeNone.
-        #[method(antialiasingMode)]
+        #[unsafe(method(antialiasingMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn antialiasingMode(&self) -> SCNAntialiasingMode;
 
         #[cfg(feature = "objc2-scene-kit")]
         /// Setter for [`antialiasingMode`][Self::antialiasingMode].
-        #[method(setAntialiasingMode:)]
+        #[unsafe(method(setAntialiasingMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAntialiasingMode(&self, antialiasing_mode: SCNAntialiasingMode);
     }
@@ -83,7 +83,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceSCNScene {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

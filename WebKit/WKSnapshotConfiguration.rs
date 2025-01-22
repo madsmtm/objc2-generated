@@ -32,13 +32,13 @@ extern_methods!(
         ///
         /// This rect should be contained within WKWebView's bounds. If the rect is set to the
         /// null rect, the view's bounds will be used. The initial value is the null rect.
-        #[method(rect)]
+        #[unsafe(method(rect))]
         #[unsafe(method_family = none)]
         pub unsafe fn rect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`rect`][Self::rect].
-        #[method(setRect:)]
+        #[unsafe(method(setRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRect(&self, rect: CGRect);
 
@@ -47,12 +47,12 @@ extern_methods!(
         ///
         /// snapshotWidth represents the width in points. If the snapshotWidth is nil, rect's
         /// width will be used.
-        #[method(snapshotWidth)]
+        #[unsafe(method(snapshotWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshotWidth(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`snapshotWidth`][Self::snapshotWidth].
-        #[method(setSnapshotWidth:)]
+        #[unsafe(method(setSnapshotWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSnapshotWidth(&self, snapshot_width: Option<&NSNumber>);
 
@@ -61,12 +61,12 @@ extern_methods!(
         /// which might not include recent changes.
         ///
         /// The default value is YES.
-        #[method(afterScreenUpdates)]
+        #[unsafe(method(afterScreenUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn afterScreenUpdates(&self) -> bool;
 
         /// Setter for [`afterScreenUpdates`][Self::afterScreenUpdates].
-        #[method(setAfterScreenUpdates:)]
+        #[unsafe(method(setAfterScreenUpdates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAfterScreenUpdates(&self, after_screen_updates: bool);
     }
@@ -75,11 +75,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKSnapshotConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

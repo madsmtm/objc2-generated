@@ -196,100 +196,100 @@ unsafe impl NSObjectProtocol for WKInterfaceDevice {}
 
 extern_methods!(
     unsafe impl WKInterfaceDevice {
-        #[method(currentDevice)]
+        #[unsafe(method(currentDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentDevice() -> Retained<WKInterfaceDevice>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(screenBounds)]
+        #[unsafe(method(screenBounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn screenBounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(screenScale)]
+        #[unsafe(method(screenScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn screenScale(&self) -> CGFloat;
 
-        #[method(isBatteryMonitoringEnabled)]
+        #[unsafe(method(isBatteryMonitoringEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBatteryMonitoringEnabled(&self) -> bool;
 
         /// Setter for [`isBatteryMonitoringEnabled`][Self::isBatteryMonitoringEnabled].
-        #[method(setBatteryMonitoringEnabled:)]
+        #[unsafe(method(setBatteryMonitoringEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBatteryMonitoringEnabled(&self, battery_monitoring_enabled: bool);
 
-        #[method(batteryLevel)]
+        #[unsafe(method(batteryLevel))]
         #[unsafe(method_family = none)]
         pub unsafe fn batteryLevel(&self) -> c_float;
 
-        #[method(batteryState)]
+        #[unsafe(method(batteryState))]
         #[unsafe(method_family = none)]
         pub unsafe fn batteryState(&self) -> WKInterfaceDeviceBatteryState;
 
-        #[method(preferredContentSizeCategory)]
+        #[unsafe(method(preferredContentSizeCategory))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredContentSizeCategory(&self) -> Retained<NSString>;
 
-        #[method(layoutDirection)]
+        #[unsafe(method(layoutDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutDirection(&self) -> WKInterfaceLayoutDirection;
 
-        #[method(wristLocation)]
+        #[unsafe(method(wristLocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn wristLocation(&self) -> WKInterfaceDeviceWristLocation;
 
-        #[method(crownOrientation)]
+        #[unsafe(method(crownOrientation))]
         #[unsafe(method_family = none)]
         pub unsafe fn crownOrientation(&self) -> WKInterfaceDeviceCrownOrientation;
 
-        #[method(interfaceLayoutDirectionForSemanticContentAttribute:)]
+        #[unsafe(method(interfaceLayoutDirectionForSemanticContentAttribute:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceLayoutDirectionForSemanticContentAttribute(
             semantic_content_attribute: WKInterfaceSemanticContentAttribute,
         ) -> WKInterfaceLayoutDirection;
 
-        #[method(systemVersion)]
+        #[unsafe(method(systemVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemVersion(&self) -> Retained<NSString>;
 
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method(model)]
+        #[unsafe(method(model))]
         #[unsafe(method_family = none)]
         pub unsafe fn model(&self) -> Retained<NSString>;
 
-        #[method(localizedModel)]
+        #[unsafe(method(localizedModel))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedModel(&self) -> Retained<NSString>;
 
-        #[method(systemName)]
+        #[unsafe(method(systemName))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemName(&self) -> Retained<NSString>;
 
-        #[method(waterResistanceRating)]
+        #[unsafe(method(waterResistanceRating))]
         #[unsafe(method_family = none)]
         pub unsafe fn waterResistanceRating(&self) -> WKWaterResistanceRating;
 
-        #[method(isWaterLockEnabled)]
+        #[unsafe(method(isWaterLockEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isWaterLockEnabled(&self) -> bool;
 
-        #[method(supportsAudioStreaming)]
+        #[unsafe(method(supportsAudioStreaming))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsAudioStreaming(&self) -> bool;
 
-        #[method(identifierForVendor)]
+        #[unsafe(method(identifierForVendor))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifierForVendor(&self) -> Option<Retained<NSUUID>>;
 
-        #[method(playHaptic:)]
+        #[unsafe(method(playHaptic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playHaptic(&self, r#type: WKHapticType);
 
-        #[method(enableWaterLock)]
+        #[unsafe(method(enableWaterLock))]
         #[unsafe(method_family = none)]
         pub unsafe fn enableWaterLock(&self);
     }
@@ -298,11 +298,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKInterfaceDevice {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

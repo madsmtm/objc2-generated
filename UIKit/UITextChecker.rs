@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for UITextChecker {}
 
 extern_methods!(
     unsafe impl UITextChecker {
-        #[method(rangeOfMisspelledWordInString:range:startingAt:wrap:language:)]
+        #[unsafe(method(rangeOfMisspelledWordInString:range:startingAt:wrap:language:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rangeOfMisspelledWordInString_range_startingAt_wrap_language(
             &self,
@@ -30,7 +30,7 @@ extern_methods!(
             language: &NSString,
         ) -> NSRange;
 
-        #[method(guessesForWordRange:inString:language:)]
+        #[unsafe(method(guessesForWordRange:inString:language:))]
         #[unsafe(method_family = none)]
         pub unsafe fn guessesForWordRange_inString_language(
             &self,
@@ -39,7 +39,7 @@ extern_methods!(
             language: &NSString,
         ) -> Option<Retained<NSArray<NSString>>>;
 
-        #[method(completionsForPartialWordRange:inString:language:)]
+        #[unsafe(method(completionsForPartialWordRange:inString:language:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionsForPartialWordRange_inString_language(
             &self,
@@ -48,32 +48,32 @@ extern_methods!(
             language: &NSString,
         ) -> Option<Retained<NSArray<NSString>>>;
 
-        #[method(ignoreWord:)]
+        #[unsafe(method(ignoreWord:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ignoreWord(&self, word_to_ignore: &NSString);
 
-        #[method(ignoredWords)]
+        #[unsafe(method(ignoredWords))]
         #[unsafe(method_family = none)]
         pub unsafe fn ignoredWords(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`ignoredWords`][Self::ignoredWords].
-        #[method(setIgnoredWords:)]
+        #[unsafe(method(setIgnoredWords:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIgnoredWords(&self, ignored_words: Option<&NSArray<NSString>>);
 
-        #[method(learnWord:)]
+        #[unsafe(method(learnWord:))]
         #[unsafe(method_family = none)]
         pub unsafe fn learnWord(word: &NSString, mtm: MainThreadMarker);
 
-        #[method(hasLearnedWord:)]
+        #[unsafe(method(hasLearnedWord:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasLearnedWord(word: &NSString, mtm: MainThreadMarker) -> bool;
 
-        #[method(unlearnWord:)]
+        #[unsafe(method(unlearnWord:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unlearnWord(word: &NSString, mtm: MainThreadMarker);
 
-        #[method(availableLanguages)]
+        #[unsafe(method(availableLanguages))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableLanguages(mtm: MainThreadMarker) -> Retained<NSArray<NSString>>;
     }
@@ -82,11 +82,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextChecker {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -24,12 +24,12 @@ unsafe impl NSObjectProtocol for UIWindowSceneGeometryPreferencesMac {}
 extern_methods!(
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
     unsafe impl UIWindowSceneGeometryPreferencesMac {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithSystemFrame:)]
+        #[unsafe(method(initWithSystemFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSystemFrame(
             this: Allocated<Self>,
@@ -39,13 +39,13 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The preferred system frame in the system scale where an origin of (0, 0) corresponds to the top-left
         /// corner of the main display. Defaults to CGRectNull to indicate no preference.
-        #[method(systemFrame)]
+        #[unsafe(method(systemFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemFrame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`systemFrame`][Self::systemFrame].
-        #[method(setSystemFrame:)]
+        #[unsafe(method(setSystemFrame:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSystemFrame(&self, system_frame: CGRect);
     }
@@ -55,7 +55,7 @@ extern_methods!(
     /// Methods declared on superclass `UIWindowSceneGeometryPreferences`
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
     unsafe impl UIWindowSceneGeometryPreferencesMac {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

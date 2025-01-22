@@ -23,39 +23,39 @@ unsafe impl NSSecureCoding for UISceneActivationConditions {}
 
 extern_methods!(
     unsafe impl UISceneActivationConditions {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(canActivateForTargetContentIdentifierPredicate)]
+        #[unsafe(method(canActivateForTargetContentIdentifierPredicate))]
         #[unsafe(method_family = none)]
         pub unsafe fn canActivateForTargetContentIdentifierPredicate(
             &self,
         ) -> Retained<NSPredicate>;
 
         /// Setter for [`canActivateForTargetContentIdentifierPredicate`][Self::canActivateForTargetContentIdentifierPredicate].
-        #[method(setCanActivateForTargetContentIdentifierPredicate:)]
+        #[unsafe(method(setCanActivateForTargetContentIdentifierPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCanActivateForTargetContentIdentifierPredicate(
             &self,
             can_activate_for_target_content_identifier_predicate: &NSPredicate,
         );
 
-        #[method(prefersToActivateForTargetContentIdentifierPredicate)]
+        #[unsafe(method(prefersToActivateForTargetContentIdentifierPredicate))]
         #[unsafe(method_family = none)]
         pub unsafe fn prefersToActivateForTargetContentIdentifierPredicate(
             &self,
         ) -> Retained<NSPredicate>;
 
         /// Setter for [`prefersToActivateForTargetContentIdentifierPredicate`][Self::prefersToActivateForTargetContentIdentifierPredicate].
-        #[method(setPrefersToActivateForTargetContentIdentifierPredicate:)]
+        #[unsafe(method(setPrefersToActivateForTargetContentIdentifierPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrefersToActivateForTargetContentIdentifierPredicate(
             &self,
@@ -67,7 +67,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISceneActivationConditions {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -77,12 +77,12 @@ extern_category!(
     /// Category "UISceneActivationConditions" on [`NSUserActivity`].
     #[doc(alias = "UISceneActivationConditions")]
     pub unsafe trait NSUserActivityUISceneActivationConditions {
-        #[method(targetContentIdentifier)]
+        #[unsafe(method(targetContentIdentifier))]
         #[unsafe(method_family = none)]
         unsafe fn targetContentIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`targetContentIdentifier`][Self::targetContentIdentifier].
-        #[method(setTargetContentIdentifier:)]
+        #[unsafe(method(setTargetContentIdentifier:))]
         #[unsafe(method_family = none)]
         unsafe fn setTargetContentIdentifier(&self, target_content_identifier: Option<&NSString>);
     }

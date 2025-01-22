@@ -80,17 +80,17 @@ extern_methods!(
     unsafe impl MLMultiArray {
         /// Unsafe pointer to underlying buffer holding the data
         #[deprecated = "Use getBytesWithHandler or getMutableBytesWithHandler instead. For Swift, use withUnsafeBytes or withUnsafeMutableBytes."]
-        #[method(dataPointer)]
+        #[unsafe(method(dataPointer))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataPointer(&self) -> NonNull<c_void>;
 
         /// Scalar's data type.
-        #[method(dataType)]
+        #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataType(&self) -> MLMultiArrayDataType;
 
         /// Shape of the multi-dimensional space that this instance represents.
-        #[method(shape)]
+        #[unsafe(method(shape))]
         #[unsafe(method_family = none)]
         pub unsafe fn shape(&self) -> Retained<NSArray<NSNumber>>;
 
@@ -100,20 +100,20 @@ extern_methods!(
         /// ```text
         /// scalarOffset = sum_d index[d]*strides[d]
         /// ```
-        #[method(strides)]
+        #[unsafe(method(strides))]
         #[unsafe(method_family = none)]
         pub unsafe fn strides(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Count of total number of addressable scalars.
         ///
         /// The value is same as `product_d shape[d]`.
-        #[method(count)]
+        #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSInteger;
 
         #[cfg(feature = "objc2-core-video")]
         /// Returns the backing pixel buffer if exists, otherwise nil.
-        #[method(pixelBuffer)]
+        #[unsafe(method(pixelBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
     }
@@ -122,11 +122,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLMultiArray {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -145,7 +145,7 @@ extern_methods!(
         /// - shape: The shape
         /// - dataType: The data type
         /// - error: Filled with error information on error.
-        #[method(initWithShape:dataType:error:_)]
+        #[unsafe(method(initWithShape:dataType:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithShape_dataType_error(
             this: Allocated<Self>,
@@ -197,7 +197,7 @@ extern_methods!(
         /// - shape: The shape
         /// - dataType: The data type
         /// - strides: The strides.
-        #[method(initWithShape:dataType:strides:)]
+        #[unsafe(method(initWithShape:dataType:strides:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithShape_dataType_strides(
             this: Allocated<Self>,
@@ -244,7 +244,7 @@ extern_methods!(
         /// - strides: The strides.
         /// - deallocator: Block to be called on the deallocation of the instance.
         /// - error: Filled with error information on error.
-        #[method(initWithDataPointer:shape:dataType:strides:deallocator:error:_)]
+        #[unsafe(method(initWithDataPointer:shape:dataType:strides:deallocator:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDataPointer_shape_dataType_strides_deallocator_error(
             this: Allocated<Self>,
@@ -292,7 +292,7 @@ extern_methods!(
         /// - Parameters:
         /// - pixelBuffer: The pixel buffer to be owned by the instance.
         /// - shape: The shape of the MLMultiArray. The last dimension of `shape` must match the pixel buffer's width. The product of the rest of the dimensions must match the height.
-        #[method(initWithPixelBuffer:shape:)]
+        #[unsafe(method(initWithPixelBuffer:shape:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPixelBuffer_shape(
             this: Allocated<Self>,
@@ -338,7 +338,7 @@ extern_methods!(
         /// ```
         /// - Parameters:
         /// - handler: The block to receive the buffer pointer and its size in bytes.
-        #[method(getBytesWithHandler:)]
+        #[unsafe(method(getBytesWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getBytesWithHandler(
             &self,
@@ -371,7 +371,7 @@ extern_methods!(
         ///
         /// - Parameters:
         /// - handler: The block to receive the buffer pointer, size in bytes, and strides.
-        #[method(getMutableBytesWithHandler:)]
+        #[unsafe(method(getMutableBytesWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getMutableBytesWithHandler(
             &self,
@@ -438,7 +438,7 @@ extern_methods!(
         /// - multiArrays: Array of MLMultiArray instances to be concatenated.
         /// - axis: Axis index with which the concatenation will performed. The value is wrapped by the dimension of the axis. For example, -1 is the last axis.
         /// - dataType: The data type of the resultant MLMultiArray.
-        #[method(multiArrayByConcatenatingMultiArrays:alongAxis:dataType:)]
+        #[unsafe(method(multiArrayByConcatenatingMultiArrays:alongAxis:dataType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn multiArrayByConcatenatingMultiArrays_alongAxis_dataType(
             multi_arrays: &NSArray<MLMultiArray>,
@@ -452,27 +452,27 @@ extern_methods!(
     /// NSNumberDataAccess
     unsafe impl MLMultiArray {
         /// Get a value by its linear index (assumes C-style index ordering)
-        #[method(objectAtIndexedSubscript:)]
+        #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(&self, idx: NSInteger) -> Retained<NSNumber>;
 
         /// Get a value by its multidimensional index (NSArray
         /// <NSNumber
         /// *>)
-        #[method(objectForKeyedSubscript:)]
+        #[unsafe(method(objectForKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(&self, key: &NSArray<NSNumber>)
             -> Retained<NSNumber>;
 
         /// Set a value by its linear index (assumes C-style index ordering)
-        #[method(setObject:atIndexedSubscript:)]
+        #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(&self, obj: &NSNumber, idx: NSInteger);
 
         /// Set a value by subindicies (NSArray
         /// <NSNumber
         /// *>)
-        #[method(setObject:forKeyedSubscript:)]
+        #[unsafe(method(setObject:forKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_forKeyedSubscript(&self, obj: &NSNumber, key: &NSArray<NSNumber>);
     }
@@ -536,7 +536,7 @@ extern_methods!(
         ///
         /// - Parameters:
         /// - destinationMultiArray: The transfer destination.
-        #[method(transferToMultiArray:)]
+        #[unsafe(method(transferToMultiArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn transferToMultiArray(&self, destination_multi_array: &MLMultiArray);
     }

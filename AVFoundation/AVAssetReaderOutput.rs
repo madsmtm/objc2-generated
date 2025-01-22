@@ -32,7 +32,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is one of the media type strings defined in AVMediaFormat.h.
-        #[method(mediaType)]
+        #[unsafe(method(mediaType))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
@@ -44,12 +44,12 @@ extern_methods!(
         /// The default value is YES.
         ///
         /// This property throws an exception if a value is set after reading has started (the asset reader has progressed beyond AVAssetReaderStatusUnknown).
-        #[method(alwaysCopiesSampleData)]
+        #[unsafe(method(alwaysCopiesSampleData))]
         #[unsafe(method_family = none)]
         pub unsafe fn alwaysCopiesSampleData(&self) -> bool;
 
         /// Setter for [`alwaysCopiesSampleData`][Self::alwaysCopiesSampleData].
-        #[method(setAlwaysCopiesSampleData:)]
+        #[unsafe(method(setAlwaysCopiesSampleData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlwaysCopiesSampleData(&self, always_copies_sample_data: bool);
 
@@ -65,7 +65,7 @@ extern_methods!(
         /// In certain configurations, such as when outputSettings is nil, copyNextSampleBuffer may return marker-only sample buffers as well as sample buffers containing media data. Marker-only sample buffers can be identified by CMSampleBufferGetNumSamples returning 0. Clients who do not need the information attached to marker-only sample buffers may skip them.
         ///
         /// This method throws an exception if this output is not added to an instance of AVAssetReader (using -addOutput:) and -startReading is not called on that asset reader.
-        #[method(copyNextSampleBuffer)]
+        #[unsafe(method(copyNextSampleBuffer))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyNextSampleBuffer(&self) -> Option<Retained<CMSampleBuffer>>;
     }
@@ -74,11 +74,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAssetReaderOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -95,12 +95,12 @@ extern_methods!(
         /// The default value is NO, which means that the asset reader output may not be reconfigured once reading has begun.  When the value of this property is NO, AVAssetReader may be able to read media data more efficiently, particularly when multiple asset reader outputs are attached.
         ///
         /// This property throws an exception if a value is set after reading has started (the asset reader has progressed beyond AVAssetReaderStatusUnknown).
-        #[method(supportsRandomAccess)]
+        #[unsafe(method(supportsRandomAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsRandomAccess(&self) -> bool;
 
         /// Setter for [`supportsRandomAccess`][Self::supportsRandomAccess].
-        #[method(setSupportsRandomAccess:)]
+        #[unsafe(method(setSupportsRandomAccess:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportsRandomAccess(&self, supports_random_access: bool);
 
@@ -129,7 +129,7 @@ extern_methods!(
         /// - cannot be called until all samples of media data have been read (i.e. copyNextSampleBuffer returns NULL and the asset reader has not entered a failure state)
         /// - cannot be called without setting "supportsRandomAccess" to YES
         /// - cannot be called after calling -markConfigurationAsFinal
-        #[method(resetForReadingTimeRanges:)]
+        #[unsafe(method(resetForReadingTimeRanges:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetForReadingTimeRanges(&self, time_ranges: &NSArray<NSValue>);
 
@@ -141,7 +141,7 @@ extern_methods!(
         /// When the destination of media data vended by the receiver is an AVAssetWriterInput configured for multi-pass encoding, a convenient time to invoke this method is after the asset writer input indicates that no more passes will be performed.
         ///
         /// Once this method has been called, further invocations of -resetForReadingTimeRanges: are disallowed.
-        #[method(markConfigurationAsFinal)]
+        #[unsafe(method(markConfigurationAsFinal))]
         #[unsafe(method_family = none)]
         pub unsafe fn markConfigurationAsFinal(&self);
     }
@@ -163,11 +163,11 @@ unsafe impl NSObjectProtocol for AVAssetReaderTrackOutput {}
 
 extern_methods!(
     unsafe impl AVAssetReaderTrackOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -201,7 +201,7 @@ extern_methods!(
         /// ProRes encoded media can contain up to 12bits/ch. If your source is ProRes encoded and you wish to preserve more than 8bits/ch during decompression then use one of the following pixel formats: kCVPixelFormatType_4444AYpCbCr16, kCVPixelFormatType_422YpCbCr16, kCVPixelFormatType_422YpCbCr10, or kCVPixelFormatType_64ARGB.  AVAssetReader does not support scaling with any of these high bit depth pixel formats. If you use them then do not specify kCVPixelBufferWidthKey or kCVPixelBufferHeightKey in your outputSettings dictionary. If you plan to append these sample buffers to an AVAssetWriterInput then note that only the ProRes encoders support these pixel formats.
         ///
         /// ProRes 4444 encoded media can contain a mathematically lossless alpha channel. To preserve the alpha channel during decompression use a pixel format with an alpha component such as kCVPixelFormatType_4444AYpCbCr16 or kCVPixelFormatType_64ARGB. To test whether your source contains an alpha channel check that the track's format description has kCMFormatDescriptionExtension_Depth and that its value is 32.
-        #[method(assetReaderTrackOutputWithTrack:outputSettings:)]
+        #[unsafe(method(assetReaderTrackOutputWithTrack:outputSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetReaderTrackOutputWithTrack_outputSettings(
             track: &AVAssetTrack,
@@ -244,7 +244,7 @@ extern_methods!(
         /// - the output settings dictionary does not contain any recognized key
         /// - output settings are not compatible with track's media type
         /// - track output settings would cause the output to yield compressed samples
-        #[method(initWithTrack:outputSettings:)]
+        #[unsafe(method(initWithTrack:outputSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTrack_outputSettings(
             this: Allocated<Self>,
@@ -257,7 +257,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an AVAssetTrack owned by the target AVAssetReader's asset.
-        #[method(track)]
+        #[unsafe(method(track))]
         #[unsafe(method_family = none)]
         pub unsafe fn track(&self) -> Retained<AVAssetTrack>;
 
@@ -265,7 +265,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSDictionary that contains values for keys as specified by either AVAudioSettings.h for audio tracks or AVVideoSettings.h for video tracks.  A value of nil indicates that the receiver will vend samples in their original format as stored in the target track.
-        #[method(outputSettings)]
+        #[unsafe(method(outputSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputSettings(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
@@ -280,13 +280,13 @@ extern_methods!(
         /// This property throws an exception for any of the following reasons:
         /// - a value is set value after reading has started
         /// - a value is set other than AVAudioTimePitchAlgorithmSpectral, AVAudioTimePitchAlgorithmTimeDomain, or AVAudioTimePitchAlgorithmVarispeed.
-        #[method(audioTimePitchAlgorithm)]
+        #[unsafe(method(audioTimePitchAlgorithm))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioTimePitchAlgorithm(&self) -> Retained<AVAudioTimePitchAlgorithm>;
 
         #[cfg(feature = "AVAudioProcessingSettings")]
         /// Setter for [`audioTimePitchAlgorithm`][Self::audioTimePitchAlgorithm].
-        #[method(setAudioTimePitchAlgorithm:)]
+        #[unsafe(method(setAudioTimePitchAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioTimePitchAlgorithm(
             &self,
@@ -311,11 +311,11 @@ unsafe impl NSObjectProtocol for AVAssetReaderAudioMixOutput {}
 
 extern_methods!(
     unsafe impl AVAssetReaderAudioMixOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -335,7 +335,7 @@ extern_methods!(
         /// For non-nil values of audioSettings, the audio settings dictionary must contain values for keys in AVAudioSettings.h (linear PCM only). Initialization will fail if the audio settings cannot be used with the specified tracks. AVSampleRateConverterAudioQualityKey is not supported.
         ///
         /// A value of nil for audioSettings configures the output to return samples in a convenient uncompressed format, with sample rate and other properties determined according to the properties of the specified audio tracks as well as other considerations that may vary according to device capabilities, operating system version, and other factors. Therefore if you wish to perform any processing on the output, you must examine the CMAudioFormatDescription of the CMSampleBuffers that are provided in order to ensure that your processing is appropriately configured for the output format.
-        #[method(assetReaderAudioMixOutputWithAudioTracks:audioSettings:)]
+        #[unsafe(method(assetReaderAudioMixOutputWithAudioTracks:audioSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetReaderAudioMixOutputWithAudioTracks_audioSettings(
             audio_tracks: &NSArray<AVAssetTrack>,
@@ -364,7 +364,7 @@ extern_methods!(
         /// - an audio track belongs to a different AVAsset
         /// - the audio settings contains an AVSampleRateConverterAudioQualityKey
         /// - the output would be compressed
-        #[method(initWithAudioTracks:audioSettings:)]
+        #[unsafe(method(initWithAudioTracks:audioSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioTracks_audioSettings(
             this: Allocated<Self>,
@@ -377,7 +377,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of AVAssetTracks owned by the target AVAssetReader's asset.
-        #[method(audioTracks)]
+        #[unsafe(method(audioTracks))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioTracks(&self) -> Retained<NSArray<AVAssetTrack>>;
 
@@ -385,7 +385,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSDictionary that contains values for keys from AVAudioSettings.h (linear PCM only).  A value of nil indicates that the receiver will return audio samples in a convenient uncompressed format, with sample rate and other properties determined according to the properties of the receiver's audio tracks.
-        #[method(audioSettings)]
+        #[unsafe(method(audioSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioSettings(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
@@ -399,13 +399,13 @@ extern_methods!(
         /// - an audio mix is set after reading has started (the asset reader has progressed beyond AVAssetReaderStatusUnknown)
         /// - setting an audio mix containing a track that was not used to create the receiver
         /// - an audio mix is set containing an invalid audio time pitch algorithm
-        #[method(audioMix)]
+        #[unsafe(method(audioMix))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioMix(&self) -> Option<Retained<AVAudioMix>>;
 
         #[cfg(feature = "AVAudioMix")]
         /// Setter for [`audioMix`][Self::audioMix].
-        #[method(setAudioMix:)]
+        #[unsafe(method(setAudioMix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioMix(&self, audio_mix: Option<&AVAudioMix>);
 
@@ -416,13 +416,13 @@ extern_methods!(
         /// Constants for various time pitch algorithms, e.g. AVAudioTimePitchAlgorithmSpectral, are defined in AVAudioProcessingSettings.h.  An NSInvalidArgumentException will be raised if this property is set to a value other than the constants defined in that file.
         ///
         /// The default value is AVAudioTimePitchAlgorithmSpectral.
-        #[method(audioTimePitchAlgorithm)]
+        #[unsafe(method(audioTimePitchAlgorithm))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioTimePitchAlgorithm(&self) -> Retained<AVAudioTimePitchAlgorithm>;
 
         #[cfg(feature = "AVAudioProcessingSettings")]
         /// Setter for [`audioTimePitchAlgorithm`][Self::audioTimePitchAlgorithm].
-        #[method(setAudioTimePitchAlgorithm:)]
+        #[unsafe(method(setAudioTimePitchAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioTimePitchAlgorithm(
             &self,
@@ -447,11 +447,11 @@ unsafe impl NSObjectProtocol for AVAssetReaderVideoCompositionOutput {}
 
 extern_methods!(
     unsafe impl AVAssetReaderVideoCompositionOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -475,7 +475,7 @@ extern_methods!(
         /// AVVideoCleanApertureKey
         /// AVVideoPixelAspectRatioKey
         /// AVVideoScalingModeKey
-        #[method(assetReaderVideoCompositionOutputWithVideoTracks:videoSettings:)]
+        #[unsafe(method(assetReaderVideoCompositionOutputWithVideoTracks:videoSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetReaderVideoCompositionOutputWithVideoTracks_videoSettings(
             video_tracks: &NSArray<AVAssetTrack>,
@@ -509,7 +509,7 @@ extern_methods!(
         /// - AVVideoPixelAspectRatioKey
         /// - AVVideoScalingModeKey
         /// - AVVideoDecompressionPropertiesKey
-        #[method(initWithVideoTracks:videoSettings:)]
+        #[unsafe(method(initWithVideoTracks:videoSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithVideoTracks_videoSettings(
             this: Allocated<Self>,
@@ -522,7 +522,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of AVAssetTracks owned by the target AVAssetReader's asset.
-        #[method(videoTracks)]
+        #[unsafe(method(videoTracks))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoTracks(&self) -> Retained<NSArray<AVAssetTrack>>;
 
@@ -530,7 +530,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSDictionary that contains values for keys as specified by AVVideoSettings.h.  A value of nil indicates that the receiver will return video frames in a convenient uncompressed format, with properties determined according to the properties of the receiver's video tracks.
-        #[method(videoSettings)]
+        #[unsafe(method(videoSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoSettings(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
@@ -541,13 +541,13 @@ extern_methods!(
         /// The value of this property is an AVVideoComposition that can be used to specify the visual arrangement of video frames read from each source track over the timeline of the source asset.
         ///
         /// This property throws an exception if a value is set after reading has started.
-        #[method(videoComposition)]
+        #[unsafe(method(videoComposition))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoComposition(&self) -> Option<Retained<AVVideoComposition>>;
 
         #[cfg(feature = "AVVideoComposition")]
         /// Setter for [`videoComposition`][Self::videoComposition].
-        #[method(setVideoComposition:)]
+        #[unsafe(method(setVideoComposition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoComposition(&self, video_composition: Option<&AVVideoComposition>);
 
@@ -556,7 +556,7 @@ extern_methods!(
         ///
         ///
         /// This property is nil if there is no video compositor, or if the internal video compositor is in use.
-        #[method(customVideoCompositor)]
+        #[unsafe(method(customVideoCompositor))]
         #[unsafe(method_family = none)]
         pub unsafe fn customVideoCompositor(
             &self,
@@ -577,11 +577,11 @@ unsafe impl NSObjectProtocol for AVAssetReaderOutputMetadataAdaptor {}
 
 extern_methods!(
     unsafe impl AVAssetReaderOutputMetadataAdaptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -596,7 +596,7 @@ extern_methods!(
         /// It is an error to create a timed metadata group adaptor with an asset reader output that does not vend metadata.  It is also an error to create a timed metadata group adaptor with an asset reader output whose asset reader has already started reading, or an asset reader output that already has been used to initialize another timed metadata group adaptor.
         ///
         /// Clients should not mix calls to -[AVAssetReaderTrackOutput copyNextSampleBuffer] and -[AVAssetReaderOutputMetadataAdaptor nextTimedMetadataGroup].  Once an AVAssetReaderTrackOutput instance has been used to initialize an AVAssetReaderOutputMetadataAdaptor, calling -copyNextSampleBuffer on that instance will result in an exception being thrown.
-        #[method(assetReaderOutputMetadataAdaptorWithAssetReaderTrackOutput:)]
+        #[unsafe(method(assetReaderOutputMetadataAdaptorWithAssetReaderTrackOutput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetReaderOutputMetadataAdaptorWithAssetReaderTrackOutput(
             track_output: &AVAssetReaderTrackOutput,
@@ -615,7 +615,7 @@ extern_methods!(
         /// Clients should not mix calls to -[AVAssetReaderTrackOutput copyNextSampleBuffer] and -[AVAssetReaderOutputMetadataAdaptor nextTimedMetadataGroup].  Once an AVAssetReaderTrackOutput instance has been used to initialize an AVAssetReaderOutputMetadataAdaptor, calling -copyNextSampleBuffer on that instance will result in an exception being thrown.
         ///
         /// This method throws an exception if the track's output was used to initialize another adaptor or if the track output's asset reader has already started reading.
-        #[method(initWithAssetReaderTrackOutput:)]
+        #[unsafe(method(initWithAssetReaderTrackOutput:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAssetReaderTrackOutput(
             this: Allocated<Self>,
@@ -623,7 +623,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The asset reader track output from which the receiver pulls timed metadata groups.
-        #[method(assetReaderTrackOutput)]
+        #[unsafe(method(assetReaderTrackOutput))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetReaderTrackOutput(&self) -> Retained<AVAssetReaderTrackOutput>;
 
@@ -641,7 +641,7 @@ extern_methods!(
         /// Before calling this method, you must ensure that the output which underlies the receiver is attached to an AVAssetReader via a prior call to -addOutput: and that -startReading has been called on the asset reader.
         ///
         /// This method throws an exception if track output is not attached to an asset reader and reading has not yet begun.
-        #[method(nextTimedMetadataGroup)]
+        #[unsafe(method(nextTimedMetadataGroup))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextTimedMetadataGroup(&self) -> Option<Retained<AVTimedMetadataGroup>>;
     }
@@ -660,11 +660,11 @@ unsafe impl NSObjectProtocol for AVAssetReaderOutputCaptionAdaptor {}
 
 extern_methods!(
     unsafe impl AVAssetReaderOutputCaptionAdaptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -675,7 +675,7 @@ extern_methods!(
         /// Returns: A new instance of AVAssetReaderOutputCaptionAdaptor, configured to read captions from the given AVAssetReaderTrackOutput.
         ///
         /// It is an error to pass nil to this method.
-        #[method(assetReaderOutputCaptionAdaptorWithAssetReaderTrackOutput:)]
+        #[unsafe(method(assetReaderOutputCaptionAdaptorWithAssetReaderTrackOutput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetReaderOutputCaptionAdaptorWithAssetReaderTrackOutput(
             track_output: &AVAssetReaderTrackOutput,
@@ -688,7 +688,7 @@ extern_methods!(
         /// Returns: A new instance of AVAssetReaderOutputCaptionAdaptor, configured to read captions from the given AVAssetReaderTrackOutput.
         ///
         /// It is an error to pass nil to this method.
-        #[method(initWithAssetReaderTrackOutput:)]
+        #[unsafe(method(initWithAssetReaderTrackOutput:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAssetReaderTrackOutput(
             this: Allocated<Self>,
@@ -696,7 +696,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The track output used to create the receiver.
-        #[method(assetReaderTrackOutput)]
+        #[unsafe(method(assetReaderTrackOutput))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetReaderTrackOutput(&self) -> Retained<AVAssetReaderTrackOutput>;
 
@@ -708,7 +708,7 @@ extern_methods!(
         /// The method returns the next caption group.
         ///
         /// This method throws an exception if the track output is not attached to an asset reader and reading has not yet begun.
-        #[method(nextCaptionGroup)]
+        #[unsafe(method(nextCaptionGroup))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextCaptionGroup(&self) -> Option<Retained<AVCaptionGroup>>;
 
@@ -720,7 +720,7 @@ extern_methods!(
         /// Returns: An array of AVCaption objects.
         ///
         /// The returned array contains the set of captions in the given group whose time ranges have the same start time as the group.  This method is provided as a convenience for clients who want to process captions one-by-one and do not need a complete view of the set of captions active at a given time.
-        #[method(captionsNotPresentInPreviousGroupsInCaptionGroup:)]
+        #[unsafe(method(captionsNotPresentInPreviousGroupsInCaptionGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captionsNotPresentInPreviousGroupsInCaptionGroup(
             &self,
@@ -734,7 +734,7 @@ extern_methods!(
     /// Category of AVAssetReaderOutputCaptionAdaptor for caption validation handling
     unsafe impl AVAssetReaderOutputCaptionAdaptor {
         /// Register caption validation handling callback protocol to the caption adaptor.
-        #[method(validationDelegate)]
+        #[unsafe(method(validationDelegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn validationDelegate(
             &self,
@@ -742,7 +742,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`validationDelegate`][Self::validationDelegate].
-        #[method(setValidationDelegate:)]
+        #[unsafe(method(setValidationDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValidationDelegate(
             &self,
@@ -773,7 +773,7 @@ extern_protocol!(
         ///
         /// While the reported string content is human readable, it is highly technical and probably meaningful only to clients who are familiar with the source caption format. It is primarily designed for logging purpose and would not be suitable for UI purpose.
         #[optional]
-        #[method(captionAdaptor:didVendCaption:skippingUnsupportedSourceSyntaxElements:)]
+        #[unsafe(method(captionAdaptor:didVendCaption:skippingUnsupportedSourceSyntaxElements:))]
         #[unsafe(method_family = none)]
         unsafe fn captionAdaptor_didVendCaption_skippingUnsupportedSourceSyntaxElements(
             &self,
@@ -803,11 +803,11 @@ unsafe impl NSObjectProtocol for AVAssetReaderSampleReferenceOutput {}
 
 extern_methods!(
     unsafe impl AVAssetReaderSampleReferenceOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -821,7 +821,7 @@ extern_methods!(
         ///
         ///
         /// The track must be one of the tracks contained by the target AVAssetReader's asset.
-        #[method(assetReaderSampleReferenceOutputWithTrack:)]
+        #[unsafe(method(assetReaderSampleReferenceOutputWithTrack:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetReaderSampleReferenceOutputWithTrack(
             track: &AVAssetTrack,
@@ -837,7 +837,7 @@ extern_methods!(
         ///
         ///
         /// The track must be one of the tracks contained by the target AVAssetReader's asset.
-        #[method(initWithTrack:)]
+        #[unsafe(method(initWithTrack:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTrack(this: Allocated<Self>, track: &AVAssetTrack) -> Retained<Self>;
 
@@ -846,7 +846,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an AVAssetTrack owned by the target AVAssetReader's asset.
-        #[method(track)]
+        #[unsafe(method(track))]
         #[unsafe(method_family = none)]
         pub unsafe fn track(&self) -> Retained<AVAssetTrack>;
     }

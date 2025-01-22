@@ -21,7 +21,7 @@ extern_methods!(
         /// - inputTensor: The input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object containing the inverse of the input tensor.
-        #[method(inverseOfTensor:name:)]
+        #[unsafe(method(inverseOfTensor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn inverseOfTensor_name(
             &self,

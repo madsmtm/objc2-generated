@@ -52,24 +52,24 @@ unsafe impl NSObjectProtocol for UICollectionViewFlowLayoutInvalidationContext {
 extern_methods!(
     #[cfg(feature = "UICollectionViewLayout")]
     unsafe impl UICollectionViewFlowLayoutInvalidationContext {
-        #[method(invalidateFlowLayoutDelegateMetrics)]
+        #[unsafe(method(invalidateFlowLayoutDelegateMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidateFlowLayoutDelegateMetrics(&self) -> bool;
 
         /// Setter for [`invalidateFlowLayoutDelegateMetrics`][Self::invalidateFlowLayoutDelegateMetrics].
-        #[method(setInvalidateFlowLayoutDelegateMetrics:)]
+        #[unsafe(method(setInvalidateFlowLayoutDelegateMetrics:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInvalidateFlowLayoutDelegateMetrics(
             &self,
             invalidate_flow_layout_delegate_metrics: bool,
         );
 
-        #[method(invalidateFlowLayoutAttributes)]
+        #[unsafe(method(invalidateFlowLayoutAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidateFlowLayoutAttributes(&self) -> bool;
 
         /// Setter for [`invalidateFlowLayoutAttributes`][Self::invalidateFlowLayoutAttributes].
-        #[method(setInvalidateFlowLayoutAttributes:)]
+        #[unsafe(method(setInvalidateFlowLayoutAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInvalidateFlowLayoutAttributes(
             &self,
@@ -82,11 +82,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UICollectionViewLayout")]
     unsafe impl UICollectionViewFlowLayoutInvalidationContext {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -105,7 +105,7 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[optional]
-        #[method(collectionView:layout:sizeForItemAtIndexPath:)]
+        #[unsafe(method(collectionView:layout:sizeForItemAtIndexPath:))]
         #[unsafe(method_family = none)]
         unsafe fn collectionView_layout_sizeForItemAtIndexPath(
             &self,
@@ -122,7 +122,7 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[optional]
-        #[method(collectionView:layout:insetForSectionAtIndex:)]
+        #[unsafe(method(collectionView:layout:insetForSectionAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn collectionView_layout_insetForSectionAtIndex(
             &self,
@@ -138,7 +138,7 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[optional]
-        #[method(collectionView:layout:minimumLineSpacingForSectionAtIndex:)]
+        #[unsafe(method(collectionView:layout:minimumLineSpacingForSectionAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn collectionView_layout_minimumLineSpacingForSectionAtIndex(
             &self,
@@ -154,7 +154,7 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[optional]
-        #[method(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)]
+        #[unsafe(method(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn collectionView_layout_minimumInteritemSpacingForSectionAtIndex(
             &self,
@@ -170,7 +170,7 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[optional]
-        #[method(collectionView:layout:referenceSizeForHeaderInSection:)]
+        #[unsafe(method(collectionView:layout:referenceSizeForHeaderInSection:))]
         #[unsafe(method_family = none)]
         unsafe fn collectionView_layout_referenceSizeForHeaderInSection(
             &self,
@@ -186,7 +186,7 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[optional]
-        #[method(collectionView:layout:referenceSizeForFooterInSection:)]
+        #[unsafe(method(collectionView:layout:referenceSizeForFooterInSection:))]
         #[unsafe(method_family = none)]
         unsafe fn collectionView_layout_referenceSizeForFooterInSection(
             &self,
@@ -216,125 +216,125 @@ extern_methods!(
     #[cfg(feature = "UICollectionViewLayout")]
     unsafe impl UICollectionViewFlowLayout {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(minimumLineSpacing)]
+        #[unsafe(method(minimumLineSpacing))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumLineSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumLineSpacing`][Self::minimumLineSpacing].
-        #[method(setMinimumLineSpacing:)]
+        #[unsafe(method(setMinimumLineSpacing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumLineSpacing(&self, minimum_line_spacing: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(minimumInteritemSpacing)]
+        #[unsafe(method(minimumInteritemSpacing))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumInteritemSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumInteritemSpacing`][Self::minimumInteritemSpacing].
-        #[method(setMinimumInteritemSpacing:)]
+        #[unsafe(method(setMinimumInteritemSpacing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumInteritemSpacing(&self, minimum_interitem_spacing: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(itemSize)]
+        #[unsafe(method(itemSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`itemSize`][Self::itemSize].
-        #[method(setItemSize:)]
+        #[unsafe(method(setItemSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemSize(&self, item_size: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(estimatedItemSize)]
+        #[unsafe(method(estimatedItemSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimatedItemSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`estimatedItemSize`][Self::estimatedItemSize].
-        #[method(setEstimatedItemSize:)]
+        #[unsafe(method(setEstimatedItemSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEstimatedItemSize(&self, estimated_item_size: CGSize);
 
-        #[method(scrollDirection)]
+        #[unsafe(method(scrollDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollDirection(&self) -> UICollectionViewScrollDirection;
 
         /// Setter for [`scrollDirection`][Self::scrollDirection].
-        #[method(setScrollDirection:)]
+        #[unsafe(method(setScrollDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScrollDirection(&self, scroll_direction: UICollectionViewScrollDirection);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(headerReferenceSize)]
+        #[unsafe(method(headerReferenceSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn headerReferenceSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`headerReferenceSize`][Self::headerReferenceSize].
-        #[method(setHeaderReferenceSize:)]
+        #[unsafe(method(setHeaderReferenceSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeaderReferenceSize(&self, header_reference_size: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(footerReferenceSize)]
+        #[unsafe(method(footerReferenceSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn footerReferenceSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`footerReferenceSize`][Self::footerReferenceSize].
-        #[method(setFooterReferenceSize:)]
+        #[unsafe(method(setFooterReferenceSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFooterReferenceSize(&self, footer_reference_size: CGSize);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method(sectionInset)]
+        #[unsafe(method(sectionInset))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionInset(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`sectionInset`][Self::sectionInset].
-        #[method(setSectionInset:)]
+        #[unsafe(method(setSectionInset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSectionInset(&self, section_inset: UIEdgeInsets);
 
         /// The reference boundary that the section insets will be defined as relative to. Defaults to `.fromContentInset`.
         /// NOTE: Content inset will always be respected at a minimum. For example, if the sectionInsetReference equals `.fromSafeArea`, but the adjusted content inset is greater that the combination of the safe area and section insets, then section content will be aligned with the content inset instead.
-        #[method(sectionInsetReference)]
+        #[unsafe(method(sectionInsetReference))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionInsetReference(
             &self,
         ) -> UICollectionViewFlowLayoutSectionInsetReference;
 
         /// Setter for [`sectionInsetReference`][Self::sectionInsetReference].
-        #[method(setSectionInsetReference:)]
+        #[unsafe(method(setSectionInsetReference:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSectionInsetReference(
             &self,
             section_inset_reference: UICollectionViewFlowLayoutSectionInsetReference,
         );
 
-        #[method(sectionHeadersPinToVisibleBounds)]
+        #[unsafe(method(sectionHeadersPinToVisibleBounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionHeadersPinToVisibleBounds(&self) -> bool;
 
         /// Setter for [`sectionHeadersPinToVisibleBounds`][Self::sectionHeadersPinToVisibleBounds].
-        #[method(setSectionHeadersPinToVisibleBounds:)]
+        #[unsafe(method(setSectionHeadersPinToVisibleBounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSectionHeadersPinToVisibleBounds(
             &self,
             section_headers_pin_to_visible_bounds: bool,
         );
 
-        #[method(sectionFootersPinToVisibleBounds)]
+        #[unsafe(method(sectionFootersPinToVisibleBounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionFootersPinToVisibleBounds(&self) -> bool;
 
         /// Setter for [`sectionFootersPinToVisibleBounds`][Self::sectionFootersPinToVisibleBounds].
-        #[method(setSectionFootersPinToVisibleBounds:)]
+        #[unsafe(method(setSectionFootersPinToVisibleBounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSectionFootersPinToVisibleBounds(
             &self,
@@ -347,11 +347,11 @@ extern_methods!(
     /// Methods declared on superclass `UICollectionViewLayout`
     #[cfg(feature = "UICollectionViewLayout")]
     unsafe impl UICollectionViewFlowLayout {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -364,7 +364,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UICollectionViewLayout")]
     unsafe impl UICollectionViewFlowLayout {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

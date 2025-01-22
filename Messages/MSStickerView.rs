@@ -68,7 +68,7 @@ extern_methods!(
     unsafe impl MSStickerView {
         #[cfg(all(feature = "MSSticker", feature = "objc2-core-foundation"))]
         /// Initializes a MSStickerView with a frame and a MSSticker conforming object to display.
-        #[method(initWithFrame:sticker:)]
+        #[unsafe(method(initWithFrame:sticker:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_sticker(
             this: Allocated<Self>,
@@ -82,35 +82,35 @@ extern_methods!(
         /// Set this property to nil to remove the current sticker. Setting the
         /// sticker property does not change the size of a MSStickerView. Call sizeToFit to
         /// adjust the size of the view to match the sticker.
-        #[method(sticker)]
+        #[unsafe(method(sticker))]
         #[unsafe(method_family = none)]
         pub unsafe fn sticker(&self) -> Option<Retained<MSSticker>>;
 
         #[cfg(feature = "MSSticker")]
         /// Setter for [`sticker`][Self::sticker].
-        #[method(setSticker:)]
+        #[unsafe(method(setSticker:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSticker(&self, sticker: Option<&MSSticker>);
 
         /// The amount of time it takes to go through one cycle of the sticker animation.
-        #[method(animationDuration)]
+        #[unsafe(method(animationDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationDuration(&self) -> NSTimeInterval;
 
         /// Starts animating the sticker in the receiver.
         ///
         /// This method always starts the animation from the first frame.
-        #[method(startAnimating)]
+        #[unsafe(method(startAnimating))]
         #[unsafe(method_family = none)]
         pub unsafe fn startAnimating(&self);
 
         /// Stops animating the sticker in the receiver.
-        #[method(stopAnimating)]
+        #[unsafe(method(stopAnimating))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopAnimating(&self);
 
         /// Returns a Boolean value indicating whether the animation is running.
-        #[method(isAnimating)]
+        #[unsafe(method(isAnimating))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAnimating(&self) -> bool;
     }
@@ -121,11 +121,11 @@ extern_methods!(
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MSStickerView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -138,11 +138,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MSStickerView {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

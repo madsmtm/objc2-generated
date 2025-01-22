@@ -83,7 +83,7 @@ extern_protocol!(
         ))]
         /// Updates multiple regions within a sparse texture.
         #[optional]
-        #[method(updateTextureMappings:mode:regions:mipLevels:slices:numRegions:)]
+        #[unsafe(method(updateTextureMappings:mode:regions:mipLevels:slices:numRegions:))]
         #[unsafe(method_family = none)]
         unsafe fn updateTextureMappings_mode_regions_mipLevels_slices_numRegions(
             &self,
@@ -103,7 +103,7 @@ extern_protocol!(
         ))]
         /// Updates mapping for given sparse texture
         #[optional]
-        #[method(updateTextureMapping:mode:region:mipLevel:slice:)]
+        #[unsafe(method(updateTextureMapping:mode:region:mipLevel:slice:))]
         #[unsafe(method_family = none)]
         unsafe fn updateTextureMapping_mode_region_mipLevel_slice(
             &self,
@@ -127,7 +127,7 @@ extern_protocol!(
         /// MTLMapIndirectArguments mappings[numMappings];
         /// }
         #[optional]
-        #[method(updateTextureMapping:mode:indirectBuffer:indirectBufferOffset:)]
+        #[unsafe(method(updateTextureMapping:mode:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn updateTextureMapping_mode_indirectBuffer_indirectBufferOffset(
             &self,
@@ -143,7 +143,7 @@ extern_protocol!(
         /// The fence is updated at kernel submission to maintain global order and prevent deadlock.
         /// Drivers may delay fence updates until the end of the encoder. Drivers may also wait on fences at the beginning of an encoder. It is therefore illegal to wait on a fence after it has been updated in the same encoder.
         #[optional]
-        #[method(updateFence:)]
+        #[unsafe(method(updateFence:))]
         #[unsafe(method_family = none)]
         unsafe fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
@@ -153,7 +153,7 @@ extern_protocol!(
         /// The fence is evaluated at kernel submission to maintain global order and prevent deadlock.
         /// Drivers may delay fence updates until the end of the encoder. Drivers may also wait on fences at the beginning of an encoder. It is therefore illegal to wait on a fence after it has been updated in the same encoder.
         #[optional]
-        #[method(waitForFence:)]
+        #[unsafe(method(waitForFence:))]
         #[unsafe(method_family = none)]
         unsafe fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
@@ -168,7 +168,7 @@ extern_protocol!(
         /// The tile mapping is moved from the source texture only if the destination texture tile is unmapped. The textures must also have matching a texture format,
         /// texture type, sample count, usage and resource options.
         #[optional]
-        #[method(moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:)]
+        #[unsafe(method(moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:))]
         #[unsafe(method_family = none)]
         unsafe fn moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
             &self,

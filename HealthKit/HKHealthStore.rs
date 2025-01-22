@@ -29,7 +29,7 @@ extern_methods!(
         /// HealthKit is not supported on all iOS devices.  Using HKHealthStore APIs on devices which are not
         /// supported will result in errors with the HKErrorHealthDataUnavailable code.  Call isHealthDataAvailable
         /// before attempting to use other parts of the framework.
-        #[method(isHealthDataAvailable)]
+        #[unsafe(method(isHealthDataAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHealthDataAvailable() -> bool;
 
@@ -39,13 +39,13 @@ extern_methods!(
         /// if accounts have already been configured. This can change as accounts are modified during device
         /// restore or synchronization.
         /// Call supportsHealthRecords before attempting to request authorization for any clinical types.
-        #[method(supportsHealthRecords)]
+        #[unsafe(method(supportsHealthRecords))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsHealthRecords(&self) -> bool;
 
         #[cfg(all(feature = "HKDefines", feature = "HKObjectType"))]
         /// Returns the application's authorization status for the given object type.
-        #[method(authorizationStatusForType:)]
+        #[unsafe(method(authorizationStatusForType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatusForType(
             &self,
@@ -68,7 +68,7 @@ extern_methods!(
         /// To customize the messages displayed on the authorization sheet, set the following keys in your app's
         /// Info.plist file. Set the NSHealthShareUsageDescription key to customize the message for reading data.
         /// Set the NSHealthUpdateUsageDescription key to customize the message for writing data.
-        #[method(requestAuthorizationToShareTypes:readTypes:completion:)]
+        #[unsafe(method(requestAuthorizationToShareTypes:readTypes:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationToShareTypes_readTypes_completion(
             &self,
@@ -90,7 +90,7 @@ extern_methods!(
         /// access with each prompt. The success parameter of the completion indicates whether prompting the user
         /// completed successfully and was not cancelled. It does NOT indicate whether the application was granted
         /// authorization.
-        #[method(requestPerObjectReadAuthorizationForType:predicate:completion:)]
+        #[unsafe(method(requestPerObjectReadAuthorizationForType:predicate:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestPerObjectReadAuthorizationForType_predicate_completion(
             &self,
@@ -106,7 +106,7 @@ extern_methods!(
         /// the same collections of types are passed to requestAuthorizationToShareTypes:readTypes:completion:.
         /// This determination is performed asynchronously and its completion will be executed on an arbitrary
         /// background queue.
-        #[method(getRequestStatusForAuthorizationToShareTypes:readTypes:completion:)]
+        #[unsafe(method(getRequestStatusForAuthorizationToShareTypes:readTypes:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRequestStatusForAuthorizationToShareTypes_readTypes_completion(
             &self,
@@ -126,7 +126,7 @@ extern_methods!(
         /// queue after the user has responded.  The success parameter of the completion indicates whether prompting
         /// the user, if necessary, completed successfully and was not cancelled by the user.  It does NOT indicate
         /// whether the application was granted authorization.
-        #[method(handleAuthorizationForExtensionWithCompletion:)]
+        #[unsafe(method(handleAuthorizationForExtensionWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleAuthorizationForExtensionWithCompletion(
             &self,
@@ -137,7 +137,7 @@ extern_methods!(
         ///
         /// On some platforms, only samples with end dates newer than the value returned by earliestPermittedSampleDate
         /// may be saved or retrieved.
-        #[method(earliestPermittedSampleDate)]
+        #[unsafe(method(earliestPermittedSampleDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn earliestPermittedSampleDate(&self) -> Retained<NSDate>;
 
@@ -156,7 +156,7 @@ extern_methods!(
         ///
         /// This operation is performed asynchronously and the completion will be executed on an arbitrary
         /// background queue.
-        #[method(saveObject:withCompletion:)]
+        #[unsafe(method(saveObject:withCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveObject_withCompletion(
             &self,
@@ -168,7 +168,7 @@ extern_methods!(
         /// Saves an array of HKObjects.
         ///
         /// See discussion of saveObject:withCompletion:.
-        #[method(saveObjects:withCompletion:)]
+        #[unsafe(method(saveObjects:withCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveObjects_withCompletion(
             &self,
@@ -180,7 +180,7 @@ extern_methods!(
         /// Deletes a single HKObject from the HealthKit database.
         ///
         /// See deleteObjects:withCompletion:.
-        #[method(deleteObject:withCompletion:)]
+        #[unsafe(method(deleteObject:withCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteObject_withCompletion(
             &self,
@@ -193,7 +193,7 @@ extern_methods!(
         ///
         /// An application may only delete objects that it previously saved.  This operation is performed
         /// asynchronously and the completion will be executed on an arbitrary background queue.
-        #[method(deleteObjects:withCompletion:)]
+        #[unsafe(method(deleteObjects:withCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteObjects_withCompletion(
             &self,
@@ -206,7 +206,7 @@ extern_methods!(
         ///
         /// An application may only delete objects that it previously saved.  This operation is performed
         /// asynchronously and the completion will be executed on an arbitrary background queue.
-        #[method(deleteObjectsOfType:predicate:withCompletion:)]
+        #[unsafe(method(deleteObjectsOfType:predicate:withCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteObjectsOfType_predicate_withCompletion(
             &self,
@@ -228,7 +228,7 @@ extern_methods!(
         ///
         /// If a query would retrieve objects with an HKObjectType property, then the application must request
         /// authorization to access objects of that type before executing the query.
-        #[method(executeQuery:)]
+        #[unsafe(method(executeQuery:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeQuery(&self, query: &HKQuery);
 
@@ -237,7 +237,7 @@ extern_methods!(
         ///
         /// Calling this method will prevent the handlers of the query from being invoked in the future.  If the
         /// query is already stopped, this method does nothing.
-        #[method(stopQuery:)]
+        #[unsafe(method(stopQuery:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopQuery(&self, query: &HKQuery);
 
@@ -249,7 +249,7 @@ extern_methods!(
         /// their basal metabolic rate. If the application does not have authorization to access these characteristics
         /// or if the user has not entered their data then this method uses builtin default values.
         #[deprecated = "No longer supported"]
-        #[method(splitTotalEnergy:startDate:endDate:resultsHandler:)]
+        #[unsafe(method(splitTotalEnergy:startDate:endDate:resultsHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn splitTotalEnergy_startDate_endDate_resultsHandler(
             &self,
@@ -260,7 +260,7 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method(dateOfBirthWithError:_)]
+        #[unsafe(method(dateOfBirthWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn dateOfBirthWithError(&self) -> Result<Retained<NSDate>, Retained<NSError>>;
 
@@ -268,7 +268,7 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierDateOfBirth.
-        #[method(dateOfBirthComponentsWithError:_)]
+        #[unsafe(method(dateOfBirthComponentsWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn dateOfBirthComponentsWithError(
             &self,
@@ -279,7 +279,7 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierBiologicalSex.
-        #[method(biologicalSexWithError:_)]
+        #[unsafe(method(biologicalSexWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn biologicalSexWithError(
             &self,
@@ -290,7 +290,7 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierBloodType.
-        #[method(bloodTypeWithError:_)]
+        #[unsafe(method(bloodTypeWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn bloodTypeWithError(
             &self,
@@ -301,7 +301,7 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierFitzpatrickSkinType.
-        #[method(fitzpatrickSkinTypeWithError:_)]
+        #[unsafe(method(fitzpatrickSkinTypeWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn fitzpatrickSkinTypeWithError(
             &self,
@@ -312,7 +312,7 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierWheelchairUse.
-        #[method(wheelchairUseWithError:_)]
+        #[unsafe(method(wheelchairUseWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn wheelchairUseWithError(
             &self,
@@ -323,7 +323,7 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierActivityMoveMode.
-        #[method(activityMoveModeWithError:_)]
+        #[unsafe(method(activityMoveModeWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn activityMoveModeWithError(
             &self,
@@ -334,11 +334,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKHealthStore {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -355,7 +355,7 @@ extern_methods!(
         /// If your app is not active when a mirrored session starts, it will be launched in the background and given a one-time
         /// permission to start a Live Activity from the background.
         /// The assigned block will be executed on an arbitrary background queue.
-        #[method(workoutSessionMirroringStartHandler)]
+        #[unsafe(method(workoutSessionMirroringStartHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutSessionMirroringStartHandler(
             &self,
@@ -363,7 +363,7 @@ extern_methods!(
 
         #[cfg(all(feature = "HKWorkoutSession", feature = "block2"))]
         /// Setter for [`workoutSessionMirroringStartHandler`][Self::workoutSessionMirroringStartHandler].
-        #[method(setWorkoutSessionMirroringStartHandler:)]
+        #[unsafe(method(setWorkoutSessionMirroringStartHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWorkoutSessionMirroringStartHandler(
             &self,
@@ -386,7 +386,7 @@ extern_methods!(
         ///
         /// The workout provided must be one that has already been saved to HealthKit.
         #[deprecated = "Use HKWorkoutBuilder"]
-        #[method(addSamples:toWorkout:completion:)]
+        #[unsafe(method(addSamples:toWorkout:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSamples_toWorkout_completion(
             &self,
@@ -401,7 +401,7 @@ extern_methods!(
         /// This method will asynchronously begin a workout session. The methods on the session's delegate will be
         /// called when the session has successfully started or fails to start.
         #[deprecated = "Use HKWorkoutSession's start method"]
-        #[method(startWorkoutSession:)]
+        #[unsafe(method(startWorkoutSession:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
@@ -412,7 +412,7 @@ extern_methods!(
         /// transition to HKWorkoutSessionStateEnded. Once a workout session is ended, it cannot be reused to start
         /// a new workout session.
         #[deprecated = "Use HKWorkoutSession's end method"]
-        #[method(endWorkoutSession:)]
+        #[unsafe(method(endWorkoutSession:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
@@ -423,7 +423,7 @@ extern_methods!(
         /// will transition to HKWorkoutSessionStatePaused. An HKWorkoutEventTypePause will be generated and
         /// delivered to the workout session's delegate.
         #[deprecated = "Use HKWorkoutSession's pause method"]
-        #[method(pauseWorkoutSession:)]
+        #[unsafe(method(pauseWorkoutSession:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pauseWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
@@ -434,7 +434,7 @@ extern_methods!(
         /// will transition to HKWorkoutSessionStateRunning. An HKWorkoutEventTypeResume will be generated and
         /// delivered to the workout session's delegate.
         #[deprecated = "Use HKWorkoutSession's resume method"]
-        #[method(resumeWorkoutSession:)]
+        #[unsafe(method(resumeWorkoutSession:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resumeWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
@@ -445,7 +445,7 @@ extern_methods!(
         /// active Apple Watch. After launching, the handleWorkoutConfiguration: method on the WKExtensionDelegate
         /// protocol will be called with the HKWorkoutConfiguration as a parameter. The receiving Watch app can use
         /// this configuration object to create an HKWorkoutSession and start it with -startWorkoutSession:.
-        #[method(startWatchAppWithWorkoutConfiguration:completion:)]
+        #[unsafe(method(startWatchAppWithWorkoutConfiguration:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWatchAppWithWorkoutConfiguration_completion(
             &self,
@@ -456,7 +456,7 @@ extern_methods!(
         #[cfg(all(feature = "HKWorkoutSession", feature = "block2"))]
         /// Recovers an active workout session after a client crash. If no session is available to be re-attached,
         /// nil will be returned. If an error occurs, session will be nil and error will be set appropriately.
-        #[method(recoverActiveWorkoutSessionWithCompletion:)]
+        #[unsafe(method(recoverActiveWorkoutSessionWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recoverActiveWorkoutSessionWithCompletion(
             &self,
@@ -476,7 +476,7 @@ extern_methods!(
         /// data types have been updated and the corresponding fetch queries. Note that certain data types (such as
         /// HKQuantityTypeIdentifierStepCount) have a minimum frequency of HKUpdateFrequencyHourly. This is enforced
         /// transparently to the caller.
-        #[method(enableBackgroundDeliveryForType:frequency:withCompletion:)]
+        #[unsafe(method(enableBackgroundDeliveryForType:frequency:withCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enableBackgroundDeliveryForType_frequency_withCompletion(
             &self,
@@ -486,7 +486,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKObjectType", feature = "block2"))]
-        #[method(disableBackgroundDeliveryForType:withCompletion:)]
+        #[unsafe(method(disableBackgroundDeliveryForType:withCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableBackgroundDeliveryForType_withCompletion(
             &self,
@@ -495,7 +495,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(disableAllBackgroundDeliveryWithCompletion:)]
+        #[unsafe(method(disableAllBackgroundDeliveryWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn disableAllBackgroundDeliveryWithCompletion(
             &self,
@@ -532,7 +532,7 @@ extern_methods!(
         /// unavailable or authorization status is not determined for one or more of the provided types.
         ///
         /// The returned dictionary will map HKQuantityType to HKUnit.
-        #[method(preferredUnitsForQuantityTypes:completion:)]
+        #[unsafe(method(preferredUnitsForQuantityTypes:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredUnitsForQuantityTypes_completion(
             &self,
@@ -552,7 +552,7 @@ extern_methods!(
         ///
         /// Check -[HKSampleType allowsRecalibrationForEstimates] to see if a given sample type is supported. Calling this method results in first-party
         /// estimation algorithms to recalibrate what data is used when generating values for HKSamples of this sampleType.
-        #[method(recalibrateEstimatesForSampleType:atDate:completion:)]
+        #[unsafe(method(recalibrateEstimatesForSampleType:atDate:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recalibrateEstimatesForSampleType_atDate_completion(
             &self,
@@ -583,7 +583,7 @@ extern_methods!(
         /// Parameter `activity`: The HKWorkoutActivity on the HKWorkout
         ///
         /// Parameter `completion`: The block to be called when the sample has been related
-        #[method(relateWorkoutEffortSample:withWorkout:activity:completion:)]
+        #[unsafe(method(relateWorkoutEffortSample:withWorkout:activity:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn relateWorkoutEffortSample_withWorkout_activity_completion(
             &self,
@@ -610,7 +610,7 @@ extern_methods!(
         /// Parameter `activity`: The HKWorkoutActivity on the HKWorkout
         ///
         /// Parameter `completion`: The block to be called when the sample has been unrelated
-        #[method(unrelateWorkoutEffortSample:fromWorkout:activity:completion:)]
+        #[unsafe(method(unrelateWorkoutEffortSample:fromWorkout:activity:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unrelateWorkoutEffortSample_fromWorkout_activity_completion(
             &self,

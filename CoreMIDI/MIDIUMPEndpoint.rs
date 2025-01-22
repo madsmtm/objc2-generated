@@ -32,29 +32,29 @@ extern_methods!(
         /// The MIDI System Exclusive ID of the device manufacturer, up to 3-Bytes.
         ///
         /// One-byte SysEx IDs use only the least significant byte (e.g., Apple's System Exclusive ID, 0x11).
-        #[method(manufacturerID)]
+        #[unsafe(method(manufacturerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn manufacturerID(&self) -> MIDI2DeviceManufacturer;
 
         #[cfg(feature = "MIDIMessages")]
         /// The family of models to which the device belongs, up to 14 bits.
-        #[method(family)]
+        #[unsafe(method(family))]
         #[unsafe(method_family = none)]
         pub unsafe fn family(&self) -> MIDIUInteger14;
 
         #[cfg(feature = "MIDIMessages")]
         /// The specific model from the device manufacturer, up to 14 bits.
-        #[method(modelNumber)]
+        #[unsafe(method(modelNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelNumber(&self) -> MIDIUInteger14;
 
         #[cfg(feature = "MIDIUMPCI")]
         /// The version number of a device model number.
-        #[method(revisionLevel)]
+        #[unsafe(method(revisionLevel))]
         #[unsafe(method_family = none)]
         pub unsafe fn revisionLevel(&self) -> MIDI2DeviceRevisionLevel;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -73,7 +73,7 @@ extern_methods!(
         ///
         /// Provided values for family or modelNumber must be within their expected
         /// bit range. For example, if modelNumber is outside of the range of a 14-bit number.
-        #[method(initWithManufacturerID:family:modelNumber:revisionLevel:)]
+        #[unsafe(method(initWithManufacturerID:family:modelNumber:revisionLevel:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithManufacturerID_family_modelNumber_revisionLevel(
             this: Allocated<Self>,
@@ -90,7 +90,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDI2DeviceInfo {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -163,80 +163,80 @@ extern_methods!(
         ///
         ///
         /// The name shall not be any longer than 98 bytes of UTF-8 Text.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MIDIServices")]
         /// The MIDI protocol currently used by the UMP endpoint.
-        #[method(MIDIProtocol)]
+        #[unsafe(method(MIDIProtocol))]
         #[unsafe(method_family = none)]
         pub unsafe fn MIDIProtocol(&self) -> MIDIProtocolID;
 
         #[cfg(feature = "MIDIMessages")]
         /// All protocols the UMP endpoint is capable of using for communication.
-        #[method(supportedMIDIProtocols)]
+        #[unsafe(method(supportedMIDIProtocols))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedMIDIProtocols(&self) -> MIDIUMPProtocolOptions;
 
         #[cfg(feature = "MIDIServices")]
         /// The MIDI destination for the UMP endpoint.
-        #[method(MIDIDestination)]
+        #[unsafe(method(MIDIDestination))]
         #[unsafe(method_family = none)]
         pub unsafe fn MIDIDestination(&self) -> MIDIEndpointRef;
 
         #[cfg(feature = "MIDIServices")]
         /// The MIDI source for the UMP endpoint.
-        #[method(MIDISource)]
+        #[unsafe(method(MIDISource))]
         #[unsafe(method_family = none)]
         pub unsafe fn MIDISource(&self) -> MIDIEndpointRef;
 
         /// The MIDI 2.0 Device identity information associated with the device.
-        #[method(deviceInfo)]
+        #[unsafe(method(deviceInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceInfo(&self) -> Retained<MIDI2DeviceInfo>;
 
         #[cfg(feature = "objc2-foundation")]
         /// Serial number (or similar value) uniquely identifying this manufacturer/family/model,
         /// up to 42 bytes of ASCII Text in the ordinal range 32-126.
-        #[method(productInstanceID)]
+        #[unsafe(method(productInstanceID))]
         #[unsafe(method_family = none)]
         pub unsafe fn productInstanceID(&self) -> Retained<NSString>;
 
         /// Indicates if the Function Block state will never change once discovered.
-        #[method(hasStaticFunctionBlocks)]
+        #[unsafe(method(hasStaticFunctionBlocks))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasStaticFunctionBlocks(&self) -> bool;
 
         /// Jitter-reduction timestamp receive capability.
-        #[method(hasJRTSReceiveCapability)]
+        #[unsafe(method(hasJRTSReceiveCapability))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasJRTSReceiveCapability(&self) -> bool;
 
         /// Jitter-reduction timestamp transmit capability
-        #[method(hasJRTSTransmitCapability)]
+        #[unsafe(method(hasJRTSTransmitCapability))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasJRTSTransmitCapability(&self) -> bool;
 
         #[cfg(feature = "MIDIUMPCI")]
         /// Indicates the type of UMP Endpoint, if known.
-        #[method(endpointType)]
+        #[unsafe(method(endpointType))]
         #[unsafe(method_family = none)]
         pub unsafe fn endpointType(&self) -> MIDIUMPCIObjectBackingType;
 
         #[cfg(all(feature = "MIDIUMPFunctionBlock", feature = "objc2-foundation"))]
         /// The Function Blocks associated with the UMP endpoint, if any.
-        #[method(functionBlocks)]
+        #[unsafe(method(functionBlocks))]
         #[unsafe(method_family = none)]
         pub unsafe fn functionBlocks(&self) -> Retained<NSArray<MIDIUMPFunctionBlock>>;
 
         #[cfg(all(feature = "MIDIUMPFunctionBlock", feature = "objc2-foundation"))]
         /// Setter for [`functionBlocks`][Self::functionBlocks].
-        #[method(setFunctionBlocks:)]
+        #[unsafe(method(setFunctionBlocks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFunctionBlocks(&self, function_blocks: &NSArray<MIDIUMPFunctionBlock>);
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -247,7 +247,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDIUMPEndpoint {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

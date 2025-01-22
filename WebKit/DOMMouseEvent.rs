@@ -56,84 +56,84 @@ extern_methods!(
     ))]
     unsafe impl DOMMouseEvent {
         #[deprecated]
-        #[method(screenX)]
+        #[unsafe(method(screenX))]
         #[unsafe(method_family = none)]
         pub unsafe fn screenX(&self) -> c_int;
 
         #[deprecated]
-        #[method(screenY)]
+        #[unsafe(method(screenY))]
         #[unsafe(method_family = none)]
         pub unsafe fn screenY(&self) -> c_int;
 
         #[deprecated]
-        #[method(clientX)]
+        #[unsafe(method(clientX))]
         #[unsafe(method_family = none)]
         pub unsafe fn clientX(&self) -> c_int;
 
         #[deprecated]
-        #[method(clientY)]
+        #[unsafe(method(clientY))]
         #[unsafe(method_family = none)]
         pub unsafe fn clientY(&self) -> c_int;
 
         #[deprecated]
-        #[method(ctrlKey)]
+        #[unsafe(method(ctrlKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn ctrlKey(&self) -> bool;
 
         #[deprecated]
-        #[method(shiftKey)]
+        #[unsafe(method(shiftKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn shiftKey(&self) -> bool;
 
         #[deprecated]
-        #[method(altKey)]
+        #[unsafe(method(altKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn altKey(&self) -> bool;
 
         #[deprecated]
-        #[method(metaKey)]
+        #[unsafe(method(metaKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn metaKey(&self) -> bool;
 
         #[deprecated]
-        #[method(button)]
+        #[unsafe(method(button))]
         #[unsafe(method_family = none)]
         pub unsafe fn button(&self) -> c_short;
 
         #[cfg(feature = "DOMEventTarget")]
         #[deprecated]
-        #[method(relatedTarget)]
+        #[unsafe(method(relatedTarget))]
         #[unsafe(method_family = none)]
         pub unsafe fn relatedTarget(&self) -> Option<Retained<ProtocolObject<dyn DOMEventTarget>>>;
 
-        #[method(offsetX)]
+        #[unsafe(method(offsetX))]
         #[unsafe(method_family = none)]
         pub unsafe fn offsetX(&self) -> c_int;
 
-        #[method(offsetY)]
+        #[unsafe(method(offsetY))]
         #[unsafe(method_family = none)]
         pub unsafe fn offsetY(&self) -> c_int;
 
-        #[method(x)]
+        #[unsafe(method(x))]
         #[unsafe(method_family = none)]
         pub unsafe fn x(&self) -> c_int;
 
-        #[method(y)]
+        #[unsafe(method(y))]
         #[unsafe(method_family = none)]
         pub unsafe fn y(&self) -> c_int;
 
         #[cfg(feature = "DOMNode")]
-        #[method(fromElement)]
+        #[unsafe(method(fromElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn fromElement(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
-        #[method(toElement)]
+        #[unsafe(method(toElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn toElement(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(all(feature = "DOMAbstractView", feature = "DOMEventTarget"))]
-        #[method(initMouseEvent:canBubble:cancelable:view:detail:screenX:screenY:clientX:clientY:ctrlKey:altKey:shiftKey:metaKey:button:relatedTarget:)]
+        #[unsafe(method(initMouseEvent:canBubble:cancelable:view:detail:screenX:screenY:clientX:clientY:ctrlKey:altKey:shiftKey:metaKey:button:relatedTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn initMouseEvent_canBubble_cancelable_view_detail_screenX_screenY_clientX_clientY_ctrlKey_altKey_shiftKey_metaKey_button_relatedTarget(
             &self,
@@ -166,7 +166,7 @@ extern_methods!(
     ))]
     unsafe impl DOMMouseEvent {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -181,7 +181,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMMouseEvent {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -198,7 +198,7 @@ extern_methods!(
     unsafe impl DOMMouseEvent {
         #[cfg(all(feature = "DOMAbstractView", feature = "DOMEventTarget"))]
         #[deprecated]
-        #[method(initMouseEvent:::::::::::::::)]
+        #[unsafe(method(initMouseEvent:::::::::::::::))]
         #[unsafe(method_family = none)]
         pub unsafe fn initMouseEvent(
             &self,

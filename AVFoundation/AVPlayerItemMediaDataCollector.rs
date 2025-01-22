@@ -38,11 +38,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerItemMediaDataCollector {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -79,7 +79,7 @@ extern_methods!(
         ///
         /// Some metadata available in some formats - such as timed metadata embedded in HLS segments - is not available for collector output.
         /// The default init method can be used as an alternative to setting both identifiers and classifyingLabels to nil.
-        #[method(initWithIdentifiers:classifyingLabels:)]
+        #[unsafe(method(initWithIdentifiers:classifyingLabels:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifiers_classifyingLabels(
             this: Allocated<Self>,
@@ -90,7 +90,7 @@ extern_methods!(
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -101,11 +101,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerItemMetadataCollector {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -126,7 +126,7 @@ extern_protocol!(
         /// Parameter `indexesOfModifiedGroups`: Indexes of metadataGroups modified since the last delegate invocation of this method.
         ///
         /// This method will be invoked whenever new AVDateRangeMetadataGroups are added to metadataGroups or whenever any AVDateRangeMetadataGroups in metadataGroups have been modified since previous invocations. The initial invocation will have indexesOfNewGroup referring to every index in metadataGroups. Subsequent invocations may not contain all previously collected metadata groups if they no longer refer to a region in the AVPlayerItem's seekableTimeRanges.
-        #[method(metadataCollector:didCollectDateRangeMetadataGroups:indexesOfNewGroups:indexesOfModifiedGroups:)]
+        #[unsafe(method(metadataCollector:didCollectDateRangeMetadataGroups:indexesOfNewGroups:indexesOfModifiedGroups:))]
         #[unsafe(method_family = none)]
         unsafe fn metadataCollector_didCollectDateRangeMetadataGroups_indexesOfNewGroups_indexesOfModifiedGroups(
             &self,

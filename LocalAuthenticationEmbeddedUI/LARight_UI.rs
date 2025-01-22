@@ -26,7 +26,7 @@ extern_category!(
         /// Parameter `presentationContext`: Container where the authorization UI will be presented.
         ///
         /// Parameter `handler`: Completion handler called after the authorization finishses. Returns an error when the authorization fails.
-        #[method(authorizeWithLocalizedReason:inPresentationContext:completion:)]
+        #[unsafe(method(authorizeWithLocalizedReason:inPresentationContext:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn authorizeWithLocalizedReason_inPresentationContext_completion(
             &self,

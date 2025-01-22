@@ -32,7 +32,7 @@ extern_methods!(
             feature = "NSTextInputClient",
             feature = "NSView"
         ))]
-        #[method(client)]
+        #[unsafe(method(client))]
         #[unsafe(method_family = none)]
         pub unsafe fn client(&self) -> Option<Retained<NSView>>;
 
@@ -43,11 +43,11 @@ extern_methods!(
         ))]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`client`][Self::client].
-        #[method(setClient:)]
+        #[unsafe(method(setClient:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClient(&self, client: Option<&NSView>);
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -55,45 +55,45 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>>,
         );
 
-        #[method(isCollapsed)]
+        #[unsafe(method(isCollapsed))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCollapsed(&self) -> bool;
 
         /// Setter for [`isCollapsed`][Self::isCollapsed].
-        #[method(setCollapsed:)]
+        #[unsafe(method(setCollapsed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCollapsed(&self, collapsed: bool);
 
-        #[method(allowsCollapsing)]
+        #[unsafe(method(allowsCollapsing))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsCollapsing(&self) -> bool;
 
         /// Setter for [`allowsCollapsing`][Self::allowsCollapsing].
-        #[method(setAllowsCollapsing:)]
+        #[unsafe(method(setAllowsCollapsing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCollapsing(&self, allows_collapsing: bool);
 
-        #[method(isCandidateListVisible)]
+        #[unsafe(method(isCandidateListVisible))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCandidateListVisible(&self) -> bool;
 
-        #[method(updateWithInsertionPointVisibility:)]
+        #[unsafe(method(updateWithInsertionPointVisibility:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateWithInsertionPointVisibility(&self, is_visible: bool);
 
-        #[method(allowsTextInputContextCandidates)]
+        #[unsafe(method(allowsTextInputContextCandidates))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsTextInputContextCandidates(&self) -> bool;
 
         /// Setter for [`allowsTextInputContextCandidates`][Self::allowsTextInputContextCandidates].
-        #[method(setAllowsTextInputContextCandidates:)]
+        #[unsafe(method(setAllowsTextInputContextCandidates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsTextInputContextCandidates(
             &self,
@@ -101,7 +101,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(attributedStringForCandidate)]
+        #[unsafe(method(attributedStringForCandidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringForCandidate(
             &self,
@@ -111,7 +111,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`attributedStringForCandidate`][Self::attributedStringForCandidate].
-        #[method(setAttributedStringForCandidate:)]
+        #[unsafe(method(setAttributedStringForCandidate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedStringForCandidate(
             &self,
@@ -122,11 +122,11 @@ extern_methods!(
             >,
         );
 
-        #[method(candidates)]
+        #[unsafe(method(candidates))]
         #[unsafe(method_family = none)]
         pub unsafe fn candidates(&self) -> Retained<NSArray<CandidateType>>;
 
-        #[method(setCandidates:forSelectedRange:inString:)]
+        #[unsafe(method(setCandidates:forSelectedRange:inString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCandidates_forSelectedRange_inString(
             &self,
@@ -135,12 +135,12 @@ extern_methods!(
             original_string: Option<&NSString>,
         );
 
-        #[method(customizationLabel)]
+        #[unsafe(method(customizationLabel))]
         #[unsafe(method_family = none)]
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
-        #[method(setCustomizationLabel:)]
+        #[unsafe(method(setCustomizationLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     }
@@ -150,21 +150,21 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
-        #[method(initWithIdentifier:)]
+        #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -174,7 +174,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -187,7 +187,7 @@ extern_protocol!(
     {
         #[cfg(feature = "NSTouchBarItem")]
         #[optional]
-        #[method(candidateListTouchBarItem:beginSelectingCandidateAtIndex:)]
+        #[unsafe(method(candidateListTouchBarItem:beginSelectingCandidateAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn candidateListTouchBarItem_beginSelectingCandidateAtIndex(
             &self,
@@ -197,7 +197,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSTouchBarItem")]
         #[optional]
-        #[method(candidateListTouchBarItem:changeSelectionFromCandidateAtIndex:toIndex:)]
+        #[unsafe(method(candidateListTouchBarItem:changeSelectionFromCandidateAtIndex:toIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex(
             &self,
@@ -208,7 +208,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSTouchBarItem")]
         #[optional]
-        #[method(candidateListTouchBarItem:endSelectingCandidateAtIndex:)]
+        #[unsafe(method(candidateListTouchBarItem:endSelectingCandidateAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn candidateListTouchBarItem_endSelectingCandidateAtIndex(
             &self,
@@ -218,7 +218,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSTouchBarItem")]
         #[optional]
-        #[method(candidateListTouchBarItem:changedCandidateListVisibility:)]
+        #[unsafe(method(candidateListTouchBarItem:changedCandidateListVisibility:))]
         #[unsafe(method_family = none)]
         unsafe fn candidateListTouchBarItem_changedCandidateListVisibility(
             &self,
@@ -233,7 +233,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSView {
         #[cfg(feature = "NSTouchBarItem")]
-        #[method(candidateListTouchBarItem)]
+        #[unsafe(method(candidateListTouchBarItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn candidateListTouchBarItem(
             &self,

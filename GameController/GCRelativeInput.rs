@@ -22,7 +22,7 @@ extern_protocol!(
         ///
         /// Parameter `delta`: The amount that the input has changed since the last time
         /// `deltaDidChangeHandler`fired.
-        #[method(deltaDidChangeHandler)]
+        #[unsafe(method(deltaDidChangeHandler))]
         #[unsafe(method_family = none)]
         unsafe fn deltaDidChangeHandler(
             &self,
@@ -36,7 +36,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Setter for [`deltaDidChangeHandler`][Self::deltaDidChangeHandler].
-        #[method(setDeltaDidChangeHandler:)]
+        #[unsafe(method(setDeltaDidChangeHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setDeltaDidChangeHandler(
             &self,
@@ -52,7 +52,7 @@ extern_protocol!(
         );
 
         /// The last reported delta for the input.
-        #[method(delta)]
+        #[unsafe(method(delta))]
         #[unsafe(method_family = none)]
         unsafe fn delta(&self) -> c_float;
 
@@ -60,7 +60,7 @@ extern_protocol!(
         ///
         /// Defaults to
         /// `YES`for most relative inputs.
-        #[method(isAnalog)]
+        #[unsafe(method(isAnalog))]
         #[unsafe(method_family = none)]
         unsafe fn isAnalog(&self) -> bool;
 
@@ -69,7 +69,7 @@ extern_protocol!(
         /// This time interval is not relative to any specific point in time.  You can
         /// subtract a previous timestamp from the current timestamp to determine the time
         /// (in seconds) between changes to the value.
-        #[method(lastDeltaTimestamp)]
+        #[unsafe(method(lastDeltaTimestamp))]
         #[unsafe(method_family = none)]
         unsafe fn lastDeltaTimestamp(&self) -> NSTimeInterval;
 
@@ -79,14 +79,14 @@ extern_protocol!(
         /// This should be treated as a lower bound of the event latency.  It may not
         /// include (wired or wireless) transmission latency, or latency accrued on
         /// the device before the event was transmitted to the host.
-        #[method(lastDeltaLatency)]
+        #[unsafe(method(lastDeltaLatency))]
         #[unsafe(method_family = none)]
         unsafe fn lastDeltaLatency(&self) -> NSTimeInterval;
 
         #[cfg(feature = "GCPhysicalInputSource")]
         /// An object describing the physical action(s) the user performs to manipulate
         /// this input.
-        #[method(sources)]
+        #[unsafe(method(sources))]
         #[unsafe(method_family = none)]
         unsafe fn sources(&self) -> Retained<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }

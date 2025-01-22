@@ -67,19 +67,19 @@ extern_methods!(
     unsafe impl UIContextMenuConfiguration {
         /// This configuration's identifier. When representing multiple items in your app, this identifier
         /// corresponds to the primary item (i.e. the one with which the user interacted when invoking the menu).
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<ProtocolObject<dyn NSCopying>>;
 
         /// When this menu acts on multiple items, you may include the identifiers of secondary items to display a multi-item menu.
-        #[method(secondaryItemIdentifiers)]
+        #[unsafe(method(secondaryItemIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryItemIdentifiers(
             &self,
         ) -> Retained<NSSet<ProtocolObject<dyn NSCopying>>>;
 
         /// Setter for [`secondaryItemIdentifiers`][Self::secondaryItemIdentifiers].
-        #[method(setSecondaryItemIdentifiers:)]
+        #[unsafe(method(setSecondaryItemIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryItemIdentifiers(
             &self,
@@ -88,22 +88,22 @@ extern_methods!(
 
         /// Number of items on which this menu acts. Used to badge a multi-item menu's preview stack.
         /// When unset, this value is determined automatically by the system. Values lower than 2 hide the badge.
-        #[method(badgeCount)]
+        #[unsafe(method(badgeCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn badgeCount(&self) -> NSInteger;
 
         /// Setter for [`badgeCount`][Self::badgeCount].
-        #[method(setBadgeCount:)]
+        #[unsafe(method(setBadgeCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadgeCount(&self, badge_count: NSInteger);
 
         /// Preferred menu element ordering strategy for this menu.
-        #[method(preferredMenuElementOrder)]
+        #[unsafe(method(preferredMenuElementOrder))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredMenuElementOrder(&self) -> UIContextMenuConfigurationElementOrder;
 
         /// Setter for [`preferredMenuElementOrder`][Self::preferredMenuElementOrder].
-        #[method(setPreferredMenuElementOrder:)]
+        #[unsafe(method(setPreferredMenuElementOrder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredMenuElementOrder(
             &self,
@@ -126,7 +126,7 @@ extern_methods!(
         /// Parameter `previewProvider`: Optional preview view controller provider block, called when the menu is about to be presented.
         ///
         /// Parameter `actionProvider`: Optional action provider block, called when the menu is about to be presented.
-        #[method(configurationWithIdentifier:previewProvider:actionProvider:)]
+        #[unsafe(method(configurationWithIdentifier:previewProvider:actionProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationWithIdentifier_previewProvider_actionProvider(
             identifier: Option<&ProtocolObject<dyn NSCopying>>,
@@ -140,11 +140,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIContextMenuConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

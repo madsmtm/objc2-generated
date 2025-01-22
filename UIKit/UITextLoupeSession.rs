@@ -34,7 +34,7 @@ extern_methods!(
         /// Parameter `widgetView`: Optionally, a system-provided selection view that the animation can start from.
         ///
         /// Parameter `view`: The coordinate space that all subsequent movement updates are provided in.
-        #[method(beginLoupeSessionAtPoint:fromSelectionWidgetView:inView:)]
+        #[unsafe(method(beginLoupeSessionAtPoint:fromSelectionWidgetView:inView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginLoupeSessionAtPoint_fromSelectionWidgetView_inView(
             point: CGPoint,
@@ -51,7 +51,7 @@ extern_methods!(
         /// Parameter `caretRect`: The current position of the caret/range handle. Pass in CGRectNull if there is no current selection/no caret rect visible.
         ///
         /// Parameter `trackingCaret`: Provide YES if the loupe should track the caret instead of the touch.
-        #[method(moveToPoint:withCaretRect:trackingCaret:)]
+        #[unsafe(method(moveToPoint:withCaretRect:trackingCaret:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveToPoint_withCaretRect_trackingCaret(
             &self,
@@ -61,7 +61,7 @@ extern_methods!(
         );
 
         /// Invalidates the loupe session. Hides the loupe and cleans up transient state.
-        #[method(invalidate)]
+        #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
     }
@@ -70,11 +70,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextLoupeSession {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

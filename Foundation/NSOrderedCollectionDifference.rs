@@ -62,7 +62,7 @@ extern_methods!(
         /// 1) All insertion offsets are unique
         /// 2) All removal offsets are unique
         /// 3) All associated indexes match a change with the opposite parity.
-        #[method(initWithChanges:)]
+        #[unsafe(method(initWithChanges:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithChanges(
             this: Allocated<Self>,
@@ -74,7 +74,7 @@ extern_methods!(
             feature = "NSIndexSet",
             feature = "NSOrderedCollectionChange"
         ))]
-        #[method(initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:additionalChanges:)]
+        #[unsafe(method(initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:additionalChanges:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects_additionalChanges(
             this: Allocated<Self>,
@@ -86,7 +86,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSIndexSet"))]
-        #[method(initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:)]
+        #[unsafe(method(initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects(
             this: Allocated<Self>,
@@ -97,22 +97,22 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSOrderedCollectionChange"))]
-        #[method(insertions)]
+        #[unsafe(method(insertions))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertions(&self)
             -> Retained<NSArray<NSOrderedCollectionChange<ObjectType>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSOrderedCollectionChange"))]
-        #[method(removals)]
+        #[unsafe(method(removals))]
         #[unsafe(method_family = none)]
         pub unsafe fn removals(&self) -> Retained<NSArray<NSOrderedCollectionChange<ObjectType>>>;
 
-        #[method(hasChanges)]
+        #[unsafe(method(hasChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasChanges(&self) -> bool;
 
         #[cfg(all(feature = "NSOrderedCollectionChange", feature = "block2"))]
-        #[method(differenceByTransformingChangesWithBlock:)]
+        #[unsafe(method(differenceByTransformingChangesWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn differenceByTransformingChangesWithBlock(
             &self,
@@ -124,7 +124,7 @@ extern_methods!(
             >,
         ) -> Retained<NSOrderedCollectionDifference<AnyObject>>;
 
-        #[method(inverseDifference)]
+        #[unsafe(method(inverseDifference))]
         #[unsafe(method_family = none)]
         pub unsafe fn inverseDifference(&self) -> Retained<Self>;
     }
@@ -133,11 +133,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

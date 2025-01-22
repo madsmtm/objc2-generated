@@ -30,7 +30,7 @@ extern_protocol!(
         /// has started to load.
         #[deprecated]
         #[optional]
-        #[method(webView:didStartProvisionalLoadForFrame:)]
+        #[unsafe(method(webView:didStartProvisionalLoadForFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_didStartProvisionalLoadForFrame(
             &self,
@@ -47,7 +47,7 @@ extern_protocol!(
         /// Parameter `frame`: The frame for which the redirect occurred
         #[deprecated]
         #[optional]
-        #[method(webView:didReceiveServerRedirectForProvisionalLoadForFrame:)]
+        #[unsafe(method(webView:didReceiveServerRedirectForProvisionalLoadForFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_didReceiveServerRedirectForProvisionalLoadForFrame(
             &self,
@@ -69,7 +69,7 @@ extern_protocol!(
         /// The frame will continue to display the contents of the committed data source if there is one.
         #[deprecated]
         #[optional]
-        #[method(webView:didFailProvisionalLoadWithError:forFrame:)]
+        #[unsafe(method(webView:didFailProvisionalLoadWithError:forFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_didFailProvisionalLoadWithError_forFrame(
             &self,
@@ -95,7 +95,7 @@ extern_protocol!(
         /// this happens, a new commit will be sent for each document.
         #[deprecated]
         #[optional]
-        #[method(webView:didCommitLoadForFrame:)]
+        #[unsafe(method(webView:didCommitLoadForFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_didCommitLoadForFrame(
             &self,
@@ -116,7 +116,7 @@ extern_protocol!(
         /// The title may update during loading; clients should be prepared for this.
         #[deprecated]
         #[optional]
-        #[method(webView:didReceiveTitle:forFrame:)]
+        #[unsafe(method(webView:didReceiveTitle:forFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_didReceiveTitle_forFrame(
             &self,
@@ -136,7 +136,7 @@ extern_protocol!(
         /// Parameter `frame`: The frame for which a page icon has been received
         #[deprecated]
         #[optional]
-        #[method(webView:didReceiveIcon:forFrame:)]
+        #[unsafe(method(webView:didReceiveIcon:forFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_didReceiveIcon_forFrame(
             &self,
@@ -158,7 +158,7 @@ extern_protocol!(
         /// Plug-In content and JavaScript-requested loads may occur after this method is called.
         #[deprecated]
         #[optional]
-        #[method(webView:didFinishLoadForFrame:)]
+        #[unsafe(method(webView:didFinishLoadForFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_didFinishLoadForFrame(
             &self,
@@ -179,7 +179,7 @@ extern_protocol!(
         /// This method is called after a data source has committed but failed to completely load.
         #[deprecated]
         #[optional]
-        #[method(webView:didFailLoadWithError:forFrame:)]
+        #[unsafe(method(webView:didFailLoadWithError:forFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_didFailLoadWithError_forFrame(
             &self,
@@ -199,7 +199,7 @@ extern_protocol!(
         /// This method is called when anchors within a page have been clicked.
         #[deprecated]
         #[optional]
-        #[method(webView:didChangeLocationWithinPageForFrame:)]
+        #[unsafe(method(webView:didChangeLocationWithinPageForFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_didChangeLocationWithinPageForFrame(
             &self,
@@ -225,7 +225,7 @@ extern_protocol!(
         /// redirect is pending.
         #[deprecated]
         #[optional]
-        #[method(webView:willPerformClientRedirectToURL:delay:fireDate:forFrame:)]
+        #[unsafe(method(webView:willPerformClientRedirectToURL:delay:fireDate:forFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_willPerformClientRedirectToURL_delay_fireDate_forFrame(
             &self,
@@ -247,7 +247,7 @@ extern_protocol!(
         /// A client-side redirect can be cancelled if a frame changes location before the timeout.
         #[deprecated]
         #[optional]
-        #[method(webView:didCancelClientRedirectForFrame:)]
+        #[unsafe(method(webView:didCancelClientRedirectForFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_didCancelClientRedirectForFrame(
             &self,
@@ -267,7 +267,7 @@ extern_protocol!(
         /// and the objects that it contains.
         #[deprecated]
         #[optional]
-        #[method(webView:willCloseFrame:)]
+        #[unsafe(method(webView:willCloseFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_willCloseFrame(&self, sender: Option<&WebView>, frame: Option<&WebFrame>);
 
@@ -294,7 +294,7 @@ extern_protocol!(
         /// compatibility with older versions of WebKit.
         #[deprecated]
         #[optional]
-        #[method(webView:didClearWindowObject:forFrame:)]
+        #[unsafe(method(webView:didClearWindowObject:forFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_didClearWindowObject_forFrame(
             &self,
@@ -320,7 +320,7 @@ extern_protocol!(
         /// instead.
         #[deprecated]
         #[optional]
-        #[method(webView:windowScriptObjectAvailable:)]
+        #[unsafe(method(webView:windowScriptObjectAvailable:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_windowScriptObjectAvailable(
             &self,

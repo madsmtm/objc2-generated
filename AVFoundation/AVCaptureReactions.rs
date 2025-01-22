@@ -108,13 +108,13 @@ extern_methods!(
         ///
         ///
         /// There may be multiple reactions of the same type at a given time.  Some may come from gesture detection, some may come from calls to -[AVCaptureDevice performReactionEffect:]
-        #[method(reactionType)]
+        #[unsafe(method(reactionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn reactionType(&self) -> Retained<AVCaptureReactionType>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Provides the presentation time of the first frame where the effect is being rendered.
-        #[method(startTime)]
+        #[unsafe(method(startTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn startTime(&self) -> CMTime;
 
@@ -123,7 +123,7 @@ extern_methods!(
         ///
         ///
         /// Will be kCMTimeInvalid while the effect is in progress, but will be updated to a valid time when the reaction effect completes and the AVCaptureReactionEffectState is removed from -[AVCaptureDevice reactionEffectsInProgress]. (If using NSKeyValueObservingOptionOld, you can access completed effects with valid end times via NSKeyValueChangeOldKey.)
-        #[method(endTime)]
+        #[unsafe(method(endTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn endTime(&self) -> CMTime;
     }
@@ -132,11 +132,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCaptureReactionEffectState {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

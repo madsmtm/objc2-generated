@@ -22,27 +22,27 @@ unsafe impl NSObjectProtocol for MLModelCollectionEntry {}
 extern_methods!(
     unsafe impl MLModelCollectionEntry {
         #[deprecated = "Use Background Assets or NSURLSession instead."]
-        #[method(modelIdentifier)]
+        #[unsafe(method(modelIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelIdentifier(&self) -> Retained<NSString>;
 
         #[deprecated = "Use Background Assets or NSURLSession instead."]
-        #[method(modelURL)]
+        #[unsafe(method(modelURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelURL(&self) -> Retained<NSURL>;
 
         #[deprecated = "Use Background Assets or NSURLSession instead."]
-        #[method(isEqualToModelCollectionEntry:)]
+        #[unsafe(method(isEqualToModelCollectionEntry:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToModelCollectionEntry(&self, entry: &MLModelCollectionEntry) -> bool;
 
         #[deprecated = "Use Background Assets or NSURLSession instead."]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Use Background Assets or NSURLSession instead."]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

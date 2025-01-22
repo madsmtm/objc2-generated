@@ -27,7 +27,7 @@ extern_methods!(
     unsafe impl MPPlayableContentManager {
         #[cfg(feature = "MPPlayableContentDataSource")]
         #[deprecated = "Use CarPlay framework"]
-        #[method(dataSource)]
+        #[unsafe(method(dataSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataSource(
             &self,
@@ -37,7 +37,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dataSource`][Self::dataSource].
         #[deprecated = "Use CarPlay framework"]
-        #[method(setDataSource:)]
+        #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(
             &self,
@@ -46,7 +46,7 @@ extern_methods!(
 
         #[cfg(feature = "MPPlayableContentDelegate")]
         #[deprecated = "Use CarPlay framework"]
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -56,7 +56,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "Use CarPlay framework"]
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -65,44 +65,44 @@ extern_methods!(
 
         #[cfg(feature = "MPPlayableContentManagerContext")]
         #[deprecated = "Use CarPlay framework"]
-        #[method(context)]
+        #[unsafe(method(context))]
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> Retained<MPPlayableContentManagerContext>;
 
         /// Tells the content manager which MPContentItems are currently playing based on their identifiers.
         #[deprecated = "Use CarPlay framework"]
-        #[method(nowPlayingIdentifiers)]
+        #[unsafe(method(nowPlayingIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn nowPlayingIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`nowPlayingIdentifiers`][Self::nowPlayingIdentifiers].
         #[deprecated = "Use CarPlay framework"]
-        #[method(setNowPlayingIdentifiers:)]
+        #[unsafe(method(setNowPlayingIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNowPlayingIdentifiers(&self, now_playing_identifiers: &NSArray<NSString>);
 
         /// Returns the application's instance of the content manager.
         #[deprecated = "Use CarPlay framework"]
-        #[method(sharedContentManager)]
+        #[unsafe(method(sharedContentManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedContentManager() -> Retained<Self>;
 
         /// Tells the content manager that the data source has changed and that we need to
         /// reload data from the data source.
         #[deprecated = "Use CarPlay framework"]
-        #[method(reloadData)]
+        #[unsafe(method(reloadData))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadData(&self);
 
         /// Used to begin a synchronized update to multiple MPContentItems at once.
         #[deprecated = "Use CarPlay framework"]
-        #[method(beginUpdates)]
+        #[unsafe(method(beginUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginUpdates(&self);
 
         /// Ends a synchronized update.
         #[deprecated = "Use CarPlay framework"]
-        #[method(endUpdates)]
+        #[unsafe(method(endUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn endUpdates(&self);
     }
@@ -111,11 +111,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPPlayableContentManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

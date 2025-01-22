@@ -96,7 +96,7 @@ extern_methods!(
         /// This value is normalized to the diagonal length of the image.
         ///
         /// Returns: A valid object or nil, if failure.
-        #[method(initWithDevice:gaussianSigma:minLineLength:maxLines:detailRatio:gradientThreshold:lineErrorThreshold:mergeLocalityThreshold:)]
+        #[unsafe(method(initWithDevice:gaussianSigma:minLineLength:maxLines:detailRatio:gradientThreshold:lineErrorThreshold:mergeLocalityThreshold:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_gaussianSigma_minLineLength_maxLines_detailRatio_gradientThreshold_lineErrorThreshold_mergeLocalityThreshold(
             this: Allocated<Self>,
@@ -123,7 +123,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -152,7 +152,7 @@ extern_methods!(
         /// start and end pixel coordinates of the segment. Coordinates are stored as unsigned short pairs, and a
         /// single line segment will consist of two pairs, or four total unsigned shorts. The endpoint buffer size must
         /// be >= 4 * maxLines * sizeof(unsigned short) + sizeof(uint32_t).
-        #[method(encodeToCommandBuffer:sourceTexture:destinationTexture:endpointBuffer:endpointOffset:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceTexture:destinationTexture:endpointBuffer:endpointOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_destinationTexture_endpointBuffer_endpointOffset(
             &self,
@@ -169,85 +169,85 @@ extern_methods!(
         /// completely within the source image, the intersection of the image bounds and clipRectSource will
         /// be used. The clipRectSource replaces the MPSUnaryImageKernel offset parameter for this filter.
         /// The latter is ignored.   Default: MPSRectNoClip, use the entire source texture.
-        #[method(clipRectSource)]
+        #[unsafe(method(clipRectSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn clipRectSource(&self) -> MTLRegion;
 
         /// Setter for [`clipRectSource`][Self::clipRectSource].
-        #[method(setClipRectSource:)]
+        #[unsafe(method(setClipRectSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClipRectSource(&self, clip_rect_source: MTLRegion);
 
         /// Read-only sigma value used in performing Gaussian blur of the image.
         /// Default is 2.0
-        #[method(gaussianSigma)]
+        #[unsafe(method(gaussianSigma))]
         #[unsafe(method_family = none)]
         pub unsafe fn gaussianSigma(&self) -> c_float;
 
         /// Read-write value used to set the minimum length of a line segment.
         /// Default is 32
-        #[method(minLineLength)]
+        #[unsafe(method(minLineLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn minLineLength(&self) -> c_ushort;
 
         /// Setter for [`minLineLength`][Self::minLineLength].
-        #[method(setMinLineLength:)]
+        #[unsafe(method(setMinLineLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinLineLength(&self, min_line_length: c_ushort);
 
         /// Read-write value used to set the max number of line segments to be written out.
         /// The endpointBuffer at encode must be >= maxLines * 4 * sizeof(unsigned short) + sizeof(uint32_t).
         /// Default is 256
-        #[method(maxLines)]
+        #[unsafe(method(maxLines))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxLines(&self) -> NSUInteger;
 
         /// Setter for [`maxLines`][Self::maxLines].
-        #[method(setMaxLines:)]
+        #[unsafe(method(setMaxLines:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxLines(&self, max_lines: NSUInteger);
 
         /// Read-write value used to set the detailRatio to use in the EDLines algorithm
         /// Default is 32
-        #[method(detailRatio)]
+        #[unsafe(method(detailRatio))]
         #[unsafe(method_family = none)]
         pub unsafe fn detailRatio(&self) -> c_ushort;
 
         /// Setter for [`detailRatio`][Self::detailRatio].
-        #[method(setDetailRatio:)]
+        #[unsafe(method(setDetailRatio:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDetailRatio(&self, detail_ratio: c_ushort);
 
         /// Read-write value used to set the threshold for a pixel to be considered an edge
         /// Default is 0.2
-        #[method(gradientThreshold)]
+        #[unsafe(method(gradientThreshold))]
         #[unsafe(method_family = none)]
         pub unsafe fn gradientThreshold(&self) -> c_float;
 
         /// Setter for [`gradientThreshold`][Self::gradientThreshold].
-        #[method(setGradientThreshold:)]
+        #[unsafe(method(setGradientThreshold:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGradientThreshold(&self, gradient_threshold: c_float);
 
         /// Read-write value used to set the limit on error for a line segment relative to the edge it fits
         /// Default is 0.05
-        #[method(lineErrorThreshold)]
+        #[unsafe(method(lineErrorThreshold))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineErrorThreshold(&self) -> c_float;
 
         /// Setter for [`lineErrorThreshold`][Self::lineErrorThreshold].
-        #[method(setLineErrorThreshold:)]
+        #[unsafe(method(setLineErrorThreshold:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineErrorThreshold(&self, line_error_threshold: c_float);
 
         /// Read-write value used to set how many pixels apart two lines can deviate spatially and still be merged.
         /// Default is 0.0025
-        #[method(mergeLocalityThreshold)]
+        #[unsafe(method(mergeLocalityThreshold))]
         #[unsafe(method_family = none)]
         pub unsafe fn mergeLocalityThreshold(&self) -> c_float;
 
         /// Setter for [`mergeLocalityThreshold`][Self::mergeLocalityThreshold].
-        #[method(setMergeLocalityThreshold:)]
+        #[unsafe(method(setMergeLocalityThreshold:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMergeLocalityThreshold(&self, merge_locality_threshold: c_float);
     }
@@ -264,7 +264,7 @@ extern_methods!(
         /// Returns: a pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -279,7 +279,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -292,11 +292,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSImageEDLines {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

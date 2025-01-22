@@ -32,7 +32,7 @@ extern_methods!(
         /// before the application is launched. Once the application is launched, this restriction is removed.
         ///
         /// Returns: The result is `nil` if downloads are not restricted. It returns a valid number with the remaining available download size otherwise.
-        #[method(restrictedDownloadSizeRemaining)]
+        #[unsafe(method(restrictedDownloadSizeRemaining))]
         #[unsafe(method_family = none)]
         pub unsafe fn restrictedDownloadSizeRemaining(&self) -> Option<Retained<NSNumber>>;
 
@@ -43,16 +43,16 @@ extern_methods!(
         /// before the application is launched. Once the application is launched, this restriction is removed.
         ///
         /// Returns: The result is `nil` if downloads are not restricted. It returns a valid number with the remaining available download size otherwise.
-        #[method(restrictedEssentialDownloadSizeRemaining)]
+        #[unsafe(method(restrictedEssentialDownloadSizeRemaining))]
         #[unsafe(method_family = none)]
         pub unsafe fn restrictedEssentialDownloadSizeRemaining(&self)
             -> Option<Retained<NSNumber>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

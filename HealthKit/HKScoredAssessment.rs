@@ -43,15 +43,15 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKScoredAssessment {
         /// The score determined by the answers on an assessment
-        #[method(score)]
+        #[unsafe(method(score))]
         #[unsafe(method_family = none)]
         pub unsafe fn score(&self) -> NSInteger;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

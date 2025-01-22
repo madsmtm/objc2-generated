@@ -73,7 +73,7 @@ extern_methods!(
         /// See: ARMatteResolution
         ///
         /// Returns: Instance of ARMatteGenerator.
-        #[method(initWithDevice:matteResolution:)]
+        #[unsafe(method(initWithDevice:matteResolution:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_matteResolution(
             this: Allocated<Self>,
@@ -90,7 +90,7 @@ extern_methods!(
         /// Parameter `commandBuffer`: Metal command buffer for encoding matting related operations. The command buffer is committed by the caller externally.
         ///
         /// Returns: Alpha matte MTLTexture for the given ARFrame at full resolution or half resolution as chosen by the  caller during initialization.
-        #[method(generateMatteFromFrame:commandBuffer:)]
+        #[unsafe(method(generateMatteFromFrame:commandBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateMatteFromFrame_commandBuffer(
             &self,
@@ -108,7 +108,7 @@ extern_methods!(
         /// Parameter `commandBuffer`: Metal command buffer for encoding depth dilation operations. The command buffer is committed by the caller externally.
         ///
         /// Returns: Dilated depth MTLTexture for the given ARFrame at the segmentation stencil resolution. The texture consists of a single channel and is of type float16.
-        #[method(generateDilatedDepthFromFrame:commandBuffer:)]
+        #[unsafe(method(generateDilatedDepthFromFrame:commandBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateDilatedDepthFromFrame_commandBuffer(
             &self,
@@ -117,11 +117,11 @@ extern_methods!(
         ) -> Retained<ProtocolObject<dyn MTLTexture>>;
 
         /// Unavailable
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

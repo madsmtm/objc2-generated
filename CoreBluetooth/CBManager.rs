@@ -85,7 +85,7 @@ unsafe impl NSObjectProtocol for CBManager {}
 
 extern_methods!(
     unsafe impl CBManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -102,7 +102,7 @@ extern_methods!(
         ///  
         ///
         /// ```
-        #[method(state)]
+        #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> CBManagerState;
 
@@ -120,7 +120,7 @@ extern_methods!(
         ///
         /// ```
         #[deprecated]
-        #[method(authorization)]
+        #[unsafe(method(authorization))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorization(&self) -> CBManagerAuthorization;
 
@@ -137,7 +137,7 @@ extern_methods!(
         ///  
         ///
         /// ```
-        #[method(authorization)]
+        #[unsafe(method(authorization))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorization_class() -> CBManagerAuthorization;
     }
@@ -146,7 +146,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CBManager {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

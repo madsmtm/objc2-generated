@@ -20,18 +20,18 @@ extern_methods!(
     unsafe impl UIFeedbackGenerator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// initalize the generator with a view to attach it to the provided view as an interaction.
-        #[method(feedbackGeneratorForView:)]
+        #[unsafe(method(feedbackGeneratorForView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
 
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// informs self that it will likely receive events soon, so that it can ensure minimal latency for any feedback generated
         /// safe to call more than once before the generator receives an event, if events are still imminently possible
-        #[method(prepare)]
+        #[unsafe(method(prepare))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepare(&self);
     }
@@ -40,7 +40,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIFeedbackGenerator {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

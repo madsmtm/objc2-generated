@@ -10,12 +10,12 @@ extern_protocol!(
     pub unsafe trait UISpringLoadedInteractionSupporting:
         NSObjectProtocol + MainThreadOnly
     {
-        #[method(isSpringLoaded)]
+        #[unsafe(method(isSpringLoaded))]
         #[unsafe(method_family = none)]
         unsafe fn isSpringLoaded(&self) -> bool;
 
         /// Setter for [`isSpringLoaded`][Self::isSpringLoaded].
-        #[method(setSpringLoaded:)]
+        #[unsafe(method(setSpringLoaded:))]
         #[unsafe(method_family = none)]
         unsafe fn setSpringLoaded(&self, spring_loaded: bool);
     }

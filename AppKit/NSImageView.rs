@@ -123,72 +123,72 @@ extern_methods!(
         /// Parameter `image`: The image to display within the view.
         ///
         /// Returns: An initialized image view.
-        #[method(imageViewWithImage:)]
+        #[unsafe(method(imageViewWithImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageViewWithImage(image: &NSImage, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method(image)]
+        #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`image`][Self::image].
-        #[method(setImage:)]
+        #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
-        #[method(isEditable)]
+        #[unsafe(method(isEditable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEditable(&self) -> bool;
 
         /// Setter for [`isEditable`][Self::isEditable].
-        #[method(setEditable:)]
+        #[unsafe(method(setEditable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEditable(&self, editable: bool);
 
         #[cfg(feature = "NSImageCell")]
-        #[method(imageAlignment)]
+        #[unsafe(method(imageAlignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
 
         #[cfg(feature = "NSImageCell")]
         /// Setter for [`imageAlignment`][Self::imageAlignment].
-        #[method(setImageAlignment:)]
+        #[unsafe(method(setImageAlignment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageAlignment(&self, image_alignment: NSImageAlignment);
 
         #[cfg(feature = "NSCell")]
-        #[method(imageScaling)]
+        #[unsafe(method(imageScaling))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
         #[cfg(feature = "NSCell")]
         /// Setter for [`imageScaling`][Self::imageScaling].
-        #[method(setImageScaling:)]
+        #[unsafe(method(setImageScaling:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
         #[cfg(feature = "NSImageCell")]
-        #[method(imageFrameStyle)]
+        #[unsafe(method(imageFrameStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageFrameStyle(&self) -> NSImageFrameStyle;
 
         #[cfg(feature = "NSImageCell")]
         /// Setter for [`imageFrameStyle`][Self::imageFrameStyle].
-        #[method(setImageFrameStyle:)]
+        #[unsafe(method(setImageFrameStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageFrameStyle(&self, image_frame_style: NSImageFrameStyle);
 
         #[cfg(feature = "NSImage")]
         /// Specifies a combination of point size, weight, and scale to use when sizing and displaying symbol images. If a symbol configuration isn't provided, the image view uses a default size, weight, and scale provided by the system. The default value is `nil`.
-        #[method(symbolConfiguration)]
+        #[unsafe(method(symbolConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolConfiguration(&self) -> Option<Retained<NSImageSymbolConfiguration>>;
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`symbolConfiguration`][Self::symbolConfiguration].
-        #[method(setSymbolConfiguration:)]
+        #[unsafe(method(setSymbolConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSymbolConfiguration(
             &self,
@@ -197,43 +197,43 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         /// A tint color to be used when rendering template image content. This color may be combined with other effects to produce a theme-appropriate rendition of the template image. A nil value indicates the standard set of effects without color modification. The default value is nil.
-        #[method(contentTintColor)]
+        #[unsafe(method(contentTintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentTintColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`contentTintColor`][Self::contentTintColor].
-        #[method(setContentTintColor:)]
+        #[unsafe(method(setContentTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentTintColor(&self, content_tint_color: Option<&NSColor>);
 
-        #[method(animates)]
+        #[unsafe(method(animates))]
         #[unsafe(method_family = none)]
         pub unsafe fn animates(&self) -> bool;
 
         /// Setter for [`animates`][Self::animates].
-        #[method(setAnimates:)]
+        #[unsafe(method(setAnimates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimates(&self, animates: bool);
 
-        #[method(allowsCutCopyPaste)]
+        #[unsafe(method(allowsCutCopyPaste))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsCutCopyPaste(&self) -> bool;
 
         /// Setter for [`allowsCutCopyPaste`][Self::allowsCutCopyPaste].
-        #[method(setAllowsCutCopyPaste:)]
+        #[unsafe(method(setAllowsCutCopyPaste:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCutCopyPaste(&self, allows_cut_copy_paste: bool);
 
         /// Default preferred image dynamic range. Defaults to `NSImageDynamicRangeConstrainedHigh` on macOS 14 and higher, `NSImageDynamicRangeStandard` otherwise. Set to another value to change the default for all subsequently created `NSImageView`s in your app.
-        #[method(defaultPreferredImageDynamicRange)]
+        #[unsafe(method(defaultPreferredImageDynamicRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultPreferredImageDynamicRange(
             mtm: MainThreadMarker,
         ) -> NSImageDynamicRange;
 
         /// Setter for [`defaultPreferredImageDynamicRange`][Self::defaultPreferredImageDynamicRange].
-        #[method(setDefaultPreferredImageDynamicRange:)]
+        #[unsafe(method(setDefaultPreferredImageDynamicRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultPreferredImageDynamicRange(
             default_preferred_image_dynamic_range: NSImageDynamicRange,
@@ -241,12 +241,12 @@ extern_methods!(
         );
 
         /// Preferred dynamic range when displaying an image in the receiving image view.
-        #[method(preferredImageDynamicRange)]
+        #[unsafe(method(preferredImageDynamicRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredImageDynamicRange(&self) -> NSImageDynamicRange;
 
         /// Setter for [`preferredImageDynamicRange`][Self::preferredImageDynamicRange].
-        #[method(setPreferredImageDynamicRange:)]
+        #[unsafe(method(setPreferredImageDynamicRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredImageDynamicRange(
             &self,
@@ -254,7 +254,7 @@ extern_methods!(
         );
 
         /// Resolved dynamic range based on fully resolved image content. Note: this will return `NSImageDynamicRangeUnspecified` if the image view has not or can not resolve the content (either because it has no resolvable image content or has not resolved because the image view hasn't displayed.)
-        #[method(imageDynamicRange)]
+        #[unsafe(method(imageDynamicRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageDynamicRange(&self) -> NSImageDynamicRange;
     }
@@ -264,11 +264,11 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSImageView {
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -281,7 +281,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSImageView {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -291,7 +291,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSImageView {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

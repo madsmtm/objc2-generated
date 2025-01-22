@@ -54,13 +54,13 @@ extern_methods!(
     unsafe impl AVCustomRoutingEvent {
         /// A reason for an event, such as a user request to activate or deactivate a
         /// route.
-        #[method(reason)]
+        #[unsafe(method(reason))]
         #[unsafe(method_family = none)]
         pub unsafe fn reason(&self) -> AVCustomRoutingEventReason;
 
         #[cfg(feature = "AVCustomDeviceRoute")]
         /// A route for the event.
-        #[method(route)]
+        #[unsafe(method(route))]
         #[unsafe(method_family = none)]
         pub unsafe fn route(&self) -> Retained<AVCustomDeviceRoute>;
     }
@@ -69,11 +69,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCustomRoutingEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

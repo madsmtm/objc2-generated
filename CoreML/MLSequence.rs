@@ -26,31 +26,31 @@ extern_methods!(
     unsafe impl MLSequence {
         #[cfg(feature = "MLFeatureType")]
         /// Type of values held
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> MLFeatureType;
 
         #[cfg(feature = "MLFeatureType")]
         /// Empty sequence of a sepcific type
-        #[method(emptySequenceWithType:)]
+        #[unsafe(method(emptySequenceWithType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn emptySequenceWithType(r#type: MLFeatureType) -> Retained<Self>;
 
         /// String sequences, property will be empty array if type is MLFeatureTypeString
-        #[method(sequenceWithStringArray:)]
+        #[unsafe(method(sequenceWithStringArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sequenceWithStringArray(string_values: &NSArray<NSString>) -> Retained<Self>;
 
-        #[method(stringValues)]
+        #[unsafe(method(stringValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringValues(&self) -> Retained<NSArray<NSString>>;
 
         /// int64 sequence, propery will be empty array if type is MLFeatureTypeInt64
-        #[method(sequenceWithInt64Array:)]
+        #[unsafe(method(sequenceWithInt64Array:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sequenceWithInt64Array(int64_values: &NSArray<NSNumber>) -> Retained<Self>;
 
-        #[method(int64Values)]
+        #[unsafe(method(int64Values))]
         #[unsafe(method_family = none)]
         pub unsafe fn int64Values(&self) -> Retained<NSArray<NSNumber>>;
     }
@@ -59,11 +59,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLSequence {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

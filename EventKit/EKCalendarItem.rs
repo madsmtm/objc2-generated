@@ -22,7 +22,7 @@ extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKCalendarItem {
         /// This is now deprecated; use calendarItemIdentifier instead.
-        #[method(UUID)]
+        #[unsafe(method(UUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn UUID(&self) -> Retained<NSString>;
 
@@ -30,13 +30,13 @@ extern_methods!(
         /// The calendar that this calendar item belongs to.
         ///
         /// This will be nil for new calendar items until you set it.
-        #[method(calendar)]
+        #[unsafe(method(calendar))]
         #[unsafe(method_family = none)]
         pub unsafe fn calendar(&self) -> Option<Retained<EKCalendar>>;
 
         #[cfg(feature = "EKCalendar")]
         /// Setter for [`calendar`][Self::calendar].
-        #[method(setCalendar:)]
+        #[unsafe(method(setCalendar:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCalendar(&self, calendar: Option<&EKCalendar>);
 
@@ -46,7 +46,7 @@ extern_methods!(
         /// this identifier, so you should always have a back up plan for dealing
         /// with a reminder that is no longer fetchable by this property, e.g. by title, etc.
         /// Use [EKEventStore calendarItemWithIdentifier:] to look up the item by this value.
-        #[method(calendarItemIdentifier)]
+        #[unsafe(method(calendarItemIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn calendarItemIdentifier(&self) -> Retained<NSString>;
 
@@ -73,95 +73,95 @@ extern_methods!(
         /// In addition, there are two caveats for Exchange-based calendars:
         /// - This identifier will be different between EventKit on iOS versus OS X
         /// - This identifier will be different between devices for EKReminders
-        #[method(calendarItemExternalIdentifier)]
+        #[unsafe(method(calendarItemExternalIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn calendarItemExternalIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// The title of this calendar item.
         ///
         /// This will be an empty string for new calendar items until you set it.
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[method(location)]
+        #[unsafe(method(location))]
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`location`][Self::location].
-        #[method(setLocation:)]
+        #[unsafe(method(setLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocation(&self, location: Option<&NSString>);
 
-        #[method(notes)]
+        #[unsafe(method(notes))]
         #[unsafe(method_family = none)]
         pub unsafe fn notes(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`notes`][Self::notes].
-        #[method(setNotes:)]
+        #[unsafe(method(setNotes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotes(&self, notes: Option<&NSString>);
 
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
-        #[method(setURL:)]
+        #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
-        #[method(lastModifiedDate)]
+        #[unsafe(method(lastModifiedDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastModifiedDate(&self) -> Option<Retained<NSDate>>;
 
-        #[method(creationDate)]
+        #[unsafe(method(creationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
-        #[method(timeZone)]
+        #[unsafe(method(timeZone))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         /// Setter for [`timeZone`][Self::timeZone].
-        #[method(setTimeZone:)]
+        #[unsafe(method(setTimeZone:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
-        #[method(hasAlarms)]
+        #[unsafe(method(hasAlarms))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasAlarms(&self) -> bool;
 
-        #[method(hasRecurrenceRules)]
+        #[unsafe(method(hasRecurrenceRules))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasRecurrenceRules(&self) -> bool;
 
-        #[method(hasAttendees)]
+        #[unsafe(method(hasAttendees))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasAttendees(&self) -> bool;
 
-        #[method(hasNotes)]
+        #[unsafe(method(hasNotes))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasNotes(&self) -> bool;
 
         #[cfg(feature = "EKParticipant")]
-        #[method(attendees)]
+        #[unsafe(method(attendees))]
         #[unsafe(method_family = none)]
         pub unsafe fn attendees(&self) -> Option<Retained<NSArray<EKParticipant>>>;
 
         #[cfg(feature = "EKAlarm")]
-        #[method(alarms)]
+        #[unsafe(method(alarms))]
         #[unsafe(method_family = none)]
         pub unsafe fn alarms(&self) -> Option<Retained<NSArray<EKAlarm>>>;
 
         #[cfg(feature = "EKAlarm")]
         /// Setter for [`alarms`][Self::alarms].
-        #[method(setAlarms:)]
+        #[unsafe(method(setAlarms:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlarms(&self, alarms: Option<&NSArray<EKAlarm>>);
 
@@ -171,25 +171,25 @@ extern_methods!(
         /// This method add an alarm to an item. Be warned that some calendars can only
         /// allow a certain maximum number of alarms. When this item is saved, it will
         /// truncate any extra alarms from the array.
-        #[method(addAlarm:)]
+        #[unsafe(method(addAlarm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAlarm(&self, alarm: &EKAlarm);
 
         #[cfg(feature = "EKAlarm")]
         /// Removes an alarm from this item.
-        #[method(removeAlarm:)]
+        #[unsafe(method(removeAlarm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAlarm(&self, alarm: &EKAlarm);
 
         #[cfg(feature = "EKRecurrenceRule")]
         /// An array of EKRecurrenceRules, or nil if none.
-        #[method(recurrenceRules)]
+        #[unsafe(method(recurrenceRules))]
         #[unsafe(method_family = none)]
         pub unsafe fn recurrenceRules(&self) -> Option<Retained<NSArray<EKRecurrenceRule>>>;
 
         #[cfg(feature = "EKRecurrenceRule")]
         /// Setter for [`recurrenceRules`][Self::recurrenceRules].
-        #[method(setRecurrenceRules:)]
+        #[unsafe(method(setRecurrenceRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecurrenceRules(
             &self,
@@ -197,12 +197,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "EKRecurrenceRule")]
-        #[method(addRecurrenceRule:)]
+        #[unsafe(method(addRecurrenceRule:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRecurrenceRule(&self, rule: &EKRecurrenceRule);
 
         #[cfg(feature = "EKRecurrenceRule")]
-        #[method(removeRecurrenceRule:)]
+        #[unsafe(method(removeRecurrenceRule:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRecurrenceRule(&self, rule: &EKRecurrenceRule);
     }
@@ -212,11 +212,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "EKObject")]
     unsafe impl EKCalendarItem {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -36,7 +36,7 @@ unsafe impl NSObjectProtocol for VZGenericPlatformConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZPlatformConfiguration")]
     unsafe impl VZGenericPlatformConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -46,13 +46,13 @@ extern_methods!(
         /// Running two virtual machines concurrently with the same identifier results in undefined behavior
         /// in the guest operating system. When restoring a virtual machine from saved state, this
         /// `machineIdentifier` must match the `machineIdentifier` of the saved virtual machine.
-        #[method(machineIdentifier)]
+        #[unsafe(method(machineIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn machineIdentifier(&self) -> Retained<VZGenericMachineIdentifier>;
 
         #[cfg(feature = "VZGenericMachineIdentifier")]
         /// Setter for [`machineIdentifier`][Self::machineIdentifier].
-        #[method(setMachineIdentifier:)]
+        #[unsafe(method(setMachineIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMachineIdentifier(&self, machine_identifier: &VZGenericMachineIdentifier);
 
@@ -64,7 +64,7 @@ extern_methods!(
         /// use `nestedVirtualizationEnabled` to enable the feature.
         ///
         /// See: nestedVirtualizationEnabled.
-        #[method(isNestedVirtualizationSupported)]
+        #[unsafe(method(isNestedVirtualizationSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNestedVirtualizationSupported() -> bool;
 
@@ -77,12 +77,12 @@ extern_methods!(
         /// The default value is NO, nested virtualization is disabled.
         ///
         /// See: nestedVirtualizationSupported.
-        #[method(isNestedVirtualizationEnabled)]
+        #[unsafe(method(isNestedVirtualizationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNestedVirtualizationEnabled(&self) -> bool;
 
         /// Setter for [`isNestedVirtualizationEnabled`][Self::isNestedVirtualizationEnabled].
-        #[method(setNestedVirtualizationEnabled:)]
+        #[unsafe(method(setNestedVirtualizationEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNestedVirtualizationEnabled(&self, nested_virtualization_enabled: bool);
     }
@@ -92,7 +92,7 @@ extern_methods!(
     /// Methods declared on superclass `VZPlatformConfiguration`
     #[cfg(feature = "VZPlatformConfiguration")]
     unsafe impl VZGenericPlatformConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -28,14 +28,14 @@ extern_methods!(
         /// *> representing just the width if number of entries in shape array is 1 or
         /// the height followed by width of result tensor if the number of entries in shape array is 2.
         #[deprecated]
-        #[method(shape)]
+        #[unsafe(method(shape))]
         #[unsafe(method_family = none)]
         pub unsafe fn shape(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "MLCTypes")]
         /// The sampling mode to use when performing the upsample.
         #[deprecated]
-        #[method(sampleMode)]
+        #[unsafe(method(sampleMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleMode(&self) -> MLCSampleMode;
 
@@ -44,7 +44,7 @@ extern_methods!(
         /// If True, the corner pixels of the source and result tensors are aligned, and thus preserving the values at those pixels.
         /// This only has effect when mode is 'bilinear'. Default is NO.
         #[deprecated]
-        #[method(alignsCorners)]
+        #[unsafe(method(alignsCorners))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignsCorners(&self) -> bool;
 
@@ -56,7 +56,7 @@ extern_methods!(
         ///
         /// Returns: A new upsample layer.
         #[deprecated]
-        #[method(layerWithShape:)]
+        #[unsafe(method(layerWithShape:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithShape(shape: &NSArray<NSNumber>) -> Option<Retained<Self>>;
 
@@ -73,7 +73,7 @@ extern_methods!(
         ///
         /// Returns: A new upsample layer.
         #[deprecated]
-        #[method(layerWithShape:sampleMode:alignsCorners:)]
+        #[unsafe(method(layerWithShape:sampleMode:alignsCorners:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithShape_sampleMode_alignsCorners(
             shape: &NSArray<NSNumber>,
@@ -88,12 +88,12 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCUpsampleLayer {
         #[deprecated]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

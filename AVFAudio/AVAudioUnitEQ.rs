@@ -113,19 +113,19 @@ unsafe impl NSObjectProtocol for AVAudioUnitEQFilterParameters {}
 
 extern_methods!(
     unsafe impl AVAudioUnitEQFilterParameters {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// AVAudioUnitEQFilterType
         ///
         /// Default:    AVAudioUnitEQFilterTypeParametric
-        #[method(filterType)]
+        #[unsafe(method(filterType))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterType(&self) -> AVAudioUnitEQFilterType;
 
         /// Setter for [`filterType`][Self::filterType].
-        #[method(setFilterType:)]
+        #[unsafe(method(setFilterType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilterType(&self, filter_type: AVAudioUnitEQFilterType);
 
@@ -133,12 +133,12 @@ extern_methods!(
         ///
         /// Range:      20 -> (SampleRate/2)
         /// Unit:       Hertz
-        #[method(frequency)]
+        #[unsafe(method(frequency))]
         #[unsafe(method_family = none)]
         pub unsafe fn frequency(&self) -> c_float;
 
         /// Setter for [`frequency`][Self::frequency].
-        #[method(setFrequency:)]
+        #[unsafe(method(setFrequency:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFrequency(&self, frequency: c_float);
 
@@ -146,12 +146,12 @@ extern_methods!(
         ///
         /// Range:      0.05 -> 5.0
         /// Unit:       Octaves
-        #[method(bandwidth)]
+        #[unsafe(method(bandwidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn bandwidth(&self) -> c_float;
 
         /// Setter for [`bandwidth`][Self::bandwidth].
-        #[method(setBandwidth:)]
+        #[unsafe(method(setBandwidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBandwidth(&self, bandwidth: c_float);
 
@@ -160,24 +160,24 @@ extern_methods!(
         /// Range:      -96 -> 24
         /// Default:    0
         /// Unit:       dB
-        #[method(gain)]
+        #[unsafe(method(gain))]
         #[unsafe(method_family = none)]
         pub unsafe fn gain(&self) -> c_float;
 
         /// Setter for [`gain`][Self::gain].
-        #[method(setGain:)]
+        #[unsafe(method(setGain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGain(&self, gain: c_float);
 
         /// bypass state of band.
         ///
         /// Default:    YES
-        #[method(bypass)]
+        #[unsafe(method(bypass))]
         #[unsafe(method_family = none)]
         pub unsafe fn bypass(&self) -> bool;
 
         /// Setter for [`bypass`][Self::bypass].
-        #[method(setBypass:)]
+        #[unsafe(method(setBypass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBypass(&self, bypass: bool);
     }
@@ -186,7 +186,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioUnitEQFilterParameters {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -223,7 +223,7 @@ extern_methods!(
         /// Initialize the EQ with number of bands.
         ///
         /// Parameter `numberOfBands`: The number of bands created by the EQ.
-        #[method(initWithNumberOfBands:)]
+        #[unsafe(method(initWithNumberOfBands:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNumberOfBands(
             this: Allocated<Self>,
@@ -233,7 +233,7 @@ extern_methods!(
         /// Array of AVAudioUnitEQFilterParameters objects.
         ///
         /// The number of elements in the array is equal to the number of bands.
-        #[method(bands)]
+        #[unsafe(method(bands))]
         #[unsafe(method_family = none)]
         pub unsafe fn bands(&self) -> Retained<NSArray<AVAudioUnitEQFilterParameters>>;
 
@@ -242,12 +242,12 @@ extern_methods!(
         /// Range:     -96 -> 24
         /// Default:   0
         /// Unit:      dB
-        #[method(globalGain)]
+        #[unsafe(method(globalGain))]
         #[unsafe(method_family = none)]
         pub unsafe fn globalGain(&self) -> c_float;
 
         /// Setter for [`globalGain`][Self::globalGain].
-        #[method(setGlobalGain:)]
+        #[unsafe(method(setGlobalGain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlobalGain(&self, global_gain: c_float);
     }
@@ -274,7 +274,7 @@ extern_methods!(
         /// kAudioUnitType_Panner
         /// kAudioUnitType_RemoteEffect
         /// kAudioUnitType_RemoteMusicEffect
-        #[method(initWithAudioComponentDescription:)]
+        #[unsafe(method(initWithAudioComponentDescription:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
@@ -291,11 +291,11 @@ extern_methods!(
         feature = "AVAudioUnitEffect"
     ))]
     unsafe impl AVAudioUnitEQ {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

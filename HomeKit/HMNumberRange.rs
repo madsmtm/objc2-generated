@@ -23,7 +23,7 @@ unsafe impl NSObjectProtocol for HMNumberRange {}
 
 extern_methods!(
     unsafe impl HMNumberRange {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -34,7 +34,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `maxValue`: The maximum value of the range.
-        #[method(numberRangeWithMinValue:maxValue:)]
+        #[unsafe(method(numberRangeWithMinValue:maxValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberRangeWithMinValue_maxValue(
             min_value: &NSNumber,
@@ -45,7 +45,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `minValue`: The minimum value of the range.
-        #[method(numberRangeWithMinValue:)]
+        #[unsafe(method(numberRangeWithMinValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberRangeWithMinValue(min_value: &NSNumber) -> Retained<Self>;
 
@@ -53,17 +53,17 @@ extern_methods!(
         ///
         ///
         /// Parameter `maxValue`: The maximum value of the range.
-        #[method(numberRangeWithMaxValue:)]
+        #[unsafe(method(numberRangeWithMaxValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberRangeWithMaxValue(max_value: &NSNumber) -> Retained<Self>;
 
         /// The minimum value of the range.
-        #[method(minValue)]
+        #[unsafe(method(minValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn minValue(&self) -> Option<Retained<NSNumber>>;
 
         /// The maximum value of the range.
-        #[method(maxValue)]
+        #[unsafe(method(maxValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxValue(&self) -> Option<Retained<NSNumber>>;
     }
@@ -72,7 +72,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMNumberRange {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

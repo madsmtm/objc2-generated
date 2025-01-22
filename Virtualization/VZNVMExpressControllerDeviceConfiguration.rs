@@ -42,7 +42,7 @@ extern_methods!(
         /// Parameter `attachment`: The storage device attachment. This defines how the virtualized device operates on the host side.
         ///
         /// See: VZDiskImageStorageDeviceAttachment
-        #[method(initWithAttachment:)]
+        #[unsafe(method(initWithAttachment:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttachment(
             this: Allocated<Self>,
@@ -55,11 +55,11 @@ extern_methods!(
     /// Methods declared on superclass `VZStorageDeviceConfiguration`
     #[cfg(feature = "VZStorageDeviceConfiguration")]
     unsafe impl VZNVMExpressControllerDeviceConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

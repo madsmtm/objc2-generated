@@ -18,7 +18,7 @@ unsafe impl NSObjectProtocol for NSTimer {}
 extern_methods!(
     unsafe impl NSTimer {
         #[cfg(all(feature = "NSDate", feature = "NSInvocation"))]
-        #[method(timerWithTimeInterval:invocation:repeats:)]
+        #[unsafe(method(timerWithTimeInterval:invocation:repeats:))]
         #[unsafe(method_family = none)]
         pub unsafe fn timerWithTimeInterval_invocation_repeats(
             ti: NSTimeInterval,
@@ -27,7 +27,7 @@ extern_methods!(
         ) -> Retained<NSTimer>;
 
         #[cfg(all(feature = "NSDate", feature = "NSInvocation"))]
-        #[method(scheduledTimerWithTimeInterval:invocation:repeats:)]
+        #[unsafe(method(scheduledTimerWithTimeInterval:invocation:repeats:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduledTimerWithTimeInterval_invocation_repeats(
             ti: NSTimeInterval,
@@ -36,7 +36,7 @@ extern_methods!(
         ) -> Retained<NSTimer>;
 
         #[cfg(feature = "NSDate")]
-        #[method(timerWithTimeInterval:target:selector:userInfo:repeats:)]
+        #[unsafe(method(timerWithTimeInterval:target:selector:userInfo:repeats:))]
         #[unsafe(method_family = none)]
         pub unsafe fn timerWithTimeInterval_target_selector_userInfo_repeats(
             ti: NSTimeInterval,
@@ -47,7 +47,7 @@ extern_methods!(
         ) -> Retained<NSTimer>;
 
         #[cfg(feature = "NSDate")]
-        #[method(scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:)]
+        #[unsafe(method(scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduledTimerWithTimeInterval_target_selector_userInfo_repeats(
             ti: NSTimeInterval,
@@ -62,7 +62,7 @@ extern_methods!(
         /// - parameter:  timeInterval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
         /// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
         /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
-        #[method(timerWithTimeInterval:repeats:block:)]
+        #[unsafe(method(timerWithTimeInterval:repeats:block:))]
         #[unsafe(method_family = none)]
         pub unsafe fn timerWithTimeInterval_repeats_block(
             interval: NSTimeInterval,
@@ -75,7 +75,7 @@ extern_methods!(
         /// - parameter:  ti    The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
         /// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
         /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
-        #[method(scheduledTimerWithTimeInterval:repeats:block:)]
+        #[unsafe(method(scheduledTimerWithTimeInterval:repeats:block:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduledTimerWithTimeInterval_repeats_block(
             interval: NSTimeInterval,
@@ -89,7 +89,7 @@ extern_methods!(
         /// - parameter:  interval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
         /// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
         /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
-        #[method(initWithFireDate:interval:repeats:block:)]
+        #[unsafe(method(initWithFireDate:interval:repeats:block:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFireDate_interval_repeats_block(
             this: Allocated<Self>,
@@ -100,7 +100,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSDate")]
-        #[method(initWithFireDate:interval:target:selector:userInfo:repeats:)]
+        #[unsafe(method(initWithFireDate:interval:target:selector:userInfo:repeats:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFireDate_interval_target_selector_userInfo_repeats(
             this: Allocated<Self>,
@@ -112,46 +112,46 @@ extern_methods!(
             rep: bool,
         ) -> Retained<Self>;
 
-        #[method(fire)]
+        #[unsafe(method(fire))]
         #[unsafe(method_family = none)]
         pub unsafe fn fire(&self);
 
         #[cfg(feature = "NSDate")]
-        #[method(fireDate)]
+        #[unsafe(method(fireDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn fireDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`fireDate`][Self::fireDate].
-        #[method(setFireDate:)]
+        #[unsafe(method(setFireDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFireDate(&self, fire_date: &NSDate);
 
         #[cfg(feature = "NSDate")]
-        #[method(timeInterval)]
+        #[unsafe(method(timeInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeInterval(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
-        #[method(tolerance)]
+        #[unsafe(method(tolerance))]
         #[unsafe(method_family = none)]
         pub unsafe fn tolerance(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`tolerance`][Self::tolerance].
-        #[method(setTolerance:)]
+        #[unsafe(method(setTolerance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTolerance(&self, tolerance: NSTimeInterval);
 
-        #[method(invalidate)]
+        #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
 
-        #[method(isValid)]
+        #[unsafe(method(isValid))]
         #[unsafe(method_family = none)]
         pub unsafe fn isValid(&self) -> bool;
 
-        #[method(userInfo)]
+        #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<AnyObject>>;
     }
@@ -160,11 +160,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTimer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

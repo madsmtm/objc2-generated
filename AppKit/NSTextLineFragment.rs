@@ -27,7 +27,7 @@ unsafe impl NSSecureCoding for NSTextLineFragment {}
 
 extern_methods!(
     unsafe impl NSTextLineFragment {
-        #[method(initWithAttributedString:range:)]
+        #[unsafe(method(initWithAttributedString:range:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedString_range(
             this: Allocated<Self>,
@@ -35,14 +35,14 @@ extern_methods!(
             range: NSRange,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(initWithString:attributes:range:)]
+        #[unsafe(method(initWithString:attributes:range:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithString_attributes_range(
             this: Allocated<Self>,
@@ -51,46 +51,46 @@ extern_methods!(
             range: NSRange,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(attributedString)]
+        #[unsafe(method(attributedString))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
 
-        #[method(characterRange)]
+        #[unsafe(method(characterRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterRange(&self) -> NSRange;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(typographicBounds)]
+        #[unsafe(method(typographicBounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn typographicBounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(glyphOrigin)]
+        #[unsafe(method(glyphOrigin))]
         #[unsafe(method_family = none)]
         pub unsafe fn glyphOrigin(&self) -> CGPoint;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[cfg(target_vendor = "apple")]
-        #[method(drawAtPoint:inContext:)]
+        #[unsafe(method(drawAtPoint:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawAtPoint_inContext(&self, point: CGPoint, context: &CGContext);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(locationForCharacterAtIndex:)]
+        #[unsafe(method(locationForCharacterAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn locationForCharacterAtIndex(&self, index: NSInteger) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(characterIndexForPoint:)]
+        #[unsafe(method(characterIndexForPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterIndexForPoint(&self, point: CGPoint) -> NSInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(fractionOfDistanceThroughGlyphForPoint:)]
+        #[unsafe(method(fractionOfDistanceThroughGlyphForPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fractionOfDistanceThroughGlyphForPoint(&self, point: CGPoint) -> CGFloat;
     }
@@ -99,7 +99,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextLineFragment {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

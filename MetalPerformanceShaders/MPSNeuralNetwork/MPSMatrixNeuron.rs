@@ -98,12 +98,12 @@ extern_methods!(
         /// time the larger of this property or the available number of inputs is
         /// used.  The value of NSUIntegerMax thus indicates that all available input
         /// rows (beginning at sourceMatrixOrigin.x) should be considered.
-        #[method(sourceNumberOfFeatureVectors)]
+        #[unsafe(method(sourceNumberOfFeatureVectors))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceNumberOfFeatureVectors(&self) -> NSUInteger;
 
         /// Setter for [`sourceNumberOfFeatureVectors`][Self::sourceNumberOfFeatureVectors].
-        #[method(setSourceNumberOfFeatureVectors:)]
+        #[unsafe(method(setSourceNumberOfFeatureVectors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceNumberOfFeatureVectors(
             &self,
@@ -120,12 +120,12 @@ extern_methods!(
         /// Defines also the number of output feature channels.
         /// Note: The value used in the operation will be
         /// MIN(inputMatrix.columns - sourceMatrixOrigin.y, sourceInputFeatureChannels)
-        #[method(sourceInputFeatureChannels)]
+        #[unsafe(method(sourceInputFeatureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceInputFeatureChannels(&self) -> NSUInteger;
 
         /// Setter for [`sourceInputFeatureChannels`][Self::sourceInputFeatureChannels].
-        #[method(setSourceInputFeatureChannels:)]
+        #[unsafe(method(setSourceInputFeatureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceInputFeatureChannels(
             &self,
@@ -136,12 +136,12 @@ extern_methods!(
         /// precision.  Will be converted to the appropriate precision in the
         /// implementation subject to rounding and/or clamping as necessary.
         /// Defaults to 1.0 at initialization time.
-        #[method(alpha)]
+        #[unsafe(method(alpha))]
         #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> c_double;
 
         /// Setter for [`alpha`][Self::alpha].
-        #[method(setAlpha:)]
+        #[unsafe(method(setAlpha:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlpha(&self, alpha: c_double);
 
@@ -166,7 +166,7 @@ extern_methods!(
         /// Parameter `parameterB`: parameterB of neuron activation that is shared across all output values.
         ///
         /// Parameter `parameterC`: parameterC of neuron activation that is shared across all output values.
-        #[method(setNeuronType:parameterA:parameterB:parameterC:)]
+        #[unsafe(method(setNeuronType:parameterA:parameterB:parameterC:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeuronType_parameterA_parameterB_parameterC(
             &self,
@@ -178,22 +178,22 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNNeuronType")]
         /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
-        #[method(neuronType)]
+        #[unsafe(method(neuronType))]
         #[unsafe(method_family = none)]
         pub unsafe fn neuronType(&self) -> MPSCNNNeuronType;
 
         /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
-        #[method(neuronParameterA)]
+        #[unsafe(method(neuronParameterA))]
         #[unsafe(method_family = none)]
         pub unsafe fn neuronParameterA(&self) -> c_float;
 
         /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
-        #[method(neuronParameterB)]
+        #[unsafe(method(neuronParameterB))]
         #[unsafe(method_family = none)]
         pub unsafe fn neuronParameterB(&self) -> c_float;
 
         /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
-        #[method(neuronParameterC)]
+        #[unsafe(method(neuronParameterC))]
         #[unsafe(method_family = none)]
         pub unsafe fn neuronParameterC(&self) -> c_float;
 
@@ -217,11 +217,11 @@ extern_methods!(
         ///
         /// Parameter `A`: An array containing float values for neuron parameter A.
         /// Number of entries must be equal to MIN(inputMatrix.columns - sourceMatrixOrigin.y, sourceInputFeatureChannels)
-        #[method(setNeuronToPReLUWithParametersA:)]
+        #[unsafe(method(setNeuronToPReLUWithParametersA:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeuronToPReLUWithParametersA(&self, a: &NSData);
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -252,7 +252,7 @@ extern_methods!(
         ///
         /// The bias vector must contain at least
         /// MIN(inputMatrix.columns - sourceMatrixOrigin.y, sourceInputFeatureChannels) elements.
-        #[method(encodeToCommandBuffer:inputMatrix:biasVector:resultMatrix:)]
+        #[unsafe(method(encodeToCommandBuffer:inputMatrix:biasVector:resultMatrix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inputMatrix_biasVector_resultMatrix(
             &self,
@@ -271,7 +271,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixNeuron object.
         ///
         /// Returns: A new MPSMatrixNeuron object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -291,7 +291,7 @@ extern_methods!(
         /// Returns: A pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(copyWithZone:device:)]
+        #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -318,7 +318,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -336,11 +336,11 @@ extern_methods!(
         feature = "MPSMatrixTypes"
     ))]
     unsafe impl MPSMatrixNeuron {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -422,12 +422,12 @@ extern_methods!(
     ))]
     unsafe impl MPSMatrixNeuronGradient {
         /// The number of input vectors which make up the input array.
-        #[method(sourceNumberOfFeatureVectors)]
+        #[unsafe(method(sourceNumberOfFeatureVectors))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceNumberOfFeatureVectors(&self) -> NSUInteger;
 
         /// Setter for [`sourceNumberOfFeatureVectors`][Self::sourceNumberOfFeatureVectors].
-        #[method(setSourceNumberOfFeatureVectors:)]
+        #[unsafe(method(setSourceNumberOfFeatureVectors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceNumberOfFeatureVectors(
             &self,
@@ -435,12 +435,12 @@ extern_methods!(
         );
 
         /// The number of feature channels in the input vectors.
-        #[method(sourceInputFeatureChannels)]
+        #[unsafe(method(sourceInputFeatureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceInputFeatureChannels(&self) -> NSUInteger;
 
         /// Setter for [`sourceInputFeatureChannels`][Self::sourceInputFeatureChannels].
-        #[method(setSourceInputFeatureChannels:)]
+        #[unsafe(method(setSourceInputFeatureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceInputFeatureChannels(
             &self,
@@ -448,12 +448,12 @@ extern_methods!(
         );
 
         /// The scale factor to apply to the input.
-        #[method(alpha)]
+        #[unsafe(method(alpha))]
         #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> c_double;
 
         /// Setter for [`alpha`][Self::alpha].
-        #[method(setAlpha:)]
+        #[unsafe(method(setAlpha:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlpha(&self, alpha: c_double);
 
@@ -478,7 +478,7 @@ extern_methods!(
         /// Parameter `parameterB`: parameterB of neuron activation that is shared across all output values.
         ///
         /// Parameter `parameterC`: parameterC of neuron activation that is shared across all output values.
-        #[method(setNeuronType:parameterA:parameterB:parameterC:)]
+        #[unsafe(method(setNeuronType:parameterA:parameterB:parameterC:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeuronType_parameterA_parameterB_parameterC(
             &self,
@@ -490,22 +490,22 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNNeuronType")]
         /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
-        #[method(neuronType)]
+        #[unsafe(method(neuronType))]
         #[unsafe(method_family = none)]
         pub unsafe fn neuronType(&self) -> MPSCNNNeuronType;
 
         /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
-        #[method(neuronParameterA)]
+        #[unsafe(method(neuronParameterA))]
         #[unsafe(method_family = none)]
         pub unsafe fn neuronParameterA(&self) -> c_float;
 
         /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
-        #[method(neuronParameterB)]
+        #[unsafe(method(neuronParameterB))]
         #[unsafe(method_family = none)]
         pub unsafe fn neuronParameterB(&self) -> c_float;
 
         /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
-        #[method(neuronParameterC)]
+        #[unsafe(method(neuronParameterC))]
         #[unsafe(method_family = none)]
         pub unsafe fn neuronParameterC(&self) -> c_float;
 
@@ -529,11 +529,11 @@ extern_methods!(
         ///
         /// Parameter `A`: An array containing float values for neuron parameter A.
         /// Number of entries must be equal to MIN(inputMatrix.columns - sourceMatrixOrigin.y, sourceInputFeatureChannels)
-        #[method(setNeuronToPReLUWithParametersA:)]
+        #[unsafe(method(setNeuronToPReLUWithParametersA:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeuronToPReLUWithParametersA(&self, a: &NSData);
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -564,7 +564,7 @@ extern_methods!(
         ///
         /// Parameter `resultGradientForBiasVector`: If non-NULL the vector containing gradients for the bias
         /// terms.
-        #[method(encodeToCommandBuffer:gradientMatrix:inputMatrix:biasVector:resultGradientForDataMatrix:resultGradientForBiasVector:)]
+        #[unsafe(method(encodeToCommandBuffer:gradientMatrix:inputMatrix:biasVector:resultGradientForDataMatrix:resultGradientForBiasVector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_gradientMatrix_inputMatrix_biasVector_resultGradientForDataMatrix_resultGradientForBiasVector(
             &self,
@@ -585,7 +585,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixNeuronGradient object.
         ///
         /// Returns: A new MPSMatrixNeuronGradient object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -605,7 +605,7 @@ extern_methods!(
         /// Returns: A pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(copyWithZone:device:)]
+        #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -632,7 +632,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -650,11 +650,11 @@ extern_methods!(
         feature = "MPSMatrixTypes"
     ))]
     unsafe impl MPSMatrixNeuronGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

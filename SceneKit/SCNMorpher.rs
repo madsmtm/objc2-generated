@@ -53,67 +53,67 @@ extern_methods!(
         /// Specifies the morph targets as an array of SCNGeometry.
         ///
         /// The target geometries must have the same number of entries in their geometry sources and the same topology as the base geometry.
-        #[method(targets)]
+        #[unsafe(method(targets))]
         #[unsafe(method_family = none)]
         pub unsafe fn targets(&self) -> Retained<NSArray<SCNGeometry>>;
 
         #[cfg(feature = "SCNGeometry")]
         /// Setter for [`targets`][Self::targets].
-        #[method(setTargets:)]
+        #[unsafe(method(setTargets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTargets(&self, targets: &NSArray<SCNGeometry>);
 
         /// Access to all the weights of all the targets.
-        #[method(weights)]
+        #[unsafe(method(weights))]
         #[unsafe(method_family = none)]
         pub unsafe fn weights(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`weights`][Self::weights].
-        #[method(setWeights:)]
+        #[unsafe(method(setWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWeights(&self, weights: &NSArray<NSNumber>);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Sets the weight for the target at the specified index. Animatable implicitly or explicitly with the keyPath "weights[index]" or "weights["targetName"]" (targetName is the name of the target geometry).
-        #[method(setWeight:forTargetAtIndex:)]
+        #[unsafe(method(setWeight:forTargetAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWeight_forTargetAtIndex(&self, weight: CGFloat, target_index: NSUInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Retrieves the weight for the target at the specified index.
-        #[method(weightForTargetAtIndex:)]
+        #[unsafe(method(weightForTargetAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn weightForTargetAtIndex(&self, target_index: NSUInteger) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Sets the weight for the target with the specified name (targetName is the name of the target geometry).
-        #[method(setWeight:forTargetNamed:)]
+        #[unsafe(method(setWeight:forTargetNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWeight_forTargetNamed(&self, weight: CGFloat, target_name: &NSString);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Retrieves the weight for the target with the specified name (targetName is the name of the target geometry).
-        #[method(weightForTargetNamed:)]
+        #[unsafe(method(weightForTargetNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn weightForTargetNamed(&self, target_name: &NSString) -> CGFloat;
 
         /// Specifies how the morph result is calculated by the receiver. Defaults to SCNMorpherCalculationModeNormalized.
-        #[method(calculationMode)]
+        #[unsafe(method(calculationMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn calculationMode(&self) -> SCNMorpherCalculationMode;
 
         /// Setter for [`calculationMode`][Self::calculationMode].
-        #[method(setCalculationMode:)]
+        #[unsafe(method(setCalculationMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCalculationMode(&self, calculation_mode: SCNMorpherCalculationMode);
 
         /// When set to YES the normals are not morphed but are recomputed after morphing the vertex instead. When set to NO, the morpher will morph the normals if the geometry targets have normals. Defaults to NO.
-        #[method(unifiesNormals)]
+        #[unsafe(method(unifiesNormals))]
         #[unsafe(method_family = none)]
         pub unsafe fn unifiesNormals(&self) -> bool;
 
         /// Setter for [`unifiesNormals`][Self::unifiesNormals].
-        #[method(setUnifiesNormals:)]
+        #[unsafe(method(setUnifiesNormals:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUnifiesNormals(&self, unifies_normals: bool);
     }
@@ -122,11 +122,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNMorpher {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

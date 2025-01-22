@@ -27,22 +27,22 @@ unsafe impl NSObjectProtocol for CIKernel {}
 extern_methods!(
     unsafe impl CIKernel {
         #[deprecated = "Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
-        #[method(kernelsWithString:)]
+        #[unsafe(method(kernelsWithString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelsWithString(string: &NSString) -> Option<Retained<NSArray<CIKernel>>>;
 
-        #[method(kernelsWithMetalString:error:_)]
+        #[unsafe(method(kernelsWithMetalString:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelsWithMetalString_error(
             source: &NSString,
         ) -> Result<Retained<NSArray<CIKernel>>, Retained<NSError>>;
 
         #[deprecated = "Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
-        #[method(kernelWithString:)]
+        #[unsafe(method(kernelWithString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWithString(string: &NSString) -> Option<Retained<Self>>;
 
-        #[method(kernelWithFunctionName:fromMetalLibraryData:error:_)]
+        #[unsafe(method(kernelWithFunctionName:fromMetalLibraryData:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWithFunctionName_fromMetalLibraryData_error(
             name: &NSString,
@@ -50,7 +50,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "CIImage")]
-        #[method(kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:_)]
+        #[unsafe(method(kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWithFunctionName_fromMetalLibraryData_outputPixelFormat_error(
             name: &NSString,
@@ -58,16 +58,16 @@ extern_methods!(
             format: CIFormat,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method(kernelNamesFromMetalLibraryData:)]
+        #[unsafe(method(kernelNamesFromMetalLibraryData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelNamesFromMetalLibraryData(data: &NSData)
             -> Retained<NSArray<NSString>>;
 
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method(setROISelector:)]
+        #[unsafe(method(setROISelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setROISelector(&self, method: Sel);
 
@@ -76,7 +76,7 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
-        #[method(applyWithExtent:roiCallback:arguments:)]
+        #[unsafe(method(applyWithExtent:roiCallback:arguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyWithExtent_roiCallback_arguments(
             &self,
@@ -90,11 +90,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIKernel {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -112,12 +112,12 @@ unsafe impl NSObjectProtocol for CIColorKernel {}
 extern_methods!(
     unsafe impl CIColorKernel {
         #[deprecated = "Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
-        #[method(kernelWithString:)]
+        #[unsafe(method(kernelWithString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWithString(string: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-foundation"))]
-        #[method(applyWithExtent:arguments:)]
+        #[unsafe(method(applyWithExtent:arguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyWithExtent_arguments(
             &self,
@@ -130,7 +130,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CIKernel`
     unsafe impl CIColorKernel {
-        #[method(kernelWithFunctionName:fromMetalLibraryData:error:_)]
+        #[unsafe(method(kernelWithFunctionName:fromMetalLibraryData:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWithFunctionName_fromMetalLibraryData_error(
             name: &NSString,
@@ -138,7 +138,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "CIImage")]
-        #[method(kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:_)]
+        #[unsafe(method(kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWithFunctionName_fromMetalLibraryData_outputPixelFormat_error(
             name: &NSString,
@@ -151,11 +151,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIColorKernel {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -173,7 +173,7 @@ unsafe impl NSObjectProtocol for CIWarpKernel {}
 extern_methods!(
     unsafe impl CIWarpKernel {
         #[deprecated = "Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
-        #[method(kernelWithString:)]
+        #[unsafe(method(kernelWithString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWithString(string: &NSString) -> Option<Retained<Self>>;
 
@@ -182,7 +182,7 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
-        #[method(applyWithExtent:roiCallback:inputImage:arguments:)]
+        #[unsafe(method(applyWithExtent:roiCallback:inputImage:arguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyWithExtent_roiCallback_inputImage_arguments(
             &self,
@@ -197,7 +197,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CIKernel`
     unsafe impl CIWarpKernel {
-        #[method(kernelWithFunctionName:fromMetalLibraryData:error:_)]
+        #[unsafe(method(kernelWithFunctionName:fromMetalLibraryData:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWithFunctionName_fromMetalLibraryData_error(
             name: &NSString,
@@ -205,7 +205,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "CIImage")]
-        #[method(kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:_)]
+        #[unsafe(method(kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWithFunctionName_fromMetalLibraryData_outputPixelFormat_error(
             name: &NSString,
@@ -218,11 +218,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIWarpKernel {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -240,12 +240,12 @@ unsafe impl NSObjectProtocol for CIBlendKernel {}
 extern_methods!(
     unsafe impl CIBlendKernel {
         #[deprecated = "Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
-        #[method(kernelWithString:)]
+        #[unsafe(method(kernelWithString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWithString(string: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "CIImage")]
-        #[method(applyWithForeground:background:)]
+        #[unsafe(method(applyWithForeground:background:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyWithForeground_background(
             &self,
@@ -254,7 +254,7 @@ extern_methods!(
         ) -> Option<Retained<CIImage>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
-        #[method(applyWithForeground:background:colorSpace:)]
+        #[unsafe(method(applyWithForeground:background:colorSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyWithForeground_background_colorSpace(
             &self,
@@ -268,7 +268,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CIKernel`
     unsafe impl CIBlendKernel {
-        #[method(kernelWithFunctionName:fromMetalLibraryData:error:_)]
+        #[unsafe(method(kernelWithFunctionName:fromMetalLibraryData:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWithFunctionName_fromMetalLibraryData_error(
             name: &NSString,
@@ -276,7 +276,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "CIImage")]
-        #[method(kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:_)]
+        #[unsafe(method(kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelWithFunctionName_fromMetalLibraryData_outputPixelFormat_error(
             name: &NSString,
@@ -289,11 +289,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIBlendKernel {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -302,167 +302,167 @@ extern_methods!(
 extern_methods!(
     /// BuiltIn
     unsafe impl CIBlendKernel {
-        #[method(componentAdd)]
+        #[unsafe(method(componentAdd))]
         #[unsafe(method_family = none)]
         pub unsafe fn componentAdd() -> Retained<CIBlendKernel>;
 
-        #[method(componentMultiply)]
+        #[unsafe(method(componentMultiply))]
         #[unsafe(method_family = none)]
         pub unsafe fn componentMultiply() -> Retained<CIBlendKernel>;
 
-        #[method(componentMin)]
+        #[unsafe(method(componentMin))]
         #[unsafe(method_family = none)]
         pub unsafe fn componentMin() -> Retained<CIBlendKernel>;
 
-        #[method(componentMax)]
+        #[unsafe(method(componentMax))]
         #[unsafe(method_family = none)]
         pub unsafe fn componentMax() -> Retained<CIBlendKernel>;
 
-        #[method(clear)]
+        #[unsafe(method(clear))]
         #[unsafe(method_family = none)]
         pub unsafe fn clear() -> Retained<CIBlendKernel>;
 
-        #[method(source)]
+        #[unsafe(method(source))]
         #[unsafe(method_family = none)]
         pub unsafe fn source() -> Retained<CIBlendKernel>;
 
-        #[method(destination)]
+        #[unsafe(method(destination))]
         #[unsafe(method_family = none)]
         pub unsafe fn destination() -> Retained<CIBlendKernel>;
 
-        #[method(sourceOver)]
+        #[unsafe(method(sourceOver))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceOver() -> Retained<CIBlendKernel>;
 
-        #[method(destinationOver)]
+        #[unsafe(method(destinationOver))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationOver() -> Retained<CIBlendKernel>;
 
-        #[method(sourceIn)]
+        #[unsafe(method(sourceIn))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceIn() -> Retained<CIBlendKernel>;
 
-        #[method(destinationIn)]
+        #[unsafe(method(destinationIn))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationIn() -> Retained<CIBlendKernel>;
 
-        #[method(sourceOut)]
+        #[unsafe(method(sourceOut))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceOut() -> Retained<CIBlendKernel>;
 
-        #[method(destinationOut)]
+        #[unsafe(method(destinationOut))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationOut() -> Retained<CIBlendKernel>;
 
-        #[method(sourceAtop)]
+        #[unsafe(method(sourceAtop))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceAtop() -> Retained<CIBlendKernel>;
 
-        #[method(destinationAtop)]
+        #[unsafe(method(destinationAtop))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationAtop() -> Retained<CIBlendKernel>;
 
-        #[method(exclusiveOr)]
+        #[unsafe(method(exclusiveOr))]
         #[unsafe(method_family = none)]
         pub unsafe fn exclusiveOr() -> Retained<CIBlendKernel>;
 
-        #[method(multiply)]
+        #[unsafe(method(multiply))]
         #[unsafe(method_family = none)]
         pub unsafe fn multiply() -> Retained<CIBlendKernel>;
 
-        #[method(screen)]
+        #[unsafe(method(screen))]
         #[unsafe(method_family = none)]
         pub unsafe fn screen() -> Retained<CIBlendKernel>;
 
-        #[method(overlay)]
+        #[unsafe(method(overlay))]
         #[unsafe(method_family = none)]
         pub unsafe fn overlay() -> Retained<CIBlendKernel>;
 
-        #[method(darken)]
+        #[unsafe(method(darken))]
         #[unsafe(method_family = none)]
         pub unsafe fn darken() -> Retained<CIBlendKernel>;
 
-        #[method(lighten)]
+        #[unsafe(method(lighten))]
         #[unsafe(method_family = none)]
         pub unsafe fn lighten() -> Retained<CIBlendKernel>;
 
-        #[method(colorDodge)]
+        #[unsafe(method(colorDodge))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorDodge() -> Retained<CIBlendKernel>;
 
-        #[method(colorBurn)]
+        #[unsafe(method(colorBurn))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorBurn() -> Retained<CIBlendKernel>;
 
-        #[method(hardLight)]
+        #[unsafe(method(hardLight))]
         #[unsafe(method_family = none)]
         pub unsafe fn hardLight() -> Retained<CIBlendKernel>;
 
-        #[method(softLight)]
+        #[unsafe(method(softLight))]
         #[unsafe(method_family = none)]
         pub unsafe fn softLight() -> Retained<CIBlendKernel>;
 
-        #[method(difference)]
+        #[unsafe(method(difference))]
         #[unsafe(method_family = none)]
         pub unsafe fn difference() -> Retained<CIBlendKernel>;
 
-        #[method(exclusion)]
+        #[unsafe(method(exclusion))]
         #[unsafe(method_family = none)]
         pub unsafe fn exclusion() -> Retained<CIBlendKernel>;
 
-        #[method(hue)]
+        #[unsafe(method(hue))]
         #[unsafe(method_family = none)]
         pub unsafe fn hue() -> Retained<CIBlendKernel>;
 
-        #[method(saturation)]
+        #[unsafe(method(saturation))]
         #[unsafe(method_family = none)]
         pub unsafe fn saturation() -> Retained<CIBlendKernel>;
 
-        #[method(color)]
+        #[unsafe(method(color))]
         #[unsafe(method_family = none)]
         pub unsafe fn color() -> Retained<CIBlendKernel>;
 
-        #[method(luminosity)]
+        #[unsafe(method(luminosity))]
         #[unsafe(method_family = none)]
         pub unsafe fn luminosity() -> Retained<CIBlendKernel>;
 
-        #[method(subtract)]
+        #[unsafe(method(subtract))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtract() -> Retained<CIBlendKernel>;
 
-        #[method(divide)]
+        #[unsafe(method(divide))]
         #[unsafe(method_family = none)]
         pub unsafe fn divide() -> Retained<CIBlendKernel>;
 
-        #[method(linearBurn)]
+        #[unsafe(method(linearBurn))]
         #[unsafe(method_family = none)]
         pub unsafe fn linearBurn() -> Retained<CIBlendKernel>;
 
-        #[method(linearDodge)]
+        #[unsafe(method(linearDodge))]
         #[unsafe(method_family = none)]
         pub unsafe fn linearDodge() -> Retained<CIBlendKernel>;
 
-        #[method(vividLight)]
+        #[unsafe(method(vividLight))]
         #[unsafe(method_family = none)]
         pub unsafe fn vividLight() -> Retained<CIBlendKernel>;
 
-        #[method(linearLight)]
+        #[unsafe(method(linearLight))]
         #[unsafe(method_family = none)]
         pub unsafe fn linearLight() -> Retained<CIBlendKernel>;
 
-        #[method(pinLight)]
+        #[unsafe(method(pinLight))]
         #[unsafe(method_family = none)]
         pub unsafe fn pinLight() -> Retained<CIBlendKernel>;
 
-        #[method(hardMix)]
+        #[unsafe(method(hardMix))]
         #[unsafe(method_family = none)]
         pub unsafe fn hardMix() -> Retained<CIBlendKernel>;
 
-        #[method(darkerColor)]
+        #[unsafe(method(darkerColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn darkerColor() -> Retained<CIBlendKernel>;
 
-        #[method(lighterColor)]
+        #[unsafe(method(lighterColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn lighterColor() -> Retained<CIBlendKernel>;
     }

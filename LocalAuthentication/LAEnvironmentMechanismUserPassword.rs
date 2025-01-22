@@ -26,7 +26,7 @@ extern_methods!(
     #[cfg(feature = "LAEnvironmentMechanism")]
     unsafe impl LAEnvironmentMechanismUserPassword {
         /// Whether the local user password or passcode is set on this device.
-        #[method(isSet)]
+        #[unsafe(method(isSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSet(&self) -> bool;
     }
@@ -37,12 +37,12 @@ extern_methods!(
     #[cfg(feature = "LAEnvironmentMechanism")]
     unsafe impl LAEnvironmentMechanismUserPassword {
         /// Clients should only consume environment mechanisms..
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The Clients should only consume environment mechanisms..
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

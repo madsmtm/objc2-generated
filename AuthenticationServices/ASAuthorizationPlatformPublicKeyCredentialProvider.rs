@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for ASAuthorizationPlatformPublicKeyCredentialProvi
 
 extern_methods!(
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialProvider {
-        #[method(initWithRelyingPartyIdentifier:)]
+        #[unsafe(method(initWithRelyingPartyIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRelyingPartyIdentifier(
             this: Allocated<Self>,
@@ -38,7 +38,7 @@ extern_methods!(
         /// Parameter `name`: The user name for the new credential.
         ///
         /// Parameter `userID`: An identifier to be stored alongside the credential, which will be returned with the credential when it is used to authenticate.
-        #[method(createCredentialRegistrationRequestWithChallenge:name:userID:)]
+        #[unsafe(method(createCredentialRegistrationRequestWithChallenge:name:userID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createCredentialRegistrationRequestWithChallenge_name_userID(
             &self,
@@ -60,7 +60,7 @@ extern_methods!(
         /// Parameter `userID`: An identifier to be stored alongside the credential, which will be returned with the credential when it is used to authenticate.
         ///
         /// Parameter `requestStyle`: The style for this request.
-        #[method(createCredentialRegistrationRequestWithChallenge:name:userID:requestStyle:)]
+        #[unsafe(method(createCredentialRegistrationRequestWithChallenge:name:userID:requestStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createCredentialRegistrationRequestWithChallenge_name_userID_requestStyle(
             &self,
@@ -77,7 +77,7 @@ extern_methods!(
         /// Create a request to authenticate using an existing credential.
         ///
         /// Parameter `challenge`: The challenge to sign.
-        #[method(createCredentialAssertionRequestWithChallenge:)]
+        #[unsafe(method(createCredentialAssertionRequestWithChallenge:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createCredentialAssertionRequestWithChallenge(
             &self,
@@ -85,15 +85,15 @@ extern_methods!(
         ) -> Retained<ASAuthorizationPlatformPublicKeyCredentialAssertionRequest>;
 
         /// The Relying Party identifier used for all requests created by this object.
-        #[method(relyingPartyIdentifier)]
+        #[unsafe(method(relyingPartyIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

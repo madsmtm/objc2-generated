@@ -70,11 +70,11 @@ unsafe impl NSObjectProtocol for AVAssetReader {}
 
 extern_methods!(
     unsafe impl AVAssetReader {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -89,7 +89,7 @@ extern_methods!(
         /// Returns: An instance of AVAssetReader.
         ///
         /// If the specified asset belongs to a mutable subclass of AVAsset, AVMutableComposition or AVMutableMovie, the results of any asset reading operation are undefined if you mutate the asset after invoking -startReading.
-        #[method(assetReaderWithAsset:error:_)]
+        #[unsafe(method(assetReaderWithAsset:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetReaderWithAsset_error(
             asset: &AVAsset,
@@ -106,7 +106,7 @@ extern_methods!(
         /// Returns: An instance of AVAssetReader.
         ///
         /// If the specified asset belongs to a mutable subclass of AVAsset, AVMutableComposition or AVMutableMovie, the results of any asset reading operation are undefined if you mutate the asset after invoking -startReading.
-        #[method(initWithAsset:error:_)]
+        #[unsafe(method(initWithAsset:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset_error(
             this: Allocated<Self>,
@@ -118,7 +118,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an AVAsset. Concrete instances of AVAssetReader that are created with specific AVAssetTrack instances must obtain those tracks from the asset returned by this property.
-        #[method(asset)]
+        #[unsafe(method(asset))]
         #[unsafe(method_family = none)]
         pub unsafe fn asset(&self) -> Retained<AVAsset>;
 
@@ -126,7 +126,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an AVAssetReaderStatus that indicates whether reading is in progress, has completed successfully, has been canceled, or has failed. Clients of AVAssetReaderOutput objects should check the value of this property after -[AVAssetReaderOutput copyNextSampleBuffer] returns NULL to determine why no more samples could be read. This property is thread safe.
-        #[method(status)]
+        #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> AVAssetReaderStatus;
 
@@ -134,7 +134,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSError that describes what caused the receiver to no longer be able to read its asset. If the receiver's status is not AVAssetReaderStatusFailed, the value of this property is nil. This property is thread safe.
-        #[method(error)]
+        #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
@@ -145,13 +145,13 @@ extern_methods!(
         /// The intersection of the value of timeRange and CMTimeRangeMake(kCMTimeZero, asset.duration) will determine the time range of the asset from which media data will be read. The default value of timeRange is CMTimeRangeMake(kCMTimeZero, kCMTimePositiveInfinity).
         ///
         /// This property throws an exception if a value is set after reading has started.
-        #[method(timeRange)]
+        #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`timeRange`][Self::timeRange].
-        #[method(setTimeRange:)]
+        #[unsafe(method(setTimeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeRange(&self, time_range: CMTimeRange);
 
@@ -160,7 +160,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray containing concrete instances of AVAssetReaderOutput. Outputs can be added to the receiver using the addOutput: method.
-        #[method(outputs)]
+        #[unsafe(method(outputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<AVAssetReaderOutput>>;
 
@@ -174,7 +174,7 @@ extern_methods!(
         ///
         ///
         /// An output that reads from a track of an asset other than the asset used to initialize the receiver cannot be added.
-        #[method(canAddOutput:)]
+        #[unsafe(method(canAddOutput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canAddOutput(&self, output: &AVAssetReaderOutput) -> bool;
 
@@ -188,7 +188,7 @@ extern_methods!(
         /// Outputs are created with a reference to one or more AVAssetTrack objects. These tracks must be owned by the asset returned by the receiver's asset property.
         ///
         /// This method throws an exception if the output has already been added to an AVAssetReader or if reading has started (`status` has progressed beyond AVAssetReaderStatusUnknown).
-        #[method(addOutput:)]
+        #[unsafe(method(addOutput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addOutput(&self, output: &AVAssetReaderOutput);
 
@@ -203,7 +203,7 @@ extern_methods!(
         /// If this method returns NO, clients can determine the nature of the failure by checking the value of the status and error properties.
         ///
         /// This method throws an exception if reading has already started (`status` has progressed beyond AVAssetReaderStatusUnknown).
-        #[method(startReading)]
+        #[unsafe(method(startReading))]
         #[unsafe(method_family = none)]
         pub unsafe fn startReading(&self) -> bool;
 
@@ -213,7 +213,7 @@ extern_methods!(
         /// Clients that want to stop reading samples from the receiver before reaching the end of its time range should call this method to stop any background read ahead operations that the may have been in progress.
         ///
         /// This method should not be called concurrently with any calls to -[AVAssetReaderOutput copyNextSampleBuffer].
-        #[method(cancelReading)]
+        #[unsafe(method(cancelReading))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelReading(&self);
     }

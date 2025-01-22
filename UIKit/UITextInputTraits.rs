@@ -378,19 +378,19 @@ unsafe impl NSSecureCoding for UITextInputPasswordRules {}
 
 extern_methods!(
     unsafe impl UITextInputPasswordRules {
-        #[method(passwordRulesDescriptor)]
+        #[unsafe(method(passwordRulesDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn passwordRulesDescriptor(&self) -> Retained<NSString>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(passwordRulesWithDescriptor:)]
+        #[unsafe(method(passwordRulesWithDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn passwordRulesWithDescriptor(
             password_rules_descriptor: &NSString,
@@ -403,13 +403,13 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputtraits?language=objc)
     pub unsafe trait UITextInputTraits: NSObjectProtocol + MainThreadOnly {
         #[optional]
-        #[method(autocapitalizationType)]
+        #[unsafe(method(autocapitalizationType))]
         #[unsafe(method_family = none)]
         unsafe fn autocapitalizationType(&self) -> UITextAutocapitalizationType;
 
         /// Setter for [`autocapitalizationType`][Self::autocapitalizationType].
         #[optional]
-        #[method(setAutocapitalizationType:)]
+        #[unsafe(method(setAutocapitalizationType:))]
         #[unsafe(method_family = none)]
         unsafe fn setAutocapitalizationType(
             &self,
@@ -417,57 +417,57 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(autocorrectionType)]
+        #[unsafe(method(autocorrectionType))]
         #[unsafe(method_family = none)]
         unsafe fn autocorrectionType(&self) -> UITextAutocorrectionType;
 
         /// Setter for [`autocorrectionType`][Self::autocorrectionType].
         #[optional]
-        #[method(setAutocorrectionType:)]
+        #[unsafe(method(setAutocorrectionType:))]
         #[unsafe(method_family = none)]
         unsafe fn setAutocorrectionType(&self, autocorrection_type: UITextAutocorrectionType);
 
         #[optional]
-        #[method(spellCheckingType)]
+        #[unsafe(method(spellCheckingType))]
         #[unsafe(method_family = none)]
         unsafe fn spellCheckingType(&self) -> UITextSpellCheckingType;
 
         /// Setter for [`spellCheckingType`][Self::spellCheckingType].
         #[optional]
-        #[method(setSpellCheckingType:)]
+        #[unsafe(method(setSpellCheckingType:))]
         #[unsafe(method_family = none)]
         unsafe fn setSpellCheckingType(&self, spell_checking_type: UITextSpellCheckingType);
 
         #[optional]
-        #[method(smartQuotesType)]
+        #[unsafe(method(smartQuotesType))]
         #[unsafe(method_family = none)]
         unsafe fn smartQuotesType(&self) -> UITextSmartQuotesType;
 
         /// Setter for [`smartQuotesType`][Self::smartQuotesType].
         #[optional]
-        #[method(setSmartQuotesType:)]
+        #[unsafe(method(setSmartQuotesType:))]
         #[unsafe(method_family = none)]
         unsafe fn setSmartQuotesType(&self, smart_quotes_type: UITextSmartQuotesType);
 
         #[optional]
-        #[method(smartDashesType)]
+        #[unsafe(method(smartDashesType))]
         #[unsafe(method_family = none)]
         unsafe fn smartDashesType(&self) -> UITextSmartDashesType;
 
         /// Setter for [`smartDashesType`][Self::smartDashesType].
         #[optional]
-        #[method(setSmartDashesType:)]
+        #[unsafe(method(setSmartDashesType:))]
         #[unsafe(method_family = none)]
         unsafe fn setSmartDashesType(&self, smart_dashes_type: UITextSmartDashesType);
 
         #[optional]
-        #[method(smartInsertDeleteType)]
+        #[unsafe(method(smartInsertDeleteType))]
         #[unsafe(method_family = none)]
         unsafe fn smartInsertDeleteType(&self) -> UITextSmartInsertDeleteType;
 
         /// Setter for [`smartInsertDeleteType`][Self::smartInsertDeleteType].
         #[optional]
-        #[method(setSmartInsertDeleteType:)]
+        #[unsafe(method(setSmartInsertDeleteType:))]
         #[unsafe(method_family = none)]
         unsafe fn setSmartInsertDeleteType(
             &self,
@@ -475,13 +475,13 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(inlinePredictionType)]
+        #[unsafe(method(inlinePredictionType))]
         #[unsafe(method_family = none)]
         unsafe fn inlinePredictionType(&self) -> UITextInlinePredictionType;
 
         /// Setter for [`inlinePredictionType`][Self::inlinePredictionType].
         #[optional]
-        #[method(setInlinePredictionType:)]
+        #[unsafe(method(setInlinePredictionType:))]
         #[unsafe(method_family = none)]
         unsafe fn setInlinePredictionType(
             &self,
@@ -489,13 +489,13 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(mathExpressionCompletionType)]
+        #[unsafe(method(mathExpressionCompletionType))]
         #[unsafe(method_family = none)]
         unsafe fn mathExpressionCompletionType(&self) -> UITextMathExpressionCompletionType;
 
         /// Setter for [`mathExpressionCompletionType`][Self::mathExpressionCompletionType].
         #[optional]
-        #[method(setMathExpressionCompletionType:)]
+        #[unsafe(method(setMathExpressionCompletionType:))]
         #[unsafe(method_family = none)]
         unsafe fn setMathExpressionCompletionType(
             &self,
@@ -503,101 +503,101 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(keyboardType)]
+        #[unsafe(method(keyboardType))]
         #[unsafe(method_family = none)]
         unsafe fn keyboardType(&self) -> UIKeyboardType;
 
         /// Setter for [`keyboardType`][Self::keyboardType].
         #[optional]
-        #[method(setKeyboardType:)]
+        #[unsafe(method(setKeyboardType:))]
         #[unsafe(method_family = none)]
         unsafe fn setKeyboardType(&self, keyboard_type: UIKeyboardType);
 
         #[optional]
-        #[method(keyboardAppearance)]
+        #[unsafe(method(keyboardAppearance))]
         #[unsafe(method_family = none)]
         unsafe fn keyboardAppearance(&self) -> UIKeyboardAppearance;
 
         /// Setter for [`keyboardAppearance`][Self::keyboardAppearance].
         #[optional]
-        #[method(setKeyboardAppearance:)]
+        #[unsafe(method(setKeyboardAppearance:))]
         #[unsafe(method_family = none)]
         unsafe fn setKeyboardAppearance(&self, keyboard_appearance: UIKeyboardAppearance);
 
         #[optional]
-        #[method(returnKeyType)]
+        #[unsafe(method(returnKeyType))]
         #[unsafe(method_family = none)]
         unsafe fn returnKeyType(&self) -> UIReturnKeyType;
 
         /// Setter for [`returnKeyType`][Self::returnKeyType].
         #[optional]
-        #[method(setReturnKeyType:)]
+        #[unsafe(method(setReturnKeyType:))]
         #[unsafe(method_family = none)]
         unsafe fn setReturnKeyType(&self, return_key_type: UIReturnKeyType);
 
         #[optional]
-        #[method(enablesReturnKeyAutomatically)]
+        #[unsafe(method(enablesReturnKeyAutomatically))]
         #[unsafe(method_family = none)]
         unsafe fn enablesReturnKeyAutomatically(&self) -> bool;
 
         /// Setter for [`enablesReturnKeyAutomatically`][Self::enablesReturnKeyAutomatically].
         #[optional]
-        #[method(setEnablesReturnKeyAutomatically:)]
+        #[unsafe(method(setEnablesReturnKeyAutomatically:))]
         #[unsafe(method_family = none)]
         unsafe fn setEnablesReturnKeyAutomatically(&self, enables_return_key_automatically: bool);
 
         #[optional]
-        #[method(isSecureTextEntry)]
+        #[unsafe(method(isSecureTextEntry))]
         #[unsafe(method_family = none)]
         unsafe fn isSecureTextEntry(&self) -> bool;
 
         /// Setter for [`isSecureTextEntry`][Self::isSecureTextEntry].
         #[optional]
-        #[method(setSecureTextEntry:)]
+        #[unsafe(method(setSecureTextEntry:))]
         #[unsafe(method_family = none)]
         unsafe fn setSecureTextEntry(&self, secure_text_entry: bool);
 
         #[optional]
-        #[method(textContentType)]
+        #[unsafe(method(textContentType))]
         #[unsafe(method_family = none)]
         unsafe fn textContentType(&self) -> Retained<UITextContentType>;
 
         /// Setter for [`textContentType`][Self::textContentType].
         #[optional]
-        #[method(setTextContentType:)]
+        #[unsafe(method(setTextContentType:))]
         #[unsafe(method_family = none)]
         unsafe fn setTextContentType(&self, text_content_type: Option<&UITextContentType>);
 
         #[optional]
-        #[method(passwordRules)]
+        #[unsafe(method(passwordRules))]
         #[unsafe(method_family = none)]
         unsafe fn passwordRules(&self) -> Option<Retained<UITextInputPasswordRules>>;
 
         /// Setter for [`passwordRules`][Self::passwordRules].
         #[optional]
-        #[method(setPasswordRules:)]
+        #[unsafe(method(setPasswordRules:))]
         #[unsafe(method_family = none)]
         unsafe fn setPasswordRules(&self, password_rules: Option<&UITextInputPasswordRules>);
 
         #[optional]
-        #[method(writingToolsBehavior)]
+        #[unsafe(method(writingToolsBehavior))]
         #[unsafe(method_family = none)]
         unsafe fn writingToolsBehavior(&self) -> UIWritingToolsBehavior;
 
         /// Setter for [`writingToolsBehavior`][Self::writingToolsBehavior].
         #[optional]
-        #[method(setWritingToolsBehavior:)]
+        #[unsafe(method(setWritingToolsBehavior:))]
         #[unsafe(method_family = none)]
         unsafe fn setWritingToolsBehavior(&self, writing_tools_behavior: UIWritingToolsBehavior);
 
         #[optional]
-        #[method(allowedWritingToolsResultOptions)]
+        #[unsafe(method(allowedWritingToolsResultOptions))]
         #[unsafe(method_family = none)]
         unsafe fn allowedWritingToolsResultOptions(&self) -> UIWritingToolsResultOptions;
 
         /// Setter for [`allowedWritingToolsResultOptions`][Self::allowedWritingToolsResultOptions].
         #[optional]
-        #[method(setAllowedWritingToolsResultOptions:)]
+        #[unsafe(method(setAllowedWritingToolsResultOptions:))]
         #[unsafe(method_family = none)]
         unsafe fn setAllowedWritingToolsResultOptions(
             &self,

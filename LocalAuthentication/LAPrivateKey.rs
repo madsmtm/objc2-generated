@@ -25,7 +25,7 @@ extern_methods!(
         #[cfg(feature = "LAPublicKey")]
         /// Offers the public key counterpart of a
         /// `LAPrivateKey`instance
-        #[method(publicKey)]
+        #[unsafe(method(publicKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn publicKey(&self) -> Retained<LAPublicKey>;
 
@@ -38,7 +38,7 @@ extern_methods!(
         /// `SecKeyAlgorithm`suitable for generating signatures with this key – e.g:
         /// `kSecKeyAlgorithmECDSASignatureMessageX962SHA256`
         /// Parameter `handler`: Completion handler with the signature of given data or an error on failure.
-        #[method(signData:secKeyAlgorithm:completion:)]
+        #[unsafe(method(signData:secKeyAlgorithm:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn signData_secKeyAlgorithm_completion(
             &self,
@@ -53,7 +53,7 @@ extern_methods!(
         /// Parameter `algorithm`: Cryptographic algorithm
         ///
         /// Returns: `YES`in case the key supports the provided algorithm with the specified operation.
-        #[method(canSignUsingSecKeyAlgorithm:)]
+        #[unsafe(method(canSignUsingSecKeyAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canSignUsingSecKeyAlgorithm(&self, algorithm: &SecKeyAlgorithm) -> bool;
 
@@ -67,7 +67,7 @@ extern_methods!(
         /// `SecKeyAlgorithm`suitable for decrypting data with this key –e.g:
         /// `kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA256AESGCM`
         /// Parameter `handler`: Completion handler with plaintext or an error on failure.
-        #[method(decryptData:secKeyAlgorithm:completion:)]
+        #[unsafe(method(decryptData:secKeyAlgorithm:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decryptData_secKeyAlgorithm_completion(
             &self,
@@ -82,7 +82,7 @@ extern_methods!(
         /// Parameter `algorithm`: Cryptographic algorithm
         ///
         /// Returns: `YES`in case the key supports the provided algorithm with the specified operation.
-        #[method(canDecryptUsingSecKeyAlgorithm:)]
+        #[unsafe(method(canDecryptUsingSecKeyAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canDecryptUsingSecKeyAlgorithm(&self, algorithm: &SecKeyAlgorithm) -> bool;
 
@@ -98,7 +98,7 @@ extern_methods!(
         /// `SecKeyKeyExchangeParameter`constants.  Used algorithm determines the set of required and optional parameters to be used.
         ///
         /// Parameter `handler`: Completion handler with the result of the key exchange or an error on failure.
-        #[method(exchangeKeysWithPublicKey:secKeyAlgorithm:secKeyParameters:completion:)]
+        #[unsafe(method(exchangeKeysWithPublicKey:secKeyAlgorithm:secKeyParameters:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exchangeKeysWithPublicKey_secKeyAlgorithm_secKeyParameters_completion(
             &self,
@@ -114,7 +114,7 @@ extern_methods!(
         /// Parameter `algorithm`: Cryptographic algorithm
         ///
         /// Returns: `YES`in case the key supports the provided algorithm with the specified operation.
-        #[method(canExchangeKeysUsingSecKeyAlgorithm:)]
+        #[unsafe(method(canExchangeKeysUsingSecKeyAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canExchangeKeysUsingSecKeyAlgorithm(
             &self,
@@ -124,14 +124,14 @@ extern_methods!(
         /// Clients cannot create
         /// `LAPrivateKey`instances directly. They typically obtain them from a
         /// `LAPersistedRight`instance.
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Clients cannot create
         /// `LAPrivateKey`instances directly. They typically obtain them from a
         /// `LAPersistedRight`instance.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

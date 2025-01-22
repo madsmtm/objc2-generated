@@ -26,7 +26,7 @@ extern_methods!(
         ///
         /// The default value is 1 (which typically represents features channels)
         #[deprecated]
-        #[method(dimension)]
+        #[unsafe(method(dimension))]
         #[unsafe(method_family = none)]
         pub unsafe fn dimension(&self) -> NSUInteger;
 
@@ -34,7 +34,7 @@ extern_methods!(
         ///
         /// Returns: A new concatenation layer
         #[deprecated]
-        #[method(layer)]
+        #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
@@ -44,7 +44,7 @@ extern_methods!(
         ///
         /// Returns: A new concatenation layer
         #[deprecated]
-        #[method(layerWithDimension:)]
+        #[unsafe(method(layerWithDimension:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithDimension(dimension: NSUInteger) -> Retained<Self>;
     }
@@ -55,12 +55,12 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCConcatenationLayer {
         #[deprecated]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

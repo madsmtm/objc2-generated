@@ -42,7 +42,7 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method(initWithContainer:center:transform:)]
+        #[unsafe(method(initWithContainer:center:transform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContainer_center_transform(
             this: Allocated<Self>,
@@ -56,7 +56,7 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method(initWithContainer:center:)]
+        #[unsafe(method(initWithContainer:center:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContainer_center(
             this: Allocated<Self>,
@@ -64,11 +64,11 @@ extern_methods!(
             center: CGPoint,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -97,7 +97,7 @@ unsafe impl NSObjectProtocol for UITargetedDragPreview {}
 extern_methods!(
     #[cfg(feature = "UITargetedPreview")]
     unsafe impl UITargetedDragPreview {
-        #[method(retargetedPreviewWithTarget:)]
+        #[unsafe(method(retargetedPreviewWithTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retargetedPreviewWithTarget(
             &self,
@@ -115,7 +115,7 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
-        #[method(initWithView:parameters:target:)]
+        #[unsafe(method(initWithView:parameters:target:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithView_parameters_target(
             this: Allocated<Self>,
@@ -129,7 +129,7 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
-        #[method(initWithView:parameters:)]
+        #[unsafe(method(initWithView:parameters:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithView_parameters(
             this: Allocated<Self>,
@@ -138,15 +138,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method(initWithView:)]
+        #[unsafe(method(initWithView:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

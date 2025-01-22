@@ -27,7 +27,7 @@ unsafe impl NSObjectProtocol for MKDirections {}
 extern_methods!(
     unsafe impl MKDirections {
         #[cfg(feature = "MKDirectionsRequest")]
-        #[method(initWithRequest:)]
+        #[unsafe(method(initWithRequest:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRequest(
             this: Allocated<Self>,
@@ -35,7 +35,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
-        #[method(calculateDirectionsWithCompletionHandler:)]
+        #[unsafe(method(calculateDirectionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn calculateDirectionsWithCompletionHandler(
             &self,
@@ -43,15 +43,15 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
-        #[method(calculateETAWithCompletionHandler:)]
+        #[unsafe(method(calculateETAWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn calculateETAWithCompletionHandler(&self, completion_handler: MKETAHandler);
 
-        #[method(cancel)]
+        #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
-        #[method(isCalculating)]
+        #[unsafe(method(isCalculating))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCalculating(&self) -> bool;
     }
@@ -60,11 +60,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKDirections {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

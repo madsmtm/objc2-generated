@@ -52,21 +52,21 @@ unsafe impl NSObjectProtocol for AVAssetTrack {}
 
 extern_methods!(
     unsafe impl AVAssetTrack {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
-        #[method(asset)]
+        #[unsafe(method(asset))]
         #[unsafe(method_family = none)]
         pub unsafe fn asset(&self) -> Option<Retained<AVAsset>>;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(trackID)]
+        #[unsafe(method(trackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
     }
@@ -76,31 +76,31 @@ extern_methods!(
     /// AVAssetTrackBasicPropertiesAndCharacteristics
     unsafe impl AVAssetTrack {
         #[cfg(feature = "AVMediaFormat")]
-        #[method(mediaType)]
+        #[unsafe(method(mediaType))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
-        #[method(formatDescriptions)]
+        #[unsafe(method(formatDescriptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn formatDescriptions(&self) -> Retained<NSArray>;
 
-        #[method(isPlayable)]
+        #[unsafe(method(isPlayable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPlayable(&self) -> bool;
 
-        #[method(isDecodable)]
+        #[unsafe(method(isDecodable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDecodable(&self) -> bool;
 
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
-        #[method(isSelfContained)]
+        #[unsafe(method(isSelfContained))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSelfContained(&self) -> bool;
 
-        #[method(totalSampleDataLength)]
+        #[unsafe(method(totalSampleDataLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalSampleDataLength(&self) -> c_longlong;
 
@@ -111,7 +111,7 @@ extern_methods!(
         /// as defined above.
         ///
         /// Returns: YES if the track references media with the specified characteristic, otherwise NO.
-        #[method(hasMediaCharacteristic:)]
+        #[unsafe(method(hasMediaCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasMediaCharacteristic(
             &self,
@@ -124,16 +124,16 @@ extern_methods!(
     /// AVAssetTrackTemporalProperties
     unsafe impl AVAssetTrack {
         #[cfg(feature = "objc2-core-media")]
-        #[method(timeRange)]
+        #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(naturalTimeScale)]
+        #[unsafe(method(naturalTimeScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn naturalTimeScale(&self) -> CMTimeScale;
 
-        #[method(estimatedDataRate)]
+        #[unsafe(method(estimatedDataRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimatedDataRate(&self) -> c_float;
     }
@@ -142,11 +142,11 @@ extern_methods!(
 extern_methods!(
     /// AVAssetTrackLanguageProperties
     unsafe impl AVAssetTrack {
-        #[method(languageCode)]
+        #[unsafe(method(languageCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn languageCode(&self) -> Option<Retained<NSString>>;
 
-        #[method(extendedLanguageTag)]
+        #[unsafe(method(extendedLanguageTag))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
     }
@@ -156,12 +156,12 @@ extern_methods!(
     /// AVAssetTrackPropertiesForVisualCharacteristic
     unsafe impl AVAssetTrack {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(naturalSize)]
+        #[unsafe(method(naturalSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn naturalSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(preferredTransform)]
+        #[unsafe(method(preferredTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredTransform(&self) -> CGAffineTransform;
     }
@@ -170,11 +170,11 @@ extern_methods!(
 extern_methods!(
     /// AVAssetTrackPropertiesForAudibleCharacteristic
     unsafe impl AVAssetTrack {
-        #[method(preferredVolume)]
+        #[unsafe(method(preferredVolume))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredVolume(&self) -> c_float;
 
-        #[method(hasAudioSampleDependencies)]
+        #[unsafe(method(hasAudioSampleDependencies))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasAudioSampleDependencies(&self) -> bool;
     }
@@ -186,17 +186,17 @@ extern_methods!(
         /// For tracks that carry a full frame per media sample, indicates the frame rate of the track in units of frames per second.
         ///
         /// For field-based video tracks that carry one field per media sample, the value of this property is the field rate, not the frame rate.
-        #[method(nominalFrameRate)]
+        #[unsafe(method(nominalFrameRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn nominalFrameRate(&self) -> c_float;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(minFrameDuration)]
+        #[unsafe(method(minFrameDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn minFrameDuration(&self) -> CMTime;
 
         /// Indicates whether samples in the track may have different values for their presentation and decode timestamps.
-        #[method(requiresFrameReordering)]
+        #[unsafe(method(requiresFrameReordering))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresFrameReordering(&self) -> bool;
     }
@@ -206,7 +206,7 @@ extern_methods!(
     /// AVAssetTrackSegments
     unsafe impl AVAssetTrack {
         #[cfg(feature = "AVAssetTrackSegment")]
-        #[method(segments)]
+        #[unsafe(method(segments))]
         #[unsafe(method_family = none)]
         pub unsafe fn segments(&self) -> Retained<NSArray<AVAssetTrackSegment>>;
 
@@ -219,7 +219,7 @@ extern_methods!(
         ///
         /// If the trackTime does not map to a sample presentation time (e.g. it's outside the track's timeRange), the segment closest in time to the specified trackTime is returned.
         #[deprecated = "Use loadSegmentForTrackTime:completionHandler: instead"]
-        #[method(segmentForTrackTime:)]
+        #[unsafe(method(segmentForTrackTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentForTrackTime(
             &self,
@@ -238,7 +238,7 @@ extern_methods!(
         /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending an AVAssetTrackSegment or an error.
         ///
         /// If the trackTime does not map to a sample presentation time (e.g. it's outside the track's timeRange), the segment closest in time to the specified trackTime is returned.
-        #[method(loadSegmentForTrackTime:completionHandler:)]
+        #[unsafe(method(loadSegmentForTrackTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSegmentForTrackTime_completionHandler(
             &self,
@@ -253,7 +253,7 @@ extern_methods!(
         ///
         /// Returns: A CMTime; will be invalid if the trackTime is out of range
         #[deprecated = "Use loadSamplePresentationTimeForTrackTime:completionHandler: instead"]
-        #[method(samplePresentationTimeForTrackTime:)]
+        #[unsafe(method(samplePresentationTimeForTrackTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn samplePresentationTimeForTrackTime(&self, track_time: CMTime) -> CMTime;
 
@@ -263,7 +263,7 @@ extern_methods!(
         /// Parameter `trackTime`: The trackTime for which a sample presentation time is requested.
         ///
         /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending a CMTime (which will be invalid if the trackTime is out of range) or an error.
-        #[method(loadSamplePresentationTimeForTrackTime:completionHandler:)]
+        #[unsafe(method(loadSamplePresentationTimeForTrackTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSamplePresentationTimeForTrackTime_completionHandler(
             &self,
@@ -277,17 +277,17 @@ extern_methods!(
     /// AVAssetTrackMetadataReading
     unsafe impl AVAssetTrack {
         #[cfg(feature = "AVMetadataItem")]
-        #[method(commonMetadata)]
+        #[unsafe(method(commonMetadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn commonMetadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
-        #[method(metadata)]
+        #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataFormat")]
-        #[method(availableMetadataFormats)]
+        #[unsafe(method(availableMetadataFormats))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableMetadataFormats(&self) -> Retained<NSArray<AVMetadataFormat>>;
 
@@ -302,7 +302,7 @@ extern_methods!(
         /// "
         /// availableMetadataFormats" has been loaded
         #[deprecated = "Use loadMetadataForFormat:completionHandler: instead"]
-        #[method(metadataForFormat:)]
+        #[unsafe(method(metadataForFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataForFormat(
             &self,
@@ -319,7 +319,7 @@ extern_methods!(
         /// Parameter `format`: The metadata format for which items are requested.
         ///
         /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending the array of metadata items (which may be empty if there is no metadata of the specified format) or an error.
-        #[method(loadMetadataForFormat:completionHandler:)]
+        #[unsafe(method(loadMetadataForFormat:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadMetadataForFormat_completionHandler(
             &self,
@@ -368,7 +368,7 @@ extern "C" {
 extern_methods!(
     /// AVAssetTrackTrackAssociations
     unsafe impl AVAssetTrack {
-        #[method(availableTrackAssociationTypes)]
+        #[unsafe(method(availableTrackAssociationTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableTrackAssociationTypes(
             &self,
@@ -384,7 +384,7 @@ extern_methods!(
         /// "
         /// availableTrackAssociationTypes" has been loaded.
         #[deprecated = "Use loadAssociatedTracksOfType:completionHandler: instead"]
-        #[method(associatedTracksOfType:)]
+        #[unsafe(method(associatedTracksOfType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn associatedTracksOfType(
             &self,
@@ -398,7 +398,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A block that is invoked when loading is comlete, vending an array of tracks (which may be empty if there is no associated tracks of the specified type) or an error.
         /// `
-        #[method(loadAssociatedTracksOfType:completionHandler:)]
+        #[unsafe(method(loadAssociatedTracksOfType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAssociatedTracksOfType_completionHandler(
             &self,
@@ -411,7 +411,7 @@ extern_methods!(
 extern_methods!(
     /// AVAssetTrackSampleCursorProvision
     unsafe impl AVAssetTrack {
-        #[method(canProvideSampleCursors)]
+        #[unsafe(method(canProvideSampleCursors))]
         #[unsafe(method_family = none)]
         pub unsafe fn canProvideSampleCursors(&self) -> bool;
 
@@ -425,7 +425,7 @@ extern_methods!(
         /// If the receiver's asset has a value of YES for providesPreciseDurationAndTiming, the sample cursor will be accurately positioned at the receiver's last media sample with presentation timestamp less than or equal to the desired timestamp, or, if there are no such samples, the first sample in presentation order.
         /// If the receiver's asset has a value of NO for providesPreciseDurationAndTiming, and it is prohibitively expensive to locate the precise sample at the desired timestamp, the sample cursor may be approximately positioned.
         /// This method will return nil if there are no samples in the track.
-        #[method(makeSampleCursorWithPresentationTimeStamp:)]
+        #[unsafe(method(makeSampleCursorWithPresentationTimeStamp:))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeSampleCursorWithPresentationTimeStamp(
             &self,
@@ -438,7 +438,7 @@ extern_methods!(
         /// Returns: An instance of AVSampleCursor.
         ///
         /// This method will return nil if there are no samples in the track.
-        #[method(makeSampleCursorAtFirstSampleInDecodeOrder)]
+        #[unsafe(method(makeSampleCursorAtFirstSampleInDecodeOrder))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeSampleCursorAtFirstSampleInDecodeOrder(
             &self,
@@ -450,7 +450,7 @@ extern_methods!(
         /// Returns: An instance of AVSampleCursor.
         ///
         /// This method will return nil if there are no samples in the track.
-        #[method(makeSampleCursorAtLastSampleInDecodeOrder)]
+        #[unsafe(method(makeSampleCursorAtLastSampleInDecodeOrder))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeSampleCursorAtLastSampleInDecodeOrder(
             &self,
@@ -514,11 +514,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVAssetTrack`
     unsafe impl AVFragmentedAssetTrack {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

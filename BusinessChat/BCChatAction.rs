@@ -53,7 +53,7 @@ extern_methods!(
         ///
         /// Parameter `intentParameters`: Parameters to be sent with the initial message.
         #[deprecated]
-        #[method(openTranscript:intentParameters:)]
+        #[unsafe(method(openTranscript:intentParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openTranscript_intentParameters(
             business_identifier: &NSString,
@@ -65,11 +65,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl BCChatAction {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

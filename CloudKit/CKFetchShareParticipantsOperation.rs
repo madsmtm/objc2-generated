@@ -21,12 +21,12 @@ unsafe impl NSObjectProtocol for CKFetchShareParticipantsOperation {}
 extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareParticipantsOperation {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
-        #[method(initWithUserIdentityLookupInfos:)]
+        #[unsafe(method(initWithUserIdentityLookupInfos:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUserIdentityLookupInfos(
             this: Allocated<Self>,
@@ -34,7 +34,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
-        #[method(userIdentityLookupInfos)]
+        #[unsafe(method(userIdentityLookupInfos))]
         #[unsafe(method_family = none)]
         pub unsafe fn userIdentityLookupInfos(
             &self,
@@ -42,7 +42,7 @@ extern_methods!(
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
         /// Setter for [`userIdentityLookupInfos`][Self::userIdentityLookupInfos].
-        #[method(setUserIdentityLookupInfos:)]
+        #[unsafe(method(setUserIdentityLookupInfos:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserIdentityLookupInfos(
             &self,
@@ -60,7 +60,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated = "Use perShareParticipantCompletionBlock instead, which surfaces per-share-participant errors"]
-        #[method(shareParticipantFetchedBlock)]
+        #[unsafe(method(shareParticipantFetchedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn shareParticipantFetchedBlock(
             &self,
@@ -69,7 +69,7 @@ extern_methods!(
         #[cfg(all(feature = "CKShareParticipant", feature = "block2"))]
         /// Setter for [`shareParticipantFetchedBlock`][Self::shareParticipantFetchedBlock].
         #[deprecated = "Use perShareParticipantCompletionBlock instead, which surfaces per-share-participant errors"]
-        #[method(setShareParticipantFetchedBlock:)]
+        #[unsafe(method(setShareParticipantFetchedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShareParticipantFetchedBlock(
             &self,
@@ -90,7 +90,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(perShareParticipantCompletionBlock)]
+        #[unsafe(method(perShareParticipantCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perShareParticipantCompletionBlock(
             &self,
@@ -104,7 +104,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`perShareParticipantCompletionBlock`][Self::perShareParticipantCompletionBlock].
-        #[method(setPerShareParticipantCompletionBlock:)]
+        #[unsafe(method(setPerShareParticipantCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerShareParticipantCompletionBlock(
             &self,
@@ -138,7 +138,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(fetchShareParticipantsCompletionBlock)]
+        #[unsafe(method(fetchShareParticipantsCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchShareParticipantsCompletionBlock(
             &self,
@@ -146,7 +146,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`fetchShareParticipantsCompletionBlock`][Self::fetchShareParticipantsCompletionBlock].
-        #[method(setFetchShareParticipantsCompletionBlock:)]
+        #[unsafe(method(setFetchShareParticipantsCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchShareParticipantsCompletionBlock(
             &self,
@@ -159,7 +159,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareParticipantsOperation {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

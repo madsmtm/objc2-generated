@@ -20,36 +20,36 @@ unsafe impl NSObjectProtocol for NSNibConnector {}
 
 extern_methods!(
     unsafe impl NSNibConnector {
-        #[method(source)]
+        #[unsafe(method(source))]
         #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`source`][Self::source].
-        #[method(setSource:)]
+        #[unsafe(method(setSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSource(&self, source: Option<&AnyObject>);
 
-        #[method(destination)]
+        #[unsafe(method(destination))]
         #[unsafe(method_family = none)]
         pub unsafe fn destination(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`destination`][Self::destination].
-        #[method(setDestination:)]
+        #[unsafe(method(setDestination:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestination(&self, destination: Option<&AnyObject>);
 
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
-        #[method(replaceObject:withObject:)]
+        #[unsafe(method(replaceObject:withObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceObject_withObject(
             &self,
@@ -57,7 +57,7 @@ extern_methods!(
             new_object: &AnyObject,
         );
 
-        #[method(establishConnection)]
+        #[unsafe(method(establishConnection))]
         #[unsafe(method_family = none)]
         pub unsafe fn establishConnection(&self);
     }
@@ -66,11 +66,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNibConnector {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

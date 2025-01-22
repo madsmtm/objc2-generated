@@ -107,21 +107,21 @@ unsafe impl NSObjectProtocol for AVCaptureSystemPressureState {}
 
 extern_methods!(
     unsafe impl AVCaptureSystemPressureState {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// An enumerated string value characterizing the pressure level to which the system is currently elevated.
-        #[method(level)]
+        #[unsafe(method(level))]
         #[unsafe(method_family = none)]
         pub unsafe fn level(&self) -> Retained<AVCaptureSystemPressureLevel>;
 
         /// A bitmask of values indicating the factors contributing to the current system pressure level.
-        #[method(factors)]
+        #[unsafe(method(factors))]
         #[unsafe(method_family = none)]
         pub unsafe fn factors(&self) -> AVCaptureSystemPressureFactors;
     }

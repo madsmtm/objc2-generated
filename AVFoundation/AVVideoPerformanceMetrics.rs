@@ -27,70 +27,70 @@ unsafe impl NSObjectProtocol for AVVideoPerformanceMetrics {}
 
 extern_methods!(
     unsafe impl AVVideoPerformanceMetrics {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// [SPI] The total number of frames that would have been displayed if no frames are dropped.
-        #[method(totalNumberOfFrames)]
+        #[unsafe(method(totalNumberOfFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalNumberOfFrames(&self) -> NSInteger;
 
         /// [SPI] The total number of frames dropped prior to decoding or dropped because a frame missed its display deadline.
-        #[method(numberOfDroppedFrames)]
+        #[unsafe(method(numberOfDroppedFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfDroppedFrames(&self) -> NSInteger;
 
         /// [SPI] The total number of corrupted frames that have been detected.
-        #[method(numberOfCorruptedFrames)]
+        #[unsafe(method(numberOfCorruptedFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfCorruptedFrames(&self) -> NSInteger;
 
         /// [SPI] The total number of full screen frames that were rendered in a special power-efficient mode that didn't require the frame to be composited with other UI elements.
-        #[method(numberOfFramesDisplayedUsingOptimizedCompositing)]
+        #[unsafe(method(numberOfFramesDisplayedUsingOptimizedCompositing))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfFramesDisplayedUsingOptimizedCompositing(&self) -> NSInteger;
 
         /// [SPI] The accumulated amount of time between the prescribed presentation times of displayed video frames and the actual time at which they were displayed.
         ///
         /// This delay is always greater than or equal to zero since frames must never be displayed before their presentation time. Non-zero delays are a sign of playback jitter and possible loss of A/V sync.
-        #[method(totalAccumulatedFrameDelay)]
+        #[unsafe(method(totalAccumulatedFrameDelay))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalAccumulatedFrameDelay(&self) -> NSTimeInterval;
 
         /// [SPI] The total number of frames that would have been displayed if no frames are dropped. Same as totalNumberOfFrames.
-        #[method(totalNumberOfVideoFrames)]
+        #[unsafe(method(totalNumberOfVideoFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalNumberOfVideoFrames(&self) -> c_ulong;
 
         /// [SPI] The total number of frames dropped prior to decoding or dropped because a frame missed its display deadline. Same as numberOfDroppedFrames.
-        #[method(numberOfDroppedVideoFrames)]
+        #[unsafe(method(numberOfDroppedVideoFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfDroppedVideoFrames(&self) -> c_ulong;
 
         /// [SPI] The total number of corrupted frames that have been detected. Same as numberOfCorruptedFrames.
-        #[method(numberOfCorruptedVideoFrames)]
+        #[unsafe(method(numberOfCorruptedVideoFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfCorruptedVideoFrames(&self) -> c_ulong;
 
         /// [SPI] The total number of frames that were composited in detached mode.  Same as numberOfFramesDisplayedUsingOptimizedCompositing.
-        #[method(numberOfDisplayCompositedVideoFrames)]
+        #[unsafe(method(numberOfDisplayCompositedVideoFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfDisplayCompositedVideoFrames(&self) -> c_ulong;
 
         /// [SPI] The total number of frames that were composited in undetached mode.
-        #[method(numberOfNonDisplayCompositedVideoFrames)]
+        #[unsafe(method(numberOfNonDisplayCompositedVideoFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfNonDisplayCompositedVideoFrames(&self) -> c_ulong;
 
         /// [SPI] The accumulated amount of time, in microseconds, between the prescribed presentation times of displayed video frames and the actual time at which they were displayed.
         ///
         /// This delay is always greater than or equal to zero since frames must never be displayed before their presentation time. Non-zero delays are a sign of playback jitter and possible loss of A/V sync. Same as totalAccumulatedFrameDelay.
-        #[method(totalFrameDelay)]
+        #[unsafe(method(totalFrameDelay))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalFrameDelay(&self) -> c_double;
     }

@@ -371,42 +371,42 @@ extern_methods!(
     #[cfg(feature = "NSValue")]
     unsafe impl NSValue {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueWithPoint:)]
+        #[unsafe(method(valueWithPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithPoint(point: NSPoint) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueWithSize:)]
+        #[unsafe(method(valueWithSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithSize(size: NSSize) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueWithRect:)]
+        #[unsafe(method(valueWithRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithRect(rect: NSRect) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueWithEdgeInsets:)]
+        #[unsafe(method(valueWithEdgeInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithEdgeInsets(insets: NSEdgeInsets) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(pointValue)]
+        #[unsafe(method(pointValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointValue(&self) -> NSPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(sizeValue)]
+        #[unsafe(method(sizeValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn sizeValue(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(rectValue)]
+        #[unsafe(method(rectValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn rectValue(&self) -> NSRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(edgeInsetsValue)]
+        #[unsafe(method(edgeInsetsValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn edgeInsetsValue(&self) -> NSEdgeInsets;
     }
@@ -417,32 +417,32 @@ extern_methods!(
     #[cfg(feature = "NSCoder")]
     unsafe impl NSCoder {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(encodePoint:)]
+        #[unsafe(method(encodePoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodePoint(&self, point: NSPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(decodePoint)]
+        #[unsafe(method(decodePoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodePoint(&self) -> NSPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(encodeSize:)]
+        #[unsafe(method(encodeSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeSize(&self, size: NSSize);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(decodeSize)]
+        #[unsafe(method(decodeSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(encodeRect:)]
+        #[unsafe(method(encodeRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRect(&self, rect: NSRect);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(decodeRect)]
+        #[unsafe(method(decodeRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeRect(&self) -> NSRect;
     }
@@ -453,32 +453,32 @@ extern_methods!(
     #[cfg(feature = "NSCoder")]
     unsafe impl NSCoder {
         #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
-        #[method(encodePoint:forKey:)]
+        #[unsafe(method(encodePoint:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodePoint_forKey(&self, point: NSPoint, key: &NSString);
 
         #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
-        #[method(encodeSize:forKey:)]
+        #[unsafe(method(encodeSize:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeSize_forKey(&self, size: NSSize, key: &NSString);
 
         #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
-        #[method(encodeRect:forKey:)]
+        #[unsafe(method(encodeRect:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRect_forKey(&self, rect: NSRect, key: &NSString);
 
         #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
-        #[method(decodePointForKey:)]
+        #[unsafe(method(decodePointForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodePointForKey(&self, key: &NSString) -> NSPoint;
 
         #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
-        #[method(decodeSizeForKey:)]
+        #[unsafe(method(decodeSizeForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeSizeForKey(&self, key: &NSString) -> NSSize;
 
         #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
-        #[method(decodeRectForKey:)]
+        #[unsafe(method(decodeRectForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeRectForKey(&self, key: &NSString) -> NSRect;
     }

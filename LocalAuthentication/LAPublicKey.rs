@@ -26,7 +26,7 @@ extern_methods!(
         /// Exports public key bytes.
         ///
         /// Parameter `handler`: Completion handler with the raw bytes of the public key or an error on failure
-        #[method(exportBytesWithCompletion:)]
+        #[unsafe(method(exportBytesWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportBytesWithCompletion(
             &self,
@@ -43,7 +43,7 @@ extern_methods!(
         /// `kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA256AESGCM`.
         ///
         /// Parameter `handler`: Completion handler with the ciphertext or an error on failure.
-        #[method(encryptData:secKeyAlgorithm:completion:)]
+        #[unsafe(method(encryptData:secKeyAlgorithm:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encryptData_secKeyAlgorithm_completion(
             &self,
@@ -58,7 +58,7 @@ extern_methods!(
         /// Parameter `algorithm`: Cryptographic algorithm
         ///
         /// Returns: `YES`in case the key supports the provided algorithm with the specified operation.
-        #[method(canEncryptUsingSecKeyAlgorithm:)]
+        #[unsafe(method(canEncryptUsingSecKeyAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canEncryptUsingSecKeyAlgorithm(&self, algorithm: &SecKeyAlgorithm) -> bool;
 
@@ -73,7 +73,7 @@ extern_methods!(
         /// `SecKeyAlgorithm`suitable for verifying signatures with this key –e.g:
         /// `kSecKeyAlgorithmECDSASignatureMessageX962SHA256`
         /// Parameter `handler`: Completion hadnler with the signature of given data or an error on failure.
-        #[method(verifyData:signature:secKeyAlgorithm:completion:)]
+        #[unsafe(method(verifyData:signature:secKeyAlgorithm:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn verifyData_signature_secKeyAlgorithm_completion(
             &self,
@@ -89,21 +89,21 @@ extern_methods!(
         /// Parameter `algorithm`: Cryptographic algorithm
         ///
         /// Returns: `YES`in case the key supports the provided algorithm with the specified operation.
-        #[method(canVerifyUsingSecKeyAlgorithm:)]
+        #[unsafe(method(canVerifyUsingSecKeyAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canVerifyUsingSecKeyAlgorithm(&self, algorithm: &SecKeyAlgorithm) -> bool;
 
         /// Clients cannot create
         /// `LAPublicKey`instances directly. They can only obtain them from a related
         /// `LAPrivateKey`instance
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Clients cannot create
         /// `LAPublicKey`instances directly. They can only obtain them from a related
         /// `LAPrivateKey`instance
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

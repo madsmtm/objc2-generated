@@ -56,7 +56,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKCompassButton {
         #[cfg(feature = "MKMapView")]
-        #[method(compassButtonWithMapView:)]
+        #[unsafe(method(compassButtonWithMapView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compassButtonWithMapView(
             map_view: Option<&MKMapView>,
@@ -64,25 +64,25 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MKMapView")]
-        #[method(mapView)]
+        #[unsafe(method(mapView))]
         #[unsafe(method_family = none)]
         pub unsafe fn mapView(&self) -> Option<Retained<MKMapView>>;
 
         #[cfg(feature = "MKMapView")]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`mapView`][Self::mapView].
-        #[method(setMapView:)]
+        #[unsafe(method(setMapView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMapView(&self, map_view: Option<&MKMapView>);
 
         #[cfg(feature = "MKTypes")]
-        #[method(compassVisibility)]
+        #[unsafe(method(compassVisibility))]
         #[unsafe(method_family = none)]
         pub unsafe fn compassVisibility(&self) -> MKFeatureVisibility;
 
         #[cfg(feature = "MKTypes")]
         /// Setter for [`compassVisibility`][Self::compassVisibility].
-        #[method(setCompassVisibility:)]
+        #[unsafe(method(setCompassVisibility:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompassVisibility(&self, compass_visibility: MKFeatureVisibility);
     }
@@ -93,11 +93,11 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKCompassButton {
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -111,7 +111,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKCompassButton {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -122,7 +122,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKCompassButton {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

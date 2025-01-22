@@ -63,172 +63,172 @@ extern_methods!(
     ))]
     unsafe impl DOMElement {
         #[deprecated]
-        #[method(tagName)]
+        #[unsafe(method(tagName))]
         #[unsafe(method_family = none)]
         pub unsafe fn tagName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMCSSStyleDeclaration")]
         #[deprecated]
-        #[method(style)]
+        #[unsafe(method(style))]
         #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> Option<Retained<DOMCSSStyleDeclaration>>;
 
         #[deprecated]
-        #[method(offsetLeft)]
+        #[unsafe(method(offsetLeft))]
         #[unsafe(method_family = none)]
         pub unsafe fn offsetLeft(&self) -> c_int;
 
         #[deprecated]
-        #[method(offsetTop)]
+        #[unsafe(method(offsetTop))]
         #[unsafe(method_family = none)]
         pub unsafe fn offsetTop(&self) -> c_int;
 
         #[deprecated]
-        #[method(offsetWidth)]
+        #[unsafe(method(offsetWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn offsetWidth(&self) -> c_int;
 
         #[deprecated]
-        #[method(offsetHeight)]
+        #[unsafe(method(offsetHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn offsetHeight(&self) -> c_int;
 
-        #[method(clientLeft)]
+        #[unsafe(method(clientLeft))]
         #[unsafe(method_family = none)]
         pub unsafe fn clientLeft(&self) -> c_int;
 
-        #[method(clientTop)]
+        #[unsafe(method(clientTop))]
         #[unsafe(method_family = none)]
         pub unsafe fn clientTop(&self) -> c_int;
 
         #[deprecated]
-        #[method(clientWidth)]
+        #[unsafe(method(clientWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn clientWidth(&self) -> c_int;
 
         #[deprecated]
-        #[method(clientHeight)]
+        #[unsafe(method(clientHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn clientHeight(&self) -> c_int;
 
         #[deprecated]
-        #[method(scrollLeft)]
+        #[unsafe(method(scrollLeft))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollLeft(&self) -> c_int;
 
         /// Setter for [`scrollLeft`][Self::scrollLeft].
         #[deprecated]
-        #[method(setScrollLeft:)]
+        #[unsafe(method(setScrollLeft:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScrollLeft(&self, scroll_left: c_int);
 
         #[deprecated]
-        #[method(scrollTop)]
+        #[unsafe(method(scrollTop))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollTop(&self) -> c_int;
 
         /// Setter for [`scrollTop`][Self::scrollTop].
         #[deprecated]
-        #[method(setScrollTop:)]
+        #[unsafe(method(setScrollTop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScrollTop(&self, scroll_top: c_int);
 
         #[deprecated]
-        #[method(scrollWidth)]
+        #[unsafe(method(scrollWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollWidth(&self) -> c_int;
 
         #[deprecated]
-        #[method(scrollHeight)]
+        #[unsafe(method(scrollHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollHeight(&self) -> c_int;
 
         #[deprecated]
-        #[method(offsetParent)]
+        #[unsafe(method(offsetParent))]
         #[unsafe(method_family = none)]
         pub unsafe fn offsetParent(&self) -> Option<Retained<DOMElement>>;
 
         #[deprecated]
-        #[method(innerHTML)]
+        #[unsafe(method(innerHTML))]
         #[unsafe(method_family = none)]
         pub unsafe fn innerHTML(&self) -> Retained<NSString>;
 
         /// Setter for [`innerHTML`][Self::innerHTML].
         #[deprecated]
-        #[method(setInnerHTML:)]
+        #[unsafe(method(setInnerHTML:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInnerHTML(&self, inner_html: Option<&NSString>);
 
         #[deprecated]
-        #[method(outerHTML)]
+        #[unsafe(method(outerHTML))]
         #[unsafe(method_family = none)]
         pub unsafe fn outerHTML(&self) -> Retained<NSString>;
 
         /// Setter for [`outerHTML`][Self::outerHTML].
         #[deprecated]
-        #[method(setOuterHTML:)]
+        #[unsafe(method(setOuterHTML:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOuterHTML(&self, outer_html: Option<&NSString>);
 
         #[deprecated]
-        #[method(className)]
+        #[unsafe(method(className))]
         #[unsafe(method_family = none)]
         pub unsafe fn className(&self) -> Retained<NSString>;
 
         /// Setter for [`className`][Self::className].
         #[deprecated]
-        #[method(setClassName:)]
+        #[unsafe(method(setClassName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClassName(&self, class_name: Option<&NSString>);
 
-        #[method(innerText)]
+        #[unsafe(method(innerText))]
         #[unsafe(method_family = none)]
         pub unsafe fn innerText(&self) -> Retained<NSString>;
 
-        #[method(previousElementSibling)]
+        #[unsafe(method(previousElementSibling))]
         #[unsafe(method_family = none)]
         pub unsafe fn previousElementSibling(&self) -> Option<Retained<DOMElement>>;
 
-        #[method(nextElementSibling)]
+        #[unsafe(method(nextElementSibling))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextElementSibling(&self) -> Option<Retained<DOMElement>>;
 
-        #[method(firstElementChild)]
+        #[unsafe(method(firstElementChild))]
         #[unsafe(method_family = none)]
         pub unsafe fn firstElementChild(&self) -> Option<Retained<DOMElement>>;
 
-        #[method(lastElementChild)]
+        #[unsafe(method(lastElementChild))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastElementChild(&self) -> Option<Retained<DOMElement>>;
 
-        #[method(childElementCount)]
+        #[unsafe(method(childElementCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn childElementCount(&self) -> c_uint;
 
         #[deprecated]
-        #[method(getAttribute:)]
+        #[unsafe(method(getAttribute:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAttribute(&self, name: Option<&NSString>) -> Option<Retained<NSString>>;
 
-        #[method(setAttribute:value:)]
+        #[unsafe(method(setAttribute:value:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttribute_value(&self, name: Option<&NSString>, value: Option<&NSString>);
 
         #[deprecated]
-        #[method(removeAttribute:)]
+        #[unsafe(method(removeAttribute:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAttribute(&self, name: Option<&NSString>);
 
         #[cfg(feature = "DOMAttr")]
         #[deprecated]
-        #[method(getAttributeNode:)]
+        #[unsafe(method(getAttributeNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAttributeNode(&self, name: Option<&NSString>)
             -> Option<Retained<DOMAttr>>;
 
         #[cfg(feature = "DOMAttr")]
         #[deprecated]
-        #[method(setAttributeNode:)]
+        #[unsafe(method(setAttributeNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributeNode(
             &self,
@@ -237,7 +237,7 @@ extern_methods!(
 
         #[cfg(feature = "DOMAttr")]
         #[deprecated]
-        #[method(removeAttributeNode:)]
+        #[unsafe(method(removeAttributeNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAttributeNode(
             &self,
@@ -246,14 +246,14 @@ extern_methods!(
 
         #[cfg(feature = "DOMNodeList")]
         #[deprecated]
-        #[method(getElementsByTagName:)]
+        #[unsafe(method(getElementsByTagName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getElementsByTagName(
             &self,
             name: Option<&NSString>,
         ) -> Option<Retained<DOMNodeList>>;
 
-        #[method(getAttributeNS:localName:)]
+        #[unsafe(method(getAttributeNS:localName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAttributeNS_localName(
             &self,
@@ -261,7 +261,7 @@ extern_methods!(
             local_name: Option<&NSString>,
         ) -> Option<Retained<NSString>>;
 
-        #[method(setAttributeNS:qualifiedName:value:)]
+        #[unsafe(method(setAttributeNS:qualifiedName:value:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributeNS_qualifiedName_value(
             &self,
@@ -270,7 +270,7 @@ extern_methods!(
             value: Option<&NSString>,
         );
 
-        #[method(removeAttributeNS:localName:)]
+        #[unsafe(method(removeAttributeNS:localName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAttributeNS_localName(
             &self,
@@ -279,7 +279,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "DOMNodeList")]
-        #[method(getElementsByTagNameNS:localName:)]
+        #[unsafe(method(getElementsByTagNameNS:localName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getElementsByTagNameNS_localName(
             &self,
@@ -288,7 +288,7 @@ extern_methods!(
         ) -> Option<Retained<DOMNodeList>>;
 
         #[cfg(feature = "DOMAttr")]
-        #[method(getAttributeNodeNS:localName:)]
+        #[unsafe(method(getAttributeNodeNS:localName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAttributeNodeNS_localName(
             &self,
@@ -298,7 +298,7 @@ extern_methods!(
 
         #[cfg(feature = "DOMAttr")]
         #[deprecated]
-        #[method(setAttributeNodeNS:)]
+        #[unsafe(method(setAttributeNodeNS:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributeNodeNS(
             &self,
@@ -306,11 +306,11 @@ extern_methods!(
         ) -> Option<Retained<DOMAttr>>;
 
         #[deprecated]
-        #[method(hasAttribute:)]
+        #[unsafe(method(hasAttribute:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasAttribute(&self, name: Option<&NSString>) -> bool;
 
-        #[method(hasAttributeNS:localName:)]
+        #[unsafe(method(hasAttributeNS:localName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasAttributeNS_localName(
             &self,
@@ -318,35 +318,35 @@ extern_methods!(
             local_name: Option<&NSString>,
         ) -> bool;
 
-        #[method(focus)]
+        #[unsafe(method(focus))]
         #[unsafe(method_family = none)]
         pub unsafe fn focus(&self);
 
-        #[method(blur)]
+        #[unsafe(method(blur))]
         #[unsafe(method_family = none)]
         pub unsafe fn blur(&self);
 
-        #[method(scrollIntoView:)]
+        #[unsafe(method(scrollIntoView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollIntoView(&self, align_with_top: bool);
 
-        #[method(scrollIntoViewIfNeeded:)]
+        #[unsafe(method(scrollIntoViewIfNeeded:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollIntoViewIfNeeded(&self, center_if_needed: bool);
 
         #[cfg(feature = "DOMNodeList")]
-        #[method(getElementsByClassName:)]
+        #[unsafe(method(getElementsByClassName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getElementsByClassName(
             &self,
             name: Option<&NSString>,
         ) -> Option<Retained<DOMNodeList>>;
 
-        #[method(webkitRequestFullScreen:)]
+        #[unsafe(method(webkitRequestFullScreen:))]
         #[unsafe(method_family = none)]
         pub unsafe fn webkitRequestFullScreen(&self, flags: c_ushort);
 
-        #[method(querySelector:)]
+        #[unsafe(method(querySelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn querySelector(
             &self,
@@ -354,7 +354,7 @@ extern_methods!(
         ) -> Option<Retained<DOMElement>>;
 
         #[cfg(feature = "DOMNodeList")]
-        #[method(querySelectorAll:)]
+        #[unsafe(method(querySelectorAll:))]
         #[unsafe(method_family = none)]
         pub unsafe fn querySelectorAll(
             &self,
@@ -372,7 +372,7 @@ extern_methods!(
     ))]
     unsafe impl DOMElement {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -386,7 +386,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMElement {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -401,12 +401,12 @@ extern_methods!(
     ))]
     unsafe impl DOMElement {
         #[deprecated]
-        #[method(setAttribute::)]
+        #[unsafe(method(setAttribute::))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttribute(&self, name: Option<&NSString>, value: Option<&NSString>);
 
         #[deprecated]
-        #[method(getAttributeNS::)]
+        #[unsafe(method(getAttributeNS::))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAttributeNS(
             &self,
@@ -415,7 +415,7 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[deprecated]
-        #[method(setAttributeNS:::)]
+        #[unsafe(method(setAttributeNS:::))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributeNS(
             &self,
@@ -425,7 +425,7 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method(removeAttributeNS::)]
+        #[unsafe(method(removeAttributeNS::))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAttributeNS(
             &self,
@@ -435,7 +435,7 @@ extern_methods!(
 
         #[cfg(feature = "DOMNodeList")]
         #[deprecated]
-        #[method(getElementsByTagNameNS::)]
+        #[unsafe(method(getElementsByTagNameNS::))]
         #[unsafe(method_family = none)]
         pub unsafe fn getElementsByTagNameNS(
             &self,
@@ -445,7 +445,7 @@ extern_methods!(
 
         #[cfg(feature = "DOMAttr")]
         #[deprecated]
-        #[method(getAttributeNodeNS::)]
+        #[unsafe(method(getAttributeNodeNS::))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAttributeNodeNS(
             &self,
@@ -454,7 +454,7 @@ extern_methods!(
         ) -> Option<Retained<DOMAttr>>;
 
         #[deprecated]
-        #[method(hasAttributeNS::)]
+        #[unsafe(method(hasAttributeNS::))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasAttributeNS(
             &self,
@@ -463,12 +463,12 @@ extern_methods!(
         ) -> bool;
 
         #[deprecated]
-        #[method(scrollByLines:)]
+        #[unsafe(method(scrollByLines:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollByLines(&self, lines: c_int);
 
         #[deprecated]
-        #[method(scrollByPages:)]
+        #[unsafe(method(scrollByPages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollByPages(&self, pages: c_int);
     }

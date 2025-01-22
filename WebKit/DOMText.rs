@@ -64,16 +64,16 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMText {
-        #[method(wholeText)]
+        #[unsafe(method(wholeText))]
         #[unsafe(method_family = none)]
         pub unsafe fn wholeText(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method(splitText:)]
+        #[unsafe(method(splitText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn splitText(&self, offset: c_uint) -> Option<Retained<DOMText>>;
 
-        #[method(replaceWholeText:)]
+        #[unsafe(method(replaceWholeText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceWholeText(
             &self,
@@ -92,7 +92,7 @@ extern_methods!(
     ))]
     unsafe impl DOMText {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -107,7 +107,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMText {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

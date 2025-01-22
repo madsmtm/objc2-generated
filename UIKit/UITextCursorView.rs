@@ -14,17 +14,17 @@ extern_protocol!(
     #[cfg(feature = "UIView")]
     pub unsafe trait UITextCursorView: UICoordinateSpace + MainThreadOnly {
         /// Enables the blink animation. Disabled by default.
-        #[method(isBlinking)]
+        #[unsafe(method(isBlinking))]
         #[unsafe(method_family = none)]
         unsafe fn isBlinking(&self) -> bool;
 
         /// Setter for [`isBlinking`][Self::isBlinking].
-        #[method(setBlinking:)]
+        #[unsafe(method(setBlinking:))]
         #[unsafe(method_family = none)]
         unsafe fn setBlinking(&self, blinking: bool);
 
         /// Call this when the cursor is moving (i.e., during typing) to make sure the cursor doesn't blink while text is being inserted.
-        #[method(resetBlinkAnimation)]
+        #[unsafe(method(resetBlinkAnimation))]
         #[unsafe(method_family = none)]
         unsafe fn resetBlinkAnimation(&self);
     }

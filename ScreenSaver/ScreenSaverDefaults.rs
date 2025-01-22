@@ -39,7 +39,7 @@ extern_methods!(
         ///
         /// - Parameters:
         /// - inModuleName: The bundle identifier for the module.
-        #[method(defaultsForModuleWithName:)]
+        #[unsafe(method(defaultsForModuleWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultsForModuleWithName(
             in_module_name: &NSString,
@@ -51,12 +51,12 @@ extern_methods!(
     /// Methods declared on superclass `NSUserDefaults`
     unsafe impl ScreenSaverDefaults {
         /// -init is equivalent to -initWithSuiteName:nil
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// -initWithSuiteName: initializes an instance of NSUserDefaults that searches the shared preferences search list for the domain 'suitename'. For example, using the identifier of an application group will cause the receiver to search the preferences for that group. Passing the current application's bundle identifier, NSGlobalDomain, or the corresponding CFPreferences constants is an error. Passing nil will search the default search list.
-        #[method(initWithSuiteName:)]
+        #[unsafe(method(initWithSuiteName:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSuiteName(
             this: Allocated<Self>,
@@ -65,7 +65,7 @@ extern_methods!(
 
         /// -initWithUser: is equivalent to -init
         #[deprecated = "Use -init instead"]
-        #[method(initWithUser:)]
+        #[unsafe(method(initWithUser:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUser(
             this: Allocated<Self>,
@@ -77,7 +77,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ScreenSaverDefaults {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -31,7 +31,7 @@ extern_methods!(
     unsafe impl DOMAbstractView {
         #[cfg(all(feature = "DOMDocument", feature = "DOMNode"))]
         #[deprecated]
-        #[method(document)]
+        #[unsafe(method(document))]
         #[unsafe(method_family = none)]
         pub unsafe fn document(&self) -> Option<Retained<DOMDocument>>;
     }
@@ -42,7 +42,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMAbstractView {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -52,7 +52,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMAbstractView {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

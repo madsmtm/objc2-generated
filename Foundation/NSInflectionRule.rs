@@ -30,11 +30,11 @@ unsafe impl NSSecureCoding for NSInflectionRule {}
 
 extern_methods!(
     unsafe impl NSInflectionRule {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(automaticRule)]
+        #[unsafe(method(automaticRule))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticRule() -> Retained<NSInflectionRule>;
     }
@@ -43,7 +43,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInflectionRule {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -75,7 +75,7 @@ unsafe impl NSSecureCoding for NSInflectionRuleExplicit {}
 extern_methods!(
     unsafe impl NSInflectionRuleExplicit {
         #[cfg(feature = "NSMorphology")]
-        #[method(initWithMorphology:)]
+        #[unsafe(method(initWithMorphology:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMorphology(
             this: Allocated<Self>,
@@ -83,7 +83,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSMorphology")]
-        #[method(morphology)]
+        #[unsafe(method(morphology))]
         #[unsafe(method_family = none)]
         pub unsafe fn morphology(&self) -> Retained<NSMorphology>;
     }
@@ -92,7 +92,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSInflectionRule`
     unsafe impl NSInflectionRuleExplicit {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -101,7 +101,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInflectionRuleExplicit {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -111,11 +111,11 @@ extern_methods!(
     /// NSInflectionAvailability
     unsafe impl NSInflectionRule {
         #[cfg(feature = "NSString")]
-        #[method(canInflectLanguage:)]
+        #[unsafe(method(canInflectLanguage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canInflectLanguage(language: &NSString) -> bool;
 
-        #[method(canInflectPreferredLocalization)]
+        #[unsafe(method(canInflectPreferredLocalization))]
         #[unsafe(method_family = none)]
         pub unsafe fn canInflectPreferredLocalization() -> bool;
     }

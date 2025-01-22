@@ -28,14 +28,14 @@ extern_methods!(
     unsafe impl MDLObject {
         #[cfg(feature = "MDLTypes")]
         /// Allows applications to introspect the components on the objects.
-        #[method(components)]
+        #[unsafe(method(components))]
         #[unsafe(method_family = none)]
         pub unsafe fn components(&self) -> Retained<NSArray<ProtocolObject<dyn MDLComponent>>>;
 
         #[cfg(feature = "MDLTypes")]
         /// Extensible component support that allows user of ModelIO to customize
         /// MDLObjects to fit their format and workflow.
-        #[method(setComponent:forProtocol:)]
+        #[unsafe(method(setComponent:forProtocol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setComponent_forProtocol(
             &self,
@@ -46,7 +46,7 @@ extern_methods!(
         #[cfg(feature = "MDLTypes")]
         /// Extensible component support that allows user of ModelIO to customize
         /// MDLObjects to fit their format and workflow.
-        #[method(componentConformingToProtocol:)]
+        #[unsafe(method(componentConformingToProtocol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn componentConformingToProtocol(
             &self,
@@ -59,7 +59,7 @@ extern_methods!(
         /// Parameter `key`: The protocol that the component conforms to.
         ///
         /// See: componentConformingToProtocol:
-        #[method(objectForKeyedSubscript:)]
+        #[unsafe(method(objectForKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
@@ -72,7 +72,7 @@ extern_methods!(
         /// Parameter `key`: The protocol that the component conforms to.
         ///
         /// See: setComponent:forProtocol:
-        #[method(setObject:forKeyedSubscript:)]
+        #[unsafe(method(setObject:forKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_forKeyedSubscript(
             &self,
@@ -84,13 +84,13 @@ extern_methods!(
         ///
         /// Set to nil when you remove this from an object container inside the
         /// parent object.
-        #[method(parent)]
+        #[unsafe(method(parent))]
         #[unsafe(method_family = none)]
         pub unsafe fn parent(&self) -> Option<Retained<MDLObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`parent`][Self::parent].
-        #[method(setParent:)]
+        #[unsafe(method(setParent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParent(&self, parent: Option<&MDLObject>);
 
@@ -105,12 +105,12 @@ extern_methods!(
         /// transform of each chair would be found on the parent MDLObject, but
         /// the various items making up the chair would be found in the original
         /// object.
-        #[method(instance)]
+        #[unsafe(method(instance))]
         #[unsafe(method_family = none)]
         pub unsafe fn instance(&self) -> Option<Retained<MDLObject>>;
 
         /// Setter for [`instance`][Self::instance].
-        #[method(setInstance:)]
+        #[unsafe(method(setInstance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstance(&self, instance: Option<&MDLObject>);
 
@@ -121,17 +121,17 @@ extern_methods!(
         /// Requesting a path will force any unnamed objects to became uniquely
         /// named. Any characters outside of [A-Z][a-z][0-9][:-_.] will be
         /// forced to underscore.
-        #[method(path)]
+        #[unsafe(method(path))]
         #[unsafe(method_family = none)]
         pub unsafe fn path(&self) -> Retained<NSString>;
 
         /// Return the object at the specified path, or nil if none exists there
-        #[method(objectAtPath:)]
+        #[unsafe(method(objectAtPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtPath(&self, path: &NSString) -> Retained<MDLObject>;
 
         #[cfg(feature = "block2")]
-        #[method(enumerateChildObjectsOfClass:root:usingBlock:stopPointer:)]
+        #[unsafe(method(enumerateChildObjectsOfClass:root:usingBlock:stopPointer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateChildObjectsOfClass_root_usingBlock_stopPointer(
             &self,
@@ -148,7 +148,7 @@ extern_methods!(
         ///
         ///
         /// See: MDLTransformComponent
-        #[method(transform)]
+        #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform(
             &self,
@@ -156,7 +156,7 @@ extern_methods!(
 
         #[cfg(all(feature = "MDLTransform", feature = "MDLTypes"))]
         /// Setter for [`transform`][Self::transform].
-        #[method(setTransform:)]
+        #[unsafe(method(setTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransform(
             &self,
@@ -170,13 +170,13 @@ extern_methods!(
         ///
         ///
         /// See: MDLObjectContainerComponent
-        #[method(children)]
+        #[unsafe(method(children))]
         #[unsafe(method_family = none)]
         pub unsafe fn children(&self) -> Retained<ProtocolObject<dyn MDLObjectContainerComponent>>;
 
         #[cfg(feature = "MDLTypes")]
         /// Setter for [`children`][Self::children].
-        #[method(setChildren:)]
+        #[unsafe(method(setChildren:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChildren(
             &self,
@@ -186,12 +186,12 @@ extern_methods!(
         /// Visibility of the node
         ///
         /// default is NO
-        #[method(hidden)]
+        #[unsafe(method(hidden))]
         #[unsafe(method_family = none)]
         pub unsafe fn hidden(&self) -> bool;
 
         /// Setter for [`hidden`][Self::hidden].
-        #[method(setHidden:)]
+        #[unsafe(method(setHidden:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
@@ -204,7 +204,7 @@ extern_methods!(
         ///
         ///
         /// See: MDLObjectContainer
-        #[method(addChild:)]
+        #[unsafe(method(addChild:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addChild(&self, child: &MDLObject);
     }
@@ -213,11 +213,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -253,11 +253,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLObjectContainer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -53,23 +53,23 @@ unsafe impl NSObjectProtocol for CMHeadphoneActivityManager {}
 extern_methods!(
     unsafe impl CMHeadphoneActivityManager {
         #[cfg(feature = "CMAuthorization")]
-        #[method(authorizationStatus)]
+        #[unsafe(method(authorizationStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus() -> CMAuthorizationStatus;
 
-        #[method(isActivityAvailable)]
+        #[unsafe(method(isActivityAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isActivityAvailable(&self) -> bool;
 
-        #[method(isActivityActive)]
+        #[unsafe(method(isActivityActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isActivityActive(&self) -> bool;
 
-        #[method(isStatusAvailable)]
+        #[unsafe(method(isStatusAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStatusAvailable(&self) -> bool;
 
-        #[method(isStatusActive)]
+        #[unsafe(method(isStatusActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStatusActive(&self) -> bool;
 
@@ -78,7 +78,7 @@ extern_methods!(
             feature = "CMMotionActivity",
             feature = "block2"
         ))]
-        #[method(startActivityUpdatesToQueue:withHandler:)]
+        #[unsafe(method(startActivityUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startActivityUpdatesToQueue_withHandler(
             &self,
@@ -86,12 +86,12 @@ extern_methods!(
             handler: CMHeadphoneActivityHandler,
         );
 
-        #[method(stopActivityUpdates)]
+        #[unsafe(method(stopActivityUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopActivityUpdates(&self);
 
         #[cfg(feature = "block2")]
-        #[method(startStatusUpdatesToQueue:withHandler:)]
+        #[unsafe(method(startStatusUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startStatusUpdatesToQueue_withHandler(
             &self,
@@ -99,7 +99,7 @@ extern_methods!(
             handler: CMHeadphoneActivityStatusHandler,
         );
 
-        #[method(stopStatusUpdates)]
+        #[unsafe(method(stopStatusUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopStatusUpdates(&self);
     }
@@ -108,11 +108,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMHeadphoneActivityManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

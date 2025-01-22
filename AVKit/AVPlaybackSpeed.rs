@@ -20,16 +20,16 @@ unsafe impl NSObjectProtocol for AVPlaybackSpeed {}
 
 extern_methods!(
     unsafe impl AVPlaybackSpeed {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// A list of playback speeds to be used by default across the system.
-        #[method(systemDefaultSpeeds)]
+        #[unsafe(method(systemDefaultSpeeds))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemDefaultSpeeds() -> Retained<NSArray<AVPlaybackSpeed>>;
 
@@ -38,7 +38,7 @@ extern_methods!(
         /// Parameter `localizedName`: A localized name to be displayed representing this playback speed in a UI.
         ///
         /// Initializes an AVPlaybackSpeed.
-        #[method(initWithRate:localizedName:)]
+        #[unsafe(method(initWithRate:localizedName:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRate_localizedName(
             this: Allocated<Self>,
@@ -47,21 +47,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The rate associated with this object. When this playback speed is selected this rate will be set in response to the play button being pressed.
-        #[method(rate)]
+        #[unsafe(method(rate))]
         #[unsafe(method_family = none)]
         pub unsafe fn rate(&self) -> c_float;
 
         /// A localized name for this playback speed.
         ///
         /// This name will be used to represent this playback speed in playback UIs where more space is available.
-        #[method(localizedName)]
+        #[unsafe(method(localizedName))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedName(&self) -> Retained<NSString>;
 
         /// A localized name for this playback speed used when space is limited.
         ///
         /// This name will be used to represent this playback speed in playback UIs where limited space is available.
-        #[method(localizedNumericName)]
+        #[unsafe(method(localizedNumericName))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedNumericName(&self) -> Retained<NSString>;
     }

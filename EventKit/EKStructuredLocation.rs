@@ -33,41 +33,41 @@ unsafe impl NSObjectProtocol for EKStructuredLocation {}
 extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKStructuredLocation {
-        #[method(locationWithTitle:)]
+        #[unsafe(method(locationWithTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn locationWithTitle(title: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "objc2-map-kit")]
-        #[method(locationWithMapItem:)]
+        #[unsafe(method(locationWithMapItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn locationWithMapItem(map_item: &MKMapItem) -> Retained<Self>;
 
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "objc2-core-location")]
-        #[method(geoLocation)]
+        #[unsafe(method(geoLocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn geoLocation(&self) -> Option<Retained<CLLocation>>;
 
         #[cfg(feature = "objc2-core-location")]
         /// Setter for [`geoLocation`][Self::geoLocation].
-        #[method(setGeoLocation:)]
+        #[unsafe(method(setGeoLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGeoLocation(&self, geo_location: Option<&CLLocation>);
 
-        #[method(radius)]
+        #[unsafe(method(radius))]
         #[unsafe(method_family = none)]
         pub unsafe fn radius(&self) -> c_double;
 
         /// Setter for [`radius`][Self::radius].
-        #[method(setRadius:)]
+        #[unsafe(method(setRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRadius(&self, radius: c_double);
     }
@@ -77,11 +77,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "EKObject")]
     unsafe impl EKStructuredLocation {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

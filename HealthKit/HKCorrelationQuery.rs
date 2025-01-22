@@ -34,7 +34,7 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKCorrelationQuery {
         #[cfg(feature = "HKObjectType")]
-        #[method(correlationType)]
+        #[unsafe(method(correlationType))]
         #[unsafe(method_family = none)]
         pub unsafe fn correlationType(&self) -> Retained<HKCorrelationType>;
 
@@ -43,7 +43,7 @@ extern_methods!(
         ///
         /// samplePredicates maps HKSampleTypes to NSPredicates. The predicate value will apply
         /// to objects of the key type.
-        #[method(samplePredicates)]
+        #[unsafe(method(samplePredicates))]
         #[unsafe(method_family = none)]
         pub unsafe fn samplePredicates(
             &self,
@@ -68,7 +68,7 @@ extern_methods!(
         /// Parameter `samplePredicates`: A dictionary mapping HKSampleTypes to NSPredicates. If no predicate for a particular type
         /// is provided, it is assumed to be a nil predicate and objects of that type will not be
         /// filtered.
-        #[method(initWithType:predicate:samplePredicates:completion:)]
+        #[unsafe(method(initWithType:predicate:samplePredicates:completion:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_predicate_samplePredicates_completion(
             this: Allocated<Self>,
@@ -86,7 +86,7 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKCorrelationQuery {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -96,7 +96,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKCorrelationQuery {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

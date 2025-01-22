@@ -19,38 +19,38 @@ extern_methods!(
     unsafe impl LAEnvironment {
         /// The clients should use
         /// `currentUser`class property.
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The clients should use
         /// `currentUser`class property.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Adds observer to monitor changes of the environment.
         ///
         /// The observer will be held weakly so its instance should be kept alive by the caller.
-        #[method(addObserver:)]
+        #[unsafe(method(addObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserver(&self, observer: &ProtocolObject<dyn LAEnvironmentObserver>);
 
         /// Removes the previously registered observer.
         ///
         /// If the observer is deallocated, it will be removed automatically.
-        #[method(removeObserver:)]
+        #[unsafe(method(removeObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObserver(&self, observer: &ProtocolObject<dyn LAEnvironmentObserver>);
 
         /// Environment of the current user.
-        #[method(currentUser)]
+        #[unsafe(method(currentUser))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentUser() -> Retained<LAEnvironment>;
 
         #[cfg(feature = "LAEnvironmentState")]
         /// The environment state information.
-        #[method(state)]
+        #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> Retained<LAEnvironmentState>;
     }
@@ -67,7 +67,7 @@ extern_protocol!(
         ///
         /// Parameter `oldState`: The old environment state (before update)
         #[optional]
-        #[method(environment:stateDidChangeFromOldState:)]
+        #[unsafe(method(environment:stateDidChangeFromOldState:))]
         #[unsafe(method_family = none)]
         unsafe fn environment_stateDidChangeFromOldState(
             &self,

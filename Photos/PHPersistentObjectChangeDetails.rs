@@ -22,27 +22,27 @@ unsafe impl NSObjectProtocol for PHPersistentObjectChangeDetails {}
 extern_methods!(
     unsafe impl PHPersistentObjectChangeDetails {
         #[cfg(feature = "PhotosTypes")]
-        #[method(objectType)]
+        #[unsafe(method(objectType))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectType(&self) -> PHObjectType;
 
-        #[method(insertedLocalIdentifiers)]
+        #[unsafe(method(insertedLocalIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertedLocalIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
-        #[method(updatedLocalIdentifiers)]
+        #[unsafe(method(updatedLocalIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn updatedLocalIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
-        #[method(deletedLocalIdentifiers)]
+        #[unsafe(method(deletedLocalIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn deletedLocalIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

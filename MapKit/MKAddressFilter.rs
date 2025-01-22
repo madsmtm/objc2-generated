@@ -57,33 +57,33 @@ unsafe impl NSSecureCoding for MKAddressFilter {}
 
 extern_methods!(
     unsafe impl MKAddressFilter {
-        #[method(filterIncludingAll)]
+        #[unsafe(method(filterIncludingAll))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterIncludingAll() -> Retained<MKAddressFilter>;
 
-        #[method(filterExcludingAll)]
+        #[unsafe(method(filterExcludingAll))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterExcludingAll() -> Retained<MKAddressFilter>;
 
-        #[method(initIncludingOptions:)]
+        #[unsafe(method(initIncludingOptions:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initIncludingOptions(
             this: Allocated<Self>,
             options: MKAddressFilterOption,
         ) -> Retained<Self>;
 
-        #[method(initExcludingOptions:)]
+        #[unsafe(method(initExcludingOptions:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initExcludingOptions(
             this: Allocated<Self>,
             options: MKAddressFilterOption,
         ) -> Retained<Self>;
 
-        #[method(includesOptions:)]
+        #[unsafe(method(includesOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn includesOptions(&self, options: MKAddressFilterOption) -> bool;
 
-        #[method(excludesOptions:)]
+        #[unsafe(method(excludesOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludesOptions(&self, options: MKAddressFilterOption) -> bool;
     }
@@ -92,11 +92,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKAddressFilter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

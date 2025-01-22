@@ -79,29 +79,29 @@ extern_methods!(
     unsafe impl DOMHTMLLegendElement {
         #[cfg(feature = "DOMHTMLFormElement")]
         #[deprecated]
-        #[method(form)]
+        #[unsafe(method(form))]
         #[unsafe(method_family = none)]
         pub unsafe fn form(&self) -> Option<Retained<DOMHTMLFormElement>>;
 
         #[deprecated]
-        #[method(align)]
+        #[unsafe(method(align))]
         #[unsafe(method_family = none)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
         #[deprecated]
-        #[method(setAlign:)]
+        #[unsafe(method(setAlign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[deprecated]
-        #[method(accessKey)]
+        #[unsafe(method(accessKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         /// Setter for [`accessKey`][Self::accessKey].
         #[deprecated]
-        #[method(setAccessKey:)]
+        #[unsafe(method(setAccessKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
     }
@@ -118,7 +118,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLLegendElement {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -134,7 +134,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLLegendElement {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

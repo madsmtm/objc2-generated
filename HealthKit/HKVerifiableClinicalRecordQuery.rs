@@ -28,22 +28,22 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKVerifiableClinicalRecordQuery {
         /// The record types that need to be present on desired records.
-        #[method(recordTypes)]
+        #[unsafe(method(recordTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordTypes(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "HKVerifiableClinicalRecord")]
         /// The source type(s) of the records.
-        #[method(sourceTypes)]
+        #[unsafe(method(sourceTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceTypes(&self)
             -> Retained<NSArray<HKVerifiableClinicalRecordSourceType>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -61,7 +61,7 @@ extern_methods!(
         /// Parameter `predicate`: The predicate which records should match.
         ///
         /// Parameter `resultsHandler`: The block to invoke with the verifiable clinical records from the query.
-        #[method(initWithRecordTypes:predicate:resultsHandler:)]
+        #[unsafe(method(initWithRecordTypes:predicate:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordTypes_predicate_resultsHandler(
             this: Allocated<Self>,
@@ -92,7 +92,7 @@ extern_methods!(
         /// Parameter `predicate`: The predicate which records should match.
         ///
         /// Parameter `resultsHandler`: The block to invoke with the verifiable clinical records from the query.
-        #[method(initWithRecordTypes:sourceTypes:predicate:resultsHandler:)]
+        #[unsafe(method(initWithRecordTypes:sourceTypes:predicate:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordTypes_sourceTypes_predicate_resultsHandler(
             this: Allocated<Self>,

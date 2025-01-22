@@ -43,13 +43,13 @@ extern_methods!(
     #[cfg(feature = "UISceneOptions")]
     unsafe impl UIWindowSceneActivationRequestOptions {
         #[deprecated = "Place use .placement with an appropriate UIWindowScenePlacement."]
-        #[method(preferredPresentationStyle)]
+        #[unsafe(method(preferredPresentationStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredPresentationStyle(&self) -> UIWindowScenePresentationStyle;
 
         /// Setter for [`preferredPresentationStyle`][Self::preferredPresentationStyle].
         #[deprecated = "Place use .placement with an appropriate UIWindowScenePlacement."]
-        #[method(setPreferredPresentationStyle:)]
+        #[unsafe(method(setPreferredPresentationStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredPresentationStyle(
             &self,
@@ -60,13 +60,13 @@ extern_methods!(
         /// The preferred placement of the window scene to be activated. Scene placements influence how the
         /// system positions the activated scene. A `nil` value indicates that the system should determine
         /// the most appropriate placement to use.
-        #[method(placement)]
+        #[unsafe(method(placement))]
         #[unsafe(method_family = none)]
         pub unsafe fn placement(&self) -> Option<Retained<UIWindowScenePlacement>>;
 
         #[cfg(feature = "UIWindowScenePlacement")]
         /// Setter for [`placement`][Self::placement].
-        #[method(setPlacement:)]
+        #[unsafe(method(setPlacement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlacement(&self, placement: Option<&UIWindowScenePlacement>);
     }
@@ -76,11 +76,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UISceneOptions")]
     unsafe impl UIWindowSceneActivationRequestOptions {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

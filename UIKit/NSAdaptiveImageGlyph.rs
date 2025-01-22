@@ -33,35 +33,35 @@ unsafe impl NSSecureCoding for NSAdaptiveImageGlyph {}
 
 extern_methods!(
     unsafe impl NSAdaptiveImageGlyph {
-        #[method(initWithImageContent:)]
+        #[unsafe(method(initWithImageContent:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImageContent(
             this: Allocated<Self>,
             image_content: &NSData,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(imageContent)]
+        #[unsafe(method(imageContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageContent(&self) -> Retained<NSData>;
 
-        #[method(contentIdentifier)]
+        #[unsafe(method(contentIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentIdentifier(&self) -> Retained<NSString>;
 
-        #[method(contentDescription)]
+        #[unsafe(method(contentDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentDescription(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
-        #[method(contentType)]
+        #[unsafe(method(contentType))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentType() -> Retained<UTType>;
     }
@@ -70,7 +70,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAdaptiveImageGlyph {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -79,7 +79,7 @@ extern_methods!(
 extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringAdaptiveImageGlyphConveniences {
-        #[method(attributedStringWithAdaptiveImageGlyph:attributes:)]
+        #[unsafe(method(attributedStringWithAdaptiveImageGlyph:attributes:))]
         #[unsafe(method_family = none)]
         unsafe fn attributedStringWithAdaptiveImageGlyph_attributes(
             adaptive_image_glyph: &NSAdaptiveImageGlyph,

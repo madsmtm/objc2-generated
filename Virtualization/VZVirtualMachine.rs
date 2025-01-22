@@ -84,11 +84,11 @@ unsafe impl NSObjectProtocol for VZVirtualMachine {}
 
 extern_methods!(
     unsafe impl VZVirtualMachine {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -101,7 +101,7 @@ extern_methods!(
         /// Parameter `configuration`: The configuration of the virtual machine.
         /// The configuration must be valid. Validation can be performed at runtime with [VZVirtualMachineConfiguration validateWithError:].
         /// The configuration is copied by the initializer.
-        #[method(initWithConfiguration:)]
+        #[unsafe(method(initWithConfiguration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
@@ -112,18 +112,18 @@ extern_methods!(
         ///
         /// If virtualization is unavailable, no VZVirtualMachineConfiguration will validate.
         /// The validation error of the VZVirtualMachineConfiguration provides more information about why virtualization is unavailable.
-        #[method(isSupported)]
+        #[unsafe(method(isSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSupported() -> bool;
 
         /// Execution state of the virtual machine.
-        #[method(state)]
+        #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> VZVirtualMachineState;
 
         #[cfg(feature = "VZVirtualMachineDelegate")]
         /// The virtual machine delegate.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -132,7 +132,7 @@ extern_methods!(
         #[cfg(feature = "VZVirtualMachineDelegate")]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -144,7 +144,7 @@ extern_methods!(
         /// See: -[VZVirtualMachine startWithCompletionHandler:].
         ///
         /// See: -[VZVirtualMachine state]
-        #[method(canStart)]
+        #[unsafe(method(canStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn canStart(&self) -> bool;
 
@@ -153,7 +153,7 @@ extern_methods!(
         /// See: -[VZVirtualMachine stopWithCompletionHandler:]
         ///
         /// See: -[VZVirtualMachine state]
-        #[method(canStop)]
+        #[unsafe(method(canStop))]
         #[unsafe(method_family = none)]
         pub unsafe fn canStop(&self) -> bool;
 
@@ -162,7 +162,7 @@ extern_methods!(
         /// See: -[VZVirtualMachine pauseWithCompletionHandler:]
         ///
         /// See: -[VZVirtualMachine state]
-        #[method(canPause)]
+        #[unsafe(method(canPause))]
         #[unsafe(method_family = none)]
         pub unsafe fn canPause(&self) -> bool;
 
@@ -171,7 +171,7 @@ extern_methods!(
         /// See: -[VZVirtualMachine resumeWithCompletionHandler:]
         ///
         /// See: -[VZVirtualMachine state]
-        #[method(canResume)]
+        #[unsafe(method(canResume))]
         #[unsafe(method_family = none)]
         pub unsafe fn canResume(&self) -> bool;
 
@@ -180,7 +180,7 @@ extern_methods!(
         /// See: -[VZVirtualMachine requestStopWithError:]
         ///
         /// See: -[VZVirtualMachine state]
-        #[method(canRequestStop)]
+        #[unsafe(method(canRequestStop))]
         #[unsafe(method_family = none)]
         pub unsafe fn canRequestStop(&self) -> bool;
 
@@ -190,7 +190,7 @@ extern_methods!(
         /// See: VZVirtioConsoleDeviceConfiguration
         ///
         /// See: VZVirtualMachineConfiguration
-        #[method(consoleDevices)]
+        #[unsafe(method(consoleDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn consoleDevices(&self) -> Retained<NSArray<VZConsoleDevice>>;
 
@@ -200,7 +200,7 @@ extern_methods!(
         /// See: VZVirtioFileSystemDeviceConfiguration
         ///
         /// See: VZVirtualMachineConfiguration
-        #[method(directorySharingDevices)]
+        #[unsafe(method(directorySharingDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn directorySharingDevices(&self)
             -> Retained<NSArray<VZDirectorySharingDevice>>;
@@ -211,7 +211,7 @@ extern_methods!(
         /// See: VZGraphicsDeviceConfiguration
         ///
         /// See: VZVirtualMachineConfiguration
-        #[method(graphicsDevices)]
+        #[unsafe(method(graphicsDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn graphicsDevices(&self) -> Retained<NSArray<VZGraphicsDevice>>;
 
@@ -221,7 +221,7 @@ extern_methods!(
         /// See: VZVirtioTraditionalMemoryBalloonDeviceConfiguration
         ///
         /// See: VZVirtualMachineConfiguration
-        #[method(memoryBalloonDevices)]
+        #[unsafe(method(memoryBalloonDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn memoryBalloonDevices(&self) -> Retained<NSArray<VZMemoryBalloonDevice>>;
 
@@ -231,7 +231,7 @@ extern_methods!(
         /// See: VZVirtioNetworkDeviceConfiguration
         ///
         /// See: VZVirtualMachineConfiguration
-        #[method(networkDevices)]
+        #[unsafe(method(networkDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkDevices(&self) -> Retained<NSArray<VZNetworkDevice>>;
 
@@ -241,7 +241,7 @@ extern_methods!(
         /// See: VZVirtioSocketDeviceConfiguration
         ///
         /// See: VZVirtualMachineConfiguration
-        #[method(socketDevices)]
+        #[unsafe(method(socketDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn socketDevices(&self) -> Retained<NSArray<VZSocketDevice>>;
 
@@ -251,7 +251,7 @@ extern_methods!(
         /// See: VZUSBControllerConfiguration
         ///
         /// See: VZVirtualMachineConfiguration
-        #[method(usbControllers)]
+        #[unsafe(method(usbControllers))]
         #[unsafe(method_family = none)]
         pub unsafe fn usbControllers(&self) -> Retained<NSArray<VZUSBController>>;
 
@@ -262,7 +262,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: Block called after the virtual machine has been successfully started or on error.
         /// The error parameter passed to the block is nil if the start was successful.
-        #[method(startWithCompletionHandler:)]
+        #[unsafe(method(startWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(
             &self,
@@ -280,7 +280,7 @@ extern_methods!(
         /// The error parameter passed to the block is nil if the start was successful.
         ///
         /// See also: VZMacOSVirtualMachineStartOptions
-        #[method(startWithOptions:completionHandler:)]
+        #[unsafe(method(startWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithOptions_completionHandler(
             &self,
@@ -299,7 +299,7 @@ extern_methods!(
         /// This is a destructive operation. It stops the virtual machine without giving the guest a chance to stop cleanly.
         ///
         /// See also: -[VZVirtualMachine requestStopWithError:]
-        #[method(stopWithCompletionHandler:)]
+        #[unsafe(method(stopWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopWithCompletionHandler(
             &self,
@@ -313,7 +313,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: Block called after the virtual machine has been successfully paused or on error.
         /// The error parameter passed to the block is nil if the pause was successful.
-        #[method(pauseWithCompletionHandler:)]
+        #[unsafe(method(pauseWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pauseWithCompletionHandler(
             &self,
@@ -327,7 +327,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: Block called after the virtual machine has been successfully resumed or on error.
         /// The error parameter passed to the block is nil if the resumption was successful.
-        #[method(resumeWithCompletionHandler:)]
+        #[unsafe(method(resumeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resumeWithCompletionHandler(
             &self,
@@ -362,7 +362,7 @@ extern_methods!(
         /// The error parameter passed to the block is nil if the restore was successful.
         ///
         /// See: -[VZVirtualMachineConfiguration validateSaveRestoreSupportWithError:]
-        #[method(restoreMachineStateFromURL:completionHandler:)]
+        #[unsafe(method(restoreMachineStateFromURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn restoreMachineStateFromURL_completionHandler(
             &self,
@@ -390,7 +390,7 @@ extern_methods!(
         /// The error parameter passed to the block is nil if the save was successful.
         ///
         /// See: -[VZVirtualMachineConfiguration validateSaveRestoreSupportWithError:]
-        #[method(saveMachineStateToURL:completionHandler:)]
+        #[unsafe(method(saveMachineStateToURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveMachineStateToURL_completionHandler(
             &self,
@@ -407,7 +407,7 @@ extern_methods!(
         /// The -[VZVirtualMachineDelegate guestDidStopVirtualMachine:] delegate method is invoked when the guest has turned itself off.
         ///
         /// See also: -[VZVirtualMachineDelegate guestDidStopVirtualMachine:].
-        #[method(requestStopWithError:_)]
+        #[unsafe(method(requestStopWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestStopWithError(&self) -> Result<(), Retained<NSError>>;
     }

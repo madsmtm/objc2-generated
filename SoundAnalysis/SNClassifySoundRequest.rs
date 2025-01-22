@@ -32,12 +32,12 @@ extern_methods!(
         /// The overlap factor of the windows of audio data provided to the classifier, if the model operates on fixed audio block sizes.
         ///
         /// When performing audio analysis on fixed audio block sizes, it is common for the analysis windows to overlap by some factor. Without overlapping the analysis windows (when the overlap factor is 0.0), a sound might be split across two analysis windows, which could negatively affect classification performance. Overlapping the analysis windows by 50% ensures each sound will fall near the center of at least one analysis window. The supported range is [0.0, 1.0), and the default value is 0.5. Increasing the overlap factor increases computational complexity, so values greater than 0.5 should be used with care.
-        #[method(overlapFactor)]
+        #[unsafe(method(overlapFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn overlapFactor(&self) -> c_double;
 
         /// Setter for [`overlapFactor`][Self::overlapFactor].
-        #[method(setOverlapFactor:)]
+        #[unsafe(method(setOverlapFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverlapFactor(&self, overlap_factor: c_double);
 
@@ -45,13 +45,13 @@ extern_methods!(
         /// The duration of a single analysis window.
         ///
         /// When performing classification over an audio stream, a classifier computes each classification result based on a single 'analysis window' of audio. Analysis windows are uniformly-sized time intervals, where the size of any given window is considered that window's 'duration'. Some classifiers can operate over analysis windows which conform to one of several different duration options. Larger window durations allow classification to execute less frequently over larger contexts of audio, potentially improving classification performance. Smaller window durations allow classification to execute more frequently over smaller contexts of audio, producing results with sharper time resolution. Depending on the use-case, a larger or smaller window may be preferable. When configuring the window duration, it is important to respect the capabilities of the classifier. A classifier's supported window durations can be discovered using the `windowDurationConstraint` property. If an unsupported window duration is selected, the window duration will be automatically rounded down to the nearest supported value if possible, else rounded up.
-        #[method(windowDuration)]
+        #[unsafe(method(windowDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn windowDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`windowDuration`][Self::windowDuration].
-        #[method(setWindowDuration:)]
+        #[unsafe(method(setWindowDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWindowDuration(&self, window_duration: CMTime);
 
@@ -59,14 +59,14 @@ extern_methods!(
         /// The constraints governing permitted analysis window durations.
         ///
         /// The analysis window duration is controlled using the `windowDuration` property. If an analysis window duration is selected which does not meet the necessary constraints, it will automatically be adjusted to meet these constraints (see `windowDuration` for more information regarding how this adjustment will be applied).
-        #[method(windowDurationConstraint)]
+        #[unsafe(method(windowDurationConstraint))]
         #[unsafe(method_family = none)]
         pub unsafe fn windowDurationConstraint(&self) -> Retained<SNTimeDurationConstraint>;
 
         /// Lists all labels that can be produced by this request.
         ///
         /// - Returns: An array of strings containing all sound identifiers which can be produced by this request.
-        #[method(knownClassifications)]
+        #[unsafe(method(knownClassifications))]
         #[unsafe(method_family = none)]
         pub unsafe fn knownClassifications(&self) -> Retained<NSArray<NSString>>;
 
@@ -76,7 +76,7 @@ extern_methods!(
         /// - Parameter mlModel: The CoreML audio classification model to be used with this request
         ///
         /// The provided model must accept audio data as input, and output a classification dictionary containing the probability of each category.
-        #[method(initWithMLModel:error:_)]
+        #[unsafe(method(initWithMLModel:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMLModel_error(
             this: Allocated<Self>,
@@ -95,18 +95,18 @@ extern_methods!(
         /// - Returns Upon failure, `nil`; upon success, an `SNClassifySoundRequest` instance which can be added to an analyzer to classify sounds using a recognized classifier.
         ///
         /// This initializer may be used to classify sounds using Apple-provided sound classifiers. Note that Apple may add new classifiers in the future, but it commits to ensuring the consistent performance of existing classifiers.
-        #[method(initWithClassifierIdentifier:error:_)]
+        #[unsafe(method(initWithClassifierIdentifier:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithClassifierIdentifier_error(
             this: Allocated<Self>,
             classifier_identifier: &SNClassifierIdentifier,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

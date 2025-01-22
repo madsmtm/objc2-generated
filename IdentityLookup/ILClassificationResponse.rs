@@ -25,37 +25,37 @@ unsafe impl NSSecureCoding for ILClassificationResponse {}
 extern_methods!(
     unsafe impl ILClassificationResponse {
         #[cfg(feature = "ILClassificationActions")]
-        #[method(action)]
+        #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> ILClassificationAction;
 
-        #[method(userString)]
+        #[unsafe(method(userString))]
         #[unsafe(method_family = none)]
         pub unsafe fn userString(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`userString`][Self::userString].
-        #[method(setUserString:)]
+        #[unsafe(method(setUserString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserString(&self, user_string: Option<&NSString>);
 
-        #[method(userInfo)]
+        #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
-        #[method(setUserInfo:)]
+        #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary<NSString, AnyObject>>);
 
         #[cfg(feature = "ILClassificationActions")]
-        #[method(initWithClassificationAction:)]
+        #[unsafe(method(initWithClassificationAction:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithClassificationAction(
             this: Allocated<Self>,
             action: ILClassificationAction,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -64,7 +64,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ILClassificationResponse {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

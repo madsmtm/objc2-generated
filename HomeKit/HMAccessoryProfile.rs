@@ -23,24 +23,24 @@ unsafe impl NSObjectProtocol for HMAccessoryProfile {}
 
 extern_methods!(
     unsafe impl HMAccessoryProfile {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// A unique identifier for the profile.
-        #[method(uniqueIdentifier)]
+        #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "HMService")]
         /// Collection of services representing the profile.
-        #[method(services)]
+        #[unsafe(method(services))]
         #[unsafe(method_family = none)]
         pub unsafe fn services(&self) -> Retained<NSArray<HMService>>;
 
         #[cfg(feature = "HMAccessory")]
         /// Accessory implementing the profile.
-        #[method(accessory)]
+        #[unsafe(method(accessory))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessory(&self) -> Option<Retained<HMAccessory>>;
     }
@@ -49,7 +49,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMAccessoryProfile {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

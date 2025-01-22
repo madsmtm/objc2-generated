@@ -65,120 +65,120 @@ unsafe impl NSSecureCoding for SCNPhysicsField {}
 extern_methods!(
     unsafe impl SCNPhysicsField {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(strength)]
+        #[unsafe(method(strength))]
         #[unsafe(method_family = none)]
         pub unsafe fn strength(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`strength`][Self::strength].
-        #[method(setStrength:)]
+        #[unsafe(method(setStrength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrength(&self, strength: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(falloffExponent)]
+        #[unsafe(method(falloffExponent))]
         #[unsafe(method_family = none)]
         pub unsafe fn falloffExponent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`falloffExponent`][Self::falloffExponent].
-        #[method(setFalloffExponent:)]
+        #[unsafe(method(setFalloffExponent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFalloffExponent(&self, falloff_exponent: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(minimumDistance)]
+        #[unsafe(method(minimumDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumDistance(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumDistance`][Self::minimumDistance].
-        #[method(setMinimumDistance:)]
+        #[unsafe(method(setMinimumDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumDistance(&self, minimum_distance: CGFloat);
 
-        #[method(isActive)]
+        #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isActive(&self) -> bool;
 
         /// Setter for [`isActive`][Self::isActive].
-        #[method(setActive:)]
+        #[unsafe(method(setActive:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActive(&self, active: bool);
 
-        #[method(isExclusive)]
+        #[unsafe(method(isExclusive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isExclusive(&self) -> bool;
 
         /// Setter for [`isExclusive`][Self::isExclusive].
-        #[method(setExclusive:)]
+        #[unsafe(method(setExclusive:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExclusive(&self, exclusive: bool);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
-        #[method(halfExtent)]
+        #[unsafe(method(halfExtent))]
         #[unsafe(method_family = none)]
         pub unsafe fn halfExtent(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`halfExtent`][Self::halfExtent].
-        #[method(setHalfExtent:)]
+        #[unsafe(method(setHalfExtent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHalfExtent(&self, half_extent: SCNVector3);
 
-        #[method(usesEllipsoidalExtent)]
+        #[unsafe(method(usesEllipsoidalExtent))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesEllipsoidalExtent(&self) -> bool;
 
         /// Setter for [`usesEllipsoidalExtent`][Self::usesEllipsoidalExtent].
-        #[method(setUsesEllipsoidalExtent:)]
+        #[unsafe(method(setUsesEllipsoidalExtent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesEllipsoidalExtent(&self, uses_ellipsoidal_extent: bool);
 
-        #[method(scope)]
+        #[unsafe(method(scope))]
         #[unsafe(method_family = none)]
         pub unsafe fn scope(&self) -> SCNPhysicsFieldScope;
 
         /// Setter for [`scope`][Self::scope].
-        #[method(setScope:)]
+        #[unsafe(method(setScope:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScope(&self, scope: SCNPhysicsFieldScope);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
-        #[method(offset)]
+        #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`offset`][Self::offset].
-        #[method(setOffset:)]
+        #[unsafe(method(setOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOffset(&self, offset: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
-        #[method(direction)]
+        #[unsafe(method(direction))]
         #[unsafe(method_family = none)]
         pub unsafe fn direction(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`direction`][Self::direction].
-        #[method(setDirection:)]
+        #[unsafe(method(setDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirection(&self, direction: SCNVector3);
 
         /// Determines the node physicsBody's categories that will be influenced by the receiver. Defaults to all bit set.
-        #[method(categoryBitMask)]
+        #[unsafe(method(categoryBitMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn categoryBitMask(&self) -> NSUInteger;
 
         /// Setter for [`categoryBitMask`][Self::categoryBitMask].
-        #[method(setCategoryBitMask:)]
+        #[unsafe(method(setCategoryBitMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategoryBitMask(&self, category_bit_mask: NSUInteger);
 
         /// Slows an object proportionally to the object’s velocity.
         /// Use this to simulate effects such as friction from motion through the air.
-        #[method(dragField)]
+        #[unsafe(method(dragField))]
         #[unsafe(method_family = none)]
         pub unsafe fn dragField() -> Retained<SCNPhysicsField>;
 
@@ -186,21 +186,21 @@ extern_methods!(
         /// The force will be CCW to the direction. Make the strength negative to apply force in the CW direction.
         /// Amount is proportional to distance from center and the object's mass.
         /// Use this to create effects such as tornadoes.
-        #[method(vortexField)]
+        #[unsafe(method(vortexField))]
         #[unsafe(method_family = none)]
         pub unsafe fn vortexField() -> Retained<SCNPhysicsField>;
 
         /// Applies a force in the direction of the origin of the field in local space. To repel objects, use a negative strength.
         /// The force is proportional to the distance from the field origin. Varies with the mass of the object according to F = ma
         /// The field node's rotation property can be used to orient the gravity in a particular direction.
-        #[method(radialGravityField)]
+        #[unsafe(method(radialGravityField))]
         #[unsafe(method_family = none)]
         pub unsafe fn radialGravityField() -> Retained<SCNPhysicsField>;
 
         /// Applies a force in the direction of the "direction" vector in the local space. To repel objects, use a negative strength.
         /// The force is the same everywhere in the field. Varies with the mass of the object according to F = ma
         /// The field node's rotation property can be used to orient the gravity in a particular direction.
-        #[method(linearGravityField)]
+        #[unsafe(method(linearGravityField))]
         #[unsafe(method_family = none)]
         pub unsafe fn linearGravityField() -> Retained<SCNPhysicsField>;
 
@@ -209,7 +209,7 @@ extern_methods!(
         /// Use this to simulate such effects as fireflies, or snow.
         /// To freeze the noise in place, set animationSpeed to 0.0. Mass is ignored.
         /// You can change the "smoothness" and "animationSpeed" using KVC.
-        #[method(noiseFieldWithSmoothness:animationSpeed:)]
+        #[unsafe(method(noiseFieldWithSmoothness:animationSpeed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn noiseFieldWithSmoothness_animationSpeed(
             smoothness: CGFloat,
@@ -218,7 +218,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Just like Noise, except the strength of the noise is proportional to the velocity of the object in the field.
-        #[method(turbulenceFieldWithSmoothness:animationSpeed:)]
+        #[unsafe(method(turbulenceFieldWithSmoothness:animationSpeed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn turbulenceFieldWithSmoothness_animationSpeed(
             smoothness: CGFloat,
@@ -228,21 +228,21 @@ extern_methods!(
         /// A Hooke’s law force - a force linearly proportional to distance from the center of the field. An object in this
         /// field will oscillate with a period proportional to the inverse of the mass.
         /// An example use is to keep objects confined to a particular region.
-        #[method(springField)]
+        #[unsafe(method(springField))]
         #[unsafe(method_family = none)]
         pub unsafe fn springField() -> Retained<SCNPhysicsField>;
 
         /// A force proportional to the charge on the object. An example use of this field is to make objects behavior differently
         /// from one another when they enter a region, or to make an object's behavior different than its mass based behavior
         /// This field models the first part of the Lorentz equation, F = qE
-        #[method(electricField)]
+        #[unsafe(method(electricField))]
         #[unsafe(method_family = none)]
         pub unsafe fn electricField() -> Retained<SCNPhysicsField>;
 
         /// A force proportional to the charge on the object and the object’s velocity.
         /// An example use of this field is to make objects behavior differently from one another when they enter a region, or to make an object's behavior different than its mass based behavior
         /// This field models the second part of the Lorentz equation, F = qvB
-        #[method(magneticField)]
+        #[unsafe(method(magneticField))]
         #[unsafe(method_family = none)]
         pub unsafe fn magneticField() -> Retained<SCNPhysicsField>;
 
@@ -252,7 +252,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// A field force with a custom force evaluator.
-        #[method(customFieldWithEvaluationBlock:)]
+        #[unsafe(method(customFieldWithEvaluationBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn customFieldWithEvaluationBlock(
             block: SCNFieldForceEvaluator,
@@ -263,11 +263,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsField {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

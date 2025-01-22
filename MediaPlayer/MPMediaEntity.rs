@@ -30,12 +30,12 @@ unsafe impl NSSecureCoding for MPMediaEntity {}
 
 extern_methods!(
     unsafe impl MPMediaEntity {
-        #[method(canFilterByProperty:)]
+        #[unsafe(method(canFilterByProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canFilterByProperty(property: &NSString) -> bool;
 
         #[cfg(feature = "block2")]
-        #[method(enumerateValuesForProperties:usingBlock:)]
+        #[unsafe(method(enumerateValuesForProperties:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateValuesForProperties_usingBlock(
             &self,
@@ -43,18 +43,18 @@ extern_methods!(
             block: &block2::Block<dyn Fn(NonNull<NSString>, NonNull<AnyObject>, NonNull<Bool>)>,
         );
 
-        #[method(objectForKeyedSubscript:)]
+        #[unsafe(method(objectForKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
             key: &AnyObject,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method(valueForProperty:)]
+        #[unsafe(method(valueForProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueForProperty(&self, property: &NSString) -> Option<Retained<AnyObject>>;
 
-        #[method(persistentID)]
+        #[unsafe(method(persistentID))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentID(&self) -> MPMediaEntityPersistentID;
     }
@@ -63,11 +63,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPMediaEntity {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

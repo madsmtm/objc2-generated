@@ -49,13 +49,13 @@ extern_methods!(
     unsafe impl EKRecurrenceDayOfWeek {
         #[cfg(feature = "EKTypes")]
         /// Creates an autoreleased object with a day of the week and week number of zero.
-        #[method(dayOfWeek:)]
+        #[unsafe(method(dayOfWeek:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dayOfWeek(day_of_the_week: EKWeekday) -> Retained<Self>;
 
         #[cfg(feature = "EKTypes")]
         /// Creates an autoreleased object with a specific day of week and week number.
-        #[method(dayOfWeek:weekNumber:)]
+        #[unsafe(method(dayOfWeek:weekNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dayOfWeek_weekNumber(
             day_of_the_week: EKWeekday,
@@ -64,7 +64,7 @@ extern_methods!(
 
         #[cfg(feature = "EKTypes")]
         /// Creates an day-of-week object with a specific day of week and week number.
-        #[method(initWithDayOfTheWeek:weekNumber:)]
+        #[unsafe(method(initWithDayOfTheWeek:weekNumber:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDayOfTheWeek_weekNumber(
             this: Allocated<Self>,
@@ -74,12 +74,12 @@ extern_methods!(
 
         #[cfg(feature = "EKTypes")]
         /// The day of the week.
-        #[method(dayOfTheWeek)]
+        #[unsafe(method(dayOfTheWeek))]
         #[unsafe(method_family = none)]
         pub unsafe fn dayOfTheWeek(&self) -> EKWeekday;
 
         /// The week number.
-        #[method(weekNumber)]
+        #[unsafe(method(weekNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn weekNumber(&self) -> NSInteger;
     }
@@ -88,11 +88,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EKRecurrenceDayOfWeek {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -78,98 +78,98 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLFormElement {
         #[deprecated]
-        #[method(acceptCharset)]
+        #[unsafe(method(acceptCharset))]
         #[unsafe(method_family = none)]
         pub unsafe fn acceptCharset(&self) -> Retained<NSString>;
 
         /// Setter for [`acceptCharset`][Self::acceptCharset].
         #[deprecated]
-        #[method(setAcceptCharset:)]
+        #[unsafe(method(setAcceptCharset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAcceptCharset(&self, accept_charset: Option<&NSString>);
 
         #[deprecated]
-        #[method(action)]
+        #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> Retained<NSString>;
 
         /// Setter for [`action`][Self::action].
         #[deprecated]
-        #[method(setAction:)]
+        #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<&NSString>);
 
         #[deprecated]
-        #[method(enctype)]
+        #[unsafe(method(enctype))]
         #[unsafe(method_family = none)]
         pub unsafe fn enctype(&self) -> Retained<NSString>;
 
         /// Setter for [`enctype`][Self::enctype].
         #[deprecated]
-        #[method(setEnctype:)]
+        #[unsafe(method(setEnctype:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnctype(&self, enctype: Option<&NSString>);
 
-        #[method(encoding)]
+        #[unsafe(method(encoding))]
         #[unsafe(method_family = none)]
         pub unsafe fn encoding(&self) -> Retained<NSString>;
 
         /// Setter for [`encoding`][Self::encoding].
-        #[method(setEncoding:)]
+        #[unsafe(method(setEncoding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEncoding(&self, encoding: Option<&NSString>);
 
         #[deprecated]
-        #[method(method)]
+        #[unsafe(method(method))]
         #[unsafe(method_family = none)]
         pub unsafe fn method(&self) -> Retained<NSString>;
 
         /// Setter for [`method`][Self::method].
         #[deprecated]
-        #[method(setMethod:)]
+        #[unsafe(method(setMethod:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMethod(&self, method: Option<&NSString>);
 
         #[deprecated]
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         #[deprecated]
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[deprecated]
-        #[method(target)]
+        #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Retained<NSString>;
 
         /// Setter for [`target`][Self::target].
         #[deprecated]
-        #[method(setTarget:)]
+        #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&NSString>);
 
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
-        #[method(elements)]
+        #[unsafe(method(elements))]
         #[unsafe(method_family = none)]
         pub unsafe fn elements(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[deprecated]
-        #[method(length)]
+        #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> c_int;
 
         #[deprecated]
-        #[method(submit)]
+        #[unsafe(method(submit))]
         #[unsafe(method_family = none)]
         pub unsafe fn submit(&self);
 
         #[deprecated]
-        #[method(reset)]
+        #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
         pub unsafe fn reset(&self);
     }
@@ -186,7 +186,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLFormElement {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -202,7 +202,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLFormElement {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

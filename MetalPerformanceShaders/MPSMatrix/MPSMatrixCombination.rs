@@ -60,7 +60,7 @@ extern_methods!(
     unsafe impl MPSMatrixCopyDescriptor {
         #[cfg(feature = "MPSCore")]
         /// convenience allocator for single copies
-        #[method(descriptorWithSourceMatrix:destinationMatrix:offsets:)]
+        #[unsafe(method(descriptorWithSourceMatrix:destinationMatrix:offsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithSourceMatrix_destinationMatrix_offsets(
             source_matrix: &MPSMatrix,
@@ -79,7 +79,7 @@ extern_methods!(
         ///
         /// Returns: A MPSMatrixCopyDescriptor. It still needs to be initialized with
         /// -setCopyOperationAtIndex:sourceMatrix:destinationMatrix:copyOffsets
-        #[method(initWithDevice:count:)]
+        #[unsafe(method(initWithDevice:count:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_count(
             this: Allocated<Self>,
@@ -99,7 +99,7 @@ extern_methods!(
         /// Parameter `destinationMatrix`: The destination matrix for this copy operation
         ///
         /// Parameter `offsets`: The offsets to use for the copy operation
-        #[method(setCopyOperationAtIndex:sourceMatrix:destinationMatrix:offsets:)]
+        #[unsafe(method(setCopyOperationAtIndex:sourceMatrix:destinationMatrix:offsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCopyOperationAtIndex_sourceMatrix_destinationMatrix_offsets(
             &self,
@@ -126,7 +126,7 @@ extern_methods!(
         /// This value must be a multiple of 16.
         ///
         /// Returns: A valid MPSMatrixCopyDescriptor to represent the list of copy operations
-        #[method(initWithSourceMatrices:destinationMatrices:offsetVector:offset:)]
+        #[unsafe(method(initWithSourceMatrices:destinationMatrices:offsetVector:offset:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSourceMatrices_destinationMatrices_offsetVector_offset(
             this: Allocated<Self>,
@@ -136,7 +136,7 @@ extern_methods!(
             byte_offset: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -145,7 +145,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSMatrixCopyDescriptor {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -179,7 +179,7 @@ unsafe impl NSSecureCoding for MPSMatrixCopy {}
 extern_methods!(
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixCopy {
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -195,7 +195,7 @@ extern_methods!(
         /// Parameter `sourcesAreTransposed`: If YES, the sources are in column major storage order
         ///
         /// Parameter `destinationsAreTransposed`: If YES, the destinations are in column major storage order
-        #[method(initWithDevice:copyRows:copyColumns:sourcesAreTransposed:destinationsAreTransposed:)]
+        #[unsafe(method(initWithDevice:copyRows:copyColumns:sourcesAreTransposed:destinationsAreTransposed:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_copyRows_copyColumns_sourcesAreTransposed_destinationsAreTransposed(
             this: Allocated<Self>,
@@ -207,22 +207,22 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The number of rows to copy for each copy operation
-        #[method(copyRows)]
+        #[unsafe(method(copyRows))]
         #[unsafe(method_family = none)]
         pub unsafe fn copyRows(&self) -> NSUInteger;
 
         /// The number of columns to copy for each copy operation
-        #[method(copyColumns)]
+        #[unsafe(method(copyColumns))]
         #[unsafe(method_family = none)]
         pub unsafe fn copyColumns(&self) -> NSUInteger;
 
         /// If YES, the sources are in row major storage order
-        #[method(sourcesAreTransposed)]
+        #[unsafe(method(sourcesAreTransposed))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourcesAreTransposed(&self) -> bool;
 
         /// If YES, the destinations are in row major storage order
-        #[method(destinationsAreTransposed)]
+        #[unsafe(method(destinationsAreTransposed))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationsAreTransposed(&self) -> bool;
 
@@ -233,7 +233,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `copyDescriptor`: The descriptor that defines the copy operator
-        #[method(encodeToCommandBuffer:copyDescriptor:)]
+        #[unsafe(method(encodeToCommandBuffer:copyDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_copyDescriptor(
             &self,
@@ -271,7 +271,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `columnPermuteOffset`: Offset in numbers to apply to the 'columnPermuteIndices' vector.
-        #[method(encodeToCommandBuffer:copyDescriptor:rowPermuteIndices:rowPermuteOffset:columnPermuteIndices:columnPermuteOffset:)]
+        #[unsafe(method(encodeToCommandBuffer:copyDescriptor:rowPermuteIndices:rowPermuteOffset:columnPermuteIndices:columnPermuteOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_copyDescriptor_rowPermuteIndices_rowPermuteOffset_columnPermuteIndices_columnPermuteOffset(
             &self,
@@ -292,7 +292,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixLookUpAndCopy
         ///
         /// Returns: A new MPSMatrixLookUpAndCopy object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -314,7 +314,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -327,11 +327,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixCopy {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -14,12 +14,12 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchart?language=objc)
     pub unsafe trait AXChart: NSObjectProtocol {
-        #[method(accessibilityChartDescriptor)]
+        #[unsafe(method(accessibilityChartDescriptor))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityChartDescriptor(&self) -> Option<Retained<AXChartDescriptor>>;
 
         /// Setter for [`accessibilityChartDescriptor`][Self::accessibilityChartDescriptor].
-        #[method(setAccessibilityChartDescriptor:)]
+        #[unsafe(method(setAccessibilityChartDescriptor:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityChartDescriptor(
             &self,
@@ -36,23 +36,23 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdataaxisdescriptor?language=objc)
     pub unsafe trait AXDataAxisDescriptor: NSCopying {
         /// The name or title of this axis.
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         unsafe fn setTitle(&self, title: &NSString);
 
         /// An attributed version of the title of this axis.
         /// When set, this will be used instead of `title`.
-        #[method(attributedTitle)]
+        #[unsafe(method(attributedTitle))]
         #[unsafe(method_family = none)]
         unsafe fn attributedTitle(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
-        #[method(setAttributedTitle:)]
+        #[unsafe(method(setAttributedTitle:))]
         #[unsafe(method_family = none)]
         unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
     }
@@ -101,39 +101,39 @@ extern_methods!(
     unsafe impl AXNumericDataAxisDescriptor {
         /// The scale to use for this axis. This should match the visual representation in the chart.
         /// If not set explicitly, this will default to `linear`.
-        #[method(scaleType)]
+        #[unsafe(method(scaleType))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleType(&self) -> AXNumericDataAxisDescriptorScale;
 
         /// Setter for [`scaleType`][Self::scaleType].
-        #[method(setScaleType:)]
+        #[unsafe(method(setScaleType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScaleType(&self, scale_type: AXNumericDataAxisDescriptorScale);
 
         /// The minimum displayable value for the axis.
-        #[method(lowerBound)]
+        #[unsafe(method(lowerBound))]
         #[unsafe(method_family = none)]
         pub unsafe fn lowerBound(&self) -> c_double;
 
         /// Setter for [`lowerBound`][Self::lowerBound].
-        #[method(setLowerBound:)]
+        #[unsafe(method(setLowerBound:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLowerBound(&self, lower_bound: c_double);
 
         /// The maximum displayable value for the axis.
-        #[method(upperBound)]
+        #[unsafe(method(upperBound))]
         #[unsafe(method_family = none)]
         pub unsafe fn upperBound(&self) -> c_double;
 
         /// Setter for [`upperBound`][Self::upperBound].
-        #[method(setUpperBound:)]
+        #[unsafe(method(setUpperBound:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpperBound(&self, upper_bound: c_double);
 
         #[cfg(feature = "block2")]
         /// Provides a value description to be spoken for a particular data value on this axis.
         /// Use this to format data values to string representations that include units, dates, times, etc.
-        #[method(valueDescriptionProvider)]
+        #[unsafe(method(valueDescriptionProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueDescriptionProvider(
             &self,
@@ -141,7 +141,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`valueDescriptionProvider`][Self::valueDescriptionProvider].
-        #[method(setValueDescriptionProvider:)]
+        #[unsafe(method(setValueDescriptionProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueDescriptionProvider(
             &self,
@@ -149,17 +149,17 @@ extern_methods!(
         );
 
         /// The positions of any gridlines along this axis.
-        #[method(gridlinePositions)]
+        #[unsafe(method(gridlinePositions))]
         #[unsafe(method_family = none)]
         pub unsafe fn gridlinePositions(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`gridlinePositions`][Self::gridlinePositions].
-        #[method(setGridlinePositions:)]
+        #[unsafe(method(setGridlinePositions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGridlinePositions(&self, gridline_positions: &NSArray<NSNumber>);
 
         #[cfg(feature = "block2")]
-        #[method(initWithTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:)]
+        #[unsafe(method(initWithTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_lowerBound_upperBound_gridlinePositions_valueDescriptionProvider(
             this: Allocated<Self>,
@@ -171,7 +171,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method(initWithAttributedTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:)]
+        #[unsafe(method(initWithAttributedTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedTitle_lowerBound_upperBound_gridlinePositions_valueDescriptionProvider(
             this: Allocated<Self>,
@@ -182,11 +182,11 @@ extern_methods!(
             value_description_provider: &block2::Block<dyn Fn(c_double) -> NonNull<NSString>>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -215,16 +215,16 @@ extern_methods!(
         /// This list should contain every possible category value for this axis, in the order they are displayed visually in the graph or legend.
         /// For example, if your categorical axis represented 'blood type', and the legend contained 'AB, A, B, O' in that order,
         /// you would provide an array containing "AB", "A", "B" and "O" in the same order.
-        #[method(categoryOrder)]
+        #[unsafe(method(categoryOrder))]
         #[unsafe(method_family = none)]
         pub unsafe fn categoryOrder(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`categoryOrder`][Self::categoryOrder].
-        #[method(setCategoryOrder:)]
+        #[unsafe(method(setCategoryOrder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategoryOrder(&self, category_order: &NSArray<NSString>);
 
-        #[method(initWithTitle:categoryOrder:)]
+        #[unsafe(method(initWithTitle:categoryOrder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_categoryOrder(
             this: Allocated<Self>,
@@ -232,7 +232,7 @@ extern_methods!(
             category_order: &NSArray<NSString>,
         ) -> Retained<Self>;
 
-        #[method(initWithAttributedTitle:categoryOrder:)]
+        #[unsafe(method(initWithAttributedTitle:categoryOrder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedTitle_categoryOrder(
             this: Allocated<Self>,
@@ -240,11 +240,11 @@ extern_methods!(
             category_order: &NSArray<NSString>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -271,37 +271,37 @@ unsafe impl NSObjectProtocol for AXDataPointValue {}
 
 extern_methods!(
     unsafe impl AXDataPointValue {
-        #[method(number)]
+        #[unsafe(method(number))]
         #[unsafe(method_family = none)]
         pub unsafe fn number(&self) -> c_double;
 
         /// Setter for [`number`][Self::number].
-        #[method(setNumber:)]
+        #[unsafe(method(setNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNumber(&self, number: c_double);
 
-        #[method(category)]
+        #[unsafe(method(category))]
         #[unsafe(method_family = none)]
         pub unsafe fn category(&self) -> Retained<NSString>;
 
         /// Setter for [`category`][Self::category].
-        #[method(setCategory:)]
+        #[unsafe(method(setCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategory(&self, category: &NSString);
 
-        #[method(valueWithNumber:)]
+        #[unsafe(method(valueWithNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithNumber(number: c_double) -> Retained<Self>;
 
-        #[method(valueWithCategory:)]
+        #[unsafe(method(valueWithCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithCategory(category: &NSString) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -328,58 +328,58 @@ extern_methods!(
     unsafe impl AXDataPoint {
         /// The x-axis value for this data point.
         /// Should be a Double for a numeric x-axis or a String for a categorical x-axis.
-        #[method(xValue)]
+        #[unsafe(method(xValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn xValue(&self) -> Retained<AXDataPointValue>;
 
         /// Setter for [`xValue`][Self::xValue].
-        #[method(setXValue:)]
+        #[unsafe(method(setXValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setXValue(&self, x_value: &AXDataPointValue);
 
         /// The y-axis value for this data point.
-        #[method(yValue)]
+        #[unsafe(method(yValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn yValue(&self) -> Option<Retained<AXDataPointValue>>;
 
         /// Setter for [`yValue`][Self::yValue].
-        #[method(setYValue:)]
+        #[unsafe(method(setYValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setYValue(&self, y_value: Option<&AXDataPointValue>);
 
         /// Any additional values for additional axes for this data point.
         /// These should be provided in the same order as their corresponding
         /// `AXDataAxisDescriptor` objects in `AXChartDescriptor.additionalAxes`.
-        #[method(additionalValues)]
+        #[unsafe(method(additionalValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn additionalValues(&self) -> Retained<NSArray<AXDataPointValue>>;
 
         /// Setter for [`additionalValues`][Self::additionalValues].
-        #[method(setAdditionalValues:)]
+        #[unsafe(method(setAdditionalValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalValues(&self, additional_values: &NSArray<AXDataPointValue>);
 
         /// A name or label for this data point.
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
         /// An attributed version of the name or label for this data point.
-        #[method(attributedLabel)]
+        #[unsafe(method(attributedLabel))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedLabel(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedLabel`][Self::attributedLabel].
-        #[method(setAttributedLabel:)]
+        #[unsafe(method(setAttributedLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedLabel(&self, attributed_label: Option<&NSAttributedString>);
 
-        #[method(initWithX:y:)]
+        #[unsafe(method(initWithX:y:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithX_y(
             this: Allocated<Self>,
@@ -387,7 +387,7 @@ extern_methods!(
             y_value: Option<&AXDataPointValue>,
         ) -> Retained<Self>;
 
-        #[method(initWithX:y:additionalValues:)]
+        #[unsafe(method(initWithX:y:additionalValues:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithX_y_additionalValues(
             this: Allocated<Self>,
@@ -396,7 +396,7 @@ extern_methods!(
             additional_values: Option<&NSArray<AXDataPointValue>>,
         ) -> Retained<Self>;
 
-        #[method(initWithX:y:additionalValues:label:)]
+        #[unsafe(method(initWithX:y:additionalValues:label:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithX_y_additionalValues_label(
             this: Allocated<Self>,
@@ -406,11 +406,11 @@ extern_methods!(
             label: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -436,47 +436,47 @@ unsafe impl NSObjectProtocol for AXDataSeriesDescriptor {}
 extern_methods!(
     unsafe impl AXDataSeriesDescriptor {
         /// The name or title of this data series.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         /// An attributed version of the name of this data series.
         /// When set, this will be used instead of `name`.
-        #[method(attributedName)]
+        #[unsafe(method(attributedName))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedName(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedName`][Self::attributedName].
-        #[method(setAttributedName:)]
+        #[unsafe(method(setAttributedName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedName(&self, attributed_name: &NSAttributedString);
 
         /// Whether or not this data series should be treated as continuous.
-        #[method(isContinuous)]
+        #[unsafe(method(isContinuous))]
         #[unsafe(method_family = none)]
         pub unsafe fn isContinuous(&self) -> bool;
 
         /// Setter for [`isContinuous`][Self::isContinuous].
-        #[method(setIsContinuous:)]
+        #[unsafe(method(setIsContinuous:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIsContinuous(&self, is_continuous: bool);
 
         /// The data points that make up the series.
-        #[method(dataPoints)]
+        #[unsafe(method(dataPoints))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataPoints(&self) -> Retained<NSArray<AXDataPoint>>;
 
         /// Setter for [`dataPoints`][Self::dataPoints].
-        #[method(setDataPoints:)]
+        #[unsafe(method(setDataPoints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataPoints(&self, data_points: &NSArray<AXDataPoint>);
 
-        #[method(initWithName:isContinuous:dataPoints:)]
+        #[unsafe(method(initWithName:isContinuous:dataPoints:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_isContinuous_dataPoints(
             this: Allocated<Self>,
@@ -485,7 +485,7 @@ extern_methods!(
             data_points: &NSArray<AXDataPoint>,
         ) -> Retained<Self>;
 
-        #[method(initWithAttributedName:isContinuous:dataPoints:)]
+        #[unsafe(method(initWithAttributedName:isContinuous:dataPoints:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedName_isContinuous_dataPoints(
             this: Allocated<Self>,
@@ -494,11 +494,11 @@ extern_methods!(
             data_points: &NSArray<AXDataPoint>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -555,44 +555,44 @@ unsafe impl NSObjectProtocol for AXChartDescriptor {}
 extern_methods!(
     unsafe impl AXChartDescriptor {
         /// The title of the chart.
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         /// An attributed version of the title of the chart.
         /// When set, this will be used instead of `title`.
-        #[method(attributedTitle)]
+        #[unsafe(method(attributedTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
-        #[method(setAttributedTitle:)]
+        #[unsafe(method(setAttributedTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
         /// A natural language summary of the key message or features of the chart.
         /// e.g. "The chart shows that fuel efficiency decreases as vehicle weight increases."
-        #[method(summary)]
+        #[unsafe(method(summary))]
         #[unsafe(method_family = none)]
         pub unsafe fn summary(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`summary`][Self::summary].
-        #[method(setSummary:)]
+        #[unsafe(method(setSummary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSummary(&self, summary: Option<&NSString>);
 
         /// The direction of the chart's X axis.
-        #[method(contentDirection)]
+        #[unsafe(method(contentDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentDirection(&self) -> AXChartDescriptorContentDirection;
 
         /// Setter for [`contentDirection`][Self::contentDirection].
-        #[method(setContentDirection:)]
+        #[unsafe(method(setContentDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentDirection(
             &self,
@@ -601,64 +601,64 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The bounds of the view area for visually rendering data values if applicable, provided in superview coordinates.
-        #[method(contentFrame)]
+        #[unsafe(method(contentFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentFrame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentFrame`][Self::contentFrame].
-        #[method(setContentFrame:)]
+        #[unsafe(method(setContentFrame:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentFrame(&self, content_frame: CGRect);
 
         /// A set of data series descriptors describing each series in the chart.
-        #[method(series)]
+        #[unsafe(method(series))]
         #[unsafe(method_family = none)]
         pub unsafe fn series(&self) -> Retained<NSArray<AXDataSeriesDescriptor>>;
 
         /// Setter for [`series`][Self::series].
-        #[method(setSeries:)]
+        #[unsafe(method(setSeries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSeries(&self, series: &NSArray<AXDataSeriesDescriptor>);
 
         /// The axis descriptor for the chart's X axis.
-        #[method(xAxis)]
+        #[unsafe(method(xAxis))]
         #[unsafe(method_family = none)]
         pub unsafe fn xAxis(&self) -> Retained<ProtocolObject<dyn AXDataAxisDescriptor>>;
 
         /// Setter for [`xAxis`][Self::xAxis].
-        #[method(setXAxis:)]
+        #[unsafe(method(setXAxis:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setXAxis(&self, x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>);
 
         /// The axis descriptor for the chart's Y axis.
-        #[method(yAxis)]
+        #[unsafe(method(yAxis))]
         #[unsafe(method_family = none)]
         pub unsafe fn yAxis(&self) -> Option<Retained<AXNumericDataAxisDescriptor>>;
 
         /// Setter for [`yAxis`][Self::yAxis].
-        #[method(setYAxis:)]
+        #[unsafe(method(setYAxis:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setYAxis(&self, y_axis: Option<&AXNumericDataAxisDescriptor>);
 
         /// Descriptors for additional categorical or numerical axes beyond x and y.
         /// For example, in a visual chart, these values might be represented by the size
         /// or color of data points.
-        #[method(additionalAxes)]
+        #[unsafe(method(additionalAxes))]
         #[unsafe(method_family = none)]
         pub unsafe fn additionalAxes(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>>;
 
         /// Setter for [`additionalAxes`][Self::additionalAxes].
-        #[method(setAdditionalAxes:)]
+        #[unsafe(method(setAdditionalAxes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalAxes(
             &self,
             additional_axes: Option<&NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>,
         );
 
-        #[method(initWithTitle:summary:xAxisDescriptor:yAxisDescriptor:series:)]
+        #[unsafe(method(initWithTitle:summary:xAxisDescriptor:yAxisDescriptor:series:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_summary_xAxisDescriptor_yAxisDescriptor_series(
             this: Allocated<Self>,
@@ -669,7 +669,7 @@ extern_methods!(
             series: &NSArray<AXDataSeriesDescriptor>,
         ) -> Retained<Self>;
 
-        #[method(initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:series:)]
+        #[unsafe(method(initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:series:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedTitle_summary_xAxisDescriptor_yAxisDescriptor_series(
             this: Allocated<Self>,
@@ -680,7 +680,7 @@ extern_methods!(
             series: &NSArray<AXDataSeriesDescriptor>,
         ) -> Retained<Self>;
 
-        #[method(initWithTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:)]
+        #[unsafe(method(initWithTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_summary_xAxisDescriptor_yAxisDescriptor_additionalAxes_series(
             this: Allocated<Self>,
@@ -692,7 +692,7 @@ extern_methods!(
             series: &NSArray<AXDataSeriesDescriptor>,
         ) -> Retained<Self>;
 
-        #[method(initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:)]
+        #[unsafe(method(initWithAttributedTitle:summary:xAxisDescriptor:yAxisDescriptor:additionalAxes:series:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedTitle_summary_xAxisDescriptor_yAxisDescriptor_additionalAxes_series(
             this: Allocated<Self>,
@@ -704,11 +704,11 @@ extern_methods!(
             series: &NSArray<AXDataSeriesDescriptor>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -726,18 +726,18 @@ unsafe impl NSObjectProtocol for AXLiveAudioGraph {}
 extern_methods!(
     unsafe impl AXLiveAudioGraph {
         /// Begins a live audio graph session.
-        #[method(start)]
+        #[unsafe(method(start))]
         #[unsafe(method_family = none)]
         pub unsafe fn start();
 
         /// Sets the pitch of the audio graph's tone. This should be a normalized value in the range [0.0, 1.0], where 0 represents the minimum displayable y-axis value for your series
         /// and 1 represents the maximum displayable y-axis value for your series.
-        #[method(updateValue:)]
+        #[unsafe(method(updateValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateValue(value: c_double);
 
         /// Ends the live audio graph session.
-        #[method(stop)]
+        #[unsafe(method(stop))]
         #[unsafe(method_family = none)]
         pub unsafe fn stop();
     }
@@ -746,11 +746,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXLiveAudioGraph {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

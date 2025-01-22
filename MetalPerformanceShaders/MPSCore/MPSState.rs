@@ -20,22 +20,22 @@ unsafe impl NSObjectProtocol for MPSStateResourceList {}
 extern_methods!(
     unsafe impl MPSStateResourceList {
         /// Init an empty autoreleased resource list
-        #[method(resourceList)]
+        #[unsafe(method(resourceList))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceList() -> Retained<Self>;
 
         /// Init an empty list
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// append a texture to the resource list
-        #[method(appendTexture:)]
+        #[unsafe(method(appendTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendTexture(&self, descriptor: &MTLTextureDescriptor);
 
         /// append a buffer to the resource list
-        #[method(appendBuffer:)]
+        #[unsafe(method(appendBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBuffer(&self, size: NSUInteger);
     }
@@ -44,7 +44,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSStateResourceList {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -186,7 +186,7 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `bufferSize`: The size of the buffer in bytes
-        #[method(temporaryStateWithCommandBuffer:bufferSize:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:bufferSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -198,7 +198,7 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `descriptor`: A descriptor for the new temporary texture
-        #[method(temporaryStateWithCommandBuffer:textureDescriptor:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:textureDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -208,13 +208,13 @@ extern_methods!(
         /// Create a new autoreleased temporary state object without underlying resource
         ///
         /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
-        #[method(temporaryStateWithCommandBuffer:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:bufferSize:)]
+        #[unsafe(method(initWithDevice:bufferSize:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_bufferSize(
             this: Allocated<Self>,
@@ -222,7 +222,7 @@ extern_methods!(
             buffer_size: usize,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:textureDescriptor:)]
+        #[unsafe(method(initWithDevice:textureDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_textureDescriptor(
             this: Allocated<Self>,
@@ -233,14 +233,14 @@ extern_methods!(
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
-        #[method(initWithResource:)]
+        #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
@@ -250,7 +250,7 @@ extern_methods!(
         /// This occurs when -resource or -resourceAtIndex: is called.
         ///
         /// Parameter `resourceList`: The list of resources to create.
-        #[method(initWithDevice:resourceList:)]
+        #[unsafe(method(initWithDevice:resourceList:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
@@ -261,7 +261,7 @@ extern_methods!(
         /// Initialize a temporary state to hold a number of textures and buffers
         ///
         /// The textures occur first in sequence
-        #[method(temporaryStateWithCommandBuffer:resourceList:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:resourceList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -274,7 +274,7 @@ extern_methods!(
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
-        #[method(initWithResources:)]
+        #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
@@ -282,7 +282,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Return the number of MTLResource objects held by the state
-        #[method(resourceCount)]
+        #[unsafe(method(resourceCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceCount(&self) -> NSUInteger;
 
@@ -312,7 +312,7 @@ extern_methods!(
         /// or MTLTexture properties, but not the resource itself, please use
         /// -bufferSizeAtIndex: or -textureInfoAtIndex: instead, as these will
         /// not force the creation of the MTLResource.
-        #[method(resourceAtIndex:allocateMemory:)]
+        #[unsafe(method(resourceAtIndex:allocateMemory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceAtIndex_allocateMemory(
             &self,
@@ -320,47 +320,47 @@ extern_methods!(
             allocate_memory: bool,
         ) -> Option<Retained<ProtocolObject<dyn MTLResource>>>;
 
-        #[method(readCount)]
+        #[unsafe(method(readCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn readCount(&self) -> NSUInteger;
 
         /// Setter for [`readCount`][Self::readCount].
-        #[method(setReadCount:)]
+        #[unsafe(method(setReadCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReadCount(&self, read_count: NSUInteger);
 
-        #[method(isTemporary)]
+        #[unsafe(method(isTemporary))]
         #[unsafe(method_family = none)]
         pub unsafe fn isTemporary(&self) -> bool;
 
         /// A string to help identify this object.
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
         /// Return the buffer size of the MTLBuffer at index or 0 if it is not a MTLBuffer
         ///
         /// Does not force allocation of the MTLResource
-        #[method(bufferSizeAtIndex:)]
+        #[unsafe(method(bufferSizeAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn bufferSizeAtIndex(&self, index: NSUInteger) -> NSUInteger;
 
         /// Return the texture size {width,height,depth} or {0,0,0} if it is not a MTLTexture
         ///
         /// Does not force allocation of the MTLResource
-        #[method(textureInfoAtIndex:)]
+        #[unsafe(method(textureInfoAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureInfoAtIndex(&self, index: NSUInteger) -> MPSStateTextureInfo;
 
         /// Return YES if the resource at index is a buffer
         ///
         /// Does not force allocation of the MTLResource
-        #[method(resourceTypeAtIndex:)]
+        #[unsafe(method(resourceTypeAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceTypeAtIndex(&self, index: NSUInteger) -> MPSStateResourceType;
 
@@ -373,7 +373,7 @@ extern_methods!(
         /// resources (these are all MTLStorageModePrivate), nothing is done.
         ///
         /// Parameter `commandBuffer`: The commandbuffer on which to synchronize
-        #[method(synchronizeOnCommandBuffer:)]
+        #[unsafe(method(synchronizeOnCommandBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn synchronizeOnCommandBuffer(
             &self,
@@ -400,7 +400,7 @@ extern_methods!(
         /// This method may fail in certain circumstances, such as when the
         /// MPSImage is created with -initWithTexture:featureChannels:, in
         /// which case 0 will be returned.
-        #[method(resourceSize)]
+        #[unsafe(method(resourceSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceSize(&self) -> NSUInteger;
 
@@ -489,7 +489,7 @@ extern_methods!(
         /// Returns: The MPSImageDescriptor to use to make a MPSImage to capture the results from the filter.
         /// The MPSImageDescriptor is assumed to be on an autoreleasepool. Your method must also set the
         /// kernel.offset property.
-        #[method(destinationImageDescriptorForSourceImages:sourceStates:forKernel:suggestedDescriptor:)]
+        #[unsafe(method(destinationImageDescriptorForSourceImages:sourceStates:forKernel:suggestedDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationImageDescriptorForSourceImages_sourceStates_forKernel_suggestedDescriptor(
             &self,
@@ -522,7 +522,7 @@ extern_methods!(
         /// available to facilitate debugging and to allow you to write your own
         /// state objects.
         #[deprecated]
-        #[method(resource)]
+        #[unsafe(method(resource))]
         #[unsafe(method_family = none)]
         pub unsafe fn resource(&self) -> Option<Retained<ProtocolObject<dyn MTLResource>>>;
     }
@@ -531,7 +531,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSState {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

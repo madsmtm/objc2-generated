@@ -29,27 +29,27 @@ unsafe impl NSSecureCoding for MEDecodedMessageBanner {}
 
 extern_methods!(
     unsafe impl MEDecodedMessageBanner {
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
-        #[method(primaryActionTitle)]
+        #[unsafe(method(primaryActionTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryActionTitle(&self) -> Retained<NSString>;
 
-        #[method(isDismissable)]
+        #[unsafe(method(isDismissable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDismissable(&self) -> bool;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithTitle:primaryActionTitle:dismissable:)]
+        #[unsafe(method(initWithTitle:primaryActionTitle:dismissable:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_primaryActionTitle_dismissable(
             this: Allocated<Self>,

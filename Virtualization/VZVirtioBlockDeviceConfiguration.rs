@@ -43,7 +43,7 @@ extern_methods!(
         /// Parameter `attachment`: The storage device attachment. This defines how the virtualized device operates on the host side.
         ///
         /// See: VZDiskImageStorageDeviceAttachment
-        #[method(initWithAttachment:)]
+        #[unsafe(method(initWithAttachment:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttachment(
             this: Allocated<Self>,
@@ -57,7 +57,7 @@ extern_methods!(
         /// Parameter `error`: If not nil, assigned with an error describing why the device identifier is not valid.
         ///
         /// The device identifier must be at most 20 bytes in length and ASCII-encodable.
-        #[method(validateBlockDeviceIdentifier:error:_)]
+        #[unsafe(method(validateBlockDeviceIdentifier:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateBlockDeviceIdentifier_error(
             block_device_identifier: &NSString,
@@ -71,12 +71,12 @@ extern_methods!(
         /// This property can be checked with +[VZVirtioBlockDeviceConfiguration validateBlockDeviceIdentifier:error:].
         ///
         /// See: +[VZVirtioBlockDeviceConfiguration validateBlockDeviceIdentifier:error:]
-        #[method(blockDeviceIdentifier)]
+        #[unsafe(method(blockDeviceIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn blockDeviceIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`blockDeviceIdentifier`][Self::blockDeviceIdentifier].
-        #[method(setBlockDeviceIdentifier:)]
+        #[unsafe(method(setBlockDeviceIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBlockDeviceIdentifier(&self, block_device_identifier: &NSString);
     }
@@ -86,11 +86,11 @@ extern_methods!(
     /// Methods declared on superclass `VZStorageDeviceConfiguration`
     #[cfg(feature = "VZStorageDeviceConfiguration")]
     unsafe impl VZVirtioBlockDeviceConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

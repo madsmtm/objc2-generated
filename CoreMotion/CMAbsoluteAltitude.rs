@@ -35,15 +35,15 @@ unsafe impl NSSecureCoding for CMAbsoluteAltitudeData {}
 extern_methods!(
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMAbsoluteAltitudeData {
-        #[method(altitude)]
+        #[unsafe(method(altitude))]
         #[unsafe(method_family = none)]
         pub unsafe fn altitude(&self) -> c_double;
 
-        #[method(accuracy)]
+        #[unsafe(method(accuracy))]
         #[unsafe(method_family = none)]
         pub unsafe fn accuracy(&self) -> c_double;
 
-        #[method(precision)]
+        #[unsafe(method(precision))]
         #[unsafe(method_family = none)]
         pub unsafe fn precision(&self) -> c_double;
     }
@@ -53,11 +53,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMAbsoluteAltitudeData {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

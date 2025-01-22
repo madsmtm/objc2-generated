@@ -16,7 +16,7 @@ extern_protocol!(
         #[cfg(all(feature = "GKPublicConstants", feature = "GKSession"))]
         #[deprecated]
         #[optional]
-        #[method(session:peer:didChangeState:)]
+        #[unsafe(method(session:peer:didChangeState:))]
         #[unsafe(method_family = none)]
         unsafe fn session_peer_didChangeState(
             &self,
@@ -32,7 +32,7 @@ extern_protocol!(
         /// Deny by calling -denyConnectionFromPeer:
         #[deprecated]
         #[optional]
-        #[method(session:didReceiveConnectionRequestFromPeer:)]
+        #[unsafe(method(session:didReceiveConnectionRequestFromPeer:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didReceiveConnectionRequestFromPeer(
             &self,
@@ -44,7 +44,7 @@ extern_protocol!(
         /// Indicates a connection error occurred with a peer, which includes connection request failures, or disconnects due to timeouts.
         #[deprecated]
         #[optional]
-        #[method(session:connectionWithPeerFailed:withError:)]
+        #[unsafe(method(session:connectionWithPeerFailed:withError:))]
         #[unsafe(method_family = none)]
         unsafe fn session_connectionWithPeerFailed_withError(
             &self,
@@ -57,7 +57,7 @@ extern_protocol!(
         /// Indicates an error occurred with the session such as failing to make available.
         #[deprecated]
         #[optional]
-        #[method(session:didFailWithError:)]
+        #[unsafe(method(session:didFailWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didFailWithError(&self, session: &GKSession, error: &NSError);
     }
@@ -70,7 +70,7 @@ extern_protocol!(
         #[cfg(feature = "GKVoiceChatService")]
         /// this channel will only be used to setup voice chat, and not to send audio data. The only requirement is that messages are sent and received within a few (1-2) seconds time.
         #[deprecated]
-        #[method(voiceChatService:sendData:toParticipantID:)]
+        #[unsafe(method(voiceChatService:sendData:toParticipantID:))]
         #[unsafe(method_family = none)]
         unsafe fn voiceChatService_sendData_toParticipantID(
             &self,
@@ -81,7 +81,7 @@ extern_protocol!(
 
         /// must be sent within some reasonble period of time and should accept at least 512 bytes.
         #[deprecated]
-        #[method(participantID)]
+        #[unsafe(method(participantID))]
         #[unsafe(method_family = none)]
         unsafe fn participantID(&self) -> Retained<NSString>;
 
@@ -90,7 +90,7 @@ extern_protocol!(
         /// If this method is implemented, then the Voice Chat Service will not attempt to set up a peer-to-peer connection. And will rely on this one.  To transmit audio.
         #[deprecated]
         #[optional]
-        #[method(voiceChatService:sendRealTimeData:toParticipantID:)]
+        #[unsafe(method(voiceChatService:sendRealTimeData:toParticipantID:))]
         #[unsafe(method_family = none)]
         unsafe fn voiceChatService_sendRealTimeData_toParticipantID(
             &self,
@@ -102,7 +102,7 @@ extern_protocol!(
         #[cfg(feature = "GKVoiceChatService")]
         #[deprecated]
         #[optional]
-        #[method(voiceChatService:didStartWithParticipantID:)]
+        #[unsafe(method(voiceChatService:didStartWithParticipantID:))]
         #[unsafe(method_family = none)]
         unsafe fn voiceChatService_didStartWithParticipantID(
             &self,
@@ -113,7 +113,7 @@ extern_protocol!(
         #[cfg(feature = "GKVoiceChatService")]
         #[deprecated]
         #[optional]
-        #[method(voiceChatService:didNotStartWithParticipantID:error:)]
+        #[unsafe(method(voiceChatService:didNotStartWithParticipantID:error:))]
         #[unsafe(method_family = none)]
         unsafe fn voiceChatService_didNotStartWithParticipantID_error(
             &self,
@@ -125,7 +125,7 @@ extern_protocol!(
         #[cfg(feature = "GKVoiceChatService")]
         #[deprecated]
         #[optional]
-        #[method(voiceChatService:didStopWithParticipantID:error:)]
+        #[unsafe(method(voiceChatService:didStopWithParticipantID:error:))]
         #[unsafe(method_family = none)]
         unsafe fn voiceChatService_didStopWithParticipantID_error(
             &self,
@@ -137,7 +137,7 @@ extern_protocol!(
         #[cfg(feature = "GKVoiceChatService")]
         #[deprecated]
         #[optional]
-        #[method(voiceChatService:didReceiveInvitationFromParticipantID:callID:)]
+        #[unsafe(method(voiceChatService:didReceiveInvitationFromParticipantID:callID:))]
         #[unsafe(method_family = none)]
         unsafe fn voiceChatService_didReceiveInvitationFromParticipantID_callID(
             &self,

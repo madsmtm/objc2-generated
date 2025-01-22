@@ -35,7 +35,7 @@ unsafe impl NSSecureCoding for CXSetMutedCallAction {}
 extern_methods!(
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXSetMutedCallAction {
-        #[method(initWithCallUUID:muted:)]
+        #[unsafe(method(initWithCallUUID:muted:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCallUUID_muted(
             this: Allocated<Self>,
@@ -43,24 +43,24 @@ extern_methods!(
             muted: bool,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(initWithCallUUID:)]
+        #[unsafe(method(initWithCallUUID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCallUUID(this: Allocated<Self>, call_uuid: &NSUUID)
             -> Retained<Self>;
 
-        #[method(isMuted)]
+        #[unsafe(method(isMuted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMuted(&self) -> bool;
 
         /// Setter for [`isMuted`][Self::isMuted].
-        #[method(setMuted:)]
+        #[unsafe(method(setMuted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMuted(&self, muted: bool);
     }
@@ -70,7 +70,7 @@ extern_methods!(
     /// Methods declared on superclass `CXCallAction`
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXSetMutedCallAction {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -80,7 +80,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXSetMutedCallAction {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

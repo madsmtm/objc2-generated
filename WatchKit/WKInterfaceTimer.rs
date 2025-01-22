@@ -24,19 +24,19 @@ extern_methods!(
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceTimer {
         #[cfg(feature = "objc2-ui-kit")]
-        #[method(setTextColor:)]
+        #[unsafe(method(setTextColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextColor(&self, color: Option<&UIColor>);
 
-        #[method(setDate:)]
+        #[unsafe(method(setDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDate(&self, date: &NSDate);
 
-        #[method(start)]
+        #[unsafe(method(start))]
         #[unsafe(method_family = none)]
         pub unsafe fn start(&self);
 
-        #[method(stop)]
+        #[unsafe(method(stop))]
         #[unsafe(method_family = none)]
         pub unsafe fn stop(&self);
     }
@@ -46,7 +46,7 @@ extern_methods!(
     /// Methods declared on superclass `WKInterfaceObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceTimer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -56,7 +56,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceTimer {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -75,26 +75,26 @@ unsafe impl NSObjectProtocol for WKGestureRecognizer {}
 
 extern_methods!(
     unsafe impl WKGestureRecognizer {
-        #[method(state)]
+        #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> WKGestureRecognizerState;
 
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(locationInObject)]
+        #[unsafe(method(locationInObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn locationInObject(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(objectBounds)]
+        #[unsafe(method(objectBounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectBounds(&self) -> CGRect;
     }
@@ -103,11 +103,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKGestureRecognizer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -124,12 +124,12 @@ unsafe impl NSObjectProtocol for WKTapGestureRecognizer {}
 
 extern_methods!(
     unsafe impl WKTapGestureRecognizer {
-        #[method(numberOfTapsRequired)]
+        #[unsafe(method(numberOfTapsRequired))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfTapsRequired(&self) -> NSUInteger;
 
         /// Setter for [`numberOfTapsRequired`][Self::numberOfTapsRequired].
-        #[method(setNumberOfTapsRequired:)]
+        #[unsafe(method(setNumberOfTapsRequired:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfTapsRequired(&self, number_of_taps_required: NSUInteger);
     }
@@ -138,11 +138,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKTapGestureRecognizer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -160,33 +160,33 @@ unsafe impl NSObjectProtocol for WKLongPressGestureRecognizer {}
 extern_methods!(
     unsafe impl WKLongPressGestureRecognizer {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(minimumPressDuration)]
+        #[unsafe(method(minimumPressDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumPressDuration(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumPressDuration`][Self::minimumPressDuration].
-        #[method(setMinimumPressDuration:)]
+        #[unsafe(method(setMinimumPressDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumPressDuration(&self, minimum_press_duration: CFTimeInterval);
 
-        #[method(numberOfTapsRequired)]
+        #[unsafe(method(numberOfTapsRequired))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfTapsRequired(&self) -> NSUInteger;
 
         /// Setter for [`numberOfTapsRequired`][Self::numberOfTapsRequired].
-        #[method(setNumberOfTapsRequired:)]
+        #[unsafe(method(setNumberOfTapsRequired:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfTapsRequired(&self, number_of_taps_required: NSUInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(allowableMovement)]
+        #[unsafe(method(allowableMovement))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowableMovement(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`allowableMovement`][Self::allowableMovement].
-        #[method(setAllowableMovement:)]
+        #[unsafe(method(setAllowableMovement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowableMovement(&self, allowable_movement: CGFloat);
     }
@@ -195,11 +195,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKLongPressGestureRecognizer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -216,12 +216,12 @@ unsafe impl NSObjectProtocol for WKSwipeGestureRecognizer {}
 
 extern_methods!(
     unsafe impl WKSwipeGestureRecognizer {
-        #[method(direction)]
+        #[unsafe(method(direction))]
         #[unsafe(method_family = none)]
         pub unsafe fn direction(&self) -> WKSwipeGestureRecognizerDirection;
 
         /// Setter for [`direction`][Self::direction].
-        #[method(setDirection:)]
+        #[unsafe(method(setDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirection(&self, direction: WKSwipeGestureRecognizerDirection);
     }
@@ -230,11 +230,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKSwipeGestureRecognizer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -252,12 +252,12 @@ unsafe impl NSObjectProtocol for WKPanGestureRecognizer {}
 extern_methods!(
     unsafe impl WKPanGestureRecognizer {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(translationInObject)]
+        #[unsafe(method(translationInObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn translationInObject(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(velocityInObject)]
+        #[unsafe(method(velocityInObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn velocityInObject(&self) -> CGPoint;
     }
@@ -266,11 +266,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKPanGestureRecognizer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

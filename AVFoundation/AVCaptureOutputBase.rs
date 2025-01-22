@@ -28,11 +28,11 @@ unsafe impl NSObjectProtocol for AVCaptureOutput {}
 
 extern_methods!(
     unsafe impl AVCaptureOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -41,7 +41,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of AVCaptureConnection objects, each describing the mapping between the receiver and the AVCaptureInputPorts of one or more AVCaptureInputs.
-        #[method(connections)]
+        #[unsafe(method(connections))]
         #[unsafe(method_family = none)]
         pub unsafe fn connections(&self) -> Retained<NSArray<AVCaptureConnection>>;
 
@@ -53,7 +53,7 @@ extern_methods!(
         ///
         ///
         /// This convenience method returns the first AVCaptureConnection in the receiver's connections array that has an AVCaptureInputPort of the specified mediaType. If no connection with the specified mediaType is found, nil is returned.
-        #[method(connectionWithMediaType:)]
+        #[unsafe(method(connectionWithMediaType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectionWithMediaType(
             &self,
@@ -76,7 +76,7 @@ extern_methods!(
         /// If an AVCaptureVideoDataOutput instance's connection's videoOrientation or videoMirrored properties are set to non-default values, the output applies the desired mirroring and orientation by physically rotating and or flipping sample buffers as they pass through it. AVCaptureStillImageOutput, on the other hand, does not physically rotate its buffers. It attaches an appropriate kCGImagePropertyOrientation number to captured still image buffers (see ImageIO/CGImageProperties.h) indicating how the image should be displayed on playback. Likewise, AVCaptureMovieFileOutput does not physically apply orientation/mirroring to its sample buffers -- it uses a QuickTime track matrix to indicate how the buffers should be rotated and/or flipped on playback.
         ///
         /// transformedMetadataObjectForMetadataObject:connection: alters the visual properties of the provided metadata object to match the physical rotation / mirroring of the sample buffers provided by the receiver through the indicated connection. I.e., for video data output, adjusted metadata object coordinates are rotated/mirrored. For still image and movie file output, they are not.
-        #[method(transformedMetadataObjectForMetadataObject:connection:)]
+        #[unsafe(method(transformedMetadataObjectForMetadataObject:connection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn transformedMetadataObjectForMetadataObject_connection(
             &self,
@@ -94,7 +94,7 @@ extern_methods!(
         ///
         ///
         /// AVCaptureMetadataOutput rectOfInterest is expressed as a CGRect where {0,0} represents the top left of the picture area, and {1,1} represents the bottom right on an unrotated picture. This convenience method converts a rectangle in the coordinate space of the receiver to a rectangle of interest in the coordinate space of an AVCaptureMetadataOutput whose AVCaptureDevice is providing input to the receiver. The conversion takes orientation, mirroring, and scaling into consideration. See -transformedMetadataObjectForMetadataObject:connection: for a full discussion of how orientation and mirroring are applied to sample buffers passing through the output.
-        #[method(metadataOutputRectOfInterestForRect:)]
+        #[unsafe(method(metadataOutputRectOfInterestForRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataOutputRectOfInterestForRect(
             &self,
@@ -111,7 +111,7 @@ extern_methods!(
         ///
         ///
         /// AVCaptureMetadataOutput rectOfInterest is expressed as a CGRect where {0,0} represents the top left of the picture area, and {1,1} represents the bottom right on an unrotated picture. This convenience method converts a rectangle in the coordinate space of an AVCaptureMetadataOutput whose AVCaptureDevice is providing input to the coordinate space of the receiver. The conversion takes orientation, mirroring, and scaling into consideration. See -transformedMetadataObjectForMetadataObject:connection: for a full discussion of how orientation and mirroring are applied to sample buffers passing through the output.
-        #[method(rectForMetadataOutputRectOfInterest:)]
+        #[unsafe(method(rectForMetadataOutputRectOfInterest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rectForMetadataOutputRectOfInterest(
             &self,

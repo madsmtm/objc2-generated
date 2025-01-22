@@ -32,59 +32,59 @@ extern_methods!(
     unsafe impl MIDICIDevice {
         #[cfg(feature = "MIDIUMPEndpoint")]
         /// The basic information describing the CI device.
-        #[method(deviceInfo)]
+        #[unsafe(method(deviceInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceInfo(&self) -> Retained<MIDI2DeviceInfo>;
 
         #[cfg(feature = "MIDIMessages")]
         /// The MIDI unique identifier (MUID) assigned to the CI device.
-        #[method(MUID)]
+        #[unsafe(method(MUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn MUID(&self) -> MIDICIMUID;
 
         /// MIDI-CI Protocol Negotiation capability.
-        #[method(supportsProtocolNegotiation)]
+        #[unsafe(method(supportsProtocolNegotiation))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsProtocolNegotiation(&self) -> bool;
 
         /// MIDI-CI Profile Configuration capability.
-        #[method(supportsProfileConfiguration)]
+        #[unsafe(method(supportsProfileConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsProfileConfiguration(&self) -> bool;
 
         /// MIDI-CI Property Exchange capability.
-        #[method(supportsPropertyExchange)]
+        #[unsafe(method(supportsPropertyExchange))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsPropertyExchange(&self) -> bool;
 
         /// MIDI-CI Process Inquiry capability.
-        #[method(supportsProcessInquiry)]
+        #[unsafe(method(supportsProcessInquiry))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsProcessInquiry(&self) -> bool;
 
         /// The maximum receivable MIDI System Exclusive size for this CI device.
-        #[method(maxSysExSize)]
+        #[unsafe(method(maxSysExSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxSysExSize(&self) -> NSUInteger;
 
         /// The maximum number of simultaneous Property Exchange requests, if supported.
-        #[method(maxPropertyExchangeRequests)]
+        #[unsafe(method(maxPropertyExchangeRequests))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxPropertyExchangeRequests(&self) -> NSUInteger;
 
         #[cfg(feature = "MIDIUMPCI")]
         /// The type of MIDI-CI device.
-        #[method(deviceType)]
+        #[unsafe(method(deviceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceType(&self) -> MIDICIDeviceType;
 
         #[cfg(all(feature = "MIDIUMPCIProfile", feature = "objc2-foundation"))]
         /// The MIDI-CI Profiles that are registered to the  Function Block.
-        #[method(profiles)]
+        #[unsafe(method(profiles))]
         #[unsafe(method_family = none)]
         pub unsafe fn profiles(&self) -> Retained<NSArray<MIDIUMPCIProfile>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -95,7 +95,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDICIDevice {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

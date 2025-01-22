@@ -25,7 +25,7 @@ extern_methods!(
     unsafe impl GKSession {
         #[cfg(feature = "GKPublicConstants")]
         #[deprecated]
-        #[method(initWithSessionID:displayName:sessionMode:)]
+        #[unsafe(method(initWithSessionID:displayName:sessionMode:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSessionID_displayName_sessionMode(
             this: Allocated<Self>,
@@ -36,7 +36,7 @@ extern_methods!(
 
         #[cfg(feature = "GKPublicProtocols")]
         #[deprecated]
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn GKSessionDelegate>>>;
 
@@ -44,58 +44,58 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[deprecated]
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKSessionDelegate>>);
 
         #[deprecated]
-        #[method(sessionID)]
+        #[unsafe(method(sessionID))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionID(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
-        #[method(displayName)]
+        #[unsafe(method(displayName))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "GKPublicConstants")]
         #[deprecated]
-        #[method(sessionMode)]
+        #[unsafe(method(sessionMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionMode(&self) -> GKSessionMode;
 
         #[deprecated]
-        #[method(peerID)]
+        #[unsafe(method(peerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn peerID(&self) -> Option<Retained<NSString>>;
 
         /// Toggle availability on the network based on session mode and search criteria.  Delegate will get a callback -session:didReceiveConnectionRequestFromPeer: when a peer attempts a connection.
         #[deprecated]
-        #[method(isAvailable)]
+        #[unsafe(method(isAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAvailable(&self) -> bool;
 
         /// Setter for [`isAvailable`][Self::isAvailable].
         #[deprecated]
-        #[method(setAvailable:)]
+        #[unsafe(method(setAvailable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAvailable(&self, available: bool);
 
         /// The timeout for disconnecting a peer if it appears that the peer has lost connection to the game network
         #[deprecated]
-        #[method(disconnectTimeout)]
+        #[unsafe(method(disconnectTimeout))]
         #[unsafe(method_family = none)]
         pub unsafe fn disconnectTimeout(&self) -> NSTimeInterval;
 
         /// Setter for [`disconnectTimeout`][Self::disconnectTimeout].
         #[deprecated]
-        #[method(setDisconnectTimeout:)]
+        #[unsafe(method(setDisconnectTimeout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisconnectTimeout(&self, disconnect_timeout: NSTimeInterval);
 
         /// Return the application chosen name of a specific peer
         #[deprecated]
-        #[method(displayNameForPeer:)]
+        #[unsafe(method(displayNameForPeer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayNameForPeer(
             &self,
@@ -104,7 +104,7 @@ extern_methods!(
 
         /// Set the handler to receive data sent from remote peers.
         #[deprecated]
-        #[method(setDataReceiveHandler:withContext:)]
+        #[unsafe(method(setDataReceiveHandler:withContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataReceiveHandler_withContext(
             &self,
@@ -117,7 +117,7 @@ extern_methods!(
         /// Success results in a call to delegate -session:peer:didChangeState: GKPeerStateConnected
         /// Failure results in a call to delegate -session:connectionWithPeerFailed:withError:
         #[deprecated]
-        #[method(connectToPeer:withTimeout:)]
+        #[unsafe(method(connectToPeer:withTimeout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectToPeer_withTimeout(
             &self,
@@ -126,31 +126,31 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method(cancelConnectToPeer:)]
+        #[unsafe(method(cancelConnectToPeer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelConnectToPeer(&self, peer_id: Option<&NSString>);
 
         #[deprecated]
-        #[method(denyConnectionFromPeer:)]
+        #[unsafe(method(denyConnectionFromPeer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn denyConnectionFromPeer(&self, peer_id: Option<&NSString>);
 
         /// Disconnect a peer from the session (the peer gets disconnected from all connected peers).
         #[deprecated]
-        #[method(disconnectPeerFromAllPeers:)]
+        #[unsafe(method(disconnectPeerFromAllPeers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn disconnectPeerFromAllPeers(&self, peer_id: Option<&NSString>);
 
         /// Disconnect local peer
         #[deprecated]
-        #[method(disconnectFromAllPeers)]
+        #[unsafe(method(disconnectFromAllPeers))]
         #[unsafe(method_family = none)]
         pub unsafe fn disconnectFromAllPeers(&self);
 
         #[cfg(feature = "GKPublicConstants")]
         /// Returns peers according to connection state
         #[deprecated]
-        #[method(peersWithConnectionState:)]
+        #[unsafe(method(peersWithConnectionState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn peersWithConnectionState(
             &self,
@@ -162,11 +162,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKSession {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

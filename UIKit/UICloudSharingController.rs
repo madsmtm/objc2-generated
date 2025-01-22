@@ -43,7 +43,7 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[method(cloudSharingController:failedToSaveShareWithError:)]
+        #[unsafe(method(cloudSharingController:failedToSaveShareWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn cloudSharingController_failedToSaveShareWithError(
             &self,
@@ -52,7 +52,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[method(itemTitleForCloudSharingController:)]
+        #[unsafe(method(itemTitleForCloudSharingController:))]
         #[unsafe(method_family = none)]
         unsafe fn itemTitleForCloudSharingController(
             &self,
@@ -61,7 +61,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[method(itemThumbnailDataForCloudSharingController:)]
+        #[unsafe(method(itemThumbnailDataForCloudSharingController:))]
         #[unsafe(method_family = none)]
         unsafe fn itemThumbnailDataForCloudSharingController(
             &self,
@@ -70,7 +70,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[method(itemTypeForCloudSharingController:)]
+        #[unsafe(method(itemTypeForCloudSharingController:))]
         #[unsafe(method_family = none)]
         unsafe fn itemTypeForCloudSharingController(
             &self,
@@ -79,13 +79,13 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[method(cloudSharingControllerDidSaveShare:)]
+        #[unsafe(method(cloudSharingControllerDidSaveShare:))]
         #[unsafe(method_family = none)]
         unsafe fn cloudSharingControllerDidSaveShare(&self, csc: &UICloudSharingController);
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[method(cloudSharingControllerDidStopSharing:)]
+        #[unsafe(method(cloudSharingControllerDidStopSharing:))]
         #[unsafe(method_family = none)]
         unsafe fn cloudSharingControllerDidStopSharing(&self, csc: &UICloudSharingController);
     }
@@ -136,7 +136,7 @@ unsafe impl UITraitEnvironment for UICloudSharingController {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UICloudSharingController {
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -144,7 +144,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -153,7 +153,7 @@ extern_methods!(
 
         #[cfg(all(feature = "block2", feature = "objc2-cloud-kit"))]
         #[deprecated = "Use -[UIActivityViewController initWithActivityItemsConfiguration:] and pass it a UIActivityItemsConfigurationReading-conforming object with an NSItemProvider and registered preparation handler"]
-        #[method(initWithPreparationHandler:)]
+        #[unsafe(method(initWithPreparationHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPreparationHandler(
             this: Allocated<Self>,
@@ -166,7 +166,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-cloud-kit")]
-        #[method(initWithShare:container:)]
+        #[unsafe(method(initWithShare:container:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithShare_container(
             this: Allocated<Self>,
@@ -174,7 +174,7 @@ extern_methods!(
             container: &CKContainer,
         ) -> Retained<Self>;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -182,7 +182,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -190,16 +190,16 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-cloud-kit")]
-        #[method(share)]
+        #[unsafe(method(share))]
         #[unsafe(method_family = none)]
         pub unsafe fn share(&self) -> Option<Retained<CKShare>>;
 
-        #[method(availablePermissions)]
+        #[unsafe(method(availablePermissions))]
         #[unsafe(method_family = none)]
         pub unsafe fn availablePermissions(&self) -> UICloudSharingPermissionOptions;
 
         /// Setter for [`availablePermissions`][Self::availablePermissions].
-        #[method(setAvailablePermissions:)]
+        #[unsafe(method(setAvailablePermissions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAvailablePermissions(
             &self,
@@ -207,7 +207,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIActivityItemProvider")]
-        #[method(activityItemSource)]
+        #[unsafe(method(activityItemSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn activityItemSource(
             &self,
@@ -219,11 +219,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UICloudSharingController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -196,26 +196,26 @@ extern_methods!(
     ))]
     unsafe impl UISearchTextField {
         /// Simple access to the collection of tokens.
-        #[method(tokens)]
+        #[unsafe(method(tokens))]
         #[unsafe(method_family = none)]
         pub unsafe fn tokens(&self) -> Retained<NSArray<UISearchToken>>;
 
         /// Setter for [`tokens`][Self::tokens].
-        #[method(setTokens:)]
+        #[unsafe(method(setTokens:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTokens(&self, tokens: &NSArray<UISearchToken>);
 
-        #[method(insertToken:atIndex:)]
+        #[unsafe(method(insertToken:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertToken_atIndex(&self, token: &UISearchToken, token_index: NSInteger);
 
-        #[method(removeTokenAtIndex:)]
+        #[unsafe(method(removeTokenAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTokenAtIndex(&self, token_index: NSInteger);
 
         #[cfg(feature = "UITextInput")]
         /// Returns the position of the provided token. To select a token, assign a UITextRange containing its position to the selectedTextRange property.
-        #[method(positionOfTokenAtIndex:)]
+        #[unsafe(method(positionOfTokenAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn positionOfTokenAtIndex(
             &self,
@@ -226,7 +226,7 @@ extern_methods!(
         /// Returns the tokens which are contained within the provided range.
         ///
         /// You can use this method to determine which tokens are included in the user’s current selection. The range may span more than one token or a mixture of tokens and text.
-        #[method(tokensInRange:)]
+        #[unsafe(method(tokensInRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tokensInRange(
             &self,
@@ -240,7 +240,7 @@ extern_methods!(
         /// See: -[
         /// <UITextInput
         /// > positionWithinRange:atCharacterOffset:]
-        #[method(textualRange)]
+        #[unsafe(method(textualRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn textualRange(&self) -> Retained<UITextRange>;
 
@@ -251,7 +251,7 @@ extern_methods!(
         ///
         ///
         /// Note: Because this method does not remove any tokens in the provided range, the caller can pass the field’s selectedTextRange to convert the selected portion of the text into a token without first having to trim the range.
-        #[method(replaceTextualPortionOfRange:withToken:atIndex:)]
+        #[unsafe(method(replaceTextualPortionOfRange:withToken:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceTextualPortionOfRange_withToken_atIndex(
             &self,
@@ -262,37 +262,37 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// Set this to nil for tokens to use their default color.
-        #[method(tokenBackgroundColor)]
+        #[unsafe(method(tokenBackgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn tokenBackgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tokenBackgroundColor`][Self::tokenBackgroundColor].
-        #[method(setTokenBackgroundColor:)]
+        #[unsafe(method(setTokenBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTokenBackgroundColor(&self, token_background_color: Option<&UIColor>);
 
         /// Whether the user can remove tokens through standard actions such as Delete and Cut.
         ///
         /// The application can always remove tokens programmatically. If this property is true, the application must be prepared not only for tokens to be removed, but also to be re-added through Undo. Defaults to true.
-        #[method(allowsDeletingTokens)]
+        #[unsafe(method(allowsDeletingTokens))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsDeletingTokens(&self) -> bool;
 
         /// Setter for [`allowsDeletingTokens`][Self::allowsDeletingTokens].
-        #[method(setAllowsDeletingTokens:)]
+        #[unsafe(method(setAllowsDeletingTokens:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsDeletingTokens(&self, allows_deleting_tokens: bool);
 
         /// Whether the user can copy tokens to the pasteboard or drag them out of the text field.
         ///
         /// To support copying tokens, this property must be true and the delegate must provide an item provider for the tokens to be copied. UISearchTextField always enables the Copy command if any plain text is selected, even if the selection also includes tokens and this property is false. Defaults to true.
-        #[method(allowsCopyingTokens)]
+        #[unsafe(method(allowsCopyingTokens))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsCopyingTokens(&self) -> bool;
 
         /// Setter for [`allowsCopyingTokens`][Self::allowsCopyingTokens].
-        #[method(setAllowsCopyingTokens:)]
+        #[unsafe(method(setAllowsCopyingTokens:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCopyingTokens(&self, allows_copying_tokens: bool);
 
@@ -303,7 +303,7 @@ extern_methods!(
         /// [] to dismiss the menu.
         /// The menu will also dismiss and the property will be set to nil when a suggestion is selected.
         /// The delegate is expected to execute any necessary updating when a suggestion is selected.
-        #[method(searchSuggestions)]
+        #[unsafe(method(searchSuggestions))]
         #[unsafe(method_family = none)]
         pub unsafe fn searchSuggestions(
             &self,
@@ -311,7 +311,7 @@ extern_methods!(
 
         #[cfg(feature = "UISearchSuggestion")]
         /// Setter for [`searchSuggestions`][Self::searchSuggestions].
-        #[method(setSearchSuggestions:)]
+        #[unsafe(method(setSearchSuggestions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchSuggestions(
             &self,
@@ -330,11 +330,11 @@ extern_methods!(
     ))]
     unsafe impl UISearchTextField {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -347,7 +347,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
-        #[method(initWithFrame:primaryAction:)]
+        #[unsafe(method(initWithFrame:primaryAction:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,
@@ -366,11 +366,11 @@ extern_methods!(
         feature = "UIView"
     ))]
     unsafe impl UISearchTextField {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -390,16 +390,16 @@ unsafe impl NSObjectProtocol for UISearchToken {}
 
 extern_methods!(
     unsafe impl UISearchToken {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
-        #[method(tokenWithIcon:text:)]
+        #[unsafe(method(tokenWithIcon:text:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tokenWithIcon_text(
             icon: Option<&UIImage>,
@@ -413,12 +413,12 @@ extern_methods!(
         ///
         ///
         /// Note: Because UISearchToken strongly references its representedObject, consider assigning a lightweight representation (such as NSManagedObjectID) instead of a complete model object to this property. The lifetime of a UISearchToken may be considerably longer than expected, especially if the token has been copied to a pasteboard.
-        #[method(representedObject)]
+        #[unsafe(method(representedObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn representedObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`representedObject`][Self::representedObject].
-        #[method(setRepresentedObject:)]
+        #[unsafe(method(setRepresentedObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
     }
@@ -437,7 +437,7 @@ extern_protocol!(
         ///
         /// This method will only be called if either of the field’s allowsCopyingTokens or allowsDeletingTokens properties is true.
         #[optional]
-        #[method(searchTextField:itemProviderForCopyingToken:)]
+        #[unsafe(method(searchTextField:itemProviderForCopyingToken:))]
         #[unsafe(method_family = none)]
         unsafe fn searchTextField_itemProviderForCopyingToken(
             &self,
@@ -453,7 +453,7 @@ extern_protocol!(
         ))]
         /// searchSuggestions property will be set to nil after sending this message
         #[optional]
-        #[method(searchTextField:didSelectSuggestion:)]
+        #[unsafe(method(searchTextField:didSelectSuggestion:))]
         #[unsafe(method_family = none)]
         unsafe fn searchTextField_didSelectSuggestion(
             &self,
@@ -472,7 +472,7 @@ extern_protocol!(
     #[cfg(feature = "UITextPasteDelegate")]
     pub unsafe trait UISearchTextFieldPasteItem: UITextPasteItem + MainThreadOnly {
         /// Transforms this paste item into a token at the end of the search text field’s token array.
-        #[method(setSearchTokenResult:)]
+        #[unsafe(method(setSearchTokenResult:))]
         #[unsafe(method_family = none)]
         unsafe fn setSearchTokenResult(&self, token: &UISearchToken);
     }

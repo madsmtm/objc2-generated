@@ -137,7 +137,7 @@ unsafe impl NSSecureCoding for NSTextList {}
 
 extern_methods!(
     unsafe impl NSTextList {
-        #[method(initWithMarkerFormat:options:startingItemNumber:)]
+        #[unsafe(method(initWithMarkerFormat:options:startingItemNumber:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMarkerFormat_options_startingItemNumber(
             this: Allocated<Self>,
@@ -146,7 +146,7 @@ extern_methods!(
             starting_item_number: NSInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithMarkerFormat:options:)]
+        #[unsafe(method(initWithMarkerFormat:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMarkerFormat_options(
             this: Allocated<Self>,
@@ -154,35 +154,35 @@ extern_methods!(
             options: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(markerFormat)]
+        #[unsafe(method(markerFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn markerFormat(&self) -> Retained<NSTextListMarkerFormat>;
 
-        #[method(listOptions)]
+        #[unsafe(method(listOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn listOptions(&self) -> NSTextListOptions;
 
-        #[method(startingItemNumber)]
+        #[unsafe(method(startingItemNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn startingItemNumber(&self) -> NSInteger;
 
         /// Setter for [`startingItemNumber`][Self::startingItemNumber].
-        #[method(setStartingItemNumber:)]
+        #[unsafe(method(setStartingItemNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartingItemNumber(&self, starting_item_number: NSInteger);
 
-        #[method(isOrdered)]
+        #[unsafe(method(isOrdered))]
         #[unsafe(method_family = none)]
         pub unsafe fn isOrdered(&self) -> bool;
 
-        #[method(markerForItemNumber:)]
+        #[unsafe(method(markerForItemNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn markerForItemNumber(&self, item_number: NSInteger) -> Retained<NSString>;
     }
@@ -191,11 +191,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextList {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

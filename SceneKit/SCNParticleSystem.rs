@@ -401,72 +401,72 @@ extern_methods!(
     unsafe impl SCNParticlePropertyController {
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
-        #[method(controllerWithAnimation:)]
+        #[unsafe(method(controllerWithAnimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn controllerWithAnimation(animation: &CAAnimation) -> Retained<Self>;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
-        #[method(animation)]
+        #[unsafe(method(animation))]
         #[unsafe(method_family = none)]
         pub unsafe fn animation(&self) -> Retained<CAAnimation>;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`animation`][Self::animation].
-        #[method(setAnimation:)]
+        #[unsafe(method(setAnimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimation(&self, animation: &CAAnimation);
 
-        #[method(inputMode)]
+        #[unsafe(method(inputMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputMode(&self) -> SCNParticleInputMode;
 
         /// Setter for [`inputMode`][Self::inputMode].
-        #[method(setInputMode:)]
+        #[unsafe(method(setInputMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputMode(&self, input_mode: SCNParticleInputMode);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(inputScale)]
+        #[unsafe(method(inputScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`inputScale`][Self::inputScale].
-        #[method(setInputScale:)]
+        #[unsafe(method(setInputScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputScale(&self, input_scale: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(inputBias)]
+        #[unsafe(method(inputBias))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputBias(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`inputBias`][Self::inputBias].
-        #[method(setInputBias:)]
+        #[unsafe(method(setInputBias:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputBias(&self, input_bias: CGFloat);
 
         #[cfg(feature = "SCNNode")]
-        #[method(inputOrigin)]
+        #[unsafe(method(inputOrigin))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputOrigin(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`inputOrigin`][Self::inputOrigin].
-        #[method(setInputOrigin:)]
+        #[unsafe(method(setInputOrigin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputOrigin(&self, input_origin: Option<&SCNNode>);
 
-        #[method(inputProperty)]
+        #[unsafe(method(inputProperty))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputProperty(&self) -> Option<Retained<SCNParticleProperty>>;
 
         /// Setter for [`inputProperty`][Self::inputProperty].
-        #[method(setInputProperty:)]
+        #[unsafe(method(setInputProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputProperty(&self, input_property: Option<&SCNParticleProperty>);
     }
@@ -475,11 +475,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNParticlePropertyController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -511,11 +511,11 @@ unsafe impl SCNAnimatable for SCNParticleSystem {}
 
 extern_methods!(
     unsafe impl SCNParticleSystem {
-        #[method(particleSystem)]
+        #[unsafe(method(particleSystem))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleSystem() -> Retained<Self>;
 
-        #[method(particleSystemNamed:inDirectory:)]
+        #[unsafe(method(particleSystemNamed:inDirectory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleSystemNamed_inDirectory(
             name: &NSString,
@@ -523,236 +523,236 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(emissionDuration)]
+        #[unsafe(method(emissionDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn emissionDuration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`emissionDuration`][Self::emissionDuration].
-        #[method(setEmissionDuration:)]
+        #[unsafe(method(setEmissionDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmissionDuration(&self, emission_duration: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(emissionDurationVariation)]
+        #[unsafe(method(emissionDurationVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn emissionDurationVariation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`emissionDurationVariation`][Self::emissionDurationVariation].
-        #[method(setEmissionDurationVariation:)]
+        #[unsafe(method(setEmissionDurationVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmissionDurationVariation(&self, emission_duration_variation: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(idleDuration)]
+        #[unsafe(method(idleDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn idleDuration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`idleDuration`][Self::idleDuration].
-        #[method(setIdleDuration:)]
+        #[unsafe(method(setIdleDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdleDuration(&self, idle_duration: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(idleDurationVariation)]
+        #[unsafe(method(idleDurationVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn idleDurationVariation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`idleDurationVariation`][Self::idleDurationVariation].
-        #[method(setIdleDurationVariation:)]
+        #[unsafe(method(setIdleDurationVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdleDurationVariation(&self, idle_duration_variation: CGFloat);
 
-        #[method(loops)]
+        #[unsafe(method(loops))]
         #[unsafe(method_family = none)]
         pub unsafe fn loops(&self) -> bool;
 
         /// Setter for [`loops`][Self::loops].
-        #[method(setLoops:)]
+        #[unsafe(method(setLoops:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLoops(&self, loops: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(birthRate)]
+        #[unsafe(method(birthRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn birthRate(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`birthRate`][Self::birthRate].
-        #[method(setBirthRate:)]
+        #[unsafe(method(setBirthRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBirthRate(&self, birth_rate: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(birthRateVariation)]
+        #[unsafe(method(birthRateVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn birthRateVariation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`birthRateVariation`][Self::birthRateVariation].
-        #[method(setBirthRateVariation:)]
+        #[unsafe(method(setBirthRateVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBirthRateVariation(&self, birth_rate_variation: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(warmupDuration)]
+        #[unsafe(method(warmupDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn warmupDuration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`warmupDuration`][Self::warmupDuration].
-        #[method(setWarmupDuration:)]
+        #[unsafe(method(setWarmupDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWarmupDuration(&self, warmup_duration: CGFloat);
 
         #[cfg(feature = "SCNGeometry")]
-        #[method(emitterShape)]
+        #[unsafe(method(emitterShape))]
         #[unsafe(method_family = none)]
         pub unsafe fn emitterShape(&self) -> Option<Retained<SCNGeometry>>;
 
         #[cfg(feature = "SCNGeometry")]
         /// Setter for [`emitterShape`][Self::emitterShape].
-        #[method(setEmitterShape:)]
+        #[unsafe(method(setEmitterShape:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmitterShape(&self, emitter_shape: Option<&SCNGeometry>);
 
-        #[method(birthLocation)]
+        #[unsafe(method(birthLocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn birthLocation(&self) -> SCNParticleBirthLocation;
 
         /// Setter for [`birthLocation`][Self::birthLocation].
-        #[method(setBirthLocation:)]
+        #[unsafe(method(setBirthLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBirthLocation(&self, birth_location: SCNParticleBirthLocation);
 
-        #[method(birthDirection)]
+        #[unsafe(method(birthDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn birthDirection(&self) -> SCNParticleBirthDirection;
 
         /// Setter for [`birthDirection`][Self::birthDirection].
-        #[method(setBirthDirection:)]
+        #[unsafe(method(setBirthDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBirthDirection(&self, birth_direction: SCNParticleBirthDirection);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(spreadingAngle)]
+        #[unsafe(method(spreadingAngle))]
         #[unsafe(method_family = none)]
         pub unsafe fn spreadingAngle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`spreadingAngle`][Self::spreadingAngle].
-        #[method(setSpreadingAngle:)]
+        #[unsafe(method(setSpreadingAngle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpreadingAngle(&self, spreading_angle: CGFloat);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
-        #[method(emittingDirection)]
+        #[unsafe(method(emittingDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn emittingDirection(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`emittingDirection`][Self::emittingDirection].
-        #[method(setEmittingDirection:)]
+        #[unsafe(method(setEmittingDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmittingDirection(&self, emitting_direction: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
-        #[method(orientationDirection)]
+        #[unsafe(method(orientationDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn orientationDirection(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`orientationDirection`][Self::orientationDirection].
-        #[method(setOrientationDirection:)]
+        #[unsafe(method(setOrientationDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrientationDirection(&self, orientation_direction: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
-        #[method(acceleration)]
+        #[unsafe(method(acceleration))]
         #[unsafe(method_family = none)]
         pub unsafe fn acceleration(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`acceleration`][Self::acceleration].
-        #[method(setAcceleration:)]
+        #[unsafe(method(setAcceleration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAcceleration(&self, acceleration: SCNVector3);
 
-        #[method(isLocal)]
+        #[unsafe(method(isLocal))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLocal(&self) -> bool;
 
         /// Setter for [`isLocal`][Self::isLocal].
-        #[method(setLocal:)]
+        #[unsafe(method(setLocal:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocal(&self, local: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleAngle)]
+        #[unsafe(method(particleAngle))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleAngle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleAngle`][Self::particleAngle].
-        #[method(setParticleAngle:)]
+        #[unsafe(method(setParticleAngle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleAngle(&self, particle_angle: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleAngleVariation)]
+        #[unsafe(method(particleAngleVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleAngleVariation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleAngleVariation`][Self::particleAngleVariation].
-        #[method(setParticleAngleVariation:)]
+        #[unsafe(method(setParticleAngleVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleAngleVariation(&self, particle_angle_variation: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleVelocity)]
+        #[unsafe(method(particleVelocity))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleVelocity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleVelocity`][Self::particleVelocity].
-        #[method(setParticleVelocity:)]
+        #[unsafe(method(setParticleVelocity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleVelocity(&self, particle_velocity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleVelocityVariation)]
+        #[unsafe(method(particleVelocityVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleVelocityVariation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleVelocityVariation`][Self::particleVelocityVariation].
-        #[method(setParticleVelocityVariation:)]
+        #[unsafe(method(setParticleVelocityVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleVelocityVariation(&self, particle_velocity_variation: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleAngularVelocity)]
+        #[unsafe(method(particleAngularVelocity))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleAngularVelocity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleAngularVelocity`][Self::particleAngularVelocity].
-        #[method(setParticleAngularVelocity:)]
+        #[unsafe(method(setParticleAngularVelocity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleAngularVelocity(&self, particle_angular_velocity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleAngularVelocityVariation)]
+        #[unsafe(method(particleAngularVelocityVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleAngularVelocityVariation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleAngularVelocityVariation`][Self::particleAngularVelocityVariation].
-        #[method(setParticleAngularVelocityVariation:)]
+        #[unsafe(method(setParticleAngularVelocityVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleAngularVelocityVariation(
             &self,
@@ -760,109 +760,109 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleLifeSpan)]
+        #[unsafe(method(particleLifeSpan))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleLifeSpan(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleLifeSpan`][Self::particleLifeSpan].
-        #[method(setParticleLifeSpan:)]
+        #[unsafe(method(setParticleLifeSpan:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleLifeSpan(&self, particle_life_span: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleLifeSpanVariation)]
+        #[unsafe(method(particleLifeSpanVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleLifeSpanVariation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleLifeSpanVariation`][Self::particleLifeSpanVariation].
-        #[method(setParticleLifeSpanVariation:)]
+        #[unsafe(method(setParticleLifeSpanVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleLifeSpanVariation(&self, particle_life_span_variation: CGFloat);
 
-        #[method(systemSpawnedOnDying)]
+        #[unsafe(method(systemSpawnedOnDying))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemSpawnedOnDying(&self) -> Option<Retained<SCNParticleSystem>>;
 
         /// Setter for [`systemSpawnedOnDying`][Self::systemSpawnedOnDying].
-        #[method(setSystemSpawnedOnDying:)]
+        #[unsafe(method(setSystemSpawnedOnDying:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSystemSpawnedOnDying(
             &self,
             system_spawned_on_dying: Option<&SCNParticleSystem>,
         );
 
-        #[method(systemSpawnedOnCollision)]
+        #[unsafe(method(systemSpawnedOnCollision))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemSpawnedOnCollision(&self) -> Option<Retained<SCNParticleSystem>>;
 
         /// Setter for [`systemSpawnedOnCollision`][Self::systemSpawnedOnCollision].
-        #[method(setSystemSpawnedOnCollision:)]
+        #[unsafe(method(setSystemSpawnedOnCollision:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSystemSpawnedOnCollision(
             &self,
             system_spawned_on_collision: Option<&SCNParticleSystem>,
         );
 
-        #[method(systemSpawnedOnLiving)]
+        #[unsafe(method(systemSpawnedOnLiving))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemSpawnedOnLiving(&self) -> Option<Retained<SCNParticleSystem>>;
 
         /// Setter for [`systemSpawnedOnLiving`][Self::systemSpawnedOnLiving].
-        #[method(setSystemSpawnedOnLiving:)]
+        #[unsafe(method(setSystemSpawnedOnLiving:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSystemSpawnedOnLiving(
             &self,
             system_spawned_on_living: Option<&SCNParticleSystem>,
         );
 
-        #[method(particleImage)]
+        #[unsafe(method(particleImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleImage(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`particleImage`][Self::particleImage].
-        #[method(setParticleImage:)]
+        #[unsafe(method(setParticleImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleImage(&self, particle_image: Option<&AnyObject>);
 
-        #[method(imageSequenceColumnCount)]
+        #[unsafe(method(imageSequenceColumnCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageSequenceColumnCount(&self) -> NSUInteger;
 
         /// Setter for [`imageSequenceColumnCount`][Self::imageSequenceColumnCount].
-        #[method(setImageSequenceColumnCount:)]
+        #[unsafe(method(setImageSequenceColumnCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageSequenceColumnCount(&self, image_sequence_column_count: NSUInteger);
 
-        #[method(imageSequenceRowCount)]
+        #[unsafe(method(imageSequenceRowCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageSequenceRowCount(&self) -> NSUInteger;
 
         /// Setter for [`imageSequenceRowCount`][Self::imageSequenceRowCount].
-        #[method(setImageSequenceRowCount:)]
+        #[unsafe(method(setImageSequenceRowCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageSequenceRowCount(&self, image_sequence_row_count: NSUInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(imageSequenceInitialFrame)]
+        #[unsafe(method(imageSequenceInitialFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageSequenceInitialFrame(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`imageSequenceInitialFrame`][Self::imageSequenceInitialFrame].
-        #[method(setImageSequenceInitialFrame:)]
+        #[unsafe(method(setImageSequenceInitialFrame:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageSequenceInitialFrame(&self, image_sequence_initial_frame: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(imageSequenceInitialFrameVariation)]
+        #[unsafe(method(imageSequenceInitialFrameVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageSequenceInitialFrameVariation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`imageSequenceInitialFrameVariation`][Self::imageSequenceInitialFrameVariation].
-        #[method(setImageSequenceInitialFrameVariation:)]
+        #[unsafe(method(setImageSequenceInitialFrameVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageSequenceInitialFrameVariation(
             &self,
@@ -870,36 +870,36 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(imageSequenceFrameRate)]
+        #[unsafe(method(imageSequenceFrameRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageSequenceFrameRate(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`imageSequenceFrameRate`][Self::imageSequenceFrameRate].
-        #[method(setImageSequenceFrameRate:)]
+        #[unsafe(method(setImageSequenceFrameRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageSequenceFrameRate(&self, image_sequence_frame_rate: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(imageSequenceFrameRateVariation)]
+        #[unsafe(method(imageSequenceFrameRateVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageSequenceFrameRateVariation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`imageSequenceFrameRateVariation`][Self::imageSequenceFrameRateVariation].
-        #[method(setImageSequenceFrameRateVariation:)]
+        #[unsafe(method(setImageSequenceFrameRateVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageSequenceFrameRateVariation(
             &self,
             image_sequence_frame_rate_variation: CGFloat,
         );
 
-        #[method(imageSequenceAnimationMode)]
+        #[unsafe(method(imageSequenceAnimationMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageSequenceAnimationMode(&self) -> SCNParticleImageSequenceAnimationMode;
 
         /// Setter for [`imageSequenceAnimationMode`][Self::imageSequenceAnimationMode].
-        #[method(setImageSequenceAnimationMode:)]
+        #[unsafe(method(setImageSequenceAnimationMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageSequenceAnimationMode(
             &self,
@@ -908,305 +908,305 @@ extern_methods!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method(particleColor)]
+        #[unsafe(method(particleColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`particleColor`][Self::particleColor].
-        #[method(setParticleColor:)]
+        #[unsafe(method(setParticleColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleColor(&self, particle_color: &NSColor);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
-        #[method(particleColorVariation)]
+        #[unsafe(method(particleColorVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleColorVariation(&self) -> SCNVector4;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`particleColorVariation`][Self::particleColorVariation].
-        #[method(setParticleColorVariation:)]
+        #[unsafe(method(setParticleColorVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleColorVariation(&self, particle_color_variation: SCNVector4);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleSize)]
+        #[unsafe(method(particleSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleSize(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleSize`][Self::particleSize].
-        #[method(setParticleSize:)]
+        #[unsafe(method(setParticleSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleSize(&self, particle_size: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleSizeVariation)]
+        #[unsafe(method(particleSizeVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleSizeVariation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleSizeVariation`][Self::particleSizeVariation].
-        #[method(setParticleSizeVariation:)]
+        #[unsafe(method(setParticleSizeVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleSizeVariation(&self, particle_size_variation: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleIntensity)]
+        #[unsafe(method(particleIntensity))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleIntensity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleIntensity`][Self::particleIntensity].
-        #[method(setParticleIntensity:)]
+        #[unsafe(method(setParticleIntensity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleIntensity(&self, particle_intensity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleIntensityVariation)]
+        #[unsafe(method(particleIntensityVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleIntensityVariation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleIntensityVariation`][Self::particleIntensityVariation].
-        #[method(setParticleIntensityVariation:)]
+        #[unsafe(method(setParticleIntensityVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleIntensityVariation(&self, particle_intensity_variation: CGFloat);
 
-        #[method(blendMode)]
+        #[unsafe(method(blendMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn blendMode(&self) -> SCNParticleBlendMode;
 
         /// Setter for [`blendMode`][Self::blendMode].
-        #[method(setBlendMode:)]
+        #[unsafe(method(setBlendMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBlendMode(&self, blend_mode: SCNParticleBlendMode);
 
-        #[method(isBlackPassEnabled)]
+        #[unsafe(method(isBlackPassEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBlackPassEnabled(&self) -> bool;
 
         /// Setter for [`isBlackPassEnabled`][Self::isBlackPassEnabled].
-        #[method(setBlackPassEnabled:)]
+        #[unsafe(method(setBlackPassEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBlackPassEnabled(&self, black_pass_enabled: bool);
 
-        #[method(orientationMode)]
+        #[unsafe(method(orientationMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn orientationMode(&self) -> SCNParticleOrientationMode;
 
         /// Setter for [`orientationMode`][Self::orientationMode].
-        #[method(setOrientationMode:)]
+        #[unsafe(method(setOrientationMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrientationMode(&self, orientation_mode: SCNParticleOrientationMode);
 
-        #[method(sortingMode)]
+        #[unsafe(method(sortingMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortingMode(&self) -> SCNParticleSortingMode;
 
         /// Setter for [`sortingMode`][Self::sortingMode].
-        #[method(setSortingMode:)]
+        #[unsafe(method(setSortingMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSortingMode(&self, sorting_mode: SCNParticleSortingMode);
 
-        #[method(isLightingEnabled)]
+        #[unsafe(method(isLightingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLightingEnabled(&self) -> bool;
 
         /// Setter for [`isLightingEnabled`][Self::isLightingEnabled].
-        #[method(setLightingEnabled:)]
+        #[unsafe(method(setLightingEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLightingEnabled(&self, lighting_enabled: bool);
 
-        #[method(affectedByGravity)]
+        #[unsafe(method(affectedByGravity))]
         #[unsafe(method_family = none)]
         pub unsafe fn affectedByGravity(&self) -> bool;
 
         /// Setter for [`affectedByGravity`][Self::affectedByGravity].
-        #[method(setAffectedByGravity:)]
+        #[unsafe(method(setAffectedByGravity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAffectedByGravity(&self, affected_by_gravity: bool);
 
-        #[method(affectedByPhysicsFields)]
+        #[unsafe(method(affectedByPhysicsFields))]
         #[unsafe(method_family = none)]
         pub unsafe fn affectedByPhysicsFields(&self) -> bool;
 
         /// Setter for [`affectedByPhysicsFields`][Self::affectedByPhysicsFields].
-        #[method(setAffectedByPhysicsFields:)]
+        #[unsafe(method(setAffectedByPhysicsFields:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAffectedByPhysicsFields(&self, affected_by_physics_fields: bool);
 
-        #[method(particleDiesOnCollision)]
+        #[unsafe(method(particleDiesOnCollision))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleDiesOnCollision(&self) -> bool;
 
         /// Setter for [`particleDiesOnCollision`][Self::particleDiesOnCollision].
-        #[method(setParticleDiesOnCollision:)]
+        #[unsafe(method(setParticleDiesOnCollision:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleDiesOnCollision(&self, particle_dies_on_collision: bool);
 
         #[cfg(feature = "SCNNode")]
-        #[method(colliderNodes)]
+        #[unsafe(method(colliderNodes))]
         #[unsafe(method_family = none)]
         pub unsafe fn colliderNodes(&self) -> Option<Retained<NSArray<SCNNode>>>;
 
         #[cfg(feature = "SCNNode")]
         /// Setter for [`colliderNodes`][Self::colliderNodes].
-        #[method(setColliderNodes:)]
+        #[unsafe(method(setColliderNodes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColliderNodes(&self, collider_nodes: Option<&NSArray<SCNNode>>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleMass)]
+        #[unsafe(method(particleMass))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleMass(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleMass`][Self::particleMass].
-        #[method(setParticleMass:)]
+        #[unsafe(method(setParticleMass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleMass(&self, particle_mass: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleMassVariation)]
+        #[unsafe(method(particleMassVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleMassVariation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleMassVariation`][Self::particleMassVariation].
-        #[method(setParticleMassVariation:)]
+        #[unsafe(method(setParticleMassVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleMassVariation(&self, particle_mass_variation: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleBounce)]
+        #[unsafe(method(particleBounce))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleBounce(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleBounce`][Self::particleBounce].
-        #[method(setParticleBounce:)]
+        #[unsafe(method(setParticleBounce:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleBounce(&self, particle_bounce: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleBounceVariation)]
+        #[unsafe(method(particleBounceVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleBounceVariation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleBounceVariation`][Self::particleBounceVariation].
-        #[method(setParticleBounceVariation:)]
+        #[unsafe(method(setParticleBounceVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleBounceVariation(&self, particle_bounce_variation: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleFriction)]
+        #[unsafe(method(particleFriction))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleFriction(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleFriction`][Self::particleFriction].
-        #[method(setParticleFriction:)]
+        #[unsafe(method(setParticleFriction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleFriction(&self, particle_friction: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleFrictionVariation)]
+        #[unsafe(method(particleFrictionVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleFrictionVariation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleFrictionVariation`][Self::particleFrictionVariation].
-        #[method(setParticleFrictionVariation:)]
+        #[unsafe(method(setParticleFrictionVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleFrictionVariation(&self, particle_friction_variation: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleCharge)]
+        #[unsafe(method(particleCharge))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleCharge(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleCharge`][Self::particleCharge].
-        #[method(setParticleCharge:)]
+        #[unsafe(method(setParticleCharge:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleCharge(&self, particle_charge: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(particleChargeVariation)]
+        #[unsafe(method(particleChargeVariation))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleChargeVariation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleChargeVariation`][Self::particleChargeVariation].
-        #[method(setParticleChargeVariation:)]
+        #[unsafe(method(setParticleChargeVariation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleChargeVariation(&self, particle_charge_variation: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(dampingFactor)]
+        #[unsafe(method(dampingFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn dampingFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`dampingFactor`][Self::dampingFactor].
-        #[method(setDampingFactor:)]
+        #[unsafe(method(setDampingFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDampingFactor(&self, damping_factor: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(speedFactor)]
+        #[unsafe(method(speedFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn speedFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`speedFactor`][Self::speedFactor].
-        #[method(setSpeedFactor:)]
+        #[unsafe(method(setSpeedFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeedFactor(&self, speed_factor: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(stretchFactor)]
+        #[unsafe(method(stretchFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn stretchFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`stretchFactor`][Self::stretchFactor].
-        #[method(setStretchFactor:)]
+        #[unsafe(method(setStretchFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStretchFactor(&self, stretch_factor: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(fresnelExponent)]
+        #[unsafe(method(fresnelExponent))]
         #[unsafe(method_family = none)]
         pub unsafe fn fresnelExponent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`fresnelExponent`][Self::fresnelExponent].
-        #[method(setFresnelExponent:)]
+        #[unsafe(method(setFresnelExponent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFresnelExponent(&self, fresnel_exponent: CGFloat);
 
         /// Determines whether the receiver writes to the depth buffer when rendered. Defaults to NO.
-        #[method(writesToDepthBuffer)]
+        #[unsafe(method(writesToDepthBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn writesToDepthBuffer(&self) -> bool;
 
         /// Setter for [`writesToDepthBuffer`][Self::writesToDepthBuffer].
-        #[method(setWritesToDepthBuffer:)]
+        #[unsafe(method(setWritesToDepthBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWritesToDepthBuffer(&self, writes_to_depth_buffer: bool);
 
-        #[method(propertyControllers)]
+        #[unsafe(method(propertyControllers))]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyControllers(
             &self,
         ) -> Option<Retained<NSDictionary<SCNParticleProperty, SCNParticlePropertyController>>>;
 
         /// Setter for [`propertyControllers`][Self::propertyControllers].
-        #[method(setPropertyControllers:)]
+        #[unsafe(method(setPropertyControllers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertyControllers(
             &self,
@@ -1215,12 +1215,12 @@ extern_methods!(
             >,
         );
 
-        #[method(reset)]
+        #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
         pub unsafe fn reset(&self);
 
         #[cfg(feature = "block2")]
-        #[method(handleEvent:forProperties:withBlock:)]
+        #[unsafe(method(handleEvent:forProperties:withBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleEvent_forProperties_withBlock(
             &self,
@@ -1230,7 +1230,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(addModifierForProperties:atStage:withBlock:)]
+        #[unsafe(method(addModifierForProperties:atStage:withBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addModifierForProperties_atStage_withBlock(
             &self,
@@ -1239,11 +1239,11 @@ extern_methods!(
             block: SCNParticleModifierBlock,
         );
 
-        #[method(removeModifiersOfStage:)]
+        #[unsafe(method(removeModifiersOfStage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeModifiersOfStage(&self, stage: SCNParticleModifierStage);
 
-        #[method(removeAllModifiers)]
+        #[unsafe(method(removeAllModifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllModifiers(&self);
     }
@@ -1252,11 +1252,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNParticleSystem {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1266,19 +1266,19 @@ extern_methods!(
     /// SCNParticleSystemSupport
     #[cfg(feature = "SCNNode")]
     unsafe impl SCNNode {
-        #[method(addParticleSystem:)]
+        #[unsafe(method(addParticleSystem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addParticleSystem(&self, system: &SCNParticleSystem);
 
-        #[method(removeAllParticleSystems)]
+        #[unsafe(method(removeAllParticleSystems))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllParticleSystems(&self);
 
-        #[method(removeParticleSystem:)]
+        #[unsafe(method(removeParticleSystem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeParticleSystem(&self, system: &SCNParticleSystem);
 
-        #[method(particleSystems)]
+        #[unsafe(method(particleSystems))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleSystems(&self) -> Option<Retained<NSArray<SCNParticleSystem>>>;
     }
@@ -1290,7 +1290,7 @@ extern_methods!(
     unsafe impl SCNScene {
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
-        #[method(addParticleSystem:withTransform:)]
+        #[unsafe(method(addParticleSystem:withTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addParticleSystem_withTransform(
             &self,
@@ -1298,15 +1298,15 @@ extern_methods!(
             transform: SCNMatrix4,
         );
 
-        #[method(removeAllParticleSystems)]
+        #[unsafe(method(removeAllParticleSystems))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllParticleSystems(&self);
 
-        #[method(removeParticleSystem:)]
+        #[unsafe(method(removeParticleSystem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeParticleSystem(&self, system: &SCNParticleSystem);
 
-        #[method(particleSystems)]
+        #[unsafe(method(particleSystems))]
         #[unsafe(method_family = none)]
         pub unsafe fn particleSystems(&self) -> Option<Retained<NSArray<SCNParticleSystem>>>;
     }

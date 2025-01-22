@@ -106,32 +106,32 @@ extern_methods!(
         /// The name of the receiver.
         ///
         /// The user-facing name, such as the one displayed in the Bluetooth Settings for a BLE device.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// The manufacturer of the receiver.
-        #[method(manufacturer)]
+        #[unsafe(method(manufacturer))]
         #[unsafe(method_family = none)]
         pub unsafe fn manufacturer(&self) -> Option<Retained<NSString>>;
 
         /// The model of the receiver.
-        #[method(model)]
+        #[unsafe(method(model))]
         #[unsafe(method_family = none)]
         pub unsafe fn model(&self) -> Option<Retained<NSString>>;
 
         /// The hardware revision of the receiver.
-        #[method(hardwareVersion)]
+        #[unsafe(method(hardwareVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn hardwareVersion(&self) -> Option<Retained<NSString>>;
 
         /// The firmware revision of the receiver.
-        #[method(firmwareVersion)]
+        #[unsafe(method(firmwareVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn firmwareVersion(&self) -> Option<Retained<NSString>>;
 
         /// The software revision of the receiver.
-        #[method(softwareVersion)]
+        #[unsafe(method(softwareVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn softwareVersion(&self) -> Option<Retained<NSString>>;
 
@@ -142,7 +142,7 @@ extern_methods!(
         /// for the CoreBluetooth UUID which is valid only on the local
         /// device and thus distinguish the same Bluetooth peripheral used
         /// between multiple devices.
-        #[method(localIdentifier)]
+        #[unsafe(method(localIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn localIdentifier(&self) -> Option<Retained<NSString>>;
 
@@ -153,7 +153,7 @@ extern_methods!(
         /// persist the production identifier portion of the device UDI. HealthKit clients should manage
         /// the production identifier independently, if needed.
         /// See http://www.fda.gov/MedicalDevices/DeviceRegulationandGuidance/UniqueDeviceIdentification/ for more information.
-        #[method(UDIDeviceIdentifier)]
+        #[unsafe(method(UDIDeviceIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn UDIDeviceIdentifier(&self) -> Option<Retained<NSString>>;
 
@@ -161,7 +161,7 @@ extern_methods!(
         ///
         /// This allows initialization of an HKDevice object based on the
         /// information provided.
-        #[method(initWithName:manufacturer:model:hardwareVersion:firmwareVersion:softwareVersion:localIdentifier:UDIDeviceIdentifier:)]
+        #[unsafe(method(initWithName:manufacturer:model:hardwareVersion:firmwareVersion:softwareVersion:localIdentifier:UDIDeviceIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_manufacturer_model_hardwareVersion_firmwareVersion_softwareVersion_localIdentifier_UDIDeviceIdentifier(
             this: Allocated<Self>,
@@ -175,7 +175,7 @@ extern_methods!(
             udi_device_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -184,7 +184,7 @@ extern_methods!(
         /// If an app chooses to save samples that were retrieved from the local device, e.g. an HKWorkout with a
         /// totalDistance HKQuantity gathered from CoreLocation GPS distances, then this would be an appropriate
         /// HKDevice to use.
-        #[method(localDevice)]
+        #[unsafe(method(localDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn localDevice() -> Retained<HKDevice>;
     }
@@ -193,7 +193,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKDevice {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

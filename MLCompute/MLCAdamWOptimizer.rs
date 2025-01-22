@@ -36,7 +36,7 @@ extern_methods!(
         ///
         /// The default is 0.9.
         #[deprecated]
-        #[method(beta1)]
+        #[unsafe(method(beta1))]
         #[unsafe(method_family = none)]
         pub unsafe fn beta1(&self) -> c_float;
 
@@ -44,7 +44,7 @@ extern_methods!(
         ///
         /// The default is 0.999.
         #[deprecated]
-        #[method(beta2)]
+        #[unsafe(method(beta2))]
         #[unsafe(method_family = none)]
         pub unsafe fn beta2(&self) -> c_float;
 
@@ -52,7 +52,7 @@ extern_methods!(
         ///
         /// The default is 1e-8.
         #[deprecated]
-        #[method(epsilon)]
+        #[unsafe(method(epsilon))]
         #[unsafe(method_family = none)]
         pub unsafe fn epsilon(&self) -> c_float;
 
@@ -60,7 +60,7 @@ extern_methods!(
         ///
         /// The default is false
         #[deprecated]
-        #[method(usesAMSGrad)]
+        #[unsafe(method(usesAMSGrad))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesAMSGrad(&self) -> bool;
 
@@ -68,7 +68,7 @@ extern_methods!(
         ///
         /// The default is 1.
         #[deprecated]
-        #[method(timeStep)]
+        #[unsafe(method(timeStep))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeStep(&self) -> NSUInteger;
 
@@ -77,7 +77,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCAdamWOptimizer object.
         #[deprecated]
-        #[method(optimizerWithDescriptor:)]
+        #[unsafe(method(optimizerWithDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn optimizerWithDescriptor(
             optimizer_descriptor: &MLCOptimizerDescriptor,
@@ -100,7 +100,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCAdamWOptimizer object.
         #[deprecated]
-        #[method(optimizerWithDescriptor:beta1:beta2:epsilon:usesAMSGrad:timeStep:)]
+        #[unsafe(method(optimizerWithDescriptor:beta1:beta2:epsilon:usesAMSGrad:timeStep:))]
         #[unsafe(method_family = none)]
         pub unsafe fn optimizerWithDescriptor_beta1_beta2_epsilon_usesAMSGrad_timeStep(
             optimizer_descriptor: &MLCOptimizerDescriptor,
@@ -118,12 +118,12 @@ extern_methods!(
     #[cfg(feature = "MLCOptimizer")]
     unsafe impl MLCAdamWOptimizer {
         #[deprecated]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

@@ -17,7 +17,7 @@ extern_protocol!(
         /// Load gets called once by the host when the first filter from the plug-in gets instantiated. Return of true means that the plugIn successfully initialized
         ///
         /// Parameter `host`: for future use only
-        #[method(load:)]
+        #[unsafe(method(load:))]
         #[unsafe(method_family = none)]
         unsafe fn load(&self, host: *mut c_void) -> bool;
     }

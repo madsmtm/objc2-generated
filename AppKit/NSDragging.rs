@@ -141,77 +141,77 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragginginfo?language=objc)
     pub unsafe trait NSDraggingInfo: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-        #[method(draggingDestinationWindow)]
+        #[unsafe(method(draggingDestinationWindow))]
         #[unsafe(method_family = none)]
         unsafe fn draggingDestinationWindow(&self) -> Option<Retained<NSWindow>>;
 
-        #[method(draggingSourceOperationMask)]
+        #[unsafe(method(draggingSourceOperationMask))]
         #[unsafe(method_family = none)]
         unsafe fn draggingSourceOperationMask(&self) -> NSDragOperation;
 
-        #[method(draggingLocation)]
+        #[unsafe(method(draggingLocation))]
         #[unsafe(method_family = none)]
         unsafe fn draggingLocation(&self) -> NSPoint;
 
-        #[method(draggedImageLocation)]
+        #[unsafe(method(draggedImageLocation))]
         #[unsafe(method_family = none)]
         unsafe fn draggedImageLocation(&self) -> NSPoint;
 
         #[cfg(feature = "NSImage")]
         #[deprecated = "Use NSDraggingItem objects instead"]
-        #[method(draggedImage)]
+        #[unsafe(method(draggedImage))]
         #[unsafe(method_family = none)]
         unsafe fn draggedImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method(draggingPasteboard)]
+        #[unsafe(method(draggingPasteboard))]
         #[unsafe(method_family = none)]
         unsafe fn draggingPasteboard(&self) -> Retained<NSPasteboard>;
 
-        #[method(draggingSource)]
+        #[unsafe(method(draggingSource))]
         #[unsafe(method_family = none)]
         unsafe fn draggingSource(&self) -> Option<Retained<AnyObject>>;
 
-        #[method(draggingSequenceNumber)]
+        #[unsafe(method(draggingSequenceNumber))]
         #[unsafe(method_family = none)]
         unsafe fn draggingSequenceNumber(&self) -> NSInteger;
 
-        #[method(slideDraggedImageTo:)]
+        #[unsafe(method(slideDraggedImageTo:))]
         #[unsafe(method_family = none)]
         unsafe fn slideDraggedImageTo(&self, screen_point: NSPoint);
 
         #[deprecated = "Use NSFilePromiseReceiver objects instead"]
-        #[method(namesOfPromisedFilesDroppedAtDestination:)]
+        #[unsafe(method(namesOfPromisedFilesDroppedAtDestination:))]
         #[unsafe(method_family = none)]
         unsafe fn namesOfPromisedFilesDroppedAtDestination(
             &self,
             drop_destination: &NSURL,
         ) -> Option<Retained<NSArray<NSString>>>;
 
-        #[method(draggingFormation)]
+        #[unsafe(method(draggingFormation))]
         #[unsafe(method_family = none)]
         unsafe fn draggingFormation(&self) -> NSDraggingFormation;
 
         /// Setter for [`draggingFormation`][Self::draggingFormation].
-        #[method(setDraggingFormation:)]
+        #[unsafe(method(setDraggingFormation:))]
         #[unsafe(method_family = none)]
         unsafe fn setDraggingFormation(&self, dragging_formation: NSDraggingFormation);
 
-        #[method(animatesToDestination)]
+        #[unsafe(method(animatesToDestination))]
         #[unsafe(method_family = none)]
         unsafe fn animatesToDestination(&self) -> bool;
 
         /// Setter for [`animatesToDestination`][Self::animatesToDestination].
-        #[method(setAnimatesToDestination:)]
+        #[unsafe(method(setAnimatesToDestination:))]
         #[unsafe(method_family = none)]
         unsafe fn setAnimatesToDestination(&self, animates_to_destination: bool);
 
-        #[method(numberOfValidItemsForDrop)]
+        #[unsafe(method(numberOfValidItemsForDrop))]
         #[unsafe(method_family = none)]
         unsafe fn numberOfValidItemsForDrop(&self) -> NSInteger;
 
         /// Setter for [`numberOfValidItemsForDrop`][Self::numberOfValidItemsForDrop].
-        #[method(setNumberOfValidItemsForDrop:)]
+        #[unsafe(method(setNumberOfValidItemsForDrop:))]
         #[unsafe(method_family = none)]
         unsafe fn setNumberOfValidItemsForDrop(&self, number_of_valid_items_for_drop: NSInteger);
 
@@ -222,7 +222,7 @@ extern_protocol!(
             feature = "NSView",
             feature = "block2"
         ))]
-        #[method(enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:)]
+        #[unsafe(method(enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn enumerateDraggingItemsWithOptions_forView_classes_searchOptions_usingBlock(
             &self,
@@ -233,11 +233,11 @@ extern_protocol!(
             block: &block2::Block<dyn Fn(NonNull<NSDraggingItem>, NSInteger, NonNull<Bool>)>,
         );
 
-        #[method(springLoadingHighlight)]
+        #[unsafe(method(springLoadingHighlight))]
         #[unsafe(method_family = none)]
         unsafe fn springLoadingHighlight(&self) -> NSSpringLoadingHighlight;
 
-        #[method(resetSpringLoading)]
+        #[unsafe(method(resetSpringLoading))]
         #[unsafe(method_family = none)]
         unsafe fn resetSpringLoading(&self);
     }
@@ -247,7 +247,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingdestination?language=objc)
     pub unsafe trait NSDraggingDestination: NSObjectProtocol + MainThreadOnly {
         #[optional]
-        #[method(draggingEntered:)]
+        #[unsafe(method(draggingEntered:))]
         #[unsafe(method_family = none)]
         unsafe fn draggingEntered(
             &self,
@@ -255,7 +255,7 @@ extern_protocol!(
         ) -> NSDragOperation;
 
         #[optional]
-        #[method(draggingUpdated:)]
+        #[unsafe(method(draggingUpdated:))]
         #[unsafe(method_family = none)]
         unsafe fn draggingUpdated(
             &self,
@@ -263,12 +263,12 @@ extern_protocol!(
         ) -> NSDragOperation;
 
         #[optional]
-        #[method(draggingExited:)]
+        #[unsafe(method(draggingExited:))]
         #[unsafe(method_family = none)]
         unsafe fn draggingExited(&self, sender: Option<&ProtocolObject<dyn NSDraggingInfo>>);
 
         #[optional]
-        #[method(prepareForDragOperation:)]
+        #[unsafe(method(prepareForDragOperation:))]
         #[unsafe(method_family = none)]
         unsafe fn prepareForDragOperation(
             &self,
@@ -276,27 +276,27 @@ extern_protocol!(
         ) -> bool;
 
         #[optional]
-        #[method(performDragOperation:)]
+        #[unsafe(method(performDragOperation:))]
         #[unsafe(method_family = none)]
         unsafe fn performDragOperation(&self, sender: &ProtocolObject<dyn NSDraggingInfo>) -> bool;
 
         #[optional]
-        #[method(concludeDragOperation:)]
+        #[unsafe(method(concludeDragOperation:))]
         #[unsafe(method_family = none)]
         unsafe fn concludeDragOperation(&self, sender: Option<&ProtocolObject<dyn NSDraggingInfo>>);
 
         #[optional]
-        #[method(draggingEnded:)]
+        #[unsafe(method(draggingEnded:))]
         #[unsafe(method_family = none)]
         unsafe fn draggingEnded(&self, sender: &ProtocolObject<dyn NSDraggingInfo>);
 
         #[optional]
-        #[method(wantsPeriodicDraggingUpdates)]
+        #[unsafe(method(wantsPeriodicDraggingUpdates))]
         #[unsafe(method_family = none)]
         unsafe fn wantsPeriodicDraggingUpdates(&self) -> bool;
 
         #[optional]
-        #[method(updateDraggingItemsForDrag:)]
+        #[unsafe(method(updateDraggingItemsForDrag:))]
         #[unsafe(method_family = none)]
         unsafe fn updateDraggingItemsForDrag(
             &self,
@@ -309,7 +309,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingsource?language=objc)
     pub unsafe trait NSDraggingSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSDraggingSession")]
-        #[method(draggingSession:sourceOperationMaskForDraggingContext:)]
+        #[unsafe(method(draggingSession:sourceOperationMaskForDraggingContext:))]
         #[unsafe(method_family = none)]
         unsafe fn draggingSession_sourceOperationMaskForDraggingContext(
             &self,
@@ -319,7 +319,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSDraggingSession")]
         #[optional]
-        #[method(draggingSession:willBeginAtPoint:)]
+        #[unsafe(method(draggingSession:willBeginAtPoint:))]
         #[unsafe(method_family = none)]
         unsafe fn draggingSession_willBeginAtPoint(
             &self,
@@ -329,7 +329,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSDraggingSession")]
         #[optional]
-        #[method(draggingSession:movedToPoint:)]
+        #[unsafe(method(draggingSession:movedToPoint:))]
         #[unsafe(method_family = none)]
         unsafe fn draggingSession_movedToPoint(
             &self,
@@ -339,7 +339,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSDraggingSession")]
         #[optional]
-        #[method(draggingSession:endedAtPoint:operation:)]
+        #[unsafe(method(draggingSession:endedAtPoint:operation:))]
         #[unsafe(method_family = none)]
         unsafe fn draggingSession_endedAtPoint_operation(
             &self,
@@ -350,7 +350,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSDraggingSession")]
         #[optional]
-        #[method(ignoreModifierKeysForDraggingSession:)]
+        #[unsafe(method(ignoreModifierKeysForDraggingSession:))]
         #[unsafe(method_family = none)]
         unsafe fn ignoreModifierKeysForDraggingSession(&self, session: &NSDraggingSession) -> bool;
     }
@@ -385,7 +385,7 @@ unsafe impl RefEncode for NSSpringLoadingOptions {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadingdestination?language=objc)
     pub unsafe trait NSSpringLoadingDestination: NSObjectProtocol + MainThreadOnly {
-        #[method(springLoadingActivated:draggingInfo:)]
+        #[unsafe(method(springLoadingActivated:draggingInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn springLoadingActivated_draggingInfo(
             &self,
@@ -393,7 +393,7 @@ extern_protocol!(
             dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
         );
 
-        #[method(springLoadingHighlightChanged:)]
+        #[unsafe(method(springLoadingHighlightChanged:))]
         #[unsafe(method_family = none)]
         unsafe fn springLoadingHighlightChanged(
             &self,
@@ -401,7 +401,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(springLoadingEntered:)]
+        #[unsafe(method(springLoadingEntered:))]
         #[unsafe(method_family = none)]
         unsafe fn springLoadingEntered(
             &self,
@@ -409,7 +409,7 @@ extern_protocol!(
         ) -> NSSpringLoadingOptions;
 
         #[optional]
-        #[method(springLoadingUpdated:)]
+        #[unsafe(method(springLoadingUpdated:))]
         #[unsafe(method_family = none)]
         unsafe fn springLoadingUpdated(
             &self,
@@ -417,12 +417,12 @@ extern_protocol!(
         ) -> NSSpringLoadingOptions;
 
         #[optional]
-        #[method(springLoadingExited:)]
+        #[unsafe(method(springLoadingExited:))]
         #[unsafe(method_family = none)]
         unsafe fn springLoadingExited(&self, dragging_info: &ProtocolObject<dyn NSDraggingInfo>);
 
         #[optional]
-        #[method(draggingEnded:)]
+        #[unsafe(method(draggingEnded:))]
         #[unsafe(method_family = none)]
         unsafe fn draggingEnded(&self, dragging_info: &ProtocolObject<dyn NSDraggingInfo>);
     }

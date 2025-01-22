@@ -24,7 +24,7 @@ extern_protocol!(
         /// appropriate error if there was an error beginning playback for the item.
         #[deprecated = "Use CarPlay framework"]
         #[optional]
-        #[method(playableContentManager:initiatePlaybackOfContentItemAtIndexPath:completionHandler:)]
+        #[unsafe(method(playableContentManager:initiatePlaybackOfContentItemAtIndexPath:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playableContentManager_initiatePlaybackOfContentItemAtIndexPath_completionHandler(
             &self,
@@ -42,7 +42,7 @@ extern_protocol!(
         /// something.
         #[deprecated = "Use Intents framework for initiating playback queues."]
         #[optional]
-        #[method(playableContentManager:initializePlaybackQueueWithCompletionHandler:)]
+        #[unsafe(method(playableContentManager:initializePlaybackQueueWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playableContentManager_initializePlaybackQueueWithCompletionHandler(
             &self,
@@ -62,7 +62,7 @@ extern_protocol!(
         /// something.
         #[deprecated = "Use Intents framework for initiating playback queues."]
         #[optional]
-        #[method(playableContentManager:initializePlaybackQueueWithContentItems:completionHandler:)]
+        #[unsafe(method(playableContentManager:initializePlaybackQueueWithContentItems:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playableContentManager_initializePlaybackQueueWithContentItems_completionHandler(
             &self,
@@ -78,7 +78,7 @@ extern_protocol!(
         /// This method is called when the content server notifies the manager that the current context has changed.
         #[deprecated = "Use CarPlay framework"]
         #[optional]
-        #[method(playableContentManager:didUpdateContext:)]
+        #[unsafe(method(playableContentManager:didUpdateContext:))]
         #[unsafe(method_family = none)]
         unsafe fn playableContentManager_didUpdateContext(
             &self,

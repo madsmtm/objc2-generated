@@ -29,16 +29,16 @@ extern_methods!(
     #[cfg(feature = "MKShape")]
     unsafe impl MKMultiPoint {
         #[cfg(feature = "MKGeometry")]
-        #[method(points)]
+        #[unsafe(method(points))]
         #[unsafe(method_family = none)]
         pub unsafe fn points(&self) -> NonNull<MKMapPoint>;
 
-        #[method(pointCount)]
+        #[unsafe(method(pointCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointCount(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method(getCoordinates:range:)]
+        #[unsafe(method(getCoordinates:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCoordinates_range(
             &self,
@@ -47,11 +47,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(locationAtPointIndex:)]
+        #[unsafe(method(locationAtPointIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn locationAtPointIndex(&self, index: NSUInteger) -> CGFloat;
 
-        #[method(locationsAtPointIndexes:)]
+        #[unsafe(method(locationsAtPointIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn locationsAtPointIndexes(
             &self,
@@ -64,11 +64,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MKShape")]
     unsafe impl MKMultiPoint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

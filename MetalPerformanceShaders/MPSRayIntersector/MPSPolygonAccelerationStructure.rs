@@ -98,13 +98,13 @@ extern_methods!(
         /// The type of polygon. Defaults to MPSPolygonTypeTriangle. Changes to this property require
         /// rebuilding the acceleration structure.
         #[deprecated]
-        #[method(polygonType)]
+        #[unsafe(method(polygonType))]
         #[unsafe(method_family = none)]
         pub unsafe fn polygonType(&self) -> MPSPolygonType;
 
         /// Setter for [`polygonType`][Self::polygonType].
         #[deprecated]
-        #[method(setPolygonType:)]
+        #[unsafe(method(setPolygonType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPolygonType(&self, polygon_type: MPSPolygonType);
 
@@ -118,13 +118,13 @@ extern_methods!(
         /// 4 bytes, and must be at least 12 bytes. Changes to this property require rebuilding the
         /// acceleration structure.
         #[deprecated]
-        #[method(vertexStride)]
+        #[unsafe(method(vertexStride))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexStride(&self) -> NSUInteger;
 
         /// Setter for [`vertexStride`][Self::vertexStride].
         #[deprecated]
-        #[method(setVertexStride:)]
+        #[unsafe(method(setVertexStride:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVertexStride(&self, vertex_stride: NSUInteger);
 
@@ -132,14 +132,14 @@ extern_methods!(
         /// Index type. Defaults to MPSDataTypeUInt32. Only MPSDataTypeUInt16 and MPSDataTypeUInt32
         /// are supported.
         #[deprecated]
-        #[method(indexType)]
+        #[unsafe(method(indexType))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexType(&self) -> MPSDataType;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`indexType`][Self::indexType].
         #[deprecated]
-        #[method(setIndexType:)]
+        #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexType(&self, index_type: MPSDataType);
 
@@ -162,13 +162,13 @@ extern_methods!(
         /// to use this property, or the polygonBuffers property must be nil, in which case an
         /// MPSPolygonBuffer will be created automatically.
         #[deprecated]
-        #[method(vertexBuffer)]
+        #[unsafe(method(vertexBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`vertexBuffer`][Self::vertexBuffer].
         #[deprecated]
-        #[method(setVertexBuffer:)]
+        #[unsafe(method(setVertexBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVertexBuffer(&self, vertex_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -179,13 +179,13 @@ extern_methods!(
         /// buffer to use this property, or the polygonBuffers property must be nil, in which case an
         /// MPSPolygonBuffer will be created automatically.
         #[deprecated]
-        #[method(vertexBufferOffset)]
+        #[unsafe(method(vertexBufferOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`vertexBufferOffset`][Self::vertexBufferOffset].
         #[deprecated]
-        #[method(setVertexBufferOffset:)]
+        #[unsafe(method(setVertexBufferOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVertexBufferOffset(&self, vertex_buffer_offset: NSUInteger);
 
@@ -196,13 +196,13 @@ extern_methods!(
         /// to use this property, or the polygonBuffers property must be nil, in which case an
         /// MPSPolygonBuffer will be created automatically.
         #[deprecated]
-        #[method(indexBuffer)]
+        #[unsafe(method(indexBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`indexBuffer`][Self::indexBuffer].
         #[deprecated]
-        #[method(setIndexBuffer:)]
+        #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -214,13 +214,13 @@ extern_methods!(
         /// buffer to use this property, or the polygonBuffers property must be nil, in which case an
         /// MPSPolygonBuffer will be created automatically.
         #[deprecated]
-        #[method(indexBufferOffset)]
+        #[unsafe(method(indexBufferOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`indexBufferOffset`][Self::indexBufferOffset].
         #[deprecated]
-        #[method(setIndexBufferOffset:)]
+        #[unsafe(method(setIndexBufferOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
@@ -231,13 +231,13 @@ extern_methods!(
         /// to use this property, or the polygonBuffers property must be nil, in which case an
         /// MPSPolygonBuffer will be created automatically.
         #[deprecated]
-        #[method(maskBuffer)]
+        #[unsafe(method(maskBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn maskBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`maskBuffer`][Self::maskBuffer].
         #[deprecated]
-        #[method(setMaskBuffer:)]
+        #[unsafe(method(setMaskBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaskBuffer(&self, mask_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
@@ -247,13 +247,13 @@ extern_methods!(
         /// buffer to use this property, or the polygonBuffers property must be nil, in which case an
         /// MPSPolygonBuffer will be created automatically.
         #[deprecated]
-        #[method(maskBufferOffset)]
+        #[unsafe(method(maskBufferOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn maskBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`maskBufferOffset`][Self::maskBufferOffset].
         #[deprecated]
-        #[method(setMaskBufferOffset:)]
+        #[unsafe(method(setMaskBufferOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaskBufferOffset(&self, mask_buffer_offset: NSUInteger);
 
@@ -264,13 +264,13 @@ extern_methods!(
         /// to use this property, or the polygonBuffers property must be nil, in which case an
         /// MPSPolygonBuffer will be created automatically.
         #[deprecated]
-        #[method(polygonCount)]
+        #[unsafe(method(polygonCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn polygonCount(&self) -> NSUInteger;
 
         /// Setter for [`polygonCount`][Self::polygonCount].
         #[deprecated]
-        #[method(setPolygonCount:)]
+        #[unsafe(method(setPolygonCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPolygonCount(&self, polygon_count: NSUInteger);
 
@@ -291,14 +291,14 @@ extern_methods!(
         /// be exactly one MPSPolygonBuffer. Use the argumentBuffersSupport property of the MTLDevice to
         /// check for support.
         #[deprecated]
-        #[method(polygonBuffers)]
+        #[unsafe(method(polygonBuffers))]
         #[unsafe(method_family = none)]
         pub unsafe fn polygonBuffers(&self) -> Option<Retained<NSArray<MPSPolygonBuffer>>>;
 
         #[cfg(feature = "MPSPolygonBuffer")]
         /// Setter for [`polygonBuffers`][Self::polygonBuffers].
         #[deprecated]
-        #[method(setPolygonBuffers:)]
+        #[unsafe(method(setPolygonBuffers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPolygonBuffers(&self, polygon_buffers: Option<&NSArray<MPSPolygonBuffer>>);
     }
@@ -313,13 +313,13 @@ extern_methods!(
     ))]
     unsafe impl MPSPolygonAccelerationStructure {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the acceleration structure with a Metal device
         #[deprecated]
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -330,7 +330,7 @@ extern_methods!(
         /// properties such as the vertex buffer, instance buffer, etc. are set to nil. Encode and decode
         /// these buffers along with the acceleration structure instead.
         #[deprecated]
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -346,7 +346,7 @@ extern_methods!(
         /// The Metal device is determined from the acceleration structure group. All
         /// acceleration structures in the instance hierarchy must share the same group.
         #[deprecated]
-        #[method(initWithGroup:)]
+        #[unsafe(method(initWithGroup:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithGroup(
             this: Allocated<Self>,
@@ -360,7 +360,7 @@ extern_methods!(
         /// vertex buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with
         /// the acceleration structure instead.
         #[deprecated]
-        #[method(initWithCoder:group:)]
+        #[unsafe(method(initWithCoder:group:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_group(
             this: Allocated<Self>,
@@ -386,7 +386,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -403,7 +403,7 @@ extern_methods!(
         feature = "MPSKernel"
     ))]
     unsafe impl MPSPolygonAccelerationStructure {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

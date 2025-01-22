@@ -78,13 +78,13 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLQuoteElement {
         #[deprecated]
-        #[method(cite)]
+        #[unsafe(method(cite))]
         #[unsafe(method_family = none)]
         pub unsafe fn cite(&self) -> Retained<NSString>;
 
         /// Setter for [`cite`][Self::cite].
         #[deprecated]
-        #[method(setCite:)]
+        #[unsafe(method(setCite:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCite(&self, cite: Option<&NSString>);
     }
@@ -101,7 +101,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLQuoteElement {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -117,7 +117,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLQuoteElement {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

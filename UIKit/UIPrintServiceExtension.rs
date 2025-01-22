@@ -23,34 +23,34 @@ unsafe impl NSSecureCoding for UIPrinterDestination {}
 
 extern_methods!(
     unsafe impl UIPrinterDestination {
-        #[method(initWithURL:)]
+        #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// Setter for [`URL`][Self::URL].
-        #[method(setURL:)]
+        #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: &NSURL);
 
-        #[method(displayName)]
+        #[unsafe(method(displayName))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`displayName`][Self::displayName].
-        #[method(setDisplayName:)]
+        #[unsafe(method(setDisplayName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayName(&self, display_name: Option<&NSString>);
 
-        #[method(txtRecord)]
+        #[unsafe(method(txtRecord))]
         #[unsafe(method_family = none)]
         pub unsafe fn txtRecord(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`txtRecord`][Self::txtRecord].
-        #[method(setTxtRecord:)]
+        #[unsafe(method(setTxtRecord:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTxtRecord(&self, txt_record: Option<&NSData>);
     }
@@ -59,11 +59,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrinterDestination {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -82,7 +82,7 @@ unsafe impl NSObjectProtocol for UIPrintServiceExtension {}
 extern_methods!(
     unsafe impl UIPrintServiceExtension {
         #[cfg(feature = "UIPrintInfo")]
-        #[method(printerDestinationsForPrintInfo:)]
+        #[unsafe(method(printerDestinationsForPrintInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn printerDestinationsForPrintInfo(
             &self,
@@ -94,11 +94,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrintServiceExtension {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

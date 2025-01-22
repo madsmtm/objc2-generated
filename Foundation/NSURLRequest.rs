@@ -239,14 +239,14 @@ extern_methods!(
         /// Parameter `URL`: The URL for the request.
         ///
         /// Returns: A newly-created and autoreleased NSURLRequest instance.
-        #[method(requestWithURL:)]
+        #[unsafe(method(requestWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestWithURL(url: &NSURL) -> Retained<Self>;
 
         /// Indicates that NSURLRequest implements the NSSecureCoding protocol.
         ///
         /// Returns: A BOOL value set to YES.
-        #[method(supportsSecureCoding)]
+        #[unsafe(method(supportsSecureCoding))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsSecureCoding() -> bool;
 
@@ -267,7 +267,7 @@ extern_methods!(
         /// timeout intervals.
         ///
         /// Returns: A newly-created and autoreleased NSURLRequest instance.
-        #[method(requestWithURL:cachePolicy:timeoutInterval:)]
+        #[unsafe(method(requestWithURL:cachePolicy:timeoutInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestWithURL_cachePolicy_timeoutInterval(
             url: &NSURL,
@@ -285,7 +285,7 @@ extern_methods!(
         /// Parameter `URL`: The URL for the request.
         ///
         /// Returns: An initialized NSURLRequest.
-        #[method(initWithURL:)]
+        #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
@@ -309,7 +309,7 @@ extern_methods!(
         /// timeout intervals.
         ///
         /// Returns: An initialized NSURLRequest.
-        #[method(initWithURL:cachePolicy:timeoutInterval:)]
+        #[unsafe(method(initWithURL:cachePolicy:timeoutInterval:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_cachePolicy_timeoutInterval(
             this: Allocated<Self>,
@@ -322,14 +322,14 @@ extern_methods!(
         /// Returns the URL of the receiver.
         ///
         /// Returns: The URL of the receiver.
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Returns the cache policy of the receiver.
         ///
         /// Returns: The cache policy of the receiver.
-        #[method(cachePolicy)]
+        #[unsafe(method(cachePolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn cachePolicy(&self) -> NSURLRequestCachePolicy;
 
@@ -348,7 +348,7 @@ extern_methods!(
         /// in seconds.
         ///
         /// Returns: The timeout interval of the receiver.
-        #[method(timeoutInterval)]
+        #[unsafe(method(timeoutInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeoutInterval(&self) -> NSTimeInterval;
 
@@ -361,7 +361,7 @@ extern_methods!(
         /// See setMainDocumentURL:
         ///
         /// Returns: The main document URL.
-        #[method(mainDocumentURL)]
+        #[unsafe(method(mainDocumentURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn mainDocumentURL(&self) -> Option<Retained<NSURL>>;
 
@@ -371,7 +371,7 @@ extern_methods!(
         /// not explicitly set a networkServiceType (using the setNetworkServiceType method).
         ///
         /// Returns: The NSURLRequestNetworkServiceType associated with this request.
-        #[method(networkServiceType)]
+        #[unsafe(method(networkServiceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkServiceType(&self) -> NSURLRequestNetworkServiceType;
 
@@ -380,7 +380,7 @@ extern_methods!(
         ///
         /// Returns: YES if the receiver is allowed to use the built in cellular radios to
         /// satisfy the request, NO otherwise.
-        #[method(allowsCellularAccess)]
+        #[unsafe(method(allowsCellularAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsCellularAccess(&self) -> bool;
 
@@ -389,7 +389,7 @@ extern_methods!(
         ///
         /// Returns: YES if the receiver is allowed to use an interface marked as expensive to
         /// satisfy the request, NO otherwise.
-        #[method(allowsExpensiveNetworkAccess)]
+        #[unsafe(method(allowsExpensiveNetworkAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsExpensiveNetworkAccess(&self) -> bool;
 
@@ -398,7 +398,7 @@ extern_methods!(
         ///
         /// Returns: YES if the receiver is allowed to use an interface marked as constrained to
         /// satisfy the request, NO otherwise.
-        #[method(allowsConstrainedNetworkAccess)]
+        #[unsafe(method(allowsConstrainedNetworkAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsConstrainedNetworkAccess(&self) -> bool;
 
@@ -407,7 +407,7 @@ extern_methods!(
         ///
         /// Returns: YES if server endpoint is known to support HTTP/3. Defaults to NO.
         /// The default may be YES in a future OS update.
-        #[method(assumesHTTP3Capable)]
+        #[unsafe(method(assumesHTTP3Capable))]
         #[unsafe(method_family = none)]
         pub unsafe fn assumesHTTP3Capable(&self) -> bool;
 
@@ -417,7 +417,7 @@ extern_methods!(
         /// have not explicitly set an attribution.
         ///
         /// Returns: The NSURLRequestAttribution associated with this request.
-        #[method(attribution)]
+        #[unsafe(method(attribution))]
         #[unsafe(method_family = none)]
         pub unsafe fn attribution(&self) -> NSURLRequestAttribution;
 
@@ -425,7 +425,7 @@ extern_methods!(
         ///
         /// YES, if the DNS lookup for this request should require DNSSEC validation,
         /// No otherwise. Defaults to NO.
-        #[method(requiresDNSSECValidation)]
+        #[unsafe(method(requiresDNSSECValidation))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresDNSSECValidation(&self) -> bool;
 
@@ -435,12 +435,12 @@ extern_methods!(
         ///
         /// YES, if the DNS lookup for this request is allowed to use a persistent per-process cache,
         /// NO otherwise. Defaults to NO.
-        #[method(allowsPersistentDNS)]
+        #[unsafe(method(allowsPersistentDNS))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsPersistentDNS(&self) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method(cookiePartitionIdentifier)]
+        #[unsafe(method(cookiePartitionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn cookiePartitionIdentifier(&self) -> Option<Retained<NSString>>;
     }
@@ -449,11 +449,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -524,23 +524,23 @@ extern_methods!(
     unsafe impl NSMutableURLRequest {
         #[cfg(feature = "NSURL")]
         /// The URL of the receiver.
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
         /// Setter for [`URL`][Self::URL].
-        #[method(setURL:)]
+        #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         /// The cache policy of the receiver.
-        #[method(cachePolicy)]
+        #[unsafe(method(cachePolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn cachePolicy(&self) -> NSURLRequestCachePolicy;
 
         /// Setter for [`cachePolicy`][Self::cachePolicy].
-        #[method(setCachePolicy:)]
+        #[unsafe(method(setCachePolicy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCachePolicy(&self, cache_policy: NSURLRequestCachePolicy);
 
@@ -557,13 +557,13 @@ extern_methods!(
         /// becomes greater than or equal to the timeout interval, the request
         /// is considered to have timed out. This timeout interval is measured
         /// in seconds.
-        #[method(timeoutInterval)]
+        #[unsafe(method(timeoutInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeoutInterval(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`timeoutInterval`][Self::timeoutInterval].
-        #[method(setTimeoutInterval:)]
+        #[unsafe(method(setTimeoutInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeoutInterval(&self, timeout_interval: NSTimeInterval);
 
@@ -577,13 +577,13 @@ extern_methods!(
         /// from same domain as main document" policy, attributing this request
         /// as a sub-resource of a user-specified URL, and possibly other things
         /// in the future.
-        #[method(mainDocumentURL)]
+        #[unsafe(method(mainDocumentURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn mainDocumentURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
         /// Setter for [`mainDocumentURL`][Self::mainDocumentURL].
-        #[method(setMainDocumentURL:)]
+        #[unsafe(method(setMainDocumentURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMainDocumentURL(&self, main_document_url: Option<&NSURL>);
 
@@ -591,12 +591,12 @@ extern_methods!(
         ///
         /// This method is used to provide the network layers with a hint as to the purpose
         /// of the request.  Most clients should not need to use this method.
-        #[method(networkServiceType)]
+        #[unsafe(method(networkServiceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkServiceType(&self) -> NSURLRequestNetworkServiceType;
 
         /// Setter for [`networkServiceType`][Self::networkServiceType].
-        #[method(setNetworkServiceType:)]
+        #[unsafe(method(setNetworkServiceType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNetworkServiceType(
             &self,
@@ -608,12 +608,12 @@ extern_methods!(
         ///
         /// NO if the receiver should not be allowed to use the built in
         /// cellular radios to satisfy the request, YES otherwise.  The default is YES.
-        #[method(allowsCellularAccess)]
+        #[unsafe(method(allowsCellularAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsCellularAccess(&self) -> bool;
 
         /// Setter for [`allowsCellularAccess`][Self::allowsCellularAccess].
-        #[method(setAllowsCellularAccess:)]
+        #[unsafe(method(setAllowsCellularAccess:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCellularAccess(&self, allows_cellular_access: bool);
 
@@ -622,12 +622,12 @@ extern_methods!(
         ///
         /// NO if the receiver should not be allowed to use an interface marked as expensive to
         /// satisfy the request, YES otherwise.
-        #[method(allowsExpensiveNetworkAccess)]
+        #[unsafe(method(allowsExpensiveNetworkAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsExpensiveNetworkAccess(&self) -> bool;
 
         /// Setter for [`allowsExpensiveNetworkAccess`][Self::allowsExpensiveNetworkAccess].
-        #[method(setAllowsExpensiveNetworkAccess:)]
+        #[unsafe(method(setAllowsExpensiveNetworkAccess:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsExpensiveNetworkAccess(&self, allows_expensive_network_access: bool);
 
@@ -636,12 +636,12 @@ extern_methods!(
         ///
         /// NO if the receiver should not be allowed to use an interface marked as constrained to
         /// satisfy the request, YES otherwise.
-        #[method(allowsConstrainedNetworkAccess)]
+        #[unsafe(method(allowsConstrainedNetworkAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsConstrainedNetworkAccess(&self) -> bool;
 
         /// Setter for [`allowsConstrainedNetworkAccess`][Self::allowsConstrainedNetworkAccess].
-        #[method(setAllowsConstrainedNetworkAccess:)]
+        #[unsafe(method(setAllowsConstrainedNetworkAccess:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsConstrainedNetworkAccess(
             &self,
@@ -653,12 +653,12 @@ extern_methods!(
         ///
         /// Returns: YES if server endpoint is known to support HTTP/3. Defaults to NO.
         /// The default may be YES in a future OS update.
-        #[method(assumesHTTP3Capable)]
+        #[unsafe(method(assumesHTTP3Capable))]
         #[unsafe(method_family = none)]
         pub unsafe fn assumesHTTP3Capable(&self) -> bool;
 
         /// Setter for [`assumesHTTP3Capable`][Self::assumesHTTP3Capable].
-        #[method(setAssumesHTTP3Capable:)]
+        #[unsafe(method(setAssumesHTTP3Capable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAssumesHTTP3Capable(&self, assumes_http3_capable: bool);
 
@@ -666,12 +666,12 @@ extern_methods!(
         ///
         /// Set to NSURLRequestAttributionUser if the URL was specified by the
         /// user. Defaults to NSURLRequestAttributionDeveloper.
-        #[method(attribution)]
+        #[unsafe(method(attribution))]
         #[unsafe(method_family = none)]
         pub unsafe fn attribution(&self) -> NSURLRequestAttribution;
 
         /// Setter for [`attribution`][Self::attribution].
-        #[method(setAttribution:)]
+        #[unsafe(method(setAttribution:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttribution(&self, attribution: NSURLRequestAttribution);
 
@@ -679,12 +679,12 @@ extern_methods!(
         ///
         /// YES, if the DNS lookup for this request should require DNSSEC validation,
         /// No otherwise. Defaults to NO.
-        #[method(requiresDNSSECValidation)]
+        #[unsafe(method(requiresDNSSECValidation))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresDNSSECValidation(&self) -> bool;
 
         /// Setter for [`requiresDNSSECValidation`][Self::requiresDNSSECValidation].
-        #[method(setRequiresDNSSECValidation:)]
+        #[unsafe(method(setRequiresDNSSECValidation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiresDNSSECValidation(&self, requires_dnssec_validation: bool);
 
@@ -694,23 +694,23 @@ extern_methods!(
         ///
         /// YES, if the DNS lookup for this request is allowed to use a persistent per-process cache,
         /// NO otherwise. Defaults to NO.
-        #[method(allowsPersistentDNS)]
+        #[unsafe(method(allowsPersistentDNS))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsPersistentDNS(&self) -> bool;
 
         /// Setter for [`allowsPersistentDNS`][Self::allowsPersistentDNS].
-        #[method(setAllowsPersistentDNS:)]
+        #[unsafe(method(setAllowsPersistentDNS:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsPersistentDNS(&self, allows_persistent_dns: bool);
 
         #[cfg(feature = "NSString")]
-        #[method(cookiePartitionIdentifier)]
+        #[unsafe(method(cookiePartitionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn cookiePartitionIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`cookiePartitionIdentifier`][Self::cookiePartitionIdentifier].
-        #[method(setCookiePartitionIdentifier:)]
+        #[unsafe(method(setCookiePartitionIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCookiePartitionIdentifier(
             &self,
@@ -733,7 +733,7 @@ extern_methods!(
         /// Parameter `URL`: The URL for the request.
         ///
         /// Returns: A newly-created and autoreleased NSURLRequest instance.
-        #[method(requestWithURL:)]
+        #[unsafe(method(requestWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestWithURL(url: &NSURL) -> Retained<Self>;
 
@@ -754,7 +754,7 @@ extern_methods!(
         /// timeout intervals.
         ///
         /// Returns: A newly-created and autoreleased NSURLRequest instance.
-        #[method(requestWithURL:cachePolicy:timeoutInterval:)]
+        #[unsafe(method(requestWithURL:cachePolicy:timeoutInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestWithURL_cachePolicy_timeoutInterval(
             url: &NSURL,
@@ -772,7 +772,7 @@ extern_methods!(
         /// Parameter `URL`: The URL for the request.
         ///
         /// Returns: An initialized NSURLRequest.
-        #[method(initWithURL:)]
+        #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
@@ -796,7 +796,7 @@ extern_methods!(
         /// timeout intervals.
         ///
         /// Returns: An initialized NSURLRequest.
-        #[method(initWithURL:cachePolicy:timeoutInterval:)]
+        #[unsafe(method(initWithURL:cachePolicy:timeoutInterval:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_cachePolicy_timeoutInterval(
             this: Allocated<Self>,
@@ -810,11 +810,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMutableURLRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -829,7 +829,7 @@ extern_methods!(
         /// Returns the HTTP request method of the receiver.
         ///
         /// Returns: the HTTP request method of the receiver.
-        #[method(HTTPMethod)]
+        #[unsafe(method(HTTPMethod))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPMethod(&self) -> Option<Retained<NSString>>;
 
@@ -839,7 +839,7 @@ extern_methods!(
         ///
         /// Returns: a dictionary containing all the HTTP header fields of the
         /// receiver.
-        #[method(allHTTPHeaderFields)]
+        #[unsafe(method(allHTTPHeaderFields))]
         #[unsafe(method_family = none)]
         pub unsafe fn allHTTPHeaderFields(
             &self,
@@ -855,7 +855,7 @@ extern_methods!(
         ///
         /// Returns: the value associated with the given header field, or nil if
         /// there is no value associated with the given header field.
-        #[method(valueForHTTPHeaderField:)]
+        #[unsafe(method(valueForHTTPHeaderField:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueForHTTPHeaderField(
             &self,
@@ -869,7 +869,7 @@ extern_methods!(
         /// in done in an HTTP POST request.
         ///
         /// Returns: The request body data of the receiver.
-        #[method(HTTPBody)]
+        #[unsafe(method(HTTPBody))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPBody(&self) -> Option<Retained<NSData>>;
 
@@ -885,7 +885,7 @@ extern_methods!(
         /// NSCoding protocol
         ///
         /// Returns: The request body stream of the receiver.
-        #[method(HTTPBodyStream)]
+        #[unsafe(method(HTTPBodyStream))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPBodyStream(&self) -> Option<Retained<NSInputStream>>;
 
@@ -896,7 +896,7 @@ extern_methods!(
         ///
         /// Returns: YES if cookies will be sent with and set for this request;
         /// otherwise NO.
-        #[method(HTTPShouldHandleCookies)]
+        #[unsafe(method(HTTPShouldHandleCookies))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPShouldHandleCookies(&self) -> bool;
 
@@ -906,7 +906,7 @@ extern_methods!(
         /// Returns: YES if the receiver should transmit before the previous response
         /// is received.  NO if the receiver should wait for the previous response
         /// before transmitting.
-        #[method(HTTPShouldUsePipelining)]
+        #[unsafe(method(HTTPShouldUsePipelining))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPShouldUsePipelining(&self) -> bool;
     }
@@ -919,13 +919,13 @@ extern_methods!(
     unsafe impl NSMutableURLRequest {
         #[cfg(feature = "NSString")]
         /// Sets the HTTP request method of the receiver.
-        #[method(HTTPMethod)]
+        #[unsafe(method(HTTPMethod))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPMethod(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`HTTPMethod`][Self::HTTPMethod].
-        #[method(setHTTPMethod:)]
+        #[unsafe(method(setHTTPMethod:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPMethod(&self, http_method: &NSString);
 
@@ -945,7 +945,7 @@ extern_methods!(
         /// message. If either
         /// the key or value for a key-value pair answers NO when sent this
         /// message, the key-value pair is skipped.
-        #[method(allHTTPHeaderFields)]
+        #[unsafe(method(allHTTPHeaderFields))]
         #[unsafe(method_family = none)]
         pub unsafe fn allHTTPHeaderFields(
             &self,
@@ -953,7 +953,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`allHTTPHeaderFields`][Self::allHTTPHeaderFields].
-        #[method(setAllHTTPHeaderFields:)]
+        #[unsafe(method(setAllHTTPHeaderFields:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllHTTPHeaderFields(
             &self,
@@ -971,7 +971,7 @@ extern_methods!(
         /// Parameter `value`: the header field value.
         ///
         /// Parameter `field`: the header field name (case-insensitive).
-        #[method(setValue:forHTTPHeaderField:)]
+        #[unsafe(method(setValue:forHTTPHeaderField:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forHTTPHeaderField(
             &self,
@@ -994,7 +994,7 @@ extern_methods!(
         /// Parameter `value`: the header field value.
         ///
         /// Parameter `field`: the header field name (case-insensitive).
-        #[method(addValue:forHTTPHeaderField:)]
+        #[unsafe(method(addValue:forHTTPHeaderField:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addValue_forHTTPHeaderField(&self, value: &NSString, field: &NSString);
 
@@ -1003,13 +1003,13 @@ extern_methods!(
         ///
         /// This data is sent as the message body of the request, as
         /// in done in an HTTP POST request.
-        #[method(HTTPBody)]
+        #[unsafe(method(HTTPBody))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPBody(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSData")]
         /// Setter for [`HTTPBody`][Self::HTTPBody].
-        #[method(setHTTPBody:)]
+        #[unsafe(method(setHTTPBody:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPBody(&self, http_body: Option<&NSData>);
 
@@ -1021,13 +1021,13 @@ extern_methods!(
         /// transmitted as the HTTP body of the request.  Note that the body stream
         /// and the body data (set by setHTTPBody:, above) are mutually exclusive
         /// - setting one will clear the other.
-        #[method(HTTPBodyStream)]
+        #[unsafe(method(HTTPBodyStream))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPBodyStream(&self) -> Option<Retained<NSInputStream>>;
 
         #[cfg(feature = "NSStream")]
         /// Setter for [`HTTPBodyStream`][Self::HTTPBodyStream].
-        #[method(setHTTPBodyStream:)]
+        #[unsafe(method(setHTTPBodyStream:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPBodyStream(&self, http_body_stream: Option<&NSInputStream>);
 
@@ -1038,12 +1038,12 @@ extern_methods!(
         /// The default is YES - in other words, cookies are sent from and
         /// stored to the cookie manager by default.
         /// NOTE: In releases prior to 10.3, this value is ignored
-        #[method(HTTPShouldHandleCookies)]
+        #[unsafe(method(HTTPShouldHandleCookies))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPShouldHandleCookies(&self) -> bool;
 
         /// Setter for [`HTTPShouldHandleCookies`][Self::HTTPShouldHandleCookies].
-        #[method(setHTTPShouldHandleCookies:)]
+        #[unsafe(method(setHTTPShouldHandleCookies:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPShouldHandleCookies(&self, http_should_handle_cookies: bool);
 
@@ -1062,12 +1062,12 @@ extern_methods!(
         /// some servers report themselves as being HTTP 1.1 but do not support
         /// pipelining (disconnecting, sending resources misordered, omitting part of
         /// a resource, etc.).
-        #[method(HTTPShouldUsePipelining)]
+        #[unsafe(method(HTTPShouldUsePipelining))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPShouldUsePipelining(&self) -> bool;
 
         /// Setter for [`HTTPShouldUsePipelining`][Self::HTTPShouldUsePipelining].
-        #[method(setHTTPShouldUsePipelining:)]
+        #[unsafe(method(setHTTPShouldUsePipelining:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPShouldUsePipelining(&self, http_should_use_pipelining: bool);
     }

@@ -9,11 +9,11 @@ extern_methods!(
     /// CLVisitExtensions
     #[cfg(feature = "CLLocationManager")]
     unsafe impl CLLocationManager {
-        #[method(startMonitoringVisits)]
+        #[unsafe(method(startMonitoringVisits))]
         #[unsafe(method_family = none)]
         pub unsafe fn startMonitoringVisits(&self);
 
-        #[method(stopMonitoringVisits)]
+        #[unsafe(method(stopMonitoringVisits))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopMonitoringVisits(&self);
     }

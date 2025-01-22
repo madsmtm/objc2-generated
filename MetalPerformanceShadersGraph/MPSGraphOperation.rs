@@ -35,34 +35,34 @@ extern_methods!(
     unsafe impl MPSGraphOperation {
         #[cfg(feature = "MPSGraphTensor")]
         /// The input tensors of the operation.
-        #[method(inputTensors)]
+        #[unsafe(method(inputTensors))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputTensors(&self) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(feature = "MPSGraphTensor")]
         /// The output tensors of the operation.
-        #[method(outputTensors)]
+        #[unsafe(method(outputTensors))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputTensors(&self) -> Retained<NSArray<MPSGraphTensor>>;
 
         /// The set of operations guaranteed to execute before this operation.
-        #[method(controlDependencies)]
+        #[unsafe(method(controlDependencies))]
         #[unsafe(method_family = none)]
         pub unsafe fn controlDependencies(&self) -> Retained<NSArray<MPSGraphOperation>>;
 
         #[cfg(feature = "MPSGraph")]
         /// The graph on which the operation is defined.
-        #[method(graph)]
+        #[unsafe(method(graph))]
         #[unsafe(method_family = none)]
         pub unsafe fn graph(&self) -> Retained<MPSGraph>;
 
         /// Name of the operation.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Unavailable, please utilize graph methods to create and initialize operations.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -72,7 +72,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphOperation {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

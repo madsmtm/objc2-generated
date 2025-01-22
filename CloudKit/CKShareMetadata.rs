@@ -27,64 +27,64 @@ unsafe impl NSSecureCoding for CKShareMetadata {}
 
 extern_methods!(
     unsafe impl CKShareMetadata {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(containerIdentifier)]
+        #[unsafe(method(containerIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn containerIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKShare"))]
-        #[method(share)]
+        #[unsafe(method(share))]
         #[unsafe(method_family = none)]
         pub unsafe fn share(&self) -> Retained<CKShare>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method(hierarchicalRootRecordID)]
+        #[unsafe(method(hierarchicalRootRecordID))]
         #[unsafe(method_family = none)]
         pub unsafe fn hierarchicalRootRecordID(&self) -> Option<Retained<CKRecordID>>;
 
         #[cfg(feature = "CKShareParticipant")]
         /// These properties reflect the participant properties of the user invoking CKFetchShareMetadataOperation
-        #[method(participantRole)]
+        #[unsafe(method(participantRole))]
         #[unsafe(method_family = none)]
         pub unsafe fn participantRole(&self) -> CKShareParticipantRole;
 
         #[cfg(feature = "CKShareParticipant")]
-        #[method(participantStatus)]
+        #[unsafe(method(participantStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn participantStatus(&self) -> CKShareParticipantAcceptanceStatus;
 
         #[cfg(feature = "CKShareParticipant")]
-        #[method(participantPermission)]
+        #[unsafe(method(participantPermission))]
         #[unsafe(method_family = none)]
         pub unsafe fn participantPermission(&self) -> CKShareParticipantPermission;
 
         #[cfg(feature = "CKUserIdentity")]
-        #[method(ownerIdentity)]
+        #[unsafe(method(ownerIdentity))]
         #[unsafe(method_family = none)]
         pub unsafe fn ownerIdentity(&self) -> Retained<CKUserIdentity>;
 
         #[cfg(feature = "CKRecord")]
         /// This is only present if the share metadata was returned from a CKFetchShareMetadataOperation with shouldFetchRootRecord set to YES
-        #[method(rootRecord)]
+        #[unsafe(method(rootRecord))]
         #[unsafe(method_family = none)]
         pub unsafe fn rootRecord(&self) -> Option<Retained<CKRecord>>;
 
         #[cfg(feature = "CKShareParticipant")]
         #[deprecated]
-        #[method(participantType)]
+        #[unsafe(method(participantType))]
         #[unsafe(method_family = none)]
         pub unsafe fn participantType(&self) -> CKShareParticipantType;
 
         #[cfg(feature = "CKRecordID")]
         #[deprecated]
-        #[method(rootRecordID)]
+        #[unsafe(method(rootRecordID))]
         #[unsafe(method_family = none)]
         pub unsafe fn rootRecordID(&self) -> Retained<CKRecordID>;
     }

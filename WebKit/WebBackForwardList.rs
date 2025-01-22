@@ -36,19 +36,19 @@ extern_methods!(
         /// forward list will be dropped at this point.  In addition, entries may be dropped to keep
         /// the size of the list within the maximum size.
         #[deprecated]
-        #[method(addItem:)]
+        #[unsafe(method(addItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addItem(&self, item: Option<&WebHistoryItem>);
 
         /// Move the current pointer back to the entry before the current entry.
         #[deprecated]
-        #[method(goBack)]
+        #[unsafe(method(goBack))]
         #[unsafe(method_family = none)]
         pub unsafe fn goBack(&self);
 
         /// Move the current pointer ahead to the entry after the current entry.
         #[deprecated]
-        #[method(goForward)]
+        #[unsafe(method(goForward))]
         #[unsafe(method_family = none)]
         pub unsafe fn goForward(&self);
 
@@ -57,28 +57,28 @@ extern_methods!(
         ///
         /// Parameter `item`: The history item to move the pointer to
         #[deprecated]
-        #[method(goToItem:)]
+        #[unsafe(method(goToItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn goToItem(&self, item: Option<&WebHistoryItem>);
 
         #[cfg(feature = "WebHistoryItem")]
         /// The entry right before the current entry, or nil if there isn't one.
         #[deprecated]
-        #[method(backItem)]
+        #[unsafe(method(backItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn backItem(&self) -> Option<Retained<WebHistoryItem>>;
 
         #[cfg(feature = "WebHistoryItem")]
         /// Returns the current entry.
         #[deprecated]
-        #[method(currentItem)]
+        #[unsafe(method(currentItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentItem(&self) -> Option<Retained<WebHistoryItem>>;
 
         #[cfg(feature = "WebHistoryItem")]
         /// The entry right after the current entry, or nil if there isn't one.
         #[deprecated]
-        #[method(forwardItem)]
+        #[unsafe(method(forwardItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn forwardItem(&self) -> Option<Retained<WebHistoryItem>>;
 
@@ -88,7 +88,7 @@ extern_methods!(
         ///
         /// Returns: An array of items before the current entry, or nil if there are none.  The entries are in the order that they were originally visited.
         #[deprecated]
-        #[method(backListWithLimit:)]
+        #[unsafe(method(backListWithLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn backListWithLimit(&self, limit: c_int) -> Option<Retained<NSArray>>;
 
@@ -98,31 +98,31 @@ extern_methods!(
         ///
         /// Returns: An array of items after the current entry, or nil if there are none.  The entries are in the order that they were originally visited.
         #[deprecated]
-        #[method(forwardListWithLimit:)]
+        #[unsafe(method(forwardListWithLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn forwardListWithLimit(&self, limit: c_int) -> Option<Retained<NSArray>>;
 
         /// The list's maximum size.
         #[deprecated]
-        #[method(capacity)]
+        #[unsafe(method(capacity))]
         #[unsafe(method_family = none)]
         pub unsafe fn capacity(&self) -> c_int;
 
         /// Setter for [`capacity`][Self::capacity].
         #[deprecated]
-        #[method(setCapacity:)]
+        #[unsafe(method(setCapacity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCapacity(&self, capacity: c_int);
 
         /// The number of items in the list.
         #[deprecated]
-        #[method(backListCount)]
+        #[unsafe(method(backListCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn backListCount(&self) -> c_int;
 
         /// Returns: The number of items in the list.
         #[deprecated]
-        #[method(forwardListCount)]
+        #[unsafe(method(forwardListCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn forwardListCount(&self) -> c_int;
 
@@ -131,7 +131,7 @@ extern_methods!(
         ///
         /// Returns: Returns YES if the item is in the list.
         #[deprecated]
-        #[method(containsItem:)]
+        #[unsafe(method(containsItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsItem(&self, item: Option<&WebHistoryItem>) -> bool;
 
@@ -142,7 +142,7 @@ extern_methods!(
         ///
         /// Returns: The entry the given distance from the current entry. If index exceeds the limits of the list, nil is returned.
         #[deprecated]
-        #[method(itemAtIndex:)]
+        #[unsafe(method(itemAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemAtIndex(&self, index: c_int) -> Option<Retained<WebHistoryItem>>;
     }
@@ -151,11 +151,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebBackForwardList {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -170,7 +170,7 @@ extern_methods!(
         /// Parameter `size`: If size is 0, the WebView associated with this WebBackForwardList
         /// will not use the shared page cache. Otherwise, it will.
         #[deprecated]
-        #[method(setPageCacheSize:)]
+        #[unsafe(method(setPageCacheSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPageCacheSize(&self, size: NSUInteger);
 
@@ -179,7 +179,7 @@ extern_methods!(
         /// Returns: The size of the shared page cache (in pages), or 0 if the WebView
         /// associated with this WebBackForwardList will not use the shared page cache.
         #[deprecated]
-        #[method(pageCacheSize)]
+        #[unsafe(method(pageCacheSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn pageCacheSize(&self) -> NSUInteger;
     }

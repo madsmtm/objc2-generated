@@ -34,21 +34,21 @@ extern_methods!(
     unsafe impl MXCPUExceptionDiagnostic {
         #[cfg(feature = "MXCallStackTree")]
         /// The application call stack tree associated with the excessive CPU consumption.
-        #[method(callStackTree)]
+        #[unsafe(method(callStackTree))]
         #[unsafe(method_family = none)]
         pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
 
         /// Total CPU time consumed in the scope of this CPU exception.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[method(totalCPUTime)]
+        #[unsafe(method(totalCPUTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalCPUTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         /// Total time that the application was sampled for during the CPU exception.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[method(totalSampledTime)]
+        #[unsafe(method(totalSampledTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalSampledTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
     }
@@ -58,11 +58,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXCPUExceptionDiagnostic {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

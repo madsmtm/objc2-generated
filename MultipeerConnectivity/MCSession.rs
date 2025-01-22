@@ -93,12 +93,12 @@ unsafe impl NSObjectProtocol for MCSession {}
 extern_methods!(
     unsafe impl MCSession {
         #[cfg(feature = "MCPeerID")]
-        #[method(initWithPeer:)]
+        #[unsafe(method(initWithPeer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPeer(this: Allocated<Self>, my_peer_id: &MCPeerID) -> Retained<Self>;
 
         #[cfg(feature = "MCPeerID")]
-        #[method(initWithPeer:securityIdentity:encryptionPreference:)]
+        #[unsafe(method(initWithPeer:securityIdentity:encryptionPreference:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPeer_securityIdentity_encryptionPreference(
             this: Allocated<Self>,
@@ -108,7 +108,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MCPeerID")]
-        #[method(sendData:toPeers:withMode:error:_)]
+        #[unsafe(method(sendData:toPeers:withMode:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendData_toPeers_withMode_error(
             &self,
@@ -117,12 +117,12 @@ extern_methods!(
             mode: MCSessionSendDataMode,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method(disconnect)]
+        #[unsafe(method(disconnect))]
         #[unsafe(method_family = none)]
         pub unsafe fn disconnect(&self);
 
         #[cfg(all(feature = "MCPeerID", feature = "block2"))]
-        #[method(sendResourceAtURL:withName:toPeer:withCompletionHandler:)]
+        #[unsafe(method(sendResourceAtURL:withName:toPeer:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendResourceAtURL_withName_toPeer_withCompletionHandler(
             &self,
@@ -133,7 +133,7 @@ extern_methods!(
         ) -> Option<Retained<NSProgress>>;
 
         #[cfg(feature = "MCPeerID")]
-        #[method(startStreamWithName:toPeer:error:_)]
+        #[unsafe(method(startStreamWithName:toPeer:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn startStreamWithName_toPeer_error(
             &self,
@@ -141,31 +141,31 @@ extern_methods!(
             peer_id: &MCPeerID,
         ) -> Result<Retained<NSOutputStream>, Retained<NSError>>;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn MCSessionDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn MCSessionDelegate>>);
 
         #[cfg(feature = "MCPeerID")]
-        #[method(myPeerID)]
+        #[unsafe(method(myPeerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn myPeerID(&self) -> Retained<MCPeerID>;
 
-        #[method(securityIdentity)]
+        #[unsafe(method(securityIdentity))]
         #[unsafe(method_family = none)]
         pub unsafe fn securityIdentity(&self) -> Option<Retained<NSArray>>;
 
-        #[method(encryptionPreference)]
+        #[unsafe(method(encryptionPreference))]
         #[unsafe(method_family = none)]
         pub unsafe fn encryptionPreference(&self) -> MCEncryptionPreference;
 
         #[cfg(feature = "MCPeerID")]
-        #[method(connectedPeers)]
+        #[unsafe(method(connectedPeers))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectedPeers(&self) -> Retained<NSArray<MCPeerID>>;
     }
@@ -174,11 +174,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MCSession {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -188,7 +188,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessiondelegate?language=objc)
     pub unsafe trait MCSessionDelegate: NSObjectProtocol {
         #[cfg(feature = "MCPeerID")]
-        #[method(session:peer:didChangeState:)]
+        #[unsafe(method(session:peer:didChangeState:))]
         #[unsafe(method_family = none)]
         unsafe fn session_peer_didChangeState(
             &self,
@@ -198,7 +198,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MCPeerID")]
-        #[method(session:didReceiveData:fromPeer:)]
+        #[unsafe(method(session:didReceiveData:fromPeer:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didReceiveData_fromPeer(
             &self,
@@ -208,7 +208,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MCPeerID")]
-        #[method(session:didReceiveStream:withName:fromPeer:)]
+        #[unsafe(method(session:didReceiveStream:withName:fromPeer:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didReceiveStream_withName_fromPeer(
             &self,
@@ -219,7 +219,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MCPeerID")]
-        #[method(session:didStartReceivingResourceWithName:fromPeer:withProgress:)]
+        #[unsafe(method(session:didStartReceivingResourceWithName:fromPeer:withProgress:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didStartReceivingResourceWithName_fromPeer_withProgress(
             &self,
@@ -230,7 +230,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MCPeerID")]
-        #[method(session:didFinishReceivingResourceWithName:fromPeer:atURL:withError:)]
+        #[unsafe(method(session:didFinishReceivingResourceWithName:fromPeer:atURL:withError:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didFinishReceivingResourceWithName_fromPeer_atURL_withError(
             &self,
@@ -243,7 +243,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "MCPeerID", feature = "block2"))]
         #[optional]
-        #[method(session:didReceiveCertificate:fromPeer:certificateHandler:)]
+        #[unsafe(method(session:didReceiveCertificate:fromPeer:certificateHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didReceiveCertificate_fromPeer_certificateHandler(
             &self,
@@ -259,7 +259,7 @@ extern_methods!(
     /// MCSessionCustomDiscovery
     unsafe impl MCSession {
         #[cfg(all(feature = "MCPeerID", feature = "block2"))]
-        #[method(nearbyConnectionDataForPeer:withCompletionHandler:)]
+        #[unsafe(method(nearbyConnectionDataForPeer:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nearbyConnectionDataForPeer_withCompletionHandler(
             &self,
@@ -268,7 +268,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "MCPeerID")]
-        #[method(connectPeer:withNearbyConnectionData:)]
+        #[unsafe(method(connectPeer:withNearbyConnectionData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectPeer_withNearbyConnectionData(
             &self,
@@ -277,7 +277,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "MCPeerID")]
-        #[method(cancelConnectPeer:)]
+        #[unsafe(method(cancelConnectPeer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelConnectPeer(&self, peer_id: &MCPeerID);
     }

@@ -58,7 +58,7 @@ extern_methods!(
         ///
         /// - Parameters:
         /// - handler: Block to access the state buffer through `MLMultiArray`.
-        #[method(getMultiArrayForStateNamed:handler:)]
+        #[unsafe(method(getMultiArrayForStateNamed:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getMultiArrayForStateNamed_handler(
             &self,
@@ -66,11 +66,11 @@ extern_methods!(
             handler: &block2::Block<dyn Fn(NonNull<MLMultiArray>) + '_>,
         );
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

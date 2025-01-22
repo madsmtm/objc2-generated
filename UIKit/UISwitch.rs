@@ -124,98 +124,98 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISwitch {
         #[cfg(feature = "UIColor")]
-        #[method(onTintColor)]
+        #[unsafe(method(onTintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn onTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`onTintColor`][Self::onTintColor].
-        #[method(setOnTintColor:)]
+        #[unsafe(method(setOnTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOnTintColor(&self, on_tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
-        #[method(thumbTintColor)]
+        #[unsafe(method(thumbTintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn thumbTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`thumbTintColor`][Self::thumbTintColor].
-        #[method(setThumbTintColor:)]
+        #[unsafe(method(setThumbTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setThumbTintColor(&self, thumb_tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIImage")]
-        #[method(onImage)]
+        #[unsafe(method(onImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn onImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`onImage`][Self::onImage].
-        #[method(setOnImage:)]
+        #[unsafe(method(setOnImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOnImage(&self, on_image: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
-        #[method(offImage)]
+        #[unsafe(method(offImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn offImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`offImage`][Self::offImage].
-        #[method(setOffImage:)]
+        #[unsafe(method(setOffImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOffImage(&self, off_image: Option<&UIImage>);
 
         /// The title displayed alongside the switch, positioned appropriately for the
         /// `UIUserInterfaceIdiom.`
         /// Note: This property is only supported for Catalyst in the Mac idiom.
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         /// The switch's display style. This property always returns a concrete, resolved style (never UISwitchStyleAutomatic).
-        #[method(style)]
+        #[unsafe(method(style))]
         #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> UISwitchStyle;
 
         /// Request a style for the switch. If the style changed, then the switch may resize.
-        #[method(preferredStyle)]
+        #[unsafe(method(preferredStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredStyle(&self) -> UISwitchStyle;
 
         /// Setter for [`preferredStyle`][Self::preferredStyle].
-        #[method(setPreferredStyle:)]
+        #[unsafe(method(setPreferredStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredStyle(&self, preferred_style: UISwitchStyle);
 
-        #[method(isOn)]
+        #[unsafe(method(isOn))]
         #[unsafe(method_family = none)]
         pub unsafe fn isOn(&self) -> bool;
 
         /// Setter for [`isOn`][Self::isOn].
-        #[method(setOn:)]
+        #[unsafe(method(setOn:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOn(&self, on: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(setOn:animated:)]
+        #[unsafe(method(setOn:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOn_animated(&self, on: bool, animated: bool);
     }
@@ -231,7 +231,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
-        #[method(initWithFrame:primaryAction:)]
+        #[unsafe(method(initWithFrame:primaryAction:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,
@@ -245,11 +245,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISwitch {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

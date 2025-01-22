@@ -24,36 +24,36 @@ unsafe impl NSSecureCoding for MEOutgoingMessageEncodingStatus {}
 extern_methods!(
     unsafe impl MEOutgoingMessageEncodingStatus {
         /// Whether or not the message can be signed.
-        #[method(canSign)]
+        #[unsafe(method(canSign))]
         #[unsafe(method_family = none)]
         pub unsafe fn canSign(&self) -> bool;
 
         /// Whether or not the message can be encrypted.
-        #[method(canEncrypt)]
+        #[unsafe(method(canEncrypt))]
         #[unsafe(method_family = none)]
         pub unsafe fn canEncrypt(&self) -> bool;
 
         /// Any error that occurred while verifying the security status for the outgoing mail message.
-        #[method(securityError)]
+        #[unsafe(method(securityError))]
         #[unsafe(method_family = none)]
         pub unsafe fn securityError(&self) -> Option<Retained<NSError>>;
 
         #[cfg(feature = "MEEmailAddress")]
         /// A list of any recipients for which the message should be encrypted but an error occurred. This could include missing the public key for the recipient.
-        #[method(addressesFailingEncryption)]
+        #[unsafe(method(addressesFailingEncryption))]
         #[unsafe(method_family = none)]
         pub unsafe fn addressesFailingEncryption(&self) -> Retained<NSArray<MEEmailAddress>>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MEEmailAddress")]
-        #[method(initWithCanSign:canEncrypt:securityError:addressesFailingEncryption:)]
+        #[unsafe(method(initWithCanSign:canEncrypt:securityError:addressesFailingEncryption:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCanSign_canEncrypt_securityError_addressesFailingEncryption(
             this: Allocated<Self>,

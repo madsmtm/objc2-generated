@@ -19,13 +19,13 @@ extern_protocol!(
         /// the connection is interrupted.
         /// The Wi-Fi client should re-sync any local state which is updated as a result of Wi-Fi event notifications.
         #[optional]
-        #[method(clientConnectionInterrupted)]
+        #[unsafe(method(clientConnectionInterrupted))]
         #[unsafe(method_family = none)]
         unsafe fn clientConnectionInterrupted(&self);
 
         /// Invoked if the connection to the Wi-Fi subsystem is permanently invalidated.
         #[optional]
-        #[method(clientConnectionInvalidated)]
+        #[unsafe(method(clientConnectionInvalidated))]
         #[unsafe(method_family = none)]
         unsafe fn clientConnectionInvalidated(&self);
 
@@ -39,7 +39,7 @@ extern_protocol!(
         /// to register for power event notifications.
         /// Use -[CWInterface powerOn] to query the current Wi-Fi power state.
         #[optional]
-        #[method(powerStateDidChangeForWiFiInterfaceWithName:)]
+        #[unsafe(method(powerStateDidChangeForWiFiInterfaceWithName:))]
         #[unsafe(method_family = none)]
         unsafe fn powerStateDidChangeForWiFiInterfaceWithName(&self, interface_name: &NSString);
 
@@ -53,7 +53,7 @@ extern_protocol!(
         /// to register for SSID event notifications.
         /// Use -[CWInterface ssidData] or -[CWInterface ssid] to query the current SSID.
         #[optional]
-        #[method(ssidDidChangeForWiFiInterfaceWithName:)]
+        #[unsafe(method(ssidDidChangeForWiFiInterfaceWithName:))]
         #[unsafe(method_family = none)]
         unsafe fn ssidDidChangeForWiFiInterfaceWithName(&self, interface_name: &NSString);
 
@@ -67,7 +67,7 @@ extern_protocol!(
         /// to register for BSSID event notifications.
         /// Use -[CWInterface bssid] to query the current BSSID.
         #[optional]
-        #[method(bssidDidChangeForWiFiInterfaceWithName:)]
+        #[unsafe(method(bssidDidChangeForWiFiInterfaceWithName:))]
         #[unsafe(method_family = none)]
         unsafe fn bssidDidChangeForWiFiInterfaceWithName(&self, interface_name: &NSString);
 
@@ -81,7 +81,7 @@ extern_protocol!(
         /// to register for country code event notifications.
         /// Use -[CWInterface countryCode] to query the currently adopted country code.
         #[optional]
-        #[method(countryCodeDidChangeForWiFiInterfaceWithName:)]
+        #[unsafe(method(countryCodeDidChangeForWiFiInterfaceWithName:))]
         #[unsafe(method_family = none)]
         unsafe fn countryCodeDidChangeForWiFiInterfaceWithName(&self, interface_name: &NSString);
 
@@ -94,7 +94,7 @@ extern_protocol!(
         /// Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeLinkDidChange event type
         /// to register for link event notifications.
         #[optional]
-        #[method(linkDidChangeForWiFiInterfaceWithName:)]
+        #[unsafe(method(linkDidChangeForWiFiInterfaceWithName:))]
         #[unsafe(method_family = none)]
         unsafe fn linkDidChangeForWiFiInterfaceWithName(&self, interface_name: &NSString);
 
@@ -114,7 +114,7 @@ extern_protocol!(
         /// to register for link quality event notifications.
         /// Use -[CWInterface rssiValue] and -[CWInterface transmitRate] to query the current RSSI and transmit rate, respectively.
         #[optional]
-        #[method(linkQualityDidChangeForWiFiInterfaceWithName:rssi:transmitRate:)]
+        #[unsafe(method(linkQualityDidChangeForWiFiInterfaceWithName:rssi:transmitRate:))]
         #[unsafe(method_family = none)]
         unsafe fn linkQualityDidChangeForWiFiInterfaceWithName_rssi_transmitRate(
             &self,
@@ -133,7 +133,7 @@ extern_protocol!(
         /// to register for interface mode event notifications.
         /// Use -[CWInterface interfaceMode] to query the current operating mode.
         #[optional]
-        #[method(modeDidChangeForWiFiInterfaceWithName:)]
+        #[unsafe(method(modeDidChangeForWiFiInterfaceWithName:))]
         #[unsafe(method_family = none)]
         unsafe fn modeDidChangeForWiFiInterfaceWithName(&self, interface_name: &NSString);
 
@@ -147,7 +147,7 @@ extern_protocol!(
         /// to register for scan cache event notifications.
         /// Use -[CWInterface cachedScanResults] to query scan cache results from the last scan.
         #[optional]
-        #[method(scanCacheUpdatedForWiFiInterfaceWithName:)]
+        #[unsafe(method(scanCacheUpdatedForWiFiInterfaceWithName:))]
         #[unsafe(method_family = none)]
         unsafe fn scanCacheUpdatedForWiFiInterfaceWithName(&self, interface_name: &NSString);
     }
@@ -180,29 +180,29 @@ extern_methods!(
         ///
         ///
         /// Clients may register for specific Wi-Fi events using -[CWWiFiClient startMonitoringEventWithType:error:].
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
 
         /// Returns the shared CWWiFiClient instance. There is a single shared instance per process.
-        #[method(sharedWiFiClient)]
+        #[unsafe(method(sharedWiFiClient))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedWiFiClient() -> Retained<CWWiFiClient>;
 
         /// Initializes a CWWiFiClient object.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CWInterface")]
         /// Returns the CWInterface object for the default Wi-Fi interface.
-        #[method(interface)]
+        #[unsafe(method(interface))]
         #[unsafe(method_family = none)]
         pub unsafe fn interface(&self) -> Option<Retained<CWInterface>>;
 
@@ -214,12 +214,12 @@ extern_methods!(
         ///
         /// If no Wi-Fi interfaces are available, this method will return an empty array.
         /// Returns nil if an error occurs.
-        #[method(interfaceNames)]
+        #[unsafe(method(interfaceNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceNames(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[deprecated = "Use -[CWWiFiClient interfaceNames] instead"]
-        #[method(interfaceNames)]
+        #[unsafe(method(interfaceNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceNames_class() -> Option<Retained<NSArray<NSString>>>;
 
@@ -232,7 +232,7 @@ extern_methods!(
         ///
         /// Use +[CWWiFiClient interfaceNames] to get a list of available Wi-Fi interface names.
         /// Returns a CWInterface object for the default Wi-Fi interface if no interface name is specified.
-        #[method(interfaceWithName:)]
+        #[unsafe(method(interfaceWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceWithName(
             &self,
@@ -248,7 +248,7 @@ extern_methods!(
         ///
         /// If no Wi-Fi interfaces are available, this method will return an empty array.
         /// Returns nil if an error occurs.
-        #[method(interfaces)]
+        #[unsafe(method(interfaces))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaces(&self) -> Option<Retained<NSArray<CWInterface>>>;
 
@@ -264,7 +264,7 @@ extern_methods!(
         ///
         ///
         /// Register for specific Wi-Fi event notifications.
-        #[method(startMonitoringEventWithType:error:_)]
+        #[unsafe(method(startMonitoringEventWithType:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn startMonitoringEventWithType_error(
             &self,
@@ -283,7 +283,7 @@ extern_methods!(
         ///
         ///
         /// Unregister for specific Wi-Fi event notifications.
-        #[method(stopMonitoringEventWithType:error:_)]
+        #[unsafe(method(stopMonitoringEventWithType:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopMonitoringEventWithType_error(
             &self,
@@ -298,7 +298,7 @@ extern_methods!(
         ///
         ///
         /// Unregister for all Wi-Fi event notifications.
-        #[method(stopMonitoringAllEventsAndReturnError:_)]
+        #[unsafe(method(stopMonitoringAllEventsAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopMonitoringAllEventsAndReturnError(&self)
             -> Result<(), Retained<NSError>>;
@@ -308,7 +308,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWWiFiClient {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

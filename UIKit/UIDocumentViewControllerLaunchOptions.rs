@@ -25,7 +25,7 @@ extern_methods!(
             feature = "UIViewController"
         ))]
         /// The view controller for browsing documents to open.
-        #[method(browserViewController)]
+        #[unsafe(method(browserViewController))]
         #[unsafe(method_family = none)]
         pub unsafe fn browserViewController(&self) -> Retained<UIDocumentBrowserViewController>;
 
@@ -35,7 +35,7 @@ extern_methods!(
             feature = "UIViewController"
         ))]
         /// Setter for [`browserViewController`][Self::browserViewController].
-        #[method(setBrowserViewController:)]
+        #[unsafe(method(setBrowserViewController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBrowserViewController(
             &self,
@@ -43,84 +43,84 @@ extern_methods!(
         );
 
         /// The title of the view. Default is the application's name.
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// The primary action.
-        #[method(primaryAction)]
+        #[unsafe(method(primaryAction))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryAction(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Setter for [`primaryAction`][Self::primaryAction].
-        #[method(setPrimaryAction:)]
+        #[unsafe(method(setPrimaryAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryAction(&self, primary_action: Option<&UIAction>);
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// The secondary action.
-        #[method(secondaryAction)]
+        #[unsafe(method(secondaryAction))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryAction(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Setter for [`secondaryAction`][Self::secondaryAction].
-        #[method(setSecondaryAction:)]
+        #[unsafe(method(setSecondaryAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryAction(&self, secondary_action: Option<&UIAction>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// The view which displays an open document. Default is the view controller's view.
-        #[method(documentTargetView)]
+        #[unsafe(method(documentTargetView))]
         #[unsafe(method_family = none)]
         pub unsafe fn documentTargetView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Setter for [`documentTargetView`][Self::documentTargetView].
-        #[method(setDocumentTargetView:)]
+        #[unsafe(method(setDocumentTargetView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDocumentTargetView(&self, document_target_view: Option<&UIView>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// The foreground accessory view.
-        #[method(foregroundAccessoryView)]
+        #[unsafe(method(foregroundAccessoryView))]
         #[unsafe(method_family = none)]
         pub unsafe fn foregroundAccessoryView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Setter for [`foregroundAccessoryView`][Self::foregroundAccessoryView].
-        #[method(setForegroundAccessoryView:)]
+        #[unsafe(method(setForegroundAccessoryView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setForegroundAccessoryView(&self, foreground_accessory_view: Option<&UIView>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// The background accessory view.
-        #[method(backgroundAccessoryView)]
+        #[unsafe(method(backgroundAccessoryView))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundAccessoryView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Setter for [`backgroundAccessoryView`][Self::backgroundAccessoryView].
-        #[method(setBackgroundAccessoryView:)]
+        #[unsafe(method(setBackgroundAccessoryView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundAccessoryView(&self, background_accessory_view: Option<&UIView>);
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// The background configuration.
-        #[method(background)]
+        #[unsafe(method(background))]
         #[unsafe(method_family = none)]
         pub unsafe fn background(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Setter for [`background`][Self::background].
-        #[method(setBackground:)]
+        #[unsafe(method(setBackground:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackground(&self, background: &UIBackgroundConfiguration);
 
@@ -131,7 +131,7 @@ extern_methods!(
         ))]
         /// Returns an action which requests the creation of a new document with the specified intent.
         /// Can be used for either the primary or secondary action.
-        #[method(createDocumentActionWithIntent:)]
+        #[unsafe(method(createDocumentActionWithIntent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createDocumentActionWithIntent(
             intent: &UIDocumentCreationIntent,
@@ -143,11 +143,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDocumentViewControllerLaunchOptions {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

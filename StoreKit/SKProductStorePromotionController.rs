@@ -45,13 +45,13 @@ unsafe impl NSObjectProtocol for SKProductStorePromotionController {}
 extern_methods!(
     unsafe impl SKProductStorePromotionController {
         #[deprecated = "Use Product.PromotionInfo"]
-        #[method(defaultController)]
+        #[unsafe(method(defaultController))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultController() -> Retained<Self>;
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
         #[deprecated = "Get visibility from Product.PromotionInfo.currentOrder"]
-        #[method(fetchStorePromotionVisibilityForProduct:completionHandler:)]
+        #[unsafe(method(fetchStorePromotionVisibilityForProduct:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchStorePromotionVisibilityForProduct_completionHandler(
             &self,
@@ -63,7 +63,7 @@ extern_methods!(
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
         #[deprecated = "Use Product.PromotionInfo.updateProductVisibility(_:for:)"]
-        #[method(updateStorePromotionVisibility:forProduct:completionHandler:)]
+        #[unsafe(method(updateStorePromotionVisibility:forProduct:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateStorePromotionVisibility_forProduct_completionHandler(
             &self,
@@ -74,7 +74,7 @@ extern_methods!(
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
         #[deprecated = "Use Product.PromotionInfo.currentOrder"]
-        #[method(fetchStorePromotionOrderWithCompletionHandler:)]
+        #[unsafe(method(fetchStorePromotionOrderWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchStorePromotionOrderWithCompletionHandler(
             &self,
@@ -85,7 +85,7 @@ extern_methods!(
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
         #[deprecated = "Use Product.PromotionInfo.updateProductOrder(byID:)"]
-        #[method(updateStorePromotionOrder:completionHandler:)]
+        #[unsafe(method(updateStorePromotionOrder:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateStorePromotionOrder_completionHandler(
             &self,
@@ -98,11 +98,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKProductStorePromotionController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

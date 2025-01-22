@@ -85,73 +85,73 @@ extern_methods!(
         /// A bitfield of the command types that be encoded.
         ///
         /// MTLCommandTypeDispatch cannot be mixed with any other command type.
-        #[method(commandTypes)]
+        #[unsafe(method(commandTypes))]
         #[unsafe(method_family = none)]
         pub fn commandTypes(&self) -> MTLIndirectCommandType;
 
         /// Setter for [`commandTypes`][Self::commandTypes].
-        #[method(setCommandTypes:)]
+        #[unsafe(method(setCommandTypes:))]
         #[unsafe(method_family = none)]
         pub fn setCommandTypes(&self, command_types: MTLIndirectCommandType);
 
         /// Whether the render or compute pipeline are inherited from the encoder
-        #[method(inheritPipelineState)]
+        #[unsafe(method(inheritPipelineState))]
         #[unsafe(method_family = none)]
         pub fn inheritPipelineState(&self) -> bool;
 
         /// Setter for [`inheritPipelineState`][Self::inheritPipelineState].
-        #[method(setInheritPipelineState:)]
+        #[unsafe(method(setInheritPipelineState:))]
         #[unsafe(method_family = none)]
         pub fn setInheritPipelineState(&self, inherit_pipeline_state: bool);
 
         /// Whether the render or compute pipeline can set arguments.
-        #[method(inheritBuffers)]
+        #[unsafe(method(inheritBuffers))]
         #[unsafe(method_family = none)]
         pub fn inheritBuffers(&self) -> bool;
 
         /// Setter for [`inheritBuffers`][Self::inheritBuffers].
-        #[method(setInheritBuffers:)]
+        #[unsafe(method(setInheritBuffers:))]
         #[unsafe(method_family = none)]
         pub fn setInheritBuffers(&self, inherit_buffers: bool);
 
         /// The maximum bind index of vertex argument buffers that can be set per command.
-        #[method(maxVertexBufferBindCount)]
+        #[unsafe(method(maxVertexBufferBindCount))]
         #[unsafe(method_family = none)]
         pub fn maxVertexBufferBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxVertexBufferBindCount`][Self::maxVertexBufferBindCount].
-        #[method(setMaxVertexBufferBindCount:)]
+        #[unsafe(method(setMaxVertexBufferBindCount:))]
         #[unsafe(method_family = none)]
         pub fn setMaxVertexBufferBindCount(&self, max_vertex_buffer_bind_count: NSUInteger);
 
         /// The maximum bind index of fragment argument buffers that can be set per command.
-        #[method(maxFragmentBufferBindCount)]
+        #[unsafe(method(maxFragmentBufferBindCount))]
         #[unsafe(method_family = none)]
         pub fn maxFragmentBufferBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxFragmentBufferBindCount`][Self::maxFragmentBufferBindCount].
-        #[method(setMaxFragmentBufferBindCount:)]
+        #[unsafe(method(setMaxFragmentBufferBindCount:))]
         #[unsafe(method_family = none)]
         pub fn setMaxFragmentBufferBindCount(&self, max_fragment_buffer_bind_count: NSUInteger);
 
         /// The maximum bind index of kernel (or tile) argument buffers that can be set per command.
-        #[method(maxKernelBufferBindCount)]
+        #[unsafe(method(maxKernelBufferBindCount))]
         #[unsafe(method_family = none)]
         pub fn maxKernelBufferBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxKernelBufferBindCount`][Self::maxKernelBufferBindCount].
-        #[method(setMaxKernelBufferBindCount:)]
+        #[unsafe(method(setMaxKernelBufferBindCount:))]
         #[unsafe(method_family = none)]
         pub fn setMaxKernelBufferBindCount(&self, max_kernel_buffer_bind_count: NSUInteger);
 
         /// The maximum bind index of kernel (or tile) threadgroup memory that can be set per command.
         /// The default value is 31.
-        #[method(maxKernelThreadgroupMemoryBindCount)]
+        #[unsafe(method(maxKernelThreadgroupMemoryBindCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxKernelThreadgroupMemoryBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxKernelThreadgroupMemoryBindCount`][Self::maxKernelThreadgroupMemoryBindCount].
-        #[method(setMaxKernelThreadgroupMemoryBindCount:)]
+        #[unsafe(method(setMaxKernelThreadgroupMemoryBindCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxKernelThreadgroupMemoryBindCount(
             &self,
@@ -159,33 +159,33 @@ extern_methods!(
         );
 
         /// The maximum bind index of object stage buffers that can be set per render command.
-        #[method(maxObjectBufferBindCount)]
+        #[unsafe(method(maxObjectBufferBindCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxObjectBufferBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxObjectBufferBindCount`][Self::maxObjectBufferBindCount].
-        #[method(setMaxObjectBufferBindCount:)]
+        #[unsafe(method(setMaxObjectBufferBindCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxObjectBufferBindCount(&self, max_object_buffer_bind_count: NSUInteger);
 
         /// The maximum bind index of mesh stage buffers that can be set per render command.
-        #[method(maxMeshBufferBindCount)]
+        #[unsafe(method(maxMeshBufferBindCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxMeshBufferBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxMeshBufferBindCount`][Self::maxMeshBufferBindCount].
-        #[method(setMaxMeshBufferBindCount:)]
+        #[unsafe(method(setMaxMeshBufferBindCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxMeshBufferBindCount(&self, max_mesh_buffer_bind_count: NSUInteger);
 
         /// The maximum bind index of object threadgroup memory that can be set per render command.
         /// The default value is 0.
-        #[method(maxObjectThreadgroupMemoryBindCount)]
+        #[unsafe(method(maxObjectThreadgroupMemoryBindCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxObjectThreadgroupMemoryBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxObjectThreadgroupMemoryBindCount`][Self::maxObjectThreadgroupMemoryBindCount].
-        #[method(setMaxObjectThreadgroupMemoryBindCount:)]
+        #[unsafe(method(setMaxObjectThreadgroupMemoryBindCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxObjectThreadgroupMemoryBindCount(
             &self,
@@ -193,12 +193,12 @@ extern_methods!(
         );
 
         /// Whether the render or compute commands can use ray tracing. Default value is NO.
-        #[method(supportRayTracing)]
+        #[unsafe(method(supportRayTracing))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportRayTracing(&self) -> bool;
 
         /// Setter for [`supportRayTracing`][Self::supportRayTracing].
-        #[method(setSupportRayTracing:)]
+        #[unsafe(method(setSupportRayTracing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportRayTracing(&self, support_ray_tracing: bool);
 
@@ -207,12 +207,12 @@ extern_methods!(
         ///
         /// will allow setting attributeStride in `setVertexBuffer` / `setKernelBuffer`
         /// calls
-        #[method(supportDynamicAttributeStride)]
+        #[unsafe(method(supportDynamicAttributeStride))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportDynamicAttributeStride(&self) -> bool;
 
         /// Setter for [`supportDynamicAttributeStride`][Self::supportDynamicAttributeStride].
-        #[method(setSupportDynamicAttributeStride:)]
+        #[unsafe(method(setSupportDynamicAttributeStride:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportDynamicAttributeStride(
             &self,
@@ -224,11 +224,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLIndirectCommandBufferDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -238,22 +238,22 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandbuffer?language=objc)
     #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLIndirectCommandBuffer: MTLResource {
-        #[method(size)]
+        #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         fn size(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLTypes")]
         /// Handle of the GPU resource suitable for storing in an Argument Buffer
-        #[method(gpuResourceID)]
+        #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
-        #[method(resetWithRange:)]
+        #[unsafe(method(resetWithRange:))]
         #[unsafe(method_family = none)]
         unsafe fn resetWithRange(&self, range: NSRange);
 
         #[cfg(feature = "MTLIndirectCommandEncoder")]
-        #[method(indirectRenderCommandAtIndex:)]
+        #[unsafe(method(indirectRenderCommandAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn indirectRenderCommandAtIndex(
             &self,
@@ -261,7 +261,7 @@ extern_protocol!(
         ) -> Retained<ProtocolObject<dyn MTLIndirectRenderCommand>>;
 
         #[cfg(feature = "MTLIndirectCommandEncoder")]
-        #[method(indirectComputeCommandAtIndex:)]
+        #[unsafe(method(indirectComputeCommandAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn indirectComputeCommandAtIndex(
             &self,

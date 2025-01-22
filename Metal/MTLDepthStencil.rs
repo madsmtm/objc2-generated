@@ -88,63 +88,63 @@ unsafe impl NSObjectProtocol for MTLStencilDescriptor {}
 
 extern_methods!(
     unsafe impl MTLStencilDescriptor {
-        #[method(stencilCompareFunction)]
+        #[unsafe(method(stencilCompareFunction))]
         #[unsafe(method_family = none)]
         pub fn stencilCompareFunction(&self) -> MTLCompareFunction;
 
         /// Setter for [`stencilCompareFunction`][Self::stencilCompareFunction].
-        #[method(setStencilCompareFunction:)]
+        #[unsafe(method(setStencilCompareFunction:))]
         #[unsafe(method_family = none)]
         pub fn setStencilCompareFunction(&self, stencil_compare_function: MTLCompareFunction);
 
         /// Stencil is tested first.  stencilFailureOperation declares how the stencil buffer is updated when the stencil test fails.
-        #[method(stencilFailureOperation)]
+        #[unsafe(method(stencilFailureOperation))]
         #[unsafe(method_family = none)]
         pub fn stencilFailureOperation(&self) -> MTLStencilOperation;
 
         /// Setter for [`stencilFailureOperation`][Self::stencilFailureOperation].
-        #[method(setStencilFailureOperation:)]
+        #[unsafe(method(setStencilFailureOperation:))]
         #[unsafe(method_family = none)]
         pub fn setStencilFailureOperation(&self, stencil_failure_operation: MTLStencilOperation);
 
         /// If stencil passes, depth is tested next.  Declare what happens when the depth test fails.
-        #[method(depthFailureOperation)]
+        #[unsafe(method(depthFailureOperation))]
         #[unsafe(method_family = none)]
         pub fn depthFailureOperation(&self) -> MTLStencilOperation;
 
         /// Setter for [`depthFailureOperation`][Self::depthFailureOperation].
-        #[method(setDepthFailureOperation:)]
+        #[unsafe(method(setDepthFailureOperation:))]
         #[unsafe(method_family = none)]
         pub fn setDepthFailureOperation(&self, depth_failure_operation: MTLStencilOperation);
 
         /// If both the stencil and depth tests pass, declare how the stencil buffer is updated.
-        #[method(depthStencilPassOperation)]
+        #[unsafe(method(depthStencilPassOperation))]
         #[unsafe(method_family = none)]
         pub fn depthStencilPassOperation(&self) -> MTLStencilOperation;
 
         /// Setter for [`depthStencilPassOperation`][Self::depthStencilPassOperation].
-        #[method(setDepthStencilPassOperation:)]
+        #[unsafe(method(setDepthStencilPassOperation:))]
         #[unsafe(method_family = none)]
         pub fn setDepthStencilPassOperation(
             &self,
             depth_stencil_pass_operation: MTLStencilOperation,
         );
 
-        #[method(readMask)]
+        #[unsafe(method(readMask))]
         #[unsafe(method_family = none)]
         pub fn readMask(&self) -> u32;
 
         /// Setter for [`readMask`][Self::readMask].
-        #[method(setReadMask:)]
+        #[unsafe(method(setReadMask:))]
         #[unsafe(method_family = none)]
         pub fn setReadMask(&self, read_mask: u32);
 
-        #[method(writeMask)]
+        #[unsafe(method(writeMask))]
         #[unsafe(method_family = none)]
         pub fn writeMask(&self) -> u32;
 
         /// Setter for [`writeMask`][Self::writeMask].
-        #[method(setWriteMask:)]
+        #[unsafe(method(setWriteMask:))]
         #[unsafe(method_family = none)]
         pub fn setWriteMask(&self, write_mask: u32);
     }
@@ -153,11 +153,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLStencilDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -180,49 +180,49 @@ unsafe impl NSObjectProtocol for MTLDepthStencilDescriptor {}
 
 extern_methods!(
     unsafe impl MTLDepthStencilDescriptor {
-        #[method(depthCompareFunction)]
+        #[unsafe(method(depthCompareFunction))]
         #[unsafe(method_family = none)]
         pub fn depthCompareFunction(&self) -> MTLCompareFunction;
 
         /// Setter for [`depthCompareFunction`][Self::depthCompareFunction].
-        #[method(setDepthCompareFunction:)]
+        #[unsafe(method(setDepthCompareFunction:))]
         #[unsafe(method_family = none)]
         pub fn setDepthCompareFunction(&self, depth_compare_function: MTLCompareFunction);
 
-        #[method(isDepthWriteEnabled)]
+        #[unsafe(method(isDepthWriteEnabled))]
         #[unsafe(method_family = none)]
         pub fn isDepthWriteEnabled(&self) -> bool;
 
         /// Setter for [`isDepthWriteEnabled`][Self::isDepthWriteEnabled].
-        #[method(setDepthWriteEnabled:)]
+        #[unsafe(method(setDepthWriteEnabled:))]
         #[unsafe(method_family = none)]
         pub fn setDepthWriteEnabled(&self, depth_write_enabled: bool);
 
-        #[method(frontFaceStencil)]
+        #[unsafe(method(frontFaceStencil))]
         #[unsafe(method_family = none)]
         pub fn frontFaceStencil(&self) -> Retained<MTLStencilDescriptor>;
 
         /// Setter for [`frontFaceStencil`][Self::frontFaceStencil].
-        #[method(setFrontFaceStencil:)]
+        #[unsafe(method(setFrontFaceStencil:))]
         #[unsafe(method_family = none)]
         pub fn setFrontFaceStencil(&self, front_face_stencil: Option<&MTLStencilDescriptor>);
 
-        #[method(backFaceStencil)]
+        #[unsafe(method(backFaceStencil))]
         #[unsafe(method_family = none)]
         pub fn backFaceStencil(&self) -> Retained<MTLStencilDescriptor>;
 
         /// Setter for [`backFaceStencil`][Self::backFaceStencil].
-        #[method(setBackFaceStencil:)]
+        #[unsafe(method(setBackFaceStencil:))]
         #[unsafe(method_family = none)]
         pub fn setBackFaceStencil(&self, back_face_stencil: Option<&MTLStencilDescriptor>);
 
         /// A string to help identify the created object.
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         pub fn setLabel(&self, label: Option<&NSString>);
     }
@@ -231,11 +231,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLDepthStencilDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -245,13 +245,13 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldepthstencilstate?language=objc)
     pub unsafe trait MTLDepthStencilState: NSObjectProtocol {
         /// A string to help identify this object.
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
-        #[method(device)]
+        #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
     }

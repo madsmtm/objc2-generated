@@ -26,12 +26,12 @@ unsafe impl NSObjectProtocol for CISampler {}
 extern_methods!(
     unsafe impl CISampler {
         #[cfg(feature = "CIImage")]
-        #[method(samplerWithImage:)]
+        #[unsafe(method(samplerWithImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn samplerWithImage(im: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
-        #[method(samplerWithImage:options:)]
+        #[unsafe(method(samplerWithImage:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn samplerWithImage_options(
             im: &CIImage,
@@ -39,12 +39,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
-        #[method(initWithImage:)]
+        #[unsafe(method(initWithImage:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage(this: Allocated<Self>, im: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
-        #[method(initWithImage:options:)]
+        #[unsafe(method(initWithImage:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage_options(
             this: Allocated<Self>,
@@ -53,12 +53,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CIFilterShape")]
-        #[method(definition)]
+        #[unsafe(method(definition))]
         #[unsafe(method_family = none)]
         pub unsafe fn definition(&self) -> Retained<CIFilterShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(extent)]
+        #[unsafe(method(extent))]
         #[unsafe(method_family = none)]
         pub unsafe fn extent(&self) -> CGRect;
     }
@@ -67,11 +67,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CISampler {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

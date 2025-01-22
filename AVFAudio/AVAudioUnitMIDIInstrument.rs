@@ -58,7 +58,7 @@ extern_methods!(
         ///
         /// Parameter `description`: audio component description structure that describes the audio component of type kAudioUnitType_MusicDevice
         /// or kAudioUnitType_RemoteInstrument.
-        #[method(initWithAudioComponentDescription:)]
+        #[unsafe(method(initWithAudioComponentDescription:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
@@ -75,7 +75,7 @@ extern_methods!(
         ///
         /// Parameter `channel`: the channel number to which the event is sent
         /// Range: 0 -> 15
-        #[method(startNote:withVelocity:onChannel:)]
+        #[unsafe(method(startNote:withVelocity:onChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startNote_withVelocity_onChannel(&self, note: u8, velocity: u8, channel: u8);
 
@@ -86,7 +86,7 @@ extern_methods!(
         ///
         /// Parameter `channel`: the channel number to which the event is sent.
         /// Range: 0 -> 15
-        #[method(stopNote:onChannel:)]
+        #[unsafe(method(stopNote:onChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopNote_onChannel(&self, note: u8, channel: u8);
 
@@ -100,7 +100,7 @@ extern_methods!(
         ///
         /// Parameter `channel`: the channel number to which the event is sent.
         /// Range: 0 -> 15
-        #[method(sendController:withValue:onChannel:)]
+        #[unsafe(method(sendController:withValue:onChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendController_withValue_onChannel(
             &self,
@@ -116,7 +116,7 @@ extern_methods!(
         ///
         /// Parameter `channel`: the channel number to which the event is sent.
         /// Range: 0 -> 15
-        #[method(sendPitchBend:onChannel:)]
+        #[unsafe(method(sendPitchBend:onChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendPitchBend_onChannel(&self, pitchbend: u16, channel: u8);
 
@@ -127,7 +127,7 @@ extern_methods!(
         ///
         /// Parameter `channel`: the channel number to which the event is sent.
         /// Range: 0 -> 15
-        #[method(sendPressure:onChannel:)]
+        #[unsafe(method(sendPressure:onChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendPressure_onChannel(&self, pressure: u8, channel: u8);
 
@@ -141,7 +141,7 @@ extern_methods!(
         ///
         /// Parameter `channel`: the channel number to which the event is sent.
         /// Range: 0 -> 15
-        #[method(sendPressureForKey:withValue:onChannel:)]
+        #[unsafe(method(sendPressureForKey:withValue:onChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendPressureForKey_withValue_onChannel(
             &self,
@@ -160,7 +160,7 @@ extern_methods!(
         ///
         /// the instrument will be loaded from the bank that has been previous set by MIDI Bank Select
         /// controller messages (0 and 31). If none has been set, bank 0 will be used.
-        #[method(sendProgramChange:onChannel:)]
+        #[unsafe(method(sendProgramChange:onChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendProgramChange_onChannel(&self, program: u8, channel: u8);
 
@@ -177,7 +177,7 @@ extern_methods!(
         ///
         /// Parameter `channel`: the channel number to which the event is sent.
         /// Range: 0 -> 15
-        #[method(sendProgramChange:bankMSB:bankLSB:onChannel:)]
+        #[unsafe(method(sendProgramChange:bankMSB:bankLSB:onChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendProgramChange_bankMSB_bankLSB_onChannel(
             &self,
@@ -194,7 +194,7 @@ extern_methods!(
         /// Parameter `data1`: the first data byte of the MIDI event
         ///
         /// Parameter `data2`: the second data byte of the MIDI event.
-        #[method(sendMIDIEvent:data1:data2:)]
+        #[unsafe(method(sendMIDIEvent:data1:data2:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendMIDIEvent_data1_data2(&self, midi_status: u8, data1: u8, data2: u8);
 
@@ -203,14 +203,14 @@ extern_methods!(
         /// Parameter `midiStatus`: the STATUS value of the MIDI event
         ///
         /// Parameter `data1`: the first data byte of the MIDI event
-        #[method(sendMIDIEvent:data1:)]
+        #[unsafe(method(sendMIDIEvent:data1:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendMIDIEvent_data1(&self, midi_status: u8, data1: u8);
 
         /// sends a MIDI System Exclusive event to the instrument.
         ///
         /// Parameter `midiData`: a NSData object containing the complete SysEx data including start(F0) and termination(F7) bytes.
-        #[method(sendMIDISysExEvent:)]
+        #[unsafe(method(sendMIDISysExEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendMIDISysExEvent(&self, midi_data: &NSData);
 
@@ -218,7 +218,7 @@ extern_methods!(
         /// sends a MIDI event list to the instrument.
         ///
         /// Parameter `eventList`: the MIDIEventList
-        #[method(sendMIDIEventList:)]
+        #[unsafe(method(sendMIDIEventList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendMIDIEventList(&self, event_list: NonNull<MIDIEventList>);
     }
@@ -228,11 +228,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
     unsafe impl AVAudioUnitMIDIInstrument {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

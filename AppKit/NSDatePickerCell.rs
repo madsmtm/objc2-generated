@@ -125,144 +125,144 @@ unsafe impl NSUserInterfaceItemIdentification for NSDatePickerCell {}
 extern_methods!(
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSDatePickerCell {
-        #[method(initTextCell:)]
+        #[unsafe(method(initTextCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method(initImageCell:)]
+        #[unsafe(method(initImageCell:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
 
-        #[method(datePickerStyle)]
+        #[unsafe(method(datePickerStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn datePickerStyle(&self) -> NSDatePickerStyle;
 
         /// Setter for [`datePickerStyle`][Self::datePickerStyle].
-        #[method(setDatePickerStyle:)]
+        #[unsafe(method(setDatePickerStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDatePickerStyle(&self, date_picker_style: NSDatePickerStyle);
 
-        #[method(drawsBackground)]
+        #[unsafe(method(drawsBackground))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
         /// Setter for [`drawsBackground`][Self::drawsBackground].
-        #[method(setDrawsBackground:)]
+        #[unsafe(method(setDrawsBackground:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "NSColor")]
-        #[method(backgroundColor)]
+        #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
-        #[method(setBackgroundColor:)]
+        #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[cfg(feature = "NSColor")]
-        #[method(textColor)]
+        #[unsafe(method(textColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn textColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`textColor`][Self::textColor].
-        #[method(setTextColor:)]
+        #[unsafe(method(setTextColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextColor(&self, text_color: &NSColor);
 
-        #[method(datePickerMode)]
+        #[unsafe(method(datePickerMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn datePickerMode(&self) -> NSDatePickerMode;
 
         /// Setter for [`datePickerMode`][Self::datePickerMode].
-        #[method(setDatePickerMode:)]
+        #[unsafe(method(setDatePickerMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDatePickerMode(&self, date_picker_mode: NSDatePickerMode);
 
-        #[method(datePickerElements)]
+        #[unsafe(method(datePickerElements))]
         #[unsafe(method_family = none)]
         pub unsafe fn datePickerElements(&self) -> NSDatePickerElementFlags;
 
         /// Setter for [`datePickerElements`][Self::datePickerElements].
-        #[method(setDatePickerElements:)]
+        #[unsafe(method(setDatePickerElements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDatePickerElements(&self, date_picker_elements: NSDatePickerElementFlags);
 
-        #[method(calendar)]
+        #[unsafe(method(calendar))]
         #[unsafe(method_family = none)]
         pub unsafe fn calendar(&self) -> Option<Retained<NSCalendar>>;
 
         /// Setter for [`calendar`][Self::calendar].
-        #[method(setCalendar:)]
+        #[unsafe(method(setCalendar:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
-        #[method(locale)]
+        #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
 
         /// Setter for [`locale`][Self::locale].
-        #[method(setLocale:)]
+        #[unsafe(method(setLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[method(timeZone)]
+        #[unsafe(method(timeZone))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         /// Setter for [`timeZone`][Self::timeZone].
-        #[method(setTimeZone:)]
+        #[unsafe(method(setTimeZone:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
-        #[method(dateValue)]
+        #[unsafe(method(dateValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn dateValue(&self) -> Retained<NSDate>;
 
         /// Setter for [`dateValue`][Self::dateValue].
-        #[method(setDateValue:)]
+        #[unsafe(method(setDateValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDateValue(&self, date_value: &NSDate);
 
-        #[method(timeInterval)]
+        #[unsafe(method(timeInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeInterval(&self) -> NSTimeInterval;
 
         /// Setter for [`timeInterval`][Self::timeInterval].
-        #[method(setTimeInterval:)]
+        #[unsafe(method(setTimeInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeInterval(&self, time_interval: NSTimeInterval);
 
-        #[method(minDate)]
+        #[unsafe(method(minDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn minDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`minDate`][Self::minDate].
-        #[method(setMinDate:)]
+        #[unsafe(method(setMinDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinDate(&self, min_date: Option<&NSDate>);
 
-        #[method(maxDate)]
+        #[unsafe(method(maxDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`maxDate`][Self::maxDate].
-        #[method(setMaxDate:)]
+        #[unsafe(method(setMaxDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxDate(&self, max_date: Option<&NSDate>);
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -270,7 +270,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -283,7 +283,7 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSDatePickerCell {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -293,7 +293,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSDatePickerCell {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -304,7 +304,7 @@ extern_protocol!(
     pub unsafe trait NSDatePickerCellDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
         #[optional]
-        #[method(datePickerCell:validateProposedDateValue:timeInterval:)]
+        #[unsafe(method(datePickerCell:validateProposedDateValue:timeInterval:))]
         #[unsafe(method_family = none)]
         unsafe fn datePickerCell_validateProposedDateValue_timeInterval(
             &self,

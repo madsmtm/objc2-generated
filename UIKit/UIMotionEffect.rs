@@ -33,11 +33,11 @@ unsafe impl NSObjectProtocol for UIMotionEffect {}
 
 extern_methods!(
     unsafe impl UIMotionEffect {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -68,7 +68,7 @@ extern_methods!(
         /// layer.shadowOffset.x":
         /// @
         /// (-1.1) }`
-        #[method(keyPathsAndRelativeValuesForViewerOffset:)]
+        #[unsafe(method(keyPathsAndRelativeValuesForViewerOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyPathsAndRelativeValuesForViewerOffset(
             &self,
@@ -80,7 +80,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIMotionEffect {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -138,7 +138,7 @@ unsafe impl NSObjectProtocol for UIInterpolatingMotionEffect {}
 
 extern_methods!(
     unsafe impl UIInterpolatingMotionEffect {
-        #[method(initWithKeyPath:type:)]
+        #[unsafe(method(initWithKeyPath:type:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKeyPath_type(
             this: Allocated<Self>,
@@ -146,36 +146,36 @@ extern_methods!(
             r#type: UIInterpolatingMotionEffectType,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(keyPath)]
+        #[unsafe(method(keyPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyPath(&self) -> Retained<NSString>;
 
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> UIInterpolatingMotionEffectType;
 
-        #[method(minimumRelativeValue)]
+        #[unsafe(method(minimumRelativeValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumRelativeValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`minimumRelativeValue`][Self::minimumRelativeValue].
-        #[method(setMinimumRelativeValue:)]
+        #[unsafe(method(setMinimumRelativeValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumRelativeValue(&self, minimum_relative_value: Option<&AnyObject>);
 
-        #[method(maximumRelativeValue)]
+        #[unsafe(method(maximumRelativeValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumRelativeValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`maximumRelativeValue`][Self::maximumRelativeValue].
-        #[method(setMaximumRelativeValue:)]
+        #[unsafe(method(setMaximumRelativeValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumRelativeValue(&self, maximum_relative_value: Option<&AnyObject>);
     }
@@ -184,7 +184,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `UIMotionEffect`
     unsafe impl UIInterpolatingMotionEffect {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -193,7 +193,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIInterpolatingMotionEffect {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -222,12 +222,12 @@ unsafe impl NSObjectProtocol for UIMotionEffectGroup {}
 
 extern_methods!(
     unsafe impl UIMotionEffectGroup {
-        #[method(motionEffects)]
+        #[unsafe(method(motionEffects))]
         #[unsafe(method_family = none)]
         pub unsafe fn motionEffects(&self) -> Option<Retained<NSArray<UIMotionEffect>>>;
 
         /// Setter for [`motionEffects`][Self::motionEffects].
-        #[method(setMotionEffects:)]
+        #[unsafe(method(setMotionEffects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMotionEffects(&self, motion_effects: Option<&NSArray<UIMotionEffect>>);
     }
@@ -236,11 +236,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `UIMotionEffect`
     unsafe impl UIMotionEffectGroup {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -252,7 +252,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIMotionEffectGroup {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

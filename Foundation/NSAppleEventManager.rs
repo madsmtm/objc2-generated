@@ -51,26 +51,26 @@ unsafe impl NSObjectProtocol for NSAppleEventManager {}
 
 extern_methods!(
     unsafe impl NSAppleEventManager {
-        #[method(sharedAppleEventManager)]
+        #[unsafe(method(sharedAppleEventManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedAppleEventManager() -> Retained<NSAppleEventManager>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
-        #[method(currentAppleEvent)]
+        #[unsafe(method(currentAppleEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentAppleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
-        #[method(currentReplyAppleEvent)]
+        #[unsafe(method(currentReplyAppleEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentReplyAppleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
-        #[method(suspendCurrentAppleEvent)]
+        #[unsafe(method(suspendCurrentAppleEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn suspendCurrentAppleEvent(&self) -> NSAppleEventManagerSuspensionID;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
-        #[method(appleEventForSuspensionID:)]
+        #[unsafe(method(appleEventForSuspensionID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appleEventForSuspensionID(
             &self,
@@ -78,21 +78,21 @@ extern_methods!(
         ) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
-        #[method(replyAppleEventForSuspensionID:)]
+        #[unsafe(method(replyAppleEventForSuspensionID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replyAppleEventForSuspensionID(
             &self,
             suspension_id: NSAppleEventManagerSuspensionID,
         ) -> Retained<NSAppleEventDescriptor>;
 
-        #[method(setCurrentAppleEventAndReplyEventWithSuspensionID:)]
+        #[unsafe(method(setCurrentAppleEventAndReplyEventWithSuspensionID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentAppleEventAndReplyEventWithSuspensionID(
             &self,
             suspension_id: NSAppleEventManagerSuspensionID,
         );
 
-        #[method(resumeWithSuspensionID:)]
+        #[unsafe(method(resumeWithSuspensionID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resumeWithSuspensionID(&self, suspension_id: NSAppleEventManagerSuspensionID);
     }
@@ -101,11 +101,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAppleEventManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

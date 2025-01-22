@@ -58,12 +58,12 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl SKShapeNode {
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(shapeNodeWithPath:)]
+        #[unsafe(method(shapeNodeWithPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeNodeWithPath(path: &CGPath, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(shapeNodeWithPath:centered:)]
+        #[unsafe(method(shapeNodeWithPath:centered:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeNodeWithPath_centered(
             path: &CGPath,
@@ -72,12 +72,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(shapeNodeWithRect:)]
+        #[unsafe(method(shapeNodeWithRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeNodeWithRect(rect: CGRect, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(shapeNodeWithRectOfSize:)]
+        #[unsafe(method(shapeNodeWithRectOfSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeNodeWithRectOfSize(
             size: CGSize,
@@ -85,7 +85,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(shapeNodeWithRect:cornerRadius:)]
+        #[unsafe(method(shapeNodeWithRect:cornerRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeNodeWithRect_cornerRadius(
             rect: CGRect,
@@ -94,7 +94,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(shapeNodeWithRectOfSize:cornerRadius:)]
+        #[unsafe(method(shapeNodeWithRectOfSize:cornerRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeNodeWithRectOfSize_cornerRadius(
             size: CGSize,
@@ -103,7 +103,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(shapeNodeWithCircleOfRadius:)]
+        #[unsafe(method(shapeNodeWithCircleOfRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeNodeWithCircleOfRadius(
             radius: CGFloat,
@@ -111,7 +111,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(shapeNodeWithEllipseInRect:)]
+        #[unsafe(method(shapeNodeWithEllipseInRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeNodeWithEllipseInRect(
             rect: CGRect,
@@ -119,7 +119,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(shapeNodeWithEllipseOfSize:)]
+        #[unsafe(method(shapeNodeWithEllipseOfSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeNodeWithEllipseOfSize(
             size: CGSize,
@@ -127,7 +127,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(shapeNodeWithPoints:count:)]
+        #[unsafe(method(shapeNodeWithPoints:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeNodeWithPoints_count(
             points: NonNull<CGPoint>,
@@ -136,7 +136,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(shapeNodeWithSplinePoints:count:)]
+        #[unsafe(method(shapeNodeWithSplinePoints:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeNodeWithSplinePoints_count(
             points: NonNull<CGPoint>,
@@ -146,178 +146,178 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         /// The CGPath to be drawn (in the Node's coordinate space)
-        #[method(path)]
+        #[unsafe(method(path))]
         #[unsafe(method_family = none)]
         pub unsafe fn path(&self) -> Option<Retained<CGPath>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`path`][Self::path].
-        #[method(setPath:)]
+        #[unsafe(method(setPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: Option<&CGPath>);
 
         /// The color to draw the path with. (for no stroke use [SKColor clearColor]). Defaults to [SKColor whiteColor].
-        #[method(strokeColor)]
+        #[unsafe(method(strokeColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeColor(&self) -> Retained<NSColor>;
 
         /// Setter for [`strokeColor`][Self::strokeColor].
-        #[method(setStrokeColor:)]
+        #[unsafe(method(setStrokeColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeColor(&self, stroke_color: &NSColor);
 
         /// The color to fill the path with. Defaults to [SKColor clearColor] (no fill).
-        #[method(fillColor)]
+        #[unsafe(method(fillColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn fillColor(&self) -> Retained<NSColor>;
 
         /// Setter for [`fillColor`][Self::fillColor].
-        #[method(setFillColor:)]
+        #[unsafe(method(setFillColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFillColor(&self, fill_color: &NSColor);
 
         /// Sets the blend mode to use when composing the shape with the final framebuffer.
         ///
         /// See: SKNode.SKBlendMode
-        #[method(blendMode)]
+        #[unsafe(method(blendMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn blendMode(&self) -> SKBlendMode;
 
         /// Setter for [`blendMode`][Self::blendMode].
-        #[method(setBlendMode:)]
+        #[unsafe(method(setBlendMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBlendMode(&self, blend_mode: SKBlendMode);
 
         /// If set to YES, the path stroke edges and caps is smoothed (antialiased) when drawn.
-        #[method(isAntialiased)]
+        #[unsafe(method(isAntialiased))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAntialiased(&self) -> bool;
 
         /// Setter for [`isAntialiased`][Self::isAntialiased].
-        #[method(setAntialiased:)]
+        #[unsafe(method(setAntialiased:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAntialiased(&self, antialiased: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The width used to stroke the path. Widths larger than 2.0 may result in artifacts. Defaults to 1.0.
-        #[method(lineWidth)]
+        #[unsafe(method(lineWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`lineWidth`][Self::lineWidth].
-        #[method(setLineWidth:)]
+        #[unsafe(method(setLineWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Add a glow to the path stroke of the specified width. Defaults to 0.0 (no glow)
-        #[method(glowWidth)]
+        #[unsafe(method(glowWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn glowWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`glowWidth`][Self::glowWidth].
-        #[method(setGlowWidth:)]
+        #[unsafe(method(setGlowWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlowWidth(&self, glow_width: CGFloat);
 
         #[cfg(feature = "objc2-core-graphics")]
         /// The cap type that should be used when stroking a non-closed path
-        #[method(lineCap)]
+        #[unsafe(method(lineCap))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineCap(&self) -> CGLineCap;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`lineCap`][Self::lineCap].
-        #[method(setLineCap:)]
+        #[unsafe(method(setLineCap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineCap(&self, line_cap: CGLineCap);
 
         #[cfg(feature = "objc2-core-graphics")]
         /// The join type that should be used when stroking a path
-        #[method(lineJoin)]
+        #[unsafe(method(lineJoin))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineJoin(&self) -> CGLineJoin;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`lineJoin`][Self::lineJoin].
-        #[method(setLineJoin:)]
+        #[unsafe(method(setLineJoin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineJoin(&self, line_join: CGLineJoin);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// When a miter join is used, the maximum ratio of miter length to line with to be used
-        #[method(miterLimit)]
+        #[unsafe(method(miterLimit))]
         #[unsafe(method_family = none)]
         pub unsafe fn miterLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`miterLimit`][Self::miterLimit].
-        #[method(setMiterLimit:)]
+        #[unsafe(method(setMiterLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The length of the node's path if it were to be stroked
-        #[method(lineLength)]
+        #[unsafe(method(lineLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineLength(&self) -> CGFloat;
 
         #[cfg(feature = "SKTexture")]
-        #[method(fillTexture)]
+        #[unsafe(method(fillTexture))]
         #[unsafe(method_family = none)]
         pub unsafe fn fillTexture(&self) -> Option<Retained<SKTexture>>;
 
         #[cfg(feature = "SKTexture")]
         /// Setter for [`fillTexture`][Self::fillTexture].
-        #[method(setFillTexture:)]
+        #[unsafe(method(setFillTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFillTexture(&self, fill_texture: Option<&SKTexture>);
 
         #[cfg(feature = "SKShader")]
-        #[method(fillShader)]
+        #[unsafe(method(fillShader))]
         #[unsafe(method_family = none)]
         pub unsafe fn fillShader(&self) -> Option<Retained<SKShader>>;
 
         #[cfg(feature = "SKShader")]
         /// Setter for [`fillShader`][Self::fillShader].
-        #[method(setFillShader:)]
+        #[unsafe(method(setFillShader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFillShader(&self, fill_shader: Option<&SKShader>);
 
         #[cfg(feature = "SKTexture")]
-        #[method(strokeTexture)]
+        #[unsafe(method(strokeTexture))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeTexture(&self) -> Option<Retained<SKTexture>>;
 
         #[cfg(feature = "SKTexture")]
         /// Setter for [`strokeTexture`][Self::strokeTexture].
-        #[method(setStrokeTexture:)]
+        #[unsafe(method(setStrokeTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeTexture(&self, stroke_texture: Option<&SKTexture>);
 
         #[cfg(feature = "SKShader")]
-        #[method(strokeShader)]
+        #[unsafe(method(strokeShader))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeShader(&self) -> Option<Retained<SKShader>>;
 
         #[cfg(feature = "SKShader")]
         /// Setter for [`strokeShader`][Self::strokeShader].
-        #[method(setStrokeShader:)]
+        #[unsafe(method(setStrokeShader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeShader(&self, stroke_shader: Option<&SKShader>);
 
         #[cfg(feature = "SKAttribute")]
         /// Optional dictionary of SKAttributeValues
         /// Attributes can be used with custom SKShaders.
-        #[method(attributeValues)]
+        #[unsafe(method(attributeValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeValues(&self) -> Retained<NSDictionary<NSString, SKAttributeValue>>;
 
         #[cfg(feature = "SKAttribute")]
         /// Setter for [`attributeValues`][Self::attributeValues].
-        #[method(setAttributeValues:)]
+        #[unsafe(method(setAttributeValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributeValues(
             &self,
@@ -325,7 +325,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "SKAttribute")]
-        #[method(valueForAttributeNamed:)]
+        #[unsafe(method(valueForAttributeNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueForAttributeNamed(
             &self,
@@ -333,7 +333,7 @@ extern_methods!(
         ) -> Option<Retained<SKAttributeValue>>;
 
         #[cfg(feature = "SKAttribute")]
-        #[method(setValue:forAttributeNamed:)]
+        #[unsafe(method(setValue:forAttributeNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forAttributeNamed(&self, value: &SKAttributeValue, key: &NSString);
     }
@@ -344,30 +344,30 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKShapeNode {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(node)]
+        #[unsafe(method(node))]
         #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(nodeWithFileNamed:)]
+        #[unsafe(method(nodeWithFileNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method(nodeWithFileNamed:securelyWithClasses:andError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
@@ -382,7 +382,7 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKShapeNode {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -23,7 +23,7 @@ extern_methods!(
     unsafe impl LAPersistedRight {
         #[cfg(feature = "LAPrivateKey")]
         /// Managed private key
-        #[method(key)]
+        #[unsafe(method(key))]
         #[unsafe(method_family = none)]
         pub unsafe fn key(&self) -> Retained<LAPrivateKey>;
 
@@ -31,21 +31,21 @@ extern_methods!(
         /// Generic secret
         ///
         /// This is the generic secret that would have been stored along with the right
-        #[method(secret)]
+        #[unsafe(method(secret))]
         #[unsafe(method_family = none)]
         pub unsafe fn secret(&self) -> Retained<LASecret>;
 
         /// Clients cannot create
         /// `LAPersistedRight`instances directly. They can only obtain them from the
         /// `LARightStore`.
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Clients cannot create
         /// `LAPersistedRight`instances directly. They can only obtain them from the
         /// `LARightStore`.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -62,7 +62,7 @@ extern_methods!(
         /// Parameter `requirement`: Requirement that needs to be satisfied to authorize the right
         ///
         /// Returns: `LARight`instance
-        #[method(initWithRequirement:)]
+        #[unsafe(method(initWithRequirement:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRequirement(
             this: Allocated<Self>,

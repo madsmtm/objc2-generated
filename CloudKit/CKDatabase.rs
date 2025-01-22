@@ -44,20 +44,20 @@ unsafe impl NSObjectProtocol for CKDatabase {}
 
 extern_methods!(
     unsafe impl CKDatabase {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
-        #[method(addOperation:)]
+        #[unsafe(method(addOperation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addOperation(&self, operation: &CKDatabaseOperation);
 
-        #[method(databaseScope)]
+        #[unsafe(method(databaseScope))]
         #[unsafe(method_family = none)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;
     }
@@ -77,7 +77,7 @@ extern_methods!(
         /// `CKFetchRecordsOperation`and
         /// `CKModifyRecordsOperation`are the more configurable,
         /// `CKOperation`-based alternatives to these methods
-        #[method(fetchRecordWithID:completionHandler:)]
+        #[unsafe(method(fetchRecordWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordWithID_completionHandler(
             &self,
@@ -86,7 +86,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
-        #[method(saveRecord:completionHandler:)]
+        #[unsafe(method(saveRecord:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveRecord_completionHandler(
             &self,
@@ -95,7 +95,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
-        #[method(deleteRecordWithID:completionHandler:)]
+        #[unsafe(method(deleteRecordWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteRecordWithID_completionHandler(
             &self,
@@ -120,7 +120,7 @@ extern_methods!(
         /// `zoneID.`Cross-zone queries are not supported in a
         /// `sharedCloudDatabase`Queries that do not specify a
         /// `zoneID`will perform a query across all zones in the database.
-        #[method(performQuery:inZoneWithID:completionHandler:)]
+        #[unsafe(method(performQuery:inZoneWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performQuery_inZoneWithID_completionHandler(
             &self,
@@ -133,7 +133,7 @@ extern_methods!(
         /// `CKFetchRecordZonesOperation`and
         /// `CKModifyRecordZonesOperation`are the more configurable,
         /// `CKOperation`-based alternatives to these methods
-        #[method(fetchAllRecordZonesWithCompletionHandler:)]
+        #[unsafe(method(fetchAllRecordZonesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllRecordZonesWithCompletionHandler(
             &self,
@@ -145,7 +145,7 @@ extern_methods!(
             feature = "CKRecordZoneID",
             feature = "block2"
         ))]
-        #[method(fetchRecordZoneWithID:completionHandler:)]
+        #[unsafe(method(fetchRecordZoneWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordZoneWithID_completionHandler(
             &self,
@@ -154,7 +154,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecordZone", feature = "block2"))]
-        #[method(saveRecordZone:completionHandler:)]
+        #[unsafe(method(saveRecordZone:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveRecordZone_completionHandler(
             &self,
@@ -163,7 +163,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
-        #[method(deleteRecordZoneWithID:completionHandler:)]
+        #[unsafe(method(deleteRecordZoneWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteRecordZoneWithID_completionHandler(
             &self,
@@ -175,7 +175,7 @@ extern_methods!(
         /// `CKFetchSubscriptionsOperation`and
         /// `CKModifySubscriptionsOperation`are the more configurable,
         /// `CKOperation`-based alternative to these methods
-        #[method(fetchSubscriptionWithID:completionHandler:)]
+        #[unsafe(method(fetchSubscriptionWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchSubscriptionWithID_completionHandler(
             &self,
@@ -184,7 +184,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
-        #[method(fetchAllSubscriptionsWithCompletionHandler:)]
+        #[unsafe(method(fetchAllSubscriptionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllSubscriptionsWithCompletionHandler(
             &self,
@@ -192,7 +192,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
-        #[method(saveSubscription:completionHandler:)]
+        #[unsafe(method(saveSubscription:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveSubscription_completionHandler(
             &self,
@@ -201,7 +201,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
-        #[method(deleteSubscriptionWithID:completionHandler:)]
+        #[unsafe(method(deleteSubscriptionWithID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteSubscriptionWithID_completionHandler(
             &self,

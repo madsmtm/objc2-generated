@@ -102,79 +102,79 @@ unsafe impl NSObjectProtocol for PHImageRequestOptions {}
 
 extern_methods!(
     unsafe impl PHImageRequestOptions {
-        #[method(version)]
+        #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> PHImageRequestOptionsVersion;
 
         /// Setter for [`version`][Self::version].
-        #[method(setVersion:)]
+        #[unsafe(method(setVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVersion(&self, version: PHImageRequestOptionsVersion);
 
-        #[method(deliveryMode)]
+        #[unsafe(method(deliveryMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn deliveryMode(&self) -> PHImageRequestOptionsDeliveryMode;
 
         /// Setter for [`deliveryMode`][Self::deliveryMode].
-        #[method(setDeliveryMode:)]
+        #[unsafe(method(setDeliveryMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDeliveryMode(&self, delivery_mode: PHImageRequestOptionsDeliveryMode);
 
-        #[method(resizeMode)]
+        #[unsafe(method(resizeMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn resizeMode(&self) -> PHImageRequestOptionsResizeMode;
 
         /// Setter for [`resizeMode`][Self::resizeMode].
-        #[method(setResizeMode:)]
+        #[unsafe(method(setResizeMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResizeMode(&self, resize_mode: PHImageRequestOptionsResizeMode);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(normalizedCropRect)]
+        #[unsafe(method(normalizedCropRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn normalizedCropRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`normalizedCropRect`][Self::normalizedCropRect].
-        #[method(setNormalizedCropRect:)]
+        #[unsafe(method(setNormalizedCropRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNormalizedCropRect(&self, normalized_crop_rect: CGRect);
 
-        #[method(isNetworkAccessAllowed)]
+        #[unsafe(method(isNetworkAccessAllowed))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNetworkAccessAllowed(&self) -> bool;
 
         /// Setter for [`isNetworkAccessAllowed`][Self::isNetworkAccessAllowed].
-        #[method(setNetworkAccessAllowed:)]
+        #[unsafe(method(setNetworkAccessAllowed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNetworkAccessAllowed(&self, network_access_allowed: bool);
 
-        #[method(isSynchronous)]
+        #[unsafe(method(isSynchronous))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSynchronous(&self) -> bool;
 
         /// Setter for [`isSynchronous`][Self::isSynchronous].
-        #[method(setSynchronous:)]
+        #[unsafe(method(setSynchronous:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSynchronous(&self, synchronous: bool);
 
         #[cfg(feature = "block2")]
-        #[method(progressHandler)]
+        #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn progressHandler(&self) -> PHAssetImageProgressHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
-        #[method(setProgressHandler:)]
+        #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetImageProgressHandler);
 
-        #[method(allowSecondaryDegradedImage)]
+        #[unsafe(method(allowSecondaryDegradedImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowSecondaryDegradedImage(&self) -> bool;
 
         /// Setter for [`allowSecondaryDegradedImage`][Self::allowSecondaryDegradedImage].
-        #[method(setAllowSecondaryDegradedImage:)]
+        #[unsafe(method(setAllowSecondaryDegradedImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowSecondaryDegradedImage(&self, allow_secondary_degraded_image: bool);
     }
@@ -183,11 +183,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHImageRequestOptions {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -210,41 +210,41 @@ unsafe impl NSObjectProtocol for PHLivePhotoRequestOptions {}
 
 extern_methods!(
     unsafe impl PHLivePhotoRequestOptions {
-        #[method(version)]
+        #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> PHImageRequestOptionsVersion;
 
         /// Setter for [`version`][Self::version].
-        #[method(setVersion:)]
+        #[unsafe(method(setVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVersion(&self, version: PHImageRequestOptionsVersion);
 
-        #[method(deliveryMode)]
+        #[unsafe(method(deliveryMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn deliveryMode(&self) -> PHImageRequestOptionsDeliveryMode;
 
         /// Setter for [`deliveryMode`][Self::deliveryMode].
-        #[method(setDeliveryMode:)]
+        #[unsafe(method(setDeliveryMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDeliveryMode(&self, delivery_mode: PHImageRequestOptionsDeliveryMode);
 
-        #[method(isNetworkAccessAllowed)]
+        #[unsafe(method(isNetworkAccessAllowed))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNetworkAccessAllowed(&self) -> bool;
 
         /// Setter for [`isNetworkAccessAllowed`][Self::isNetworkAccessAllowed].
-        #[method(setNetworkAccessAllowed:)]
+        #[unsafe(method(setNetworkAccessAllowed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNetworkAccessAllowed(&self, network_access_allowed: bool);
 
         #[cfg(feature = "block2")]
-        #[method(progressHandler)]
+        #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn progressHandler(&self) -> PHAssetImageProgressHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
-        #[method(setProgressHandler:)]
+        #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetImageProgressHandler);
     }
@@ -253,11 +253,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHLivePhotoRequestOptions {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -329,41 +329,41 @@ unsafe impl NSObjectProtocol for PHVideoRequestOptions {}
 
 extern_methods!(
     unsafe impl PHVideoRequestOptions {
-        #[method(isNetworkAccessAllowed)]
+        #[unsafe(method(isNetworkAccessAllowed))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNetworkAccessAllowed(&self) -> bool;
 
         /// Setter for [`isNetworkAccessAllowed`][Self::isNetworkAccessAllowed].
-        #[method(setNetworkAccessAllowed:)]
+        #[unsafe(method(setNetworkAccessAllowed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNetworkAccessAllowed(&self, network_access_allowed: bool);
 
-        #[method(version)]
+        #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> PHVideoRequestOptionsVersion;
 
         /// Setter for [`version`][Self::version].
-        #[method(setVersion:)]
+        #[unsafe(method(setVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVersion(&self, version: PHVideoRequestOptionsVersion);
 
-        #[method(deliveryMode)]
+        #[unsafe(method(deliveryMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn deliveryMode(&self) -> PHVideoRequestOptionsDeliveryMode;
 
         /// Setter for [`deliveryMode`][Self::deliveryMode].
-        #[method(setDeliveryMode:)]
+        #[unsafe(method(setDeliveryMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDeliveryMode(&self, delivery_mode: PHVideoRequestOptionsDeliveryMode);
 
         #[cfg(feature = "block2")]
-        #[method(progressHandler)]
+        #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn progressHandler(&self) -> PHAssetVideoProgressHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
-        #[method(setProgressHandler:)]
+        #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetVideoProgressHandler);
     }
@@ -372,11 +372,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHVideoRequestOptions {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -430,7 +430,7 @@ unsafe impl NSObjectProtocol for PHImageManager {}
 
 extern_methods!(
     unsafe impl PHImageManager {
-        #[method(defaultManager)]
+        #[unsafe(method(defaultManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultManager() -> Retained<PHImageManager>;
 
@@ -443,7 +443,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[cfg(target_os = "macos")]
-        #[method(requestImageForAsset:targetSize:contentMode:options:resultHandler:)]
+        #[unsafe(method(requestImageForAsset:targetSize:contentMode:options:resultHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestImageForAsset_targetSize_contentMode_options_resultHandler(
             &self,
@@ -454,7 +454,7 @@ extern_methods!(
             result_handler: &block2::Block<dyn Fn(*mut NSImage, *mut NSDictionary)>,
         ) -> PHImageRequestID;
 
-        #[method(cancelImageRequest:)]
+        #[unsafe(method(cancelImageRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelImageRequest(&self, request_id: PHImageRequestID);
 
@@ -467,7 +467,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Requests a live photo representation of the asset. With PHImageRequestOptionsDeliveryModeOpportunistic (or if no options are specified), the resultHandler block may be called more than once (the first call may occur before the method returns). The PHImageResultIsDegradedKey key in the result handler's info parameter indicates when a temporary low-quality live photo is provided.
-        #[method(requestLivePhotoForAsset:targetSize:contentMode:options:resultHandler:)]
+        #[unsafe(method(requestLivePhotoForAsset:targetSize:contentMode:options:resultHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestLivePhotoForAsset_targetSize_contentMode_options_resultHandler(
             &self,
@@ -484,7 +484,7 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-av-foundation"
         ))]
-        #[method(requestPlayerItemForVideo:options:resultHandler:)]
+        #[unsafe(method(requestPlayerItemForVideo:options:resultHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestPlayerItemForVideo_options_resultHandler(
             &self,
@@ -499,7 +499,7 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-av-foundation"
         ))]
-        #[method(requestExportSessionForVideo:options:exportPreset:resultHandler:)]
+        #[unsafe(method(requestExportSessionForVideo:options:exportPreset:resultHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestExportSessionForVideo_options_exportPreset_resultHandler(
             &self,
@@ -515,7 +515,7 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-av-foundation"
         ))]
-        #[method(requestAVAssetForVideo:options:resultHandler:)]
+        #[unsafe(method(requestAVAssetForVideo:options:resultHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAVAssetForVideo_options_resultHandler(
             &self,
@@ -531,11 +531,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHImageManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -552,12 +552,12 @@ unsafe impl NSObjectProtocol for PHCachingImageManager {}
 
 extern_methods!(
     unsafe impl PHCachingImageManager {
-        #[method(allowsCachingHighQualityImages)]
+        #[unsafe(method(allowsCachingHighQualityImages))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsCachingHighQualityImages(&self) -> bool;
 
         /// Setter for [`allowsCachingHighQualityImages`][Self::allowsCachingHighQualityImages].
-        #[method(setAllowsCachingHighQualityImages:)]
+        #[unsafe(method(setAllowsCachingHighQualityImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCachingHighQualityImages(
             &self,
@@ -570,7 +570,7 @@ extern_methods!(
             feature = "PhotosTypes",
             feature = "objc2-core-foundation"
         ))]
-        #[method(startCachingImagesForAssets:targetSize:contentMode:options:)]
+        #[unsafe(method(startCachingImagesForAssets:targetSize:contentMode:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startCachingImagesForAssets_targetSize_contentMode_options(
             &self,
@@ -586,7 +586,7 @@ extern_methods!(
             feature = "PhotosTypes",
             feature = "objc2-core-foundation"
         ))]
-        #[method(stopCachingImagesForAssets:targetSize:contentMode:options:)]
+        #[unsafe(method(stopCachingImagesForAssets:targetSize:contentMode:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopCachingImagesForAssets_targetSize_contentMode_options(
             &self,
@@ -596,7 +596,7 @@ extern_methods!(
             options: Option<&PHImageRequestOptions>,
         );
 
-        #[method(stopCachingImagesForAllAssets)]
+        #[unsafe(method(stopCachingImagesForAllAssets))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopCachingImagesForAllAssets(&self);
     }
@@ -605,11 +605,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHCachingImageManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

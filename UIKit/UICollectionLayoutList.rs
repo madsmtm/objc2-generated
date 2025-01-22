@@ -152,15 +152,15 @@ unsafe impl NSObjectProtocol for UICollectionLayoutListConfiguration {}
 
 extern_methods!(
     unsafe impl UICollectionLayoutListConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithAppearance:)]
+        #[unsafe(method(initWithAppearance:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAppearance(
             this: Allocated<Self>,
@@ -168,31 +168,31 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The overall appearance of the section.
-        #[method(appearance)]
+        #[unsafe(method(appearance))]
         #[unsafe(method_family = none)]
         pub unsafe fn appearance(&self) -> UICollectionLayoutListAppearance;
 
         /// Whether this section shows separators or not. For additional control, see separatorConfiguration.
         /// Note that when this property is NO, the separatorConfiguration is ineffective.
-        #[method(showsSeparators)]
+        #[unsafe(method(showsSeparators))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsSeparators(&self) -> bool;
 
         /// Setter for [`showsSeparators`][Self::showsSeparators].
-        #[method(setShowsSeparators:)]
+        #[unsafe(method(setShowsSeparators:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsSeparators(&self, shows_separators: bool);
 
         #[cfg(feature = "UIListSeparatorConfiguration")]
         /// The preferred configuration for separators. Used as a baseline for a section in a list using this
         /// `UICollectionLayoutListConfiguration`
-        #[method(separatorConfiguration)]
+        #[unsafe(method(separatorConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn separatorConfiguration(&self) -> Retained<UIListSeparatorConfiguration>;
 
         #[cfg(feature = "UIListSeparatorConfiguration")]
         /// Setter for [`separatorConfiguration`][Self::separatorConfiguration].
-        #[method(setSeparatorConfiguration:)]
+        #[unsafe(method(setSeparatorConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSeparatorConfiguration(
             &self,
@@ -203,13 +203,13 @@ extern_methods!(
         /// This handler is executed when the list section is configuring separator appearance for an item. The index path for the item being configured and
         /// a resolved separator configuration are passed in to this block. The configuration returned from this block will be treated as the final
         /// separator configuration for this item.
-        #[method(itemSeparatorHandler)]
+        #[unsafe(method(itemSeparatorHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemSeparatorHandler(&self) -> UICollectionLayoutListItemSeparatorHandler;
 
         #[cfg(all(feature = "UIListSeparatorConfiguration", feature = "block2"))]
         /// Setter for [`itemSeparatorHandler`][Self::itemSeparatorHandler].
-        #[method(setItemSeparatorHandler:)]
+        #[unsafe(method(setItemSeparatorHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemSeparatorHandler(
             &self,
@@ -219,20 +219,20 @@ extern_methods!(
         #[cfg(feature = "UIColor")]
         /// The background color of the section.
         /// Defaults to nil, indicating the system background color for the specified appearance is used.
-        #[method(backgroundColor)]
+        #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
-        #[method(setBackgroundColor:)]
+        #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
 
         #[cfg(all(feature = "UISwipeActionsConfiguration", feature = "block2"))]
         /// Called when list is about to show leading swipe actions for a particular index path.
         /// Return either a UISwipeActionsConfiguration object or nil if this index path does not show swipe actions.
-        #[method(leadingSwipeActionsConfigurationProvider)]
+        #[unsafe(method(leadingSwipeActionsConfigurationProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn leadingSwipeActionsConfigurationProvider(
             &self,
@@ -240,7 +240,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UISwipeActionsConfiguration", feature = "block2"))]
         /// Setter for [`leadingSwipeActionsConfigurationProvider`][Self::leadingSwipeActionsConfigurationProvider].
-        #[method(setLeadingSwipeActionsConfigurationProvider:)]
+        #[unsafe(method(setLeadingSwipeActionsConfigurationProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeadingSwipeActionsConfigurationProvider(
             &self,
@@ -250,7 +250,7 @@ extern_methods!(
         #[cfg(all(feature = "UISwipeActionsConfiguration", feature = "block2"))]
         /// Called when list is about to show trailing swipe actions for a particular index path.
         /// Return either a UISwipeActionsConfiguration object or nil if this index path does not show swipe actions.
-        #[method(trailingSwipeActionsConfigurationProvider)]
+        #[unsafe(method(trailingSwipeActionsConfigurationProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn trailingSwipeActionsConfigurationProvider(
             &self,
@@ -258,7 +258,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UISwipeActionsConfiguration", feature = "block2"))]
         /// Setter for [`trailingSwipeActionsConfigurationProvider`][Self::trailingSwipeActionsConfigurationProvider].
-        #[method(setTrailingSwipeActionsConfigurationProvider:)]
+        #[unsafe(method(setTrailingSwipeActionsConfigurationProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrailingSwipeActionsConfigurationProvider(
             &self,
@@ -266,34 +266,34 @@ extern_methods!(
         );
 
         /// Defines whether the section has a header. Defaults to UICollectionLayoutListHeaderModeNone.
-        #[method(headerMode)]
+        #[unsafe(method(headerMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn headerMode(&self) -> UICollectionLayoutListHeaderMode;
 
         /// Setter for [`headerMode`][Self::headerMode].
-        #[method(setHeaderMode:)]
+        #[unsafe(method(setHeaderMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeaderMode(&self, header_mode: UICollectionLayoutListHeaderMode);
 
         /// Defines whether the section has a footer. Defaults to UICollectionLayoutListFooterModeNone.
-        #[method(footerMode)]
+        #[unsafe(method(footerMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn footerMode(&self) -> UICollectionLayoutListFooterMode;
 
         /// Setter for [`footerMode`][Self::footerMode].
-        #[method(setFooterMode:)]
+        #[unsafe(method(setFooterMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFooterMode(&self, footer_mode: UICollectionLayoutListFooterMode);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Padding above each section header. The default value is `UICollectionViewLayoutAutomaticDimension`
-        #[method(headerTopPadding)]
+        #[unsafe(method(headerTopPadding))]
         #[unsafe(method_family = none)]
         pub unsafe fn headerTopPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`headerTopPadding`][Self::headerTopPadding].
-        #[method(setHeaderTopPadding:)]
+        #[unsafe(method(setHeaderTopPadding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeaderTopPadding(&self, header_top_padding: CGFloat);
 
@@ -301,13 +301,13 @@ extern_methods!(
         ///
         /// The default value for this property is `UICollectionLayoutListContentHuggingElementsSupplementaryHeader` on visionOS for plain style table views and an empty set on all other platforms.
         /// When the value of this property is `UICollectionLayoutListContentHuggingElementsSupplementaryHeader`, the header view will not stretch the width of the collection view if its content's intrinsic content size is less than the collection view's width.
-        #[method(contentHuggingElements)]
+        #[unsafe(method(contentHuggingElements))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentHuggingElements(&self)
             -> UICollectionLayoutListContentHuggingElements;
 
         /// Setter for [`contentHuggingElements`][Self::contentHuggingElements].
-        #[method(setContentHuggingElements:)]
+        #[unsafe(method(setContentHuggingElements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentHuggingElements(
             &self,
@@ -321,7 +321,7 @@ extern_methods!(
     #[cfg(feature = "UICollectionViewCompositionalLayout")]
     unsafe impl NSCollectionLayoutSection {
         /// Creates a list section using the specified configuration. You should pass the layoutEnvironment from inside the UICollectionViewCompositionalLayoutSectionProvider.
-        #[method(sectionWithListConfiguration:layoutEnvironment:)]
+        #[unsafe(method(sectionWithListConfiguration:layoutEnvironment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionWithListConfiguration_layoutEnvironment(
             configuration: &UICollectionLayoutListConfiguration,
@@ -338,7 +338,7 @@ extern_methods!(
     ))]
     unsafe impl UICollectionViewCompositionalLayout {
         /// Creates a compositional layout containing only list sections of the specified configuration.
-        #[method(layoutWithListConfiguration:)]
+        #[unsafe(method(layoutWithListConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutWithListConfiguration(
             configuration: &UICollectionLayoutListConfiguration,

@@ -50,7 +50,7 @@ extern_methods!(
         /// Returns the shared Finder Sync controller object.
         ///
         /// - Returns: The default Finder Sync controller object for this extension.
-        #[method(defaultController)]
+        #[unsafe(method(defaultController))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultController() -> Retained<Self>;
 
@@ -63,12 +63,12 @@ extern_methods!(
         ///
         /// Always set `directoryURLs` when the extension starts. If there are no
         /// directories to watch, set `directoryURLs` to an empty set.
-        #[method(directoryURLs)]
+        #[unsafe(method(directoryURLs))]
         #[unsafe(method_family = none)]
         pub unsafe fn directoryURLs(&self) -> Retained<NSSet<NSURL>>;
 
         /// Setter for [`directoryURLs`][Self::directoryURLs].
-        #[method(setDirectoryURLs:)]
+        #[unsafe(method(setDirectoryURLs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirectoryURLs(&self, directory_ur_ls: Option<&NSSet<NSURL>>);
 
@@ -90,7 +90,7 @@ extern_methods!(
         /// - label: A label describing the sync state represented by this badge.
         /// Each label should be a short localized string, such as "Waiting."
         /// - badgeID: A unique ID, identifying this badge.
-        #[method(setBadgeImage:label:forBadgeIdentifier:)]
+        #[unsafe(method(setBadgeImage:label:forBadgeIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadgeImage_label_forBadgeIdentifier(
             &self,
@@ -118,7 +118,7 @@ extern_methods!(
         ///
         /// ## See Also
         /// - ``FIFinderSync/requestBadgeIdentifierForURL:``
-        #[method(setBadgeIdentifier:forURL:)]
+        #[unsafe(method(setBadgeIdentifier:forURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadgeIdentifier_forURL(&self, badge_id: &NSString, url: &NSURL);
 
@@ -135,7 +135,7 @@ extern_methods!(
         /// toolbar button), this method returns `nil`.
         ///
         /// - Returns: The URL of the Finder’s current target.
-        #[method(targetedURL)]
+        #[unsafe(method(targetedURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetedURL(&self) -> Option<Retained<NSURL>>;
 
@@ -152,11 +152,11 @@ extern_methods!(
         /// toolbar button), this method returns `nil`.
         ///
         /// - Returns: An array of items currently selected in the Finder window.
-        #[method(selectedItemURLs)]
+        #[unsafe(method(selectedItemURLs))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedItemURLs(&self) -> Option<Retained<NSArray<NSURL>>>;
 
-        #[method(lastUsedDateForItemWithURL:)]
+        #[unsafe(method(lastUsedDateForItemWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastUsedDateForItemWithURL(
             &self,
@@ -164,7 +164,7 @@ extern_methods!(
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "block2")]
-        #[method(setLastUsedDate:forItemWithURL:completion:)]
+        #[unsafe(method(setLastUsedDate:forItemWithURL:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLastUsedDate_forItemWithURL_completion(
             &self,
@@ -173,12 +173,12 @@ extern_methods!(
             completion: &block2::Block<dyn Fn(NonNull<NSError>)>,
         );
 
-        #[method(tagDataForItemWithURL:)]
+        #[unsafe(method(tagDataForItemWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tagDataForItemWithURL(&self, item_url: &NSURL) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "block2")]
-        #[method(setTagData:forItemWithURL:completion:)]
+        #[unsafe(method(setTagData:forItemWithURL:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTagData_forItemWithURL_completion(
             &self,
@@ -187,11 +187,11 @@ extern_methods!(
             completion: &block2::Block<dyn Fn(NonNull<NSError>)>,
         );
 
-        #[method(isExtensionEnabled)]
+        #[unsafe(method(isExtensionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isExtensionEnabled() -> bool;
 
-        #[method(showExtensionManagementInterface)]
+        #[unsafe(method(showExtensionManagementInterface))]
         #[unsafe(method_family = none)]
         pub unsafe fn showExtensionManagementInterface();
     }
@@ -200,11 +200,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl FIFinderSyncController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -273,7 +273,7 @@ extern_protocol!(
         /// - ``FinderSync/FIFinderSyncController/targetedURL``
         /// - ``FinderSync/FIFinderSyncController/selectedItemURLs``
         #[optional]
-        #[method(menuForMenuKind:)]
+        #[unsafe(method(menuForMenuKind:))]
         #[unsafe(method_family = none)]
         unsafe fn menuForMenuKind(
             &self,
@@ -298,7 +298,7 @@ extern_protocol!(
         /// - Parameters:
         /// - url: The URL of the directory.
         #[optional]
-        #[method(beginObservingDirectoryAtURL:)]
+        #[unsafe(method(beginObservingDirectoryAtURL:))]
         #[unsafe(method_family = none)]
         unsafe fn beginObservingDirectoryAtURL(&self, url: &NSURL);
 
@@ -313,7 +313,7 @@ extern_protocol!(
         /// - Parameters:
         /// - url: The URL of the directory.
         #[optional]
-        #[method(endObservingDirectoryAtURL:)]
+        #[unsafe(method(endObservingDirectoryAtURL:))]
         #[unsafe(method_family = none)]
         unsafe fn endObservingDirectoryAtURL(&self, url: &NSURL);
 
@@ -331,7 +331,7 @@ extern_protocol!(
         /// ## See Also
         /// - ``FinderSync/FIFinderSyncController/setBadgeIdentifier:forURL:``
         #[optional]
-        #[method(requestBadgeIdentifierForURL:)]
+        #[unsafe(method(requestBadgeIdentifierForURL:))]
         #[unsafe(method_family = none)]
         unsafe fn requestBadgeIdentifierForURL(&self, url: &NSURL);
 
@@ -340,7 +340,7 @@ extern_protocol!(
         /// To add a toolbar item to the Finder, override the getter method for the
         /// toolbar image, name, and tooltip properties.
         #[optional]
-        #[method(toolbarItemName)]
+        #[unsafe(method(toolbarItemName))]
         #[unsafe(method_family = none)]
         unsafe fn toolbarItemName(&self) -> Retained<NSString>;
 
@@ -350,7 +350,7 @@ extern_protocol!(
         /// To add a toolbar item to the Finder, override the getter method for the
         /// toolbar image, name, and tooltip properties.
         #[optional]
-        #[method(toolbarItemImage)]
+        #[unsafe(method(toolbarItemImage))]
         #[unsafe(method_family = none)]
         unsafe fn toolbarItemImage(&self) -> Retained<NSImage>;
 
@@ -359,12 +359,12 @@ extern_protocol!(
         /// To add a toolbar item to the Finder, override the getter method for the
         /// toolbar image, name, and tooltip properties.
         #[optional]
-        #[method(toolbarItemToolTip)]
+        #[unsafe(method(toolbarItemToolTip))]
         #[unsafe(method_family = none)]
         unsafe fn toolbarItemToolTip(&self) -> Retained<NSString>;
 
         #[optional]
-        #[method(supportedServiceNamesForItemWithURL:)]
+        #[unsafe(method(supportedServiceNamesForItemWithURL:))]
         #[unsafe(method_family = none)]
         unsafe fn supportedServiceNamesForItemWithURL(
             &self,
@@ -372,7 +372,7 @@ extern_protocol!(
         ) -> Retained<NSArray<NSFileProviderServiceName>>;
 
         #[optional]
-        #[method(makeListenerEndpointForServiceName:itemURL:andReturnError:_)]
+        #[unsafe(method(makeListenerEndpointForServiceName:itemURL:andReturnError:_))]
         #[unsafe(method_family = none)]
         unsafe fn makeListenerEndpointForServiceName_itemURL_andReturnError(
             &self,
@@ -382,7 +382,7 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         #[optional]
-        #[method(valuesForAttributes:forItemWithURL:completion:)]
+        #[unsafe(method(valuesForAttributes:forItemWithURL:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn valuesForAttributes_forItemWithURL_completion(
             &self,
@@ -431,11 +431,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl FIFinderSync {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

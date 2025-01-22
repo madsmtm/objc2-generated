@@ -105,7 +105,7 @@ extern_methods!(
         /// Returns: A newly initialized VZDiskImageStorageDeviceAttachment. If an error was encountered returns
         /// `nil,`and
         /// `error`contains the error.
-        #[method(initWithURL:readOnly:error:_)]
+        #[unsafe(method(initWithURL:readOnly:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_readOnly_error(
             this: Allocated<Self>,
@@ -128,7 +128,7 @@ extern_methods!(
         /// Returns: A newly initialized VZDiskImageStorageDeviceAttachment. If an error was encountered returns
         /// `nil,`and
         /// `error`contains the error.
-        #[method(initWithURL:readOnly:cachingMode:synchronizationMode:error:_)]
+        #[unsafe(method(initWithURL:readOnly:cachingMode:synchronizationMode:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_readOnly_cachingMode_synchronizationMode_error(
             this: Allocated<Self>,
@@ -139,22 +139,22 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// URL of the underlying disk image.
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// Whether the underlying disk image is read-only.
-        #[method(isReadOnly)]
+        #[unsafe(method(isReadOnly))]
         #[unsafe(method_family = none)]
         pub unsafe fn isReadOnly(&self) -> bool;
 
         /// How disk image data is cached by the host.
-        #[method(cachingMode)]
+        #[unsafe(method(cachingMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn cachingMode(&self) -> VZDiskImageCachingMode;
 
         /// The mode in which the disk image synchronizes data with the underlying storage device.
-        #[method(synchronizationMode)]
+        #[unsafe(method(synchronizationMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn synchronizationMode(&self) -> VZDiskImageSynchronizationMode;
     }
@@ -164,11 +164,11 @@ extern_methods!(
     /// Methods declared on superclass `VZStorageDeviceAttachment`
     #[cfg(feature = "VZStorageDeviceAttachment")]
     unsafe impl VZDiskImageStorageDeviceAttachment {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

@@ -43,14 +43,14 @@ extern_protocol!(
     pub unsafe trait MTLIOCommandBuffer: NSObjectProtocol {
         #[cfg(feature = "block2")]
         /// Add a block to be called when this command buffer has completed execution.
-        #[method(addCompletedHandler:)]
+        #[unsafe(method(addCompletedHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn addCompletedHandler(&self, block: MTLIOCommandBufferHandler);
 
         #[cfg(feature = "MTLIOCommandQueue")]
         /// Encodes a command that loads from a handle
         /// and offset into a memory location.
-        #[method(loadBytes:size:sourceHandle:sourceHandleOffset:)]
+        #[unsafe(method(loadBytes:size:sourceHandle:sourceHandleOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn loadBytes_size_sourceHandle_sourceHandleOffset(
             &self,
@@ -68,7 +68,7 @@ extern_protocol!(
         ))]
         /// Encodes a command that loads from a handle
         /// and offset into a buffer and an offset.
-        #[method(loadBuffer:offset:size:sourceHandle:sourceHandleOffset:)]
+        #[unsafe(method(loadBuffer:offset:size:sourceHandle:sourceHandleOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn loadBuffer_offset_size_sourceHandle_sourceHandleOffset(
             &self,
@@ -88,7 +88,7 @@ extern_protocol!(
         ))]
         /// Encodes a command that loads a region from a handle
         /// and offset into a texture at a given slice, level and origin.
-        #[method(loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:)]
+        #[unsafe(method(loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn loadTexture_slice_level_size_sourceBytesPerRow_sourceBytesPerImage_destinationOrigin_sourceHandle_sourceHandleOffset(
             &self,
@@ -110,7 +110,7 @@ extern_protocol!(
         ))]
         /// Encodes a command that writes the status of this commandBuffer upon completion
         /// to a buffer at a given offset
-        #[method(copyStatusToBuffer:offset:)]
+        #[unsafe(method(copyStatusToBuffer:offset:))]
         #[unsafe(method_family = none)]
         unsafe fn copyStatusToBuffer_offset(
             &self,
@@ -119,70 +119,70 @@ extern_protocol!(
         );
 
         /// Commit a command buffer so it can be executed as soon as possible.
-        #[method(commit)]
+        #[unsafe(method(commit))]
         #[unsafe(method_family = none)]
         unsafe fn commit(&self);
 
         /// Synchronously wait for this command buffer to complete.
-        #[method(waitUntilCompleted)]
+        #[unsafe(method(waitUntilCompleted))]
         #[unsafe(method_family = none)]
         unsafe fn waitUntilCompleted(&self);
 
         /// request a cancellation of an in-flight command buffer.
-        #[method(tryCancel)]
+        #[unsafe(method(tryCancel))]
         #[unsafe(method_family = none)]
         unsafe fn tryCancel(&self);
 
         /// add a barrier that starts subsequent commands after all
         /// the previously encoded commands have completed.
-        #[method(addBarrier)]
+        #[unsafe(method(addBarrier))]
         #[unsafe(method_family = none)]
         unsafe fn addBarrier(&self);
 
         /// Push a new named string onto a stack of string labels.
-        #[method(pushDebugGroup:)]
+        #[unsafe(method(pushDebugGroup:))]
         #[unsafe(method_family = none)]
         unsafe fn pushDebugGroup(&self, string: &NSString);
 
         /// Pop the latest named string off of the stack.
-        #[method(popDebugGroup)]
+        #[unsafe(method(popDebugGroup))]
         #[unsafe(method_family = none)]
         unsafe fn popDebugGroup(&self);
 
         /// Append this command buffer to the end of its MTLCommandQueue.
-        #[method(enqueue)]
+        #[unsafe(method(enqueue))]
         #[unsafe(method_family = none)]
         unsafe fn enqueue(&self);
 
         #[cfg(feature = "MTLEvent")]
         /// Encodes a command that pauses execution of this command buffer until the specified event reaches a given value.
-        #[method(waitForEvent:value:)]
+        #[unsafe(method(waitForEvent:value:))]
         #[unsafe(method_family = none)]
         unsafe fn waitForEvent_value(&self, event: &ProtocolObject<dyn MTLSharedEvent>, value: u64);
 
         #[cfg(feature = "MTLEvent")]
         /// Encodes a command that signals an event with a given value.
-        #[method(signalEvent:value:)]
+        #[unsafe(method(signalEvent:value:))]
         #[unsafe(method_family = none)]
         unsafe fn signalEvent_value(&self, event: &ProtocolObject<dyn MTLSharedEvent>, value: u64);
 
         /// An optional label for this handle.
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         unsafe fn setLabel(&self, label: Option<&NSString>);
 
         /// status reports the completion status of the MTLIOCommandBuffer, pending, cancelled, error or complete.
-        #[method(status)]
+        #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         unsafe fn status(&self) -> MTLIOStatus;
 
         /// If an error occurred during execution, the NSError may contain more details about the problem.
-        #[method(error)]
+        #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         unsafe fn error(&self) -> Option<Retained<NSError>>;
     }

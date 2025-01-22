@@ -89,7 +89,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: the completion handler which is called when the session is completed successfully or canceled by user.
         #[deprecated = "Use initWithURL:callback:completionHandler: instead"]
-        #[method(initWithURL:callbackURLScheme:completionHandler:)]
+        #[unsafe(method(initWithURL:callbackURLScheme:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_callbackURLScheme_completionHandler(
             this: Allocated<Self>,
@@ -99,7 +99,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "ASWebAuthenticationSessionCallback", feature = "block2"))]
-        #[method(initWithURL:callback:completionHandler:)]
+        #[unsafe(method(initWithURL:callback:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_callback_completionHandler(
             this: Allocated<Self>,
@@ -111,7 +111,7 @@ extern_methods!(
         /// Provides context to target where in an application's UI the authorization view should be shown. A provider
         /// must be set prior to calling -start, otherwise the authorization view cannot be displayed. If deploying to iOS prior to
         /// 13.0, the desired window is inferred by the application's key window.
-        #[method(presentationContextProvider)]
+        #[unsafe(method(presentationContextProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentationContextProvider(
             &self,
@@ -120,7 +120,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`presentationContextProvider`][Self::presentationContextProvider].
-        #[method(setPresentationContextProvider:)]
+        #[unsafe(method(setPresentationContextProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPresentationContextProvider(
             &self,
@@ -133,12 +133,12 @@ extern_methods!(
         ///
         /// Ephemeral web browser sessions do not not share cookies or other browsing data with a user's normal browser session.
         /// This value is NO by default. Setting this property after calling -[ASWebAuthenticationSession start] has no effect.
-        #[method(prefersEphemeralWebBrowserSession)]
+        #[unsafe(method(prefersEphemeralWebBrowserSession))]
         #[unsafe(method_family = none)]
         pub unsafe fn prefersEphemeralWebBrowserSession(&self) -> bool;
 
         /// Setter for [`prefersEphemeralWebBrowserSession`][Self::prefersEphemeralWebBrowserSession].
-        #[method(setPrefersEphemeralWebBrowserSession:)]
+        #[unsafe(method(setPrefersEphemeralWebBrowserSession:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrefersEphemeralWebBrowserSession(
             &self,
@@ -147,14 +147,14 @@ extern_methods!(
 
         /// Any additional header fields to be set when loading the initial URL.
         /// All header field names must start with the "X-" prefix.
-        #[method(additionalHeaderFields)]
+        #[unsafe(method(additionalHeaderFields))]
         #[unsafe(method_family = none)]
         pub unsafe fn additionalHeaderFields(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         /// Setter for [`additionalHeaderFields`][Self::additionalHeaderFields].
-        #[method(setAdditionalHeaderFields:)]
+        #[unsafe(method(setAdditionalHeaderFields:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalHeaderFields(
             &self,
@@ -163,7 +163,7 @@ extern_methods!(
 
         /// Returns whether the session can be successfully started. This property returns the same value as calling -start,
         /// but without the side effect of actually starting the session.
-        #[method(canStart)]
+        #[unsafe(method(canStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn canStart(&self) -> bool;
 
@@ -173,21 +173,21 @@ extern_methods!(
         /// canceled session will fail.
         ///
         /// Returns: Returns YES if the session starts successfully.
-        #[method(start)]
+        #[unsafe(method(start))]
         #[unsafe(method_family = none)]
         pub unsafe fn start(&self) -> bool;
 
         /// Cancel an ASWebAuthenticationSession. If the view controller is already presented to load the webpage for
         /// authentication, it will be dismissed. Calling cancel on an already canceled session will have no effect.
-        #[method(cancel)]
+        #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -208,7 +208,7 @@ extern_protocol!(
         /// Parameter `session`: The session requesting a presentation anchor.
         ///
         /// Returns: The ASPresentationAnchor most closely associated with the UI used to trigger authentication.
-        #[method(presentationAnchorForWebAuthenticationSession:)]
+        #[unsafe(method(presentationAnchorForWebAuthenticationSession:))]
         #[unsafe(method_family = none)]
         unsafe fn presentationAnchorForWebAuthenticationSession(
             &self,

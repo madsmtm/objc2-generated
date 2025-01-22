@@ -29,7 +29,7 @@ extern_methods!(
         /// Parameter `trackingConstraints`: Constraints to activate when the guide is close to the specified edge, and deactivate when it moves away. Sending nil will deactivate any currently active constraints associated with this edge and remove them from tracking.
         ///
         /// Parameter `edge`: When the tracking layout guide is close to this edge, specified constraints will change
-        #[method(setConstraints:activeWhenNearEdge:)]
+        #[unsafe(method(setConstraints:activeWhenNearEdge:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstraints_activeWhenNearEdge(
             &self,
@@ -38,7 +38,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "UIGeometry"))]
-        #[method(constraintsActiveWhenNearEdge:)]
+        #[unsafe(method(constraintsActiveWhenNearEdge:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintsActiveWhenNearEdge(
             &self,
@@ -49,7 +49,7 @@ extern_methods!(
         /// Parameter `trackingConstraints`: Constraints to deactivate when the guide is close to the specified edge, and activate when it moves away. Sending nil will remove the constraints associated with this edge from tracking.
         ///
         /// Parameter `edge`: When the tracking layout guide is close to this edge, specified constraints will change
-        #[method(setConstraints:activeWhenAwayFromEdge:)]
+        #[unsafe(method(setConstraints:activeWhenAwayFromEdge:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstraints_activeWhenAwayFromEdge(
             &self,
@@ -58,7 +58,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "UIGeometry"))]
-        #[method(constraintsActiveWhenAwayFromEdge:)]
+        #[unsafe(method(constraintsActiveWhenAwayFromEdge:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintsActiveWhenAwayFromEdge(
             &self,
@@ -66,7 +66,7 @@ extern_methods!(
         ) -> Retained<NSArray<NSLayoutConstraint>>;
 
         /// Manually remove all constraints from this guide's tracking.
-        #[method(removeAllTrackedConstraints)]
+        #[unsafe(method(removeAllTrackedConstraints))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllTrackedConstraints(&self);
     }
@@ -76,11 +76,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UILayoutGuide")]
     unsafe impl UITrackingLayoutGuide {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

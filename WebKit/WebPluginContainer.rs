@@ -23,7 +23,7 @@ extern_category!(
         /// found, a new window is opened and the main frame of the new window is named
         /// with the specified target.  If nil is specified, the frame that contains
         /// the applet is targeted.
-        #[method(webPlugInContainerLoadRequest:inFrame:)]
+        #[unsafe(method(webPlugInContainerLoadRequest:inFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInContainerLoadRequest_inFrame(
             &self,
@@ -34,7 +34,7 @@ extern_category!(
         /// Tell the application to show the specified status message.
         ///
         /// Parameter `message`: The string to be shown.
-        #[method(webPlugInContainerShowStatus:)]
+        #[unsafe(method(webPlugInContainerShowStatus:))]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInContainerShowStatus(&self, message: Option<&NSString>);
 
@@ -42,7 +42,7 @@ extern_category!(
         #[cfg(target_os = "macos")]
         /// The color that should be used for any special drawing when
         /// plug-in is selected.
-        #[method(webPlugInContainerSelectionColor)]
+        #[unsafe(method(webPlugInContainerSelectionColor))]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInContainerSelectionColor(&self) -> Option<Retained<NSColor>>;
 
@@ -50,7 +50,7 @@ extern_category!(
         /// Allows the plug-in to access the WebFrame that
         /// contains the plug-in.  This method will not be implemented by containers that
         /// are not WebKit based.
-        #[method(webFrame)]
+        #[unsafe(method(webFrame))]
         #[unsafe(method_family = none)]
         unsafe fn webFrame(&self) -> Option<Retained<WebFrame>>;
     }

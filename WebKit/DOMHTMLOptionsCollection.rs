@@ -30,29 +30,29 @@ unsafe impl NSObjectProtocol for DOMHTMLOptionsCollection {}
 extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMHTMLOptionsCollection {
-        #[method(selectedIndex)]
+        #[unsafe(method(selectedIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedIndex(&self) -> c_int;
 
         /// Setter for [`selectedIndex`][Self::selectedIndex].
-        #[method(setSelectedIndex:)]
+        #[unsafe(method(setSelectedIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedIndex(&self, selected_index: c_int);
 
         #[deprecated]
-        #[method(length)]
+        #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> c_uint;
 
         /// Setter for [`length`][Self::length].
         #[deprecated]
-        #[method(setLength:)]
+        #[unsafe(method(setLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLength(&self, length: c_uint);
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(namedItem:)]
+        #[unsafe(method(namedItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn namedItem(&self, name: Option<&NSString>) -> Option<Retained<DOMNode>>;
 
@@ -62,17 +62,17 @@ extern_methods!(
             feature = "DOMHTMLOptionElement",
             feature = "DOMNode"
         ))]
-        #[method(add:index:)]
+        #[unsafe(method(add:index:))]
         #[unsafe(method_family = none)]
         pub unsafe fn add_index(&self, option: Option<&DOMHTMLOptionElement>, index: c_uint);
 
-        #[method(remove:)]
+        #[unsafe(method(remove:))]
         #[unsafe(method_family = none)]
         pub unsafe fn remove(&self, index: c_uint);
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method(item:)]
+        #[unsafe(method(item:))]
         #[unsafe(method_family = none)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Retained<DOMNode>>;
     }
@@ -83,7 +83,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMHTMLOptionsCollection {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -93,7 +93,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMHTMLOptionsCollection {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

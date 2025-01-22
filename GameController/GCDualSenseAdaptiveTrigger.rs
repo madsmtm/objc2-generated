@@ -150,7 +150,7 @@ extern_methods!(
         ///
         ///
         /// See: GCDualSenseAdaptiveTriggerMode
-        #[method(mode)]
+        #[unsafe(method(mode))]
         #[unsafe(method_family = none)]
         pub unsafe fn mode(&self) -> GCDualSenseAdaptiveTriggerMode;
 
@@ -158,7 +158,7 @@ extern_methods!(
         ///
         ///
         /// See: GCDualSenseAdaptiveTriggerStatus
-        #[method(status)]
+        #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> GCDualSenseAdaptiveTriggerStatus;
 
@@ -166,7 +166,7 @@ extern_methods!(
         ///
         ///
         /// See: GCDualSenseAdaptiveTriggerStatus
-        #[method(armPosition)]
+        #[unsafe(method(armPosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn armPosition(&self) -> c_float;
 
@@ -181,7 +181,7 @@ extern_methods!(
         /// Parameter `startStrength`: - A normalized float from [0-1], with 0 representing the minimum effect strength (off entirely) and 1 representing the maximum effect strength. The effect will begin at startStrength once the trigger is depressed beyond startPosition.
         ///
         /// Parameter `endStrength`: - A normalized float from [0-1], with 0 representing the minimum effect strength (off entirely) and 1 representing the maximum effect strength. The effect will end at endStrength once the trigger is depressed to endPosition.
-        #[method(setModeSlopeFeedbackWithStartPosition:endPosition:startStrength:endStrength:)]
+        #[unsafe(method(setModeSlopeFeedbackWithStartPosition:endPosition:startStrength:endStrength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModeSlopeFeedbackWithStartPosition_endPosition_startStrength_endStrength(
             &self,
@@ -198,7 +198,7 @@ extern_methods!(
         /// Parameter `startPosition`: - A normalized float from [0-1], with 0 representing the smallest possible trigger depression and 1 representing the maximum trigger depression.
         ///
         /// Parameter `resistiveStrength`: - A normalized float from [0-1], with 0 representing the minimum effect strength (off entirely) and 1 representing the maximum effect strength.
-        #[method(setModeFeedbackWithStartPosition:resistiveStrength:)]
+        #[unsafe(method(setModeFeedbackWithStartPosition:resistiveStrength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModeFeedbackWithStartPosition_resistiveStrength(
             &self,
@@ -210,7 +210,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `positionalResistiveStrengths`: - Positional normalized floats from [0-1], with 0 representing the minimum effect strength (off entirely) and 1 representing the maximum effect strength.
-        #[method(setModeFeedbackWithResistiveStrengths:)]
+        #[unsafe(method(setModeFeedbackWithResistiveStrengths:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModeFeedbackWithResistiveStrengths(
             &self,
@@ -227,7 +227,7 @@ extern_methods!(
         /// Parameter `endPosition`: - A normalized float from [0-1], with 0 representing the smallest possible depression and 1 representing the maximum trigger depression. Must be greater than startPosition. The effect will end once the trigger is depressed beyond this point.
         ///
         /// Parameter `resistiveStrength`: - A normalized float from [0-1], with 0 representing the minimum effect strength (off entirely) and 1 representing the maximum effect strength.
-        #[method(setModeWeaponWithStartPosition:endPosition:resistiveStrength:)]
+        #[unsafe(method(setModeWeaponWithStartPosition:endPosition:resistiveStrength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModeWeaponWithStartPosition_endPosition_resistiveStrength(
             &self,
@@ -245,7 +245,7 @@ extern_methods!(
         /// Parameter `amplitude`: - A normalized float from [0-1], with 0 representing the minimum effect strength (off entirely) and 1 representing the maximum effect strength.
         ///
         /// Parameter `frequency`: - A normalized float from [0-1], with 0 representing the minimum frequency and 1 representing the maximum frequency of the vibration effect.
-        #[method(setModeVibrationWithStartPosition:amplitude:frequency:)]
+        #[unsafe(method(setModeVibrationWithStartPosition:amplitude:frequency:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModeVibrationWithStartPosition_amplitude_frequency(
             &self,
@@ -260,7 +260,7 @@ extern_methods!(
         /// Parameter `positionalAmplitudes`: - Positional normalized floats from [0-1], with 0 representing the minimum effect strength (off entirely) and 1 representing the maximum effect strength.
         ///
         /// Parameter `frequency`: - A normalized float from [0-1], with 0 representing the minimum frequency and 1 representing the maximum frequency of the vibration effect.
-        #[method(setModeVibrationWithAmplitudes:frequency:)]
+        #[unsafe(method(setModeVibrationWithAmplitudes:frequency:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModeVibrationWithAmplitudes_frequency(
             &self,
@@ -269,7 +269,7 @@ extern_methods!(
         );
 
         /// Sets the adaptive trigger to off mode. This turns off the adaptive trigger effect.
-        #[method(setModeOff)]
+        #[unsafe(method(setModeOff))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModeOff(&self);
     }
@@ -279,11 +279,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
     unsafe impl GCDualSenseAdaptiveTrigger {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

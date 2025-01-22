@@ -20,52 +20,52 @@ unsafe impl NSObjectProtocol for NSWindowTabGroup {}
 extern_methods!(
     unsafe impl NSWindowTabGroup {
         #[cfg(feature = "NSWindow")]
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSWindowTabbingIdentifier>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-        #[method(windows)]
+        #[unsafe(method(windows))]
         #[unsafe(method_family = none)]
         pub fn windows(&self) -> Retained<NSArray<NSWindow>>;
 
-        #[method(isOverviewVisible)]
+        #[unsafe(method(isOverviewVisible))]
         #[unsafe(method_family = none)]
         pub unsafe fn isOverviewVisible(&self) -> bool;
 
         /// Setter for [`isOverviewVisible`][Self::isOverviewVisible].
-        #[method(setOverviewVisible:)]
+        #[unsafe(method(setOverviewVisible:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverviewVisible(&self, overview_visible: bool);
 
-        #[method(isTabBarVisible)]
+        #[unsafe(method(isTabBarVisible))]
         #[unsafe(method_family = none)]
         pub unsafe fn isTabBarVisible(&self) -> bool;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-        #[method(selectedWindow)]
+        #[unsafe(method(selectedWindow))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`selectedWindow`][Self::selectedWindow].
-        #[method(setSelectedWindow:)]
+        #[unsafe(method(setSelectedWindow:))]
         #[unsafe(method_family = none)]
         pub fn setSelectedWindow(&self, selected_window: Option<&NSWindow>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-        #[method(addWindow:)]
+        #[unsafe(method(addWindow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addWindow(&self, window: &NSWindow);
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-        #[method(insertWindow:atIndex:)]
+        #[unsafe(method(insertWindow:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertWindow_atIndex(&self, window: &NSWindow, index: NSInteger);
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-        #[method(removeWindow:)]
+        #[unsafe(method(removeWindow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeWindow(&self, window: &NSWindow);
     }
@@ -74,11 +74,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSWindowTabGroup {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -88,30 +88,30 @@ unsafe impl NSObjectProtocol for UIPress {}
 
 extern_methods!(
     unsafe impl UIPress {
-        #[method(timestamp)]
+        #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
 
-        #[method(phase)]
+        #[unsafe(method(phase))]
         #[unsafe(method_family = none)]
         pub unsafe fn phase(&self) -> UIPressPhase;
 
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> UIPressType;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
-        #[method(window)]
+        #[unsafe(method(window))]
         #[unsafe(method_family = none)]
         pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Retained<UIWindow>>;
 
         #[cfg(feature = "UIResponder")]
-        #[method(responder)]
+        #[unsafe(method(responder))]
         #[unsafe(method_family = none)]
         pub unsafe fn responder(&self, mtm: MainThreadMarker) -> Option<Retained<UIResponder>>;
 
         #[cfg(feature = "UIGestureRecognizer")]
-        #[method(gestureRecognizers)]
+        #[unsafe(method(gestureRecognizers))]
         #[unsafe(method_family = none)]
         pub unsafe fn gestureRecognizers(
             &self,
@@ -119,14 +119,14 @@ extern_methods!(
         ) -> Option<Retained<NSArray<UIGestureRecognizer>>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(force)]
+        #[unsafe(method(force))]
         #[unsafe(method_family = none)]
         pub unsafe fn force(&self) -> CGFloat;
 
         #[cfg(feature = "UIKey")]
         /// For presses that originate from a hardware keyboard, contains a UIKey object describing the key being acted upon.
         /// This property is nil if the press did not originate from a hardware keyboard.
-        #[method(key)]
+        #[unsafe(method(key))]
         #[unsafe(method_family = none)]
         pub unsafe fn key(&self, mtm: MainThreadMarker) -> Option<Retained<UIKey>>;
     }
@@ -135,11 +135,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPress {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

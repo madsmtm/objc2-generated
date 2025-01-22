@@ -48,68 +48,68 @@ unsafe impl NSObjectProtocol for OSAScriptController {}
 extern_methods!(
     unsafe impl OSAScriptController {
         #[cfg(feature = "OSAScriptView")]
-        #[method(scriptView)]
+        #[unsafe(method(scriptView))]
         #[unsafe(method_family = none)]
         pub unsafe fn scriptView(&self) -> Option<Retained<OSAScriptView>>;
 
         #[cfg(feature = "OSAScriptView")]
         /// Setter for [`scriptView`][Self::scriptView].
-        #[method(setScriptView:)]
+        #[unsafe(method(setScriptView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScriptView(&self, script_view: Option<&OSAScriptView>);
 
-        #[method(resultView)]
+        #[unsafe(method(resultView))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultView(&self) -> Option<Retained<NSTextView>>;
 
         /// Setter for [`resultView`][Self::resultView].
-        #[method(setResultView:)]
+        #[unsafe(method(setResultView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResultView(&self, result_view: Option<&NSTextView>);
 
         #[cfg(feature = "OSAScript")]
-        #[method(script)]
+        #[unsafe(method(script))]
         #[unsafe(method_family = none)]
         pub unsafe fn script(&self) -> Option<Retained<OSAScript>>;
 
         #[cfg(feature = "OSAScript")]
         /// Setter for [`script`][Self::script].
-        #[method(setScript:)]
+        #[unsafe(method(setScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScript(&self, script: Option<&OSAScript>);
 
         #[cfg(feature = "OSALanguage")]
-        #[method(language)]
+        #[unsafe(method(language))]
         #[unsafe(method_family = none)]
         pub unsafe fn language(&self) -> Option<Retained<OSALanguage>>;
 
         #[cfg(feature = "OSALanguage")]
         /// Setter for [`language`][Self::language].
-        #[method(setLanguage:)]
+        #[unsafe(method(setLanguage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLanguage(&self, language: Option<&OSALanguage>);
 
-        #[method(scriptState)]
+        #[unsafe(method(scriptState))]
         #[unsafe(method_family = none)]
         pub unsafe fn scriptState(&self) -> OSAScriptState;
 
-        #[method(isCompiling)]
+        #[unsafe(method(isCompiling))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCompiling(&self) -> bool;
 
-        #[method(compileScript:)]
+        #[unsafe(method(compileScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compileScript(&self, sender: Option<&AnyObject>);
 
-        #[method(recordScript:)]
+        #[unsafe(method(recordScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordScript(&self, sender: Option<&AnyObject>);
 
-        #[method(runScript:)]
+        #[unsafe(method(runScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runScript(&self, sender: Option<&AnyObject>);
 
-        #[method(stopScript:)]
+        #[unsafe(method(stopScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopScript(&self, sender: Option<&AnyObject>);
     }
@@ -118,11 +118,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSController`
     unsafe impl OSAScriptController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -134,7 +134,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSAScriptController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

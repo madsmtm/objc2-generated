@@ -74,13 +74,13 @@ extern_methods!(
         /// - Note: Not all ``UIHoverStyle``s may be supported by
         /// ``UIHoverEffectLayer``. If the provided style is not supported, a fallback
         /// style will be selected instead.
-        #[method(hoverStyle)]
+        #[unsafe(method(hoverStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn hoverStyle(&self) -> Retained<UIHoverStyle>;
 
         #[cfg(feature = "UIHoverStyle")]
         /// Setter for [`hoverStyle`][Self::hoverStyle].
-        #[method(setHoverStyle:)]
+        #[unsafe(method(setHoverStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHoverStyle(&self, hover_style: &UIHoverStyle);
 
@@ -95,14 +95,14 @@ extern_methods!(
         /// to be the immediate parent of this layer. If the ``containerView`` is
         /// set to nil or is deallocated, some aspects of this layer's hover effect
         /// may no longer work correctly.
-        #[method(containerView)]
+        #[unsafe(method(containerView))]
         #[unsafe(method_family = none)]
         pub unsafe fn containerView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`containerView`][Self::containerView].
-        #[method(setContainerView:)]
+        #[unsafe(method(setContainerView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContainerView(&self, container_view: Option<&UIView>);
 
@@ -110,7 +110,7 @@ extern_methods!(
         /// Creates a ``UIHoverEffectLayer`` with the provided `containerView`
         /// and `style`. If a `nil` `style` is provided, the automatic style will
         /// be used instead.
-        #[method(initWithContainerView:style:)]
+        #[unsafe(method(initWithContainerView:style:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContainerView_style(
             this: Allocated<Self>,
@@ -126,15 +126,15 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl UIHoverEffectLayer {
         /// Layer creation and initialization. *
-        #[method(layer)]
+        #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
         pub unsafe fn layer(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithLayer:)]
+        #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
@@ -145,7 +145,7 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl UIHoverEffectLayer {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

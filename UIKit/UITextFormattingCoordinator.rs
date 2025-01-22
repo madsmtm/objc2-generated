@@ -13,7 +13,7 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
-        #[method(updateTextAttributesWithConversionHandler:)]
+        #[unsafe(method(updateTextAttributesWithConversionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn updateTextAttributesWithConversionHandler(
             &self,
@@ -37,7 +37,7 @@ unsafe impl UIFontPickerViewControllerDelegate for UITextFormattingCoordinator {
 
 extern_methods!(
     unsafe impl UITextFormattingCoordinator {
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -45,14 +45,14 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UITextFormattingCoordinatorDelegate>>,
         );
 
-        #[method(isFontPanelVisible)]
+        #[unsafe(method(isFontPanelVisible))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFontPanelVisible(mtm: MainThreadMarker) -> bool;
 
@@ -61,7 +61,7 @@ extern_methods!(
             feature = "UIScene",
             feature = "UIWindowScene"
         ))]
-        #[method(textFormattingCoordinatorForWindowScene:)]
+        #[unsafe(method(textFormattingCoordinatorForWindowScene:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textFormattingCoordinatorForWindowScene(
             window_scene: &UIWindowScene,
@@ -72,18 +72,18 @@ extern_methods!(
             feature = "UIScene",
             feature = "UIWindowScene"
         ))]
-        #[method(initWithWindowScene:)]
+        #[unsafe(method(initWithWindowScene:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindowScene(
             this: Allocated<Self>,
             window_scene: &UIWindowScene,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(setSelectedAttributes:isMultiple:)]
+        #[unsafe(method(setSelectedAttributes:isMultiple:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedAttributes_isMultiple(
             &self,
@@ -91,7 +91,7 @@ extern_methods!(
             flag: bool,
         );
 
-        #[method(toggleFontPanel:)]
+        #[unsafe(method(toggleFontPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleFontPanel(sender: &AnyObject, mtm: MainThreadMarker);
     }
@@ -100,7 +100,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextFormattingCoordinator {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

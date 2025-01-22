@@ -99,13 +99,13 @@ extern_methods!(
     ))]
     unsafe impl NSPredicateEditor {
         #[cfg(feature = "NSPredicateEditorRowTemplate")]
-        #[method(rowTemplates)]
+        #[unsafe(method(rowTemplates))]
         #[unsafe(method_family = none)]
         pub unsafe fn rowTemplates(&self) -> Retained<NSArray<NSPredicateEditorRowTemplate>>;
 
         #[cfg(feature = "NSPredicateEditorRowTemplate")]
         /// Setter for [`rowTemplates`][Self::rowTemplates].
-        #[method(setRowTemplates:)]
+        #[unsafe(method(setRowTemplates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRowTemplates(&self, row_templates: &NSArray<NSPredicateEditorRowTemplate>);
     }
@@ -120,11 +120,11 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSPredicateEditor {
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -142,7 +142,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSPredicateEditor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -157,7 +157,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSPredicateEditor {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

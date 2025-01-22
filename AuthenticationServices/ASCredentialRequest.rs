@@ -40,13 +40,13 @@ extern_protocol!(
         NSObjectProtocol + NSSecureCoding + NSCopying
     {
         /// The type of credential used for this request.
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         unsafe fn r#type(&self) -> ASCredentialRequestType;
 
         #[cfg(feature = "ASCredentialIdentity")]
         /// The credential identity selected by the user to authenticate.
-        #[method(credentialIdentity)]
+        #[unsafe(method(credentialIdentity))]
         #[unsafe(method_family = none)]
         unsafe fn credentialIdentity(&self) -> Retained<ProtocolObject<dyn ASCredentialIdentity>>;
     }

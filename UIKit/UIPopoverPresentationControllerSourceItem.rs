@@ -15,7 +15,7 @@ extern_protocol!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method(frameInView:)]
+        #[unsafe(method(frameInView:))]
         #[unsafe(method_family = none)]
         unsafe fn frameInView(&self, reference_view: &UIView) -> CGRect;
     }

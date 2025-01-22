@@ -38,7 +38,7 @@ extern_protocol!(
         /// Parameter `context`: Extension context which offers API to defer request to network if necessary.
         ///
         /// Parameter `completion`: Completion block for returning a response.
-        #[method(handleQueryRequest:context:completion:)]
+        #[unsafe(method(handleQueryRequest:context:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleQueryRequest_context_completion(
             &self,

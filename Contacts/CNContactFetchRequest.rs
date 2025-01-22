@@ -32,11 +32,11 @@ unsafe impl NSSecureCoding for CNContactFetchRequest {}
 extern_methods!(
     #[cfg(feature = "CNFetchRequest")]
     unsafe impl CNContactFetchRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -45,7 +45,7 @@ extern_methods!(
         ///
         ///
         /// Only fetch the properties that will be used.
-        #[method(initWithKeysToFetch:)]
+        #[unsafe(method(initWithKeysToFetch:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKeysToFetch(
             this: Allocated<Self>,
@@ -56,12 +56,12 @@ extern_methods!(
         ///
         ///
         /// Use only predicates from CNContact+Predicates.h. Compound predicates are not supported. Set to nil to match all contacts.
-        #[method(predicate)]
+        #[unsafe(method(predicate))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`predicate`][Self::predicate].
-        #[method(setPredicate:)]
+        #[unsafe(method(setPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
@@ -70,13 +70,13 @@ extern_methods!(
         ///
         ///
         /// Should only fetch the properties that will be used. Can combine contact keys and contact key descriptors.
-        #[method(keysToFetch)]
+        #[unsafe(method(keysToFetch))]
         #[unsafe(method_family = none)]
         pub unsafe fn keysToFetch(&self) -> Retained<NSArray<ProtocolObject<dyn CNKeyDescriptor>>>;
 
         #[cfg(feature = "CNContact")]
         /// Setter for [`keysToFetch`][Self::keysToFetch].
-        #[method(setKeysToFetch:)]
+        #[unsafe(method(setKeysToFetch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeysToFetch(
             &self,
@@ -87,12 +87,12 @@ extern_methods!(
         ///
         ///
         /// If YES returns CNMutableContact objects, otherwise returns CNContact objects. Default is NO.
-        #[method(mutableObjects)]
+        #[unsafe(method(mutableObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn mutableObjects(&self) -> bool;
 
         /// Setter for [`mutableObjects`][Self::mutableObjects].
-        #[method(setMutableObjects:)]
+        #[unsafe(method(setMutableObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMutableObjects(&self, mutable_objects: bool);
 
@@ -103,12 +103,12 @@ extern_methods!(
         ///
         ///
         /// Note: A unified contact is the aggregation of properties from a set of linked individual contacts. If an individual contact is not linked then the unified contact is simply that individual contact.
-        #[method(unifyResults)]
+        #[unsafe(method(unifyResults))]
         #[unsafe(method_family = none)]
         pub unsafe fn unifyResults(&self) -> bool;
 
         /// Setter for [`unifyResults`][Self::unifyResults].
-        #[method(setUnifyResults:)]
+        #[unsafe(method(setUnifyResults:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUnifyResults(&self, unify_results: bool);
 
@@ -117,13 +117,13 @@ extern_methods!(
         ///
         ///
         /// Default is CNContactSortOrderNone.
-        #[method(sortOrder)]
+        #[unsafe(method(sortOrder))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortOrder(&self) -> CNContactSortOrder;
 
         #[cfg(feature = "CNContact")]
         /// Setter for [`sortOrder`][Self::sortOrder].
-        #[method(setSortOrder:)]
+        #[unsafe(method(setSortOrder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSortOrder(&self, sort_order: CNContactSortOrder);
     }

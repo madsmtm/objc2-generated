@@ -52,47 +52,47 @@ extern_methods!(
     unsafe impl DOMUIEvent {
         #[cfg(feature = "DOMAbstractView")]
         #[deprecated]
-        #[method(view)]
+        #[unsafe(method(view))]
         #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Option<Retained<DOMAbstractView>>;
 
         #[deprecated]
-        #[method(detail)]
+        #[unsafe(method(detail))]
         #[unsafe(method_family = none)]
         pub unsafe fn detail(&self) -> c_int;
 
-        #[method(keyCode)]
+        #[unsafe(method(keyCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyCode(&self) -> c_int;
 
-        #[method(charCode)]
+        #[unsafe(method(charCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn charCode(&self) -> c_int;
 
         #[deprecated]
-        #[method(layerX)]
+        #[unsafe(method(layerX))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerX(&self) -> c_int;
 
         #[deprecated]
-        #[method(layerY)]
+        #[unsafe(method(layerY))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerY(&self) -> c_int;
 
-        #[method(pageX)]
+        #[unsafe(method(pageX))]
         #[unsafe(method_family = none)]
         pub unsafe fn pageX(&self) -> c_int;
 
-        #[method(pageY)]
+        #[unsafe(method(pageY))]
         #[unsafe(method_family = none)]
         pub unsafe fn pageY(&self) -> c_int;
 
-        #[method(which)]
+        #[unsafe(method(which))]
         #[unsafe(method_family = none)]
         pub unsafe fn which(&self) -> c_int;
 
         #[cfg(feature = "DOMAbstractView")]
-        #[method(initUIEvent:canBubble:cancelable:view:detail:)]
+        #[unsafe(method(initUIEvent:canBubble:cancelable:view:detail:))]
         #[unsafe(method_family = none)]
         pub unsafe fn initUIEvent_canBubble_cancelable_view_detail(
             &self,
@@ -114,7 +114,7 @@ extern_methods!(
     ))]
     unsafe impl DOMUIEvent {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -128,7 +128,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMUIEvent {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -144,7 +144,7 @@ extern_methods!(
     unsafe impl DOMUIEvent {
         #[cfg(feature = "DOMAbstractView")]
         #[deprecated]
-        #[method(initUIEvent:::::)]
+        #[unsafe(method(initUIEvent:::::))]
         #[unsafe(method_family = none)]
         pub unsafe fn initUIEvent(
             &self,

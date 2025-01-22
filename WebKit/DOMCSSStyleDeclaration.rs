@@ -31,29 +31,29 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSStyleDeclaration {
         #[deprecated]
-        #[method(cssText)]
+        #[unsafe(method(cssText))]
         #[unsafe(method_family = none)]
         pub unsafe fn cssText(&self) -> Retained<NSString>;
 
         /// Setter for [`cssText`][Self::cssText].
         #[deprecated]
-        #[method(setCssText:)]
+        #[unsafe(method(setCssText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCssText(&self, css_text: Option<&NSString>);
 
         #[deprecated]
-        #[method(length)]
+        #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> c_uint;
 
         #[cfg(feature = "DOMCSSRule")]
         #[deprecated]
-        #[method(parentRule)]
+        #[unsafe(method(parentRule))]
         #[unsafe(method_family = none)]
         pub unsafe fn parentRule(&self) -> Option<Retained<DOMCSSRule>>;
 
         #[deprecated]
-        #[method(getPropertyValue:)]
+        #[unsafe(method(getPropertyValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPropertyValue(
             &self,
@@ -62,7 +62,7 @@ extern_methods!(
 
         #[cfg(feature = "DOMCSSValue")]
         #[deprecated]
-        #[method(getPropertyCSSValue:)]
+        #[unsafe(method(getPropertyCSSValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPropertyCSSValue(
             &self,
@@ -70,7 +70,7 @@ extern_methods!(
         ) -> Option<Retained<DOMCSSValue>>;
 
         #[deprecated]
-        #[method(removeProperty:)]
+        #[unsafe(method(removeProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeProperty(
             &self,
@@ -78,14 +78,14 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[deprecated]
-        #[method(getPropertyPriority:)]
+        #[unsafe(method(getPropertyPriority:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPropertyPriority(
             &self,
             property_name: Option<&NSString>,
         ) -> Option<Retained<NSString>>;
 
-        #[method(setProperty:value:priority:)]
+        #[unsafe(method(setProperty:value:priority:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProperty_value_priority(
             &self,
@@ -95,19 +95,19 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method(item:)]
+        #[unsafe(method(item:))]
         #[unsafe(method_family = none)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Retained<NSString>>;
 
         #[deprecated]
-        #[method(getPropertyShorthand:)]
+        #[unsafe(method(getPropertyShorthand:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPropertyShorthand(
             &self,
             property_name: Option<&NSString>,
         ) -> Option<Retained<NSString>>;
 
-        #[method(isPropertyImplicit:)]
+        #[unsafe(method(isPropertyImplicit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPropertyImplicit(&self, property_name: Option<&NSString>) -> bool;
     }
@@ -118,7 +118,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSStyleDeclaration {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -128,7 +128,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSStyleDeclaration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -139,7 +139,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSStyleDeclaration {
         #[deprecated]
-        #[method(setProperty:::)]
+        #[unsafe(method(setProperty:::))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProperty(
             &self,

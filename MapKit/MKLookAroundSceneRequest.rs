@@ -20,16 +20,16 @@ unsafe impl NSObjectProtocol for MKLookAroundSceneRequest {}
 
 extern_methods!(
     unsafe impl MKLookAroundSceneRequest {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method(initWithCoordinate:)]
+        #[unsafe(method(initWithCoordinate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate(
             this: Allocated<Self>,
@@ -37,7 +37,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MKMapItem")]
-        #[method(initWithMapItem:)]
+        #[unsafe(method(initWithMapItem:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMapItem(
             this: Allocated<Self>,
@@ -45,32 +45,32 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method(coordinate)]
+        #[unsafe(method(coordinate))]
         #[unsafe(method_family = none)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "MKMapItem")]
-        #[method(mapItem)]
+        #[unsafe(method(mapItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn mapItem(&self) -> Option<Retained<MKMapItem>>;
 
-        #[method(isCancelled)]
+        #[unsafe(method(isCancelled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCancelled(&self) -> bool;
 
-        #[method(isLoading)]
+        #[unsafe(method(isLoading))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLoading(&self) -> bool;
 
         #[cfg(all(feature = "MKLookAroundScene", feature = "block2"))]
-        #[method(getSceneWithCompletionHandler:)]
+        #[unsafe(method(getSceneWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getSceneWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut MKLookAroundScene, *mut NSError)>,
         );
 
-        #[method(cancel)]
+        #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
     }

@@ -30,89 +30,89 @@ unsafe impl UIResponderStandardEditActions for UIAccessibilityElement {}
 extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIAccessibilityElement {
-        #[method(initWithAccessibilityContainer:)]
+        #[unsafe(method(initWithAccessibilityContainer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAccessibilityContainer(
             this: Allocated<Self>,
             container: &AnyObject,
         ) -> Retained<Self>;
 
-        #[method(accessibilityContainer)]
+        #[unsafe(method(accessibilityContainer))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityContainer(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityContainer`][Self::accessibilityContainer].
-        #[method(setAccessibilityContainer:)]
+        #[unsafe(method(setAccessibilityContainer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityContainer(&self, accessibility_container: Option<&AnyObject>);
 
-        #[method(isAccessibilityElement)]
+        #[unsafe(method(isAccessibilityElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAccessibilityElement(&self) -> bool;
 
         /// Setter for [`isAccessibilityElement`][Self::isAccessibilityElement].
-        #[method(setIsAccessibilityElement:)]
+        #[unsafe(method(setIsAccessibilityElement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIsAccessibilityElement(&self, is_accessibility_element: bool);
 
-        #[method(accessibilityLabel)]
+        #[unsafe(method(accessibilityLabel))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityLabel`][Self::accessibilityLabel].
-        #[method(setAccessibilityLabel:)]
+        #[unsafe(method(setAccessibilityLabel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityLabel(&self, accessibility_label: Option<&NSString>);
 
-        #[method(accessibilityHint)]
+        #[unsafe(method(accessibilityHint))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityHint(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityHint`][Self::accessibilityHint].
-        #[method(setAccessibilityHint:)]
+        #[unsafe(method(setAccessibilityHint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityHint(&self, accessibility_hint: Option<&NSString>);
 
-        #[method(accessibilityValue)]
+        #[unsafe(method(accessibilityValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityValue(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityValue`][Self::accessibilityValue].
-        #[method(setAccessibilityValue:)]
+        #[unsafe(method(setAccessibilityValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityValue(&self, accessibility_value: Option<&NSString>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(accessibilityFrame)]
+        #[unsafe(method(accessibilityFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityFrame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`accessibilityFrame`][Self::accessibilityFrame].
-        #[method(setAccessibilityFrame:)]
+        #[unsafe(method(setAccessibilityFrame:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityFrame(&self, accessibility_frame: CGRect);
 
         #[cfg(feature = "UIAccessibilityConstants")]
-        #[method(accessibilityTraits)]
+        #[unsafe(method(accessibilityTraits))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityTraits(&self) -> UIAccessibilityTraits;
 
         #[cfg(feature = "UIAccessibilityConstants")]
         /// Setter for [`accessibilityTraits`][Self::accessibilityTraits].
-        #[method(setAccessibilityTraits:)]
+        #[unsafe(method(setAccessibilityTraits:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityTraits(&self, accessibility_traits: UIAccessibilityTraits);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(accessibilityFrameInContainerSpace)]
+        #[unsafe(method(accessibilityFrameInContainerSpace))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityFrameInContainerSpace(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`accessibilityFrameInContainerSpace`][Self::accessibilityFrameInContainerSpace].
-        #[method(setAccessibilityFrameInContainerSpace:)]
+        #[unsafe(method(setAccessibilityFrameInContainerSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityFrameInContainerSpace(
             &self,
@@ -125,11 +125,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIResponder")]
     unsafe impl UIAccessibilityElement {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

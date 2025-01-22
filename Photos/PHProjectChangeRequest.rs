@@ -25,17 +25,17 @@ extern_methods!(
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHProjectChangeRequest {
         #[cfg(all(feature = "PHCollection", feature = "PHObject", feature = "PHProject"))]
-        #[method(initWithProject:)]
+        #[unsafe(method(initWithProject:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithProject(this: Allocated<Self>, project: &PHProject)
             -> Retained<Self>;
 
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
@@ -43,12 +43,12 @@ extern_methods!(
         /// only. Do not include things like rasterized images that can be locally cached in this data. The
         /// total size of stored data is limited to 5 MB. Attempting to store more data than allowed will result
         /// in an error.
-        #[method(projectExtensionData)]
+        #[unsafe(method(projectExtensionData))]
         #[unsafe(method_family = none)]
         pub unsafe fn projectExtensionData(&self) -> Retained<NSData>;
 
         /// Setter for [`projectExtensionData`][Self::projectExtensionData].
-        #[method(setProjectExtensionData:)]
+        #[unsafe(method(setProjectExtensionData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProjectExtensionData(&self, project_extension_data: &NSData);
 
@@ -56,20 +56,20 @@ extern_methods!(
         /// Sets the key asset representing the project.
         /// Deprecated in macOS 10.14, please use -[PHProjectChangeRequest setProjectPreviewImage:] to provide a rendered preview instead.
         #[deprecated]
-        #[method(setKeyAsset:)]
+        #[unsafe(method(setKeyAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyAsset(&self, key_asset: Option<&PHAsset>);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method(setProjectPreviewImage:)]
+        #[unsafe(method(setProjectPreviewImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProjectPreviewImage(&self, preview_image: &NSImage);
 
         /// Removes the specified assets from the project.
         ///
         /// Parameter `assets`: A collection of PHAsset objects to be removed from the project.
-        #[method(removeAssets:)]
+        #[unsafe(method(removeAssets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);
     }
@@ -79,11 +79,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHProjectChangeRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

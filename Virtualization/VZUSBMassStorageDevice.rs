@@ -40,7 +40,7 @@ extern_methods!(
         /// Parameter `configuration`: The configuration of the USB Mass Storage device.
         ///
         /// See: VZUSBMassStorageDeviceConfiguration
-        #[method(initWithConfiguration:)]
+        #[unsafe(method(initWithConfiguration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
@@ -53,11 +53,11 @@ extern_methods!(
     /// Methods declared on superclass `VZStorageDevice`
     #[cfg(feature = "VZStorageDevice")]
     unsafe impl VZUSBMassStorageDevice {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

@@ -37,75 +37,75 @@ extern_methods!(
     unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
     {
-        #[method(numberOfItems)]
+        #[unsafe(method(numberOfItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
 
-        #[method(numberOfSections)]
+        #[unsafe(method(numberOfSections))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfSections(&self) -> NSInteger;
 
-        #[method(sectionIdentifiers)]
+        #[unsafe(method(sectionIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionIdentifiers(&self) -> Retained<NSArray<SectionIdentifierType>>;
 
-        #[method(itemIdentifiers)]
+        #[unsafe(method(itemIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemIdentifiers(&self) -> Retained<NSArray<ItemIdentifierType>>;
 
-        #[method(reloadedSectionIdentifiers)]
+        #[unsafe(method(reloadedSectionIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadedSectionIdentifiers(&self)
             -> Retained<NSArray<SectionIdentifierType>>;
 
-        #[method(reloadedItemIdentifiers)]
+        #[unsafe(method(reloadedItemIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadedItemIdentifiers(&self) -> Retained<NSArray<ItemIdentifierType>>;
 
-        #[method(reconfiguredItemIdentifiers)]
+        #[unsafe(method(reconfiguredItemIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn reconfiguredItemIdentifiers(&self) -> Retained<NSArray<ItemIdentifierType>>;
 
-        #[method(numberOfItemsInSection:)]
+        #[unsafe(method(numberOfItemsInSection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfItemsInSection(
             &self,
             section_identifier: &SectionIdentifierType,
         ) -> NSInteger;
 
-        #[method(itemIdentifiersInSectionWithIdentifier:)]
+        #[unsafe(method(itemIdentifiersInSectionWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemIdentifiersInSectionWithIdentifier(
             &self,
             section_identifier: &SectionIdentifierType,
         ) -> Retained<NSArray<ItemIdentifierType>>;
 
-        #[method(sectionIdentifierForSectionContainingItemIdentifier:)]
+        #[unsafe(method(sectionIdentifierForSectionContainingItemIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionIdentifierForSectionContainingItemIdentifier(
             &self,
             item_identifier: &ItemIdentifierType,
         ) -> Option<Retained<SectionIdentifierType>>;
 
-        #[method(indexOfItemIdentifier:)]
+        #[unsafe(method(indexOfItemIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfItemIdentifier(
             &self,
             item_identifier: &ItemIdentifierType,
         ) -> NSInteger;
 
-        #[method(indexOfSectionIdentifier:)]
+        #[unsafe(method(indexOfSectionIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfSectionIdentifier(
             &self,
             section_identifier: &SectionIdentifierType,
         ) -> NSInteger;
 
-        #[method(appendItemsWithIdentifiers:)]
+        #[unsafe(method(appendItemsWithIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendItemsWithIdentifiers(&self, identifiers: &NSArray<ItemIdentifierType>);
 
-        #[method(appendItemsWithIdentifiers:intoSectionWithIdentifier:)]
+        #[unsafe(method(appendItemsWithIdentifiers:intoSectionWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendItemsWithIdentifiers_intoSectionWithIdentifier(
             &self,
@@ -113,7 +113,7 @@ extern_methods!(
             section_identifier: &SectionIdentifierType,
         );
 
-        #[method(insertItemsWithIdentifiers:beforeItemWithIdentifier:)]
+        #[unsafe(method(insertItemsWithIdentifiers:beforeItemWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertItemsWithIdentifiers_beforeItemWithIdentifier(
             &self,
@@ -121,7 +121,7 @@ extern_methods!(
             item_identifier: &ItemIdentifierType,
         );
 
-        #[method(insertItemsWithIdentifiers:afterItemWithIdentifier:)]
+        #[unsafe(method(insertItemsWithIdentifiers:afterItemWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertItemsWithIdentifiers_afterItemWithIdentifier(
             &self,
@@ -129,15 +129,15 @@ extern_methods!(
             item_identifier: &ItemIdentifierType,
         );
 
-        #[method(deleteItemsWithIdentifiers:)]
+        #[unsafe(method(deleteItemsWithIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteItemsWithIdentifiers(&self, identifiers: &NSArray<ItemIdentifierType>);
 
-        #[method(deleteAllItems)]
+        #[unsafe(method(deleteAllItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAllItems(&self);
 
-        #[method(moveItemWithIdentifier:beforeItemWithIdentifier:)]
+        #[unsafe(method(moveItemWithIdentifier:beforeItemWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveItemWithIdentifier_beforeItemWithIdentifier(
             &self,
@@ -145,7 +145,7 @@ extern_methods!(
             to_identifier: &ItemIdentifierType,
         );
 
-        #[method(moveItemWithIdentifier:afterItemWithIdentifier:)]
+        #[unsafe(method(moveItemWithIdentifier:afterItemWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveItemWithIdentifier_afterItemWithIdentifier(
             &self,
@@ -153,25 +153,25 @@ extern_methods!(
             to_identifier: &ItemIdentifierType,
         );
 
-        #[method(reloadItemsWithIdentifiers:)]
+        #[unsafe(method(reloadItemsWithIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadItemsWithIdentifiers(&self, identifiers: &NSArray<ItemIdentifierType>);
 
-        #[method(reconfigureItemsWithIdentifiers:)]
+        #[unsafe(method(reconfigureItemsWithIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reconfigureItemsWithIdentifiers(
             &self,
             identifiers: &NSArray<ItemIdentifierType>,
         );
 
-        #[method(appendSectionsWithIdentifiers:)]
+        #[unsafe(method(appendSectionsWithIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendSectionsWithIdentifiers(
             &self,
             section_identifiers: &NSArray<SectionIdentifierType>,
         );
 
-        #[method(insertSectionsWithIdentifiers:beforeSectionWithIdentifier:)]
+        #[unsafe(method(insertSectionsWithIdentifiers:beforeSectionWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertSectionsWithIdentifiers_beforeSectionWithIdentifier(
             &self,
@@ -179,7 +179,7 @@ extern_methods!(
             to_section_identifier: &SectionIdentifierType,
         );
 
-        #[method(insertSectionsWithIdentifiers:afterSectionWithIdentifier:)]
+        #[unsafe(method(insertSectionsWithIdentifiers:afterSectionWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertSectionsWithIdentifiers_afterSectionWithIdentifier(
             &self,
@@ -187,14 +187,14 @@ extern_methods!(
             to_section_identifier: &SectionIdentifierType,
         );
 
-        #[method(deleteSectionsWithIdentifiers:)]
+        #[unsafe(method(deleteSectionsWithIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteSectionsWithIdentifiers(
             &self,
             section_identifiers: &NSArray<SectionIdentifierType>,
         );
 
-        #[method(moveSectionWithIdentifier:beforeSectionWithIdentifier:)]
+        #[unsafe(method(moveSectionWithIdentifier:beforeSectionWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveSectionWithIdentifier_beforeSectionWithIdentifier(
             &self,
@@ -202,7 +202,7 @@ extern_methods!(
             to_section_identifier: &SectionIdentifierType,
         );
 
-        #[method(moveSectionWithIdentifier:afterSectionWithIdentifier:)]
+        #[unsafe(method(moveSectionWithIdentifier:afterSectionWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveSectionWithIdentifier_afterSectionWithIdentifier(
             &self,
@@ -210,7 +210,7 @@ extern_methods!(
             to_section_identifier: &SectionIdentifierType,
         );
 
-        #[method(reloadSectionsWithIdentifiers:)]
+        #[unsafe(method(reloadSectionsWithIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadSectionsWithIdentifiers(
             &self,
@@ -224,11 +224,11 @@ extern_methods!(
     unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
     {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -287,25 +287,25 @@ extern_methods!(
     unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType>
     {
-        #[method(sectionIdentifier)]
+        #[unsafe(method(sectionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionIdentifier(&self) -> Retained<SectionIdentifierType>;
 
         #[cfg(feature = "NSDiffableDataSourceSectionSnapshot")]
-        #[method(initialSnapshot)]
+        #[unsafe(method(initialSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn initialSnapshot(
             &self,
         ) -> Retained<NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>>;
 
         #[cfg(feature = "NSDiffableDataSourceSectionSnapshot")]
-        #[method(finalSnapshot)]
+        #[unsafe(method(finalSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn finalSnapshot(
             &self,
         ) -> Retained<NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>>;
 
-        #[method(difference)]
+        #[unsafe(method(difference))]
         #[unsafe(method_family = none)]
         pub unsafe fn difference(
             &self,
@@ -318,11 +318,11 @@ extern_methods!(
     unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType>
     {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -347,25 +347,25 @@ extern_methods!(
     unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         NSDiffableDataSourceTransaction<SectionIdentifierType, ItemIdentifierType>
     {
-        #[method(initialSnapshot)]
+        #[unsafe(method(initialSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn initialSnapshot(
             &self,
         ) -> Retained<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
-        #[method(finalSnapshot)]
+        #[unsafe(method(finalSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn finalSnapshot(
             &self,
         ) -> Retained<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
-        #[method(difference)]
+        #[unsafe(method(difference))]
         #[unsafe(method_family = none)]
         pub unsafe fn difference(
             &self,
         ) -> Retained<NSOrderedCollectionDifference<ItemIdentifierType>>;
 
-        #[method(sectionTransactions)]
+        #[unsafe(method(sectionTransactions))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionTransactions(
             &self,
@@ -382,11 +382,11 @@ extern_methods!(
     unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         NSDiffableDataSourceTransaction<SectionIdentifierType, ItemIdentifierType>
     {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -424,7 +424,7 @@ extern_methods!(
         UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
     {
         #[cfg(feature = "block2")]
-        #[method(canReorderItemHandler)]
+        #[unsafe(method(canReorderItemHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn canReorderItemHandler(
             &self,
@@ -432,7 +432,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`canReorderItemHandler`][Self::canReorderItemHandler].
-        #[method(setCanReorderItemHandler:)]
+        #[unsafe(method(setCanReorderItemHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCanReorderItemHandler(
             &self,
@@ -440,7 +440,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(willReorderHandler)]
+        #[unsafe(method(willReorderHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn willReorderHandler(
             &self,
@@ -450,7 +450,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`willReorderHandler`][Self::willReorderHandler].
-        #[method(setWillReorderHandler:)]
+        #[unsafe(method(setWillReorderHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWillReorderHandler(
             &self,
@@ -462,7 +462,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(didReorderHandler)]
+        #[unsafe(method(didReorderHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn didReorderHandler(
             &self,
@@ -472,7 +472,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`didReorderHandler`][Self::didReorderHandler].
-        #[method(setDidReorderHandler:)]
+        #[unsafe(method(setDidReorderHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDidReorderHandler(
             &self,
@@ -490,11 +490,11 @@ extern_methods!(
     unsafe impl<SectionType: Message, ItemType: Message>
         UICollectionViewDiffableDataSourceReorderingHandlers<SectionType, ItemType>
     {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -529,7 +529,7 @@ unsafe impl<ItemType: ?Sized> NSObjectProtocol
 extern_methods!(
     unsafe impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType> {
         #[cfg(feature = "block2")]
-        #[method(shouldExpandItemHandler)]
+        #[unsafe(method(shouldExpandItemHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldExpandItemHandler(
             &self,
@@ -537,7 +537,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`shouldExpandItemHandler`][Self::shouldExpandItemHandler].
-        #[method(setShouldExpandItemHandler:)]
+        #[unsafe(method(setShouldExpandItemHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldExpandItemHandler(
             &self,
@@ -545,14 +545,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(willExpandItemHandler)]
+        #[unsafe(method(willExpandItemHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn willExpandItemHandler(&self)
             -> *mut block2::Block<dyn Fn(NonNull<ItemType>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`willExpandItemHandler`][Self::willExpandItemHandler].
-        #[method(setWillExpandItemHandler:)]
+        #[unsafe(method(setWillExpandItemHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWillExpandItemHandler(
             &self,
@@ -560,7 +560,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(shouldCollapseItemHandler)]
+        #[unsafe(method(shouldCollapseItemHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldCollapseItemHandler(
             &self,
@@ -568,7 +568,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`shouldCollapseItemHandler`][Self::shouldCollapseItemHandler].
-        #[method(setShouldCollapseItemHandler:)]
+        #[unsafe(method(setShouldCollapseItemHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldCollapseItemHandler(
             &self,
@@ -576,7 +576,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(willCollapseItemHandler)]
+        #[unsafe(method(willCollapseItemHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn willCollapseItemHandler(
             &self,
@@ -584,7 +584,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`willCollapseItemHandler`][Self::willCollapseItemHandler].
-        #[method(setWillCollapseItemHandler:)]
+        #[unsafe(method(setWillCollapseItemHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWillCollapseItemHandler(
             &self,
@@ -592,7 +592,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSDiffableDataSourceSectionSnapshot", feature = "block2"))]
-        #[method(snapshotForExpandingParentItemHandler)]
+        #[unsafe(method(snapshotForExpandingParentItemHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshotForExpandingParentItemHandler(
             &self,
@@ -605,7 +605,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDiffableDataSourceSectionSnapshot", feature = "block2"))]
         /// Setter for [`snapshotForExpandingParentItemHandler`][Self::snapshotForExpandingParentItemHandler].
-        #[method(setSnapshotForExpandingParentItemHandler:)]
+        #[unsafe(method(setSnapshotForExpandingParentItemHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSnapshotForExpandingParentItemHandler(
             &self,
@@ -625,11 +625,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType> {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -670,7 +670,7 @@ extern_methods!(
             feature = "UIView",
             feature = "block2"
         ))]
-        #[method(initWithCollectionView:cellProvider:)]
+        #[unsafe(method(initWithCollectionView:cellProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCollectionView_cellProvider(
             this: Allocated<Self>,
@@ -678,11 +678,11 @@ extern_methods!(
             cell_provider: UICollectionViewDiffableDataSourceCellProvider,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
@@ -694,7 +694,7 @@ extern_methods!(
             feature = "UIView",
             feature = "block2"
         ))]
-        #[method(supplementaryViewProvider)]
+        #[unsafe(method(supplementaryViewProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn supplementaryViewProvider(
             &self,
@@ -709,20 +709,20 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`supplementaryViewProvider`][Self::supplementaryViewProvider].
-        #[method(setSupplementaryViewProvider:)]
+        #[unsafe(method(setSupplementaryViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupplementaryViewProvider(
             &self,
             supplementary_view_provider: UICollectionViewDiffableDataSourceSupplementaryViewProvider,
         );
 
-        #[method(snapshot)]
+        #[unsafe(method(snapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshot(
             &self,
         ) -> Retained<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
-        #[method(applySnapshot:animatingDifferences:)]
+        #[unsafe(method(applySnapshot:animatingDifferences:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applySnapshot_animatingDifferences(
             &self,
@@ -731,7 +731,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(applySnapshot:animatingDifferences:completion:)]
+        #[unsafe(method(applySnapshot:animatingDifferences:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applySnapshot_animatingDifferences_completion(
             &self,
@@ -740,7 +740,7 @@ extern_methods!(
             completion: Option<&block2::Block<dyn Fn()>>,
         );
 
-        #[method(applySnapshotUsingReloadData:)]
+        #[unsafe(method(applySnapshotUsingReloadData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applySnapshotUsingReloadData(
             &self,
@@ -748,7 +748,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(applySnapshotUsingReloadData:completion:)]
+        #[unsafe(method(applySnapshotUsingReloadData:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applySnapshotUsingReloadData_completion(
             &self,
@@ -756,35 +756,35 @@ extern_methods!(
             completion: Option<&block2::Block<dyn Fn()>>,
         );
 
-        #[method(sectionIdentifierForIndex:)]
+        #[unsafe(method(sectionIdentifierForIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionIdentifierForIndex(
             &self,
             index: NSInteger,
         ) -> Option<Retained<SectionIdentifierType>>;
 
-        #[method(indexForSectionIdentifier:)]
+        #[unsafe(method(indexForSectionIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexForSectionIdentifier(
             &self,
             identifier: &SectionIdentifierType,
         ) -> NSInteger;
 
-        #[method(itemIdentifierForIndexPath:)]
+        #[unsafe(method(itemIdentifierForIndexPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemIdentifierForIndexPath(
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<ItemIdentifierType>>;
 
-        #[method(indexPathForItemIdentifier:)]
+        #[unsafe(method(indexPathForItemIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathForItemIdentifier(
             &self,
             identifier: &ItemIdentifierType,
         ) -> Option<Retained<NSIndexPath>>;
 
-        #[method(reorderingHandlers)]
+        #[unsafe(method(reorderingHandlers))]
         #[unsafe(method_family = none)]
         pub unsafe fn reorderingHandlers(
             &self,
@@ -796,7 +796,7 @@ extern_methods!(
         >;
 
         /// Setter for [`reorderingHandlers`][Self::reorderingHandlers].
-        #[method(setReorderingHandlers:)]
+        #[unsafe(method(setReorderingHandlers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReorderingHandlers(
             &self,
@@ -807,7 +807,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSDiffableDataSourceSectionSnapshot")]
-        #[method(applySnapshot:toSection:animatingDifferences:)]
+        #[unsafe(method(applySnapshot:toSection:animatingDifferences:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applySnapshot_toSection_animatingDifferences(
             &self,
@@ -817,7 +817,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSDiffableDataSourceSectionSnapshot", feature = "block2"))]
-        #[method(applySnapshot:toSection:animatingDifferences:completion:)]
+        #[unsafe(method(applySnapshot:toSection:animatingDifferences:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applySnapshot_toSection_animatingDifferences_completion(
             &self,
@@ -828,21 +828,21 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSDiffableDataSourceSectionSnapshot")]
-        #[method(snapshotForSection:)]
+        #[unsafe(method(snapshotForSection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshotForSection(
             &self,
             section: &SectionIdentifierType,
         ) -> Retained<NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>>;
 
-        #[method(sectionSnapshotHandlers)]
+        #[unsafe(method(sectionSnapshotHandlers))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionSnapshotHandlers(
             &self,
         ) -> Retained<UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemIdentifierType>>;
 
         /// Setter for [`sectionSnapshotHandlers`][Self::sectionSnapshotHandlers].
-        #[method(setSectionSnapshotHandlers:)]
+        #[unsafe(method(setSectionSnapshotHandlers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSectionSnapshotHandlers(
             &self,
@@ -901,7 +901,7 @@ extern_methods!(
             feature = "UIView",
             feature = "block2"
         ))]
-        #[method(initWithTableView:cellProvider:)]
+        #[unsafe(method(initWithTableView:cellProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTableView_cellProvider(
             this: Allocated<Self>,
@@ -909,21 +909,21 @@ extern_methods!(
             cell_provider: UITableViewDiffableDataSourceCellProvider,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(snapshot)]
+        #[unsafe(method(snapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshot(
             &self,
         ) -> Retained<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
-        #[method(applySnapshot:animatingDifferences:)]
+        #[unsafe(method(applySnapshot:animatingDifferences:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applySnapshot_animatingDifferences(
             &self,
@@ -932,7 +932,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(applySnapshot:animatingDifferences:completion:)]
+        #[unsafe(method(applySnapshot:animatingDifferences:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applySnapshot_animatingDifferences_completion(
             &self,
@@ -941,7 +941,7 @@ extern_methods!(
             completion: Option<&block2::Block<dyn Fn()>>,
         );
 
-        #[method(applySnapshotUsingReloadData:)]
+        #[unsafe(method(applySnapshotUsingReloadData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applySnapshotUsingReloadData(
             &self,
@@ -949,7 +949,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(applySnapshotUsingReloadData:completion:)]
+        #[unsafe(method(applySnapshotUsingReloadData:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applySnapshotUsingReloadData_completion(
             &self,
@@ -957,28 +957,28 @@ extern_methods!(
             completion: Option<&block2::Block<dyn Fn()>>,
         );
 
-        #[method(sectionIdentifierForIndex:)]
+        #[unsafe(method(sectionIdentifierForIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionIdentifierForIndex(
             &self,
             index: NSInteger,
         ) -> Option<Retained<SectionIdentifierType>>;
 
-        #[method(indexForSectionIdentifier:)]
+        #[unsafe(method(indexForSectionIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexForSectionIdentifier(
             &self,
             identifier: &SectionIdentifierType,
         ) -> NSInteger;
 
-        #[method(itemIdentifierForIndexPath:)]
+        #[unsafe(method(itemIdentifierForIndexPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemIdentifierForIndexPath(
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<ItemIdentifierType>>;
 
-        #[method(indexPathForItemIdentifier:)]
+        #[unsafe(method(indexPathForItemIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathForItemIdentifier(
             &self,
@@ -986,13 +986,13 @@ extern_methods!(
         ) -> Option<Retained<NSIndexPath>>;
 
         #[cfg(feature = "UITableView")]
-        #[method(defaultRowAnimation)]
+        #[unsafe(method(defaultRowAnimation))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultRowAnimation(&self) -> UITableViewRowAnimation;
 
         #[cfg(feature = "UITableView")]
         /// Setter for [`defaultRowAnimation`][Self::defaultRowAnimation].
-        #[method(setDefaultRowAnimation:)]
+        #[unsafe(method(setDefaultRowAnimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultRowAnimation(&self, default_row_animation: UITableViewRowAnimation);
     }

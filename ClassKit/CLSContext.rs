@@ -132,11 +132,11 @@ unsafe impl NSSecureCoding for CLSContext {}
 extern_methods!(
     #[cfg(feature = "CLSObject")]
     unsafe impl CLSContext {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -149,7 +149,7 @@ extern_methods!(
         /// ```
         ///
         /// to find `this' context.
-        #[method(identifierPath)]
+        #[unsafe(method(identifierPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifierPath(&self) -> Retained<NSArray<NSString>>;
 
@@ -158,38 +158,38 @@ extern_methods!(
         /// The identifier could be used to embed information later used for deep linking. For example:
         /// _hydrogen-element,_or
         /// _chapter-1._
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// Alternative deep link URL using universal links.
         ///
         /// If your app supports universal links, you can supply them here to link the content this context represents.
-        #[method(universalLinkURL)]
+        #[unsafe(method(universalLinkURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn universalLinkURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`universalLinkURL`][Self::universalLinkURL].
-        #[method(setUniversalLinkURL:)]
+        #[unsafe(method(setUniversalLinkURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUniversalLinkURL(&self, universal_link_url: Option<&NSURL>);
 
         /// Type of this context
         ///
         /// The type that best describes this context.
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> CLSContextType;
 
         /// An optional user-visible name for the context if its type is CLSContextTypeCustom.
         ///
         /// This property is relevant only if the type is CLSContextTypeCustom. This string should be localized. If this property is not set for a context of type CLSContextTypeCustom, Schoolwork app will use a default localized string ‘Custom’ as the name of the activity representing this context.
-        #[method(customTypeName)]
+        #[unsafe(method(customTypeName))]
         #[unsafe(method_family = none)]
         pub unsafe fn customTypeName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customTypeName`][Self::customTypeName].
-        #[method(setCustomTypeName:)]
+        #[unsafe(method(setCustomTypeName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomTypeName(&self, custom_type_name: Option<&NSString>);
 
@@ -198,48 +198,48 @@ extern_methods!(
         /// For example:
         /// _Level_1
         /// _._
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         /// The displayOrder is by default sorted ascending.
         ///
         /// Set the displayOrder if you want your contexts to be displayed in a particular order. The sort key is used as a way to sort sibling contexts in a particular order.
-        #[method(displayOrder)]
+        #[unsafe(method(displayOrder))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayOrder(&self) -> NSInteger;
 
         /// Setter for [`displayOrder`][Self::displayOrder].
-        #[method(setDisplayOrder:)]
+        #[unsafe(method(setDisplayOrder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayOrder(&self, display_order: NSInteger);
 
         /// Topic associated with this context.
         ///
         /// See above for valid, predefined topics.
-        #[method(topic)]
+        #[unsafe(method(topic))]
         #[unsafe(method_family = none)]
         pub unsafe fn topic(&self) -> Option<Retained<CLSContextTopic>>;
 
         /// Setter for [`topic`][Self::topic].
-        #[method(setTopic:)]
+        #[unsafe(method(setTopic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTopic(&self, topic: Option<&CLSContextTopic>);
 
         /// This property is true if the context can be assigned as an activity.
         ///
         /// The default value of this property is true. This should be set to false for a context that is used as a container for other contexts, but by itself, is not an assignable activity.
-        #[method(isAssignable)]
+        #[unsafe(method(isAssignable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAssignable(&self) -> bool;
 
         /// Setter for [`isAssignable`][Self::isAssignable].
-        #[method(setAssignable:)]
+        #[unsafe(method(setAssignable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAssignable(&self, assignable: bool);
 
@@ -250,12 +250,12 @@ extern_methods!(
         /// _Swift_or
         /// _NSMakeRange(0,NSIntegerMax)_in
         /// _Objective-C._Set the lower bound to 0 to specify no minimum age limit and set the upper bound to NSIntegerMax - 1 to specify no maximum age limit.
-        #[method(suggestedAge)]
+        #[unsafe(method(suggestedAge))]
         #[unsafe(method_family = none)]
         pub unsafe fn suggestedAge(&self) -> NSRange;
 
         /// Setter for [`suggestedAge`][Self::suggestedAge].
-        #[method(setSuggestedAge:)]
+        #[unsafe(method(setSuggestedAge:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuggestedAge(&self, suggested_age: NSRange);
 
@@ -266,12 +266,12 @@ extern_methods!(
         /// _Swift_or
         /// _NSMakeRange(0,NSIntegerMax)_in
         /// _Objective-C._Set the lower bound value to 0 to specify no minimum time limit and set the upper bound to NSIntegerMax - 1 to specify no maximum time limit.
-        #[method(suggestedCompletionTime)]
+        #[unsafe(method(suggestedCompletionTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn suggestedCompletionTime(&self) -> NSRange;
 
         /// Setter for [`suggestedCompletionTime`][Self::suggestedCompletionTime].
-        #[method(setSuggestedCompletionTime:)]
+        #[unsafe(method(setSuggestedCompletionTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuggestedCompletionTime(&self, suggested_completion_time: NSRange);
 
@@ -279,7 +279,7 @@ extern_methods!(
         /// Specifies progress reporting capablities of the app for this context.
         ///
         /// This information is intended to help teachers as they choose activities for their students. By default a CLSContext will have one CLSProgressReportingCapability instance of kind CLSProgressReportingCapabilityKindDuration. More progress reporting capabilities can be specified via '-addProgressReportingCapabilities:' to customize this set.
-        #[method(progressReportingCapabilities)]
+        #[unsafe(method(progressReportingCapabilities))]
         #[unsafe(method_family = none)]
         pub unsafe fn progressReportingCapabilities(
             &self,
@@ -288,12 +288,12 @@ extern_methods!(
         /// An optional user-visible summary describing the context limited to 4000 characters in length.
         ///
         /// This may be used to provide information about the types of activities available under a given context or the context itself. This string should be localized.
-        #[method(summary)]
+        #[unsafe(method(summary))]
         #[unsafe(method_family = none)]
         pub unsafe fn summary(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`summary`][Self::summary].
-        #[method(setSummary:)]
+        #[unsafe(method(setSummary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSummary(&self, summary: Option<&NSString>);
 
@@ -301,13 +301,13 @@ extern_methods!(
         /// An optional thumbnail image associated with the context.
         ///
         /// The size of this image should be equal to or larger than 80x80 pixels and equal to or smaller than 330x330 pixels. Images larger than 330x330 pixels will be scaled down. Images with both dimensions smaller than 80x80 pixels will not be accepted.
-        #[method(thumbnail)]
+        #[unsafe(method(thumbnail))]
         #[unsafe(method_family = none)]
         pub unsafe fn thumbnail(&self) -> Option<Retained<CGImage>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`thumbnail`][Self::thumbnail].
-        #[method(setThumbnail:)]
+        #[unsafe(method(setThumbnail:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setThumbnail(&self, thumbnail: Option<&CGImage>);
 
@@ -318,7 +318,7 @@ extern_methods!(
         /// Parameter `type`: The type of content this context represents.
         ///
         /// Parameter `title`: Title for what this context represents. 256 characters max length.
-        #[method(initWithType:identifier:title:)]
+        #[unsafe(method(initWithType:identifier:title:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_identifier_title(
             this: Allocated<Self>,
@@ -328,28 +328,28 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Returns true if self is the active context.
-        #[method(isActive)]
+        #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isActive(&self) -> bool;
 
         /// Marks contexts as active.
         ///
         /// If a context is already active, it will remain active. If another context is active, the other will resign active before this one becomes active.
-        #[method(becomeActive)]
+        #[unsafe(method(becomeActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn becomeActive(&self);
 
         /// Resign being active.
         ///
         /// This method does nothing if the reciever of the message is not active.
-        #[method(resignActive)]
+        #[unsafe(method(resignActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn resignActive(&self);
 
         /// Sets the type.
         ///
         /// Use this to update a previously saved context.
-        #[method(setType:)]
+        #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: CLSContextType);
 
@@ -359,7 +359,7 @@ extern_methods!(
         /// If this parameter contains multiple items with the same value for kind, then one of them will be arbitrarily selected and used. If this parameter contains a capability of kind CLSProgressReportingCapabilityKindDuration, it will be ignored.
         ///
         /// Parameter `capabilities`: Progress reporting capabilities to add or replace existing capabilties.
-        #[method(addProgressReportingCapabilities:)]
+        #[unsafe(method(addProgressReportingCapabilities:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addProgressReportingCapabilities(
             &self,
@@ -369,7 +369,7 @@ extern_methods!(
         /// Clears CLSProgressReportingCapability objects added to the receiver.
         ///
         /// Removes all capabilities added via '-addProgressReportingCapabilities:'. The context will have the default progress reporting capability of kind CLSProgressReportingCapabilityKindDuration.
-        #[method(resetProgressReportingCapabilities)]
+        #[unsafe(method(resetProgressReportingCapabilities))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetProgressReportingCapabilities(&self);
     }
@@ -380,14 +380,14 @@ extern_methods!(
     #[cfg(feature = "CLSObject")]
     unsafe impl CLSContext {
         /// Returns the parent of this context.
-        #[method(parent)]
+        #[unsafe(method(parent))]
         #[unsafe(method_family = none)]
         pub unsafe fn parent(&self) -> Option<Retained<CLSContext>>;
 
         /// Removes this child context from its parent.
         ///
         /// If you remove a context from its parent and do not add it as a child of another context, it will be deleted when you call -save on the dataStore.
-        #[method(removeFromParent)]
+        #[unsafe(method(removeFromParent))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromParent(&self);
 
@@ -396,7 +396,7 @@ extern_methods!(
         /// A context can only have a single parent.
         ///
         /// Note: objectID of child context may change after it's been added.
-        #[method(addChildContext:)]
+        #[unsafe(method(addChildContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addChildContext(&self, child: &CLSContext);
 
@@ -410,7 +410,7 @@ extern_methods!(
         /// ```
         ///
         /// If the dataStore does not have a delegate and there are missing contexts then an incomplete list of contexts will be passed to the completion handler. Completion block is called on a background thread.
-        #[method(descendantMatchingIdentifierPath:completion:)]
+        #[unsafe(method(descendantMatchingIdentifierPath:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descendantMatchingIdentifierPath_completion(
             &self,
@@ -425,7 +425,7 @@ extern_methods!(
         /// ```text
         ///  -[CLSContext addNavigationChildContext:]
         /// ```
-        #[method(navigationChildContexts)]
+        #[unsafe(method(navigationChildContexts))]
         #[unsafe(method_family = none)]
         pub unsafe fn navigationChildContexts(&self) -> Retained<NSArray<CLSContext>>;
 
@@ -438,7 +438,7 @@ extern_methods!(
         /// ```
         ///
         /// , this method does not affect the identifierPath.
-        #[method(addNavigationChildContext:)]
+        #[unsafe(method(addNavigationChildContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addNavigationChildContext(&self, child: &CLSContext);
 
@@ -451,7 +451,7 @@ extern_methods!(
         /// ```
         ///
         /// , this method does not affect the identiferPath.
-        #[method(removeNavigationChildContext:)]
+        #[unsafe(method(removeNavigationChildContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeNavigationChildContext(&self, child: &CLSContext);
     }

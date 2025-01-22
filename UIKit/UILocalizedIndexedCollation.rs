@@ -18,26 +18,26 @@ unsafe impl NSObjectProtocol for UILocalizedIndexedCollation {}
 
 extern_methods!(
     unsafe impl UILocalizedIndexedCollation {
-        #[method(currentCollation)]
+        #[unsafe(method(currentCollation))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentCollation(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(sectionTitles)]
+        #[unsafe(method(sectionTitles))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionTitles(&self) -> Retained<NSArray<NSString>>;
 
-        #[method(sectionIndexTitles)]
+        #[unsafe(method(sectionIndexTitles))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionIndexTitles(&self) -> Retained<NSArray<NSString>>;
 
-        #[method(sectionForSectionIndexTitleAtIndex:)]
+        #[unsafe(method(sectionForSectionIndexTitleAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionForSectionIndexTitleAtIndex(
             &self,
             index_title_index: NSInteger,
         ) -> NSInteger;
 
-        #[method(sectionForObject:collationStringSelector:)]
+        #[unsafe(method(sectionForObject:collationStringSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionForObject_collationStringSelector(
             &self,
@@ -45,7 +45,7 @@ extern_methods!(
             selector: Sel,
         ) -> NSInteger;
 
-        #[method(sortedArrayFromArray:collationStringSelector:)]
+        #[unsafe(method(sortedArrayFromArray:collationStringSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortedArrayFromArray_collationStringSelector(
             &self,
@@ -58,11 +58,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UILocalizedIndexedCollation {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

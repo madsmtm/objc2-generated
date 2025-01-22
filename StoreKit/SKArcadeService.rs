@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for SKArcadeService {}
 extern_methods!(
     unsafe impl SKArcadeService {
         #[cfg(feature = "block2")]
-        #[method(registerArcadeAppWithRandomFromLib:randomFromLibLength:resultHandler:)]
+        #[unsafe(method(registerArcadeAppWithRandomFromLib:randomFromLibLength:resultHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerArcadeAppWithRandomFromLib_randomFromLibLength_resultHandler(
             random_from_lib: &NSData,
@@ -30,7 +30,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(arcadeSubscriptionStatusWithNonce:resultHandler:)]
+        #[unsafe(method(arcadeSubscriptionStatusWithNonce:resultHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn arcadeSubscriptionStatusWithNonce_resultHandler(
             nonce: u64,
@@ -39,7 +39,7 @@ extern_methods!(
             >,
         );
 
-        #[method(repairArcadeApp)]
+        #[unsafe(method(repairArcadeApp))]
         #[unsafe(method_family = none)]
         pub unsafe fn repairArcadeApp();
     }
@@ -48,11 +48,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKArcadeService {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

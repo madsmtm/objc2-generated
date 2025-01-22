@@ -26,55 +26,55 @@ unsafe impl NSObjectProtocol for NSPDFInfo {}
 
 extern_methods!(
     unsafe impl NSPDFInfo {
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
-        #[method(setURL:)]
+        #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
-        #[method(isFileExtensionHidden)]
+        #[unsafe(method(isFileExtensionHidden))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFileExtensionHidden(&self) -> bool;
 
         /// Setter for [`isFileExtensionHidden`][Self::isFileExtensionHidden].
-        #[method(setFileExtensionHidden:)]
+        #[unsafe(method(setFileExtensionHidden:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFileExtensionHidden(&self, file_extension_hidden: bool);
 
-        #[method(tagNames)]
+        #[unsafe(method(tagNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn tagNames(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`tagNames`][Self::tagNames].
-        #[method(setTagNames:)]
+        #[unsafe(method(setTagNames:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTagNames(&self, tag_names: &NSArray<NSString>);
 
         #[cfg(feature = "NSPrintInfo")]
-        #[method(orientation)]
+        #[unsafe(method(orientation))]
         #[unsafe(method_family = none)]
         pub unsafe fn orientation(&self) -> NSPaperOrientation;
 
         #[cfg(feature = "NSPrintInfo")]
         /// Setter for [`orientation`][Self::orientation].
-        #[method(setOrientation:)]
+        #[unsafe(method(setOrientation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrientation(&self, orientation: NSPaperOrientation);
 
-        #[method(paperSize)]
+        #[unsafe(method(paperSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn paperSize(&self) -> NSSize;
 
         /// Setter for [`paperSize`][Self::paperSize].
-        #[method(setPaperSize:)]
+        #[unsafe(method(setPaperSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaperSize(&self, paper_size: NSSize);
 
         #[cfg(feature = "NSPrintInfo")]
-        #[method(attributes)]
+        #[unsafe(method(attributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributes(
             &self,
@@ -85,11 +85,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPDFInfo {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -51,7 +51,7 @@ extern_methods!(
     unsafe impl UIImpactFeedbackGenerator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// set a style on the feedback generator and attach it to the provided view as an interaction.
-        #[method(feedbackGeneratorWithStyle:forView:)]
+        #[unsafe(method(feedbackGeneratorWithStyle:forView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn feedbackGeneratorWithStyle_forView(
             style: UIImpactFeedbackStyle,
@@ -59,23 +59,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// call when your UI element impacts something else
-        #[method(impactOccurred)]
+        #[unsafe(method(impactOccurred))]
         #[unsafe(method_family = none)]
         pub unsafe fn impactOccurred(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(impactOccurredAtLocation:)]
+        #[unsafe(method(impactOccurredAtLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn impactOccurredAtLocation(&self, location: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// call when your UI element impacts something else with a specific intensity [0.0, 1.0]
-        #[method(impactOccurredWithIntensity:)]
+        #[unsafe(method(impactOccurredWithIntensity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn impactOccurredWithIntensity(&self, intensity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(impactOccurredWithIntensity:atLocation:)]
+        #[unsafe(method(impactOccurredWithIntensity:atLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn impactOccurredWithIntensity_atLocation(
             &self,
@@ -84,7 +84,7 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method(initWithStyle:)]
+        #[unsafe(method(initWithStyle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStyle(
             this: Allocated<Self>,
@@ -99,12 +99,12 @@ extern_methods!(
     unsafe impl UIImpactFeedbackGenerator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// initalize the generator with a view to attach it to the provided view as an interaction.
-        #[method(feedbackGeneratorForView:)]
+        #[unsafe(method(feedbackGeneratorForView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
 
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -114,7 +114,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIFeedbackGenerator")]
     unsafe impl UIImpactFeedbackGenerator {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

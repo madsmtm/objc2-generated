@@ -72,7 +72,7 @@ extern_methods!(
     #[cfg(feature = "SCNNode")]
     unsafe impl SCNReferenceNode {
         /// Creates a reference node with a url.
-        #[method(initWithURL:)]
+        #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(
             this: Allocated<Self>,
@@ -80,7 +80,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -88,43 +88,43 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         /// Creates a reference node with a url.
-        #[method(referenceNodeWithURL:)]
+        #[unsafe(method(referenceNodeWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceNodeWithURL(reference_url: &NSURL) -> Option<Retained<Self>>;
 
         /// Specifies the url to resolve.
-        #[method(referenceURL)]
+        #[unsafe(method(referenceURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`referenceURL`][Self::referenceURL].
-        #[method(setReferenceURL:)]
+        #[unsafe(method(setReferenceURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReferenceURL(&self, reference_url: &NSURL);
 
         /// Specifies when to load the reference. see SCNReferenceLoadingPolicy above. Defaults to SCNReferenceLoadingPolicyImmediately.
-        #[method(loadingPolicy)]
+        #[unsafe(method(loadingPolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadingPolicy(&self) -> SCNReferenceLoadingPolicy;
 
         /// Setter for [`loadingPolicy`][Self::loadingPolicy].
-        #[method(setLoadingPolicy:)]
+        #[unsafe(method(setLoadingPolicy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLoadingPolicy(&self, loading_policy: SCNReferenceLoadingPolicy);
 
         /// Force the reference to be loaded if it hasn't been loaded already. The resolved nodes will be added
         /// as child nodes of the receiver.
-        #[method(load)]
+        #[unsafe(method(load))]
         #[unsafe(method_family = none)]
         pub unsafe fn load(&self);
 
         /// Remove the child nodes and mark as unloaded.
-        #[method(unload)]
+        #[unsafe(method(unload))]
         #[unsafe(method_family = none)]
         pub unsafe fn unload(&self);
 
         /// Indicates whether the referenced URL has been loaded.
-        #[method(isLoaded)]
+        #[unsafe(method(isLoaded))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLoaded(&self) -> bool;
     }
@@ -135,7 +135,7 @@ extern_methods!(
     #[cfg(feature = "SCNNode")]
     unsafe impl SCNReferenceNode {
         /// Creates and initializes a node instance.
-        #[method(node)]
+        #[unsafe(method(node))]
         #[unsafe(method_family = none)]
         pub unsafe fn node() -> Retained<Self>;
     }
@@ -145,11 +145,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNNode")]
     unsafe impl SCNReferenceNode {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -82,7 +82,7 @@ extern_methods!(
             feature = "NSView",
             feature = "block2"
         ))]
-        #[method(initWithTableView:cellProvider:)]
+        #[unsafe(method(initWithTableView:cellProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTableView_cellProvider(
             this: Allocated<Self>,
@@ -90,23 +90,23 @@ extern_methods!(
             cell_provider: NSTableViewDiffableDataSourceCellProvider,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSDiffableDataSource")]
-        #[method(snapshot)]
+        #[unsafe(method(snapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshot(
             &self,
         ) -> Retained<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
         #[cfg(feature = "NSDiffableDataSource")]
-        #[method(applySnapshot:animatingDifferences:)]
+        #[unsafe(method(applySnapshot:animatingDifferences:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applySnapshot_animatingDifferences(
             &self,
@@ -115,7 +115,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSDiffableDataSource", feature = "block2"))]
-        #[method(applySnapshot:animatingDifferences:completion:)]
+        #[unsafe(method(applySnapshot:animatingDifferences:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applySnapshot_animatingDifferences_completion(
             &self,
@@ -124,25 +124,25 @@ extern_methods!(
             completion: Option<&block2::Block<dyn Fn()>>,
         );
 
-        #[method(itemIdentifierForRow:)]
+        #[unsafe(method(itemIdentifierForRow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemIdentifierForRow(
             &self,
             row: NSInteger,
         ) -> Option<Retained<ItemIdentifierType>>;
 
-        #[method(rowForItemIdentifier:)]
+        #[unsafe(method(rowForItemIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rowForItemIdentifier(&self, identifier: &ItemIdentifierType) -> NSInteger;
 
-        #[method(sectionIdentifierForRow:)]
+        #[unsafe(method(sectionIdentifierForRow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionIdentifierForRow(
             &self,
             row: NSInteger,
         ) -> Option<Retained<SectionIdentifierType>>;
 
-        #[method(rowForSectionIdentifier:)]
+        #[unsafe(method(rowForSectionIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rowForSectionIdentifier(
             &self,
@@ -157,7 +157,7 @@ extern_methods!(
             feature = "NSView",
             feature = "block2"
         ))]
-        #[method(rowViewProvider)]
+        #[unsafe(method(rowViewProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn rowViewProvider(
             &self,
@@ -173,7 +173,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`rowViewProvider`][Self::rowViewProvider].
-        #[method(setRowViewProvider:)]
+        #[unsafe(method(setRowViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRowViewProvider(
             &self,
@@ -187,7 +187,7 @@ extern_methods!(
             feature = "NSView",
             feature = "block2"
         ))]
-        #[method(sectionHeaderViewProvider)]
+        #[unsafe(method(sectionHeaderViewProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionHeaderViewProvider(
             &self,
@@ -202,7 +202,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`sectionHeaderViewProvider`][Self::sectionHeaderViewProvider].
-        #[method(setSectionHeaderViewProvider:)]
+        #[unsafe(method(setSectionHeaderViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSectionHeaderViewProvider(
             &self,
@@ -210,13 +210,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSTableView")]
-        #[method(defaultRowAnimation)]
+        #[unsafe(method(defaultRowAnimation))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultRowAnimation(&self) -> NSTableViewAnimationOptions;
 
         #[cfg(feature = "NSTableView")]
         /// Setter for [`defaultRowAnimation`][Self::defaultRowAnimation].
-        #[method(setDefaultRowAnimation:)]
+        #[unsafe(method(setDefaultRowAnimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultRowAnimation(
             &self,

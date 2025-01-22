@@ -19,27 +19,27 @@ unsafe impl NSObjectProtocol for SKOverlayTransitionContext {}
 
 extern_methods!(
     unsafe impl SKOverlayTransitionContext {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         /// Adds an animation that will be synchronized with an overlay's presentation/dismissal.
-        #[method(addAnimationBlock:)]
+        #[unsafe(method(addAnimationBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAnimationBlock(&self, block: &block2::Block<dyn Fn()>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(startFrame)]
+        #[unsafe(method(startFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn startFrame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(endFrame)]
+        #[unsafe(method(endFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn endFrame(&self) -> CGRect;
     }

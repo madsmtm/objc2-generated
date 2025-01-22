@@ -56,78 +56,78 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKMarkerAnnotationView {
         #[cfg(feature = "MKTypes")]
-        #[method(titleVisibility)]
+        #[unsafe(method(titleVisibility))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleVisibility(&self) -> MKFeatureVisibility;
 
         #[cfg(feature = "MKTypes")]
         /// Setter for [`titleVisibility`][Self::titleVisibility].
-        #[method(setTitleVisibility:)]
+        #[unsafe(method(setTitleVisibility:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleVisibility(&self, title_visibility: MKFeatureVisibility);
 
         #[cfg(feature = "MKTypes")]
-        #[method(subtitleVisibility)]
+        #[unsafe(method(subtitleVisibility))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitleVisibility(&self) -> MKFeatureVisibility;
 
         #[cfg(feature = "MKTypes")]
         /// Setter for [`subtitleVisibility`][Self::subtitleVisibility].
-        #[method(setSubtitleVisibility:)]
+        #[unsafe(method(setSubtitleVisibility:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitleVisibility(&self, subtitle_visibility: MKFeatureVisibility);
 
-        #[method(markerTintColor)]
+        #[unsafe(method(markerTintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn markerTintColor(&self) -> Option<Retained<NSColor>>;
 
         /// Setter for [`markerTintColor`][Self::markerTintColor].
-        #[method(setMarkerTintColor:)]
+        #[unsafe(method(setMarkerTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarkerTintColor(&self, marker_tint_color: Option<&NSColor>);
 
-        #[method(glyphTintColor)]
+        #[unsafe(method(glyphTintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn glyphTintColor(&self) -> Option<Retained<NSColor>>;
 
         /// Setter for [`glyphTintColor`][Self::glyphTintColor].
-        #[method(setGlyphTintColor:)]
+        #[unsafe(method(setGlyphTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlyphTintColor(&self, glyph_tint_color: Option<&NSColor>);
 
-        #[method(glyphText)]
+        #[unsafe(method(glyphText))]
         #[unsafe(method_family = none)]
         pub unsafe fn glyphText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`glyphText`][Self::glyphText].
-        #[method(setGlyphText:)]
+        #[unsafe(method(setGlyphText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlyphText(&self, glyph_text: Option<&NSString>);
 
-        #[method(glyphImage)]
+        #[unsafe(method(glyphImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn glyphImage(&self) -> Option<Retained<NSImage>>;
 
         /// Setter for [`glyphImage`][Self::glyphImage].
-        #[method(setGlyphImage:)]
+        #[unsafe(method(setGlyphImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlyphImage(&self, glyph_image: Option<&NSImage>);
 
-        #[method(selectedGlyphImage)]
+        #[unsafe(method(selectedGlyphImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedGlyphImage(&self) -> Option<Retained<NSImage>>;
 
         /// Setter for [`selectedGlyphImage`][Self::selectedGlyphImage].
-        #[method(setSelectedGlyphImage:)]
+        #[unsafe(method(setSelectedGlyphImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedGlyphImage(&self, selected_glyph_image: Option<&NSImage>);
 
-        #[method(animatesWhenAdded)]
+        #[unsafe(method(animatesWhenAdded))]
         #[unsafe(method_family = none)]
         pub unsafe fn animatesWhenAdded(&self) -> bool;
 
         /// Setter for [`animatesWhenAdded`][Self::animatesWhenAdded].
-        #[method(setAnimatesWhenAdded:)]
+        #[unsafe(method(setAnimatesWhenAdded:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimatesWhenAdded(&self, animates_when_added: bool);
     }
@@ -139,7 +139,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKMarkerAnnotationView {
         #[cfg(feature = "MKAnnotation")]
-        #[method(initWithAnnotation:reuseIdentifier:)]
+        #[unsafe(method(initWithAnnotation:reuseIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAnnotation_reuseIdentifier(
             this: Allocated<Self>,
@@ -147,7 +147,7 @@ extern_methods!(
             reuse_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -161,7 +161,7 @@ extern_methods!(
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl MKMarkerAnnotationView {
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
@@ -172,7 +172,7 @@ extern_methods!(
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl MKMarkerAnnotationView {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -183,7 +183,7 @@ extern_methods!(
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl MKMarkerAnnotationView {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

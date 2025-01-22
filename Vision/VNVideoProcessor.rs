@@ -35,11 +35,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNVideoProcessorCadence {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -64,18 +64,18 @@ unsafe impl NSObjectProtocol for VNVideoProcessorFrameRateCadence {}
 
 extern_methods!(
     unsafe impl VNVideoProcessorFrameRateCadence {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithFrameRate:)]
+        #[unsafe(method(initWithFrameRate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameRate(
             this: Allocated<Self>,
             frame_rate: NSInteger,
         ) -> Retained<Self>;
 
-        #[method(frameRate)]
+        #[unsafe(method(frameRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameRate(&self) -> NSInteger;
     }
@@ -84,7 +84,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNVideoProcessorFrameRateCadence {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -109,12 +109,12 @@ unsafe impl NSObjectProtocol for VNVideoProcessorTimeIntervalCadence {}
 
 extern_methods!(
     unsafe impl VNVideoProcessorTimeIntervalCadence {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithTimeInterval:)]
+        #[unsafe(method(initWithTimeInterval:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTimeInterval(
             this: Allocated<Self>,
@@ -122,7 +122,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(timeInterval)]
+        #[unsafe(method(timeInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeInterval(&self) -> CFTimeInterval;
     }
@@ -131,7 +131,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNVideoProcessorTimeIntervalCadence {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -159,12 +159,12 @@ extern_methods!(
         /// The cadence at which the request should be performed.
         ///
         /// If this property is not defined, then every frame will be processed.
-        #[method(cadence)]
+        #[unsafe(method(cadence))]
         #[unsafe(method_family = none)]
         pub unsafe fn cadence(&self) -> Option<Retained<VNVideoProcessorCadence>>;
 
         /// Setter for [`cadence`][Self::cadence].
-        #[method(setCadence:)]
+        #[unsafe(method(setCadence:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCadence(&self, cadence: Option<&VNVideoProcessorCadence>);
     }
@@ -173,11 +173,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNVideoProcessorRequestProcessingOptions {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -198,7 +198,7 @@ unsafe impl NSObjectProtocol for VNVideoProcessor {}
 
 extern_methods!(
     unsafe impl VNVideoProcessor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -206,7 +206,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `videoURL`: A URL pointing at a video asset on which the requests will be performed. The video format has to be supported by AVFoundation.
-        #[method(initWithURL:)]
+        #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, video_url: &NSURL) -> Retained<Self>;
 
@@ -225,7 +225,7 @@ extern_methods!(
         /// Returns: Returns true if the request added to the processing pipeline.
         ///
         /// Note: The VNRequest must have completion handler set otherwise no results can be returned.
-        #[method(addRequest:processingOptions:error:_)]
+        #[unsafe(method(addRequest:processingOptions:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRequest_processingOptions_error(
             &self,
@@ -235,7 +235,7 @@ extern_methods!(
 
         #[cfg(all(feature = "VNRequest", feature = "VNTypes"))]
         #[deprecated]
-        #[method(addRequest:withProcessingOptions:error:_)]
+        #[unsafe(method(addRequest:withProcessingOptions:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRequest_withProcessingOptions_error(
             &self,
@@ -254,7 +254,7 @@ extern_methods!(
         /// Parameter `error`: Returns an error that happened during processing of the request, such as if the request was not found in the processing queue. This parameter is optional.
         ///
         /// Returns: Returns true if the request was found and removed from the processing pipeline.
-        #[method(removeRequest:error:_)]
+        #[unsafe(method(removeRequest:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRequest_error(
             &self,
@@ -274,7 +274,7 @@ extern_methods!(
         /// Returns: Returns true if all requests were scheduled and performed. Check individual requests results and errors for their respective success and failures.
         ///
         /// Note: The intersection of the CMTimeRangeMake(start, duration) and CMTimeRangeMake(kCMTimeZero, asset.duration) will determine the timerange of the video to process
-        #[method(analyzeTimeRange:error:_)]
+        #[unsafe(method(analyzeTimeRange:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn analyzeTimeRange_error(
             &self,
@@ -283,7 +283,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-media")]
         #[deprecated]
-        #[method(analyzeWithTimeRange:error:_)]
+        #[unsafe(method(analyzeWithTimeRange:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn analyzeWithTimeRange_error(
             &self,
@@ -291,7 +291,7 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         /// Cancel the processing of the video. This can return before the last request has completed.
-        #[method(cancel)]
+        #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
     }
@@ -300,7 +300,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNVideoProcessor {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

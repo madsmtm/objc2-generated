@@ -34,37 +34,37 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAOpenGLLayer {
         #[deprecated = "OpenGL is deprecated"]
-        #[method(isAsynchronous)]
+        #[unsafe(method(isAsynchronous))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAsynchronous(&self) -> bool;
 
         /// Setter for [`isAsynchronous`][Self::isAsynchronous].
         #[deprecated = "OpenGL is deprecated"]
-        #[method(setAsynchronous:)]
+        #[unsafe(method(setAsynchronous:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAsynchronous(&self, asynchronous: bool);
 
         #[cfg(feature = "objc2-core-graphics")]
         #[deprecated = "OpenGL is deprecated"]
-        #[method(colorspace)]
+        #[unsafe(method(colorspace))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorspace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorspace`][Self::colorspace].
         #[deprecated = "OpenGL is deprecated"]
-        #[method(setColorspace:)]
+        #[unsafe(method(setColorspace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorspace(&self, colorspace: Option<&CGColorSpace>);
 
         #[deprecated = "OpenGL is deprecated"]
-        #[method(wantsExtendedDynamicRangeContent)]
+        #[unsafe(method(wantsExtendedDynamicRangeContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn wantsExtendedDynamicRangeContent(&self) -> bool;
 
         /// Setter for [`wantsExtendedDynamicRangeContent`][Self::wantsExtendedDynamicRangeContent].
         #[deprecated = "OpenGL is deprecated"]
-        #[method(setWantsExtendedDynamicRangeContent:)]
+        #[unsafe(method(setWantsExtendedDynamicRangeContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWantsExtendedDynamicRangeContent(
             &self,
@@ -78,15 +78,15 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAOpenGLLayer {
         /// Layer creation and initialization. *
-        #[method(layer)]
+        #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithLayer:)]
+        #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
@@ -96,7 +96,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CAOpenGLLayer {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

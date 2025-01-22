@@ -29,12 +29,12 @@ extern_methods!(
         /// This method informs the receiver that no more data should be collected and all
         /// previously collected data should be deleted and the receiver will be considered
         /// invalid. Any further calls to the receiver will result in an exception.
-        #[method(discard)]
+        #[unsafe(method(discard))]
         #[unsafe(method_family = none)]
         pub unsafe fn discard(&self);
 
         /// Use only subclass initializer methods.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -43,7 +43,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKSeriesBuilder {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

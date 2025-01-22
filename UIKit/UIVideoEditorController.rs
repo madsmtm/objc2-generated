@@ -79,11 +79,11 @@ extern_methods!(
         feature = "UIViewController"
     ))]
     unsafe impl UIVideoEditorController {
-        #[method(canEditVideoAtPath:)]
+        #[unsafe(method(canEditVideoAtPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canEditVideoAtPath(video_path: &NSString, mtm: MainThreadMarker) -> bool;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -94,7 +94,7 @@ extern_methods!(
         >;
 
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -103,32 +103,32 @@ extern_methods!(
             >,
         );
 
-        #[method(videoPath)]
+        #[unsafe(method(videoPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoPath(&self) -> Retained<NSString>;
 
         /// Setter for [`videoPath`][Self::videoPath].
-        #[method(setVideoPath:)]
+        #[unsafe(method(setVideoPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoPath(&self, video_path: &NSString);
 
-        #[method(videoMaximumDuration)]
+        #[unsafe(method(videoMaximumDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoMaximumDuration(&self) -> NSTimeInterval;
 
         /// Setter for [`videoMaximumDuration`][Self::videoMaximumDuration].
-        #[method(setVideoMaximumDuration:)]
+        #[unsafe(method(setVideoMaximumDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoMaximumDuration(&self, video_maximum_duration: NSTimeInterval);
 
         #[cfg(feature = "UIImagePickerController")]
-        #[method(videoQuality)]
+        #[unsafe(method(videoQuality))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoQuality(&self) -> UIImagePickerControllerQualityType;
 
         #[cfg(feature = "UIImagePickerController")]
         /// Setter for [`videoQuality`][Self::videoQuality].
-        #[method(setVideoQuality:)]
+        #[unsafe(method(setVideoQuality:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoQuality(&self, video_quality: UIImagePickerControllerQualityType);
     }
@@ -142,7 +142,7 @@ extern_methods!(
         feature = "UIViewController"
     ))]
     unsafe impl UIVideoEditorController {
-        #[method(initWithNavigationBarClass:toolbarClass:)]
+        #[unsafe(method(initWithNavigationBarClass:toolbarClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
             this: Allocated<Self>,
@@ -150,14 +150,14 @@ extern_methods!(
             toolbar_class: Option<&AnyClass>,
         ) -> Retained<Self>;
 
-        #[method(initWithRootViewController:)]
+        #[unsafe(method(initWithRootViewController:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRootViewController(
             this: Allocated<Self>,
             root_view_controller: &UIViewController,
         ) -> Retained<Self>;
 
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -165,7 +165,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -182,11 +182,11 @@ extern_methods!(
         feature = "UIViewController"
     ))]
     unsafe impl UIVideoEditorController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -203,7 +203,7 @@ extern_protocol!(
             feature = "UIViewController"
         ))]
         #[optional]
-        #[method(videoEditorController:didSaveEditedVideoToPath:)]
+        #[unsafe(method(videoEditorController:didSaveEditedVideoToPath:))]
         #[unsafe(method_family = none)]
         unsafe fn videoEditorController_didSaveEditedVideoToPath(
             &self,
@@ -217,7 +217,7 @@ extern_protocol!(
             feature = "UIViewController"
         ))]
         #[optional]
-        #[method(videoEditorController:didFailWithError:)]
+        #[unsafe(method(videoEditorController:didFailWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn videoEditorController_didFailWithError(
             &self,
@@ -231,7 +231,7 @@ extern_protocol!(
             feature = "UIViewController"
         ))]
         #[optional]
-        #[method(videoEditorControllerDidCancel:)]
+        #[unsafe(method(videoEditorControllerDidCancel:))]
         #[unsafe(method_family = none)]
         unsafe fn videoEditorControllerDidCancel(&self, editor: &UIVideoEditorController);
     }

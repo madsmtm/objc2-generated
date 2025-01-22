@@ -70,20 +70,20 @@ unsafe impl NSObjectProtocol for NSPointerFunctions {}
 
 extern_methods!(
     unsafe impl NSPointerFunctions {
-        #[method(initWithOptions:)]
+        #[unsafe(method(initWithOptions:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOptions(
             this: Allocated<Self>,
             options: NSPointerFunctionsOptions,
         ) -> Retained<Self>;
 
-        #[method(pointerFunctionsWithOptions:)]
+        #[unsafe(method(pointerFunctionsWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointerFunctionsWithOptions(
             options: NSPointerFunctionsOptions,
         ) -> Retained<NSPointerFunctions>;
 
-        #[method(hashFunction)]
+        #[unsafe(method(hashFunction))]
         #[unsafe(method_family = none)]
         pub unsafe fn hashFunction(
             &self,
@@ -95,7 +95,7 @@ extern_methods!(
         >;
 
         /// Setter for [`hashFunction`][Self::hashFunction].
-        #[method(setHashFunction:)]
+        #[unsafe(method(setHashFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHashFunction(
             &self,
@@ -107,7 +107,7 @@ extern_methods!(
             >,
         );
 
-        #[method(isEqualFunction)]
+        #[unsafe(method(isEqualFunction))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualFunction(
             &self,
@@ -120,7 +120,7 @@ extern_methods!(
         >;
 
         /// Setter for [`isEqualFunction`][Self::isEqualFunction].
-        #[method(setIsEqualFunction:)]
+        #[unsafe(method(setIsEqualFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIsEqualFunction(
             &self,
@@ -133,14 +133,14 @@ extern_methods!(
             >,
         );
 
-        #[method(sizeFunction)]
+        #[unsafe(method(sizeFunction))]
         #[unsafe(method_family = none)]
         pub unsafe fn sizeFunction(
             &self,
         ) -> Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NSUInteger>;
 
         /// Setter for [`sizeFunction`][Self::sizeFunction].
-        #[method(setSizeFunction:)]
+        #[unsafe(method(setSizeFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSizeFunction(
             &self,
@@ -148,7 +148,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method(descriptionFunction)]
+        #[unsafe(method(descriptionFunction))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptionFunction(
             &self,
@@ -156,7 +156,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Setter for [`descriptionFunction`][Self::descriptionFunction].
-        #[method(setDescriptionFunction:)]
+        #[unsafe(method(setDescriptionFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDescriptionFunction(
             &self,
@@ -165,7 +165,7 @@ extern_methods!(
             >,
         );
 
-        #[method(relinquishFunction)]
+        #[unsafe(method(relinquishFunction))]
         #[unsafe(method_family = none)]
         pub unsafe fn relinquishFunction(
             &self,
@@ -177,7 +177,7 @@ extern_methods!(
         >;
 
         /// Setter for [`relinquishFunction`][Self::relinquishFunction].
-        #[method(setRelinquishFunction:)]
+        #[unsafe(method(setRelinquishFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRelinquishFunction(
             &self,
@@ -189,7 +189,7 @@ extern_methods!(
             >,
         );
 
-        #[method(acquireFunction)]
+        #[unsafe(method(acquireFunction))]
         #[unsafe(method_family = none)]
         pub unsafe fn acquireFunction(
             &self,
@@ -202,7 +202,7 @@ extern_methods!(
         >;
 
         /// Setter for [`acquireFunction`][Self::acquireFunction].
-        #[method(setAcquireFunction:)]
+        #[unsafe(method(setAcquireFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAcquireFunction(
             &self,
@@ -216,24 +216,24 @@ extern_methods!(
         );
 
         #[deprecated = "Garbage collection no longer supported"]
-        #[method(usesStrongWriteBarrier)]
+        #[unsafe(method(usesStrongWriteBarrier))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesStrongWriteBarrier(&self) -> bool;
 
         /// Setter for [`usesStrongWriteBarrier`][Self::usesStrongWriteBarrier].
         #[deprecated = "Garbage collection no longer supported"]
-        #[method(setUsesStrongWriteBarrier:)]
+        #[unsafe(method(setUsesStrongWriteBarrier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesStrongWriteBarrier(&self, uses_strong_write_barrier: bool);
 
         #[deprecated = "Garbage collection no longer supported"]
-        #[method(usesWeakReadAndWriteBarriers)]
+        #[unsafe(method(usesWeakReadAndWriteBarriers))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesWeakReadAndWriteBarriers(&self) -> bool;
 
         /// Setter for [`usesWeakReadAndWriteBarriers`][Self::usesWeakReadAndWriteBarriers].
         #[deprecated = "Garbage collection no longer supported"]
-        #[method(setUsesWeakReadAndWriteBarriers:)]
+        #[unsafe(method(setUsesWeakReadAndWriteBarriers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesWeakReadAndWriteBarriers(
             &self,
@@ -245,11 +245,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPointerFunctions {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

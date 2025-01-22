@@ -28,89 +28,89 @@ extern_methods!(
     unsafe impl PHAssetChangeRequest {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method(creationRequestForAssetFromImage:)]
+        #[unsafe(method(creationRequestForAssetFromImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationRequestForAssetFromImage(image: &NSImage) -> Retained<Self>;
 
-        #[method(creationRequestForAssetFromImageAtFileURL:)]
+        #[unsafe(method(creationRequestForAssetFromImageAtFileURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationRequestForAssetFromImageAtFileURL(
             file_url: &NSURL,
         ) -> Option<Retained<Self>>;
 
-        #[method(creationRequestForAssetFromVideoAtFileURL:)]
+        #[unsafe(method(creationRequestForAssetFromVideoAtFileURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationRequestForAssetFromVideoAtFileURL(
             file_url: &NSURL,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "PHObject")]
-        #[method(placeholderForCreatedAsset)]
+        #[unsafe(method(placeholderForCreatedAsset))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderForCreatedAsset(&self) -> Option<Retained<PHObjectPlaceholder>>;
 
-        #[method(deleteAssets:)]
+        #[unsafe(method(deleteAssets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAssets(assets: &ProtocolObject<dyn NSFastEnumeration>);
 
         #[cfg(all(feature = "PHAsset", feature = "PHObject"))]
-        #[method(changeRequestForAsset:)]
+        #[unsafe(method(changeRequestForAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForAsset(asset: &PHAsset) -> Retained<Self>;
 
-        #[method(creationDate)]
+        #[unsafe(method(creationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`creationDate`][Self::creationDate].
-        #[method(setCreationDate:)]
+        #[unsafe(method(setCreationDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCreationDate(&self, creation_date: Option<&NSDate>);
 
         #[cfg(feature = "objc2-core-location")]
-        #[method(location)]
+        #[unsafe(method(location))]
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
 
         #[cfg(feature = "objc2-core-location")]
         /// Setter for [`location`][Self::location].
-        #[method(setLocation:)]
+        #[unsafe(method(setLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocation(&self, location: Option<&CLLocation>);
 
-        #[method(isFavorite)]
+        #[unsafe(method(isFavorite))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFavorite(&self) -> bool;
 
         /// Setter for [`isFavorite`][Self::isFavorite].
-        #[method(setFavorite:)]
+        #[unsafe(method(setFavorite:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFavorite(&self, favorite: bool);
 
-        #[method(isHidden)]
+        #[unsafe(method(isHidden))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
 
         /// Setter for [`isHidden`][Self::isHidden].
-        #[method(setHidden:)]
+        #[unsafe(method(setHidden:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[cfg(feature = "PHContentEditingOutput")]
-        #[method(contentEditingOutput)]
+        #[unsafe(method(contentEditingOutput))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentEditingOutput(&self) -> Option<Retained<PHContentEditingOutput>>;
 
         #[cfg(feature = "PHContentEditingOutput")]
         /// Setter for [`contentEditingOutput`][Self::contentEditingOutput].
-        #[method(setContentEditingOutput:)]
+        #[unsafe(method(setContentEditingOutput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentEditingOutput(
             &self,
             content_editing_output: Option<&PHContentEditingOutput>,
         );
 
-        #[method(revertAssetContentToOriginal)]
+        #[unsafe(method(revertAssetContentToOriginal))]
         #[unsafe(method_family = none)]
         pub unsafe fn revertAssetContentToOriginal(&self);
     }
@@ -120,11 +120,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetChangeRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -145,7 +145,7 @@ unsafe impl NSObjectProtocol for PHContentEditingInputRequestOptions {}
 extern_methods!(
     unsafe impl PHContentEditingInputRequestOptions {
         #[cfg(all(feature = "PHAdjustmentData", feature = "block2"))]
-        #[method(canHandleAdjustmentData)]
+        #[unsafe(method(canHandleAdjustmentData))]
         #[unsafe(method_family = none)]
         pub unsafe fn canHandleAdjustmentData(
             &self,
@@ -153,31 +153,31 @@ extern_methods!(
 
         #[cfg(all(feature = "PHAdjustmentData", feature = "block2"))]
         /// Setter for [`canHandleAdjustmentData`][Self::canHandleAdjustmentData].
-        #[method(setCanHandleAdjustmentData:)]
+        #[unsafe(method(setCanHandleAdjustmentData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCanHandleAdjustmentData(
             &self,
             can_handle_adjustment_data: &block2::Block<dyn Fn(NonNull<PHAdjustmentData>) -> Bool>,
         );
 
-        #[method(isNetworkAccessAllowed)]
+        #[unsafe(method(isNetworkAccessAllowed))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNetworkAccessAllowed(&self) -> bool;
 
         /// Setter for [`isNetworkAccessAllowed`][Self::isNetworkAccessAllowed].
-        #[method(setNetworkAccessAllowed:)]
+        #[unsafe(method(setNetworkAccessAllowed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNetworkAccessAllowed(&self, network_access_allowed: bool);
 
         #[cfg(feature = "block2")]
-        #[method(progressHandler)]
+        #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn progressHandler(&self)
             -> *mut block2::Block<dyn Fn(c_double, NonNull<Bool>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
-        #[method(setProgressHandler:)]
+        #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(
             &self,
@@ -189,11 +189,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHContentEditingInputRequestOptions {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -204,7 +204,7 @@ extern_methods!(
     #[cfg(all(feature = "PHAsset", feature = "PHObject"))]
     unsafe impl PHAsset {
         #[cfg(all(feature = "PHContentEditingInput", feature = "block2"))]
-        #[method(requestContentEditingInputWithOptions:completionHandler:)]
+        #[unsafe(method(requestContentEditingInputWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestContentEditingInputWithOptions_completionHandler(
             &self,
@@ -214,7 +214,7 @@ extern_methods!(
             >,
         ) -> PHContentEditingInputRequestID;
 
-        #[method(cancelContentEditingInputRequest:)]
+        #[unsafe(method(cancelContentEditingInputRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelContentEditingInputRequest(
             &self,
@@ -243,7 +243,7 @@ extern_methods!(
     #[cfg(feature = "PHContentEditingOutput")]
     unsafe impl PHContentEditingOutput {
         #[cfg(feature = "PHObject")]
-        #[method(initWithPlaceholderForCreatedAsset:)]
+        #[unsafe(method(initWithPlaceholderForCreatedAsset:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlaceholderForCreatedAsset(
             this: Allocated<Self>,

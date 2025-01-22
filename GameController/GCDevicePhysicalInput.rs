@@ -17,7 +17,7 @@ extern_protocol!(
     pub unsafe trait GCDevicePhysicalInput: GCDevicePhysicalInputState {
         #[cfg(feature = "GCDevice")]
         /// The device that this profile is mapping input from.
-        #[method(device)]
+        #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn GCDevice>>>;
 
@@ -30,7 +30,7 @@ extern_protocol!(
         ///
         ///
         /// Parameter `element`: The element that has been modified.
-        #[method(elementValueDidChangeHandler)]
+        #[unsafe(method(elementValueDidChangeHandler))]
         #[unsafe(method_family = none)]
         unsafe fn elementValueDidChangeHandler(
             &self,
@@ -43,7 +43,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Setter for [`elementValueDidChangeHandler`][Self::elementValueDidChangeHandler].
-        #[method(setElementValueDidChangeHandler:)]
+        #[unsafe(method(setElementValueDidChangeHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setElementValueDidChangeHandler(
             &self,
@@ -66,7 +66,7 @@ extern_protocol!(
         ///
         ///
         /// Returns: An input state with the duplicated state vector of the current input.
-        #[method(capture)]
+        #[unsafe(method(capture))]
         #[unsafe(method_family = none)]
         unsafe fn capture(&self) -> Retained<ProtocolObject<dyn GCDevicePhysicalInputState>>;
 
@@ -112,7 +112,7 @@ extern_protocol!(
         /// }
         /// }
         /// };
-        #[method(inputStateAvailableHandler)]
+        #[unsafe(method(inputStateAvailableHandler))]
         #[unsafe(method_family = none)]
         unsafe fn inputStateAvailableHandler(
             &self,
@@ -120,7 +120,7 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`inputStateAvailableHandler`][Self::inputStateAvailableHandler].
-        #[method(setInputStateAvailableHandler:)]
+        #[unsafe(method(setInputStateAvailableHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setInputStateAvailableHandler(
             &self,
@@ -139,19 +139,19 @@ extern_protocol!(
         /// value of
         /// `20`should be more than enough to ensure no input state changes
         /// are missed.
-        #[method(inputStateQueueDepth)]
+        #[unsafe(method(inputStateQueueDepth))]
         #[unsafe(method_family = none)]
         unsafe fn inputStateQueueDepth(&self) -> NSInteger;
 
         /// Setter for [`inputStateQueueDepth`][Self::inputStateQueueDepth].
-        #[method(setInputStateQueueDepth:)]
+        #[unsafe(method(setInputStateQueueDepth:))]
         #[unsafe(method_family = none)]
         unsafe fn setInputStateQueueDepth(&self, input_state_queue_depth: NSInteger);
 
         #[cfg(feature = "GCDevicePhysicalInputStateDiff")]
         /// Pop the oldest pending input state from the queue.  This method returns
         /// `nil`when there are no more input states pending.
-        #[method(nextInputState)]
+        #[unsafe(method(nextInputState))]
         #[unsafe(method_family = none)]
         unsafe fn nextInputState(
             &self,

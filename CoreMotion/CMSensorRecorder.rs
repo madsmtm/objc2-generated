@@ -25,11 +25,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMSensorDataList {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -46,21 +46,21 @@ unsafe impl NSObjectProtocol for CMSensorRecorder {}
 
 extern_methods!(
     unsafe impl CMSensorRecorder {
-        #[method(isAccelerometerRecordingAvailable)]
+        #[unsafe(method(isAccelerometerRecordingAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAccelerometerRecordingAvailable() -> bool;
 
         #[cfg(feature = "CMAuthorization")]
-        #[method(authorizationStatus)]
+        #[unsafe(method(authorizationStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus() -> CMAuthorizationStatus;
 
         #[deprecated]
-        #[method(isAuthorizedForRecording)]
+        #[unsafe(method(isAuthorizedForRecording))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAuthorizedForRecording() -> bool;
 
-        #[method(accelerometerDataFromDate:toDate:)]
+        #[unsafe(method(accelerometerDataFromDate:toDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn accelerometerDataFromDate_toDate(
             &self,
@@ -68,7 +68,7 @@ extern_methods!(
             to_date: &NSDate,
         ) -> Option<Retained<CMSensorDataList>>;
 
-        #[method(recordAccelerometerForDuration:)]
+        #[unsafe(method(recordAccelerometerForDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordAccelerometerForDuration(&self, duration: NSTimeInterval);
     }
@@ -77,11 +77,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMSensorRecorder {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -19,7 +19,7 @@ extern_methods!(
     unsafe impl LADomainStateBiometry {
         #[cfg(feature = "LABiometryType")]
         /// Indicates biometry type available on the device.
-        #[method(biometryType)]
+        #[unsafe(method(biometryType))]
         #[unsafe(method_family = none)]
         pub unsafe fn biometryType(&self) -> LABiometryType;
 
@@ -34,15 +34,15 @@ extern_methods!(
         ///
         /// Warning: Please note that the value returned by this property can change exceptionally between major OS versions even if
         /// the state of biometry has not changed.
-        #[method(stateHash)]
+        #[unsafe(method(stateHash))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateHash(&self) -> Option<Retained<NSData>>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -62,7 +62,7 @@ extern_methods!(
         /// Indicates types of companions paired with the device.
         /// The elements are NSNumber-wrapped instances of
         /// ``LACompanionType`.`
-        #[method(availableCompanionTypes)]
+        #[unsafe(method(availableCompanionTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableCompanionTypes(&self) -> Retained<NSSet<NSNumber>>;
 
@@ -83,7 +83,7 @@ extern_methods!(
         ///
         /// Warning: Please note that the value returned by this property can change exceptionally between major OS versions even if
         /// the list of paired companions has not changed.
-        #[method(stateHash)]
+        #[unsafe(method(stateHash))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateHash(&self) -> Option<Retained<NSData>>;
 
@@ -98,18 +98,18 @@ extern_methods!(
         ///
         ///
         /// Parameter `companionType`: The companion type for which state hash data should be returned.
-        #[method(stateHashForCompanionType:)]
+        #[unsafe(method(stateHashForCompanionType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateHashForCompanionType(
             &self,
             companion_type: LACompanionType,
         ) -> Option<Retained<NSData>>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -127,12 +127,12 @@ unsafe impl NSObjectProtocol for LADomainState {}
 extern_methods!(
     unsafe impl LADomainState {
         /// Contains biometric domain state.
-        #[method(biometry)]
+        #[unsafe(method(biometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn biometry(&self) -> Retained<LADomainStateBiometry>;
 
         /// Contains companion domain state.
-        #[method(companion)]
+        #[unsafe(method(companion))]
         #[unsafe(method_family = none)]
         pub unsafe fn companion(&self) -> Retained<LADomainStateCompanion>;
 
@@ -141,15 +141,15 @@ extern_methods!(
         ///
         /// Warning: Please note that the value returned by this property can change exceptionally between major OS versions even if
         /// the list of paired companions has not changed.
-        #[method(stateHash)]
+        #[unsafe(method(stateHash))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateHash(&self) -> Option<Retained<NSData>>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

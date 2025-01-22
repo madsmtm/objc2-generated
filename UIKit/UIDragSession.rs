@@ -13,7 +13,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidragdropsession?language=objc)
     pub unsafe trait UIDragDropSession: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIDragItem")]
-        #[method(items)]
+        #[unsafe(method(items))]
         #[unsafe(method_family = none)]
         unsafe fn items(&self) -> Retained<NSArray<UIDragItem>>;
 
@@ -22,26 +22,26 @@ extern_protocol!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method(locationInView:)]
+        #[unsafe(method(locationInView:))]
         #[unsafe(method_family = none)]
         unsafe fn locationInView(&self, view: &UIView) -> CGPoint;
 
-        #[method(allowsMoveOperation)]
+        #[unsafe(method(allowsMoveOperation))]
         #[unsafe(method_family = none)]
         unsafe fn allowsMoveOperation(&self) -> bool;
 
-        #[method(isRestrictedToDraggingApplication)]
+        #[unsafe(method(isRestrictedToDraggingApplication))]
         #[unsafe(method_family = none)]
         unsafe fn isRestrictedToDraggingApplication(&self) -> bool;
 
-        #[method(hasItemsConformingToTypeIdentifiers:)]
+        #[unsafe(method(hasItemsConformingToTypeIdentifiers:))]
         #[unsafe(method_family = none)]
         unsafe fn hasItemsConformingToTypeIdentifiers(
             &self,
             type_identifiers: &NSArray<NSString>,
         ) -> bool;
 
-        #[method(canLoadObjectsOfClass:)]
+        #[unsafe(method(canLoadObjectsOfClass:))]
         #[unsafe(method_family = none)]
         unsafe fn canLoadObjectsOfClass(&self, a_class: &AnyClass) -> bool;
     }
@@ -50,12 +50,12 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidragsession?language=objc)
     pub unsafe trait UIDragSession: UIDragDropSession + MainThreadOnly {
-        #[method(localContext)]
+        #[unsafe(method(localContext))]
         #[unsafe(method_family = none)]
         unsafe fn localContext(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`localContext`][Self::localContext].
-        #[method(setLocalContext:)]
+        #[unsafe(method(setLocalContext:))]
         #[unsafe(method_family = none)]
         unsafe fn setLocalContext(&self, local_context: Option<&AnyObject>);
     }
@@ -86,16 +86,16 @@ extern_protocol!(
     pub unsafe trait UIDropSession:
         UIDragDropSession + NSProgressReporting + MainThreadOnly
     {
-        #[method(localDragSession)]
+        #[unsafe(method(localDragSession))]
         #[unsafe(method_family = none)]
         unsafe fn localDragSession(&self) -> Option<Retained<ProtocolObject<dyn UIDragSession>>>;
 
-        #[method(progressIndicatorStyle)]
+        #[unsafe(method(progressIndicatorStyle))]
         #[unsafe(method_family = none)]
         unsafe fn progressIndicatorStyle(&self) -> UIDropSessionProgressIndicatorStyle;
 
         /// Setter for [`progressIndicatorStyle`][Self::progressIndicatorStyle].
-        #[method(setProgressIndicatorStyle:)]
+        #[unsafe(method(setProgressIndicatorStyle:))]
         #[unsafe(method_family = none)]
         unsafe fn setProgressIndicatorStyle(
             &self,
@@ -103,7 +103,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(loadObjectsOfClass:completion:)]
+        #[unsafe(method(loadObjectsOfClass:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn loadObjectsOfClass_completion(
             &self,

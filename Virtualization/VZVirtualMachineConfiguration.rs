@@ -69,13 +69,13 @@ extern_methods!(
         /// See: VZLinuxBootLoader
         ///
         /// See: VZMacOSBootLoader
-        #[method(bootLoader)]
+        #[unsafe(method(bootLoader))]
         #[unsafe(method_family = none)]
         pub unsafe fn bootLoader(&self) -> Option<Retained<VZBootLoader>>;
 
         #[cfg(feature = "VZBootLoader")]
         /// Setter for [`bootLoader`][Self::bootLoader].
-        #[method(setBootLoader:)]
+        #[unsafe(method(setBootLoader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBootLoader(&self, boot_loader: Option<&VZBootLoader>);
 
@@ -90,12 +90,12 @@ extern_methods!(
         /// See: VZVirtualMachineConfiguration.minimumAllowedMemorySize
         ///
         /// See: VZVirtualMachineConfiguration.maximumAllowedMemorySize
-        #[method(memorySize)]
+        #[unsafe(method(memorySize))]
         #[unsafe(method_family = none)]
         pub unsafe fn memorySize(&self) -> u64;
 
         /// Setter for [`memorySize`][Self::memorySize].
-        #[method(setMemorySize:)]
+        #[unsafe(method(setMemorySize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMemorySize(&self, memory_size: u64);
 
@@ -108,12 +108,12 @@ extern_methods!(
         /// See: VZVirtualMachineConfiguration.minimumAllowedCPUCount
         ///
         /// See: VZVirtualMachineConfiguration.maximumAllowedCPUCount
-        #[method(CPUCount)]
+        #[unsafe(method(CPUCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn CPUCount(&self) -> NSUInteger;
 
         /// Setter for [`CPUCount`][Self::CPUCount].
-        #[method(setCPUCount:)]
+        #[unsafe(method(setCPUCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCPUCount(&self, cpu_count: NSUInteger);
 
@@ -127,13 +127,13 @@ extern_methods!(
         /// See: VZGenericPlatformConfiguration
         ///
         /// See: VZMacPlatformConfiguration
-        #[method(platform)]
+        #[unsafe(method(platform))]
         #[unsafe(method_family = none)]
         pub unsafe fn platform(&self) -> Retained<VZPlatformConfiguration>;
 
         #[cfg(feature = "VZPlatformConfiguration")]
         /// Setter for [`platform`][Self::platform].
-        #[method(setPlatform:)]
+        #[unsafe(method(setPlatform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlatform(&self, platform: &VZPlatformConfiguration);
 
@@ -141,13 +141,13 @@ extern_methods!(
         /// List of audio devices. Empty by default.
         ///
         /// See: VZVirtioSoundDeviceConfiguration
-        #[method(audioDevices)]
+        #[unsafe(method(audioDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioDevices(&self) -> Retained<NSArray<VZAudioDeviceConfiguration>>;
 
         #[cfg(feature = "VZAudioDeviceConfiguration")]
         /// Setter for [`audioDevices`][Self::audioDevices].
-        #[method(setAudioDevices:)]
+        #[unsafe(method(setAudioDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioDevices(&self, audio_devices: &NSArray<VZAudioDeviceConfiguration>);
 
@@ -155,13 +155,13 @@ extern_methods!(
         /// List of console devices. Empty by default.
         ///
         /// See: VZVirtioConsoleDeviceConfiguration
-        #[method(consoleDevices)]
+        #[unsafe(method(consoleDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn consoleDevices(&self) -> Retained<NSArray<VZConsoleDeviceConfiguration>>;
 
         #[cfg(feature = "VZConsoleDeviceConfiguration")]
         /// Setter for [`consoleDevices`][Self::consoleDevices].
-        #[method(setConsoleDevices:)]
+        #[unsafe(method(setConsoleDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConsoleDevices(
             &self,
@@ -172,7 +172,7 @@ extern_methods!(
         /// List of directory sharing devices. Empty by default.
         ///
         /// See: VZVirtioFileSystemDeviceConfiguration
-        #[method(directorySharingDevices)]
+        #[unsafe(method(directorySharingDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn directorySharingDevices(
             &self,
@@ -180,7 +180,7 @@ extern_methods!(
 
         #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
         /// Setter for [`directorySharingDevices`][Self::directorySharingDevices].
-        #[method(setDirectorySharingDevices:)]
+        #[unsafe(method(setDirectorySharingDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirectorySharingDevices(
             &self,
@@ -191,13 +191,13 @@ extern_methods!(
         /// List of entropy devices. Empty by default.
         ///
         /// See: VZVirtioEntropyDeviceConfiguration
-        #[method(entropyDevices)]
+        #[unsafe(method(entropyDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn entropyDevices(&self) -> Retained<NSArray<VZEntropyDeviceConfiguration>>;
 
         #[cfg(feature = "VZEntropyDeviceConfiguration")]
         /// Setter for [`entropyDevices`][Self::entropyDevices].
-        #[method(setEntropyDevices:)]
+        #[unsafe(method(setEntropyDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEntropyDevices(
             &self,
@@ -208,7 +208,7 @@ extern_methods!(
         /// List of memory balloon devices. Empty by default.
         ///
         /// See: VZVirtioTraditionalMemoryBalloonDeviceConfiguration
-        #[method(memoryBalloonDevices)]
+        #[unsafe(method(memoryBalloonDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn memoryBalloonDevices(
             &self,
@@ -216,7 +216,7 @@ extern_methods!(
 
         #[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]
         /// Setter for [`memoryBalloonDevices`][Self::memoryBalloonDevices].
-        #[method(setMemoryBalloonDevices:)]
+        #[unsafe(method(setMemoryBalloonDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMemoryBalloonDevices(
             &self,
@@ -227,13 +227,13 @@ extern_methods!(
         /// List of network adapters. Empty by default.
         ///
         /// See: VZVirtioNetworkDeviceConfiguration
-        #[method(networkDevices)]
+        #[unsafe(method(networkDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkDevices(&self) -> Retained<NSArray<VZNetworkDeviceConfiguration>>;
 
         #[cfg(feature = "VZNetworkDeviceConfiguration")]
         /// Setter for [`networkDevices`][Self::networkDevices].
-        #[method(setNetworkDevices:)]
+        #[unsafe(method(setNetworkDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNetworkDevices(
             &self,
@@ -244,13 +244,13 @@ extern_methods!(
         /// List of serial ports. Empty by default.
         ///
         /// See: VZVirtioConsoleDeviceSerialPortConfiguration
-        #[method(serialPorts)]
+        #[unsafe(method(serialPorts))]
         #[unsafe(method_family = none)]
         pub unsafe fn serialPorts(&self) -> Retained<NSArray<VZSerialPortConfiguration>>;
 
         #[cfg(feature = "VZSerialPortConfiguration")]
         /// Setter for [`serialPorts`][Self::serialPorts].
-        #[method(setSerialPorts:)]
+        #[unsafe(method(setSerialPorts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSerialPorts(&self, serial_ports: &NSArray<VZSerialPortConfiguration>);
 
@@ -258,13 +258,13 @@ extern_methods!(
         /// List of socket devices. Empty by default.
         ///
         /// See: VZVirtioSocketDeviceConfiguration
-        #[method(socketDevices)]
+        #[unsafe(method(socketDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn socketDevices(&self) -> Retained<NSArray<VZSocketDeviceConfiguration>>;
 
         #[cfg(feature = "VZSocketDeviceConfiguration")]
         /// Setter for [`socketDevices`][Self::socketDevices].
-        #[method(setSocketDevices:)]
+        #[unsafe(method(setSocketDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSocketDevices(
             &self,
@@ -279,13 +279,13 @@ extern_methods!(
         /// See: VZUSBMassStorageDeviceConfiguration
         ///
         /// See: VZVirtioBlockDeviceConfiguration
-        #[method(storageDevices)]
+        #[unsafe(method(storageDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn storageDevices(&self) -> Retained<NSArray<VZStorageDeviceConfiguration>>;
 
         #[cfg(feature = "VZStorageDeviceConfiguration")]
         /// Setter for [`storageDevices`][Self::storageDevices].
-        #[method(setStorageDevices:)]
+        #[unsafe(method(setStorageDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStorageDevices(
             &self,
@@ -298,13 +298,13 @@ extern_methods!(
         /// See: VZUSBKeyboardConfiguration
         ///
         /// See: VZMacKeyboardConfiguration
-        #[method(keyboards)]
+        #[unsafe(method(keyboards))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyboards(&self) -> Retained<NSArray<VZKeyboardConfiguration>>;
 
         #[cfg(feature = "VZKeyboardConfiguration")]
         /// Setter for [`keyboards`][Self::keyboards].
-        #[method(setKeyboards:)]
+        #[unsafe(method(setKeyboards:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyboards(&self, keyboards: &NSArray<VZKeyboardConfiguration>);
 
@@ -314,13 +314,13 @@ extern_methods!(
         /// See: VZUSBScreenCoordinatePointingDeviceConfiguration
         ///
         /// See: VZMacTrackpadConfiguration
-        #[method(pointingDevices)]
+        #[unsafe(method(pointingDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointingDevices(&self) -> Retained<NSArray<VZPointingDeviceConfiguration>>;
 
         #[cfg(feature = "VZPointingDeviceConfiguration")]
         /// Setter for [`pointingDevices`][Self::pointingDevices].
-        #[method(setPointingDevices:)]
+        #[unsafe(method(setPointingDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPointingDevices(
             &self,
@@ -331,13 +331,13 @@ extern_methods!(
         /// List of graphics devices. Empty by default.
         ///
         /// See: VZMacGraphicsDeviceConfiguration
-        #[method(graphicsDevices)]
+        #[unsafe(method(graphicsDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn graphicsDevices(&self) -> Retained<NSArray<VZGraphicsDeviceConfiguration>>;
 
         #[cfg(feature = "VZGraphicsDeviceConfiguration")]
         /// Setter for [`graphicsDevices`][Self::graphicsDevices].
-        #[method(setGraphicsDevices:)]
+        #[unsafe(method(setGraphicsDevices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGraphicsDevices(
             &self,
@@ -351,13 +351,13 @@ extern_methods!(
         /// For each entry in this list, there will be a corresponding runtime object created in VZVirtualMachine.usbControllers property.
         ///
         /// See: VZUSBControllerConfiguration
-        #[method(usbControllers)]
+        #[unsafe(method(usbControllers))]
         #[unsafe(method_family = none)]
         pub unsafe fn usbControllers(&self) -> Retained<NSArray<VZUSBControllerConfiguration>>;
 
         #[cfg(feature = "VZUSBControllerConfiguration")]
         /// Setter for [`usbControllers`][Self::usbControllers].
-        #[method(setUsbControllers:)]
+        #[unsafe(method(setUsbControllers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsbControllers(
             &self,
@@ -369,11 +369,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VZVirtualMachineConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -388,7 +388,7 @@ extern_methods!(
         /// Parameter `error`: If not nil, assigned with the validation error if the validation failed.
         ///
         /// Returns: YES if the configuration is valid.
-        #[method(validateWithError:_)]
+        #[unsafe(method(validateWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateWithError(&self) -> Result<(), Retained<NSError>>;
 
@@ -401,35 +401,35 @@ extern_methods!(
         /// Parameter `error`: If not nil, assigned with an error describing the unsupported configuration option.
         ///
         /// Returns: YES if the configuration is savable.
-        #[method(validateSaveRestoreSupportWithError:_)]
+        #[unsafe(method(validateSaveRestoreSupportWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateSaveRestoreSupportWithError(&self) -> Result<(), Retained<NSError>>;
 
         /// : Minimum amount of memory required by virtual machines.
         ///
         /// See: VZVirtualMachineConfiguration.memorySize
-        #[method(minimumAllowedMemorySize)]
+        #[unsafe(method(minimumAllowedMemorySize))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumAllowedMemorySize() -> u64;
 
         /// : Maximum amount of memory allowed for a virtual machine.
         ///
         /// See: VZVirtualMachineConfiguration.memorySize
-        #[method(maximumAllowedMemorySize)]
+        #[unsafe(method(maximumAllowedMemorySize))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumAllowedMemorySize() -> u64;
 
         /// : Minimum number of CPUs for a virtual machine.
         ///
         /// See: VZVirtualMachineConfiguration.CPUCount
-        #[method(minimumAllowedCPUCount)]
+        #[unsafe(method(minimumAllowedCPUCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumAllowedCPUCount() -> NSUInteger;
 
         /// : Maximum number of CPUs for a virtual machine.
         ///
         /// See: VZVirtualMachineConfiguration.CPUCount
-        #[method(maximumAllowedCPUCount)]
+        #[unsafe(method(maximumAllowedCPUCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumAllowedCPUCount() -> NSUInteger;
     }

@@ -40,14 +40,14 @@ unsafe impl NSObjectProtocol for MTKMeshBufferAllocator {}
 extern_methods!(
     unsafe impl MTKMeshBufferAllocator {
         /// Must initialize with device
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the allocator with a device to be used to create buffers.
         ///
         /// The designated initializer for this class.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -55,7 +55,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Device used to create buffers.
-        #[method(device)]
+        #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
     }
@@ -64,7 +64,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTKMeshBufferAllocator {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -92,19 +92,19 @@ unsafe impl NSObjectProtocol for MTKMeshBuffer {}
 extern_methods!(
     unsafe impl MTKMeshBuffer {
         /// Only an MTKMeshBufferAllocator object can initilize a MTKMeshBuffer object
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Size in bytes of the buffer allocation.
-        #[method(length)]
+        #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> NSUInteger;
 
         /// Allocator object used to create this buffer.
         ///
         /// This allcoator is stored so that it can be used by Model I/O for copy and relayout operations (such as when a new vertex descriptor is applied to a vertex buffer).
-        #[method(allocator)]
+        #[unsafe(method(allocator))]
         #[unsafe(method_family = none)]
         pub unsafe fn allocator(&self) -> Retained<MTKMeshBufferAllocator>;
 
@@ -112,25 +112,25 @@ extern_methods!(
         /// Zone from which this buffer was created (if it was created from a zone).
         ///
         /// A single MetalBuffer is allocated for each zone.  Each zone could have many MTKMeshBuffers, each with it's own offset.  If a MTKMeshBufferAllocator is used, Model I/O will attempt to load all vertex and index data of a single mesh into a single zone.  This allows the GPU to achieve a higher cache hit rate when drawing the mesh.  So although there maybe many MTKMeshBuffers for a model they will be backed with the same contigous MetalBuffer.
-        #[method(zone)]
+        #[unsafe(method(zone))]
         #[unsafe(method_family = none)]
         pub unsafe fn zone(&self) -> Option<Retained<ProtocolObject<dyn MDLMeshBufferZone>>>;
 
         /// Metal Buffer backing vertex/index data.
         ///
         /// Many MTKMeshBuffers may reference the same buffer, but each with it's own offset.  (i.e. Many MTKMeshBuffers may be suballocated from a single buffer)
-        #[method(buffer)]
+        #[unsafe(method(buffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn buffer(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
         /// Byte offset of the data within the metal buffer.
-        #[method(offset)]
+        #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-model-io")]
         /// the intended type of the buffer
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> MDLMeshBufferType;
     }
@@ -139,7 +139,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTKMeshBuffer {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -161,54 +161,54 @@ unsafe impl NSObjectProtocol for MTKSubmesh {}
 extern_methods!(
     unsafe impl MTKSubmesh {
         /// Applicatiohs must not explicity allocate or initialize.  Must initialize as part of MTKMesh object.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Metal primitive type with which to draw this object.
         ///
         /// Value to use for primitiveType parameter in a [MTLRenderCommandEncoder drawIndexedPrimitives] call.
-        #[method(primitiveType)]
+        #[unsafe(method(primitiveType))]
         #[unsafe(method_family = none)]
         pub unsafe fn primitiveType(&self) -> MTLPrimitiveType;
 
         /// Metal index type of data in indexBuffer.
         ///
         /// Value to use for indexType parameter in a [MTLRenderCommandEncoder drawIndexedPrimitives] call.
-        #[method(indexType)]
+        #[unsafe(method(indexType))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexType(&self) -> MTLIndexType;
 
         /// IndexBuffer (including indexCount) to render the object.
         ///
         /// The MTLBuffer to use for indexBuffer parameter in a [MTLRenderCommandEncoder drawIndexedPrimitives] call.
-        #[method(indexBuffer)]
+        #[unsafe(method(indexBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexBuffer(&self) -> Retained<MTKMeshBuffer>;
 
         /// Number of indicies in indexBuffer.
         ///
         /// Value to use for indexCount parameter in a [MTLRenderCommandEncoder drawIndexedPrimitives] call.
-        #[method(indexCount)]
+        #[unsafe(method(indexCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexCount(&self) -> NSUInteger;
 
         /// Parent MTKMesh object containing vertex data of this object.
         ///
         /// The buffer of this parent mesh should be set in the encoder before a drawIndexedPrimitives call is made.
-        #[method(mesh)]
+        #[unsafe(method(mesh))]
         #[unsafe(method_family = none)]
         pub unsafe fn mesh(&self) -> Option<Retained<MTKMesh>>;
 
         /// Name from the original MDLSubmesh object.
         ///
         /// Although not directly used by this object, the application may use this to identify the submesh in the renderer/scene/world.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
     }
@@ -217,7 +217,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTKSubmesh {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -237,7 +237,7 @@ unsafe impl NSObjectProtocol for MTKMesh {}
 extern_methods!(
     unsafe impl MTKMesh {
         /// Cannot use default init.  Must initialize with mesh and metal device.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -251,7 +251,7 @@ extern_methods!(
         /// Parameter `error`: Pointer to an NSError object set if an error occurred
         ///
         /// The designated initializer for this class.  This does NOT initialize any meshes that are children of the Model I/O mesh, only submeshes that are part of the given mesh.  An exception is raised if vertexBuffer objects in the given mesh and the indexBuffer of any submesh in this mesh have not been created with a MTKMeshBufferAllocator object.  If a submesh using MDLGeometryTypeQuads or MDLGeometryTypeTopology is used, that submesh will be copied, and recreated to use MDLGeometryTypeTriangles, before this routine creates the MTKSubmesh.
-        #[method(initWithMesh:device:error:_)]
+        #[unsafe(method(initWithMesh:device:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMesh_device_error(
             this: Allocated<Self>,
@@ -273,7 +273,7 @@ extern_methods!(
         /// Returns: MetalKit Meshes created from the Model I/O asset
         ///
         /// A convenience method to create MetalKit meshes from each mesh in a Model I/O asset.  resulting meshes are returned while the corresponding Model I/O meshes from which they were generated will appear in the sourceMeshes array.  All vertexBuffer objects in each MDLMesh object in the asset and the indexBuffer of each submesh within each of these meshes must have been created using a MTKMeshBufferAllocator object.  Thus
-        #[method(newMeshesFromAsset:device:sourceMeshes:error:_)]
+        #[unsafe(method(newMeshesFromAsset:device:sourceMeshes:error:_))]
         #[unsafe(method_family = new)]
         pub unsafe fn newMeshesFromAsset_device_sourceMeshes_error(
             asset: &MDLAsset,
@@ -284,7 +284,7 @@ extern_methods!(
         /// Array of buffers in which mesh vertex data resides.
         ///
         /// This is filled with mesh buffer objects using the layout described by the vertexDescriptor property.  Elements in this array can be [NSNull null] if the vertexDescriptor does not specify elements for buffer for the given index
-        #[method(vertexBuffers)]
+        #[unsafe(method(vertexBuffers))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexBuffers(&self) -> Retained<NSArray<MTKMeshBuffer>>;
 
@@ -292,29 +292,29 @@ extern_methods!(
         /// Model I/O vertex descriptor specifying the layout of data in vertexBuffers.
         ///
         /// This is not directly used by this object, but the application can use this information to determine rendering state or create a Metal vertex descriptor to build a RenderPipelineState object capable of interpreting data in 'vertexBuffers'.  Changing propties in the object will not result in the relayout data in vertex descriptor and thus will make the vertex descriptor no loger describe the layout of vertes data and verticies. (i.e. don't change properties in this vertexDescriptor)
-        #[method(vertexDescriptor)]
+        #[unsafe(method(vertexDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexDescriptor(&self) -> Retained<MDLVertexDescriptor>;
 
         /// Submeshes containing index buffers to rendering mesh vertices.
-        #[method(submeshes)]
+        #[unsafe(method(submeshes))]
         #[unsafe(method_family = none)]
         pub unsafe fn submeshes(&self) -> Retained<NSArray<MTKSubmesh>>;
 
         /// Number of vertices in the vertexBuffers.
-        #[method(vertexCount)]
+        #[unsafe(method(vertexCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexCount(&self) -> NSUInteger;
 
         /// Name of the mesh copies from the originating Model I/O mesh.
         ///
         /// Can be used by the app to identify the mesh in its scene/world/renderer etc.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
     }
@@ -323,7 +323,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTKMesh {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

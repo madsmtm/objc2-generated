@@ -135,7 +135,7 @@ unsafe impl NSObjectProtocol for NSSharingService {}
 
 extern_methods!(
     unsafe impl NSSharingService {
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -144,73 +144,73 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSSharingServiceDelegate>>,
         );
 
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSImage")]
-        #[method(image)]
+        #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Retained<NSImage>;
 
         #[cfg(feature = "NSImage")]
-        #[method(alternateImage)]
+        #[unsafe(method(alternateImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn alternateImage(&self) -> Option<Retained<NSImage>>;
 
         /// Title of the service in the Share menu. Can be modified.
-        #[method(menuItemTitle)]
+        #[unsafe(method(menuItemTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn menuItemTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`menuItemTitle`][Self::menuItemTitle].
-        #[method(setMenuItemTitle:)]
+        #[unsafe(method(setMenuItemTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMenuItemTitle(&self, menu_item_title: &NSString);
 
         /// NSArray of NSString objects representing handles (example: email adresses)
-        #[method(recipients)]
+        #[unsafe(method(recipients))]
         #[unsafe(method_family = none)]
         pub unsafe fn recipients(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`recipients`][Self::recipients].
-        #[method(setRecipients:)]
+        #[unsafe(method(setRecipients:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecipients(&self, recipients: Option<&NSArray<NSString>>);
 
-        #[method(subject)]
+        #[unsafe(method(subject))]
         #[unsafe(method_family = none)]
         pub unsafe fn subject(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subject`][Self::subject].
-        #[method(setSubject:)]
+        #[unsafe(method(setSubject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubject(&self, subject: Option<&NSString>);
 
         /// Message body as string
-        #[method(messageBody)]
+        #[unsafe(method(messageBody))]
         #[unsafe(method_family = none)]
         pub unsafe fn messageBody(&self) -> Option<Retained<NSString>>;
 
         /// URL to access the post on Facebook, Twitter, Sina Weibo, etc. (also known as permalink)
-        #[method(permanentLink)]
+        #[unsafe(method(permanentLink))]
         #[unsafe(method_family = none)]
         pub unsafe fn permanentLink(&self) -> Option<Retained<NSURL>>;
 
         /// Account name used for sending on Twitter or Sina Weibo
-        #[method(accountName)]
+        #[unsafe(method(accountName))]
         #[unsafe(method_family = none)]
         pub unsafe fn accountName(&self) -> Option<Retained<NSString>>;
 
         /// NSArray of NSURL objects representing the files that were shared
-        #[method(attachmentFileURLs)]
+        #[unsafe(method(attachmentFileURLs))]
         #[unsafe(method_family = none)]
         pub unsafe fn attachmentFileURLs(&self) -> Option<Retained<NSArray<NSURL>>>;
 
@@ -219,14 +219,14 @@ extern_methods!(
         /// <NSPasteboardWriting
         /// > protocol or be an NSItemProvider or an NSDocument. (e.g. NSString, NSImage, NSURL, etc.)
         #[deprecated = "Use -[NSSharingServicePicker standardShareMenuItem] instead."]
-        #[method(sharingServicesForItems:)]
+        #[unsafe(method(sharingServicesForItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharingServicesForItems(
             items: &NSArray,
         ) -> Retained<NSArray<NSSharingService>>;
 
         /// Returns an NSSharingService representing one of the built-in services.
-        #[method(sharingServiceNamed:)]
+        #[unsafe(method(sharingServiceNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharingServiceNamed(
             service_name: &NSSharingServiceName,
@@ -234,7 +234,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSImage", feature = "block2"))]
         /// Creates a custom NSSharingService object. Custom sharing services can be added to the NSSharingServicePicker with the sharingServicePicker:sharingServicesForItems:proposedSharingServices: delegate method.
-        #[method(initWithTitle:image:alternateImage:handler:)]
+        #[unsafe(method(initWithTitle:image:alternateImage:handler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_image_alternateImage_handler(
             this: Allocated<Self>,
@@ -245,7 +245,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Use -initWithTitle:image:alternateImage:handler: instead
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -254,7 +254,7 @@ extern_methods!(
         /// The items represent the objects to be shared and must conform to the
         /// <NSPasteboardWriting
         /// > protocol or be an NSItemProvider or an NSDocument. (e.g. NSString, NSImage, NSURL, etc.)
-        #[method(canPerformWithItems:)]
+        #[unsafe(method(canPerformWithItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canPerformWithItems(&self, items: Option<&NSArray>) -> bool;
 
@@ -263,7 +263,7 @@ extern_methods!(
         /// The items represent the objects to be shared and must conform to the
         /// <NSPasteboardWriting
         /// > protocol or be an NSItemProvider or an NSDocument. (e.g. NSString, NSImage, NSURL, etc.)
-        #[method(performWithItems:)]
+        #[unsafe(method(performWithItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performWithItems(&self, items: &NSArray);
     }
@@ -272,7 +272,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSharingService {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -311,7 +311,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicedelegate?language=objc)
     pub unsafe trait NSSharingServiceDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
-        #[method(sharingService:willShareItems:)]
+        #[unsafe(method(sharingService:willShareItems:))]
         #[unsafe(method_family = none)]
         unsafe fn sharingService_willShareItems(
             &self,
@@ -320,7 +320,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(sharingService:didFailToShareItems:error:)]
+        #[unsafe(method(sharingService:didFailToShareItems:error:))]
         #[unsafe(method_family = none)]
         unsafe fn sharingService_didFailToShareItems_error(
             &self,
@@ -330,7 +330,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(sharingService:didShareItems:)]
+        #[unsafe(method(sharingService:didShareItems:))]
         #[unsafe(method_family = none)]
         unsafe fn sharingService_didShareItems(
             &self,
@@ -339,7 +339,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(sharingService:sourceFrameOnScreenForShareItem:)]
+        #[unsafe(method(sharingService:sourceFrameOnScreenForShareItem:))]
         #[unsafe(method_family = none)]
         unsafe fn sharingService_sourceFrameOnScreenForShareItem(
             &self,
@@ -350,7 +350,7 @@ extern_protocol!(
         #[cfg(feature = "NSImage")]
         /// When non-nil, the image returned would be used for the transitioning animation. When nil, the transitioning animation is disabled.
         #[optional]
-        #[method(sharingService:transitionImageForShareItem:contentRect:)]
+        #[unsafe(method(sharingService:transitionImageForShareItem:contentRect:))]
         #[unsafe(method_family = none)]
         unsafe fn sharingService_transitionImageForShareItem_contentRect(
             &self,
@@ -361,7 +361,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[optional]
-        #[method(sharingService:sourceWindowForShareItems:sharingContentScope:)]
+        #[unsafe(method(sharingService:sourceWindowForShareItems:sharingContentScope:))]
         #[unsafe(method_family = none)]
         unsafe fn sharingService_sourceWindowForShareItems_sharingContentScope(
             &self,
@@ -375,7 +375,7 @@ extern_protocol!(
         ///
         /// The service named NSSharingServiceNameCloudSharing prefers to display itself using a popover anchored to an "Add People" or "Share" button. If no such button is available or visible, return nil.
         #[optional]
-        #[method(anchoringViewForSharingService:showRelativeToRect:preferredEdge:)]
+        #[unsafe(method(anchoringViewForSharingService:showRelativeToRect:preferredEdge:))]
         #[unsafe(method_family = none)]
         unsafe fn anchoringViewForSharingService_showRelativeToRect_preferredEdge(
             &self,
@@ -424,7 +424,7 @@ extern_protocol!(
     pub unsafe trait NSCloudSharingServiceDelegate: NSSharingServiceDelegate {
         /// When an NSSharingServiceNameCloudSharing sharing service is dismissed it will invoke this method on the delegate, with an error if there was any. If the delegate implements this method, NSSharingServiceNameCloudSharing will not send -sharingService:didFailToShareItems:error: or -sharingService:didShareItems:.
         #[optional]
-        #[method(sharingService:didCompleteForItems:error:)]
+        #[unsafe(method(sharingService:didCompleteForItems:error:))]
         #[unsafe(method_family = none)]
         unsafe fn sharingService_didCompleteForItems_error(
             &self,
@@ -435,7 +435,7 @@ extern_protocol!(
 
         /// The options returned by this method describe how the user is allowed to configure the share: whether the share is public or private, and whether participants have read-only or read/write permissions. If this method is not implemented, NSCloudKitSharingServiceStandard is assumed.
         #[optional]
-        #[method(optionsForSharingService:shareProvider:)]
+        #[unsafe(method(optionsForSharingService:shareProvider:))]
         #[unsafe(method_family = none)]
         unsafe fn optionsForSharingService_shareProvider(
             &self,
@@ -447,7 +447,7 @@ extern_protocol!(
         #[cfg(target_vendor = "apple")]
         /// When an NSSharingServiceNameCloudSharing sharing service successfully saves modifications to the CKShare, it will invoke this method on the delegate with the last-known state of the CKShare on the server.
         #[optional]
-        #[method(sharingService:didSaveShare:)]
+        #[unsafe(method(sharingService:didSaveShare:))]
         #[unsafe(method_family = none)]
         unsafe fn sharingService_didSaveShare(
             &self,
@@ -459,7 +459,7 @@ extern_protocol!(
         #[cfg(target_vendor = "apple")]
         /// When an NSSharingServiceNameCloudSharing sharing service stops sharing it will delete the CKShare from the server, then invoke this method on the delegate with the last-known state of the CKShare.
         #[optional]
-        #[method(sharingService:didStopSharing:)]
+        #[unsafe(method(sharingService:didStopSharing:))]
         #[unsafe(method_family = none)]
         unsafe fn sharingService_didStopSharing(
             &self,
@@ -476,7 +476,7 @@ extern_category!(
         #[cfg(all(feature = "block2", feature = "objc2-cloud-kit"))]
         #[cfg(target_vendor = "apple")]
         /// Use this method when you want to share a collection of CKRecords but don't currently have a CKShare. When the preparationHandler is called, you should create a new CKShare with the appropriate root CKRecord. After ensuring the share and all records have been saved to the server, invoke the preparationCompletionHandler with either the resulting CKShare and its CKContainer, or an NSError if saving failed. Invoking the service with a CKShare registered with this method will prompt the user to start sharing.
-        #[method(registerCloudKitShareWithPreparationHandler:)]
+        #[unsafe(method(registerCloudKitShareWithPreparationHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn registerCloudKitShareWithPreparationHandler(
             &self,
@@ -490,7 +490,7 @@ extern_category!(
         #[cfg(feature = "objc2-cloud-kit")]
         #[cfg(target_vendor = "apple")]
         /// Use this method when you have a CKShare that is already saved to the server. Invoking the service with a CKShare registerd with this method will allow the owner to make modifications to the share settings, or will allow a participant to view the share settings.
-        #[method(registerCloudKitShare:container:)]
+        #[unsafe(method(registerCloudKitShare:container:))]
         #[unsafe(method_family = none)]
         unsafe fn registerCloudKitShare_container(&self, share: &CKShare, container: &CKContainer);
     }
@@ -509,7 +509,7 @@ unsafe impl NSObjectProtocol for NSSharingServicePicker {}
 
 extern_methods!(
     unsafe impl NSSharingServicePicker {
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -517,7 +517,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -527,18 +527,18 @@ extern_methods!(
         /// Returns a new picker. The items represent the objects to be shared and must conform to the
         /// <NSPasteboardWriting
         /// > protocol or be an NSItemProvider or an NSDocument. (e.g. NSString, NSImage, NSURL, etc.)
-        #[method(initWithItems:)]
+        #[unsafe(method(initWithItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItems(this: Allocated<Self>, items: &NSArray) -> Retained<Self>;
 
         /// Use initWithItems: instead.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Shows the picker, populated with sharing services related to the instance items. When the user selects one of the sharing services, the sharing service will be performed. Note that this method must be called on mouseDown.
-        #[method(showRelativeToRect:ofView:preferredEdge:)]
+        #[unsafe(method(showRelativeToRect:ofView:preferredEdge:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showRelativeToRect_ofView_preferredEdge(
             &self,
@@ -548,13 +548,13 @@ extern_methods!(
         );
 
         /// Closes the picker UI. `-[NSSharingServicePickerDelegate sharingServicePicker:didChooseSharingService:]` will be invoked if `delegate` is set, with a `nil` service.
-        #[method(close)]
+        #[unsafe(method(close))]
         #[unsafe(method_family = none)]
         pub unsafe fn close(&self);
 
         #[cfg(feature = "NSMenuItem")]
         /// Returns a menu item suitable to display the picker for the given items.
-        #[method(standardShareMenuItem)]
+        #[unsafe(method(standardShareMenuItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn standardShareMenuItem(&self, mtm: MainThreadMarker) -> Retained<NSMenuItem>;
     }
@@ -563,7 +563,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSharingServicePicker {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -588,7 +588,7 @@ extern_protocol!(
         /// <NSPasteboardWriting
         /// > protocol or be an NSItemProvider or an NSDocument. (e.g. NSString, NSImage, NSURL, etc.)
         #[optional]
-        #[method(sharingServicePicker:sharingServicesForItems:proposedSharingServices:)]
+        #[unsafe(method(sharingServicePicker:sharingServicesForItems:proposedSharingServices:))]
         #[unsafe(method_family = none)]
         unsafe fn sharingServicePicker_sharingServicesForItems_proposedSharingServices(
             &self,
@@ -599,7 +599,7 @@ extern_protocol!(
 
         /// Sent when the user has selected a service and the picker is about to execute it.
         #[optional]
-        #[method(sharingServicePicker:delegateForSharingService:)]
+        #[unsafe(method(sharingServicePicker:delegateForSharingService:))]
         #[unsafe(method_family = none)]
         unsafe fn sharingServicePicker_delegateForSharingService(
             &self,
@@ -610,7 +610,7 @@ extern_protocol!(
 
         /// Sent when the user has selected a service and before it is executed. Service will be nil if the picker was dismissed.
         #[optional]
-        #[method(sharingServicePicker:didChooseSharingService:)]
+        #[unsafe(method(sharingServicePicker:didChooseSharingService:))]
         #[unsafe(method_family = none)]
         unsafe fn sharingServicePicker_didChooseSharingService(
             &self,
@@ -622,7 +622,7 @@ extern_protocol!(
         /// Used to specify the case where the share picker should not support some modes of sharing even if they are supported by the items being shared.
         /// Disabling all possible modes at the same time is not supported behavior.
         #[optional]
-        #[method(sharingServicePickerCollaborationModeRestrictions:)]
+        #[unsafe(method(sharingServicePickerCollaborationModeRestrictions:))]
         #[unsafe(method_family = none)]
         unsafe fn sharingServicePickerCollaborationModeRestrictions(
             &self,

@@ -49,23 +49,23 @@ extern_methods!(
     unsafe impl SKFieldNode {
         #[cfg(feature = "SKRegion")]
         /// The region property is the domain of the field's effect. No force is applied to objects outside the region.
-        #[method(region)]
+        #[unsafe(method(region))]
         #[unsafe(method_family = none)]
         pub unsafe fn region(&self) -> Option<Retained<SKRegion>>;
 
         #[cfg(feature = "SKRegion")]
         /// Setter for [`region`][Self::region].
-        #[method(setRegion:)]
+        #[unsafe(method(setRegion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRegion(&self, region: Option<&SKRegion>);
 
         /// strength scaling value. default 1.0
-        #[method(strength)]
+        #[unsafe(method(strength))]
         #[unsafe(method_family = none)]
         pub unsafe fn strength(&self) -> c_float;
 
         /// Setter for [`strength`][Self::strength].
-        #[method(setStrength:)]
+        #[unsafe(method(setStrength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrength(&self, strength: c_float);
 
@@ -76,34 +76,34 @@ extern_methods!(
         ///
         ///
         /// See: minimumRadius
-        #[method(falloff)]
+        #[unsafe(method(falloff))]
         #[unsafe(method_family = none)]
         pub unsafe fn falloff(&self) -> c_float;
 
         /// Setter for [`falloff`][Self::falloff].
-        #[method(setFalloff:)]
+        #[unsafe(method(setFalloff:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFalloff(&self, falloff: c_float);
 
         /// minimum radius of effect. Default is very small.
-        #[method(minimumRadius)]
+        #[unsafe(method(minimumRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumRadius(&self) -> c_float;
 
         /// Setter for [`minimumRadius`][Self::minimumRadius].
-        #[method(setMinimumRadius:)]
+        #[unsafe(method(setMinimumRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumRadius(&self, minimum_radius: c_float);
 
         /// If enabled, a field has an effect.
         ///
         /// default YES
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
@@ -112,12 +112,12 @@ extern_methods!(
         ///
         ///
         /// See: region
-        #[method(isExclusive)]
+        #[unsafe(method(isExclusive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isExclusive(&self) -> bool;
 
         /// Setter for [`isExclusive`][Self::isExclusive].
-        #[method(setExclusive:)]
+        #[unsafe(method(setExclusive:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExclusive(&self, exclusive: bool);
 
@@ -129,12 +129,12 @@ extern_methods!(
         /// See: SKPhysicsBody.fieldBitMask
         ///
         /// See: SKEmitterNode.fieldBitMask
-        #[method(categoryBitMask)]
+        #[unsafe(method(categoryBitMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn categoryBitMask(&self) -> u32;
 
         /// Setter for [`categoryBitMask`][Self::categoryBitMask].
-        #[method(setCategoryBitMask:)]
+        #[unsafe(method(setCategoryBitMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategoryBitMask(&self, category_bit_mask: u32);
 
@@ -144,12 +144,12 @@ extern_methods!(
         /// See: noiseFieldWithSmoothness:smoothness:animationSpeed
         ///
         /// See: turbulenceFieldWithSmoothness:smoothness:animationSpeed
-        #[method(smoothness)]
+        #[unsafe(method(smoothness))]
         #[unsafe(method_family = none)]
         pub unsafe fn smoothness(&self) -> c_float;
 
         /// Setter for [`smoothness`][Self::smoothness].
-        #[method(setSmoothness:)]
+        #[unsafe(method(setSmoothness:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSmoothness(&self, smoothness: c_float);
 
@@ -161,12 +161,12 @@ extern_methods!(
         /// See: noiseFieldWithSmoothness:smoothness:animationSpeed
         ///
         /// See: turbulenceFieldWithSmoothness:smoothness:animationSpeed
-        #[method(animationSpeed)]
+        #[unsafe(method(animationSpeed))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationSpeed(&self) -> c_float;
 
         /// Setter for [`animationSpeed`][Self::animationSpeed].
-        #[method(setAnimationSpeed:)]
+        #[unsafe(method(setAnimationSpeed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationSpeed(&self, animation_speed: c_float);
 
@@ -175,19 +175,19 @@ extern_methods!(
         ///
         ///
         /// See: velocityFieldWithTexture:velocityTexture
-        #[method(texture)]
+        #[unsafe(method(texture))]
         #[unsafe(method_family = none)]
         pub unsafe fn texture(&self) -> Option<Retained<SKTexture>>;
 
         #[cfg(feature = "SKTexture")]
         /// Setter for [`texture`][Self::texture].
-        #[method(setTexture:)]
+        #[unsafe(method(setTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTexture(&self, texture: Option<&SKTexture>);
 
         /// Slows an object proportionally to the object’s velocity.
         /// Use this to simulate effects such as friction from motion through the air.
-        #[method(dragField)]
+        #[unsafe(method(dragField))]
         #[unsafe(method_family = none)]
         pub unsafe fn dragField(mtm: MainThreadMarker) -> Retained<SKFieldNode>;
 
@@ -195,14 +195,14 @@ extern_methods!(
         /// The force will be CCW to the direction. Make the strength negative to apply force in the CW direction.
         /// Amount is proportional to distance from center and the object's mass.
         /// Use this to create effects such as tornadoes.
-        #[method(vortexField)]
+        #[unsafe(method(vortexField))]
         #[unsafe(method_family = none)]
         pub unsafe fn vortexField(mtm: MainThreadMarker) -> Retained<SKFieldNode>;
 
         /// Applies a force in the direction of the origin of the field in local space. To repel objects, use a negative strength.
         /// The force is proportional to the distance from the field origin. Varies with the mass of the object according to F = ma
         /// The field node's rotation property can be used to orient the gravity in a particular direction.
-        #[method(radialGravityField)]
+        #[unsafe(method(radialGravityField))]
         #[unsafe(method_family = none)]
         pub unsafe fn radialGravityField(mtm: MainThreadMarker) -> Retained<SKFieldNode>;
 
@@ -218,7 +218,7 @@ extern_methods!(
         ///
         ///
         /// See: texture
-        #[method(velocityFieldWithTexture:)]
+        #[unsafe(method(velocityFieldWithTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn velocityFieldWithTexture(
             velocity_texture: &SKTexture,
@@ -239,7 +239,7 @@ extern_methods!(
         /// See: smoothness
         ///
         /// See: animationSpeed
-        #[method(noiseFieldWithSmoothness:animationSpeed:)]
+        #[unsafe(method(noiseFieldWithSmoothness:animationSpeed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn noiseFieldWithSmoothness_animationSpeed(
             smoothness: CGFloat,
@@ -259,7 +259,7 @@ extern_methods!(
         /// See: smoothness
         ///
         /// See: animationSpeed
-        #[method(turbulenceFieldWithSmoothness:animationSpeed:)]
+        #[unsafe(method(turbulenceFieldWithSmoothness:animationSpeed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn turbulenceFieldWithSmoothness_animationSpeed(
             smoothness: CGFloat,
@@ -270,7 +270,7 @@ extern_methods!(
         /// A Hooke’s law force - a force linearly proportional to distance from the center of the field. An object in this
         /// field will oscillate with a period proportional to the inverse of the mass.
         /// An example use is to keep objects confined to a particular region.
-        #[method(springField)]
+        #[unsafe(method(springField))]
         #[unsafe(method_family = none)]
         pub unsafe fn springField(mtm: MainThreadMarker) -> Retained<SKFieldNode>;
 
@@ -278,7 +278,7 @@ extern_methods!(
         /// added to SKPhysicsBodies to accomplish this. An example use of this field is to make objects behavior differently
         /// from one another when they enter a region, or to make an object's behavior different than its mass based behavior
         /// This field models the first part of the Lorentz equation, F = qE
-        #[method(electricField)]
+        #[unsafe(method(electricField))]
         #[unsafe(method_family = none)]
         pub unsafe fn electricField(mtm: MainThreadMarker) -> Retained<SKFieldNode>;
 
@@ -286,7 +286,7 @@ extern_methods!(
         /// added to SKPhysicsBodies to accomplish this. An example use of this field is to make objects behavior differently
         /// from one another when they enter a region, or to make an object's behavior different than its mass based behavior
         /// This field models the second part of the Lorentz equation, F = qvB
-        #[method(magneticField)]
+        #[unsafe(method(magneticField))]
         #[unsafe(method_family = none)]
         pub unsafe fn magneticField(mtm: MainThreadMarker) -> Retained<SKFieldNode>;
     }
@@ -297,30 +297,30 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKFieldNode {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(node)]
+        #[unsafe(method(node))]
         #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(nodeWithFileNamed:)]
+        #[unsafe(method(nodeWithFileNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method(nodeWithFileNamed:securelyWithClasses:andError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
@@ -335,7 +335,7 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKFieldNode {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

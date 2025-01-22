@@ -281,79 +281,79 @@ unsafe impl NSObjectProtocol for WKInterfaceController {}
 
 extern_methods!(
     unsafe impl WKInterfaceController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(awakeWithContext:)]
+        #[unsafe(method(awakeWithContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn awakeWithContext(&self, context: Option<&AnyObject>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(contentFrame)]
+        #[unsafe(method(contentFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentFrame(&self) -> CGRect;
 
         #[cfg(feature = "WKCrownSequencer")]
-        #[method(crownSequencer)]
+        #[unsafe(method(crownSequencer))]
         #[unsafe(method_family = none)]
         pub unsafe fn crownSequencer(&self) -> Retained<WKCrownSequencer>;
 
         #[cfg(feature = "objc2-ui-kit")]
-        #[method(contentSafeAreaInsets)]
+        #[unsafe(method(contentSafeAreaInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentSafeAreaInsets(&self) -> UIEdgeInsets;
 
         #[cfg(feature = "objc2-ui-kit")]
-        #[method(systemMinimumLayoutMargins)]
+        #[unsafe(method(systemMinimumLayoutMargins))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemMinimumLayoutMargins(&self) -> NSDirectionalEdgeInsets;
 
-        #[method(isTableScrollingHapticFeedbackEnabled)]
+        #[unsafe(method(isTableScrollingHapticFeedbackEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isTableScrollingHapticFeedbackEnabled(&self) -> bool;
 
         /// Setter for [`isTableScrollingHapticFeedbackEnabled`][Self::isTableScrollingHapticFeedbackEnabled].
-        #[method(setTableScrollingHapticFeedbackEnabled:)]
+        #[unsafe(method(setTableScrollingHapticFeedbackEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTableScrollingHapticFeedbackEnabled(
             &self,
             table_scrolling_haptic_feedback_enabled: bool,
         );
 
-        #[method(willActivate)]
+        #[unsafe(method(willActivate))]
         #[unsafe(method_family = none)]
         pub unsafe fn willActivate(&self);
 
-        #[method(didDeactivate)]
+        #[unsafe(method(didDeactivate))]
         #[unsafe(method_family = none)]
         pub unsafe fn didDeactivate(&self);
 
-        #[method(didAppear)]
+        #[unsafe(method(didAppear))]
         #[unsafe(method_family = none)]
         pub unsafe fn didAppear(&self);
 
-        #[method(willDisappear)]
+        #[unsafe(method(willDisappear))]
         #[unsafe(method_family = none)]
         pub unsafe fn willDisappear(&self);
 
         #[cfg(all(feature = "WKInterfaceObject", feature = "WKInterfacePicker"))]
-        #[method(pickerDidFocus:)]
+        #[unsafe(method(pickerDidFocus:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pickerDidFocus(&self, picker: &WKInterfacePicker);
 
         #[cfg(all(feature = "WKInterfaceObject", feature = "WKInterfacePicker"))]
-        #[method(pickerDidResignFocus:)]
+        #[unsafe(method(pickerDidResignFocus:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pickerDidResignFocus(&self, picker: &WKInterfacePicker);
 
         #[cfg(all(feature = "WKInterfaceObject", feature = "WKInterfacePicker"))]
-        #[method(pickerDidSettle:)]
+        #[unsafe(method(pickerDidSettle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pickerDidSettle(&self, picker: &WKInterfacePicker);
 
         #[cfg(all(feature = "WKInterfaceObject", feature = "WKInterfaceTable"))]
-        #[method(table:didSelectRowAtIndex:)]
+        #[unsafe(method(table:didSelectRowAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn table_didSelectRowAtIndex(
             &self,
@@ -361,11 +361,11 @@ extern_methods!(
             row_index: NSInteger,
         );
 
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[method(pushControllerWithName:context:)]
+        #[unsafe(method(pushControllerWithName:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pushControllerWithName_context(
             &self,
@@ -373,16 +373,16 @@ extern_methods!(
             context: Option<&AnyObject>,
         );
 
-        #[method(popController)]
+        #[unsafe(method(popController))]
         #[unsafe(method_family = none)]
         pub unsafe fn popController(&self);
 
-        #[method(popToRootController)]
+        #[unsafe(method(popToRootController))]
         #[unsafe(method_family = none)]
         pub unsafe fn popToRootController(&self);
 
         #[cfg(feature = "WKInterfaceObject")]
-        #[method(scrollToObject:atScrollPosition:animated:)]
+        #[unsafe(method(scrollToObject:atScrollPosition:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollToObject_atScrollPosition_animated(
             &self,
@@ -391,19 +391,19 @@ extern_methods!(
             animated: bool,
         );
 
-        #[method(interfaceDidScrollToTop)]
+        #[unsafe(method(interfaceDidScrollToTop))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceDidScrollToTop(&self);
 
-        #[method(interfaceOffsetDidScrollToTop)]
+        #[unsafe(method(interfaceOffsetDidScrollToTop))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceOffsetDidScrollToTop(&self);
 
-        #[method(interfaceOffsetDidScrollToBottom)]
+        #[unsafe(method(interfaceOffsetDidScrollToBottom))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceOffsetDidScrollToBottom(&self);
 
-        #[method(reloadRootPageControllersWithNames:contexts:orientation:pageIndex:)]
+        #[unsafe(method(reloadRootPageControllersWithNames:contexts:orientation:pageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadRootPageControllersWithNames_contexts_orientation_pageIndex(
             names: &NSArray<NSString>,
@@ -413,11 +413,11 @@ extern_methods!(
             mtm: MainThreadMarker,
         );
 
-        #[method(becomeCurrentPage)]
+        #[unsafe(method(becomeCurrentPage))]
         #[unsafe(method_family = none)]
         pub unsafe fn becomeCurrentPage(&self);
 
-        #[method(presentControllerWithName:context:)]
+        #[unsafe(method(presentControllerWithName:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentControllerWithName_context(
             &self,
@@ -425,7 +425,7 @@ extern_methods!(
             context: Option<&AnyObject>,
         );
 
-        #[method(presentControllerWithNames:contexts:)]
+        #[unsafe(method(presentControllerWithNames:contexts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentControllerWithNames_contexts(
             &self,
@@ -433,12 +433,12 @@ extern_methods!(
             contexts: Option<&NSArray>,
         );
 
-        #[method(dismissController)]
+        #[unsafe(method(dismissController))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissController(&self);
 
         #[cfg(feature = "block2")]
-        #[method(presentTextInputControllerWithSuggestions:allowedInputMode:completion:)]
+        #[unsafe(method(presentTextInputControllerWithSuggestions:allowedInputMode:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentTextInputControllerWithSuggestions_allowedInputMode_completion(
             &self,
@@ -448,7 +448,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(presentTextInputControllerWithSuggestionsForLanguage:allowedInputMode:completion:)]
+        #[unsafe(method(presentTextInputControllerWithSuggestionsForLanguage:allowedInputMode:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentTextInputControllerWithSuggestionsForLanguage_allowedInputMode_completion(
             &self,
@@ -457,12 +457,12 @@ extern_methods!(
             completion: &block2::Block<dyn Fn(*mut NSArray)>,
         );
 
-        #[method(dismissTextInputController)]
+        #[unsafe(method(dismissTextInputController))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissTextInputController(&self);
 
         #[cfg(feature = "block2")]
-        #[method(presentMediaPlayerControllerWithURL:options:completion:)]
+        #[unsafe(method(presentMediaPlayerControllerWithURL:options:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentMediaPlayerControllerWithURL_options_completion(
             &self,
@@ -471,12 +471,12 @@ extern_methods!(
             completion: &block2::Block<dyn Fn(Bool, NSTimeInterval, *mut NSError)>,
         );
 
-        #[method(dismissMediaPlayerController)]
+        #[unsafe(method(dismissMediaPlayerController))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissMediaPlayerController(&self);
 
         #[cfg(feature = "block2")]
-        #[method(presentAudioRecorderControllerWithOutputURL:preset:options:completion:)]
+        #[unsafe(method(presentAudioRecorderControllerWithOutputURL:preset:options:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentAudioRecorderControllerWithOutputURL_preset_options_completion(
             &self,
@@ -486,18 +486,18 @@ extern_methods!(
             completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[method(dismissAudioRecorderController)]
+        #[unsafe(method(dismissAudioRecorderController))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissAudioRecorderController(&self);
 
-        #[method(contextForSegueWithIdentifier:)]
+        #[unsafe(method(contextForSegueWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextForSegueWithIdentifier(
             &self,
             segue_identifier: &NSString,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method(contextsForSegueWithIdentifier:)]
+        #[unsafe(method(contextsForSegueWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextsForSegueWithIdentifier(
             &self,
@@ -505,7 +505,7 @@ extern_methods!(
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "WKInterfaceObject", feature = "WKInterfaceTable"))]
-        #[method(contextForSegueWithIdentifier:inTable:rowIndex:)]
+        #[unsafe(method(contextForSegueWithIdentifier:inTable:rowIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextForSegueWithIdentifier_inTable_rowIndex(
             &self,
@@ -515,7 +515,7 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "WKInterfaceObject", feature = "WKInterfaceTable"))]
-        #[method(contextsForSegueWithIdentifier:inTable:rowIndex:)]
+        #[unsafe(method(contextsForSegueWithIdentifier:inTable:rowIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextsForSegueWithIdentifier_inTable_rowIndex(
             &self,
@@ -525,7 +525,7 @@ extern_methods!(
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "block2")]
-        #[method(animateWithDuration:animations:)]
+        #[unsafe(method(animateWithDuration:animations:))]
         #[unsafe(method_family = none)]
         pub unsafe fn animateWithDuration_animations(
             &self,
@@ -534,7 +534,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "WKAlertAction")]
-        #[method(presentAlertControllerWithTitle:message:preferredStyle:actions:)]
+        #[unsafe(method(presentAlertControllerWithTitle:message:preferredStyle:actions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentAlertControllerWithTitle_message_preferredStyle_actions(
             &self,
@@ -544,30 +544,30 @@ extern_methods!(
             actions: &NSArray<WKAlertAction>,
         );
 
-        #[method(dismissAddPassesController)]
+        #[unsafe(method(dismissAddPassesController))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissAddPassesController(&self);
 
-        #[method(updateUserActivity:)]
+        #[unsafe(method(updateUserActivity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateUserActivity(&self, user_activity: &NSUserActivity);
 
-        #[method(invalidateUserActivity)]
+        #[unsafe(method(invalidateUserActivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidateUserActivity(&self);
 
         #[deprecated = "Glances are no longer supported"]
-        #[method(beginGlanceUpdates)]
+        #[unsafe(method(beginGlanceUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginGlanceUpdates(&self);
 
         #[deprecated = "Glances are no longer supported"]
-        #[method(endGlanceUpdates)]
+        #[unsafe(method(endGlanceUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn endGlanceUpdates(&self);
 
         #[deprecated = "use updateUserActivity:"]
-        #[method(updateUserActivity:userInfo:webpageURL:)]
+        #[unsafe(method(updateUserActivity:userInfo:webpageURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateUserActivity_userInfo_webpageURL(
             &self,
@@ -577,7 +577,7 @@ extern_methods!(
         );
 
         #[deprecated = "use reloadRootPageControllersWithNames:contexts:orientation:pageIndex:"]
-        #[method(reloadRootControllersWithNames:contexts:)]
+        #[unsafe(method(reloadRootControllersWithNames:contexts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadRootControllersWithNames_contexts(
             names: &NSArray<NSString>,
@@ -586,13 +586,13 @@ extern_methods!(
         );
 
         #[deprecated = "use WKExtensionDelegate's handleUserActivity:"]
-        #[method(handleUserActivity:)]
+        #[unsafe(method(handleUserActivity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleUserActivity(&self, user_info: Option<&NSDictionary>);
 
         #[cfg(feature = "objc2-ui-kit")]
         #[deprecated]
-        #[method(addMenuItemWithImage:title:action:)]
+        #[unsafe(method(addMenuItemWithImage:title:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMenuItemWithImage_title_action(
             &self,
@@ -602,7 +602,7 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method(addMenuItemWithImageNamed:title:action:)]
+        #[unsafe(method(addMenuItemWithImageNamed:title:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMenuItemWithImageNamed_title_action(
             &self,
@@ -612,7 +612,7 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method(addMenuItemWithItemIcon:title:action:)]
+        #[unsafe(method(addMenuItemWithItemIcon:title:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMenuItemWithItemIcon_title_action(
             &self,
@@ -622,7 +622,7 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method(clearAllMenuItems)]
+        #[unsafe(method(clearAllMenuItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearAllMenuItems(&self);
     }
@@ -631,7 +631,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKInterfaceController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -649,18 +649,18 @@ unsafe impl NSObjectProtocol for WKUserNotificationInterfaceController {}
 
 extern_methods!(
     unsafe impl WKUserNotificationInterfaceController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-user-notifications")]
-        #[method(notificationActions)]
+        #[unsafe(method(notificationActions))]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationActions(&self) -> Retained<NSArray<UNNotificationAction>>;
 
         #[cfg(feature = "objc2-user-notifications")]
         /// Setter for [`notificationActions`][Self::notificationActions].
-        #[method(setNotificationActions:)]
+        #[unsafe(method(setNotificationActions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotificationActions(
             &self,
@@ -668,12 +668,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-user-notifications")]
-        #[method(didReceiveNotification:)]
+        #[unsafe(method(didReceiveNotification:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didReceiveNotification(&self, notification: &UNNotification);
 
         #[cfg(feature = "objc2-user-notifications")]
-        #[method(suggestionsForResponseToActionWithIdentifier:forNotification:inputLanguage:)]
+        #[unsafe(method(suggestionsForResponseToActionWithIdentifier:forNotification:inputLanguage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn suggestionsForResponseToActionWithIdentifier_forNotification_inputLanguage(
             &self,
@@ -682,22 +682,22 @@ extern_methods!(
             input_language: &NSString,
         ) -> Retained<NSArray<NSString>>;
 
-        #[method(performNotificationDefaultAction)]
+        #[unsafe(method(performNotificationDefaultAction))]
         #[unsafe(method_family = none)]
         pub unsafe fn performNotificationDefaultAction(&self);
 
-        #[method(performDismissAction)]
+        #[unsafe(method(performDismissAction))]
         #[unsafe(method_family = none)]
         pub unsafe fn performDismissAction(&self);
 
         #[deprecated = "use performDismissAction"]
-        #[method(dismissController)]
+        #[unsafe(method(dismissController))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissController(&self);
 
         #[cfg(all(feature = "block2", feature = "objc2-user-notifications"))]
         #[deprecated = "use didReceiveNotification:"]
-        #[method(didReceiveNotification:withCompletion:)]
+        #[unsafe(method(didReceiveNotification:withCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didReceiveNotification_withCompletion(
             &self,
@@ -710,7 +710,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKUserNotificationInterfaceController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

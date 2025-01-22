@@ -24,7 +24,7 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCReshapeLayer {
         /// The target shape.
-        #[method(shape)]
+        #[unsafe(method(shape))]
         #[unsafe(method_family = none)]
         pub unsafe fn shape(&self) -> Retained<NSArray<NSNumber>>;
 
@@ -34,7 +34,7 @@ extern_methods!(
         ///
         /// Returns: A new reshape layer.
         #[deprecated]
-        #[method(layerWithShape:)]
+        #[unsafe(method(layerWithShape:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithShape(shape: &NSArray<NSNumber>) -> Option<Retained<Self>>;
     }
@@ -45,12 +45,12 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCReshapeLayer {
         #[deprecated]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

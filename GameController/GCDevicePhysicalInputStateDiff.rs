@@ -51,7 +51,7 @@ extern_protocol!(
         /// Parameter `element`: The element to check.  This may be a pointer to either the "live" element
         /// from the device's physical input, or a pointer to an element from any input
         /// state "snapshot" of the device's physical input.
-        #[method(changeForElement:)]
+        #[unsafe(method(changeForElement:))]
         #[unsafe(method_family = none)]
         unsafe fn changeForElement(
             &self,
@@ -66,7 +66,7 @@ extern_protocol!(
         /// `nil`if the changed elements could not be determined -
         /// typically because the input state queue filled up and older input state
         /// snapshots were dropped.
-        #[method(changedElements)]
+        #[unsafe(method(changedElements))]
         #[unsafe(method_family = none)]
         unsafe fn changedElements(
             &self,

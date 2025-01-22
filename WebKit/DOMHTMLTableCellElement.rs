@@ -78,161 +78,161 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTableCellElement {
         #[deprecated]
-        #[method(cellIndex)]
+        #[unsafe(method(cellIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn cellIndex(&self) -> c_int;
 
         #[deprecated]
-        #[method(align)]
+        #[unsafe(method(align))]
         #[unsafe(method_family = none)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
         #[deprecated]
-        #[method(setAlign:)]
+        #[unsafe(method(setAlign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[deprecated]
-        #[method(axis)]
+        #[unsafe(method(axis))]
         #[unsafe(method_family = none)]
         pub unsafe fn axis(&self) -> Retained<NSString>;
 
         /// Setter for [`axis`][Self::axis].
         #[deprecated]
-        #[method(setAxis:)]
+        #[unsafe(method(setAxis:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAxis(&self, axis: Option<&NSString>);
 
         #[deprecated]
-        #[method(bgColor)]
+        #[unsafe(method(bgColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn bgColor(&self) -> Retained<NSString>;
 
         /// Setter for [`bgColor`][Self::bgColor].
         #[deprecated]
-        #[method(setBgColor:)]
+        #[unsafe(method(setBgColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBgColor(&self, bg_color: Option<&NSString>);
 
         #[deprecated]
-        #[method(ch)]
+        #[unsafe(method(ch))]
         #[unsafe(method_family = none)]
         pub unsafe fn ch(&self) -> Retained<NSString>;
 
         /// Setter for [`ch`][Self::ch].
         #[deprecated]
-        #[method(setCh:)]
+        #[unsafe(method(setCh:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCh(&self, ch: Option<&NSString>);
 
         #[deprecated]
-        #[method(chOff)]
+        #[unsafe(method(chOff))]
         #[unsafe(method_family = none)]
         pub unsafe fn chOff(&self) -> Retained<NSString>;
 
         /// Setter for [`chOff`][Self::chOff].
         #[deprecated]
-        #[method(setChOff:)]
+        #[unsafe(method(setChOff:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChOff(&self, ch_off: Option<&NSString>);
 
         #[deprecated]
-        #[method(colSpan)]
+        #[unsafe(method(colSpan))]
         #[unsafe(method_family = none)]
         pub unsafe fn colSpan(&self) -> c_int;
 
         /// Setter for [`colSpan`][Self::colSpan].
         #[deprecated]
-        #[method(setColSpan:)]
+        #[unsafe(method(setColSpan:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColSpan(&self, col_span: c_int);
 
         #[deprecated]
-        #[method(rowSpan)]
+        #[unsafe(method(rowSpan))]
         #[unsafe(method_family = none)]
         pub unsafe fn rowSpan(&self) -> c_int;
 
         /// Setter for [`rowSpan`][Self::rowSpan].
         #[deprecated]
-        #[method(setRowSpan:)]
+        #[unsafe(method(setRowSpan:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRowSpan(&self, row_span: c_int);
 
         #[deprecated]
-        #[method(headers)]
+        #[unsafe(method(headers))]
         #[unsafe(method_family = none)]
         pub unsafe fn headers(&self) -> Retained<NSString>;
 
         /// Setter for [`headers`][Self::headers].
         #[deprecated]
-        #[method(setHeaders:)]
+        #[unsafe(method(setHeaders:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeaders(&self, headers: Option<&NSString>);
 
         #[deprecated]
-        #[method(height)]
+        #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> Retained<NSString>;
 
         /// Setter for [`height`][Self::height].
         #[deprecated]
-        #[method(setHeight:)]
+        #[unsafe(method(setHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeight(&self, height: Option<&NSString>);
 
         #[deprecated]
-        #[method(noWrap)]
+        #[unsafe(method(noWrap))]
         #[unsafe(method_family = none)]
         pub unsafe fn noWrap(&self) -> bool;
 
         /// Setter for [`noWrap`][Self::noWrap].
         #[deprecated]
-        #[method(setNoWrap:)]
+        #[unsafe(method(setNoWrap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNoWrap(&self, no_wrap: bool);
 
         #[deprecated]
-        #[method(vAlign)]
+        #[unsafe(method(vAlign))]
         #[unsafe(method_family = none)]
         pub unsafe fn vAlign(&self) -> Retained<NSString>;
 
         /// Setter for [`vAlign`][Self::vAlign].
         #[deprecated]
-        #[method(setVAlign:)]
+        #[unsafe(method(setVAlign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVAlign(&self, v_align: Option<&NSString>);
 
         #[deprecated]
-        #[method(width)]
+        #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> Retained<NSString>;
 
         /// Setter for [`width`][Self::width].
         #[deprecated]
-        #[method(setWidth:)]
+        #[unsafe(method(setWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: Option<&NSString>);
 
         #[deprecated]
-        #[method(abbr)]
+        #[unsafe(method(abbr))]
         #[unsafe(method_family = none)]
         pub unsafe fn abbr(&self) -> Retained<NSString>;
 
         /// Setter for [`abbr`][Self::abbr].
         #[deprecated]
-        #[method(setAbbr:)]
+        #[unsafe(method(setAbbr:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAbbr(&self, abbr: Option<&NSString>);
 
         #[deprecated]
-        #[method(scope)]
+        #[unsafe(method(scope))]
         #[unsafe(method_family = none)]
         pub unsafe fn scope(&self) -> Retained<NSString>;
 
         /// Setter for [`scope`][Self::scope].
         #[deprecated]
-        #[method(setScope:)]
+        #[unsafe(method(setScope:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScope(&self, scope: Option<&NSString>);
     }
@@ -249,7 +249,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTableCellElement {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -265,7 +265,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLTableCellElement {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

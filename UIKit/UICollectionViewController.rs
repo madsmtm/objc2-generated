@@ -75,14 +75,14 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UICollectionViewController {
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method(initWithCollectionViewLayout:)]
+        #[unsafe(method(initWithCollectionViewLayout:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCollectionViewLayout(
             this: Allocated<Self>,
             layout: &UICollectionViewLayout,
         ) -> Retained<Self>;
 
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -90,7 +90,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -102,7 +102,7 @@ extern_methods!(
             feature = "UIScrollView",
             feature = "UIView"
         ))]
-        #[method(collectionView)]
+        #[unsafe(method(collectionView))]
         #[unsafe(method_family = none)]
         pub unsafe fn collectionView(&self) -> Option<Retained<UICollectionView>>;
 
@@ -112,28 +112,28 @@ extern_methods!(
             feature = "UIView"
         ))]
         /// Setter for [`collectionView`][Self::collectionView].
-        #[method(setCollectionView:)]
+        #[unsafe(method(setCollectionView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCollectionView(&self, collection_view: Option<&UICollectionView>);
 
-        #[method(clearsSelectionOnViewWillAppear)]
+        #[unsafe(method(clearsSelectionOnViewWillAppear))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearsSelectionOnViewWillAppear(&self) -> bool;
 
         /// Setter for [`clearsSelectionOnViewWillAppear`][Self::clearsSelectionOnViewWillAppear].
-        #[method(setClearsSelectionOnViewWillAppear:)]
+        #[unsafe(method(setClearsSelectionOnViewWillAppear:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClearsSelectionOnViewWillAppear(
             &self,
             clears_selection_on_view_will_appear: bool,
         );
 
-        #[method(useLayoutToLayoutNavigationTransitions)]
+        #[unsafe(method(useLayoutToLayoutNavigationTransitions))]
         #[unsafe(method_family = none)]
         pub unsafe fn useLayoutToLayoutNavigationTransitions(&self) -> bool;
 
         /// Setter for [`useLayoutToLayoutNavigationTransitions`][Self::useLayoutToLayoutNavigationTransitions].
-        #[method(setUseLayoutToLayoutNavigationTransitions:)]
+        #[unsafe(method(setUseLayoutToLayoutNavigationTransitions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUseLayoutToLayoutNavigationTransitions(
             &self,
@@ -141,16 +141,16 @@ extern_methods!(
         );
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method(collectionViewLayout)]
+        #[unsafe(method(collectionViewLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn collectionViewLayout(&self) -> Retained<UICollectionViewLayout>;
 
-        #[method(installsStandardGestureForInteractiveMovement)]
+        #[unsafe(method(installsStandardGestureForInteractiveMovement))]
         #[unsafe(method_family = none)]
         pub unsafe fn installsStandardGestureForInteractiveMovement(&self) -> bool;
 
         /// Setter for [`installsStandardGestureForInteractiveMovement`][Self::installsStandardGestureForInteractiveMovement].
-        #[method(setInstallsStandardGestureForInteractiveMovement:)]
+        #[unsafe(method(setInstallsStandardGestureForInteractiveMovement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstallsStandardGestureForInteractiveMovement(
             &self,
@@ -163,11 +163,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UICollectionViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

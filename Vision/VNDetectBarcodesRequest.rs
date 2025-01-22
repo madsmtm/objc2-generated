@@ -43,7 +43,7 @@ extern_methods!(
         ///
         /// Returns: An array of VNBarcodeSymbology objects describing the symbologies currently supported by the Vision framework.
         #[deprecated]
-        #[method(supportedSymbologies)]
+        #[unsafe(method(supportedSymbologies))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedSymbologies() -> Retained<NSArray<VNBarcodeSymbology>>;
 
@@ -55,7 +55,7 @@ extern_methods!(
         ///
         ///
         /// Returns: An array of VNBarcodeSymbology objects describing the symbologies recognized by the request in its current configuration.
-        #[method(supportedSymbologiesAndReturnError:_)]
+        #[unsafe(method(supportedSymbologiesAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedSymbologiesAndReturnError(
             &self,
@@ -63,29 +63,29 @@ extern_methods!(
 
         #[cfg(feature = "VNTypes")]
         /// The collection of barcode symbologies that are to be detected in the image.  The default is to scan for all possible symbologies. Setting a revision on the request will reset the symbologies to all symbologies for the specified revision.
-        #[method(symbologies)]
+        #[unsafe(method(symbologies))]
         #[unsafe(method_family = none)]
         pub unsafe fn symbologies(&self) -> Retained<NSArray<VNBarcodeSymbology>>;
 
         #[cfg(feature = "VNTypes")]
         /// Setter for [`symbologies`][Self::symbologies].
-        #[method(setSymbologies:)]
+        #[unsafe(method(setSymbologies:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSymbologies(&self, symbologies: &NSArray<VNBarcodeSymbology>);
 
         /// An option to coalesce multiple codes if applicable based on the symbology
-        #[method(coalesceCompositeSymbologies)]
+        #[unsafe(method(coalesceCompositeSymbologies))]
         #[unsafe(method_family = none)]
         pub unsafe fn coalesceCompositeSymbologies(&self) -> bool;
 
         /// Setter for [`coalesceCompositeSymbologies`][Self::coalesceCompositeSymbologies].
-        #[method(setCoalesceCompositeSymbologies:)]
+        #[unsafe(method(setCoalesceCompositeSymbologies:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCoalesceCompositeSymbologies(&self, coalesce_composite_symbologies: bool);
 
         #[cfg(feature = "VNObservation")]
         /// VNBarcodeObservation results.
-        #[method(results)]
+        #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNBarcodeObservation>>>;
     }
@@ -96,7 +96,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectBarcodesRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -105,7 +105,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method(initWithCompletionHandler:)]
+        #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -118,7 +118,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectBarcodesRequest {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

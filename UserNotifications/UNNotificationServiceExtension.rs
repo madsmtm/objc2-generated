@@ -22,7 +22,7 @@ extern_methods!(
             feature = "UNNotificationRequest",
             feature = "block2"
         ))]
-        #[method(didReceiveNotificationRequest:withContentHandler:)]
+        #[unsafe(method(didReceiveNotificationRequest:withContentHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didReceiveNotificationRequest_withContentHandler(
             &self,
@@ -30,7 +30,7 @@ extern_methods!(
             content_handler: &block2::Block<dyn Fn(NonNull<UNNotificationContent>)>,
         );
 
-        #[method(serviceExtensionTimeWillExpire)]
+        #[unsafe(method(serviceExtensionTimeWillExpire))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceExtensionTimeWillExpire(&self);
     }
@@ -39,11 +39,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationServiceExtension {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

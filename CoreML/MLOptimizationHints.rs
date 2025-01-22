@@ -40,13 +40,13 @@ extern_methods!(
         /// fast shape switching or fast prediction on seen shapes.
         ///
         /// The default value is frequent, which means CoreML tries to switch to new shapes as fast as possible
-        #[method(reshapeFrequency)]
+        #[unsafe(method(reshapeFrequency))]
         #[unsafe(method_family = none)]
         pub unsafe fn reshapeFrequency(&self) -> MLReshapeFrequencyHint;
 
         #[cfg(feature = "MLReshapeFrequencyHint")]
         /// Setter for [`reshapeFrequency`][Self::reshapeFrequency].
-        #[method(setReshapeFrequency:)]
+        #[unsafe(method(setReshapeFrequency:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReshapeFrequency(&self, reshape_frequency: MLReshapeFrequencyHint);
 
@@ -57,13 +57,13 @@ extern_methods!(
         /// target compute device. This process can affect the model loading time and the prediction latency.
         ///
         /// Use this option to tailor the specialization strategy for your application.
-        #[method(specializationStrategy)]
+        #[unsafe(method(specializationStrategy))]
         #[unsafe(method_family = none)]
         pub unsafe fn specializationStrategy(&self) -> MLSpecializationStrategy;
 
         #[cfg(feature = "MLSpecializationStrategy")]
         /// Setter for [`specializationStrategy`][Self::specializationStrategy].
-        #[method(setSpecializationStrategy:)]
+        #[unsafe(method(setSpecializationStrategy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpecializationStrategy(
             &self,
@@ -75,11 +75,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLOptimizationHints {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

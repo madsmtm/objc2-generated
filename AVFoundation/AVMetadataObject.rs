@@ -40,11 +40,11 @@ unsafe impl NSObjectProtocol for AVMetadataObject {}
 
 extern_methods!(
     unsafe impl AVMetadataObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -53,7 +53,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is a CMTime associated with the metadata object. For capture, it is the time at which this object was captured. If this metadata object originates from a CMSampleBuffer, its time matches the sample buffer's presentation time. This property may return kCMTimeInvalid.
-        #[method(time)]
+        #[unsafe(method(time))]
         #[unsafe(method_family = none)]
         pub unsafe fn time(&self) -> CMTime;
 
@@ -62,7 +62,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is a CMTime representing the duration of the metadata object. If this metadata object originates from a CMSampleBuffer, its duration matches the sample buffer's duration. This property may return kCMTimeInvalid.
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> CMTime;
 
@@ -71,7 +71,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is a CGRect representing the bounding rectangle of the object with respect to the picture in which it resides. The rectangle's origin is top left. If the metadata originates from video, bounds may be expressed as scalar values from 0. - 1. If the original video has been scaled down, the bounds of the metadata object still are meaningful. This property may return CGRectZero if the metadata has no bounds.
-        #[method(bounds)]
+        #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn bounds(&self) -> CGRect;
 
@@ -79,7 +79,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an AVMetadataObjectType representing the type of the metadata object. Clients inspecting a collection of metadata objects can use this property to filter objects with a matching type.
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<AVMetadataObjectType>;
     }
@@ -111,7 +111,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSInteger indicating the unique identifier of this body type (Human, Dog, Cat) in the picture. When a new body enters the picture, it is assigned a new unique identifier. bodyIDs are not re-used as bodies leave the picture and new ones enter. Bodies that leave the picture then re-enter are assigned a new bodyID.
-        #[method(bodyID)]
+        #[unsafe(method(bodyID))]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyID(&self) -> NSInteger;
     }
@@ -120,11 +120,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataBodyObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -169,11 +169,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataHumanBodyObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -218,11 +218,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataHumanFullBodyObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -267,11 +267,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataCatBodyObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -316,11 +316,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataDogBodyObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -364,7 +364,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSInteger indicating the unique identifier of this object in the picture. When a new object enters the picture, it is assigned a new unique identifier. objectIDs are not re-used as object leave the picture and new ones enter. Objects that leave the picture then re-enter are assigned a new objectID.
-        #[method(objectID)]
+        #[unsafe(method(objectID))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectID(&self) -> NSInteger;
     }
@@ -373,11 +373,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataSalientObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -421,12 +421,12 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSInteger indicating the unique identifier of this face in the picture. When a new face enters the picture, it is assigned a new unique identifier. faceIDs are not re-used as faces leave the picture and new ones enter. Faces that leave the picture then re-enter are assigned a new faceID.
-        #[method(faceID)]
+        #[unsafe(method(faceID))]
         #[unsafe(method_family = none)]
         pub unsafe fn faceID(&self) -> NSInteger;
 
         /// A BOOL indicating whether the rollAngle property is valid for this receiver.
-        #[method(hasRollAngle)]
+        #[unsafe(method(hasRollAngle))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasRollAngle(&self) -> bool;
 
@@ -435,12 +435,12 @@ extern_methods!(
         ///
         ///
         /// The value of this property is a CGFloat indicating the face's angle of roll (or tilt) in degrees. A value of 0.0 indicates that the face is level in the picture. If -hasRollAngle returns NO, then reading this property throws an NSGenericException.
-        #[method(rollAngle)]
+        #[unsafe(method(rollAngle))]
         #[unsafe(method_family = none)]
         pub unsafe fn rollAngle(&self) -> CGFloat;
 
         /// A BOOL indicating whether the yawAngle property is valid for this receiver.
-        #[method(hasYawAngle)]
+        #[unsafe(method(hasYawAngle))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasYawAngle(&self) -> bool;
 
@@ -449,7 +449,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is a CGFloat indicating the face's angle of yaw (or turn) in degrees. A value of 0.0 indicates that the face is straight on in the picture. If -hasYawAngle returns NO, then reading this property throws an NSGenericException.
-        #[method(yawAngle)]
+        #[unsafe(method(yawAngle))]
         #[unsafe(method_family = none)]
         pub unsafe fn yawAngle(&self) -> CGFloat;
     }
@@ -458,11 +458,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataFaceObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -680,7 +680,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of NSDictionaries, each of which has been created from a CGPoint using CGPointCreateDictionaryRepresentation(), representing the coordinates of the corners of the object with respect to the image in which it resides. If the metadata originates from video, the points may be expressed as scalar values from 0. - 1. The points in the corners differ from the bounds rectangle in that bounds is axis-aligned to orientation of the captured image, and the values of the corners reside within the bounds rectangle. The points are arranged in counter-clockwise order (clockwise if the code or image is mirrored), starting with the top-left of the code in its canonical orientation.
-        #[method(corners)]
+        #[unsafe(method(corners))]
         #[unsafe(method_family = none)]
         pub unsafe fn corners(&self) -> Retained<NSArray<NSDictionary>>;
 
@@ -688,7 +688,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSString created by decoding the binary payload according to the format of the machine readable code. Returns nil if a string representation cannot be created from the payload.
-        #[method(stringValue)]
+        #[unsafe(method(stringValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
     }
@@ -697,11 +697,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataMachineReadableCodeObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -716,7 +716,7 @@ extern_methods!(
         ///
         ///
         /// The value may be nil if an abstract representation of a machine readable code object is not defined for the code type or could not be detected.
-        #[method(descriptor)]
+        #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor(&self) -> Option<Retained<CIBarcodeDescriptor>>;
     }

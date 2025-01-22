@@ -25,7 +25,7 @@ extern_protocol!(
         /// DEPRECATED implement -[PHProjectExtensionController typeDescriptionDataSourceForCategory:invalidator:] instead.
         #[deprecated]
         #[optional]
-        #[method(supportedProjectTypes)]
+        #[unsafe(method(supportedProjectTypes))]
         #[unsafe(method_family = none)]
         unsafe fn supportedProjectTypes(&self) -> Retained<NSArray<PHProjectTypeDescription>>;
 
@@ -43,7 +43,7 @@ extern_protocol!(
         ///
         /// Parameter `invalidator`: is an object that can be used to invalidate information returned from the data source
         #[optional]
-        #[method(typeDescriptionDataSourceForCategory:invalidator:)]
+        #[unsafe(method(typeDescriptionDataSourceForCategory:invalidator:))]
         #[unsafe(method_family = none)]
         unsafe fn typeDescriptionDataSourceForCategory_invalidator(
             &self,
@@ -57,7 +57,7 @@ extern_protocol!(
             feature = "block2"
         ))]
         /// Called the first time a project is created.
-        #[method(beginProjectWithExtensionContext:projectInfo:completion:)]
+        #[unsafe(method(beginProjectWithExtensionContext:projectInfo:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn beginProjectWithExtensionContext_projectInfo_completion(
             &self,
@@ -68,7 +68,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "PHProjectExtensionContext", feature = "block2"))]
         /// Called anytime the user returns to a project that was previously created.
-        #[method(resumeProjectWithExtensionContext:completion:)]
+        #[unsafe(method(resumeProjectWithExtensionContext:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn resumeProjectWithExtensionContext_completion(
             &self,
@@ -79,7 +79,7 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         /// Called when a user is switching away from the project or before Photos terminates the extension.
         /// The receiver should persist any state data to using PHProjectChangeRequest, then call the completion handler.
-        #[method(finishProjectWithCompletionHandler:)]
+        #[unsafe(method(finishProjectWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn finishProjectWithCompletionHandler(&self, completion: &block2::Block<dyn Fn()>);
     }

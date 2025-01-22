@@ -49,7 +49,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl GKChallengesViewController {
         #[deprecated]
-        #[method(challengeDelegate)]
+        #[unsafe(method(challengeDelegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn challengeDelegate(
             &self,
@@ -58,7 +58,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`challengeDelegate`][Self::challengeDelegate].
         #[deprecated]
-        #[method(setChallengeDelegate:)]
+        #[unsafe(method(setChallengeDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChallengeDelegate(
             &self,
@@ -72,7 +72,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKChallengesViewController {
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -80,7 +80,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -94,7 +94,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKChallengesViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -105,7 +105,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKChallengesViewController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -116,7 +116,7 @@ extern_protocol!(
     pub unsafe trait GKChallengesViewControllerDelegate {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method(challengesViewControllerDidFinish:)]
+        #[unsafe(method(challengesViewControllerDidFinish:))]
         #[unsafe(method_family = none)]
         unsafe fn challengesViewControllerDidFinish(
             &self,

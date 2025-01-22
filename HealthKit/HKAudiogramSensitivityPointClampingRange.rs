@@ -38,17 +38,17 @@ extern_methods!(
     unsafe impl HKAudiogramSensitivityPointClampingRange {
         #[cfg(feature = "HKQuantity")]
         /// The lower bound of the clamping range, if any, in dBHL.
-        #[method(lowerBound)]
+        #[unsafe(method(lowerBound))]
         #[unsafe(method_family = none)]
         pub unsafe fn lowerBound(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         /// The upper bound of the clamping range, if any, in dBHL.
-        #[method(upperBound)]
+        #[unsafe(method(upperBound))]
         #[unsafe(method_family = none)]
         pub unsafe fn upperBound(&self) -> Option<Retained<HKQuantity>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -62,7 +62,7 @@ extern_methods!(
         ///
         /// Returns: New instance of a clamping range or nil if there were problems
         /// creating the instance.  Errors may include not having any bound or lower bound is greater than the upper bound
-        #[method(clampingRangeWithLowerBound:upperBound:error:_)]
+        #[unsafe(method(clampingRangeWithLowerBound:upperBound:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn clampingRangeWithLowerBound_upperBound_error(
             lower_bound: Option<&NSNumber>,
@@ -74,7 +74,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKAudiogramSensitivityPointClampingRange {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

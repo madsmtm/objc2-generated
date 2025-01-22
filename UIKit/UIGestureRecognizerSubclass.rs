@@ -12,46 +12,46 @@ extern_methods!(
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UIGestureRecognizer {
         /// Setter for [`state`][Self::state].
-        #[method(setState:)]
+        #[unsafe(method(setState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setState(&self, state: UIGestureRecognizerState);
 
         #[cfg(all(feature = "UIEvent", feature = "UITouch"))]
-        #[method(ignoreTouch:forEvent:)]
+        #[unsafe(method(ignoreTouch:forEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ignoreTouch_forEvent(&self, touch: &UITouch, event: &UIEvent);
 
         #[cfg(all(feature = "UIEvent", feature = "UIPress", feature = "UIPressesEvent"))]
-        #[method(ignorePress:forEvent:)]
+        #[unsafe(method(ignorePress:forEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ignorePress_forEvent(&self, button: &UIPress, event: &UIPressesEvent);
 
-        #[method(reset)]
+        #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
         pub unsafe fn reset(&self);
 
-        #[method(canPreventGestureRecognizer:)]
+        #[unsafe(method(canPreventGestureRecognizer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canPreventGestureRecognizer(
             &self,
             prevented_gesture_recognizer: &UIGestureRecognizer,
         ) -> bool;
 
-        #[method(canBePreventedByGestureRecognizer:)]
+        #[unsafe(method(canBePreventedByGestureRecognizer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canBePreventedByGestureRecognizer(
             &self,
             preventing_gesture_recognizer: &UIGestureRecognizer,
         ) -> bool;
 
-        #[method(shouldRequireFailureOfGestureRecognizer:)]
+        #[unsafe(method(shouldRequireFailureOfGestureRecognizer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldRequireFailureOfGestureRecognizer(
             &self,
             other_gesture_recognizer: &UIGestureRecognizer,
         ) -> bool;
 
-        #[method(shouldBeRequiredToFailByGestureRecognizer:)]
+        #[unsafe(method(shouldBeRequiredToFailByGestureRecognizer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldBeRequiredToFailByGestureRecognizer(
             &self,
@@ -59,37 +59,37 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "UIEvent")]
-        #[method(shouldReceiveEvent:)]
+        #[unsafe(method(shouldReceiveEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldReceiveEvent(&self, event: &UIEvent) -> bool;
 
         #[cfg(all(feature = "UIEvent", feature = "UITouch"))]
-        #[method(touchesBegan:withEvent:)]
+        #[unsafe(method(touchesBegan:withEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn touchesBegan_withEvent(&self, touches: &NSSet<UITouch>, event: &UIEvent);
 
         #[cfg(all(feature = "UIEvent", feature = "UITouch"))]
-        #[method(touchesMoved:withEvent:)]
+        #[unsafe(method(touchesMoved:withEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn touchesMoved_withEvent(&self, touches: &NSSet<UITouch>, event: &UIEvent);
 
         #[cfg(all(feature = "UIEvent", feature = "UITouch"))]
-        #[method(touchesEnded:withEvent:)]
+        #[unsafe(method(touchesEnded:withEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn touchesEnded_withEvent(&self, touches: &NSSet<UITouch>, event: &UIEvent);
 
         #[cfg(all(feature = "UIEvent", feature = "UITouch"))]
-        #[method(touchesCancelled:withEvent:)]
+        #[unsafe(method(touchesCancelled:withEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn touchesCancelled_withEvent(&self, touches: &NSSet<UITouch>, event: &UIEvent);
 
         #[cfg(feature = "UITouch")]
-        #[method(touchesEstimatedPropertiesUpdated:)]
+        #[unsafe(method(touchesEstimatedPropertiesUpdated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn touchesEstimatedPropertiesUpdated(&self, touches: &NSSet<UITouch>);
 
         #[cfg(all(feature = "UIEvent", feature = "UIPress", feature = "UIPressesEvent"))]
-        #[method(pressesBegan:withEvent:)]
+        #[unsafe(method(pressesBegan:withEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pressesBegan_withEvent(
             &self,
@@ -98,7 +98,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIEvent", feature = "UIPress", feature = "UIPressesEvent"))]
-        #[method(pressesChanged:withEvent:)]
+        #[unsafe(method(pressesChanged:withEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pressesChanged_withEvent(
             &self,
@@ -107,7 +107,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIEvent", feature = "UIPress", feature = "UIPressesEvent"))]
-        #[method(pressesEnded:withEvent:)]
+        #[unsafe(method(pressesEnded:withEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pressesEnded_withEvent(
             &self,
@@ -116,7 +116,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIEvent", feature = "UIPress", feature = "UIPressesEvent"))]
-        #[method(pressesCancelled:withEvent:)]
+        #[unsafe(method(pressesCancelled:withEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pressesCancelled_withEvent(
             &self,

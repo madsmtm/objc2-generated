@@ -460,84 +460,84 @@ extern_category!(
     /// Category on [`NSValue`].
     pub unsafe trait NSValueUIGeometryExtensions {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueWithCGPoint:)]
+        #[unsafe(method(valueWithCGPoint:))]
         #[unsafe(method_family = none)]
         unsafe fn valueWithCGPoint(point: CGPoint) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueWithCGVector:)]
+        #[unsafe(method(valueWithCGVector:))]
         #[unsafe(method_family = none)]
         unsafe fn valueWithCGVector(vector: CGVector) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueWithCGSize:)]
+        #[unsafe(method(valueWithCGSize:))]
         #[unsafe(method_family = none)]
         unsafe fn valueWithCGSize(size: CGSize) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueWithCGRect:)]
+        #[unsafe(method(valueWithCGRect:))]
         #[unsafe(method_family = none)]
         unsafe fn valueWithCGRect(rect: CGRect) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueWithCGAffineTransform:)]
+        #[unsafe(method(valueWithCGAffineTransform:))]
         #[unsafe(method_family = none)]
         unsafe fn valueWithCGAffineTransform(transform: CGAffineTransform) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueWithUIEdgeInsets:)]
+        #[unsafe(method(valueWithUIEdgeInsets:))]
         #[unsafe(method_family = none)]
         unsafe fn valueWithUIEdgeInsets(insets: UIEdgeInsets) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueWithDirectionalEdgeInsets:)]
+        #[unsafe(method(valueWithDirectionalEdgeInsets:))]
         #[unsafe(method_family = none)]
         unsafe fn valueWithDirectionalEdgeInsets(
             insets: NSDirectionalEdgeInsets,
         ) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueWithUIOffset:)]
+        #[unsafe(method(valueWithUIOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn valueWithUIOffset(insets: UIOffset) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(CGPointValue)]
+        #[unsafe(method(CGPointValue))]
         #[unsafe(method_family = none)]
         unsafe fn CGPointValue(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(CGVectorValue)]
+        #[unsafe(method(CGVectorValue))]
         #[unsafe(method_family = none)]
         unsafe fn CGVectorValue(&self) -> CGVector;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(CGSizeValue)]
+        #[unsafe(method(CGSizeValue))]
         #[unsafe(method_family = none)]
         unsafe fn CGSizeValue(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(CGRectValue)]
+        #[unsafe(method(CGRectValue))]
         #[unsafe(method_family = none)]
         unsafe fn CGRectValue(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(CGAffineTransformValue)]
+        #[unsafe(method(CGAffineTransformValue))]
         #[unsafe(method_family = none)]
         unsafe fn CGAffineTransformValue(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(UIEdgeInsetsValue)]
+        #[unsafe(method(UIEdgeInsetsValue))]
         #[unsafe(method_family = none)]
         unsafe fn UIEdgeInsetsValue(&self) -> UIEdgeInsets;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(directionalEdgeInsetsValue)]
+        #[unsafe(method(directionalEdgeInsetsValue))]
         #[unsafe(method_family = none)]
         unsafe fn directionalEdgeInsetsValue(&self) -> NSDirectionalEdgeInsets;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(UIOffsetValue)]
+        #[unsafe(method(UIOffsetValue))]
         #[unsafe(method_family = none)]
         unsafe fn UIOffsetValue(&self) -> UIOffset;
     }
@@ -550,27 +550,27 @@ extern_category!(
     #[doc(alias = "UIGeometryKeyedCoding")]
     pub unsafe trait NSCoderUIGeometryKeyedCoding {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(encodeCGPoint:forKey:)]
+        #[unsafe(method(encodeCGPoint:forKey:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeCGPoint_forKey(&self, point: CGPoint, key: &NSString);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(encodeCGVector:forKey:)]
+        #[unsafe(method(encodeCGVector:forKey:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeCGVector_forKey(&self, vector: CGVector, key: &NSString);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(encodeCGSize:forKey:)]
+        #[unsafe(method(encodeCGSize:forKey:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeCGSize_forKey(&self, size: CGSize, key: &NSString);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(encodeCGRect:forKey:)]
+        #[unsafe(method(encodeCGRect:forKey:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeCGRect_forKey(&self, rect: CGRect, key: &NSString);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(encodeCGAffineTransform:forKey:)]
+        #[unsafe(method(encodeCGAffineTransform:forKey:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeCGAffineTransform_forKey(
             &self,
@@ -579,12 +579,12 @@ extern_category!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(encodeUIEdgeInsets:forKey:)]
+        #[unsafe(method(encodeUIEdgeInsets:forKey:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeUIEdgeInsets_forKey(&self, insets: UIEdgeInsets, key: &NSString);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(encodeDirectionalEdgeInsets:forKey:)]
+        #[unsafe(method(encodeDirectionalEdgeInsets:forKey:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeDirectionalEdgeInsets_forKey(
             &self,
@@ -593,42 +593,42 @@ extern_category!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(encodeUIOffset:forKey:)]
+        #[unsafe(method(encodeUIOffset:forKey:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeUIOffset_forKey(&self, offset: UIOffset, key: &NSString);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(decodeCGPointForKey:)]
+        #[unsafe(method(decodeCGPointForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn decodeCGPointForKey(&self, key: &NSString) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(decodeCGVectorForKey:)]
+        #[unsafe(method(decodeCGVectorForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn decodeCGVectorForKey(&self, key: &NSString) -> CGVector;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(decodeCGSizeForKey:)]
+        #[unsafe(method(decodeCGSizeForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn decodeCGSizeForKey(&self, key: &NSString) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(decodeCGRectForKey:)]
+        #[unsafe(method(decodeCGRectForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn decodeCGRectForKey(&self, key: &NSString) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(decodeCGAffineTransformForKey:)]
+        #[unsafe(method(decodeCGAffineTransformForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn decodeCGAffineTransformForKey(&self, key: &NSString) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(decodeUIEdgeInsetsForKey:)]
+        #[unsafe(method(decodeUIEdgeInsetsForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn decodeUIEdgeInsetsForKey(&self, key: &NSString) -> UIEdgeInsets;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(decodeDirectionalEdgeInsetsForKey:)]
+        #[unsafe(method(decodeDirectionalEdgeInsetsForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn decodeDirectionalEdgeInsetsForKey(
             &self,
@@ -636,7 +636,7 @@ extern_category!(
         ) -> NSDirectionalEdgeInsets;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(decodeUIOffsetForKey:)]
+        #[unsafe(method(decodeUIOffsetForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn decodeUIOffsetForKey(&self, key: &NSString) -> UIOffset;
     }

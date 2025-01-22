@@ -18,7 +18,7 @@ extern_protocol!(
     {
         #[cfg(feature = "UITraitCollection")]
         /// Returns a new instance with the specified trait collection.
-        #[method(initWithTraitCollection:)]
+        #[unsafe(method(initWithTraitCollection:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithTraitCollection(
             this: Allocated<Self>,
@@ -26,18 +26,18 @@ extern_protocol!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
-        #[method(traitCollection)]
+        #[unsafe(method(traitCollection))]
         #[unsafe(method_family = none)]
         unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITraitCollection")]
         /// Setter for [`traitCollection`][Self::traitCollection].
-        #[method(setTraitCollection:)]
+        #[unsafe(method(setTraitCollection:))]
         #[unsafe(method_family = none)]
         unsafe fn setTraitCollection(&self, trait_collection: &UITraitCollection);
 
         /// Returns the custom state for the specified key.
-        #[method(customStateForKey:)]
+        #[unsafe(method(customStateForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn customStateForKey(
             &self,
@@ -45,7 +45,7 @@ extern_protocol!(
         ) -> Option<Retained<AnyObject>>;
 
         /// Sets the custom state for the specified key.
-        #[method(setCustomState:forKey:)]
+        #[unsafe(method(setCustomState:forKey:))]
         #[unsafe(method_family = none)]
         unsafe fn setCustomState_forKey(
             &self,
@@ -53,14 +53,14 @@ extern_protocol!(
             key: &UIConfigurationStateCustomKey,
         );
 
-        #[method(objectForKeyedSubscript:)]
+        #[unsafe(method(objectForKeyedSubscript:))]
         #[unsafe(method_family = none)]
         unsafe fn objectForKeyedSubscript(
             &self,
             key: &UIConfigurationStateCustomKey,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method(setObject:forKeyedSubscript:)]
+        #[unsafe(method(setObject:forKeyedSubscript:))]
         #[unsafe(method_family = none)]
         unsafe fn setObject_forKeyedSubscript(
             &self,

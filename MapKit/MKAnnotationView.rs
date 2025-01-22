@@ -140,7 +140,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKAnnotationView {
         #[cfg(feature = "MKAnnotation")]
-        #[method(initWithAnnotation:reuseIdentifier:)]
+        #[unsafe(method(initWithAnnotation:reuseIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAnnotation_reuseIdentifier(
             this: Allocated<Self>,
@@ -148,195 +148,195 @@ extern_methods!(
             reuse_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(reuseIdentifier)]
+        #[unsafe(method(reuseIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn reuseIdentifier(&self) -> Option<Retained<NSString>>;
 
-        #[method(prepareForReuse)]
+        #[unsafe(method(prepareForReuse))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareForReuse(&self);
 
-        #[method(prepareForDisplay)]
+        #[unsafe(method(prepareForDisplay))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareForDisplay(&self);
 
         #[cfg(feature = "MKAnnotation")]
-        #[method(annotation)]
+        #[unsafe(method(annotation))]
         #[unsafe(method_family = none)]
         pub unsafe fn annotation(&self) -> Option<Retained<ProtocolObject<dyn MKAnnotation>>>;
 
         #[cfg(feature = "MKAnnotation")]
         /// Setter for [`annotation`][Self::annotation].
-        #[method(setAnnotation:)]
+        #[unsafe(method(setAnnotation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnnotation(&self, annotation: Option<&ProtocolObject<dyn MKAnnotation>>);
 
-        #[method(image)]
+        #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         /// Setter for [`image`][Self::image].
-        #[method(setImage:)]
+        #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(centerOffset)]
+        #[unsafe(method(centerOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn centerOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`centerOffset`][Self::centerOffset].
-        #[method(setCenterOffset:)]
+        #[unsafe(method(setCenterOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCenterOffset(&self, center_offset: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(accessoryOffset)]
+        #[unsafe(method(accessoryOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessoryOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`accessoryOffset`][Self::accessoryOffset].
-        #[method(setAccessoryOffset:)]
+        #[unsafe(method(setAccessoryOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessoryOffset(&self, accessory_offset: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(calloutOffset)]
+        #[unsafe(method(calloutOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn calloutOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`calloutOffset`][Self::calloutOffset].
-        #[method(setCalloutOffset:)]
+        #[unsafe(method(setCalloutOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCalloutOffset(&self, callout_offset: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(leftCalloutOffset)]
+        #[unsafe(method(leftCalloutOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn leftCalloutOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`leftCalloutOffset`][Self::leftCalloutOffset].
-        #[method(setLeftCalloutOffset:)]
+        #[unsafe(method(setLeftCalloutOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeftCalloutOffset(&self, left_callout_offset: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(rightCalloutOffset)]
+        #[unsafe(method(rightCalloutOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightCalloutOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`rightCalloutOffset`][Self::rightCalloutOffset].
-        #[method(setRightCalloutOffset:)]
+        #[unsafe(method(setRightCalloutOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRightCalloutOffset(&self, right_callout_offset: CGPoint);
 
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
-        #[method(isHighlighted)]
+        #[unsafe(method(isHighlighted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHighlighted(&self) -> bool;
 
         /// Setter for [`isHighlighted`][Self::isHighlighted].
-        #[method(setHighlighted:)]
+        #[unsafe(method(setHighlighted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
-        #[method(isSelected)]
+        #[unsafe(method(isSelected))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSelected(&self) -> bool;
 
         /// Setter for [`isSelected`][Self::isSelected].
-        #[method(setSelected:)]
+        #[unsafe(method(setSelected:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelected(&self, selected: bool);
 
-        #[method(setSelected:animated:)]
+        #[unsafe(method(setSelected:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelected_animated(&self, selected: bool, animated: bool);
 
-        #[method(canShowCallout)]
+        #[unsafe(method(canShowCallout))]
         #[unsafe(method_family = none)]
         pub unsafe fn canShowCallout(&self) -> bool;
 
         /// Setter for [`canShowCallout`][Self::canShowCallout].
-        #[method(setCanShowCallout:)]
+        #[unsafe(method(setCanShowCallout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCanShowCallout(&self, can_show_callout: bool);
 
-        #[method(leftCalloutAccessoryView)]
+        #[unsafe(method(leftCalloutAccessoryView))]
         #[unsafe(method_family = none)]
         pub unsafe fn leftCalloutAccessoryView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`leftCalloutAccessoryView`][Self::leftCalloutAccessoryView].
-        #[method(setLeftCalloutAccessoryView:)]
+        #[unsafe(method(setLeftCalloutAccessoryView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeftCalloutAccessoryView(
             &self,
             left_callout_accessory_view: Option<&NSView>,
         );
 
-        #[method(rightCalloutAccessoryView)]
+        #[unsafe(method(rightCalloutAccessoryView))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightCalloutAccessoryView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`rightCalloutAccessoryView`][Self::rightCalloutAccessoryView].
-        #[method(setRightCalloutAccessoryView:)]
+        #[unsafe(method(setRightCalloutAccessoryView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRightCalloutAccessoryView(
             &self,
             right_callout_accessory_view: Option<&NSView>,
         );
 
-        #[method(detailCalloutAccessoryView)]
+        #[unsafe(method(detailCalloutAccessoryView))]
         #[unsafe(method_family = none)]
         pub unsafe fn detailCalloutAccessoryView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`detailCalloutAccessoryView`][Self::detailCalloutAccessoryView].
-        #[method(setDetailCalloutAccessoryView:)]
+        #[unsafe(method(setDetailCalloutAccessoryView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDetailCalloutAccessoryView(
             &self,
             detail_callout_accessory_view: Option<&NSView>,
         );
 
-        #[method(isDraggable)]
+        #[unsafe(method(isDraggable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDraggable(&self) -> bool;
 
         /// Setter for [`isDraggable`][Self::isDraggable].
-        #[method(setDraggable:)]
+        #[unsafe(method(setDraggable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDraggable(&self, draggable: bool);
 
-        #[method(dragState)]
+        #[unsafe(method(dragState))]
         #[unsafe(method_family = none)]
         pub unsafe fn dragState(&self) -> MKAnnotationViewDragState;
 
         /// Setter for [`dragState`][Self::dragState].
-        #[method(setDragState:)]
+        #[unsafe(method(setDragState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDragState(&self, drag_state: MKAnnotationViewDragState);
 
-        #[method(setDragState:animated:)]
+        #[unsafe(method(setDragState:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDragState_animated(
             &self,
@@ -344,52 +344,52 @@ extern_methods!(
             animated: bool,
         );
 
-        #[method(clusteringIdentifier)]
+        #[unsafe(method(clusteringIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn clusteringIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`clusteringIdentifier`][Self::clusteringIdentifier].
-        #[method(setClusteringIdentifier:)]
+        #[unsafe(method(setClusteringIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClusteringIdentifier(&self, clustering_identifier: Option<&NSString>);
 
-        #[method(clusterAnnotationView)]
+        #[unsafe(method(clusterAnnotationView))]
         #[unsafe(method_family = none)]
         pub unsafe fn clusterAnnotationView(&self) -> Option<Retained<MKAnnotationView>>;
 
-        #[method(displayPriority)]
+        #[unsafe(method(displayPriority))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayPriority(&self) -> MKFeatureDisplayPriority;
 
         /// Setter for [`displayPriority`][Self::displayPriority].
-        #[method(setDisplayPriority:)]
+        #[unsafe(method(setDisplayPriority:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayPriority(&self, display_priority: MKFeatureDisplayPriority);
 
-        #[method(zPriority)]
+        #[unsafe(method(zPriority))]
         #[unsafe(method_family = none)]
         pub unsafe fn zPriority(&self) -> MKAnnotationViewZPriority;
 
         /// Setter for [`zPriority`][Self::zPriority].
-        #[method(setZPriority:)]
+        #[unsafe(method(setZPriority:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZPriority(&self, z_priority: MKAnnotationViewZPriority);
 
-        #[method(selectedZPriority)]
+        #[unsafe(method(selectedZPriority))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedZPriority(&self) -> MKAnnotationViewZPriority;
 
         /// Setter for [`selectedZPriority`][Self::selectedZPriority].
-        #[method(setSelectedZPriority:)]
+        #[unsafe(method(setSelectedZPriority:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedZPriority(&self, selected_z_priority: MKAnnotationViewZPriority);
 
-        #[method(collisionMode)]
+        #[unsafe(method(collisionMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn collisionMode(&self) -> MKAnnotationViewCollisionMode;
 
         /// Setter for [`collisionMode`][Self::collisionMode].
-        #[method(setCollisionMode:)]
+        #[unsafe(method(setCollisionMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCollisionMode(&self, collision_mode: MKAnnotationViewCollisionMode);
     }
@@ -400,7 +400,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKAnnotationView {
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
@@ -411,7 +411,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKAnnotationView {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -422,7 +422,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKAnnotationView {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

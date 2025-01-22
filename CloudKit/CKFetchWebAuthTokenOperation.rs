@@ -23,11 +23,11 @@ unsafe impl NSObjectProtocol for CKFetchWebAuthTokenOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchWebAuthTokenOperation {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithAPIToken:)]
+        #[unsafe(method(initWithAPIToken:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAPIToken(
             this: Allocated<Self>,
@@ -35,12 +35,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// APIToken is expected to be set before you begin this operation.
-        #[method(APIToken)]
+        #[unsafe(method(APIToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn APIToken(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`APIToken`][Self::APIToken].
-        #[method(setAPIToken:)]
+        #[unsafe(method(setAPIToken:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAPIToken(&self, api_token: Option<&NSString>);
 
@@ -59,7 +59,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(fetchWebAuthTokenCompletionBlock)]
+        #[unsafe(method(fetchWebAuthTokenCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchWebAuthTokenCompletionBlock(
             &self,
@@ -67,7 +67,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`fetchWebAuthTokenCompletionBlock`][Self::fetchWebAuthTokenCompletionBlock].
-        #[method(setFetchWebAuthTokenCompletionBlock:)]
+        #[unsafe(method(setFetchWebAuthTokenCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchWebAuthTokenCompletionBlock(
             &self,
@@ -82,7 +82,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchWebAuthTokenOperation {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -11,7 +11,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionrequestdelegate?language=objc)
     pub unsafe trait ASWebAuthenticationSessionRequestDelegate: NSObjectProtocol {
         #[optional]
-        #[method(authenticationSessionRequest:didCompleteWithCallbackURL:)]
+        #[unsafe(method(authenticationSessionRequest:didCompleteWithCallbackURL:))]
         #[unsafe(method_family = none)]
         unsafe fn authenticationSessionRequest_didCompleteWithCallbackURL(
             &self,
@@ -20,7 +20,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(authenticationSessionRequest:didCancelWithError:)]
+        #[unsafe(method(authenticationSessionRequest:didCancelWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn authenticationSessionRequest_didCancelWithError(
             &self,
@@ -51,24 +51,24 @@ unsafe impl NSSecureCoding for ASWebAuthenticationSessionRequest {}
 
 extern_methods!(
     unsafe impl ASWebAuthenticationSessionRequest {
-        #[method(UUID)]
+        #[unsafe(method(UUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[deprecated = "Use `callback` to match all callback types."]
-        #[method(callbackURLScheme)]
+        #[unsafe(method(callbackURLScheme))]
         #[unsafe(method_family = none)]
         pub unsafe fn callbackURLScheme(&self) -> Option<Retained<NSString>>;
 
-        #[method(shouldUseEphemeralSession)]
+        #[unsafe(method(shouldUseEphemeralSession))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldUseEphemeralSession(&self) -> bool;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -76,7 +76,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -86,7 +86,7 @@ extern_methods!(
         /// Additional headers to be sent when loading the initial URL.
         /// These should _only_ apply to the initial page, and should not overwrite any headers normally sent by the browser.
         /// Add `AdditionalHeaderFieldsAreSupported: true` to `ASWebAuthenticationSessionWebBrowserSupportCapabilities` in your browser's Info.plist file to indicate support for this.
-        #[method(additionalHeaderFields)]
+        #[unsafe(method(additionalHeaderFields))]
         #[unsafe(method_family = none)]
         pub unsafe fn additionalHeaderFields(
             &self,
@@ -97,23 +97,23 @@ extern_methods!(
         /// Check all main-frame navigations loaded during the request with this callback. It is used to handle all callback types, including custom schemes and HTTPS navigations.
         /// When a match is found, invoke `-completeWithCallbackURL:` with that URL.
         /// Add `CallbackURLMatchingIsSupported: true` to `ASWebAuthenticationSessionWebBrowserSupportCapabilities` in your browser's Info.plist file to indicate support for this.
-        #[method(callback)]
+        #[unsafe(method(callback))]
         #[unsafe(method_family = none)]
         pub unsafe fn callback(&self) -> Option<Retained<ASWebAuthenticationSessionCallback>>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(cancelWithError:)]
+        #[unsafe(method(cancelWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelWithError(&self, error: &NSError);
 
-        #[method(completeWithCallbackURL:)]
+        #[unsafe(method(completeWithCallbackURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeWithCallbackURL(&self, url: &NSURL);
     }

@@ -8,11 +8,11 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvalidateduserinterfaceitem?language=objc)
     pub unsafe trait NSValidatedUserInterfaceItem: MainThreadOnly {
-        #[method(action)]
+        #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         unsafe fn action(&self) -> Option<Sel>;
 
-        #[method(tag)]
+        #[unsafe(method(tag))]
         #[unsafe(method_family = none)]
         unsafe fn tag(&self) -> NSInteger;
     }
@@ -21,7 +21,7 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacevalidations?language=objc)
     pub unsafe trait NSUserInterfaceValidations: MainThreadOnly {
-        #[method(validateUserInterfaceItem:)]
+        #[unsafe(method(validateUserInterfaceItem:))]
         #[unsafe(method_family = none)]
         unsafe fn validateUserInterfaceItem(
             &self,

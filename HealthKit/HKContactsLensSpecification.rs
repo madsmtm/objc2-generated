@@ -44,13 +44,13 @@ extern_methods!(
     unsafe impl HKContactsLensSpecification {
         #[cfg(feature = "HKQuantity")]
         /// The curvature of the back surface of the lens (measured in mm)
-        #[method(baseCurve)]
+        #[unsafe(method(baseCurve))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseCurve(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         /// The width of the lens from edge to edge (measured in mm)
-        #[method(diameter)]
+        #[unsafe(method(diameter))]
         #[unsafe(method_family = none)]
         pub unsafe fn diameter(&self) -> Option<Retained<HKQuantity>>;
 
@@ -66,7 +66,7 @@ extern_methods!(
         /// Parameter `baseCurve`: The curvature of the back surface of the lens
         ///
         /// Parameter `diameter`: The width of the lens from edge to edge
-        #[method(initWithSphere:cylinder:axis:addPower:baseCurve:diameter:)]
+        #[unsafe(method(initWithSphere:cylinder:axis:addPower:baseCurve:diameter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSphere_cylinder_axis_addPower_baseCurve_diameter(
             this: Allocated<Self>,
@@ -78,11 +78,11 @@ extern_methods!(
             diameter: Option<&HKQuantity>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

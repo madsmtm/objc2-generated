@@ -27,7 +27,7 @@ extern_methods!(
         /// Creates a callback object that matches against URLs with the given custom scheme.
         ///
         /// Parameter `customScheme`: The custom scheme that the app expects in the callback URL.
-        #[method(callbackWithCustomScheme:)]
+        #[unsafe(method(callbackWithCustomScheme:))]
         #[unsafe(method_family = none)]
         pub unsafe fn callbackWithCustomScheme(custom_scheme: &NSString) -> Retained<Self>;
 
@@ -37,18 +37,18 @@ extern_methods!(
         /// app using associated web credentials domains.
         ///
         /// Parameter `path`: The path that the app expects in the callback URL.
-        #[method(callbackWithHTTPSHost:path:)]
+        #[unsafe(method(callbackWithHTTPSHost:path:))]
         #[unsafe(method_family = none)]
         pub unsafe fn callbackWithHTTPSHost_path(
             host: &NSString,
             path: &NSString,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -56,7 +56,7 @@ extern_methods!(
         /// This is mainly meant for web browsers adopting the ASWebAuthenticationWebBrowser API, but may also be useful for other apps for debugging purposes.
         ///
         /// Parameter `url`: The URL to check.
-        #[method(matchesURL:)]
+        #[unsafe(method(matchesURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchesURL(&self, url: &NSURL) -> bool;
     }

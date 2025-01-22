@@ -27,11 +27,11 @@ unsafe impl<TargetValueType: ?Sized> NSObjectProtocol
 extern_methods!(
     #[cfg(feature = "HMAction")]
     unsafe impl<TargetValueType: Message> HMCharacteristicWriteAction<TargetValueType> {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -46,7 +46,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the characteristic write action.
-        #[method(initWithCharacteristic:targetValue:)]
+        #[unsafe(method(initWithCharacteristic:targetValue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCharacteristic_targetValue(
             this: Allocated<Self>,
@@ -56,12 +56,12 @@ extern_methods!(
 
         #[cfg(feature = "HMCharacteristic")]
         /// The characteristic associated with the action.
-        #[method(characteristic)]
+        #[unsafe(method(characteristic))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
 
         /// The target value for the action.
-        #[method(targetValue)]
+        #[unsafe(method(targetValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetValue(&self) -> Retained<TargetValueType>;
 
@@ -75,7 +75,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(updateTargetValue:completionHandler:)]
+        #[unsafe(method(updateTargetValue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateTargetValue_completionHandler(
             &self,

@@ -30,7 +30,7 @@ extern_protocol!(
         ///
         /// Returns: Node that will be mapped to the anchor or nil.
         #[optional]
-        #[method(renderer:nodeForAnchor:)]
+        #[unsafe(method(renderer:nodeForAnchor:))]
         #[unsafe(method_family = none)]
         unsafe fn renderer_nodeForAnchor(
             &self,
@@ -48,7 +48,7 @@ extern_protocol!(
         ///
         /// Parameter `anchor`: The added anchor.
         #[optional]
-        #[method(renderer:didAddNode:forAnchor:)]
+        #[unsafe(method(renderer:didAddNode:forAnchor:))]
         #[unsafe(method_family = none)]
         unsafe fn renderer_didAddNode_forAnchor(
             &self,
@@ -67,7 +67,7 @@ extern_protocol!(
         ///
         /// Parameter `anchor`: The anchor that was updated.
         #[optional]
-        #[method(renderer:willUpdateNode:forAnchor:)]
+        #[unsafe(method(renderer:willUpdateNode:forAnchor:))]
         #[unsafe(method_family = none)]
         unsafe fn renderer_willUpdateNode_forAnchor(
             &self,
@@ -86,7 +86,7 @@ extern_protocol!(
         ///
         /// Parameter `anchor`: The anchor that was updated.
         #[optional]
-        #[method(renderer:didUpdateNode:forAnchor:)]
+        #[unsafe(method(renderer:didUpdateNode:forAnchor:))]
         #[unsafe(method_family = none)]
         unsafe fn renderer_didUpdateNode_forAnchor(
             &self,
@@ -105,7 +105,7 @@ extern_protocol!(
         ///
         /// Parameter `anchor`: The anchor that was removed.
         #[optional]
-        #[method(renderer:didRemoveNode:forAnchor:)]
+        #[unsafe(method(renderer:didRemoveNode:forAnchor:))]
         #[unsafe(method_family = none)]
         unsafe fn renderer_didRemoveNode_forAnchor(
             &self,

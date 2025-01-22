@@ -101,7 +101,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixSolveTriangular object or nil, if failure.
-        #[method(initWithDevice:right:upper:transpose:unit:order:numberOfRightHandSides:alpha:)]
+        #[unsafe(method(initWithDevice:right:upper:transpose:unit:order:numberOfRightHandSides:alpha:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_right_upper_transpose_unit_order_numberOfRightHandSides_alpha(
             this: Allocated<Self>,
@@ -142,7 +142,7 @@ extern_methods!(
         ///
         /// sourceMatrix must be at least size order x order starting at
         /// primarySourceMatrixOrigin.
-        #[method(encodeToCommandBuffer:sourceMatrix:rightHandSideMatrix:solutionMatrix:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceMatrix:rightHandSideMatrix:solutionMatrix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceMatrix_rightHandSideMatrix_solutionMatrix(
             &self,
@@ -165,7 +165,7 @@ extern_methods!(
         /// Returns: a pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -180,7 +180,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -200,7 +200,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -214,11 +214,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveTriangular {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -286,7 +286,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixSolveLU object or nil, if failure.
-        #[method(initWithDevice:transpose:order:numberOfRightHandSides:)]
+        #[unsafe(method(initWithDevice:transpose:order:numberOfRightHandSides:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_transpose_order_numberOfRightHandSides(
             this: Allocated<Self>,
@@ -330,7 +330,7 @@ extern_methods!(
         /// resultMatrixOrigin respectively.
         ///
         /// sourceMatrix must be at least size order x order starting at primarySourceMatrixOrigin.
-        #[method(encodeToCommandBuffer:sourceMatrix:rightHandSideMatrix:pivotIndices:solutionMatrix:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceMatrix:rightHandSideMatrix:pivotIndices:solutionMatrix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceMatrix_rightHandSideMatrix_pivotIndices_solutionMatrix(
             &self,
@@ -354,7 +354,7 @@ extern_methods!(
         /// Returns: a pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -369,7 +369,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -389,7 +389,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -403,11 +403,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveLU {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -477,7 +477,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixSolveCholesky object or nil, if failure.
-        #[method(initWithDevice:upper:order:numberOfRightHandSides:)]
+        #[unsafe(method(initWithDevice:upper:order:numberOfRightHandSides:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_upper_order_numberOfRightHandSides(
             this: Allocated<Self>,
@@ -514,7 +514,7 @@ extern_methods!(
         /// resultMatrixOrigin respectively.
         ///
         /// sourceMatrix must be at least size order x order starting at primarySourceMatrixOrigin.
-        #[method(encodeToCommandBuffer:sourceMatrix:rightHandSideMatrix:solutionMatrix:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceMatrix:rightHandSideMatrix:solutionMatrix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceMatrix_rightHandSideMatrix_solutionMatrix(
             &self,
@@ -537,7 +537,7 @@ extern_methods!(
         /// Returns: a pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -552,7 +552,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -572,7 +572,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -586,11 +586,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveCholesky {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

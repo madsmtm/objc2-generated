@@ -32,17 +32,17 @@ unsafe impl RefEncode for UITimingCurveType {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitimingcurveprovider?language=objc)
     pub unsafe trait UITimingCurveProvider: NSCoding + NSCopying + MainThreadOnly {
-        #[method(timingCurveType)]
+        #[unsafe(method(timingCurveType))]
         #[unsafe(method_family = none)]
         unsafe fn timingCurveType(&self) -> UITimingCurveType;
 
         #[cfg(feature = "UITimingParameters")]
-        #[method(cubicTimingParameters)]
+        #[unsafe(method(cubicTimingParameters))]
         #[unsafe(method_family = none)]
         unsafe fn cubicTimingParameters(&self) -> Option<Retained<UICubicTimingParameters>>;
 
         #[cfg(feature = "UITimingParameters")]
-        #[method(springTimingParameters)]
+        #[unsafe(method(springTimingParameters))]
         #[unsafe(method_family = none)]
         unsafe fn springTimingParameters(&self) -> Option<Retained<UISpringTimingParameters>>;
     }

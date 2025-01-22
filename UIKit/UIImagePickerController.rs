@@ -272,42 +272,42 @@ extern_methods!(
         feature = "UIViewController"
     ))]
     unsafe impl UIImagePickerController {
-        #[method(isSourceTypeAvailable:)]
+        #[unsafe(method(isSourceTypeAvailable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSourceTypeAvailable(
             source_type: UIImagePickerControllerSourceType,
             mtm: MainThreadMarker,
         ) -> bool;
 
-        #[method(availableMediaTypesForSourceType:)]
+        #[unsafe(method(availableMediaTypesForSourceType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableMediaTypesForSourceType(
             source_type: UIImagePickerControllerSourceType,
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSArray<NSString>>>;
 
-        #[method(isCameraDeviceAvailable:)]
+        #[unsafe(method(isCameraDeviceAvailable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCameraDeviceAvailable(
             camera_device: UIImagePickerControllerCameraDevice,
             mtm: MainThreadMarker,
         ) -> bool;
 
-        #[method(isFlashAvailableForCameraDevice:)]
+        #[unsafe(method(isFlashAvailableForCameraDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFlashAvailableForCameraDevice(
             camera_device: UIImagePickerControllerCameraDevice,
             mtm: MainThreadMarker,
         ) -> bool;
 
-        #[method(availableCaptureModesForCameraDevice:)]
+        #[unsafe(method(availableCaptureModesForCameraDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableCaptureModesForCameraDevice(
             camera_device: UIImagePickerControllerCameraDevice,
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSArray<NSNumber>>>;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -319,7 +319,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -328,157 +328,157 @@ extern_methods!(
             >,
         );
 
-        #[method(sourceType)]
+        #[unsafe(method(sourceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceType(&self) -> UIImagePickerControllerSourceType;
 
         /// Setter for [`sourceType`][Self::sourceType].
-        #[method(setSourceType:)]
+        #[unsafe(method(setSourceType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceType(&self, source_type: UIImagePickerControllerSourceType);
 
-        #[method(mediaTypes)]
+        #[unsafe(method(mediaTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaTypes(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`mediaTypes`][Self::mediaTypes].
-        #[method(setMediaTypes:)]
+        #[unsafe(method(setMediaTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaTypes(&self, media_types: &NSArray<NSString>);
 
-        #[method(allowsEditing)]
+        #[unsafe(method(allowsEditing))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsEditing(&self) -> bool;
 
         /// Setter for [`allowsEditing`][Self::allowsEditing].
-        #[method(setAllowsEditing:)]
+        #[unsafe(method(setAllowsEditing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsEditing(&self, allows_editing: bool);
 
         #[deprecated]
-        #[method(allowsImageEditing)]
+        #[unsafe(method(allowsImageEditing))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsImageEditing(&self) -> bool;
 
         /// Setter for [`allowsImageEditing`][Self::allowsImageEditing].
         #[deprecated]
-        #[method(setAllowsImageEditing:)]
+        #[unsafe(method(setAllowsImageEditing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsImageEditing(&self, allows_image_editing: bool);
 
         #[deprecated = "Will be removed in a future release, use PHPicker."]
-        #[method(imageExportPreset)]
+        #[unsafe(method(imageExportPreset))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageExportPreset(&self) -> UIImagePickerControllerImageURLExportPreset;
 
         /// Setter for [`imageExportPreset`][Self::imageExportPreset].
         #[deprecated = "Will be removed in a future release, use PHPicker."]
-        #[method(setImageExportPreset:)]
+        #[unsafe(method(setImageExportPreset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageExportPreset(
             &self,
             image_export_preset: UIImagePickerControllerImageURLExportPreset,
         );
 
-        #[method(videoMaximumDuration)]
+        #[unsafe(method(videoMaximumDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoMaximumDuration(&self) -> NSTimeInterval;
 
         /// Setter for [`videoMaximumDuration`][Self::videoMaximumDuration].
-        #[method(setVideoMaximumDuration:)]
+        #[unsafe(method(setVideoMaximumDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoMaximumDuration(&self, video_maximum_duration: NSTimeInterval);
 
-        #[method(videoQuality)]
+        #[unsafe(method(videoQuality))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoQuality(&self) -> UIImagePickerControllerQualityType;
 
         /// Setter for [`videoQuality`][Self::videoQuality].
-        #[method(setVideoQuality:)]
+        #[unsafe(method(setVideoQuality:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoQuality(&self, video_quality: UIImagePickerControllerQualityType);
 
         #[deprecated = "Will be removed in a future release, use PHPicker."]
-        #[method(videoExportPreset)]
+        #[unsafe(method(videoExportPreset))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoExportPreset(&self) -> Retained<NSString>;
 
         /// Setter for [`videoExportPreset`][Self::videoExportPreset].
         #[deprecated = "Will be removed in a future release, use PHPicker."]
-        #[method(setVideoExportPreset:)]
+        #[unsafe(method(setVideoExportPreset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoExportPreset(&self, video_export_preset: &NSString);
 
-        #[method(showsCameraControls)]
+        #[unsafe(method(showsCameraControls))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsCameraControls(&self) -> bool;
 
         /// Setter for [`showsCameraControls`][Self::showsCameraControls].
-        #[method(setShowsCameraControls:)]
+        #[unsafe(method(setShowsCameraControls:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsCameraControls(&self, shows_camera_controls: bool);
 
         #[cfg(feature = "UIView")]
-        #[method(cameraOverlayView)]
+        #[unsafe(method(cameraOverlayView))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraOverlayView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIView")]
         /// Setter for [`cameraOverlayView`][Self::cameraOverlayView].
-        #[method(setCameraOverlayView:)]
+        #[unsafe(method(setCameraOverlayView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCameraOverlayView(&self, camera_overlay_view: Option<&UIView>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(cameraViewTransform)]
+        #[unsafe(method(cameraViewTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraViewTransform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`cameraViewTransform`][Self::cameraViewTransform].
-        #[method(setCameraViewTransform:)]
+        #[unsafe(method(setCameraViewTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCameraViewTransform(&self, camera_view_transform: CGAffineTransform);
 
-        #[method(takePicture)]
+        #[unsafe(method(takePicture))]
         #[unsafe(method_family = none)]
         pub unsafe fn takePicture(&self);
 
-        #[method(startVideoCapture)]
+        #[unsafe(method(startVideoCapture))]
         #[unsafe(method_family = none)]
         pub unsafe fn startVideoCapture(&self) -> bool;
 
-        #[method(stopVideoCapture)]
+        #[unsafe(method(stopVideoCapture))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopVideoCapture(&self);
 
-        #[method(cameraCaptureMode)]
+        #[unsafe(method(cameraCaptureMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraCaptureMode(&self) -> UIImagePickerControllerCameraCaptureMode;
 
         /// Setter for [`cameraCaptureMode`][Self::cameraCaptureMode].
-        #[method(setCameraCaptureMode:)]
+        #[unsafe(method(setCameraCaptureMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCameraCaptureMode(
             &self,
             camera_capture_mode: UIImagePickerControllerCameraCaptureMode,
         );
 
-        #[method(cameraDevice)]
+        #[unsafe(method(cameraDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraDevice(&self) -> UIImagePickerControllerCameraDevice;
 
         /// Setter for [`cameraDevice`][Self::cameraDevice].
-        #[method(setCameraDevice:)]
+        #[unsafe(method(setCameraDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCameraDevice(&self, camera_device: UIImagePickerControllerCameraDevice);
 
-        #[method(cameraFlashMode)]
+        #[unsafe(method(cameraFlashMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraFlashMode(&self) -> UIImagePickerControllerCameraFlashMode;
 
         /// Setter for [`cameraFlashMode`][Self::cameraFlashMode].
-        #[method(setCameraFlashMode:)]
+        #[unsafe(method(setCameraFlashMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCameraFlashMode(
             &self,
@@ -495,7 +495,7 @@ extern_methods!(
         feature = "UIViewController"
     ))]
     unsafe impl UIImagePickerController {
-        #[method(initWithNavigationBarClass:toolbarClass:)]
+        #[unsafe(method(initWithNavigationBarClass:toolbarClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
             this: Allocated<Self>,
@@ -503,14 +503,14 @@ extern_methods!(
             toolbar_class: Option<&AnyClass>,
         ) -> Retained<Self>;
 
-        #[method(initWithRootViewController:)]
+        #[unsafe(method(initWithRootViewController:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRootViewController(
             this: Allocated<Self>,
             root_view_controller: &UIViewController,
         ) -> Retained<Self>;
 
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -518,7 +518,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -535,11 +535,11 @@ extern_methods!(
         feature = "UIViewController"
     ))]
     unsafe impl UIImagePickerController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -558,7 +558,7 @@ extern_protocol!(
         ))]
         #[deprecated]
         #[optional]
-        #[method(imagePickerController:didFinishPickingImage:editingInfo:)]
+        #[unsafe(method(imagePickerController:didFinishPickingImage:editingInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn imagePickerController_didFinishPickingImage_editingInfo(
             &self,
@@ -573,7 +573,7 @@ extern_protocol!(
             feature = "UIViewController"
         ))]
         #[optional]
-        #[method(imagePickerController:didFinishPickingMediaWithInfo:)]
+        #[unsafe(method(imagePickerController:didFinishPickingMediaWithInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn imagePickerController_didFinishPickingMediaWithInfo(
             &self,
@@ -587,7 +587,7 @@ extern_protocol!(
             feature = "UIViewController"
         ))]
         #[optional]
-        #[method(imagePickerControllerDidCancel:)]
+        #[unsafe(method(imagePickerControllerDidCancel:))]
         #[unsafe(method_family = none)]
         unsafe fn imagePickerControllerDidCancel(&self, picker: &UIImagePickerController);
     }

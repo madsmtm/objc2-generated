@@ -117,11 +117,11 @@ unsafe impl NSObjectProtocol for AVPlayerItem {}
 
 extern_methods!(
     unsafe impl AVPlayerItem {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
@@ -131,7 +131,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayerItem.
         ///
         /// Equivalent to +playerItemWithAsset:, passing [AVAsset assetWithURL:URL] as the value of asset.
-        #[method(playerItemWithURL:)]
+        #[unsafe(method(playerItemWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerItemWithURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<Self>;
 
@@ -148,7 +148,7 @@ extern_methods!(
         /// duration" ] as the value of automaticallyLoadedAssetKeys.
         ///
         /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable.  If you are using a Sendable subclass of AVAsset, such as AVURLAsset, an overload of this initializer will be chosen automatically to allow you to initialize an AVPlayerItem while not running on the main actor.
-        #[method(playerItemWithAsset:)]
+        #[unsafe(method(playerItemWithAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerItemWithAsset(asset: &AVAsset, mtm: MainThreadMarker)
             -> Retained<Self>;
@@ -164,7 +164,7 @@ extern_methods!(
         /// The value of each key in automaticallyLoadedAssetKeys will be automatically be loaded by the underlying AVAsset before the receiver achieves the status AVPlayerItemStatusReadyToPlay; i.e. when the item is ready to play, the value of -[[AVPlayerItem asset] statusOfValueForKey:error:] will be one of the terminal status values greater than AVKeyValueStatusLoading.
         ///
         /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable.  If you are using a Sendable subclass of AVAsset, such as AVURLAsset, you can use `init(asset:automaticallyLoadedAssetKeys:)` to initialize an AVPlayerItem while not running on the main actor.
-        #[method(playerItemWithAsset:automaticallyLoadedAssetKeys:)]
+        #[unsafe(method(playerItemWithAsset:automaticallyLoadedAssetKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerItemWithAsset_automaticallyLoadedAssetKeys(
             asset: &AVAsset,
@@ -178,7 +178,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayerItem
         ///
         /// Equivalent to -initWithAsset:, passing [AVAsset assetWithURL:URL] as the value of asset.
-        #[method(initWithURL:)]
+        #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
@@ -195,7 +195,7 @@ extern_methods!(
         /// duration" ] as the value of automaticallyLoadedAssetKeys.
         ///
         /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable.  If you are using a Sendable subclass of AVAsset, such as AVURLAsset, an overload of this initializer will be chosen automatically to allow you to initialize an AVPlayerItem while not running on the main actor.
-        #[method(initWithAsset:)]
+        #[unsafe(method(initWithAsset:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset(this: Allocated<Self>, asset: &AVAsset) -> Retained<Self>;
 
@@ -211,7 +211,7 @@ extern_methods!(
         /// The value of each key in automaticallyLoadedAssetKeys will be automatically be loaded by the underlying AVAsset before the receiver achieves the status AVPlayerItemStatusReadyToPlay; i.e. when the item is ready to play, the value of -[[AVPlayerItem asset] statusOfValueForKey:error:] will be one of the terminal status values greater than AVKeyValueStatusLoading.
         ///
         /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable.  If you are using a Sendable subclass of AVAsset, such as AVURLAsset, you can use `init(asset:automaticallyLoadedAssetKeys:)` to initialize an AVPlayerItem while not running on the main actor.
-        #[method(initWithAsset:automaticallyLoadedAssetKeys:)]
+        #[unsafe(method(initWithAsset:automaticallyLoadedAssetKeys:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset_automaticallyLoadedAssetKeys(
             this: Allocated<Self>,
@@ -219,11 +219,11 @@ extern_methods!(
             automatically_loaded_asset_keys: Option<&NSArray<NSString>>,
         ) -> Retained<Self>;
 
-        #[method(copyWithZone:)]
+        #[unsafe(method(copyWithZone:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone(&self, zone: *mut NSZone) -> Retained<AnyObject>;
 
-        #[method(copy)]
+        #[unsafe(method(copy))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copy(&self) -> Retained<AnyObject>;
 
@@ -235,7 +235,7 @@ extern_methods!(
         /// a new instance needs to be created in its place. When this happens, clients can check the value of the error
         /// property to determine the nature of the failure. The value of this property will not be updated after the receiver
         /// is removed from an AVPlayer. This property is key value observable.
-        #[method(status)]
+        #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> AVPlayerItemStatus;
 
@@ -244,7 +244,7 @@ extern_methods!(
         ///
         /// The value of this property is an NSError that describes what caused the receiver to no longer be able to be played.
         /// If the receiver's status is not AVPlayerItemStatusFailed, the value of this property is nil.
-        #[method(error)]
+        #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
@@ -255,7 +255,7 @@ extern_methods!(
     unsafe impl AVPlayerItem {
         #[cfg(feature = "AVAsset")]
         /// Accessor for underlying AVAsset.
-        #[method(asset)]
+        #[unsafe(method(asset))]
         #[unsafe(method_family = none)]
         pub unsafe fn asset(&self) -> Retained<AVAsset>;
 
@@ -266,7 +266,7 @@ extern_methods!(
         /// The value of this property will accord with the properties of the underlying media resource when the receiver becomes ready to play.
         /// Before the underlying media resource has been sufficiently loaded, its value is an empty NSArray. Use key-value observation to obtain
         /// a valid array of tracks as soon as it becomes available.
-        #[method(tracks)]
+        #[unsafe(method(tracks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVPlayerItemTrack>>;
 
@@ -285,7 +285,7 @@ extern_methods!(
         /// Before the underlying duration has been loaded, the value of this property is kCMTimeIndefinite. Use key-value observation to
         /// obtain a valid duration as soon as it becomes available. (Note that the value of duration may remain kCMTimeIndefinite,
         /// e.g. for live streams.)
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> CMTime;
 
@@ -300,7 +300,7 @@ extern_methods!(
         /// The value of this property will accord with the properties of the underlying media resource when the receiver becomes ready to play.
         /// Before the underlying media resource is sufficiently loaded, its value is CGSizeZero. Use key-value observation to obtain a valid
         /// presentationSize as soon as it becomes available. (Note that the value of presentationSize may remain CGSizeZero, e.g. for audio-only items.)
-        #[method(presentationSize)]
+        #[unsafe(method(presentationSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentationSize(&self) -> CGSize;
 
@@ -312,14 +312,14 @@ extern_methods!(
         ///
         /// This property must be accessed on the main thread/queue.
         #[deprecated = "Use AVPlayerItemMetadataOutput to obtain timed metadata"]
-        #[method(timedMetadata)]
+        #[unsafe(method(timedMetadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn timedMetadata(&self) -> Option<Retained<NSArray<AVMetadataItem>>>;
 
         /// An array of property keys defined on AVAsset. The value of each key in the array is automatically loaded while the receiver is being made ready to play.
         ///
         /// The value of each key in automaticallyLoadedAssetKeys will be automatically be loaded by the underlying AVAsset before the receiver achieves the status AVPlayerItemStatusReadyToPlay; i.e. when the item is ready to play, the value of -[[AVPlayerItem asset] statusOfValueForKey:error:] will be AVKeyValueStatusLoaded. If loading of any of the values fails, the status of the AVPlayerItem will change instead to AVPlayerItemStatusFailed..
-        #[method(automaticallyLoadedAssetKeys)]
+        #[unsafe(method(automaticallyLoadedAssetKeys))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticallyLoadedAssetKeys(&self) -> Retained<NSArray<NSString>>;
     }
@@ -328,31 +328,31 @@ extern_methods!(
 extern_methods!(
     /// AVPlayerItemRateAndSteppingSupport
     unsafe impl AVPlayerItem {
-        #[method(canPlayFastForward)]
+        #[unsafe(method(canPlayFastForward))]
         #[unsafe(method_family = none)]
         pub unsafe fn canPlayFastForward(&self) -> bool;
 
-        #[method(canPlaySlowForward)]
+        #[unsafe(method(canPlaySlowForward))]
         #[unsafe(method_family = none)]
         pub unsafe fn canPlaySlowForward(&self) -> bool;
 
-        #[method(canPlayReverse)]
+        #[unsafe(method(canPlayReverse))]
         #[unsafe(method_family = none)]
         pub unsafe fn canPlayReverse(&self) -> bool;
 
-        #[method(canPlaySlowReverse)]
+        #[unsafe(method(canPlaySlowReverse))]
         #[unsafe(method_family = none)]
         pub unsafe fn canPlaySlowReverse(&self) -> bool;
 
-        #[method(canPlayFastReverse)]
+        #[unsafe(method(canPlayFastReverse))]
         #[unsafe(method_family = none)]
         pub unsafe fn canPlayFastReverse(&self) -> bool;
 
-        #[method(canStepForward)]
+        #[unsafe(method(canStepForward))]
         #[unsafe(method_family = none)]
         pub unsafe fn canStepForward(&self) -> bool;
 
-        #[method(canStepBackward)]
+        #[unsafe(method(canStepBackward))]
         #[unsafe(method_family = none)]
         pub unsafe fn canStepBackward(&self) -> bool;
 
@@ -360,13 +360,13 @@ extern_methods!(
         /// Indicates how close to the latest content in a live stream playback will begin after a live start or a seek to kCMTimePositiveInfinity.
         ///
         /// For non-live assets this value is kCMTimeInvalid.
-        #[method(configuredTimeOffsetFromLive)]
+        #[unsafe(method(configuredTimeOffsetFromLive))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuredTimeOffsetFromLive(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`configuredTimeOffsetFromLive`][Self::configuredTimeOffsetFromLive].
-        #[method(setConfiguredTimeOffsetFromLive:)]
+        #[unsafe(method(setConfiguredTimeOffsetFromLive:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfiguredTimeOffsetFromLive(
             &self,
@@ -377,7 +377,7 @@ extern_methods!(
         /// A recommended value for configuredTimeOffsetFromLive, based on observed network conditions.
         ///
         /// For non-live assets this value is kCMTimeInvalid.
-        #[method(recommendedTimeOffsetFromLive)]
+        #[unsafe(method(recommendedTimeOffsetFromLive))]
         #[unsafe(method_family = none)]
         pub unsafe fn recommendedTimeOffsetFromLive(&self) -> CMTime;
 
@@ -390,12 +390,12 @@ extern_methods!(
         /// Note that if the network cannot deliver media quickly enough to maintain the playback rate, playback may stall interminably.
         ///
         /// This property value has no effect if the asset is not a live stream. The default value of this property is NO.
-        #[method(automaticallyPreservesTimeOffsetFromLive)]
+        #[unsafe(method(automaticallyPreservesTimeOffsetFromLive))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticallyPreservesTimeOffsetFromLive(&self) -> bool;
 
         /// Setter for [`automaticallyPreservesTimeOffsetFromLive`][Self::automaticallyPreservesTimeOffsetFromLive].
-        #[method(setAutomaticallyPreservesTimeOffsetFromLive:)]
+        #[unsafe(method(setAutomaticallyPreservesTimeOffsetFromLive:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyPreservesTimeOffsetFromLive(
             &self,
@@ -413,7 +413,7 @@ extern_methods!(
         /// Returns: A CMTime
         ///
         /// Returns the current time of the item. Not key-value observable; use -[AVPlayer addPeriodicTimeObserverForInterval:queue:usingBlock:] instead.
-        #[method(currentTime)]
+        #[unsafe(method(currentTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentTime(&self) -> CMTime;
 
@@ -429,13 +429,13 @@ extern_methods!(
         /// the action indicated by the value of its actionAtItemEnd property (see AVPlayerActionAtItemEnd in AVPlayer.h).
         ///
         /// The value of this property has no effect on playback when the rate is negative.
-        #[method(forwardPlaybackEndTime)]
+        #[unsafe(method(forwardPlaybackEndTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn forwardPlaybackEndTime(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`forwardPlaybackEndTime`][Self::forwardPlaybackEndTime].
-        #[method(setForwardPlaybackEndTime:)]
+        #[unsafe(method(setForwardPlaybackEndTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setForwardPlaybackEndTime(&self, forward_playback_end_time: CMTime);
 
@@ -451,20 +451,20 @@ extern_methods!(
         /// the action indicated by the value of its actionAtItemEnd property (see AVPlayerActionAtItemEnd in AVPlayer.h).
         ///
         /// The value of this property has no effect on playback when the rate is positive.
-        #[method(reversePlaybackEndTime)]
+        #[unsafe(method(reversePlaybackEndTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn reversePlaybackEndTime(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`reversePlaybackEndTime`][Self::reversePlaybackEndTime].
-        #[method(setReversePlaybackEndTime:)]
+        #[unsafe(method(setReversePlaybackEndTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReversePlaybackEndTime(&self, reverse_playback_end_time: CMTime);
 
         /// This property provides a collection of time ranges that the player item can seek to. The ranges provided might be discontinous.
         ///
         /// Returns an NSArray of NSValues containing CMTimeRanges.
-        #[method(seekableTimeRanges)]
+        #[unsafe(method(seekableTimeRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekableTimeRanges(&self) -> Retained<NSArray<NSValue>>;
 
@@ -480,7 +480,7 @@ extern_methods!(
         /// If the seek time is outside of seekable time ranges as indicated by seekableTimeRanges property, the seek request will be cancelled and the completion handler will be invoked with the finished parameter set to NO.
         ///
         /// This method throws an exception if time is invalid or indefinite.
-        #[method(seekToTime:completionHandler:)]
+        #[unsafe(method(seekToTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_completionHandler(
             &self,
@@ -505,7 +505,7 @@ extern_methods!(
         /// If the seek time is outside of seekable time ranges as indicated by seekableTimeRanges property, the seek request will be cancelled and the completion handler will be invoked with the finished parameter set to NO.
         ///
         /// This method throws an exception if time is invalid or indefinite or if tolerance before or tolerance after is invalid or negative.
-        #[method(seekToTime:toleranceBefore:toleranceAfter:completionHandler:)]
+        #[unsafe(method(seekToTime:toleranceBefore:toleranceAfter:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_toleranceBefore_toleranceAfter_completionHandler(
             &self,
@@ -519,14 +519,14 @@ extern_methods!(
         ///
         /// Use this method to cancel and release the completion handlers of pending seeks. The finished parameter of the completion handlers will
         /// be set to NO.
-        #[method(cancelPendingSeeks)]
+        #[unsafe(method(cancelPendingSeeks))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelPendingSeeks(&self);
 
         /// If currentTime is mapped to a particular (real-time) date, return that date.
         ///
         /// Returns: Returns the date of current playback, or nil if playback is not mapped to any date.
-        #[method(currentDate)]
+        #[unsafe(method(currentDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentDate(&self) -> Option<Retained<NSDate>>;
 
@@ -545,7 +545,7 @@ extern_methods!(
         /// Parameter `completionHandler`: The block to invoke when seek operation is complete
         ///
         /// Returns: Returns true if the playhead was moved to the supplied date.
-        #[method(seekToDate:completionHandler:)]
+        #[unsafe(method(seekToDate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToDate_completionHandler(
             &self,
@@ -560,7 +560,7 @@ extern_methods!(
         /// The size of each step depends on the enabled AVPlayerItemTracks of the AVPlayerItem.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
-        #[method(stepByCount:)]
+        #[unsafe(method(stepByCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stepByCount(&self, step_count: NSInteger);
 
@@ -569,7 +569,7 @@ extern_methods!(
         ///
         /// You can examine the timebase to discover the relationship between the item's time and the source clock used for drift synchronization.
         /// This timebase is read-only; you cannot set its time or rate to affect playback.
-        #[method(timebase)]
+        #[unsafe(method(timebase))]
         #[unsafe(method_family = none)]
         pub unsafe fn timebase(&self) -> Option<Retained<CMTimebase>>;
     }
@@ -587,13 +587,13 @@ extern_methods!(
         /// - renderSize, renderScale, or frameDuration is less than or equal to zero
         /// - sourceTrackIDForFrameTiming is less than or equal to zero
         /// - uses AVVideoCompositionCoreAnimationTool (works for offline rendering only)
-        #[method(videoComposition)]
+        #[unsafe(method(videoComposition))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoComposition(&self) -> Option<Retained<AVVideoComposition>>;
 
         #[cfg(feature = "AVVideoComposition")]
         /// Setter for [`videoComposition`][Self::videoComposition].
-        #[method(setVideoComposition:)]
+        #[unsafe(method(setVideoComposition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoComposition(&self, video_composition: Option<&AVVideoComposition>);
 
@@ -603,7 +603,7 @@ extern_methods!(
         /// This property is nil if there is no video compositor, or if the internal video compositor is in use. This reference can be used to provide extra context to the custom video compositor instance if required.  The value of this property can change as a result of setting the `videoComposition` property.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
-        #[method(customVideoCompositor)]
+        #[unsafe(method(customVideoCompositor))]
         #[unsafe(method_family = none)]
         pub unsafe fn customVideoCompositor(
             &self,
@@ -620,12 +620,12 @@ extern_methods!(
         /// currentTime property to return the time of the displayed video.
         ///
         /// This property has no effect on items for which videoComposition is nil.
-        #[method(seekingWaitsForVideoCompositionRendering)]
+        #[unsafe(method(seekingWaitsForVideoCompositionRendering))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekingWaitsForVideoCompositionRendering(&self) -> bool;
 
         /// Setter for [`seekingWaitsForVideoCompositionRendering`][Self::seekingWaitsForVideoCompositionRendering].
-        #[method(setSeekingWaitsForVideoCompositionRendering:)]
+        #[unsafe(method(setSeekingWaitsForVideoCompositionRendering:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSeekingWaitsForVideoCompositionRendering(
             &self,
@@ -638,13 +638,13 @@ extern_methods!(
         /// The styling information contained in each AVTextStyleRule object in the array is used only when no equivalent styling information is provided by the media resource being played.  For example, if the text style rules specify Courier font but the media resource specifies Helvetica font, the text will be drawn using Helvetica font.
         ///
         /// This property has an effect only for tracks with media subtype kCMSubtitleFormatType_WebVTT.
-        #[method(textStyleRules)]
+        #[unsafe(method(textStyleRules))]
         #[unsafe(method_family = none)]
         pub unsafe fn textStyleRules(&self) -> Option<Retained<NSArray<AVTextStyleRule>>>;
 
         #[cfg(feature = "AVTextStyleRule")]
         /// Setter for [`textStyleRules`][Self::textStyleRules].
-        #[method(setTextStyleRules:)]
+        #[unsafe(method(setTextStyleRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextStyleRules(&self, text_style_rules: Option<&NSArray<AVTextStyleRule>>);
 
@@ -652,23 +652,23 @@ extern_methods!(
         /// Specifies the video aperture mode to apply during playback.
         ///
         /// See AVVideoApertureMode constants defined in AVVideoSettings.h. Default is AVVideoApertureModeCleanAperture.
-        #[method(videoApertureMode)]
+        #[unsafe(method(videoApertureMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoApertureMode(&self) -> Retained<AVVideoApertureMode>;
 
         #[cfg(feature = "AVVideoSettings")]
         /// Setter for [`videoApertureMode`][Self::videoApertureMode].
-        #[method(setVideoApertureMode:)]
+        #[unsafe(method(setVideoApertureMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoApertureMode(&self, video_aperture_mode: &AVVideoApertureMode);
 
         /// Controls whether or not to apply the per frame HDR display metadata of the source during playback.
-        #[method(appliesPerFrameHDRDisplayMetadata)]
+        #[unsafe(method(appliesPerFrameHDRDisplayMetadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn appliesPerFrameHDRDisplayMetadata(&self) -> bool;
 
         /// Setter for [`appliesPerFrameHDRDisplayMetadata`][Self::appliesPerFrameHDRDisplayMetadata].
-        #[method(setAppliesPerFrameHDRDisplayMetadata:)]
+        #[unsafe(method(setAppliesPerFrameHDRDisplayMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAppliesPerFrameHDRDisplayMetadata(
             &self,
@@ -686,13 +686,13 @@ extern_methods!(
         /// Constants for various time pitch algorithms, e.g. AVAudioTimePitchSpectral, are defined in AVAudioProcessingSettings.h.
         /// The default value for applications linked on or after iOS 15.0 or macOS 12.0 is AVAudioTimePitchAlgorithmTimeDomain. For iOS versions prior to 15.0 the default value is AVAudioTimePitchAlgorithmLowQualityZeroLatency.
         /// For macOS versions prior to 12.0 the default value is AVAudioTimePitchAlgorithmSpectral.
-        #[method(audioTimePitchAlgorithm)]
+        #[unsafe(method(audioTimePitchAlgorithm))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioTimePitchAlgorithm(&self) -> Retained<AVAudioTimePitchAlgorithm>;
 
         #[cfg(feature = "AVAudioProcessingSettings")]
         /// Setter for [`audioTimePitchAlgorithm`][Self::audioTimePitchAlgorithm].
-        #[method(setAudioTimePitchAlgorithm:)]
+        #[unsafe(method(setAudioTimePitchAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioTimePitchAlgorithm(
             &self,
@@ -703,13 +703,13 @@ extern_methods!(
         ///
         /// When audio spatialization is allowed for an AVPlayerItem, the AVPlayer may render multichannel audio if available even if the output device doesn't support multichannel audio on its own, via use of a synthetic channel layout. When audio spatialization is not allowed, the AVPlayer must render audio with a channel layout that best matches the capabilities of the output device. This property is not observable. Defaults to YES.
         #[deprecated = "Use allowedAudioSpatializationFormats instead"]
-        #[method(isAudioSpatializationAllowed)]
+        #[unsafe(method(isAudioSpatializationAllowed))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAudioSpatializationAllowed(&self) -> bool;
 
         /// Setter for [`isAudioSpatializationAllowed`][Self::isAudioSpatializationAllowed].
         #[deprecated = "Use allowedAudioSpatializationFormats instead"]
-        #[method(setAudioSpatializationAllowed:)]
+        #[unsafe(method(setAudioSpatializationAllowed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioSpatializationAllowed(&self, audio_spatialization_allowed: bool);
 
@@ -717,13 +717,13 @@ extern_methods!(
         /// Indicates the source audio channel layouts allowed by the receiver for spatialization.
         ///
         /// Spatialization uses psychoacoustic methods to create a more immersive audio rendering when the content is played on specialized headphones and speaker arrangements. When an AVPlayerItem's allowedAudioSpatializationFormats property is set to AVAudioSpatializationFormatMonoAndStereo the AVPlayer will attempt to spatialize content tagged with a stereo channel layout, two-channel content with no layout specified as well as mono. It is considered incorrect to render a binaural recording with spatialization. A binaural recording is captured using two carefully placed microphones at each ear where the intent, when played on headphones, is to reproduce a naturally occurring spatial effect. Content tagged with a binaural channel layout will ignore this property value. When an AVPlayerItem's allowedAudioSpatializationFormats property is set to AVAudioSpatializationFormatMultichannel the AVPlayer will attempt to spatialize any decodable multichannel layout. Setting this property to AVAudioSpatializationFormatMonoStereoAndMultichannel indicates that the sender allows the AVPlayer to spatialize any decodable mono, stereo or multichannel layout. This property is not observable. The default value for this property with video content is AVAudioSpatializationFormatMonoStereoAndMultichannel. Otherwise, audio only content default value is AVAudioSpatializationFormatMultichannel.
-        #[method(allowedAudioSpatializationFormats)]
+        #[unsafe(method(allowedAudioSpatializationFormats))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedAudioSpatializationFormats(&self) -> AVAudioSpatializationFormats;
 
         #[cfg(feature = "AVAudioProcessingSettings")]
         /// Setter for [`allowedAudioSpatializationFormats`][Self::allowedAudioSpatializationFormats].
-        #[method(setAllowedAudioSpatializationFormats:)]
+        #[unsafe(method(setAllowedAudioSpatializationFormats:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedAudioSpatializationFormats(
             &self,
@@ -734,13 +734,13 @@ extern_methods!(
         /// Indicates the audio mix parameters to be applied during playback
         ///
         /// The inputParameters of the AVAudioMix must have trackIDs that correspond to a track of the receiver's asset. Otherwise they will be ignored. (See AVAudioMix.h for the declaration of AVAudioMixInputParameters and AVPlayerItem's asset property.)
-        #[method(audioMix)]
+        #[unsafe(method(audioMix))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioMix(&self) -> Option<Retained<AVAudioMix>>;
 
         #[cfg(feature = "AVAudioMix")]
         /// Setter for [`audioMix`][Self::audioMix].
-        #[method(setAudioMix:)]
+        #[unsafe(method(setAudioMix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioMix(&self, audio_mix: Option<&AVAudioMix>);
     }
@@ -752,7 +752,7 @@ extern_methods!(
         /// This property provides a collection of time ranges for which the player has the media data readily available. The ranges provided might be discontinuous.
         ///
         /// Returns an NSArray of NSValues containing CMTimeRanges.
-        #[method(loadedTimeRanges)]
+        #[unsafe(method(loadedTimeRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
 
@@ -764,7 +764,7 @@ extern_methods!(
         /// reached capacity but there isn't the statistical data to support a prediction that playback is likely to
         /// keep up. It is left to the application programmer to decide to continue media playback or not.
         /// See playbackBufferFull below.
-        #[method(isPlaybackLikelyToKeepUp)]
+        #[unsafe(method(isPlaybackLikelyToKeepUp))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPlaybackLikelyToKeepUp(&self) -> bool;
 
@@ -773,11 +773,11 @@ extern_methods!(
         /// This property reports that the data buffer used for playback has reach capacity.
         /// Despite the playback buffer reaching capacity there might not exist sufficient statistical
         /// data to support a playbackLikelyToKeepUp prediction of YES. See playbackLikelyToKeepUp above.
-        #[method(isPlaybackBufferFull)]
+        #[unsafe(method(isPlaybackBufferFull))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPlaybackBufferFull(&self) -> bool;
 
-        #[method(isPlaybackBufferEmpty)]
+        #[unsafe(method(isPlaybackBufferEmpty))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPlaybackBufferEmpty(&self) -> bool;
 
@@ -786,12 +786,12 @@ extern_methods!(
         /// For live streaming content, the player item may need to use extra networking and power resources to keep playback state up to date when paused.  For example, when this property is set to YES, the seekableTimeRanges property will be periodically updated to reflect the current state of the live stream.
         ///
         /// For clients linked on or after macOS 10.11 or iOS 9.0, the default value is NO.  To minimize power usage, avoid setting this property to YES when you do not need playback state to stay up to date while paused.
-        #[method(canUseNetworkResourcesForLiveStreamingWhilePaused)]
+        #[unsafe(method(canUseNetworkResourcesForLiveStreamingWhilePaused))]
         #[unsafe(method_family = none)]
         pub unsafe fn canUseNetworkResourcesForLiveStreamingWhilePaused(&self) -> bool;
 
         /// Setter for [`canUseNetworkResourcesForLiveStreamingWhilePaused`][Self::canUseNetworkResourcesForLiveStreamingWhilePaused].
-        #[method(setCanUseNetworkResourcesForLiveStreamingWhilePaused:)]
+        #[unsafe(method(setCanUseNetworkResourcesForLiveStreamingWhilePaused:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCanUseNetworkResourcesForLiveStreamingWhilePaused(
             &self,
@@ -803,12 +803,12 @@ extern_methods!(
         /// The value is in seconds. If it is set to 0, the player will choose an appropriate level of buffering for most use cases.
         /// Note that setting this property to a low value will increase the chance that playback will stall and re-buffer, while setting it to a high value will increase demand on system resources.
         /// Note that the system may buffer less than the value of this property in order to manage resource consumption.
-        #[method(preferredForwardBufferDuration)]
+        #[unsafe(method(preferredForwardBufferDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredForwardBufferDuration(&self) -> NSTimeInterval;
 
         /// Setter for [`preferredForwardBufferDuration`][Self::preferredForwardBufferDuration].
-        #[method(setPreferredForwardBufferDuration:)]
+        #[unsafe(method(setPreferredForwardBufferDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredForwardBufferDuration(
             &self,
@@ -855,12 +855,12 @@ extern_methods!(
         /// Set preferredPeakBitRate to non-zero to indicate that the player should attempt to limit item playback to that bit rate, expressed in bits per second.
         ///
         /// If network bandwidth consumption cannot be lowered to meet the preferredPeakBitRate, it will be reduced as much as possible while continuing to play the item.
-        #[method(preferredPeakBitRate)]
+        #[unsafe(method(preferredPeakBitRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredPeakBitRate(&self) -> c_double;
 
         /// Setter for [`preferredPeakBitRate`][Self::preferredPeakBitRate].
-        #[method(setPreferredPeakBitRate:)]
+        #[unsafe(method(setPreferredPeakBitRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredPeakBitRate(&self, preferred_peak_bit_rate: c_double);
 
@@ -874,12 +874,12 @@ extern_methods!(
         ///
         /// Note that preferredPeakBitRate still applies unconditionally.  If preferredPeakBitRateForExpensiveNetworks is less restrictive (greater) than preferredPeakBitRate,
         /// preferredPeakBitRateForExpensiveNetworks has no practical effect.
-        #[method(preferredPeakBitRateForExpensiveNetworks)]
+        #[unsafe(method(preferredPeakBitRateForExpensiveNetworks))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredPeakBitRateForExpensiveNetworks(&self) -> c_double;
 
         /// Setter for [`preferredPeakBitRateForExpensiveNetworks`][Self::preferredPeakBitRateForExpensiveNetworks].
-        #[method(setPreferredPeakBitRateForExpensiveNetworks:)]
+        #[unsafe(method(setPreferredPeakBitRateForExpensiveNetworks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredPeakBitRateForExpensiveNetworks(
             &self,
@@ -891,13 +891,13 @@ extern_methods!(
         ///
         /// The default value is CGSizeZero, which indicates that the client enforces no limit on video resolution. Other values indicate a preferred maximum video resolution.
         /// It only applies to HTTP Live Streaming asset.
-        #[method(preferredMaximumResolution)]
+        #[unsafe(method(preferredMaximumResolution))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredMaximumResolution(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`preferredMaximumResolution`][Self::preferredMaximumResolution].
-        #[method(setPreferredMaximumResolution:)]
+        #[unsafe(method(setPreferredMaximumResolution:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredMaximumResolution(&self, preferred_maximum_resolution: CGSize);
 
@@ -911,13 +911,13 @@ extern_methods!(
         ///
         /// Note that preferredMaximumResolution still applies unconditionally.  If preferredMaximumResolutionForExpensiveNetworks is less restrictive (higher resolution)
         /// than preferredMaximumResolution, preferredMaximumResolutionForExpensiveNetworks has no practical effect.
-        #[method(preferredMaximumResolutionForExpensiveNetworks)]
+        #[unsafe(method(preferredMaximumResolutionForExpensiveNetworks))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredMaximumResolutionForExpensiveNetworks(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`preferredMaximumResolutionForExpensiveNetworks`][Self::preferredMaximumResolutionForExpensiveNetworks].
-        #[method(setPreferredMaximumResolutionForExpensiveNetworks:)]
+        #[unsafe(method(setPreferredMaximumResolutionForExpensiveNetworks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredMaximumResolutionForExpensiveNetworks(
             &self,
@@ -935,12 +935,12 @@ extern_methods!(
         ///
         /// Note that changing this property may impact stream startup performance and quality. In order to be effective this property must be set before initial variant selection occurs.
         /// This property only applies to HTTP Live Streaming assets. The default value of this property is NO.
-        #[method(startsOnFirstEligibleVariant)]
+        #[unsafe(method(startsOnFirstEligibleVariant))]
         #[unsafe(method_family = none)]
         pub unsafe fn startsOnFirstEligibleVariant(&self) -> bool;
 
         /// Setter for [`startsOnFirstEligibleVariant`][Self::startsOnFirstEligibleVariant].
-        #[method(setStartsOnFirstEligibleVariant:)]
+        #[unsafe(method(setStartsOnFirstEligibleVariant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartsOnFirstEligibleVariant(
             &self,
@@ -951,12 +951,12 @@ extern_methods!(
         ///
         /// Changing variant preferences during playback may result in a variant switch.
         /// The default value is AVVariantPreferenceNone.
-        #[method(variantPreferences)]
+        #[unsafe(method(variantPreferences))]
         #[unsafe(method_family = none)]
         pub unsafe fn variantPreferences(&self) -> AVVariantPreferences;
 
         /// Setter for [`variantPreferences`][Self::variantPreferences].
-        #[method(setVariantPreferences:)]
+        #[unsafe(method(setVariantPreferences:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVariantPreferences(&self, variant_preferences: AVVariantPreferences);
     }
@@ -978,7 +978,7 @@ extern_methods!(
         /// Note that if multiple options within a group meet your criteria for selection according to locale or other considerations, and if these options are otherwise indistinguishable to you according to media characteristics that are meaningful for your application, content is typically authored so that the first available option that meets your criteria is appropriate for selection.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
-        #[method(selectMediaOption:inMediaSelectionGroup:)]
+        #[unsafe(method(selectMediaOption:inMediaSelectionGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectMediaOption_inMediaSelectionGroup(
             &self,
@@ -994,7 +994,7 @@ extern_methods!(
         /// Has no effect unless the appliesMediaSelectionCriteriaAutomatically property of the associated AVPlayer is YES and unless automatic media selection has previously been overridden via -[AVPlayerItem selectMediaOption:inMediaSelectionGroup:].
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
-        #[method(selectMediaOptionAutomaticallyInMediaSelectionGroup:)]
+        #[unsafe(method(selectMediaOptionAutomaticallyInMediaSelectionGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectMediaOptionAutomaticallyInMediaSelectionGroup(
             &self,
@@ -1003,7 +1003,7 @@ extern_methods!(
 
         #[cfg(feature = "AVMediaSelection")]
         /// Provides an instance of AVMediaSelection carrying current selections for each of the receiver's media selection groups.
-        #[method(currentMediaSelection)]
+        #[unsafe(method(currentMediaSelection))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentMediaSelection(&self) -> Retained<AVMediaSelection>;
     }
@@ -1019,7 +1019,7 @@ extern_methods!(
         /// An AVPlayerItemNewAccessLogEntryNotification will be posted when new logging information becomes available. However, accessLog might already return a non-nil value even before the first notification is posted.
         ///
         /// Returns: An autoreleased AVPlayerItemAccessLog instance.
-        #[method(accessLog)]
+        #[unsafe(method(accessLog))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessLog(&self) -> Option<Retained<AVPlayerItemAccessLog>>;
 
@@ -1029,7 +1029,7 @@ extern_methods!(
         /// If nil is returned then there is no logging information currently available for this AVPlayerItem.
         ///
         /// Returns: An autoreleased AVPlayerItemErrorLog instance.
-        #[method(errorLog)]
+        #[unsafe(method(errorLog))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorLog(&self) -> Option<Retained<AVPlayerItemErrorLog>>;
     }
@@ -1046,7 +1046,7 @@ extern_methods!(
         /// When an AVPlayerItemOutput is associated with an AVPlayerItem, samples are provided for a media type in accordance with the rules for mixing, composition, or exclusion that the AVPlayer honors among multiple enabled tracks of that media type for its own rendering purposes. For example, video media will be composed according to the instructions provided via AVPlayerItem.videoComposition, if present. Audio media will be mixed according to the parameters provided via AVPlayerItem.audioMix, if present.
         ///
         /// Parameter `output`: An instance of AVPlayerItemOutput
-        #[method(addOutput:)]
+        #[unsafe(method(addOutput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addOutput(&self, output: &AVPlayerItemOutput);
 
@@ -1054,13 +1054,13 @@ extern_methods!(
         /// Removes the specified instance of AVPlayerItemOutput from the receiver's collection of outputs.
         ///
         /// Parameter `output`: An instance of AVPlayerItemOutput
-        #[method(removeOutput:)]
+        #[unsafe(method(removeOutput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeOutput(&self, output: &AVPlayerItemOutput);
 
         #[cfg(feature = "AVPlayerItemOutput")]
         /// The collection of associated outputs.
-        #[method(outputs)]
+        #[unsafe(method(outputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<AVPlayerItemOutput>>;
     }
@@ -1075,7 +1075,7 @@ extern_methods!(
         /// This method may incur additional I/O to collect the requested media data asynchronously.
         ///
         /// Parameter `collector`: An instance of AVPlayerItemMediaDataCollector
-        #[method(addMediaDataCollector:)]
+        #[unsafe(method(addMediaDataCollector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMediaDataCollector(&self, collector: &AVPlayerItemMediaDataCollector);
 
@@ -1083,13 +1083,13 @@ extern_methods!(
         /// Removes the specified instance of AVPlayerItemMediaDataCollector from the receiver's collection of mediaDataCollectors.
         ///
         /// Parameter `collector`: An instance of AVPlayerItemMediaDataCollector
-        #[method(removeMediaDataCollector:)]
+        #[unsafe(method(removeMediaDataCollector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeMediaDataCollector(&self, collector: &AVPlayerItemMediaDataCollector);
 
         #[cfg(feature = "AVPlayerItemMediaDataCollector")]
         /// The collection of associated mediaDataCollectors.
-        #[method(mediaDataCollectors)]
+        #[unsafe(method(mediaDataCollectors))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaDataCollectors(
             &self,
@@ -1108,7 +1108,7 @@ extern_methods!(
         /// The time seeked to may differ from the specified time for efficiency. For sample accurate seeking see seekToTime:toleranceBefore:toleranceAfter:.
         /// If the seek time is outside of seekable time ranges as indicated by seekableTimeRanges property, the seek request will be cancelled.
         #[deprecated = "Use -seekToTime:completionHandler:, passing nil for the completionHandler if you don't require notification of completion"]
-        #[method(seekToTime:)]
+        #[unsafe(method(seekToTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime(&self, time: CMTime);
 
@@ -1126,7 +1126,7 @@ extern_methods!(
         /// within the seekable ranges.
         /// If the seek time is outside of seekable time ranges as indicated by seekableTimeRanges property, the seek request will be cancelled.
         #[deprecated = "Use -seekToTime:toleranceBefore:toleranceAfter:completionHandler:, passing nil for the completionHandler if you don't require notification of completion"]
-        #[method(seekToTime:toleranceBefore:toleranceAfter:)]
+        #[unsafe(method(seekToTime:toleranceBefore:toleranceAfter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_toleranceBefore_toleranceAfter(
             &self,
@@ -1145,7 +1145,7 @@ extern_methods!(
         ///
         /// Returns: Returns true if the playhead was moved to the supplied date.
         #[deprecated = "Use -seekToDate:completionHandler:, passing nil for the completionHandler if you don't require notification of completion"]
-        #[method(seekToDate:)]
+        #[unsafe(method(seekToDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToDate(&self, date: &NSDate) -> bool;
 
@@ -1158,7 +1158,7 @@ extern_methods!(
         ///
         /// If the value of the property allowsEmptySelection of the AVMediaSelectionGroup is YES, the currently selected option in the group may be nil.
         #[deprecated = "Use currentMediaSelection to obtain an instance of AVMediaSelection, which encompasses the currently selected AVMediaSelectionOption in each of the available AVMediaSelectionGroups"]
-        #[method(selectedMediaOptionInMediaSelectionGroup:)]
+        #[unsafe(method(selectedMediaOptionInMediaSelectionGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedMediaOptionInMediaSelectionGroup(
             &self,
@@ -1196,11 +1196,11 @@ unsafe impl NSObjectProtocol for AVPlayerItemAccessLog {}
 
 extern_methods!(
     unsafe impl AVPlayerItemAccessLog {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -1211,7 +1211,7 @@ extern_methods!(
         /// For more information see: http://www.w3.org/pub/WWW/TR/WD-logfile.html
         ///
         /// Returns: An autoreleased NSData instance.
-        #[method(extendedLogData)]
+        #[unsafe(method(extendedLogData))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLogData(&self) -> Option<Retained<NSData>>;
 
@@ -1219,7 +1219,7 @@ extern_methods!(
         ///
         /// A string suitable for console output is obtainable by:
         /// [[NSString alloc] initWithData:[myLog extendedLogData] encoding:[myLog extendedLogDataStringEncoding]]
-        #[method(extendedLogDataStringEncoding)]
+        #[unsafe(method(extendedLogDataStringEncoding))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLogDataStringEncoding(&self) -> NSStringEncoding;
 
@@ -1228,7 +1228,7 @@ extern_methods!(
         /// An ordered collection of AVPlayerItemAccessLogEvent instances that represent the chronological
         /// sequence of events contained in the access log.
         /// This property is not observable.
-        #[method(events)]
+        #[unsafe(method(events))]
         #[unsafe(method_family = none)]
         pub unsafe fn events(&self) -> Retained<NSArray<AVPlayerItemAccessLogEvent>>;
     }
@@ -1261,11 +1261,11 @@ unsafe impl NSObjectProtocol for AVPlayerItemErrorLog {}
 
 extern_methods!(
     unsafe impl AVPlayerItemErrorLog {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -1276,7 +1276,7 @@ extern_methods!(
         /// For more information see: http://www.w3.org/pub/WWW/TR/WD-logfile.html
         ///
         /// Returns: An autoreleased NSData instance.
-        #[method(extendedLogData)]
+        #[unsafe(method(extendedLogData))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLogData(&self) -> Option<Retained<NSData>>;
 
@@ -1284,7 +1284,7 @@ extern_methods!(
         ///
         /// A string suitable for console output is obtainable by:
         /// [[NSString alloc] initWithData:[myLog extendedLogData] encoding:[myLog extendedLogDataStringEncoding]]
-        #[method(extendedLogDataStringEncoding)]
+        #[unsafe(method(extendedLogDataStringEncoding))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLogDataStringEncoding(&self) -> NSStringEncoding;
 
@@ -1293,7 +1293,7 @@ extern_methods!(
         /// An ordered collection of AVPlayerItemErrorLogEvent instances that represent the chronological
         /// sequence of events contained in the error log.
         /// This property is not observable.
-        #[method(events)]
+        #[unsafe(method(events))]
         #[unsafe(method_family = none)]
         pub unsafe fn events(&self) -> Retained<NSArray<AVPlayerItemErrorLogEvent>>;
     }
@@ -1327,11 +1327,11 @@ unsafe impl NSObjectProtocol for AVPlayerItemAccessLogEvent {}
 
 extern_methods!(
     unsafe impl AVPlayerItemAccessLogEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -1341,7 +1341,7 @@ extern_methods!(
         /// This property is not observable.
         /// This property is deprecated. Use numberOfMediaRequests instead.
         #[deprecated]
-        #[method(numberOfSegmentsDownloaded)]
+        #[unsafe(method(numberOfSegmentsDownloaded))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfSegmentsDownloaded(&self) -> NSInteger;
 
@@ -1351,7 +1351,7 @@ extern_methods!(
         /// For HTTP live Streaming, a count of media segments downloaded from the server to this client.
         /// For progressive-style HTTP media downloads, a count of HTTP GET (byte-range) requests for the resource.
         /// This property is not observable.
-        #[method(numberOfMediaRequests)]
+        #[unsafe(method(numberOfMediaRequests))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfMediaRequests(&self) -> NSInteger;
 
@@ -1359,7 +1359,7 @@ extern_methods!(
         ///
         /// If nil is returned the date is unknown. Corresponds to "date".
         /// This property is not observable.
-        #[method(playbackStartDate)]
+        #[unsafe(method(playbackStartDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackStartDate(&self) -> Option<Retained<NSDate>>;
 
@@ -1367,7 +1367,7 @@ extern_methods!(
         ///
         /// If nil is returned the URI is unknown. Corresponds to "uri".
         /// This property is not observable.
-        #[method(URI)]
+        #[unsafe(method(URI))]
         #[unsafe(method_family = none)]
         pub unsafe fn URI(&self) -> Option<Retained<NSString>>;
 
@@ -1375,7 +1375,7 @@ extern_methods!(
         ///
         /// If nil is returned the address is unknown. Can be either an IPv4 or IPv6 address. Corresponds to "s-ip".
         /// This property is not observable.
-        #[method(serverAddress)]
+        #[unsafe(method(serverAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
 
@@ -1383,7 +1383,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "s-ip-changes".
         /// This property is not observable.
-        #[method(numberOfServerAddressChanges)]
+        #[unsafe(method(numberOfServerAddressChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfServerAddressChanges(&self) -> NSInteger;
 
@@ -1391,7 +1391,7 @@ extern_methods!(
         ///
         /// If nil is returned the GUID is unknown. Corresponds to "cs-guid".
         /// This property is not observable.
-        #[method(playbackSessionID)]
+        #[unsafe(method(playbackSessionID))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackSessionID(&self) -> Option<Retained<NSString>>;
 
@@ -1399,7 +1399,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "c-start-time".
         /// This property is not observable.
-        #[method(playbackStartOffset)]
+        #[unsafe(method(playbackStartOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackStartOffset(&self) -> NSTimeInterval;
 
@@ -1407,7 +1407,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "c-duration-downloaded".
         /// This property is not observable.
-        #[method(segmentsDownloadedDuration)]
+        #[unsafe(method(segmentsDownloadedDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentsDownloadedDuration(&self) -> NSTimeInterval;
 
@@ -1415,7 +1415,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "c-duration-watched".
         /// This property is not observable.
-        #[method(durationWatched)]
+        #[unsafe(method(durationWatched))]
         #[unsafe(method_family = none)]
         pub unsafe fn durationWatched(&self) -> NSTimeInterval;
 
@@ -1423,7 +1423,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "c-stalls".
         /// This property is not observable.
-        #[method(numberOfStalls)]
+        #[unsafe(method(numberOfStalls))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfStalls(&self) -> NSInteger;
 
@@ -1431,7 +1431,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "bytes".
         /// This property is not observable.
-        #[method(numberOfBytesTransferred)]
+        #[unsafe(method(numberOfBytesTransferred))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfBytesTransferred(&self) -> c_longlong;
 
@@ -1439,7 +1439,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "c-transfer-duration".
         /// This property is not observable.
-        #[method(transferDuration)]
+        #[unsafe(method(transferDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn transferDuration(&self) -> NSTimeInterval;
 
@@ -1447,7 +1447,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "c-observed-bitrate".
         /// This property is not observable.
-        #[method(observedBitrate)]
+        #[unsafe(method(observedBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn observedBitrate(&self) -> c_double;
 
@@ -1455,7 +1455,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "sc-indicated-bitrate".
         /// This property is not observable.
-        #[method(indicatedBitrate)]
+        #[unsafe(method(indicatedBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn indicatedBitrate(&self) -> c_double;
 
@@ -1463,7 +1463,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "sc-indicated-avg-bitrate".
         /// This property is not observable.
-        #[method(indicatedAverageBitrate)]
+        #[unsafe(method(indicatedAverageBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn indicatedAverageBitrate(&self) -> c_double;
 
@@ -1471,7 +1471,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "c-avg-video-bitrate".
         /// This property is not observable.
-        #[method(averageVideoBitrate)]
+        #[unsafe(method(averageVideoBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn averageVideoBitrate(&self) -> c_double;
 
@@ -1479,7 +1479,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "c-avg-audio-bitrate".
         /// This property is not observable.
-        #[method(averageAudioBitrate)]
+        #[unsafe(method(averageAudioBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn averageAudioBitrate(&self) -> c_double;
 
@@ -1487,7 +1487,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "c-frames-dropped".
         /// This property is not observable.
-        #[method(numberOfDroppedVideoFrames)]
+        #[unsafe(method(numberOfDroppedVideoFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfDroppedVideoFrames(&self) -> NSInteger;
 
@@ -1495,7 +1495,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "c-startup-time".
         /// This property is not observable.
-        #[method(startupTime)]
+        #[unsafe(method(startupTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn startupTime(&self) -> NSTimeInterval;
 
@@ -1503,7 +1503,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "c-overdue".
         /// This property is not observable.
-        #[method(downloadOverdue)]
+        #[unsafe(method(downloadOverdue))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadOverdue(&self) -> NSInteger;
 
@@ -1512,7 +1512,7 @@ extern_methods!(
         /// Value is negative if unknown. Corresponds to "c-observed-max-bitrate".
         /// This property is not observable.
         #[deprecated = "Use observedBitrateStandardDeviation to monitor variance in network bitrate."]
-        #[method(observedMaxBitrate)]
+        #[unsafe(method(observedMaxBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn observedMaxBitrate(&self) -> c_double;
 
@@ -1521,7 +1521,7 @@ extern_methods!(
         /// Value is negative if unknown. Corresponds to "c-observed-min-bitrate".
         /// This property is not observable.
         #[deprecated = "Use observedBitrateStandardDeviation to monitor variance in network bitrate."]
-        #[method(observedMinBitrate)]
+        #[unsafe(method(observedMinBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn observedMinBitrate(&self) -> c_double;
 
@@ -1529,7 +1529,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "c-observed-bitrate-sd".
         /// This property is not observable.
-        #[method(observedBitrateStandardDeviation)]
+        #[unsafe(method(observedBitrateStandardDeviation))]
         #[unsafe(method_family = none)]
         pub unsafe fn observedBitrateStandardDeviation(&self) -> c_double;
 
@@ -1537,7 +1537,7 @@ extern_methods!(
         ///
         /// If nil is returned the playback type is unknown. Corresponds to "s-playback-type".
         /// This property is not observable.
-        #[method(playbackType)]
+        #[unsafe(method(playbackType))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackType(&self) -> Option<Retained<NSString>>;
 
@@ -1545,7 +1545,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "sc-wwan-count".
         /// This property is not observable.
-        #[method(mediaRequestsWWAN)]
+        #[unsafe(method(mediaRequestsWWAN))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaRequestsWWAN(&self) -> NSInteger;
 
@@ -1553,7 +1553,7 @@ extern_methods!(
         ///
         /// Value is negative if unknown. Corresponds to "c-switch-bitrate".
         /// This property is not observable.
-        #[method(switchBitrate)]
+        #[unsafe(method(switchBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn switchBitrate(&self) -> c_double;
     }
@@ -1587,11 +1587,11 @@ unsafe impl NSObjectProtocol for AVPlayerItemErrorLogEvent {}
 
 extern_methods!(
     unsafe impl AVPlayerItemErrorLogEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -1599,7 +1599,7 @@ extern_methods!(
         ///
         /// If nil is returned the date is unknown. Corresponds to "date".
         /// This property is not observable.
-        #[method(date)]
+        #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Option<Retained<NSDate>>;
 
@@ -1607,7 +1607,7 @@ extern_methods!(
         ///
         /// If nil is returned the URI is unknown. Corresponds to "uri".
         /// This property is not observable.
-        #[method(URI)]
+        #[unsafe(method(URI))]
         #[unsafe(method_family = none)]
         pub unsafe fn URI(&self) -> Option<Retained<NSString>>;
 
@@ -1615,7 +1615,7 @@ extern_methods!(
         ///
         /// If nil is returned the address is unknown. Can be either an IPv4 or IPv6 address. Corresponds to "s-ip".
         /// This property is not observable.
-        #[method(serverAddress)]
+        #[unsafe(method(serverAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
 
@@ -1623,7 +1623,7 @@ extern_methods!(
         ///
         /// If nil is returned the GUID is unknown. Corresponds to "cs-guid".
         /// This property is not observable.
-        #[method(playbackSessionID)]
+        #[unsafe(method(playbackSessionID))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackSessionID(&self) -> Option<Retained<NSString>>;
 
@@ -1631,7 +1631,7 @@ extern_methods!(
         ///
         /// Corresponds to "status".
         /// This property is not observable.
-        #[method(errorStatusCode)]
+        #[unsafe(method(errorStatusCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorStatusCode(&self) -> NSInteger;
 
@@ -1639,7 +1639,7 @@ extern_methods!(
         ///
         /// Corresponds to "domain".
         /// This property is not observable.
-        #[method(errorDomain)]
+        #[unsafe(method(errorDomain))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorDomain(&self) -> Retained<NSString>;
 
@@ -1647,11 +1647,11 @@ extern_methods!(
         ///
         /// If nil is returned further information is not available. Corresponds to "comment".
         /// This property is not observable.
-        #[method(errorComment)]
+        #[unsafe(method(errorComment))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorComment(&self) -> Option<Retained<NSString>>;
 
-        #[method(allHTTPResponseHeaderFields)]
+        #[unsafe(method(allHTTPResponseHeaderFields))]
         #[unsafe(method_family = none)]
         pub unsafe fn allHTTPResponseHeaderFields(
             &self,

@@ -78,13 +78,13 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLHtmlElement {
         #[deprecated]
-        #[method(version)]
+        #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> Retained<NSString>;
 
         /// Setter for [`version`][Self::version].
         #[deprecated]
-        #[method(setVersion:)]
+        #[unsafe(method(setVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVersion(&self, version: Option<&NSString>);
     }
@@ -101,7 +101,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLHtmlElement {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -117,7 +117,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLHtmlElement {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

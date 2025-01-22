@@ -10,7 +10,7 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectoryextensioncontextdelegate?language=objc)
     pub unsafe trait CXCallDirectoryExtensionContextDelegate: NSObjectProtocol {
-        #[method(requestFailedForExtensionContext:withError:)]
+        #[unsafe(method(requestFailedForExtensionContext:withError:))]
         #[unsafe(method_family = none)]
         unsafe fn requestFailedForExtensionContext_withError(
             &self,
@@ -31,7 +31,7 @@ unsafe impl NSObjectProtocol for CXCallDirectoryExtensionContext {}
 
 extern_methods!(
     unsafe impl CXCallDirectoryExtensionContext {
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -39,7 +39,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -53,12 +53,12 @@ extern_methods!(
         /// was loaded for the extension. Otherwise, if this method is not called OR is called and returns NO, then the request must provide
         /// a "complete" set of entries, adding the full list of entries from scratch (and removing none), regardless of whether data has ever been
         /// successfully loaded in the past.
-        #[method(isIncremental)]
+        #[unsafe(method(isIncremental))]
         #[unsafe(method_family = none)]
         pub unsafe fn isIncremental(&self) -> bool;
 
         #[cfg(feature = "CXCallDirectory")]
-        #[method(addBlockingEntryWithNextSequentialPhoneNumber:)]
+        #[unsafe(method(addBlockingEntryWithNextSequentialPhoneNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addBlockingEntryWithNextSequentialPhoneNumber(
             &self,
@@ -73,7 +73,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `phoneNumber`: The blocking entry phone number to remove.
-        #[method(removeBlockingEntryWithPhoneNumber:)]
+        #[unsafe(method(removeBlockingEntryWithPhoneNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeBlockingEntryWithPhoneNumber(
             &self,
@@ -84,12 +84,12 @@ extern_methods!(
         ///
         /// May only be used when `-isIncremental` returns YES, indicating that the request should provide incremental entries and thus may use this
         /// API to remove all previously-added blocking entries.
-        #[method(removeAllBlockingEntries)]
+        #[unsafe(method(removeAllBlockingEntries))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllBlockingEntries(&self);
 
         #[cfg(feature = "CXCallDirectory")]
-        #[method(addIdentificationEntryWithNextSequentialPhoneNumber:label:)]
+        #[unsafe(method(addIdentificationEntryWithNextSequentialPhoneNumber:label:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addIdentificationEntryWithNextSequentialPhoneNumber_label(
             &self,
@@ -106,7 +106,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `phoneNumber`: The identification entry phone number to remove.
-        #[method(removeIdentificationEntryWithPhoneNumber:)]
+        #[unsafe(method(removeIdentificationEntryWithPhoneNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeIdentificationEntryWithPhoneNumber(
             &self,
@@ -117,12 +117,12 @@ extern_methods!(
         ///
         /// May only be used when `-isIncremental` returns YES, indicating that the request should provide incremental entries and thus may use this
         /// API to remove all previously-added identification entries.
-        #[method(removeAllIdentificationEntries)]
+        #[unsafe(method(removeAllIdentificationEntries))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllIdentificationEntries(&self);
 
         #[cfg(feature = "block2")]
-        #[method(completeRequestWithCompletionHandler:)]
+        #[unsafe(method(completeRequestWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeRequestWithCompletionHandler(
             &self,
@@ -130,7 +130,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(completeRequestReturningItems:completionHandler:)]
+        #[unsafe(method(completeRequestReturningItems:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeRequestReturningItems_completionHandler(
             &self,
@@ -143,11 +143,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXCallDirectoryExtensionContext {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

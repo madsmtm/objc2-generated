@@ -21,12 +21,12 @@ unsafe impl NSObjectProtocol for CKAcceptSharesOperation {}
 extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKAcceptSharesOperation {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKShareMetadata")]
-        #[method(initWithShareMetadatas:)]
+        #[unsafe(method(initWithShareMetadatas:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithShareMetadatas(
             this: Allocated<Self>,
@@ -34,13 +34,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKShareMetadata")]
-        #[method(shareMetadatas)]
+        #[unsafe(method(shareMetadatas))]
         #[unsafe(method_family = none)]
         pub unsafe fn shareMetadatas(&self) -> Option<Retained<NSArray<CKShareMetadata>>>;
 
         #[cfg(feature = "CKShareMetadata")]
         /// Setter for [`shareMetadatas`][Self::shareMetadatas].
-        #[method(setShareMetadatas:)]
+        #[unsafe(method(setShareMetadatas:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShareMetadatas(&self, share_metadatas: Option<&NSArray<CKShareMetadata>>);
 
@@ -58,7 +58,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(perShareCompletionBlock)]
+        #[unsafe(method(perShareCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perShareCompletionBlock(
             &self,
@@ -71,7 +71,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`perShareCompletionBlock`][Self::perShareCompletionBlock].
-        #[method(setPerShareCompletionBlock:)]
+        #[unsafe(method(setPerShareCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerShareCompletionBlock(
             &self,
@@ -99,7 +99,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(acceptSharesCompletionBlock)]
+        #[unsafe(method(acceptSharesCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn acceptSharesCompletionBlock(
             &self,
@@ -107,7 +107,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`acceptSharesCompletionBlock`][Self::acceptSharesCompletionBlock].
-        #[method(setAcceptSharesCompletionBlock:)]
+        #[unsafe(method(setAcceptSharesCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAcceptSharesCompletionBlock(
             &self,
@@ -120,7 +120,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CKOperation")]
     unsafe impl CKAcceptSharesOperation {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

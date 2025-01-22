@@ -18,38 +18,38 @@ unsafe impl NSObjectProtocol for PHAssetResource {}
 extern_methods!(
     unsafe impl PHAssetResource {
         #[cfg(feature = "PhotosTypes")]
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> PHAssetResourceType;
 
-        #[method(assetLocalIdentifier)]
+        #[unsafe(method(assetLocalIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetLocalIdentifier(&self) -> Retained<NSString>;
 
-        #[method(uniformTypeIdentifier)]
+        #[unsafe(method(uniformTypeIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniformTypeIdentifier(&self) -> Retained<NSString>;
 
-        #[method(originalFilename)]
+        #[unsafe(method(originalFilename))]
         #[unsafe(method_family = none)]
         pub unsafe fn originalFilename(&self) -> Retained<NSString>;
 
-        #[method(pixelWidth)]
+        #[unsafe(method(pixelWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelWidth(&self) -> NSInteger;
 
-        #[method(pixelHeight)]
+        #[unsafe(method(pixelHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelHeight(&self) -> NSInteger;
 
         #[cfg(all(feature = "PHAsset", feature = "PHObject"))]
-        #[method(assetResourcesForAsset:)]
+        #[unsafe(method(assetResourcesForAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetResourcesForAsset(asset: &PHAsset)
             -> Retained<NSArray<PHAssetResource>>;
 
         #[cfg(feature = "PHLivePhoto")]
-        #[method(assetResourcesForLivePhoto:)]
+        #[unsafe(method(assetResourcesForLivePhoto:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetResourcesForLivePhoto(
             live_photo: &PHLivePhoto,
@@ -60,11 +60,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHAssetResource {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

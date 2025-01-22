@@ -51,19 +51,19 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSStyleRule {
         #[deprecated]
-        #[method(selectorText)]
+        #[unsafe(method(selectorText))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectorText(&self) -> Retained<NSString>;
 
         /// Setter for [`selectorText`][Self::selectorText].
         #[deprecated]
-        #[method(setSelectorText:)]
+        #[unsafe(method(setSelectorText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectorText(&self, selector_text: Option<&NSString>);
 
         #[cfg(feature = "DOMCSSStyleDeclaration")]
         #[deprecated]
-        #[method(style)]
+        #[unsafe(method(style))]
         #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> Option<Retained<DOMCSSStyleDeclaration>>;
     }
@@ -78,7 +78,7 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSStyleRule {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -92,7 +92,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSStyleRule {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

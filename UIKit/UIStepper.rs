@@ -101,71 +101,71 @@ unsafe impl UITraitEnvironment for UIStepper {}
 extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIStepper {
-        #[method(isContinuous)]
+        #[unsafe(method(isContinuous))]
         #[unsafe(method_family = none)]
         pub unsafe fn isContinuous(&self) -> bool;
 
         /// Setter for [`isContinuous`][Self::isContinuous].
-        #[method(setContinuous:)]
+        #[unsafe(method(setContinuous:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContinuous(&self, continuous: bool);
 
-        #[method(autorepeat)]
+        #[unsafe(method(autorepeat))]
         #[unsafe(method_family = none)]
         pub unsafe fn autorepeat(&self) -> bool;
 
         /// Setter for [`autorepeat`][Self::autorepeat].
-        #[method(setAutorepeat:)]
+        #[unsafe(method(setAutorepeat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutorepeat(&self, autorepeat: bool);
 
-        #[method(wraps)]
+        #[unsafe(method(wraps))]
         #[unsafe(method_family = none)]
         pub unsafe fn wraps(&self) -> bool;
 
         /// Setter for [`wraps`][Self::wraps].
-        #[method(setWraps:)]
+        #[unsafe(method(setWraps:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWraps(&self, wraps: bool);
 
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> c_double;
 
         /// Setter for [`value`][Self::value].
-        #[method(setValue:)]
+        #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: c_double);
 
-        #[method(minimumValue)]
+        #[unsafe(method(minimumValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumValue(&self) -> c_double;
 
         /// Setter for [`minimumValue`][Self::minimumValue].
-        #[method(setMinimumValue:)]
+        #[unsafe(method(setMinimumValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumValue(&self, minimum_value: c_double);
 
-        #[method(maximumValue)]
+        #[unsafe(method(maximumValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumValue(&self) -> c_double;
 
         /// Setter for [`maximumValue`][Self::maximumValue].
-        #[method(setMaximumValue:)]
+        #[unsafe(method(setMaximumValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumValue(&self, maximum_value: c_double);
 
-        #[method(stepValue)]
+        #[unsafe(method(stepValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn stepValue(&self) -> c_double;
 
         /// Setter for [`stepValue`][Self::stepValue].
-        #[method(setStepValue:)]
+        #[unsafe(method(setStepValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStepValue(&self, step_value: c_double);
 
         #[cfg(feature = "UIImage")]
-        #[method(setBackgroundImage:forState:)]
+        #[unsafe(method(setBackgroundImage:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImage_forState(
             &self,
@@ -174,7 +174,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIImage")]
-        #[method(backgroundImageForState:)]
+        #[unsafe(method(backgroundImageForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundImageForState(
             &self,
@@ -182,7 +182,7 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
-        #[method(setDividerImage:forLeftSegmentState:rightSegmentState:)]
+        #[unsafe(method(setDividerImage:forLeftSegmentState:rightSegmentState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDividerImage_forLeftSegmentState_rightSegmentState(
             &self,
@@ -192,7 +192,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIImage")]
-        #[method(setIncrementImage:forState:)]
+        #[unsafe(method(setIncrementImage:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncrementImage_forState(
             &self,
@@ -201,7 +201,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIImage")]
-        #[method(incrementImageForState:)]
+        #[unsafe(method(incrementImageForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn incrementImageForState(
             &self,
@@ -209,7 +209,7 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
-        #[method(setDecrementImage:forState:)]
+        #[unsafe(method(setDecrementImage:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDecrementImage_forState(
             &self,
@@ -218,7 +218,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIImage")]
-        #[method(decrementImageForState:)]
+        #[unsafe(method(decrementImageForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decrementImageForState(
             &self,
@@ -232,11 +232,11 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIStepper {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -249,7 +249,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
-        #[method(initWithFrame:primaryAction:)]
+        #[unsafe(method(initWithFrame:primaryAction:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,
@@ -263,11 +263,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIStepper {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

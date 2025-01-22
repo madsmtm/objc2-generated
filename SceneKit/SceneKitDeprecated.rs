@@ -58,7 +58,7 @@ extern_methods!(
         ///
         /// Returns the attribute for the specified key. The valid keys are described in the "Light Attributes" constants.
         #[deprecated = "Use SCNLight properties instead"]
-        #[method(attributeForKey:)]
+        #[unsafe(method(attributeForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
@@ -68,7 +68,7 @@ extern_methods!(
         ///
         /// Set the specified attribute for the specified key. The valid keys are described in the "Light Attributes" constants.
         #[deprecated = "Use SCNLight properties instead"]
-        #[method(setAttribute:forKey:)]
+        #[unsafe(method(setAttribute:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttribute_forKey(&self, attribute: Option<&AnyObject>, key: &NSString);
     }
@@ -86,14 +86,14 @@ extern_methods!(
         ///
         /// Determines the maximum amount of blur for objects out of focus. Defaults to 0.
         #[deprecated = "Use fStop instead"]
-        #[method(focalBlurRadius)]
+        #[unsafe(method(focalBlurRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn focalBlurRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`focalBlurRadius`][Self::focalBlurRadius].
         #[deprecated = "Use fStop instead"]
-        #[method(setFocalBlurRadius:)]
+        #[unsafe(method(setFocalBlurRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocalBlurRadius(&self, focal_blur_radius: CGFloat);
 
@@ -101,13 +101,13 @@ extern_methods!(
         ///
         /// When both xFov and yFov are null an yFov of 60° is used. When both are set, the one that best fits the renderer's aspect ratio is used. When only one is set, it is used. Defaults to 0.
         #[deprecated = "Use -[SCNCamera fieldOfView] or -[SCNCamera focalLength] instead"]
-        #[method(xFov)]
+        #[unsafe(method(xFov))]
         #[unsafe(method_family = none)]
         pub unsafe fn xFov(&self) -> c_double;
 
         /// Setter for [`xFov`][Self::xFov].
         #[deprecated = "Use -[SCNCamera fieldOfView] or -[SCNCamera focalLength] instead"]
-        #[method(setXFov:)]
+        #[unsafe(method(setXFov:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setXFov(&self, x_fov: c_double);
 
@@ -115,13 +115,13 @@ extern_methods!(
         ///
         /// When both xFov and yFov are null an yFov of 60° is used. When both are set, the one that best fits the renderer's aspect ratio is used. When only one is set, it is used. Defaults to 0.
         #[deprecated = "Use -[SCNCamera fieldOfView] or -[SCNCamera focalLength] instead"]
-        #[method(yFov)]
+        #[unsafe(method(yFov))]
         #[unsafe(method_family = none)]
         pub unsafe fn yFov(&self) -> c_double;
 
         /// Setter for [`yFov`][Self::yFov].
         #[deprecated = "Use -[SCNCamera fieldOfView] or -[SCNCamera focalLength] instead"]
-        #[method(setYFov:)]
+        #[unsafe(method(setYFov:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setYFov(&self, y_fov: c_double);
 
@@ -130,14 +130,14 @@ extern_methods!(
         ///
         /// Defaults to 1/8.0.
         #[deprecated = "Use -[SCNCamera fStop] instead with fStop = sensorHeight / aperture."]
-        #[method(aperture)]
+        #[unsafe(method(aperture))]
         #[unsafe(method_family = none)]
         pub unsafe fn aperture(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`aperture`][Self::aperture].
         #[deprecated = "Use -[SCNCamera fStop] instead with fStop = sensorHeight / aperture."]
-        #[method(setAperture:)]
+        #[unsafe(method(setAperture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAperture(&self, aperture: CGFloat);
 
@@ -146,14 +146,14 @@ extern_methods!(
         ///
         /// Determines the size of the area around focalDistance where the objects are in focus. Defaults to 0.
         #[deprecated]
-        #[method(focalSize)]
+        #[unsafe(method(focalSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn focalSize(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`focalSize`][Self::focalSize].
         #[deprecated]
-        #[method(setFocalSize:)]
+        #[unsafe(method(setFocalSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocalSize(&self, focal_size: CGFloat);
 
@@ -162,14 +162,14 @@ extern_methods!(
         ///
         /// When non zero, the focal distance determines how the camera focuses the objects in the 3d scene. Defaults to 10.0 prior to macOS 10.13, iOS 11, tvOS 11 and watchOS 4. Defaults to 2.5 otherwise.
         #[deprecated]
-        #[method(focalDistance)]
+        #[unsafe(method(focalDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn focalDistance(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`focalDistance`][Self::focalDistance].
         #[deprecated]
-        #[method(setFocalDistance:)]
+        #[unsafe(method(setFocalDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocalDistance(&self, focal_distance: CGFloat);
     }
@@ -183,7 +183,7 @@ extern_methods!(
         ///
         /// This method only work if the receiver was allocated with an OpenGL context and it is deprecated (use renderAtTime: instead). Use renderAtTime:withEncoder:pass:commandQueue: to render with Metal.
         #[deprecated]
-        #[method(render)]
+        #[unsafe(method(render))]
         #[unsafe(method_family = none)]
         pub unsafe fn render(&self);
     }
@@ -197,13 +197,13 @@ extern_methods!(
         ///
         /// The border color is ignored on iOS and is always considered as clear color (0,0,0,0) when the texture has an alpha channel and opaque back (0,0,0,1) otherwise.
         #[deprecated = "Deprecated"]
-        #[method(borderColor)]
+        #[unsafe(method(borderColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn borderColor(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`borderColor`][Self::borderColor].
         #[deprecated = "Deprecated"]
-        #[method(setBorderColor:)]
+        #[unsafe(method(setBorderColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderColor(&self, border_color: Option<&AnyObject>);
     }

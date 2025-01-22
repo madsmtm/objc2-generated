@@ -17,7 +17,7 @@ extern_protocol!(
         /// Parameter `input`: the element that has been modified.
         ///
         /// See: value
-        #[method(positionDidChangeHandler)]
+        #[unsafe(method(positionDidChangeHandler))]
         #[unsafe(method_family = none)]
         unsafe fn positionDidChangeHandler(
             &self,
@@ -31,7 +31,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Setter for [`positionDidChangeHandler`][Self::positionDidChangeHandler].
-        #[method(setPositionDidChangeHandler:)]
+        #[unsafe(method(setPositionDidChangeHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setPositionDidChangeHandler(
             &self,
@@ -50,18 +50,18 @@ extern_protocol!(
         ///
         ///
         /// See: valueDidChangeHandler
-        #[method(position)]
+        #[unsafe(method(position))]
         #[unsafe(method_family = none)]
         unsafe fn position(&self) -> NSInteger;
 
         /// The (inclusive) bounds of possible position values for the switch.
-        #[method(positionRange)]
+        #[unsafe(method(positionRange))]
         #[unsafe(method_family = none)]
         unsafe fn positionRange(&self) -> NSRange;
 
         /// `YES`if the switch input can only transition to positions that are adjacent
         /// to the current position.
-        #[method(isSequential)]
+        #[unsafe(method(isSequential))]
         #[unsafe(method_family = none)]
         unsafe fn isSequential(&self) -> bool;
 
@@ -70,7 +70,7 @@ extern_protocol!(
         ///
         /// This will always be
         /// `YES`for non-sequential switch inputs.
-        #[method(canWrap)]
+        #[unsafe(method(canWrap))]
         #[unsafe(method_family = none)]
         unsafe fn canWrap(&self) -> bool;
 
@@ -79,7 +79,7 @@ extern_protocol!(
         /// This time interval is not relative to any specific point in time.  You can
         /// subtract a previous timestamp from the returned timestamp to determine the time
         /// (in seconds) between changes to the value.
-        #[method(lastPositionTimestamp)]
+        #[unsafe(method(lastPositionTimestamp))]
         #[unsafe(method_family = none)]
         unsafe fn lastPositionTimestamp(&self) -> NSTimeInterval;
 
@@ -89,14 +89,14 @@ extern_protocol!(
         /// This should be treated as a lower bound of the event latency.  It may not
         /// include (wired or wireless) transmission latency, or latency accrued on
         /// the device before the event was transmitted to the host.
-        #[method(lastPositionLatency)]
+        #[unsafe(method(lastPositionLatency))]
         #[unsafe(method_family = none)]
         unsafe fn lastPositionLatency(&self) -> NSTimeInterval;
 
         #[cfg(feature = "GCPhysicalInputSource")]
         /// An object describing the physical action(s) the user performs to manipulate
         /// this input.
-        #[method(sources)]
+        #[unsafe(method(sources))]
         #[unsafe(method_family = none)]
         unsafe fn sources(&self) -> Retained<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }

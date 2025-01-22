@@ -30,18 +30,18 @@ extern_methods!(
         #[cfg(feature = "MLCTypes")]
         /// The reduction type
         #[deprecated]
-        #[method(reductionType)]
+        #[unsafe(method(reductionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn reductionType(&self) -> MLCReductionType;
 
         /// The dimension over which to perform the reduction operation
         #[deprecated]
-        #[method(dimension)]
+        #[unsafe(method(dimension))]
         #[unsafe(method_family = none)]
         pub unsafe fn dimension(&self) -> NSUInteger;
 
         /// The dimensions over which to perform the reduction operation
-        #[method(dimensions)]
+        #[unsafe(method(dimensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn dimensions(&self) -> Retained<NSArray<NSNumber>>;
 
@@ -54,7 +54,7 @@ extern_methods!(
         ///
         /// Returns: A new reduction layer.
         #[deprecated]
-        #[method(layerWithReductionType:dimension:)]
+        #[unsafe(method(layerWithReductionType:dimension:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithReductionType_dimension(
             reduction_type: MLCReductionType,
@@ -69,7 +69,7 @@ extern_methods!(
         /// Parameter `dimensions`: The list of dimensions to reduce over
         ///
         /// Returns: A new reduction layer.
-        #[method(layerWithReductionType:dimensions:)]
+        #[unsafe(method(layerWithReductionType:dimensions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithReductionType_dimensions(
             reduction_type: MLCReductionType,
@@ -83,12 +83,12 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCReductionLayer {
         #[deprecated]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

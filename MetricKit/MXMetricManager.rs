@@ -28,18 +28,18 @@ extern_methods!(
     unsafe impl MXMetricManager {
         #[cfg(feature = "MXMetricPayload")]
         /// A list of past metric payloads received.
-        #[method(pastPayloads)]
+        #[unsafe(method(pastPayloads))]
         #[unsafe(method_family = none)]
         pub unsafe fn pastPayloads(&self) -> Retained<NSArray<MXMetricPayload>>;
 
         #[cfg(feature = "MXDiagnosticPayload")]
         /// A list of past diagnostic payloads received.
-        #[method(pastDiagnosticPayloads)]
+        #[unsafe(method(pastDiagnosticPayloads))]
         #[unsafe(method_family = none)]
         pub unsafe fn pastDiagnosticPayloads(&self) -> Retained<NSArray<MXDiagnosticPayload>>;
 
         /// Singleton instance of MXMetricManager.
-        #[method(sharedManager)]
+        #[unsafe(method(sharedManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedManager() -> Retained<MXMetricManager>;
 
@@ -48,7 +48,7 @@ extern_methods!(
         /// Parameter `subscriber`: An object that conforms to the MXMetricManagerSubscriber protocol.
         ///
         /// Subscribers can receive metric payloads by conforming to the MXMetricManagerSubscriber protocol.
-        #[method(addSubscriber:)]
+        #[unsafe(method(addSubscriber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSubscriber(
             &self,
@@ -60,7 +60,7 @@ extern_methods!(
         /// Parameter `subscriber`: An object that conforms to the MXMetricManagerSubscriber protocol.
         ///
         /// The subscriber indicated, if previously registered, will no longer receive metric payloads.
-        #[method(removeSubscriber:)]
+        #[unsafe(method(removeSubscriber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeSubscriber(
             &self,
@@ -72,11 +72,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXMetricManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -104,7 +104,7 @@ extern_protocol!(
         ///
         /// This method is invoked on a background queue.
         #[optional]
-        #[method(didReceiveMetricPayloads:)]
+        #[unsafe(method(didReceiveMetricPayloads:))]
         #[unsafe(method_family = none)]
         unsafe fn didReceiveMetricPayloads(&self, payloads: &NSArray<MXMetricPayload>);
 
@@ -121,7 +121,7 @@ extern_protocol!(
         ///
         /// This method is invoked on a background queue.
         #[optional]
-        #[method(didReceiveDiagnosticPayloads:)]
+        #[unsafe(method(didReceiveDiagnosticPayloads:))]
         #[unsafe(method_family = none)]
         unsafe fn didReceiveDiagnosticPayloads(&self, payloads: &NSArray<MXDiagnosticPayload>);
     }

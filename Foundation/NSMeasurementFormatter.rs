@@ -58,48 +58,48 @@ unsafe impl NSSecureCoding for NSMeasurementFormatter {}
 extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSMeasurementFormatter {
-        #[method(unitOptions)]
+        #[unsafe(method(unitOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn unitOptions(&self) -> NSMeasurementFormatterUnitOptions;
 
         /// Setter for [`unitOptions`][Self::unitOptions].
-        #[method(setUnitOptions:)]
+        #[unsafe(method(setUnitOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUnitOptions(&self, unit_options: NSMeasurementFormatterUnitOptions);
 
-        #[method(unitStyle)]
+        #[unsafe(method(unitStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn unitStyle(&self) -> NSFormattingUnitStyle;
 
         /// Setter for [`unitStyle`][Self::unitStyle].
-        #[method(setUnitStyle:)]
+        #[unsafe(method(setUnitStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
 
         #[cfg(feature = "NSLocale")]
-        #[method(locale)]
+        #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
         /// Setter for [`locale`][Self::locale].
-        #[method(setLocale:)]
+        #[unsafe(method(setLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(feature = "NSNumberFormatter")]
-        #[method(numberFormatter)]
+        #[unsafe(method(numberFormatter))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
 
         #[cfg(feature = "NSNumberFormatter")]
         /// Setter for [`numberFormatter`][Self::numberFormatter].
-        #[method(setNumberFormatter:)]
+        #[unsafe(method(setNumberFormatter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
         #[cfg(all(feature = "NSMeasurement", feature = "NSString"))]
-        #[method(stringFromMeasurement:)]
+        #[unsafe(method(stringFromMeasurement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromMeasurement(
             &self,
@@ -107,7 +107,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSString", feature = "NSUnit"))]
-        #[method(stringFromUnit:)]
+        #[unsafe(method(stringFromUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromUnit(&self, unit: &NSUnit) -> Retained<NSString>;
     }
@@ -117,11 +117,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSMeasurementFormatter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

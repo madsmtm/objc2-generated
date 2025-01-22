@@ -31,33 +31,33 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMMediaList {
         #[deprecated]
-        #[method(mediaText)]
+        #[unsafe(method(mediaText))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaText(&self) -> Retained<NSString>;
 
         /// Setter for [`mediaText`][Self::mediaText].
         #[deprecated]
-        #[method(setMediaText:)]
+        #[unsafe(method(setMediaText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaText(&self, media_text: Option<&NSString>);
 
         #[deprecated]
-        #[method(length)]
+        #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> c_uint;
 
         #[deprecated]
-        #[method(item:)]
+        #[unsafe(method(item:))]
         #[unsafe(method_family = none)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Retained<NSString>>;
 
         #[deprecated]
-        #[method(deleteMedium:)]
+        #[unsafe(method(deleteMedium:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteMedium(&self, old_medium: Option<&NSString>);
 
         #[deprecated]
-        #[method(appendMedium:)]
+        #[unsafe(method(appendMedium:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendMedium(&self, new_medium: Option<&NSString>);
     }
@@ -68,7 +68,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMMediaList {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -78,7 +78,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMMediaList {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

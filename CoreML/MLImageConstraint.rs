@@ -26,27 +26,27 @@ unsafe impl NSSecureCoding for MLImageConstraint {}
 extern_methods!(
     unsafe impl MLImageConstraint {
         /// The required or default height of the image
-        #[method(pixelsHigh)]
+        #[unsafe(method(pixelsHigh))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelsHigh(&self) -> NSInteger;
 
         /// The required or default width of the image
-        #[method(pixelsWide)]
+        #[unsafe(method(pixelsWide))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelsWide(&self) -> NSInteger;
 
         /// The accepted kCVPixelFormatType for the image.
-        #[method(pixelFormatType)]
+        #[unsafe(method(pixelFormatType))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelFormatType(&self) -> OSType;
 
         #[cfg(feature = "MLImageSizeConstraint")]
         /// Detailed image size constraint
-        #[method(sizeConstraint)]
+        #[unsafe(method(sizeConstraint))]
         #[unsafe(method_family = none)]
         pub unsafe fn sizeConstraint(&self) -> Retained<MLImageSizeConstraint>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -55,7 +55,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLImageConstraint {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

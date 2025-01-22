@@ -51,25 +51,25 @@ unsafe impl NSUserInterfaceItemIdentification for NSTableColumn {}
 extern_methods!(
     unsafe impl NSTableColumn {
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
-        #[method(initWithIdentifier:)]
+        #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSUserInterfaceItemIdentifier,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUserInterfaceItemIdentifier>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         /// Setter for [`identifier`][Self::identifier].
-        #[method(setIdentifier:)]
+        #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: &NSUserInterfaceItemIdentifier);
 
@@ -79,7 +79,7 @@ extern_methods!(
             feature = "NSTableView",
             feature = "NSView"
         ))]
-        #[method(tableView)]
+        #[unsafe(method(tableView))]
         #[unsafe(method_family = none)]
         pub unsafe fn tableView(&self) -> Option<Retained<NSTableView>>;
 
@@ -91,49 +91,49 @@ extern_methods!(
         ))]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`tableView`][Self::tableView].
-        #[method(setTableView:)]
+        #[unsafe(method(setTableView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTableView(&self, table_view: Option<&NSTableView>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(width)]
+        #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`width`][Self::width].
-        #[method(setWidth:)]
+        #[unsafe(method(setWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(minWidth)]
+        #[unsafe(method(minWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn minWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minWidth`][Self::minWidth].
-        #[method(setMinWidth:)]
+        #[unsafe(method(setMinWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinWidth(&self, min_width: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(maxWidth)]
+        #[unsafe(method(maxWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maxWidth`][Self::maxWidth].
-        #[method(setMaxWidth:)]
+        #[unsafe(method(setMaxWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxWidth(&self, max_width: CGFloat);
 
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
@@ -143,7 +143,7 @@ extern_methods!(
             feature = "NSTableHeaderCell",
             feature = "NSTextFieldCell"
         ))]
-        #[method(headerCell)]
+        #[unsafe(method(headerCell))]
         #[unsafe(method_family = none)]
         pub unsafe fn headerCell(&self) -> Retained<NSTableHeaderCell>;
 
@@ -154,59 +154,59 @@ extern_methods!(
             feature = "NSTextFieldCell"
         ))]
         /// Setter for [`headerCell`][Self::headerCell].
-        #[method(setHeaderCell:)]
+        #[unsafe(method(setHeaderCell:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeaderCell(&self, header_cell: &NSTableHeaderCell);
 
-        #[method(isEditable)]
+        #[unsafe(method(isEditable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEditable(&self) -> bool;
 
         /// Setter for [`isEditable`][Self::isEditable].
-        #[method(setEditable:)]
+        #[unsafe(method(setEditable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEditable(&self, editable: bool);
 
-        #[method(sizeToFit)]
+        #[unsafe(method(sizeToFit))]
         #[unsafe(method_family = none)]
         pub unsafe fn sizeToFit(&self);
 
-        #[method(sortDescriptorPrototype)]
+        #[unsafe(method(sortDescriptorPrototype))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptorPrototype(&self) -> Option<Retained<NSSortDescriptor>>;
 
         /// Setter for [`sortDescriptorPrototype`][Self::sortDescriptorPrototype].
-        #[method(setSortDescriptorPrototype:)]
+        #[unsafe(method(setSortDescriptorPrototype:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSortDescriptorPrototype(
             &self,
             sort_descriptor_prototype: Option<&NSSortDescriptor>,
         );
 
-        #[method(resizingMask)]
+        #[unsafe(method(resizingMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn resizingMask(&self) -> NSTableColumnResizingOptions;
 
         /// Setter for [`resizingMask`][Self::resizingMask].
-        #[method(setResizingMask:)]
+        #[unsafe(method(setResizingMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResizingMask(&self, resizing_mask: NSTableColumnResizingOptions);
 
-        #[method(headerToolTip)]
+        #[unsafe(method(headerToolTip))]
         #[unsafe(method_family = none)]
         pub unsafe fn headerToolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`headerToolTip`][Self::headerToolTip].
-        #[method(setHeaderToolTip:)]
+        #[unsafe(method(setHeaderToolTip:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeaderToolTip(&self, header_tool_tip: Option<&NSString>);
 
-        #[method(isHidden)]
+        #[unsafe(method(isHidden))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
 
         /// Setter for [`isHidden`][Self::isHidden].
-        #[method(setHidden:)]
+        #[unsafe(method(setHidden:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
     }
@@ -215,11 +215,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTableColumn {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -229,25 +229,25 @@ extern_methods!(
     /// NSDeprecated
     unsafe impl NSTableColumn {
         #[deprecated]
-        #[method(setResizable:)]
+        #[unsafe(method(setResizable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResizable(&self, flag: bool);
 
         #[deprecated]
-        #[method(isResizable)]
+        #[unsafe(method(isResizable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isResizable(&self) -> bool;
 
-        #[method(dataCell)]
+        #[unsafe(method(dataCell))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataCell(&self) -> Retained<AnyObject>;
 
         /// Setter for [`dataCell`][Self::dataCell].
-        #[method(setDataCell:)]
+        #[unsafe(method(setDataCell:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataCell(&self, data_cell: &AnyObject);
 
-        #[method(dataCellForRow:)]
+        #[unsafe(method(dataCellForRow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataCellForRow(&self, row: NSInteger) -> Retained<AnyObject>;
     }

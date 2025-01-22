@@ -81,49 +81,49 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIContentUnavailableView {
         #[cfg(feature = "UIContentUnavailableConfiguration")]
-        #[method(initWithConfiguration:)]
+        #[unsafe(method(initWithConfiguration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &UIContentUnavailableConfiguration,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "UIContentUnavailableConfiguration")]
         /// The content unavailable configuration.
-        #[method(configuration)]
+        #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<UIContentUnavailableConfiguration>;
 
         #[cfg(feature = "UIContentUnavailableConfiguration")]
         /// Setter for [`configuration`][Self::configuration].
-        #[method(setConfiguration:)]
+        #[unsafe(method(setConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration(&self, configuration: &UIContentUnavailableConfiguration);
 
         /// Whether the content can scroll. Default is NO.
-        #[method(isScrollEnabled)]
+        #[unsafe(method(isScrollEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isScrollEnabled(&self) -> bool;
 
         /// Setter for [`isScrollEnabled`][Self::isScrollEnabled].
-        #[method(setScrollEnabled:)]
+        #[unsafe(method(setScrollEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScrollEnabled(&self, scroll_enabled: bool);
     }

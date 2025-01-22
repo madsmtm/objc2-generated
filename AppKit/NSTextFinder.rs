@@ -100,88 +100,88 @@ unsafe impl NSObjectProtocol for NSTextFinder {}
 
 extern_methods!(
     unsafe impl NSTextFinder {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[method(client)]
+        #[unsafe(method(client))]
         #[unsafe(method_family = none)]
         pub unsafe fn client(&self) -> Option<Retained<ProtocolObject<dyn NSTextFinderClient>>>;
 
         /// Setter for [`client`][Self::client].
-        #[method(setClient:)]
+        #[unsafe(method(setClient:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn NSTextFinderClient>>);
 
-        #[method(performAction:)]
+        #[unsafe(method(performAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performAction(&self, op: NSTextFinderAction);
 
-        #[method(validateAction:)]
+        #[unsafe(method(validateAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateAction(&self, op: NSTextFinderAction) -> bool;
 
-        #[method(findBarContainer)]
+        #[unsafe(method(findBarContainer))]
         #[unsafe(method_family = none)]
         pub unsafe fn findBarContainer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextFinderBarContainer>>>;
 
         /// Setter for [`findBarContainer`][Self::findBarContainer].
-        #[method(setFindBarContainer:)]
+        #[unsafe(method(setFindBarContainer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFindBarContainer(
             &self,
             find_bar_container: Option<&ProtocolObject<dyn NSTextFinderBarContainer>>,
         );
 
-        #[method(cancelFindIndicator)]
+        #[unsafe(method(cancelFindIndicator))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelFindIndicator(&self);
 
-        #[method(findIndicatorNeedsUpdate)]
+        #[unsafe(method(findIndicatorNeedsUpdate))]
         #[unsafe(method_family = none)]
         pub unsafe fn findIndicatorNeedsUpdate(&self) -> bool;
 
         /// Setter for [`findIndicatorNeedsUpdate`][Self::findIndicatorNeedsUpdate].
-        #[method(setFindIndicatorNeedsUpdate:)]
+        #[unsafe(method(setFindIndicatorNeedsUpdate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFindIndicatorNeedsUpdate(&self, find_indicator_needs_update: bool);
 
-        #[method(isIncrementalSearchingEnabled)]
+        #[unsafe(method(isIncrementalSearchingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isIncrementalSearchingEnabled(&self) -> bool;
 
         /// Setter for [`isIncrementalSearchingEnabled`][Self::isIncrementalSearchingEnabled].
-        #[method(setIncrementalSearchingEnabled:)]
+        #[unsafe(method(setIncrementalSearchingEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncrementalSearchingEnabled(&self, incremental_searching_enabled: bool);
 
-        #[method(incrementalSearchingShouldDimContentView)]
+        #[unsafe(method(incrementalSearchingShouldDimContentView))]
         #[unsafe(method_family = none)]
         pub unsafe fn incrementalSearchingShouldDimContentView(&self) -> bool;
 
         /// Setter for [`incrementalSearchingShouldDimContentView`][Self::incrementalSearchingShouldDimContentView].
-        #[method(setIncrementalSearchingShouldDimContentView:)]
+        #[unsafe(method(setIncrementalSearchingShouldDimContentView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncrementalSearchingShouldDimContentView(
             &self,
             incremental_searching_should_dim_content_view: bool,
         );
 
-        #[method(incrementalMatchRanges)]
+        #[unsafe(method(incrementalMatchRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn incrementalMatchRanges(&self) -> Retained<NSArray<NSValue>>;
 
-        #[method(drawIncrementalMatchHighlightInRect:)]
+        #[unsafe(method(drawIncrementalMatchHighlightInRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawIncrementalMatchHighlightInRect(rect: NSRect);
 
-        #[method(noteClientStringWillChange)]
+        #[unsafe(method(noteClientStringWillChange))]
         #[unsafe(method_family = none)]
         pub unsafe fn noteClientStringWillChange(&self);
     }
@@ -190,7 +190,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextFinder {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -200,27 +200,27 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinderclient?language=objc)
     pub unsafe trait NSTextFinderClient: NSObjectProtocol {
         #[optional]
-        #[method(isSelectable)]
+        #[unsafe(method(isSelectable))]
         #[unsafe(method_family = none)]
         unsafe fn isSelectable(&self) -> bool;
 
         #[optional]
-        #[method(allowsMultipleSelection)]
+        #[unsafe(method(allowsMultipleSelection))]
         #[unsafe(method_family = none)]
         unsafe fn allowsMultipleSelection(&self) -> bool;
 
         #[optional]
-        #[method(isEditable)]
+        #[unsafe(method(isEditable))]
         #[unsafe(method_family = none)]
         unsafe fn isEditable(&self) -> bool;
 
         #[optional]
-        #[method(string)]
+        #[unsafe(method(string))]
         #[unsafe(method_family = none)]
         unsafe fn string(&self) -> Retained<NSString>;
 
         #[optional]
-        #[method(stringAtIndex:effectiveRange:endsWithSearchBoundary:)]
+        #[unsafe(method(stringAtIndex:effectiveRange:endsWithSearchBoundary:))]
         #[unsafe(method_family = none)]
         unsafe fn stringAtIndex_effectiveRange_endsWithSearchBoundary(
             &self,
@@ -230,33 +230,33 @@ extern_protocol!(
         ) -> Retained<NSString>;
 
         #[optional]
-        #[method(stringLength)]
+        #[unsafe(method(stringLength))]
         #[unsafe(method_family = none)]
         unsafe fn stringLength(&self) -> NSUInteger;
 
         #[optional]
-        #[method(firstSelectedRange)]
+        #[unsafe(method(firstSelectedRange))]
         #[unsafe(method_family = none)]
         unsafe fn firstSelectedRange(&self) -> NSRange;
 
         #[optional]
-        #[method(selectedRanges)]
+        #[unsafe(method(selectedRanges))]
         #[unsafe(method_family = none)]
         unsafe fn selectedRanges(&self) -> Retained<NSArray<NSValue>>;
 
         /// Setter for [`selectedRanges`][Self::selectedRanges].
         #[optional]
-        #[method(setSelectedRanges:)]
+        #[unsafe(method(setSelectedRanges:))]
         #[unsafe(method_family = none)]
         unsafe fn setSelectedRanges(&self, selected_ranges: &NSArray<NSValue>);
 
         #[optional]
-        #[method(scrollRangeToVisible:)]
+        #[unsafe(method(scrollRangeToVisible:))]
         #[unsafe(method_family = none)]
         unsafe fn scrollRangeToVisible(&self, range: NSRange);
 
         #[optional]
-        #[method(shouldReplaceCharactersInRanges:withStrings:)]
+        #[unsafe(method(shouldReplaceCharactersInRanges:withStrings:))]
         #[unsafe(method_family = none)]
         unsafe fn shouldReplaceCharactersInRanges_withStrings(
             &self,
@@ -265,18 +265,18 @@ extern_protocol!(
         ) -> bool;
 
         #[optional]
-        #[method(replaceCharactersInRange:withString:)]
+        #[unsafe(method(replaceCharactersInRange:withString:))]
         #[unsafe(method_family = none)]
         unsafe fn replaceCharactersInRange_withString(&self, range: NSRange, string: &NSString);
 
         #[optional]
-        #[method(didReplaceCharacters)]
+        #[unsafe(method(didReplaceCharacters))]
         #[unsafe(method_family = none)]
         unsafe fn didReplaceCharacters(&self);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method(contentViewAtIndex:effectiveCharacterRange:)]
+        #[unsafe(method(contentViewAtIndex:effectiveCharacterRange:))]
         #[unsafe(method_family = none)]
         unsafe fn contentViewAtIndex_effectiveCharacterRange(
             &self,
@@ -286,7 +286,7 @@ extern_protocol!(
         ) -> Retained<NSView>;
 
         #[optional]
-        #[method(rectsForCharacterRange:)]
+        #[unsafe(method(rectsForCharacterRange:))]
         #[unsafe(method_family = none)]
         unsafe fn rectsForCharacterRange(
             &self,
@@ -294,13 +294,13 @@ extern_protocol!(
         ) -> Option<Retained<NSArray<NSValue>>>;
 
         #[optional]
-        #[method(visibleCharacterRanges)]
+        #[unsafe(method(visibleCharacterRanges))]
         #[unsafe(method_family = none)]
         unsafe fn visibleCharacterRanges(&self) -> Retained<NSArray<NSValue>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method(drawCharactersInRange:forContentView:)]
+        #[unsafe(method(drawCharactersInRange:forContentView:))]
         #[unsafe(method_family = none)]
         unsafe fn drawCharactersInRange_forContentView(&self, range: NSRange, view: &NSView);
     }
@@ -310,32 +310,32 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinderbarcontainer?language=objc)
     pub unsafe trait NSTextFinderBarContainer: NSObjectProtocol {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method(findBarView)]
+        #[unsafe(method(findBarView))]
         #[unsafe(method_family = none)]
         unsafe fn findBarView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Setter for [`findBarView`][Self::findBarView].
-        #[method(setFindBarView:)]
+        #[unsafe(method(setFindBarView:))]
         #[unsafe(method_family = none)]
         unsafe fn setFindBarView(&self, find_bar_view: Option<&NSView>);
 
-        #[method(isFindBarVisible)]
+        #[unsafe(method(isFindBarVisible))]
         #[unsafe(method_family = none)]
         unsafe fn isFindBarVisible(&self) -> bool;
 
         /// Setter for [`isFindBarVisible`][Self::isFindBarVisible].
-        #[method(setFindBarVisible:)]
+        #[unsafe(method(setFindBarVisible:))]
         #[unsafe(method_family = none)]
         unsafe fn setFindBarVisible(&self, find_bar_visible: bool);
 
-        #[method(findBarViewDidChangeHeight)]
+        #[unsafe(method(findBarViewDidChangeHeight))]
         #[unsafe(method_family = none)]
         unsafe fn findBarViewDidChangeHeight(&self);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method(contentView)]
+        #[unsafe(method(contentView))]
         #[unsafe(method_family = none)]
         unsafe fn contentView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
     }

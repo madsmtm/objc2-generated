@@ -23,22 +23,22 @@ unsafe impl NSObjectProtocol for MLModelStructureProgramOperation {}
 
 extern_methods!(
     unsafe impl MLModelStructureProgramOperation {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The name of the operator, e.g., "conv", "pool", "softmax", etc.
-        #[method(operatorName)]
+        #[unsafe(method(operatorName))]
         #[unsafe(method_family = none)]
         pub unsafe fn operatorName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MLModelStructureProgramArgument")]
         /// The arguments to the Operation.
-        #[method(inputs)]
+        #[unsafe(method(inputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputs(
             &self,
@@ -46,13 +46,13 @@ extern_methods!(
 
         #[cfg(feature = "MLModelStructureProgramNamedValueType")]
         /// The outputs of the Operation.
-        #[method(outputs)]
+        #[unsafe(method(outputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<MLModelStructureProgramNamedValueType>>;
 
         #[cfg(feature = "MLModelStructureProgramBlock")]
         /// Nested blocks for loops and conditionals, e.g., a conditional block will have two entries here.
-        #[method(blocks)]
+        #[unsafe(method(blocks))]
         #[unsafe(method_family = none)]
         pub unsafe fn blocks(&self) -> Retained<NSArray<MLModelStructureProgramBlock>>;
     }

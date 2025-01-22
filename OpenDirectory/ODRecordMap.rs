@@ -18,29 +18,29 @@ unsafe impl NSObjectProtocol for ODRecordMap {}
 
 extern_methods!(
     unsafe impl ODRecordMap {
-        #[method(native)]
+        #[unsafe(method(native))]
         #[unsafe(method_family = none)]
         pub unsafe fn native(&self) -> Retained<NSString>;
 
         /// Setter for [`native`][Self::native].
-        #[method(setNative:)]
+        #[unsafe(method(setNative:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNative(&self, native: Option<&NSString>);
 
-        #[method(odPredicate)]
+        #[unsafe(method(odPredicate))]
         #[unsafe(method_family = none)]
         pub unsafe fn odPredicate(&self) -> Retained<NSDictionary>;
 
         /// Setter for [`odPredicate`][Self::odPredicate].
-        #[method(setOdPredicate:)]
+        #[unsafe(method(setOdPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOdPredicate(&self, od_predicate: Option<&NSDictionary>);
 
-        #[method(attributes)]
+        #[unsafe(method(attributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributes(&self) -> Retained<NSDictionary>;
 
-        #[method(standardAttributeTypes)]
+        #[unsafe(method(standardAttributeTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn standardAttributeTypes(&self) -> Retained<NSArray>;
 
@@ -48,7 +48,7 @@ extern_methods!(
         ///
         ///
         /// Returns an initialized and autoreleased ODRecordMap object.
-        #[method(recordMap)]
+        #[unsafe(method(recordMap))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordMap() -> Option<Retained<Self>>;
 
@@ -57,7 +57,7 @@ extern_methods!(
         ///
         ///
         /// Returns an ODAttributeMap object for the given OD standard attribute.
-        #[method(attributeMapForStandardAttribute:)]
+        #[unsafe(method(attributeMapForStandardAttribute:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeMapForStandardAttribute(
             &self,
@@ -69,7 +69,7 @@ extern_methods!(
         ///
         ///
         /// Sets an ODAttributeMap object for a given OD standard attribute.
-        #[method(setAttributeMap:forStandardAttribute:)]
+        #[unsafe(method(setAttributeMap:forStandardAttribute:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributeMap_forStandardAttribute(
             &self,
@@ -82,11 +82,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ODRecordMap {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

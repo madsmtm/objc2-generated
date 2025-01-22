@@ -29,12 +29,12 @@ unsafe impl NSObjectProtocol for NSBatchDeleteRequest {}
 extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchDeleteRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSFetchRequest")]
-        #[method(initWithFetchRequest:)]
+        #[unsafe(method(initWithFetchRequest:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFetchRequest(
             this: Allocated<Self>,
@@ -42,7 +42,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectID")]
-        #[method(initWithObjectIDs:)]
+        #[unsafe(method(initWithObjectIDs:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjectIDs(
             this: Allocated<Self>,
@@ -50,18 +50,18 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPersistentStoreResult")]
-        #[method(resultType)]
+        #[unsafe(method(resultType))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultType(&self) -> NSBatchDeleteRequestResultType;
 
         #[cfg(feature = "NSPersistentStoreResult")]
         /// Setter for [`resultType`][Self::resultType].
-        #[method(setResultType:)]
+        #[unsafe(method(setResultType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResultType(&self, result_type: NSBatchDeleteRequestResultType);
 
         #[cfg(feature = "NSFetchRequest")]
-        #[method(fetchRequest)]
+        #[unsafe(method(fetchRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRequest(&self) -> Retained<NSFetchRequest>;
     }
@@ -71,7 +71,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchDeleteRequest {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

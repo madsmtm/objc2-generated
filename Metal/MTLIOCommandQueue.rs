@@ -85,14 +85,14 @@ extern_protocol!(
         ///
         /// A serial commandQueue has implicit barriers between
         /// each commandBuffer.
-        #[method(enqueueBarrier)]
+        #[unsafe(method(enqueueBarrier))]
         #[unsafe(method_family = none)]
         unsafe fn enqueueBarrier(&self);
 
         #[cfg(feature = "MTLIOCommandBuffer")]
         /// Vends an autoreleased commandBuffer that can be used to
         /// encode  commands that read from handle objects and write to MTLResource objects.
-        #[method(commandBuffer)]
+        #[unsafe(method(commandBuffer))]
         #[unsafe(method_family = none)]
         unsafe fn commandBuffer(&self) -> Retained<ProtocolObject<dyn MTLIOCommandBuffer>>;
 
@@ -104,19 +104,19 @@ extern_protocol!(
         ///
         /// For correct execution its the application's responsibility to retain
         /// objects referenced by commands within the commandBuffer.
-        #[method(commandBufferWithUnretainedReferences)]
+        #[unsafe(method(commandBufferWithUnretainedReferences))]
         #[unsafe(method_family = none)]
         unsafe fn commandBufferWithUnretainedReferences(
             &self,
         ) -> Retained<ProtocolObject<dyn MTLIOCommandBuffer>>;
 
         /// An optional label for this handle.
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         unsafe fn setLabel(&self, label: Option<&NSString>);
     }
@@ -134,7 +134,7 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
-        #[method(buffer)]
+        #[unsafe(method(buffer))]
         #[unsafe(method_family = none)]
         unsafe fn buffer(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
     }
@@ -158,7 +158,7 @@ extern_protocol!(
         /// is the smallest buffer that will allow the command to execute, however a larger buffer can be provided and
         /// susequent commands will be able to use it, thus avoiding the need for an additional callback. Returning nil
         /// from the function will result in the load command being skipped and the commandBuffer getting cancelled.
-        #[method(newScratchBufferWithMinimumSize:)]
+        #[unsafe(method(newScratchBufferWithMinimumSize:))]
         #[unsafe(method_family = new)]
         unsafe fn newScratchBufferWithMinimumSize(
             &self,
@@ -187,32 +187,32 @@ unsafe impl NSObjectProtocol for MTLIOCommandQueueDescriptor {}
 extern_methods!(
     unsafe impl MTLIOCommandQueueDescriptor {
         /// The maximum number of commandBuffers that can be in flight at a given time for the queue.
-        #[method(maxCommandBufferCount)]
+        #[unsafe(method(maxCommandBufferCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxCommandBufferCount(&self) -> NSUInteger;
 
         /// Setter for [`maxCommandBufferCount`][Self::maxCommandBufferCount].
-        #[method(setMaxCommandBufferCount:)]
+        #[unsafe(method(setMaxCommandBufferCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxCommandBufferCount(&self, max_command_buffer_count: NSUInteger);
 
         /// The priority of the commands executed by this queue.
-        #[method(priority)]
+        #[unsafe(method(priority))]
         #[unsafe(method_family = none)]
         pub unsafe fn priority(&self) -> MTLIOPriority;
 
         /// Setter for [`priority`][Self::priority].
-        #[method(setPriority:)]
+        #[unsafe(method(setPriority:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPriority(&self, priority: MTLIOPriority);
 
         /// The type (serial or concurrent) of the queue.
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> MTLIOCommandQueueType;
 
         /// Setter for [`type`][Self::type].
-        #[method(setType:)]
+        #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: MTLIOCommandQueueType);
 
@@ -220,12 +220,12 @@ extern_methods!(
         ///
         /// A zero value defaults to the system dependent maximum value, a smaller number can be
         /// provided to bound the utilization of the storage device.
-        #[method(maxCommandsInFlight)]
+        #[unsafe(method(maxCommandsInFlight))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxCommandsInFlight(&self) -> NSUInteger;
 
         /// Setter for [`maxCommandsInFlight`][Self::maxCommandsInFlight].
-        #[method(setMaxCommandsInFlight:)]
+        #[unsafe(method(setMaxCommandsInFlight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxCommandsInFlight(&self, max_commands_in_flight: NSUInteger);
 
@@ -233,14 +233,14 @@ extern_methods!(
         ///
         /// An application can manage scratch buffers manually by implemeting a class  conforming
         /// to the MTLIOScratchBufferAllocator protocol and creating an instance that is passed in here.
-        #[method(scratchBufferAllocator)]
+        #[unsafe(method(scratchBufferAllocator))]
         #[unsafe(method_family = none)]
         pub unsafe fn scratchBufferAllocator(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLIOScratchBufferAllocator>>>;
 
         /// Setter for [`scratchBufferAllocator`][Self::scratchBufferAllocator].
-        #[method(setScratchBufferAllocator:)]
+        #[unsafe(method(setScratchBufferAllocator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScratchBufferAllocator(
             &self,
@@ -252,11 +252,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLIOCommandQueueDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -269,12 +269,12 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtliofilehandle?language=objc)
     pub unsafe trait MTLIOFileHandle: NSObjectProtocol {
         /// An optional label for this handle.
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         unsafe fn setLabel(&self, label: Option<&NSString>);
     }

@@ -24,18 +24,18 @@ extern_methods!(
     unsafe impl MKMapSnapshot {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method(image)]
+        #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Retained<NSImage>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method(appearance)]
+        #[unsafe(method(appearance))]
         #[unsafe(method_family = none)]
         pub unsafe fn appearance(&self) -> Retained<NSAppearance>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method(pointForCoordinate:)]
+        #[unsafe(method(pointForCoordinate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointForCoordinate(&self, coordinate: CLLocationCoordinate2D) -> NSPoint;
     }
@@ -44,11 +44,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKMapSnapshot {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

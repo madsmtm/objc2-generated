@@ -115,7 +115,7 @@ extern_methods!(
     #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
     unsafe impl ARCoachingOverlayView {
         /// Specifies the delegate used for callbacks
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -123,7 +123,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -136,37 +136,37 @@ extern_methods!(
         ///
         /// This property can be used to set the `session` when loading from a storyboard. Setting this property at runtime will also
         /// set the `session` property.
-        #[method(sessionProvider)]
+        #[unsafe(method(sessionProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionProvider(&self) -> Option<Retained<NSObject>>;
 
         #[cfg(feature = "ARSession")]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`sessionProvider`][Self::sessionProvider].
-        #[method(setSessionProvider:)]
+        #[unsafe(method(setSessionProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSessionProvider(&self, session_provider: Option<&NSObject>);
 
         #[cfg(feature = "ARSession")]
         /// The session that the view uses to update coaching
-        #[method(session)]
+        #[unsafe(method(session))]
         #[unsafe(method_family = none)]
         pub unsafe fn session(&self) -> Option<Retained<ARSession>>;
 
         #[cfg(feature = "ARSession")]
         /// Setter for [`session`][Self::session].
-        #[method(setSession:)]
+        #[unsafe(method(setSession:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSession(&self, session: Option<&ARSession>);
 
         /// The coaching type used to resolve what messaging to display to the user while activated
         /// Defaults to `ARCoachingGoalTracking`
-        #[method(goal)]
+        #[unsafe(method(goal))]
         #[unsafe(method_family = none)]
         pub unsafe fn goal(&self) -> ARCoachingGoal;
 
         /// Setter for [`goal`][Self::goal].
-        #[method(setGoal:)]
+        #[unsafe(method(setGoal:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGoal(&self, goal: ARCoachingGoal);
 
@@ -177,12 +177,12 @@ extern_methods!(
         /// When set to automatically activate, the view will transition to active when the session loses normal tracking for a set amount
         /// of time.
         /// When tracking resumes and other requirements (based on `goal`) are met, the view will deactivate.
-        #[method(activatesAutomatically)]
+        #[unsafe(method(activatesAutomatically))]
         #[unsafe(method_family = none)]
         pub unsafe fn activatesAutomatically(&self) -> bool;
 
         /// Setter for [`activatesAutomatically`][Self::activatesAutomatically].
-        #[method(setActivatesAutomatically:)]
+        #[unsafe(method(setActivatesAutomatically:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivatesAutomatically(&self, activates_automatically: bool);
 
@@ -190,7 +190,7 @@ extern_methods!(
         ///
         ///
         /// See: -[ARCoachingOverlayView setActive:animated:]
-        #[method(isActive)]
+        #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isActive(&self) -> bool;
 
@@ -208,7 +208,7 @@ extern_methods!(
         ///
         ///
         /// See: -[ARCoachingOverlayViewDelegate coachingOverlayViewDidTriggerReset:]
-        #[method(setActive:animated:)]
+        #[unsafe(method(setActive:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActive_animated(&self, active: bool, animated: bool);
     }
@@ -220,12 +220,12 @@ extern_methods!(
     #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
     unsafe impl ARCoachingOverlayView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -239,11 +239,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
     unsafe impl ARCoachingOverlayView {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -265,7 +265,7 @@ extern_protocol!(
         ///
         /// Parameter `coachingOverlayView`: The view currently active
         #[optional]
-        #[method(coachingOverlayViewDidRequestSessionReset:)]
+        #[unsafe(method(coachingOverlayViewDidRequestSessionReset:))]
         #[unsafe(method_family = none)]
         unsafe fn coachingOverlayViewDidRequestSessionReset(
             &self,
@@ -281,7 +281,7 @@ extern_protocol!(
         ///
         /// Parameter `coachingOverlayView`: The view that will be activated
         #[optional]
-        #[method(coachingOverlayViewWillActivate:)]
+        #[unsafe(method(coachingOverlayViewWillActivate:))]
         #[unsafe(method_family = none)]
         unsafe fn coachingOverlayViewWillActivate(
             &self,
@@ -294,7 +294,7 @@ extern_protocol!(
         ///
         /// Parameter `coachingOverlayView`: The view that was deactivated
         #[optional]
-        #[method(coachingOverlayViewDidDeactivate:)]
+        #[unsafe(method(coachingOverlayViewDidDeactivate:))]
         #[unsafe(method_family = none)]
         unsafe fn coachingOverlayViewDidDeactivate(
             &self,

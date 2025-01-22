@@ -64,36 +64,36 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSLengthFormatter {
         #[cfg(feature = "NSNumberFormatter")]
-        #[method(numberFormatter)]
+        #[unsafe(method(numberFormatter))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
 
         #[cfg(feature = "NSNumberFormatter")]
         /// Setter for [`numberFormatter`][Self::numberFormatter].
-        #[method(setNumberFormatter:)]
+        #[unsafe(method(setNumberFormatter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
-        #[method(unitStyle)]
+        #[unsafe(method(unitStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn unitStyle(&self) -> NSFormattingUnitStyle;
 
         /// Setter for [`unitStyle`][Self::unitStyle].
-        #[method(setUnitStyle:)]
+        #[unsafe(method(setUnitStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
 
-        #[method(isForPersonHeightUse)]
+        #[unsafe(method(isForPersonHeightUse))]
         #[unsafe(method_family = none)]
         pub unsafe fn isForPersonHeightUse(&self) -> bool;
 
         /// Setter for [`isForPersonHeightUse`][Self::isForPersonHeightUse].
-        #[method(setForPersonHeightUse:)]
+        #[unsafe(method(setForPersonHeightUse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setForPersonHeightUse(&self, for_person_height_use: bool);
 
         #[cfg(feature = "NSString")]
-        #[method(stringFromValue:unit:)]
+        #[unsafe(method(stringFromValue:unit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromValue_unit(
             &self,
@@ -102,12 +102,12 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method(stringFromMeters:)]
+        #[unsafe(method(stringFromMeters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromMeters(&self, number_in_meters: c_double) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method(unitStringFromValue:unit:)]
+        #[unsafe(method(unitStringFromValue:unit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unitStringFromValue_unit(
             &self,
@@ -116,7 +116,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method(unitStringFromMeters:usedUnit:)]
+        #[unsafe(method(unitStringFromMeters:usedUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unitStringFromMeters_usedUnit(
             &self,
@@ -125,7 +125,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method(getObjectValue:forString:errorDescription:)]
+        #[unsafe(method(getObjectValue:forString:errorDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
@@ -140,11 +140,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSLengthFormatter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

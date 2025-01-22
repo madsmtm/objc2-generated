@@ -33,24 +33,24 @@ unsafe impl NSSecureCoding for MKMapCamera {}
 extern_methods!(
     unsafe impl MKMapCamera {
         #[cfg(feature = "objc2-core-location")]
-        #[method(centerCoordinate)]
+        #[unsafe(method(centerCoordinate))]
         #[unsafe(method_family = none)]
         pub unsafe fn centerCoordinate(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "objc2-core-location")]
         /// Setter for [`centerCoordinate`][Self::centerCoordinate].
-        #[method(setCenterCoordinate:)]
+        #[unsafe(method(setCenterCoordinate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCenterCoordinate(&self, center_coordinate: CLLocationCoordinate2D);
 
         #[cfg(feature = "objc2-core-location")]
-        #[method(centerCoordinateDistance)]
+        #[unsafe(method(centerCoordinateDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn centerCoordinateDistance(&self) -> CLLocationDistance;
 
         #[cfg(feature = "objc2-core-location")]
         /// Setter for [`centerCoordinateDistance`][Self::centerCoordinateDistance].
-        #[method(setCenterCoordinateDistance:)]
+        #[unsafe(method(setCenterCoordinateDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCenterCoordinateDistance(
             &self,
@@ -58,46 +58,46 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-location")]
-        #[method(heading)]
+        #[unsafe(method(heading))]
         #[unsafe(method_family = none)]
         pub unsafe fn heading(&self) -> CLLocationDirection;
 
         #[cfg(feature = "objc2-core-location")]
         /// Setter for [`heading`][Self::heading].
-        #[method(setHeading:)]
+        #[unsafe(method(setHeading:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeading(&self, heading: CLLocationDirection);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(pitch)]
+        #[unsafe(method(pitch))]
         #[unsafe(method_family = none)]
         pub unsafe fn pitch(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`pitch`][Self::pitch].
-        #[method(setPitch:)]
+        #[unsafe(method(setPitch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPitch(&self, pitch: CGFloat);
 
         #[cfg(feature = "objc2-core-location")]
         #[deprecated = "Use centerCoordinateDistance"]
-        #[method(altitude)]
+        #[unsafe(method(altitude))]
         #[unsafe(method_family = none)]
         pub unsafe fn altitude(&self) -> CLLocationDistance;
 
         #[cfg(feature = "objc2-core-location")]
         /// Setter for [`altitude`][Self::altitude].
         #[deprecated = "Use centerCoordinateDistance"]
-        #[method(setAltitude:)]
+        #[unsafe(method(setAltitude:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAltitude(&self, altitude: CLLocationDistance);
 
-        #[method(camera)]
+        #[unsafe(method(camera))]
         #[unsafe(method_family = none)]
         pub unsafe fn camera() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method(cameraLookingAtCenterCoordinate:fromEyeCoordinate:eyeAltitude:)]
+        #[unsafe(method(cameraLookingAtCenterCoordinate:fromEyeCoordinate:eyeAltitude:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraLookingAtCenterCoordinate_fromEyeCoordinate_eyeAltitude(
             center_coordinate: CLLocationCoordinate2D,
@@ -106,7 +106,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-location"))]
-        #[method(cameraLookingAtCenterCoordinate:fromDistance:pitch:heading:)]
+        #[unsafe(method(cameraLookingAtCenterCoordinate:fromDistance:pitch:heading:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraLookingAtCenterCoordinate_fromDistance_pitch_heading(
             center_coordinate: CLLocationCoordinate2D,
@@ -116,7 +116,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKMapItem", feature = "objc2-core-foundation"))]
-        #[method(cameraLookingAtMapItem:forViewSize:allowPitch:)]
+        #[unsafe(method(cameraLookingAtMapItem:forViewSize:allowPitch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraLookingAtMapItem_forViewSize_allowPitch(
             map_item: &MKMapItem,
@@ -129,11 +129,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKMapCamera {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

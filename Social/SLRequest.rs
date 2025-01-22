@@ -49,7 +49,7 @@ unsafe impl NSObjectProtocol for SLRequest {}
 
 extern_methods!(
     unsafe impl SLRequest {
-        #[method(requestForServiceType:requestMethod:URL:parameters:)]
+        #[unsafe(method(requestForServiceType:requestMethod:URL:parameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestForServiceType_requestMethod_URL_parameters(
             service_type: Option<&NSString>,
@@ -59,29 +59,29 @@ extern_methods!(
         ) -> Option<Retained<SLRequest>>;
 
         #[cfg(feature = "objc2-accounts")]
-        #[method(account)]
+        #[unsafe(method(account))]
         #[unsafe(method_family = none)]
         pub unsafe fn account(&self) -> Option<Retained<ACAccount>>;
 
         #[cfg(feature = "objc2-accounts")]
         /// Setter for [`account`][Self::account].
-        #[method(setAccount:)]
+        #[unsafe(method(setAccount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccount(&self, account: Option<&ACAccount>);
 
-        #[method(requestMethod)]
+        #[unsafe(method(requestMethod))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestMethod(&self) -> SLRequestMethod;
 
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
-        #[method(parameters)]
+        #[unsafe(method(parameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn parameters(&self) -> Option<Retained<NSDictionary>>;
 
-        #[method(addMultipartData:withName:type:filename:)]
+        #[unsafe(method(addMultipartData:withName:type:filename:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMultipartData_withName_type_filename(
             &self,
@@ -91,7 +91,7 @@ extern_methods!(
             filename: Option<&NSString>,
         );
 
-        #[method(addMultipartData:withName:type:)]
+        #[unsafe(method(addMultipartData:withName:type:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMultipartData_withName_type(
             &self,
@@ -100,12 +100,12 @@ extern_methods!(
             r#type: Option<&NSString>,
         );
 
-        #[method(preparedURLRequest)]
+        #[unsafe(method(preparedURLRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn preparedURLRequest(&self) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(feature = "block2")]
-        #[method(performRequestWithHandler:)]
+        #[unsafe(method(performRequestWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performRequestWithHandler(&self, handler: SLRequestHandler);
     }
@@ -114,11 +114,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SLRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

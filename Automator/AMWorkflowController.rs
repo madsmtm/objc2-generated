@@ -34,28 +34,28 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowController {
         #[cfg(feature = "AMWorkflow")]
-        #[method(workflow)]
+        #[unsafe(method(workflow))]
         #[unsafe(method_family = none)]
         pub unsafe fn workflow(&self) -> Option<Retained<AMWorkflow>>;
 
         #[cfg(feature = "AMWorkflow")]
         /// Setter for [`workflow`][Self::workflow].
-        #[method(setWorkflow:)]
+        #[unsafe(method(setWorkflow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWorkflow(&self, workflow: Option<&AMWorkflow>);
 
         #[cfg(feature = "AMWorkflowView")]
-        #[method(workflowView)]
+        #[unsafe(method(workflowView))]
         #[unsafe(method_family = none)]
         pub unsafe fn workflowView(&self) -> Option<Retained<AMWorkflowView>>;
 
         #[cfg(feature = "AMWorkflowView")]
         /// Setter for [`workflowView`][Self::workflowView].
-        #[method(setWorkflowView:)]
+        #[unsafe(method(setWorkflowView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWorkflowView(&self, workflow_view: Option<&AMWorkflowView>);
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -63,42 +63,42 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn AMWorkflowControllerDelegate>>,
         );
 
-        #[method(canRun)]
+        #[unsafe(method(canRun))]
         #[unsafe(method_family = none)]
         pub unsafe fn canRun(&self) -> bool;
 
-        #[method(isRunning)]
+        #[unsafe(method(isRunning))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRunning(&self) -> bool;
 
-        #[method(isPaused)]
+        #[unsafe(method(isPaused))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPaused(&self) -> bool;
 
-        #[method(run:)]
+        #[unsafe(method(run:))]
         #[unsafe(method_family = none)]
         pub unsafe fn run(&self, sender: &AnyObject);
 
-        #[method(stop:)]
+        #[unsafe(method(stop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stop(&self, sender: &AnyObject);
 
-        #[method(pause:)]
+        #[unsafe(method(pause:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pause(&self, sender: &AnyObject);
 
-        #[method(step:)]
+        #[unsafe(method(step:))]
         #[unsafe(method_family = none)]
         pub unsafe fn step(&self, sender: &AnyObject);
 
-        #[method(reset:)]
+        #[unsafe(method(reset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reset(&self, sender: &AnyObject);
     }
@@ -108,11 +108,11 @@ extern_methods!(
     /// Methods declared on superclass `NSController`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -125,7 +125,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -136,31 +136,31 @@ extern_protocol!(
     pub unsafe trait AMWorkflowControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[optional]
-        #[method(workflowControllerWillRun:)]
+        #[unsafe(method(workflowControllerWillRun:))]
         #[unsafe(method_family = none)]
         unsafe fn workflowControllerWillRun(&self, controller: &AMWorkflowController);
 
         #[cfg(feature = "objc2-app-kit")]
         #[optional]
-        #[method(workflowControllerWillStop:)]
+        #[unsafe(method(workflowControllerWillStop:))]
         #[unsafe(method_family = none)]
         unsafe fn workflowControllerWillStop(&self, controller: &AMWorkflowController);
 
         #[cfg(feature = "objc2-app-kit")]
         #[optional]
-        #[method(workflowControllerDidRun:)]
+        #[unsafe(method(workflowControllerDidRun:))]
         #[unsafe(method_family = none)]
         unsafe fn workflowControllerDidRun(&self, controller: &AMWorkflowController);
 
         #[cfg(feature = "objc2-app-kit")]
         #[optional]
-        #[method(workflowControllerDidStop:)]
+        #[unsafe(method(workflowControllerDidStop:))]
         #[unsafe(method_family = none)]
         unsafe fn workflowControllerDidStop(&self, controller: &AMWorkflowController);
 
         #[cfg(all(feature = "AMAction", feature = "objc2-app-kit"))]
         #[optional]
-        #[method(workflowController:willRunAction:)]
+        #[unsafe(method(workflowController:willRunAction:))]
         #[unsafe(method_family = none)]
         unsafe fn workflowController_willRunAction(
             &self,
@@ -170,7 +170,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "AMAction", feature = "objc2-app-kit"))]
         #[optional]
-        #[method(workflowController:didRunAction:)]
+        #[unsafe(method(workflowController:didRunAction:))]
         #[unsafe(method_family = none)]
         unsafe fn workflowController_didRunAction(
             &self,
@@ -180,7 +180,7 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[optional]
-        #[method(workflowController:didError:)]
+        #[unsafe(method(workflowController:didError:))]
         #[unsafe(method_family = none)]
         unsafe fn workflowController_didError(
             &self,

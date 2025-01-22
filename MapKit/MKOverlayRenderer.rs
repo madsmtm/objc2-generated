@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for MKOverlayRenderer {}
 extern_methods!(
     unsafe impl MKOverlayRenderer {
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method(initWithOverlay:)]
+        #[unsafe(method(initWithOverlay:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
@@ -30,32 +30,32 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method(overlay)]
+        #[unsafe(method(overlay))]
         #[unsafe(method_family = none)]
         pub unsafe fn overlay(&self) -> Retained<ProtocolObject<dyn MKOverlay>>;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
-        #[method(pointForMapPoint:)]
+        #[unsafe(method(pointForMapPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointForMapPoint(&self, map_point: MKMapPoint) -> CGPoint;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
-        #[method(mapPointForPoint:)]
+        #[unsafe(method(mapPointForPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mapPointForPoint(&self, point: CGPoint) -> MKMapPoint;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
-        #[method(rectForMapRect:)]
+        #[unsafe(method(rectForMapRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rectForMapRect(&self, map_rect: MKMapRect) -> CGRect;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
-        #[method(mapRectForRect:)]
+        #[unsafe(method(mapRectForRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mapRectForRect(&self, rect: CGRect) -> MKMapRect;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
-        #[method(canDrawMapRect:zoomScale:)]
+        #[unsafe(method(canDrawMapRect:zoomScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canDrawMapRect_zoomScale(
             &self,
@@ -68,7 +68,7 @@ extern_methods!(
             feature = "objc2-core-foundation",
             feature = "objc2-core-graphics"
         ))]
-        #[method(drawMapRect:zoomScale:inContext:)]
+        #[unsafe(method(drawMapRect:zoomScale:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawMapRect_zoomScale_inContext(
             &self,
@@ -77,17 +77,17 @@ extern_methods!(
             context: &CGContext,
         );
 
-        #[method(setNeedsDisplay)]
+        #[unsafe(method(setNeedsDisplay))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeedsDisplay(&self);
 
         #[cfg(feature = "MKGeometry")]
-        #[method(setNeedsDisplayInMapRect:)]
+        #[unsafe(method(setNeedsDisplayInMapRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeedsDisplayInMapRect(&self, map_rect: MKMapRect);
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
-        #[method(setNeedsDisplayInMapRect:zoomScale:)]
+        #[unsafe(method(setNeedsDisplayInMapRect:zoomScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeedsDisplayInMapRect_zoomScale(
             &self,
@@ -96,29 +96,29 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(alpha)]
+        #[unsafe(method(alpha))]
         #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`alpha`][Self::alpha].
-        #[method(setAlpha:)]
+        #[unsafe(method(setAlpha:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlpha(&self, alpha: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(contentScaleFactor)]
+        #[unsafe(method(contentScaleFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentScaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(blendMode)]
+        #[unsafe(method(blendMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn blendMode(&self) -> CGBlendMode;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`blendMode`][Self::blendMode].
-        #[method(setBlendMode:)]
+        #[unsafe(method(setBlendMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBlendMode(&self, blend_mode: CGBlendMode);
     }
@@ -127,11 +127,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKOverlayRenderer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

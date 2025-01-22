@@ -192,20 +192,20 @@ extern_protocol!(
         ///
         /// Parameter `fileName`: the path of the selected file
         #[deprecated]
-        #[method(chooseFilename:)]
+        #[unsafe(method(chooseFilename:))]
         #[unsafe(method_family = none)]
         unsafe fn chooseFilename(&self, file_name: Option<&NSString>);
 
         /// Call this method to return an array of filenames from the file open panel.
         ///
         /// Parameter `fileNames`: an array of paths of selected files
-        #[method(chooseFilenames:)]
+        #[unsafe(method(chooseFilenames:))]
         #[unsafe(method_family = none)]
         unsafe fn chooseFilenames(&self, file_names: Option<&NSArray>);
 
         /// Call this method to indicate that the file open panel was cancelled.
         #[deprecated]
-        #[method(cancel)]
+        #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         unsafe fn cancel(&self);
     }
@@ -234,7 +234,7 @@ extern_protocol!(
         /// Returns: The WebView for the new window.
         #[deprecated]
         #[optional]
-        #[method(webView:createWebViewWithRequest:)]
+        #[unsafe(method(webView:createWebViewWithRequest:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_createWebViewWithRequest(
             &self,
@@ -254,7 +254,7 @@ extern_protocol!(
         /// is used to create a new window.
         #[deprecated]
         #[optional]
-        #[method(webViewShow:)]
+        #[unsafe(method(webViewShow:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewShow(&self, sender: Option<&WebView>);
 
@@ -272,7 +272,7 @@ extern_protocol!(
         /// Returns: The WebView for the new window.
         #[deprecated]
         #[optional]
-        #[method(webView:createWebViewModalDialogWithRequest:)]
+        #[unsafe(method(webView:createWebViewModalDialogWithRequest:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_createWebViewModalDialogWithRequest(
             &self,
@@ -292,7 +292,7 @@ extern_protocol!(
         /// is used to create a new window.
         #[deprecated]
         #[optional]
-        #[method(webViewRunModal:)]
+        #[unsafe(method(webViewRunModal:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewRunModal(&self, sender: Option<&WebView>);
 
@@ -308,7 +308,7 @@ extern_protocol!(
         /// entirely.
         #[deprecated]
         #[optional]
-        #[method(webViewClose:)]
+        #[unsafe(method(webViewClose:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewClose(&self, sender: Option<&WebView>);
 
@@ -322,7 +322,7 @@ extern_protocol!(
         /// also do something to focus the one corresponding to this WebView.
         #[deprecated]
         #[optional]
-        #[method(webViewFocus:)]
+        #[unsafe(method(webViewFocus:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewFocus(&self, sender: Option<&WebView>);
 
@@ -336,7 +336,7 @@ extern_protocol!(
         /// also do something to unfocus the one corresponding to this WebView.
         #[deprecated]
         #[optional]
-        #[method(webViewUnfocus:)]
+        #[unsafe(method(webViewUnfocus:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewUnfocus(&self, sender: Option<&WebView>);
 
@@ -353,7 +353,7 @@ extern_protocol!(
         /// real first responder if some control not in the window has focus.
         #[deprecated]
         #[optional]
-        #[method(webViewFirstResponder:)]
+        #[unsafe(method(webViewFirstResponder:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewFirstResponder(
             &self,
@@ -376,7 +376,7 @@ extern_protocol!(
         /// elsewhere, or possibly ignore this call.
         #[deprecated]
         #[optional]
-        #[method(webView:makeFirstResponder:)]
+        #[unsafe(method(webView:makeFirstResponder:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_makeFirstResponder(
             &self,
@@ -393,7 +393,7 @@ extern_protocol!(
         /// Parameter `text`: The status text to set
         #[deprecated]
         #[optional]
-        #[method(webView:setStatusText:)]
+        #[unsafe(method(webView:setStatusText:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_setStatusText(&self, sender: Option<&WebView>, text: Option<&NSString>);
 
@@ -406,7 +406,7 @@ extern_protocol!(
         /// Returns: The status text
         #[deprecated]
         #[optional]
-        #[method(webViewStatusText:)]
+        #[unsafe(method(webViewStatusText:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewStatusText(&self, sender: Option<&WebView>) -> Option<Retained<NSString>>;
 
@@ -425,7 +425,7 @@ extern_protocol!(
         /// Returns: YES if at least one toolbar is visible, otherwise NO.
         #[deprecated]
         #[optional]
-        #[method(webViewAreToolbarsVisible:)]
+        #[unsafe(method(webViewAreToolbarsVisible:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewAreToolbarsVisible(&self, sender: Option<&WebView>) -> bool;
 
@@ -442,7 +442,7 @@ extern_protocol!(
         /// off all toolbars (with the same exception).
         #[deprecated]
         #[optional]
-        #[method(webView:setToolbarsVisible:)]
+        #[unsafe(method(webView:setToolbarsVisible:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_setToolbarsVisible(&self, sender: Option<&WebView>, visible: bool);
 
@@ -455,7 +455,7 @@ extern_protocol!(
         /// Returns: YES if the status bar is visible, otherwise NO.
         #[deprecated]
         #[optional]
-        #[method(webViewIsStatusBarVisible:)]
+        #[unsafe(method(webViewIsStatusBarVisible:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewIsStatusBarVisible(&self, sender: Option<&WebView>) -> bool;
 
@@ -469,7 +469,7 @@ extern_protocol!(
         /// setting it to NO should hide it.
         #[deprecated]
         #[optional]
-        #[method(webView:setStatusBarVisible:)]
+        #[unsafe(method(webView:setStatusBarVisible:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_setStatusBarVisible(&self, sender: Option<&WebView>, visible: bool);
 
@@ -486,7 +486,7 @@ extern_protocol!(
         /// be handled specially.
         #[deprecated]
         #[optional]
-        #[method(webViewIsResizable:)]
+        #[unsafe(method(webViewIsResizable:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewIsResizable(&self, sender: Option<&WebView>) -> bool;
 
@@ -503,7 +503,7 @@ extern_protocol!(
         /// be handled specially.
         #[deprecated]
         #[optional]
-        #[method(webView:setResizable:)]
+        #[unsafe(method(webView:setResizable:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_setResizable(&self, sender: Option<&WebView>, resizable: bool);
 
@@ -520,7 +520,7 @@ extern_protocol!(
         /// things on programmatic move/resize, like avoiding autosaving of the size.
         #[deprecated]
         #[optional]
-        #[method(webView:setFrame:)]
+        #[unsafe(method(webView:setFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_setFrame(&self, sender: Option<&WebView>, frame: NSRect);
 
@@ -531,7 +531,7 @@ extern_protocol!(
         /// Return the window's frame rect
         #[deprecated]
         #[optional]
-        #[method(webViewFrame:)]
+        #[unsafe(method(webViewFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewFrame(&self, sender: Option<&WebView>) -> NSRect;
 
@@ -550,7 +550,7 @@ extern_protocol!(
         /// a single OK button.
         #[deprecated]
         #[optional]
-        #[method(webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:)]
+        #[unsafe(method(webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptAlertPanelWithMessage_initiatedByFrame(
             &self,
@@ -576,7 +576,7 @@ extern_protocol!(
         /// two buttons, e.g. "OK" and "Cancel".
         #[deprecated]
         #[optional]
-        #[method(webView:runJavaScriptConfirmPanelWithMessage:initiatedByFrame:)]
+        #[unsafe(method(webView:runJavaScriptConfirmPanelWithMessage:initiatedByFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptConfirmPanelWithMessage_initiatedByFrame(
             &self,
@@ -604,7 +604,7 @@ extern_protocol!(
         /// two buttons, e.g. "OK" and "Cancel", and an area to type text.
         #[deprecated]
         #[optional]
-        #[method(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:)]
+        #[unsafe(method(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptTextInputPanelWithPrompt_defaultText_initiatedByFrame(
             &self,
@@ -631,7 +631,7 @@ extern_protocol!(
         /// two buttons, e.g. "OK" and "Cancel".
         #[deprecated]
         #[optional]
-        #[method(webView:runBeforeUnloadConfirmPanelWithMessage:initiatedByFrame:)]
+        #[unsafe(method(webView:runBeforeUnloadConfirmPanelWithMessage:initiatedByFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_runBeforeUnloadConfirmPanelWithMessage_initiatedByFrame(
             &self,
@@ -652,7 +652,7 @@ extern_protocol!(
         /// value so that it can be handled with a sheet.
         #[deprecated]
         #[optional]
-        #[method(webView:runOpenPanelForFileButtonWithResultListener:)]
+        #[unsafe(method(webView:runOpenPanelForFileButtonWithResultListener:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_runOpenPanelForFileButtonWithResultListener(
             &self,
@@ -673,7 +673,7 @@ extern_protocol!(
         /// This method is passed a callback object instead of giving a return
         /// value so that it can be handled with a sheet.
         #[optional]
-        #[method(webView:runOpenPanelForFileButtonWithResultListener:allowMultipleFiles:)]
+        #[unsafe(method(webView:runOpenPanelForFileButtonWithResultListener:allowMultipleFiles:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_runOpenPanelForFileButtonWithResultListener_allowMultipleFiles(
             &self,
@@ -694,7 +694,7 @@ extern_protocol!(
         /// Parameter `modifierFlags`: The modifier flags as in NSEvent.
         #[deprecated]
         #[optional]
-        #[method(webView:mouseDidMoveOverElement:modifierFlags:)]
+        #[unsafe(method(webView:mouseDidMoveOverElement:modifierFlags:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_mouseDidMoveOverElement_modifierFlags(
             &self,
@@ -716,7 +716,7 @@ extern_protocol!(
         /// Returns: An array of NSMenuItems to include in the contextual menu.
         #[deprecated]
         #[optional]
-        #[method(webView:contextMenuItemsForElement:defaultMenuItems:)]
+        #[unsafe(method(webView:contextMenuItemsForElement:defaultMenuItems:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_contextMenuItemsForElement_defaultMenuItems(
             &self,
@@ -740,7 +740,7 @@ extern_protocol!(
         /// NSValidatedUserInterfaceItem for information about UI validation.
         #[deprecated]
         #[optional]
-        #[method(webView:validateUserInterfaceItem:defaultValidation:)]
+        #[unsafe(method(webView:validateUserInterfaceItem:defaultValidation:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_validateUserInterfaceItem_defaultValidation(
             &self,
@@ -765,7 +765,7 @@ extern_protocol!(
         /// WebView can perform.
         #[deprecated]
         #[optional]
-        #[method(webView:shouldPerformAction:fromSender:)]
+        #[unsafe(method(webView:shouldPerformAction:fromSender:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_shouldPerformAction_fromSender(
             &self,
@@ -787,7 +787,7 @@ extern_protocol!(
         /// WebDragDestinationActionNone to not accept the drag.
         #[deprecated]
         #[optional]
-        #[method(webView:dragDestinationActionMaskForDraggingInfo:)]
+        #[unsafe(method(webView:dragDestinationActionMaskForDraggingInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_dragDestinationActionMaskForDraggingInfo(
             &self,
@@ -809,7 +809,7 @@ extern_protocol!(
         /// This method informs the UI delegate of the drag destination action that WebView will perform.
         #[deprecated]
         #[optional]
-        #[method(webView:willPerformDragDestinationAction:forDraggingInfo:)]
+        #[unsafe(method(webView:willPerformDragDestinationAction:forDraggingInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_willPerformDragDestinationAction_forDraggingInfo(
             &self,
@@ -830,7 +830,7 @@ extern_protocol!(
         /// which drag source actions can occur, WebDragSourceActionAny to allow any kind of action or WebDragSourceActionNone to not begin a drag.
         #[deprecated]
         #[optional]
-        #[method(webView:dragSourceActionMaskForPoint:)]
+        #[unsafe(method(webView:dragSourceActionMaskForPoint:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_dragSourceActionMaskForPoint(
             &self,
@@ -855,7 +855,7 @@ extern_protocol!(
         /// the contents of the dragging pasteboard.
         #[deprecated]
         #[optional]
-        #[method(webView:willPerformDragSourceAction:fromPoint:withPasteboard:)]
+        #[unsafe(method(webView:willPerformDragSourceAction:fromPoint:withPasteboard:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_willPerformDragSourceAction_fromPoint_withPasteboard(
             &self,
@@ -886,7 +886,7 @@ extern_protocol!(
         /// the WebFrameView's printOperationWithPrintInfo to handle the printing.
         #[deprecated]
         #[optional]
-        #[method(webView:printFrameView:)]
+        #[unsafe(method(webView:printFrameView:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_printFrameView(
             &self,
@@ -905,7 +905,7 @@ extern_protocol!(
         /// The height returned will be used to calculate the rect passed to webView:drawHeaderInRect:.
         #[deprecated]
         #[optional]
-        #[method(webViewHeaderHeight:)]
+        #[unsafe(method(webViewHeaderHeight:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewHeaderHeight(&self, sender: Option<&WebView>) -> c_float;
 
@@ -920,7 +920,7 @@ extern_protocol!(
         /// The height returned will be used to calculate the rect passed to webView:drawFooterInRect:.
         #[deprecated]
         #[optional]
-        #[method(webViewFooterHeight:)]
+        #[unsafe(method(webViewFooterHeight:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewFooterHeight(&self, sender: Option<&WebView>) -> c_float;
 
@@ -933,7 +933,7 @@ extern_protocol!(
         /// The delegate should draw a header for the sender in the supplied rect.
         #[deprecated]
         #[optional]
-        #[method(webView:drawHeaderInRect:)]
+        #[unsafe(method(webView:drawHeaderInRect:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_drawHeaderInRect(&self, sender: Option<&WebView>, rect: NSRect);
 
@@ -946,7 +946,7 @@ extern_protocol!(
         /// The delegate should draw a footer for the sender in the supplied rect.
         #[deprecated]
         #[optional]
-        #[method(webView:drawFooterInRect:)]
+        #[unsafe(method(webView:drawFooterInRect:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_drawFooterInRect(&self, sender: Option<&WebView>, rect: NSRect);
 
@@ -954,7 +954,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(webView:runJavaScriptAlertPanelWithMessage:)]
+        #[unsafe(method(webView:runJavaScriptAlertPanelWithMessage:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptAlertPanelWithMessage(
             &self,
@@ -966,7 +966,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(webView:runJavaScriptConfirmPanelWithMessage:)]
+        #[unsafe(method(webView:runJavaScriptConfirmPanelWithMessage:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptConfirmPanelWithMessage(
             &self,
@@ -978,7 +978,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:)]
+        #[unsafe(method(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptTextInputPanelWithPrompt_defaultText(
             &self,
@@ -991,7 +991,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(webView:setContentRect:)]
+        #[unsafe(method(webView:setContentRect:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_setContentRect(&self, sender: Option<&WebView>, frame: NSRect);
 
@@ -999,7 +999,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(webViewContentRect:)]
+        #[unsafe(method(webViewContentRect:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewContentRect(&self, sender: Option<&WebView>) -> NSRect;
     }

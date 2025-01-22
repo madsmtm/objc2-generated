@@ -35,24 +35,24 @@ extern_methods!(
     #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCMicroGamepadSnapshot {
         #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
-        #[method(snapshotData)]
+        #[unsafe(method(snapshotData))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshotData(&self) -> Retained<NSData>;
 
         /// Setter for [`snapshotData`][Self::snapshotData].
         #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
-        #[method(setSnapshotData:)]
+        #[unsafe(method(setSnapshotData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSnapshotData(&self, snapshot_data: &NSData);
 
         #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
-        #[method(initWithSnapshotData:)]
+        #[unsafe(method(initWithSnapshotData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSnapshotData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
         #[cfg(feature = "GCController")]
         #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
-        #[method(initWithController:snapshotData:)]
+        #[unsafe(method(initWithController:snapshotData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithController_snapshotData(
             this: Allocated<Self>,
@@ -66,11 +66,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCMicroGamepadSnapshot {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

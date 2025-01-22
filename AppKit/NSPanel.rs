@@ -65,30 +65,30 @@ unsafe impl NSUserInterfaceValidations for NSPanel {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSPanel {
-        #[method(isFloatingPanel)]
+        #[unsafe(method(isFloatingPanel))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFloatingPanel(&self) -> bool;
 
         /// Setter for [`isFloatingPanel`][Self::isFloatingPanel].
-        #[method(setFloatingPanel:)]
+        #[unsafe(method(setFloatingPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFloatingPanel(&self, floating_panel: bool);
 
-        #[method(becomesKeyOnlyIfNeeded)]
+        #[unsafe(method(becomesKeyOnlyIfNeeded))]
         #[unsafe(method_family = none)]
         pub unsafe fn becomesKeyOnlyIfNeeded(&self) -> bool;
 
         /// Setter for [`becomesKeyOnlyIfNeeded`][Self::becomesKeyOnlyIfNeeded].
-        #[method(setBecomesKeyOnlyIfNeeded:)]
+        #[unsafe(method(setBecomesKeyOnlyIfNeeded:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBecomesKeyOnlyIfNeeded(&self, becomes_key_only_if_needed: bool);
 
-        #[method(worksWhenModal)]
+        #[unsafe(method(worksWhenModal))]
         #[unsafe(method_family = none)]
         pub unsafe fn worksWhenModal(&self) -> bool;
 
         /// Setter for [`worksWhenModal`][Self::worksWhenModal].
-        #[method(setWorksWhenModal:)]
+        #[unsafe(method(setWorksWhenModal:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWorksWhenModal(&self, works_when_modal: bool);
     }
@@ -99,7 +99,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSPanel {
         #[cfg(feature = "NSGraphics")]
-        #[method(initWithContentRect:styleMask:backing:defer:)]
+        #[unsafe(method(initWithContentRect:styleMask:backing:defer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Allocated<Self>,
@@ -110,7 +110,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSGraphics", feature = "NSScreen"))]
-        #[method(initWithContentRect:styleMask:backing:defer:screen:)]
+        #[unsafe(method(initWithContentRect:styleMask:backing:defer:screen:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Allocated<Self>,
@@ -121,13 +121,13 @@ extern_methods!(
             screen: Option<&NSScreen>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSViewController")]
         /// Convenience method for creating an autoreleased titled window with the given contentViewController. A basic NSWindow with the following attributes is made: titled, closable, resizable, miniaturizable. The window's title is automatically bound to the contentViewController's title. The size of the window can easily be controlled by utilizing autolayout and applying size constraints to the view (or its subviews). The window has isReleasedWhenClosed set to NO, and it must be explicitly retained to keep the window instance alive. To have it automatically be freed when it is closed, do the following: [window retain] and [window setReleasedWhenClosed:YES].
-        #[method(windowWithContentViewController:)]
+        #[unsafe(method(windowWithContentViewController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
@@ -139,7 +139,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSPanel {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -149,7 +149,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSPanel {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

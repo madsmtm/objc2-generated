@@ -28,22 +28,22 @@ unsafe impl NSSecureCoding for GKLeaderboardSet {}
 extern_methods!(
     unsafe impl GKLeaderboardSet {
         /// Localized set title.
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// set when leaderboardSets have been designated a game group; set when loadLeaderboardSetsWithCompletionHandler has been called for leaderboards that support game groups
-        #[method(groupIdentifier)]
+        #[unsafe(method(groupIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn groupIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// leaderboard set.
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identifier`][Self::identifier].
-        #[method(setIdentifier:)]
+        #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
 
@@ -53,7 +53,7 @@ extern_methods!(
         /// 1. Communications problem
         /// 2. Unauthenticated player
         /// 3. Set not present
-        #[method(loadLeaderboardSetsWithCompletionHandler:)]
+        #[unsafe(method(loadLeaderboardSetsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardSetsWithCompletionHandler(
             completion_handler: Option<
@@ -66,7 +66,7 @@ extern_methods!(
         /// Possible reasons for error:
         /// 1. Communications problem
         /// 2. Unauthenticated player
-        #[method(loadLeaderboardsWithHandler:)]
+        #[unsafe(method(loadLeaderboardsWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardsWithHandler(
             &self,
@@ -78,11 +78,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKLeaderboardSet {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -97,7 +97,7 @@ extern_methods!(
         /// 1. Communications problem
         /// 2. Unauthenticated player
         #[deprecated]
-        #[method(loadLeaderboardsWithCompletionHandler:)]
+        #[unsafe(method(loadLeaderboardsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardsWithCompletionHandler(
             &self,
@@ -113,7 +113,7 @@ extern_methods!(
     unsafe impl GKLeaderboardSet {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
-        #[method(loadImageWithCompletionHandler:)]
+        #[unsafe(method(loadImageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,

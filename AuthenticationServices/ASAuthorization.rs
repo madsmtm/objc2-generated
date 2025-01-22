@@ -33,21 +33,21 @@ extern_methods!(
     unsafe impl ASAuthorization {
         #[cfg(feature = "ASAuthorizationProvider")]
         /// Provider which was used to generate this authorization response.
-        #[method(provider)]
+        #[unsafe(method(provider))]
         #[unsafe(method_family = none)]
         pub unsafe fn provider(&self) -> Retained<ProtocolObject<dyn ASAuthorizationProvider>>;
 
         #[cfg(feature = "ASAuthorizationCredential")]
         /// The credential that was returned by the authorization provider. Authorization provider type should be used to determine how to introspect the credential.
-        #[method(credential)]
+        #[unsafe(method(credential))]
         #[unsafe(method_family = none)]
         pub unsafe fn credential(&self) -> Retained<ProtocolObject<dyn ASAuthorizationCredential>>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

@@ -14,20 +14,20 @@ extern_methods!(
     /// Can only use these predicates with CNContactStore.
     #[cfg(feature = "CNContainer")]
     unsafe impl CNContainer {
-        #[method(predicateForContainersWithIdentifiers:)]
+        #[unsafe(method(predicateForContainersWithIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForContainersWithIdentifiers(
             identifiers: &NSArray<NSString>,
         ) -> Retained<NSPredicate>;
 
         /// If the identifier is for a unified contact then the fetch will return an empty array. To fetch the containers of a unified contact, first fetch the linked contacts then fetch the container of each linked contact.
-        #[method(predicateForContainerOfContactWithIdentifier:)]
+        #[unsafe(method(predicateForContainerOfContactWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForContainerOfContactWithIdentifier(
             contact_identifier: &NSString,
         ) -> Retained<NSPredicate>;
 
-        #[method(predicateForContainerOfGroupWithIdentifier:)]
+        #[unsafe(method(predicateForContainerOfGroupWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForContainerOfGroupWithIdentifier(
             group_identifier: &NSString,

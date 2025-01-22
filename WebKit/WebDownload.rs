@@ -41,7 +41,7 @@ extern_methods!(
         ///
         /// Returns: An initialized NSURLDownload object.
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
-        #[method(initWithRequest:delegate:)]
+        #[unsafe(method(initWithRequest:delegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRequest_delegate(
             this: Allocated<Self>,
@@ -59,7 +59,7 @@ extern_methods!(
         ///
         /// Returns: An initialized NSURLDownload object.
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
-        #[method(initWithResumeData:delegate:path:)]
+        #[unsafe(method(initWithResumeData:delegate:path:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResumeData_delegate_path(
             this: Allocated<Self>,
@@ -73,11 +73,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebDownload {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -94,7 +94,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(downloadWindowForAuthenticationSheet:)]
+        #[unsafe(method(downloadWindowForAuthenticationSheet:))]
         #[unsafe(method_family = none)]
         unsafe fn downloadWindowForAuthenticationSheet(
             &self,

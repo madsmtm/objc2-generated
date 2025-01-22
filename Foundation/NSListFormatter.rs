@@ -32,39 +32,39 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSListFormatter {
         #[cfg(feature = "NSLocale")]
-        #[method(locale)]
+        #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
         /// Setter for [`locale`][Self::locale].
-        #[method(setLocale:)]
+        #[unsafe(method(setLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[method(itemFormatter)]
+        #[unsafe(method(itemFormatter))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemFormatter(&self) -> Option<Retained<NSFormatter>>;
 
         /// Setter for [`itemFormatter`][Self::itemFormatter].
-        #[method(setItemFormatter:)]
+        #[unsafe(method(setItemFormatter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemFormatter(&self, item_formatter: Option<&NSFormatter>);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method(localizedStringByJoiningStrings:)]
+        #[unsafe(method(localizedStringByJoiningStrings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedStringByJoiningStrings(
             strings: &NSArray<NSString>,
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method(stringFromItems:)]
+        #[unsafe(method(stringFromItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromItems(&self, items: &NSArray) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method(stringForObjectValue:)]
+        #[unsafe(method(stringForObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringForObjectValue(
             &self,
@@ -77,11 +77,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSListFormatter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

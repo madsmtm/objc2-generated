@@ -8,22 +8,22 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidevicecapability?language=objc)
     pub unsafe trait NIDeviceCapability {
         /// Whether or not this device is capable of participating in a nearby interaction session with precise ranging
-        #[method(supportsPreciseDistanceMeasurement)]
+        #[unsafe(method(supportsPreciseDistanceMeasurement))]
         #[unsafe(method_family = none)]
         unsafe fn supportsPreciseDistanceMeasurement(&self) -> bool;
 
         /// Whether or not this device is capable of participating in a nearby interaction session with instantaneous direction
-        #[method(supportsDirectionMeasurement)]
+        #[unsafe(method(supportsDirectionMeasurement))]
         #[unsafe(method_family = none)]
         unsafe fn supportsDirectionMeasurement(&self) -> bool;
 
         /// Whether or not this device is capable of participating in a nearby interaction session with camera assistance
-        #[method(supportsCameraAssistance)]
+        #[unsafe(method(supportsCameraAssistance))]
         #[unsafe(method_family = none)]
         unsafe fn supportsCameraAssistance(&self) -> bool;
 
         /// Whether or not this device is capable of extended distance measurement capabilities
-        #[method(supportsExtendedDistanceMeasurement)]
+        #[unsafe(method(supportsExtendedDistanceMeasurement))]
         #[unsafe(method_family = none)]
         unsafe fn supportsExtendedDistanceMeasurement(&self) -> bool;
     }

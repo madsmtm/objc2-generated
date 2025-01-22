@@ -76,7 +76,7 @@ unsafe impl NSObjectProtocol for WebPreferences {}
 extern_methods!(
     unsafe impl WebPreferences {
         #[deprecated]
-        #[method(standardPreferences)]
+        #[unsafe(method(standardPreferences))]
         #[unsafe(method_family = none)]
         pub unsafe fn standardPreferences() -> Option<Retained<WebPreferences>>;
 
@@ -89,7 +89,7 @@ extern_methods!(
         ///
         /// Returns: Returns a new instance of WebPreferences or a previously allocated instance with the same identifier.
         #[deprecated]
-        #[method(initWithIdentifier:)]
+        #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
@@ -98,128 +98,128 @@ extern_methods!(
 
         /// Returns: Returns the identifier for this WebPreferences.
         #[deprecated]
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method(standardFontFamily)]
+        #[unsafe(method(standardFontFamily))]
         #[unsafe(method_family = none)]
         pub unsafe fn standardFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`standardFontFamily`][Self::standardFontFamily].
         #[deprecated]
-        #[method(setStandardFontFamily:)]
+        #[unsafe(method(setStandardFontFamily:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardFontFamily(&self, standard_font_family: Option<&NSString>);
 
         #[deprecated]
-        #[method(fixedFontFamily)]
+        #[unsafe(method(fixedFontFamily))]
         #[unsafe(method_family = none)]
         pub unsafe fn fixedFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`fixedFontFamily`][Self::fixedFontFamily].
         #[deprecated]
-        #[method(setFixedFontFamily:)]
+        #[unsafe(method(setFixedFontFamily:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFixedFontFamily(&self, fixed_font_family: Option<&NSString>);
 
         #[deprecated]
-        #[method(serifFontFamily)]
+        #[unsafe(method(serifFontFamily))]
         #[unsafe(method_family = none)]
         pub unsafe fn serifFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`serifFontFamily`][Self::serifFontFamily].
         #[deprecated]
-        #[method(setSerifFontFamily:)]
+        #[unsafe(method(setSerifFontFamily:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSerifFontFamily(&self, serif_font_family: Option<&NSString>);
 
         #[deprecated]
-        #[method(sansSerifFontFamily)]
+        #[unsafe(method(sansSerifFontFamily))]
         #[unsafe(method_family = none)]
         pub unsafe fn sansSerifFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`sansSerifFontFamily`][Self::sansSerifFontFamily].
         #[deprecated]
-        #[method(setSansSerifFontFamily:)]
+        #[unsafe(method(setSansSerifFontFamily:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSansSerifFontFamily(&self, sans_serif_font_family: Option<&NSString>);
 
         #[deprecated]
-        #[method(cursiveFontFamily)]
+        #[unsafe(method(cursiveFontFamily))]
         #[unsafe(method_family = none)]
         pub unsafe fn cursiveFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`cursiveFontFamily`][Self::cursiveFontFamily].
         #[deprecated]
-        #[method(setCursiveFontFamily:)]
+        #[unsafe(method(setCursiveFontFamily:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCursiveFontFamily(&self, cursive_font_family: Option<&NSString>);
 
         #[deprecated]
-        #[method(fantasyFontFamily)]
+        #[unsafe(method(fantasyFontFamily))]
         #[unsafe(method_family = none)]
         pub unsafe fn fantasyFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`fantasyFontFamily`][Self::fantasyFontFamily].
         #[deprecated]
-        #[method(setFantasyFontFamily:)]
+        #[unsafe(method(setFantasyFontFamily:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFantasyFontFamily(&self, fantasy_font_family: Option<&NSString>);
 
         #[deprecated]
-        #[method(defaultFontSize)]
+        #[unsafe(method(defaultFontSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultFontSize(&self) -> c_int;
 
         /// Setter for [`defaultFontSize`][Self::defaultFontSize].
         #[deprecated]
-        #[method(setDefaultFontSize:)]
+        #[unsafe(method(setDefaultFontSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultFontSize(&self, default_font_size: c_int);
 
         #[deprecated]
-        #[method(defaultFixedFontSize)]
+        #[unsafe(method(defaultFixedFontSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultFixedFontSize(&self) -> c_int;
 
         /// Setter for [`defaultFixedFontSize`][Self::defaultFixedFontSize].
         #[deprecated]
-        #[method(setDefaultFixedFontSize:)]
+        #[unsafe(method(setDefaultFixedFontSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultFixedFontSize(&self, default_fixed_font_size: c_int);
 
         #[deprecated]
-        #[method(minimumFontSize)]
+        #[unsafe(method(minimumFontSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumFontSize(&self) -> c_int;
 
         /// Setter for [`minimumFontSize`][Self::minimumFontSize].
         #[deprecated]
-        #[method(setMinimumFontSize:)]
+        #[unsafe(method(setMinimumFontSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumFontSize(&self, minimum_font_size: c_int);
 
         #[deprecated]
-        #[method(minimumLogicalFontSize)]
+        #[unsafe(method(minimumLogicalFontSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumLogicalFontSize(&self) -> c_int;
 
         /// Setter for [`minimumLogicalFontSize`][Self::minimumLogicalFontSize].
         #[deprecated]
-        #[method(setMinimumLogicalFontSize:)]
+        #[unsafe(method(setMinimumLogicalFontSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumLogicalFontSize(&self, minimum_logical_font_size: c_int);
 
         #[deprecated]
-        #[method(defaultTextEncodingName)]
+        #[unsafe(method(defaultTextEncodingName))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultTextEncodingName(&self) -> Retained<NSString>;
 
         /// Setter for [`defaultTextEncodingName`][Self::defaultTextEncodingName].
         #[deprecated]
-        #[method(setDefaultTextEncodingName:)]
+        #[unsafe(method(setDefaultTextEncodingName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultTextEncodingName(
             &self,
@@ -227,59 +227,59 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method(userStyleSheetEnabled)]
+        #[unsafe(method(userStyleSheetEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn userStyleSheetEnabled(&self) -> bool;
 
         /// Setter for [`userStyleSheetEnabled`][Self::userStyleSheetEnabled].
         #[deprecated]
-        #[method(setUserStyleSheetEnabled:)]
+        #[unsafe(method(setUserStyleSheetEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserStyleSheetEnabled(&self, user_style_sheet_enabled: bool);
 
         /// The location of the user style sheet.
         #[deprecated]
-        #[method(userStyleSheetLocation)]
+        #[unsafe(method(userStyleSheetLocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn userStyleSheetLocation(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`userStyleSheetLocation`][Self::userStyleSheetLocation].
         #[deprecated]
-        #[method(setUserStyleSheetLocation:)]
+        #[unsafe(method(setUserStyleSheetLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserStyleSheetLocation(&self, user_style_sheet_location: Option<&NSURL>);
 
         /// Deprecated function that does nothing and always returns false.
         #[deprecated]
-        #[method(isJavaEnabled)]
+        #[unsafe(method(isJavaEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isJavaEnabled(&self) -> bool;
 
         /// Setter for [`isJavaEnabled`][Self::isJavaEnabled].
         #[deprecated]
-        #[method(setJavaEnabled:)]
+        #[unsafe(method(setJavaEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJavaEnabled(&self, java_enabled: bool);
 
         #[deprecated]
-        #[method(isJavaScriptEnabled)]
+        #[unsafe(method(isJavaScriptEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isJavaScriptEnabled(&self) -> bool;
 
         /// Setter for [`isJavaScriptEnabled`][Self::isJavaScriptEnabled].
         #[deprecated]
-        #[method(setJavaScriptEnabled:)]
+        #[unsafe(method(setJavaScriptEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJavaScriptEnabled(&self, java_script_enabled: bool);
 
         #[deprecated]
-        #[method(javaScriptCanOpenWindowsAutomatically)]
+        #[unsafe(method(javaScriptCanOpenWindowsAutomatically))]
         #[unsafe(method_family = none)]
         pub unsafe fn javaScriptCanOpenWindowsAutomatically(&self) -> bool;
 
         /// Setter for [`javaScriptCanOpenWindowsAutomatically`][Self::javaScriptCanOpenWindowsAutomatically].
         #[deprecated]
-        #[method(setJavaScriptCanOpenWindowsAutomatically:)]
+        #[unsafe(method(setJavaScriptCanOpenWindowsAutomatically:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJavaScriptCanOpenWindowsAutomatically(
             &self,
@@ -287,96 +287,96 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method(arePlugInsEnabled)]
+        #[unsafe(method(arePlugInsEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn arePlugInsEnabled(&self) -> bool;
 
         /// Setter for [`arePlugInsEnabled`][Self::arePlugInsEnabled].
         #[deprecated]
-        #[method(setPlugInsEnabled:)]
+        #[unsafe(method(setPlugInsEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlugInsEnabled(&self, plug_ins_enabled: bool);
 
         #[deprecated]
-        #[method(allowsAnimatedImages)]
+        #[unsafe(method(allowsAnimatedImages))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsAnimatedImages(&self) -> bool;
 
         /// Setter for [`allowsAnimatedImages`][Self::allowsAnimatedImages].
         #[deprecated]
-        #[method(setAllowsAnimatedImages:)]
+        #[unsafe(method(setAllowsAnimatedImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsAnimatedImages(&self, allows_animated_images: bool);
 
         #[deprecated]
-        #[method(allowsAnimatedImageLooping)]
+        #[unsafe(method(allowsAnimatedImageLooping))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsAnimatedImageLooping(&self) -> bool;
 
         /// Setter for [`allowsAnimatedImageLooping`][Self::allowsAnimatedImageLooping].
         #[deprecated]
-        #[method(setAllowsAnimatedImageLooping:)]
+        #[unsafe(method(setAllowsAnimatedImageLooping:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsAnimatedImageLooping(&self, allows_animated_image_looping: bool);
 
         #[deprecated]
-        #[method(loadsImagesAutomatically)]
+        #[unsafe(method(loadsImagesAutomatically))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadsImagesAutomatically(&self) -> bool;
 
         /// Setter for [`loadsImagesAutomatically`][Self::loadsImagesAutomatically].
         #[deprecated]
-        #[method(setLoadsImagesAutomatically:)]
+        #[unsafe(method(setLoadsImagesAutomatically:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLoadsImagesAutomatically(&self, loads_images_automatically: bool);
 
         /// If autosaves is YES the settings represented by
         /// WebPreferences will be stored in the user defaults database.
         #[deprecated]
-        #[method(autosaves)]
+        #[unsafe(method(autosaves))]
         #[unsafe(method_family = none)]
         pub unsafe fn autosaves(&self) -> bool;
 
         /// Setter for [`autosaves`][Self::autosaves].
         #[deprecated]
-        #[method(setAutosaves:)]
+        #[unsafe(method(setAutosaves:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutosaves(&self, autosaves: bool);
 
         #[deprecated]
-        #[method(shouldPrintBackgrounds)]
+        #[unsafe(method(shouldPrintBackgrounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldPrintBackgrounds(&self) -> bool;
 
         /// Setter for [`shouldPrintBackgrounds`][Self::shouldPrintBackgrounds].
         #[deprecated]
-        #[method(setShouldPrintBackgrounds:)]
+        #[unsafe(method(setShouldPrintBackgrounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldPrintBackgrounds(&self, should_print_backgrounds: bool);
 
         /// If private browsing is enabled, WebKit will not store information
         /// about sites the user visits.
         #[deprecated]
-        #[method(privateBrowsingEnabled)]
+        #[unsafe(method(privateBrowsingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn privateBrowsingEnabled(&self) -> bool;
 
         /// Setter for [`privateBrowsingEnabled`][Self::privateBrowsingEnabled].
         #[deprecated]
-        #[method(setPrivateBrowsingEnabled:)]
+        #[unsafe(method(setPrivateBrowsingEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrivateBrowsingEnabled(&self, private_browsing_enabled: bool);
 
         /// If tabsToLinks is YES, the tab key will focus links and form controls.
         /// The option key temporarily reverses this preference.
         #[deprecated]
-        #[method(tabsToLinks)]
+        #[unsafe(method(tabsToLinks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tabsToLinks(&self) -> bool;
 
         /// Setter for [`tabsToLinks`][Self::tabsToLinks].
         #[deprecated]
-        #[method(setTabsToLinks:)]
+        #[unsafe(method(setTabsToLinks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTabsToLinks(&self, tabs_to_links: bool);
 
@@ -388,13 +388,13 @@ extern_methods!(
         /// the page cache is global, caching a page in one WebBackForwardList may cause
         /// a page in another WebBackForwardList to be evicted from the cache.
         #[deprecated]
-        #[method(usesPageCache)]
+        #[unsafe(method(usesPageCache))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesPageCache(&self) -> bool;
 
         /// Setter for [`usesPageCache`][Self::usesPageCache].
         #[deprecated]
-        #[method(setUsesPageCache:)]
+        #[unsafe(method(setUsesPageCache:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesPageCache(&self, uses_page_cache: bool);
 
@@ -417,24 +417,24 @@ extern_methods!(
         ///
         /// If cacheModel is not set, WebKit will select a cache model automatically.
         #[deprecated]
-        #[method(cacheModel)]
+        #[unsafe(method(cacheModel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cacheModel(&self) -> WebCacheModel;
 
         /// Setter for [`cacheModel`][Self::cacheModel].
         #[deprecated]
-        #[method(setCacheModel:)]
+        #[unsafe(method(setCacheModel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCacheModel(&self, cache_model: WebCacheModel);
 
         #[deprecated]
-        #[method(suppressesIncrementalRendering)]
+        #[unsafe(method(suppressesIncrementalRendering))]
         #[unsafe(method_family = none)]
         pub unsafe fn suppressesIncrementalRendering(&self) -> bool;
 
         /// Setter for [`suppressesIncrementalRendering`][Self::suppressesIncrementalRendering].
         #[deprecated]
-        #[method(setSuppressesIncrementalRendering:)]
+        #[unsafe(method(setSuppressesIncrementalRendering:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuppressesIncrementalRendering(
             &self,
@@ -442,13 +442,13 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method(allowsAirPlayForMediaPlayback)]
+        #[unsafe(method(allowsAirPlayForMediaPlayback))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsAirPlayForMediaPlayback(&self) -> bool;
 
         /// Setter for [`allowsAirPlayForMediaPlayback`][Self::allowsAirPlayForMediaPlayback].
         #[deprecated]
-        #[method(setAllowsAirPlayForMediaPlayback:)]
+        #[unsafe(method(setAllowsAirPlayForMediaPlayback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsAirPlayForMediaPlayback(
             &self,
@@ -460,11 +460,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebPreferences {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

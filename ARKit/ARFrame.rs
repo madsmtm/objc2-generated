@@ -123,19 +123,19 @@ extern_methods!(
     unsafe impl ARFrame {
         #[cfg(feature = "objc2-foundation")]
         /// A timestamp identifying the frame.
-        #[method(timestamp)]
+        #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
 
         #[cfg(feature = "objc2-core-video")]
         /// The frame’s captured image.
-        #[method(capturedImage)]
+        #[unsafe(method(capturedImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn capturedImage(&self) -> Retained<CVPixelBuffer>;
 
         #[cfg(feature = "objc2-foundation")]
         /// A dictionary of EXIF metadata for the captured image.
-        #[method(exifData)]
+        #[unsafe(method(exifData))]
         #[unsafe(method_family = none)]
         pub unsafe fn exifData(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
@@ -148,7 +148,7 @@ extern_methods!(
         /// a grainy look and varies with light conditions.
         /// The variations are stored along the depth dimension of the camera grain texture
         /// and can be selected at runtime using the camera grain intensity of the current frame.
-        #[method(cameraGrainTexture)]
+        #[unsafe(method(cameraGrainTexture))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraGrainTexture(&self)
             -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -160,7 +160,7 @@ extern_methods!(
         /// a grainy look and varies with light conditions.
         /// The camera grain intensity can be used to select a texture slice from the frames
         /// camera grain texture.
-        #[method(cameraGrainIntensity)]
+        #[unsafe(method(cameraGrainIntensity))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraGrainIntensity(&self) -> c_float;
 
@@ -168,13 +168,13 @@ extern_methods!(
         /// The frame’s captured depth data.
         ///
         /// Depth data is only provided with face tracking on frames where depth data was captured.
-        #[method(capturedDepthData)]
+        #[unsafe(method(capturedDepthData))]
         #[unsafe(method_family = none)]
         pub unsafe fn capturedDepthData(&self) -> Option<Retained<AVDepthData>>;
 
         #[cfg(feature = "objc2-foundation")]
         /// A timestamp identifying the depth data.
-        #[method(capturedDepthDataTimestamp)]
+        #[unsafe(method(capturedDepthDataTimestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn capturedDepthDataTimestamp(&self) -> NSTimeInterval;
 
@@ -182,13 +182,13 @@ extern_methods!(
         /// The camera used to capture the frame’s image.
         ///
         /// The camera provides the device’s position and orientation as well as camera parameters.
-        #[method(camera)]
+        #[unsafe(method(camera))]
         #[unsafe(method_family = none)]
         pub unsafe fn camera(&self) -> Retained<ARCamera>;
 
         #[cfg(all(feature = "ARAnchor", feature = "objc2-foundation"))]
         /// A list of anchors in the scene.
-        #[method(anchors)]
+        #[unsafe(method(anchors))]
         #[unsafe(method_family = none)]
         pub unsafe fn anchors(&self) -> Retained<NSArray<ARAnchor>>;
 
@@ -196,7 +196,7 @@ extern_methods!(
         /// A light estimate representing the light in the scene.
         ///
         /// Returns nil if there is no light estimation.
-        #[method(lightEstimate)]
+        #[unsafe(method(lightEstimate))]
         #[unsafe(method_family = none)]
         pub unsafe fn lightEstimate(&self) -> Option<Retained<ARLightEstimate>>;
 
@@ -204,7 +204,7 @@ extern_methods!(
         /// Feature points in the scene with respect to the frame’s origin.
         ///
         /// The feature points are only provided for configurations using world tracking.
-        #[method(rawFeaturePoints)]
+        #[unsafe(method(rawFeaturePoints))]
         #[unsafe(method_family = none)]
         pub unsafe fn rawFeaturePoints(&self) -> Option<Retained<ARPointCloud>>;
 
@@ -212,7 +212,7 @@ extern_methods!(
         ///
         /// This can be used to identify the state of the world map for the visible area and if additional scanning
         /// should be done before saving a world map.
-        #[method(worldMappingStatus)]
+        #[unsafe(method(worldMappingStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn worldMappingStatus(&self) -> ARWorldMappingStatus;
 
@@ -225,7 +225,7 @@ extern_methods!(
         /// See: ARSegmentationClass
         ///
         /// See: -[ARConfiguration setFrameSemantics:]
-        #[method(segmentationBuffer)]
+        #[unsafe(method(segmentationBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentationBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
 
@@ -237,7 +237,7 @@ extern_methods!(
         /// See: -[ARConfiguration setFrameSemantics:]
         ///
         /// See: -[ARFrame segmentationBuffer]
-        #[method(estimatedDepthData)]
+        #[unsafe(method(estimatedDepthData))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimatedDepthData(&self) -> Option<Retained<CVPixelBuffer>>;
 
@@ -245,13 +245,13 @@ extern_methods!(
         /// A detected body in the current frame.
         ///
         /// See: -[ARConfiguration setFrameSemantics:]
-        #[method(detectedBody)]
+        #[unsafe(method(detectedBody))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectedBody(&self) -> Option<Retained<ARBody2D>>;
 
         #[cfg(feature = "ARGeoTrackingTypes")]
         /// The status of geo tracking.
-        #[method(geoTrackingStatus)]
+        #[unsafe(method(geoTrackingStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn geoTrackingStatus(&self) -> Option<Retained<ARGeoTrackingStatus>>;
 
@@ -261,7 +261,7 @@ extern_methods!(
         /// See: ARFrameSemanticSceneDepth.
         ///
         /// See: -[ARConfiguration setFrameSemantics:]
-        #[method(sceneDepth)]
+        #[unsafe(method(sceneDepth))]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneDepth(&self) -> Option<Retained<ARDepthData>>;
 
@@ -271,7 +271,7 @@ extern_methods!(
         /// See: ARFrameSemanticSmoothedSceneDepth.
         ///
         /// See: -[ARConfiguration setFrameSemantics:]
-        #[method(smoothedSceneDepth)]
+        #[unsafe(method(smoothedSceneDepth))]
         #[unsafe(method_family = none)]
         pub unsafe fn smoothedSceneDepth(&self) -> Option<Retained<ARDepthData>>;
 
@@ -293,7 +293,7 @@ extern_methods!(
         ///
         /// Returns: An array of all hit-test results sorted from nearest to farthest.
         #[deprecated = "Use [ARSession raycast:]"]
-        #[method(hitTest:types:)]
+        #[unsafe(method(hitTest:types:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hitTest_types(
             &self,
@@ -312,7 +312,7 @@ extern_methods!(
         /// Parameter `target`: Type of target where the ray should terminate.
         ///
         /// Parameter `alignment`: Alignment of the target.
-        #[method(raycastQueryFromPoint:allowingTarget:alignment:)]
+        #[unsafe(method(raycastQueryFromPoint:allowingTarget:alignment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn raycastQueryFromPoint_allowingTarget_alignment(
             &self,
@@ -332,7 +332,7 @@ extern_methods!(
         /// Parameter `orientation`: The orientation of the viewport.
         ///
         /// Parameter `viewportSize`: The size of the viewport.
-        #[method(displayTransformForOrientation:viewportSize:)]
+        #[unsafe(method(displayTransformForOrientation:viewportSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayTransformForOrientation_viewportSize(
             &self,
@@ -341,11 +341,11 @@ extern_methods!(
         ) -> CGAffineTransform;
 
         /// Unavailable
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -82,18 +82,18 @@ unsafe impl NSObjectProtocol for MTLIntersectionFunctionTableDescriptor {}
 extern_methods!(
     unsafe impl MTLIntersectionFunctionTableDescriptor {
         /// Create an autoreleased intersection function table descriptor
-        #[method(intersectionFunctionTableDescriptor)]
+        #[unsafe(method(intersectionFunctionTableDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn intersectionFunctionTableDescriptor(
         ) -> Retained<MTLIntersectionFunctionTableDescriptor>;
 
         /// The number of functions in the table.
-        #[method(functionCount)]
+        #[unsafe(method(functionCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn functionCount(&self) -> NSUInteger;
 
         /// Setter for [`functionCount`][Self::functionCount].
-        #[method(setFunctionCount:)]
+        #[unsafe(method(setFunctionCount:))]
         #[unsafe(method_family = none)]
         pub fn setFunctionCount(&self, function_count: NSUInteger);
     }
@@ -102,11 +102,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLIntersectionFunctionTableDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -124,7 +124,7 @@ extern_protocol!(
     #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLIntersectionFunctionTable: MTLResource {
         #[cfg(feature = "MTLBuffer")]
-        #[method(setBuffer:offset:atIndex:)]
+        #[unsafe(method(setBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffer_offset_atIndex(
             &self,
@@ -134,7 +134,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLBuffer")]
-        #[method(setBuffers:offsets:withRange:)]
+        #[unsafe(method(setBuffers:offsets:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffers_offsets_withRange(
             &self,
@@ -145,12 +145,12 @@ extern_protocol!(
 
         #[cfg(feature = "MTLTypes")]
         /// Handle of the GPU resource suitable for storing in an Argument Buffer
-        #[method(gpuResourceID)]
+        #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
         #[cfg(feature = "MTLFunctionHandle")]
-        #[method(setFunction:atIndex:)]
+        #[unsafe(method(setFunction:atIndex:))]
         #[unsafe(method_family = none)]
         fn setFunction_atIndex(
             &self,
@@ -159,7 +159,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLFunctionHandle")]
-        #[method(setFunctions:withRange:)]
+        #[unsafe(method(setFunctions:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setFunctions_withRange(
             &self,
@@ -167,7 +167,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[method(setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:)]
+        #[unsafe(method(setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setOpaqueTriangleIntersectionFunctionWithSignature_atIndex(
             &self,
@@ -175,7 +175,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[method(setOpaqueTriangleIntersectionFunctionWithSignature:withRange:)]
+        #[unsafe(method(setOpaqueTriangleIntersectionFunctionWithSignature:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setOpaqueTriangleIntersectionFunctionWithSignature_withRange(
             &self,
@@ -183,7 +183,7 @@ extern_protocol!(
             range: NSRange,
         );
 
-        #[method(setOpaqueCurveIntersectionFunctionWithSignature:atIndex:)]
+        #[unsafe(method(setOpaqueCurveIntersectionFunctionWithSignature:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setOpaqueCurveIntersectionFunctionWithSignature_atIndex(
             &self,
@@ -191,7 +191,7 @@ extern_protocol!(
             index: NSUInteger,
         );
 
-        #[method(setOpaqueCurveIntersectionFunctionWithSignature:withRange:)]
+        #[unsafe(method(setOpaqueCurveIntersectionFunctionWithSignature:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setOpaqueCurveIntersectionFunctionWithSignature_withRange(
             &self,
@@ -200,7 +200,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLVisibleFunctionTable")]
-        #[method(setVisibleFunctionTable:atBufferIndex:)]
+        #[unsafe(method(setVisibleFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTable_atBufferIndex(
             &self,
@@ -209,7 +209,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLVisibleFunctionTable")]
-        #[method(setVisibleFunctionTables:withBufferRange:)]
+        #[unsafe(method(setVisibleFunctionTables:withBufferRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTables_withBufferRange(
             &self,

@@ -28,7 +28,7 @@ extern_methods!(
         #[cfg(feature = "MLCOptimizer")]
         /// The optimizer to be used with the training graph
         #[deprecated]
-        #[method(optimizer)]
+        #[unsafe(method(optimizer))]
         #[unsafe(method_family = none)]
         pub unsafe fn optimizer(&self) -> Option<Retained<MLCOptimizer>>;
 
@@ -40,7 +40,7 @@ extern_methods!(
         ///
         /// Returns: A NSUInteger value
         #[deprecated]
-        #[method(deviceMemorySize)]
+        #[unsafe(method(deviceMemorySize))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceMemorySize(&self) -> NSUInteger;
 
@@ -56,7 +56,7 @@ extern_methods!(
         ///
         /// Returns: A new training graph object
         #[deprecated]
-        #[method(graphWithGraphObjects:lossLayer:optimizer:)]
+        #[unsafe(method(graphWithGraphObjects:lossLayer:optimizer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn graphWithGraphObjects_lossLayer_optimizer(
             graph_objects: &NSArray<MLCGraph>,
@@ -73,7 +73,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(addInputs:lossLabels:)]
+        #[unsafe(method(addInputs:lossLabels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addInputs_lossLabels(
             &self,
@@ -97,7 +97,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(addInputs:lossLabels:lossLabelWeights:)]
+        #[unsafe(method(addInputs:lossLabels:lossLabelWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addInputs_lossLabels_lossLabelWeights(
             &self,
@@ -113,7 +113,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(addOutputs:)]
+        #[unsafe(method(addOutputs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addOutputs(&self, outputs: &NSDictionary<NSString, MLCTensor>) -> bool;
 
@@ -124,7 +124,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(stopGradientForTensors:)]
+        #[unsafe(method(stopGradientForTensors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopGradientForTensors(&self, tensors: &NSArray<MLCTensor>) -> bool;
 
@@ -137,7 +137,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(compileWithOptions:device:)]
+        #[unsafe(method(compileWithOptions:device:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compileWithOptions_device(
             &self,
@@ -164,7 +164,7 @@ extern_methods!(
         /// Parameter `inputTensorsData`: The tensor data to be used with these constant input tensors
         ///
         /// Returns: A boolean indicating success or failure
-        #[method(compileWithOptions:device:inputTensors:inputTensorsData:)]
+        #[unsafe(method(compileWithOptions:device:inputTensors:inputTensorsData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compileWithOptions_device_inputTensors_inputTensorsData(
             &self,
@@ -186,7 +186,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(compileOptimizer:)]
+        #[unsafe(method(compileOptimizer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compileOptimizer(&self, optimizer: &MLCOptimizer) -> bool;
 
@@ -199,7 +199,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(linkWithGraphs:)]
+        #[unsafe(method(linkWithGraphs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn linkWithGraphs(&self, graphs: &NSArray<MLCTrainingGraph>) -> bool;
 
@@ -210,7 +210,7 @@ extern_methods!(
         ///
         /// Returns: The gradient tensor
         #[deprecated]
-        #[method(gradientTensorForInput:)]
+        #[unsafe(method(gradientTensorForInput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn gradientTensorForInput(
             &self,
@@ -224,7 +224,7 @@ extern_methods!(
         ///
         /// Returns: A list of tensors
         #[deprecated]
-        #[method(sourceGradientTensorsForLayer:)]
+        #[unsafe(method(sourceGradientTensorsForLayer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceGradientTensorsForLayer(
             &self,
@@ -238,7 +238,7 @@ extern_methods!(
         ///
         /// Returns: A list of tensors
         #[deprecated]
-        #[method(resultGradientTensorsForLayer:)]
+        #[unsafe(method(resultGradientTensorsForLayer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultGradientTensorsForLayer(
             &self,
@@ -266,7 +266,7 @@ extern_methods!(
         /// Returns: The gradient data.  Will return nil if the layer is marked as not trainable or if
         /// training graph is not executed with separate calls to forward and gradient passes.
         #[deprecated]
-        #[method(gradientDataForParameter:layer:)]
+        #[unsafe(method(gradientDataForParameter:layer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn gradientDataForParameter_layer(
             &self,
@@ -283,7 +283,7 @@ extern_methods!(
         ///
         /// Returns: A gradient tensor
         #[deprecated]
-        #[method(allocateUserGradientForTensor:)]
+        #[unsafe(method(allocateUserGradientForTensor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn allocateUserGradientForTensor(
             &self,
@@ -317,7 +317,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)]
+        #[unsafe(method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithInputsData_lossLabelsData_lossLabelWeightsData_batchSize_options_completionHandler(
             &self,
@@ -353,7 +353,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)]
+        #[unsafe(method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithInputsData_lossLabelsData_lossLabelWeightsData_outputsData_batchSize_options_completionHandler(
             &self,
@@ -377,7 +377,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(executeForwardWithBatchSize:options:completionHandler:)]
+        #[unsafe(method(executeForwardWithBatchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeForwardWithBatchSize_options_completionHandler(
             &self,
@@ -404,7 +404,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(executeForwardWithBatchSize:options:outputsData:completionHandler:)]
+        #[unsafe(method(executeForwardWithBatchSize:options:outputsData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeForwardWithBatchSize_options_outputsData_completionHandler(
             &self,
@@ -425,7 +425,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(executeGradientWithBatchSize:options:completionHandler:)]
+        #[unsafe(method(executeGradientWithBatchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeGradientWithBatchSize_options_completionHandler(
             &self,
@@ -452,7 +452,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(executeGradientWithBatchSize:options:outputsData:completionHandler:)]
+        #[unsafe(method(executeGradientWithBatchSize:options:outputsData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeGradientWithBatchSize_options_outputsData_completionHandler(
             &self,
@@ -471,7 +471,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(executeOptimizerUpdateWithOptions:completionHandler:)]
+        #[unsafe(method(executeOptimizerUpdateWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeOptimizerUpdateWithOptions_completionHandler(
             &self,
@@ -482,7 +482,7 @@ extern_methods!(
         /// Synchronize updates (weights/biases from convolution, fully connected and LSTM layers, tensor parameters)
         /// from device memory to host memory.
         #[deprecated]
-        #[method(synchronizeUpdates)]
+        #[unsafe(method(synchronizeUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn synchronizeUpdates(&self);
 
@@ -497,7 +497,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(setTrainingTensorParameters:)]
+        #[unsafe(method(setTrainingTensorParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrainingTensorParameters(
             &self,
@@ -528,7 +528,7 @@ extern_methods!(
         ///
         /// Returns: A Boolean value indicating whether the data is successfully associated with the tensor .
         #[deprecated]
-        #[method(bindOptimizerData:deviceData:withTensor:)]
+        #[unsafe(method(bindOptimizerData:deviceData:withTensor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn bindOptimizerData_deviceData_withTensor(
             &self,
@@ -547,7 +547,7 @@ extern_methods!(
         ///
         /// Returns: A new graph.
         #[deprecated]
-        #[method(graph)]
+        #[unsafe(method(graph))]
         #[unsafe(method_family = none)]
         pub unsafe fn graph() -> Retained<Self>;
     }
@@ -557,11 +557,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MLCGraph")]
     unsafe impl MLCTrainingGraph {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

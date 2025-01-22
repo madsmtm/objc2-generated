@@ -59,34 +59,34 @@ extern_methods!(
     ))]
     unsafe impl DOMAttr {
         #[deprecated]
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method(specified)]
+        #[unsafe(method(specified))]
         #[unsafe(method_family = none)]
         pub unsafe fn specified(&self) -> bool;
 
         #[deprecated]
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
         /// Setter for [`value`][Self::value].
         #[deprecated]
-        #[method(setValue:)]
+        #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);
 
         #[cfg(feature = "DOMElement")]
         #[deprecated]
-        #[method(ownerElement)]
+        #[unsafe(method(ownerElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn ownerElement(&self) -> Option<Retained<DOMElement>>;
 
         #[cfg(feature = "DOMCSSStyleDeclaration")]
-        #[method(style)]
+        #[unsafe(method(style))]
         #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> Option<Retained<DOMCSSStyleDeclaration>>;
     }
@@ -101,7 +101,7 @@ extern_methods!(
     ))]
     unsafe impl DOMAttr {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -115,7 +115,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMAttr {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

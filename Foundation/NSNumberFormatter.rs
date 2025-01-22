@@ -149,17 +149,17 @@ unsafe impl NSObjectProtocol for NSNumberFormatter {}
 extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSNumberFormatter {
-        #[method(formattingContext)]
+        #[unsafe(method(formattingContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn formattingContext(&self) -> NSFormattingContext;
 
         /// Setter for [`formattingContext`][Self::formattingContext].
-        #[method(setFormattingContext:)]
+        #[unsafe(method(setFormattingContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
         #[cfg(all(feature = "NSError", feature = "NSRange", feature = "NSString"))]
-        #[method(getObjectValue:forString:range:error:_)]
+        #[unsafe(method(getObjectValue:forString:range:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn getObjectValue_forString_range_error(
             &self,
@@ -169,91 +169,91 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSString", feature = "NSValue"))]
-        #[method(stringFromNumber:)]
+        #[unsafe(method(stringFromNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromNumber(&self, number: &NSNumber) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSString", feature = "NSValue"))]
-        #[method(numberFromString:)]
+        #[unsafe(method(numberFromString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberFromString(&self, string: &NSString) -> Option<Retained<NSNumber>>;
 
         #[cfg(all(feature = "NSString", feature = "NSValue"))]
-        #[method(localizedStringFromNumber:numberStyle:)]
+        #[unsafe(method(localizedStringFromNumber:numberStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedStringFromNumber_numberStyle(
             num: &NSNumber,
             nstyle: NSNumberFormatterStyle,
         ) -> Retained<NSString>;
 
-        #[method(defaultFormatterBehavior)]
+        #[unsafe(method(defaultFormatterBehavior))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultFormatterBehavior() -> NSNumberFormatterBehavior;
 
-        #[method(setDefaultFormatterBehavior:)]
+        #[unsafe(method(setDefaultFormatterBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultFormatterBehavior(behavior: NSNumberFormatterBehavior);
 
-        #[method(minimumGroupingDigits)]
+        #[unsafe(method(minimumGroupingDigits))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumGroupingDigits(&self) -> NSInteger;
 
         /// Setter for [`minimumGroupingDigits`][Self::minimumGroupingDigits].
-        #[method(setMinimumGroupingDigits:)]
+        #[unsafe(method(setMinimumGroupingDigits:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumGroupingDigits(&self, minimum_grouping_digits: NSInteger);
 
-        #[method(numberStyle)]
+        #[unsafe(method(numberStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberStyle(&self) -> NSNumberFormatterStyle;
 
         /// Setter for [`numberStyle`][Self::numberStyle].
-        #[method(setNumberStyle:)]
+        #[unsafe(method(setNumberStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNumberStyle(&self, number_style: NSNumberFormatterStyle);
 
         #[cfg(feature = "NSLocale")]
-        #[method(locale)]
+        #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
         /// Setter for [`locale`][Self::locale].
-        #[method(setLocale:)]
+        #[unsafe(method(setLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[method(generatesDecimalNumbers)]
+        #[unsafe(method(generatesDecimalNumbers))]
         #[unsafe(method_family = none)]
         pub unsafe fn generatesDecimalNumbers(&self) -> bool;
 
         /// Setter for [`generatesDecimalNumbers`][Self::generatesDecimalNumbers].
-        #[method(setGeneratesDecimalNumbers:)]
+        #[unsafe(method(setGeneratesDecimalNumbers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGeneratesDecimalNumbers(&self, generates_decimal_numbers: bool);
 
-        #[method(formatterBehavior)]
+        #[unsafe(method(formatterBehavior))]
         #[unsafe(method_family = none)]
         pub unsafe fn formatterBehavior(&self) -> NSNumberFormatterBehavior;
 
         /// Setter for [`formatterBehavior`][Self::formatterBehavior].
-        #[method(setFormatterBehavior:)]
+        #[unsafe(method(setFormatterBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFormatterBehavior(&self, formatter_behavior: NSNumberFormatterBehavior);
 
         #[cfg(feature = "NSString")]
-        #[method(negativeFormat)]
+        #[unsafe(method(negativeFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn negativeFormat(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`negativeFormat`][Self::negativeFormat].
-        #[method(setNegativeFormat:)]
+        #[unsafe(method(setNegativeFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNegativeFormat(&self, negative_format: Option<&NSString>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(textAttributesForNegativeValues)]
+        #[unsafe(method(textAttributesForNegativeValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn textAttributesForNegativeValues(
             &self,
@@ -261,7 +261,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`textAttributesForNegativeValues`][Self::textAttributesForNegativeValues].
-        #[method(setTextAttributesForNegativeValues:)]
+        #[unsafe(method(setTextAttributesForNegativeValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForNegativeValues(
             &self,
@@ -269,18 +269,18 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method(positiveFormat)]
+        #[unsafe(method(positiveFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn positiveFormat(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`positiveFormat`][Self::positiveFormat].
-        #[method(setPositiveFormat:)]
+        #[unsafe(method(setPositiveFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPositiveFormat(&self, positive_format: Option<&NSString>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(textAttributesForPositiveValues)]
+        #[unsafe(method(textAttributesForPositiveValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn textAttributesForPositiveValues(
             &self,
@@ -288,89 +288,89 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`textAttributesForPositiveValues`][Self::textAttributesForPositiveValues].
-        #[method(setTextAttributesForPositiveValues:)]
+        #[unsafe(method(setTextAttributesForPositiveValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForPositiveValues(
             &self,
             text_attributes_for_positive_values: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
-        #[method(allowsFloats)]
+        #[unsafe(method(allowsFloats))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsFloats(&self) -> bool;
 
         /// Setter for [`allowsFloats`][Self::allowsFloats].
-        #[method(setAllowsFloats:)]
+        #[unsafe(method(setAllowsFloats:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsFloats(&self, allows_floats: bool);
 
         #[cfg(feature = "NSString")]
-        #[method(decimalSeparator)]
+        #[unsafe(method(decimalSeparator))]
         #[unsafe(method_family = none)]
         pub unsafe fn decimalSeparator(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`decimalSeparator`][Self::decimalSeparator].
-        #[method(setDecimalSeparator:)]
+        #[unsafe(method(setDecimalSeparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDecimalSeparator(&self, decimal_separator: Option<&NSString>);
 
-        #[method(alwaysShowsDecimalSeparator)]
+        #[unsafe(method(alwaysShowsDecimalSeparator))]
         #[unsafe(method_family = none)]
         pub unsafe fn alwaysShowsDecimalSeparator(&self) -> bool;
 
         /// Setter for [`alwaysShowsDecimalSeparator`][Self::alwaysShowsDecimalSeparator].
-        #[method(setAlwaysShowsDecimalSeparator:)]
+        #[unsafe(method(setAlwaysShowsDecimalSeparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlwaysShowsDecimalSeparator(&self, always_shows_decimal_separator: bool);
 
         #[cfg(feature = "NSString")]
-        #[method(currencyDecimalSeparator)]
+        #[unsafe(method(currencyDecimalSeparator))]
         #[unsafe(method_family = none)]
         pub unsafe fn currencyDecimalSeparator(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`currencyDecimalSeparator`][Self::currencyDecimalSeparator].
-        #[method(setCurrencyDecimalSeparator:)]
+        #[unsafe(method(setCurrencyDecimalSeparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrencyDecimalSeparator(
             &self,
             currency_decimal_separator: Option<&NSString>,
         );
 
-        #[method(usesGroupingSeparator)]
+        #[unsafe(method(usesGroupingSeparator))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesGroupingSeparator(&self) -> bool;
 
         /// Setter for [`usesGroupingSeparator`][Self::usesGroupingSeparator].
-        #[method(setUsesGroupingSeparator:)]
+        #[unsafe(method(setUsesGroupingSeparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesGroupingSeparator(&self, uses_grouping_separator: bool);
 
         #[cfg(feature = "NSString")]
-        #[method(groupingSeparator)]
+        #[unsafe(method(groupingSeparator))]
         #[unsafe(method_family = none)]
         pub unsafe fn groupingSeparator(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`groupingSeparator`][Self::groupingSeparator].
-        #[method(setGroupingSeparator:)]
+        #[unsafe(method(setGroupingSeparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGroupingSeparator(&self, grouping_separator: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        #[method(zeroSymbol)]
+        #[unsafe(method(zeroSymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn zeroSymbol(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`zeroSymbol`][Self::zeroSymbol].
-        #[method(setZeroSymbol:)]
+        #[unsafe(method(setZeroSymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZeroSymbol(&self, zero_symbol: Option<&NSString>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(textAttributesForZero)]
+        #[unsafe(method(textAttributesForZero))]
         #[unsafe(method_family = none)]
         pub unsafe fn textAttributesForZero(
             &self,
@@ -378,7 +378,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`textAttributesForZero`][Self::textAttributesForZero].
-        #[method(setTextAttributesForZero:)]
+        #[unsafe(method(setTextAttributesForZero:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForZero(
             &self,
@@ -386,18 +386,18 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method(nilSymbol)]
+        #[unsafe(method(nilSymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn nilSymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`nilSymbol`][Self::nilSymbol].
-        #[method(setNilSymbol:)]
+        #[unsafe(method(setNilSymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNilSymbol(&self, nil_symbol: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(textAttributesForNil)]
+        #[unsafe(method(textAttributesForNil))]
         #[unsafe(method_family = none)]
         pub unsafe fn textAttributesForNil(
             &self,
@@ -405,7 +405,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`textAttributesForNil`][Self::textAttributesForNil].
-        #[method(setTextAttributesForNil:)]
+        #[unsafe(method(setTextAttributesForNil:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForNil(
             &self,
@@ -413,18 +413,18 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method(notANumberSymbol)]
+        #[unsafe(method(notANumberSymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn notANumberSymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`notANumberSymbol`][Self::notANumberSymbol].
-        #[method(setNotANumberSymbol:)]
+        #[unsafe(method(setNotANumberSymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotANumberSymbol(&self, not_a_number_symbol: Option<&NSString>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(textAttributesForNotANumber)]
+        #[unsafe(method(textAttributesForNotANumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn textAttributesForNotANumber(
             &self,
@@ -432,7 +432,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`textAttributesForNotANumber`][Self::textAttributesForNotANumber].
-        #[method(setTextAttributesForNotANumber:)]
+        #[unsafe(method(setTextAttributesForNotANumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForNotANumber(
             &self,
@@ -440,18 +440,18 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method(positiveInfinitySymbol)]
+        #[unsafe(method(positiveInfinitySymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn positiveInfinitySymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`positiveInfinitySymbol`][Self::positiveInfinitySymbol].
-        #[method(setPositiveInfinitySymbol:)]
+        #[unsafe(method(setPositiveInfinitySymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPositiveInfinitySymbol(&self, positive_infinity_symbol: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(textAttributesForPositiveInfinity)]
+        #[unsafe(method(textAttributesForPositiveInfinity))]
         #[unsafe(method_family = none)]
         pub unsafe fn textAttributesForPositiveInfinity(
             &self,
@@ -459,7 +459,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`textAttributesForPositiveInfinity`][Self::textAttributesForPositiveInfinity].
-        #[method(setTextAttributesForPositiveInfinity:)]
+        #[unsafe(method(setTextAttributesForPositiveInfinity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForPositiveInfinity(
             &self,
@@ -467,18 +467,18 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method(negativeInfinitySymbol)]
+        #[unsafe(method(negativeInfinitySymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn negativeInfinitySymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`negativeInfinitySymbol`][Self::negativeInfinitySymbol].
-        #[method(setNegativeInfinitySymbol:)]
+        #[unsafe(method(setNegativeInfinitySymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNegativeInfinitySymbol(&self, negative_infinity_symbol: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(textAttributesForNegativeInfinity)]
+        #[unsafe(method(textAttributesForNegativeInfinity))]
         #[unsafe(method_family = none)]
         pub unsafe fn textAttributesForNegativeInfinity(
             &self,
@@ -486,7 +486,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`textAttributesForNegativeInfinity`][Self::textAttributesForNegativeInfinity].
-        #[method(setTextAttributesForNegativeInfinity:)]
+        #[unsafe(method(setTextAttributesForNegativeInfinity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForNegativeInfinity(
             &self,
@@ -494,79 +494,79 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method(positivePrefix)]
+        #[unsafe(method(positivePrefix))]
         #[unsafe(method_family = none)]
         pub unsafe fn positivePrefix(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`positivePrefix`][Self::positivePrefix].
-        #[method(setPositivePrefix:)]
+        #[unsafe(method(setPositivePrefix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPositivePrefix(&self, positive_prefix: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        #[method(positiveSuffix)]
+        #[unsafe(method(positiveSuffix))]
         #[unsafe(method_family = none)]
         pub unsafe fn positiveSuffix(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`positiveSuffix`][Self::positiveSuffix].
-        #[method(setPositiveSuffix:)]
+        #[unsafe(method(setPositiveSuffix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPositiveSuffix(&self, positive_suffix: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        #[method(negativePrefix)]
+        #[unsafe(method(negativePrefix))]
         #[unsafe(method_family = none)]
         pub unsafe fn negativePrefix(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`negativePrefix`][Self::negativePrefix].
-        #[method(setNegativePrefix:)]
+        #[unsafe(method(setNegativePrefix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNegativePrefix(&self, negative_prefix: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        #[method(negativeSuffix)]
+        #[unsafe(method(negativeSuffix))]
         #[unsafe(method_family = none)]
         pub unsafe fn negativeSuffix(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`negativeSuffix`][Self::negativeSuffix].
-        #[method(setNegativeSuffix:)]
+        #[unsafe(method(setNegativeSuffix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNegativeSuffix(&self, negative_suffix: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        #[method(currencyCode)]
+        #[unsafe(method(currencyCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn currencyCode(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`currencyCode`][Self::currencyCode].
-        #[method(setCurrencyCode:)]
+        #[unsafe(method(setCurrencyCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrencyCode(&self, currency_code: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        #[method(currencySymbol)]
+        #[unsafe(method(currencySymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn currencySymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`currencySymbol`][Self::currencySymbol].
-        #[method(setCurrencySymbol:)]
+        #[unsafe(method(setCurrencySymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrencySymbol(&self, currency_symbol: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        #[method(internationalCurrencySymbol)]
+        #[unsafe(method(internationalCurrencySymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn internationalCurrencySymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`internationalCurrencySymbol`][Self::internationalCurrencySymbol].
-        #[method(setInternationalCurrencySymbol:)]
+        #[unsafe(method(setInternationalCurrencySymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInternationalCurrencySymbol(
             &self,
@@ -574,252 +574,252 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method(percentSymbol)]
+        #[unsafe(method(percentSymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn percentSymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`percentSymbol`][Self::percentSymbol].
-        #[method(setPercentSymbol:)]
+        #[unsafe(method(setPercentSymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPercentSymbol(&self, percent_symbol: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        #[method(perMillSymbol)]
+        #[unsafe(method(perMillSymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn perMillSymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`perMillSymbol`][Self::perMillSymbol].
-        #[method(setPerMillSymbol:)]
+        #[unsafe(method(setPerMillSymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerMillSymbol(&self, per_mill_symbol: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        #[method(minusSign)]
+        #[unsafe(method(minusSign))]
         #[unsafe(method_family = none)]
         pub unsafe fn minusSign(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`minusSign`][Self::minusSign].
-        #[method(setMinusSign:)]
+        #[unsafe(method(setMinusSign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinusSign(&self, minus_sign: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        #[method(plusSign)]
+        #[unsafe(method(plusSign))]
         #[unsafe(method_family = none)]
         pub unsafe fn plusSign(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`plusSign`][Self::plusSign].
-        #[method(setPlusSign:)]
+        #[unsafe(method(setPlusSign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlusSign(&self, plus_sign: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        #[method(exponentSymbol)]
+        #[unsafe(method(exponentSymbol))]
         #[unsafe(method_family = none)]
         pub unsafe fn exponentSymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`exponentSymbol`][Self::exponentSymbol].
-        #[method(setExponentSymbol:)]
+        #[unsafe(method(setExponentSymbol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExponentSymbol(&self, exponent_symbol: Option<&NSString>);
 
-        #[method(groupingSize)]
+        #[unsafe(method(groupingSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn groupingSize(&self) -> NSUInteger;
 
         /// Setter for [`groupingSize`][Self::groupingSize].
-        #[method(setGroupingSize:)]
+        #[unsafe(method(setGroupingSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGroupingSize(&self, grouping_size: NSUInteger);
 
-        #[method(secondaryGroupingSize)]
+        #[unsafe(method(secondaryGroupingSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryGroupingSize(&self) -> NSUInteger;
 
         /// Setter for [`secondaryGroupingSize`][Self::secondaryGroupingSize].
-        #[method(setSecondaryGroupingSize:)]
+        #[unsafe(method(setSecondaryGroupingSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryGroupingSize(&self, secondary_grouping_size: NSUInteger);
 
         #[cfg(feature = "NSValue")]
-        #[method(multiplier)]
+        #[unsafe(method(multiplier))]
         #[unsafe(method_family = none)]
         pub unsafe fn multiplier(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
         /// Setter for [`multiplier`][Self::multiplier].
-        #[method(setMultiplier:)]
+        #[unsafe(method(setMultiplier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMultiplier(&self, multiplier: Option<&NSNumber>);
 
-        #[method(formatWidth)]
+        #[unsafe(method(formatWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn formatWidth(&self) -> NSUInteger;
 
         /// Setter for [`formatWidth`][Self::formatWidth].
-        #[method(setFormatWidth:)]
+        #[unsafe(method(setFormatWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFormatWidth(&self, format_width: NSUInteger);
 
         #[cfg(feature = "NSString")]
-        #[method(paddingCharacter)]
+        #[unsafe(method(paddingCharacter))]
         #[unsafe(method_family = none)]
         pub unsafe fn paddingCharacter(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`paddingCharacter`][Self::paddingCharacter].
-        #[method(setPaddingCharacter:)]
+        #[unsafe(method(setPaddingCharacter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingCharacter(&self, padding_character: Option<&NSString>);
 
-        #[method(paddingPosition)]
+        #[unsafe(method(paddingPosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn paddingPosition(&self) -> NSNumberFormatterPadPosition;
 
         /// Setter for [`paddingPosition`][Self::paddingPosition].
-        #[method(setPaddingPosition:)]
+        #[unsafe(method(setPaddingPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingPosition(&self, padding_position: NSNumberFormatterPadPosition);
 
-        #[method(roundingMode)]
+        #[unsafe(method(roundingMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn roundingMode(&self) -> NSNumberFormatterRoundingMode;
 
         /// Setter for [`roundingMode`][Self::roundingMode].
-        #[method(setRoundingMode:)]
+        #[unsafe(method(setRoundingMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRoundingMode(&self, rounding_mode: NSNumberFormatterRoundingMode);
 
         #[cfg(feature = "NSValue")]
-        #[method(roundingIncrement)]
+        #[unsafe(method(roundingIncrement))]
         #[unsafe(method_family = none)]
         pub unsafe fn roundingIncrement(&self) -> Retained<NSNumber>;
 
         #[cfg(feature = "NSValue")]
         /// Setter for [`roundingIncrement`][Self::roundingIncrement].
-        #[method(setRoundingIncrement:)]
+        #[unsafe(method(setRoundingIncrement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRoundingIncrement(&self, rounding_increment: Option<&NSNumber>);
 
-        #[method(minimumIntegerDigits)]
+        #[unsafe(method(minimumIntegerDigits))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumIntegerDigits(&self) -> NSUInteger;
 
         /// Setter for [`minimumIntegerDigits`][Self::minimumIntegerDigits].
-        #[method(setMinimumIntegerDigits:)]
+        #[unsafe(method(setMinimumIntegerDigits:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumIntegerDigits(&self, minimum_integer_digits: NSUInteger);
 
-        #[method(maximumIntegerDigits)]
+        #[unsafe(method(maximumIntegerDigits))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumIntegerDigits(&self) -> NSUInteger;
 
         /// Setter for [`maximumIntegerDigits`][Self::maximumIntegerDigits].
-        #[method(setMaximumIntegerDigits:)]
+        #[unsafe(method(setMaximumIntegerDigits:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumIntegerDigits(&self, maximum_integer_digits: NSUInteger);
 
-        #[method(minimumFractionDigits)]
+        #[unsafe(method(minimumFractionDigits))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumFractionDigits(&self) -> NSUInteger;
 
         /// Setter for [`minimumFractionDigits`][Self::minimumFractionDigits].
-        #[method(setMinimumFractionDigits:)]
+        #[unsafe(method(setMinimumFractionDigits:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumFractionDigits(&self, minimum_fraction_digits: NSUInteger);
 
-        #[method(maximumFractionDigits)]
+        #[unsafe(method(maximumFractionDigits))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumFractionDigits(&self) -> NSUInteger;
 
         /// Setter for [`maximumFractionDigits`][Self::maximumFractionDigits].
-        #[method(setMaximumFractionDigits:)]
+        #[unsafe(method(setMaximumFractionDigits:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumFractionDigits(&self, maximum_fraction_digits: NSUInteger);
 
         #[cfg(feature = "NSValue")]
-        #[method(minimum)]
+        #[unsafe(method(minimum))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimum(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
         /// Setter for [`minimum`][Self::minimum].
-        #[method(setMinimum:)]
+        #[unsafe(method(setMinimum:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimum(&self, minimum: Option<&NSNumber>);
 
         #[cfg(feature = "NSValue")]
-        #[method(maximum)]
+        #[unsafe(method(maximum))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximum(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
         /// Setter for [`maximum`][Self::maximum].
-        #[method(setMaximum:)]
+        #[unsafe(method(setMaximum:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximum(&self, maximum: Option<&NSNumber>);
 
         #[cfg(feature = "NSString")]
-        #[method(currencyGroupingSeparator)]
+        #[unsafe(method(currencyGroupingSeparator))]
         #[unsafe(method_family = none)]
         pub unsafe fn currencyGroupingSeparator(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`currencyGroupingSeparator`][Self::currencyGroupingSeparator].
-        #[method(setCurrencyGroupingSeparator:)]
+        #[unsafe(method(setCurrencyGroupingSeparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrencyGroupingSeparator(
             &self,
             currency_grouping_separator: Option<&NSString>,
         );
 
-        #[method(isLenient)]
+        #[unsafe(method(isLenient))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLenient(&self) -> bool;
 
         /// Setter for [`isLenient`][Self::isLenient].
-        #[method(setLenient:)]
+        #[unsafe(method(setLenient:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLenient(&self, lenient: bool);
 
-        #[method(usesSignificantDigits)]
+        #[unsafe(method(usesSignificantDigits))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesSignificantDigits(&self) -> bool;
 
         /// Setter for [`usesSignificantDigits`][Self::usesSignificantDigits].
-        #[method(setUsesSignificantDigits:)]
+        #[unsafe(method(setUsesSignificantDigits:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesSignificantDigits(&self, uses_significant_digits: bool);
 
-        #[method(minimumSignificantDigits)]
+        #[unsafe(method(minimumSignificantDigits))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumSignificantDigits(&self) -> NSUInteger;
 
         /// Setter for [`minimumSignificantDigits`][Self::minimumSignificantDigits].
-        #[method(setMinimumSignificantDigits:)]
+        #[unsafe(method(setMinimumSignificantDigits:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumSignificantDigits(&self, minimum_significant_digits: NSUInteger);
 
-        #[method(maximumSignificantDigits)]
+        #[unsafe(method(maximumSignificantDigits))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumSignificantDigits(&self) -> NSUInteger;
 
         /// Setter for [`maximumSignificantDigits`][Self::maximumSignificantDigits].
-        #[method(setMaximumSignificantDigits:)]
+        #[unsafe(method(setMaximumSignificantDigits:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumSignificantDigits(&self, maximum_significant_digits: NSUInteger);
 
-        #[method(isPartialStringValidationEnabled)]
+        #[unsafe(method(isPartialStringValidationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPartialStringValidationEnabled(&self) -> bool;
 
         /// Setter for [`isPartialStringValidationEnabled`][Self::isPartialStringValidationEnabled].
-        #[method(setPartialStringValidationEnabled:)]
+        #[unsafe(method(setPartialStringValidationEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPartialStringValidationEnabled(
             &self,
@@ -832,11 +832,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSNumberFormatter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -846,54 +846,54 @@ extern_methods!(
     /// NSNumberFormatterCompatibility
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSNumberFormatter {
-        #[method(hasThousandSeparators)]
+        #[unsafe(method(hasThousandSeparators))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasThousandSeparators(&self) -> bool;
 
         /// Setter for [`hasThousandSeparators`][Self::hasThousandSeparators].
-        #[method(setHasThousandSeparators:)]
+        #[unsafe(method(setHasThousandSeparators:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHasThousandSeparators(&self, has_thousand_separators: bool);
 
         #[cfg(feature = "NSString")]
-        #[method(thousandSeparator)]
+        #[unsafe(method(thousandSeparator))]
         #[unsafe(method_family = none)]
         pub unsafe fn thousandSeparator(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`thousandSeparator`][Self::thousandSeparator].
-        #[method(setThousandSeparator:)]
+        #[unsafe(method(setThousandSeparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setThousandSeparator(&self, thousand_separator: Option<&NSString>);
 
-        #[method(localizesFormat)]
+        #[unsafe(method(localizesFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizesFormat(&self) -> bool;
 
         /// Setter for [`localizesFormat`][Self::localizesFormat].
-        #[method(setLocalizesFormat:)]
+        #[unsafe(method(setLocalizesFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizesFormat(&self, localizes_format: bool);
 
         #[cfg(feature = "NSString")]
-        #[method(format)]
+        #[unsafe(method(format))]
         #[unsafe(method_family = none)]
         pub unsafe fn format(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`format`][Self::format].
-        #[method(setFormat:)]
+        #[unsafe(method(setFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFormat(&self, format: &NSString);
 
         #[cfg(feature = "NSAttributedString")]
-        #[method(attributedStringForZero)]
+        #[unsafe(method(attributedStringForZero))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringForZero(&self) -> Retained<NSAttributedString>;
 
         #[cfg(feature = "NSAttributedString")]
         /// Setter for [`attributedStringForZero`][Self::attributedStringForZero].
-        #[method(setAttributedStringForZero:)]
+        #[unsafe(method(setAttributedStringForZero:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedStringForZero(
             &self,
@@ -901,13 +901,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSAttributedString")]
-        #[method(attributedStringForNil)]
+        #[unsafe(method(attributedStringForNil))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringForNil(&self) -> Retained<NSAttributedString>;
 
         #[cfg(feature = "NSAttributedString")]
         /// Setter for [`attributedStringForNil`][Self::attributedStringForNil].
-        #[method(setAttributedStringForNil:)]
+        #[unsafe(method(setAttributedStringForNil:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedStringForNil(
             &self,
@@ -915,13 +915,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSAttributedString")]
-        #[method(attributedStringForNotANumber)]
+        #[unsafe(method(attributedStringForNotANumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringForNotANumber(&self) -> Retained<NSAttributedString>;
 
         #[cfg(feature = "NSAttributedString")]
         /// Setter for [`attributedStringForNotANumber`][Self::attributedStringForNotANumber].
-        #[method(setAttributedStringForNotANumber:)]
+        #[unsafe(method(setAttributedStringForNotANumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedStringForNotANumber(
             &self,
@@ -929,13 +929,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSDecimalNumber")]
-        #[method(roundingBehavior)]
+        #[unsafe(method(roundingBehavior))]
         #[unsafe(method_family = none)]
         pub unsafe fn roundingBehavior(&self) -> Retained<NSDecimalNumberHandler>;
 
         #[cfg(feature = "NSDecimalNumber")]
         /// Setter for [`roundingBehavior`][Self::roundingBehavior].
-        #[method(setRoundingBehavior:)]
+        #[unsafe(method(setRoundingBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRoundingBehavior(&self, rounding_behavior: &NSDecimalNumberHandler);
     }

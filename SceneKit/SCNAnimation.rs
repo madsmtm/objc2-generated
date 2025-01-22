@@ -45,7 +45,7 @@ unsafe impl NSSecureCoding for SCNTimingFunction {}
 extern_methods!(
     unsafe impl SCNTimingFunction {
         #[cfg(feature = "SceneKitTypes")]
-        #[method(functionWithTimingMode:)]
+        #[unsafe(method(functionWithTimingMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn functionWithTimingMode(
             timing_mode: SCNActionTimingMode,
@@ -53,7 +53,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
-        #[method(functionWithCAMediaTimingFunction:)]
+        #[unsafe(method(functionWithCAMediaTimingFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn functionWithCAMediaTimingFunction(
             ca_timing_function: &CAMediaTimingFunction,
@@ -64,11 +64,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNTimingFunction {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -91,7 +91,7 @@ extern_protocol!(
         /// See also: -[id
         /// <SCNAnimation
         /// > removedOnCompletion]
-        #[method(addAnimation:forKey:)]
+        #[unsafe(method(addAnimation:forKey:))]
         #[unsafe(method_family = none)]
         unsafe fn addAnimation_forKey(
             &self,
@@ -109,7 +109,7 @@ extern_protocol!(
         /// The animation doesn't start playing immediatelly. Call "play" on the player to start playing it.
         ///
         /// See also: -[SCNAnimationPlayer play]
-        #[method(addAnimationPlayer:forKey:)]
+        #[unsafe(method(addAnimationPlayer:forKey:))]
         #[unsafe(method_family = none)]
         unsafe fn addAnimationPlayer_forKey(
             &self,
@@ -118,7 +118,7 @@ extern_protocol!(
         );
 
         /// Remove all animations.
-        #[method(removeAllAnimations)]
+        #[unsafe(method(removeAllAnimations))]
         #[unsafe(method_family = none)]
         unsafe fn removeAllAnimations(&self);
 
@@ -126,14 +126,14 @@ extern_protocol!(
         /// Smoothly remove all animations.
         ///
         /// Parameter `duration`: The blend out duration used to remove the animation.
-        #[method(removeAllAnimationsWithBlendOutDuration:)]
+        #[unsafe(method(removeAllAnimationsWithBlendOutDuration:))]
         #[unsafe(method_family = none)]
         unsafe fn removeAllAnimationsWithBlendOutDuration(&self, duration: CGFloat);
 
         /// Remove the animation with the given identifier.
         ///
         /// Parameter `key`: The identifier for the animation to remove.
-        #[method(removeAnimationForKey:)]
+        #[unsafe(method(removeAnimationForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn removeAnimationForKey(&self, key: &NSString);
 
@@ -143,12 +143,12 @@ extern_protocol!(
         /// Parameter `key`: The identifier for the animation to remove.
         ///
         /// Parameter `duration`: The blend out duration used to remove the animation.
-        #[method(removeAnimationForKey:blendOutDuration:)]
+        #[unsafe(method(removeAnimationForKey:blendOutDuration:))]
         #[unsafe(method_family = none)]
         unsafe fn removeAnimationForKey_blendOutDuration(&self, key: &NSString, duration: CGFloat);
 
         /// Returns an array containing the keys of all animations currently attached to the receiver.
-        #[method(animationKeys)]
+        #[unsafe(method(animationKeys))]
         #[unsafe(method_family = none)]
         unsafe fn animationKeys(&self) -> Retained<NSArray<NSString>>;
 
@@ -157,7 +157,7 @@ extern_protocol!(
         /// Parameter `key`: The identifier for the animation player to retrieve.
         ///
         /// This will return nil if no such animation player exists.
-        #[method(animationPlayerForKey:)]
+        #[unsafe(method(animationPlayerForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn animationPlayerForKey(
             &self,
@@ -171,7 +171,7 @@ extern_protocol!(
         ///
         /// Parameter `duration`: The fade out duration used to remove the animation.
         #[deprecated]
-        #[method(removeAnimationForKey:fadeOutDuration:)]
+        #[unsafe(method(removeAnimationForKey:fadeOutDuration:))]
         #[unsafe(method_family = none)]
         unsafe fn removeAnimationForKey_fadeOutDuration(&self, key: &NSString, duration: CGFloat);
 
@@ -184,7 +184,7 @@ extern_protocol!(
         /// This will return nil if no such animation exists.
         /// Attempting to modify any properties of the returned object will result in undefined behavior.
         #[deprecated]
-        #[method(animationForKey:)]
+        #[unsafe(method(animationForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn animationForKey(&self, key: &NSString) -> Option<Retained<CAAnimation>>;
 
@@ -192,7 +192,7 @@ extern_protocol!(
         ///
         /// Parameter `key`: The identifier for the animation to pause.
         #[deprecated = "Use -[SCNAnimationPlayer setPaused:] instead"]
-        #[method(pauseAnimationForKey:)]
+        #[unsafe(method(pauseAnimationForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn pauseAnimationForKey(&self, key: &NSString);
 
@@ -200,7 +200,7 @@ extern_protocol!(
         ///
         /// Parameter `key`: The identifier for the animation to resume.
         #[deprecated = "Use -[SCNAnimationPlayer setPaused:] instead"]
-        #[method(resumeAnimationForKey:)]
+        #[unsafe(method(resumeAnimationForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn resumeAnimationForKey(&self, key: &NSString);
 
@@ -211,7 +211,7 @@ extern_protocol!(
         ///
         /// Parameter `key`: The identifier for the animation to update.
         #[deprecated = "Use -[SCNAnimationPlayer setSpeed:] instead"]
-        #[method(setSpeed:forAnimationKey:)]
+        #[unsafe(method(setSpeed:forAnimationKey:))]
         #[unsafe(method_family = none)]
         unsafe fn setSpeed_forAnimationKey(&self, speed: CGFloat, key: &NSString);
 
@@ -219,7 +219,7 @@ extern_protocol!(
         ///
         /// Parameter `key`: The identifier for the animation to query.
         #[deprecated = "Use -[SCNAnimationPlayer paused] instead"]
-        #[method(isAnimationForKeyPaused:)]
+        #[unsafe(method(isAnimationForKeyPaused:))]
         #[unsafe(method_family = none)]
         unsafe fn isAnimationForKeyPaused(&self, key: &NSString) -> bool;
     }
@@ -254,7 +254,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `animationUrl`: The url to load.
-        #[method(animationWithContentsOfURL:)]
+        #[unsafe(method(animationWithContentsOfURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationWithContentsOfURL(animation_url: &NSURL) -> Retained<SCNAnimation>;
 
@@ -262,7 +262,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `animationName`: The name of the animation to load.
-        #[method(animationNamed:)]
+        #[unsafe(method(animationNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationNamed(animation_name: &NSString) -> Retained<SCNAnimation>;
 
@@ -274,19 +274,19 @@ extern_methods!(
         /// Parameter `caAnimation`: The CAAnimation to initialize from.
         ///
         /// Only CABasicAnimation, CAKeyframeAnimation and CAAnimationGroup are currently supported.
-        #[method(animationWithCAAnimation:)]
+        #[unsafe(method(animationWithCAAnimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationWithCAAnimation(
             ca_animation: &CAAnimation,
         ) -> Retained<SCNAnimation>;
 
         /// The duration of the animation in seconds. Defaults to 0.
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         /// Setter for [`duration`][Self::duration].
-        #[method(setDuration:)]
+        #[unsafe(method(setDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDuration(&self, duration: NSTimeInterval);
 
@@ -297,132 +297,132 @@ extern_methods!(
         /// -name>.property1.property2.field    (field is optional,
         /// <node
         /// -name> is the name of the targeted node).
-        #[method(keyPath)]
+        #[unsafe(method(keyPath))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`keyPath`][Self::keyPath].
-        #[method(setKeyPath:)]
+        #[unsafe(method(setKeyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyPath(&self, key_path: Option<&NSString>);
 
         /// A timing function defining the pacing of the animation. Defaults to nil indicating linear pacing.
-        #[method(timingFunction)]
+        #[unsafe(method(timingFunction))]
         #[unsafe(method_family = none)]
         pub unsafe fn timingFunction(&self) -> Retained<SCNTimingFunction>;
 
         /// Setter for [`timingFunction`][Self::timingFunction].
-        #[method(setTimingFunction:)]
+        #[unsafe(method(setTimingFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimingFunction(&self, timing_function: &SCNTimingFunction);
 
         /// Determines the receiver's blend-in duration.
         ///
         /// When the blendInDuration is greater than zero, the effect of the animation progressively increase from 0% to 100% during the specified duration.
-        #[method(blendInDuration)]
+        #[unsafe(method(blendInDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn blendInDuration(&self) -> NSTimeInterval;
 
         /// Setter for [`blendInDuration`][Self::blendInDuration].
-        #[method(setBlendInDuration:)]
+        #[unsafe(method(setBlendInDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBlendInDuration(&self, blend_in_duration: NSTimeInterval);
 
         /// Determines the receiver's blend-out duration.
         ///
         /// When the blendOutDuration is greater than zero, the effect of the animation progressively decrease from 100% to 0% at the end of the animation duration.
-        #[method(blendOutDuration)]
+        #[unsafe(method(blendOutDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn blendOutDuration(&self) -> NSTimeInterval;
 
         /// Setter for [`blendOutDuration`][Self::blendOutDuration].
-        #[method(setBlendOutDuration:)]
+        #[unsafe(method(setBlendOutDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBlendOutDuration(&self, blend_out_duration: NSTimeInterval);
 
         /// When true, the animation is removed from the render tree once its active duration has passed. Defaults to YES.
-        #[method(isRemovedOnCompletion)]
+        #[unsafe(method(isRemovedOnCompletion))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRemovedOnCompletion(&self) -> bool;
 
         /// Setter for [`isRemovedOnCompletion`][Self::isRemovedOnCompletion].
-        #[method(setRemovedOnCompletion:)]
+        #[unsafe(method(setRemovedOnCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRemovedOnCompletion(&self, removed_on_completion: bool);
 
         /// When true, the animation is applied to the model tree once its active duration has passed. Defaults to NO.
-        #[method(isAppliedOnCompletion)]
+        #[unsafe(method(isAppliedOnCompletion))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAppliedOnCompletion(&self) -> bool;
 
         /// Setter for [`isAppliedOnCompletion`][Self::isAppliedOnCompletion].
-        #[method(setAppliedOnCompletion:)]
+        #[unsafe(method(setAppliedOnCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAppliedOnCompletion(&self, applied_on_completion: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The repeat count of the object. May be fractional. Defaults to 0.
-        #[method(repeatCount)]
+        #[unsafe(method(repeatCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn repeatCount(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`repeatCount`][Self::repeatCount].
-        #[method(setRepeatCount:)]
+        #[unsafe(method(setRepeatCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRepeatCount(&self, repeat_count: CGFloat);
 
         /// When true, the object plays backwards after playing forwards. Defaults to NO.
-        #[method(autoreverses)]
+        #[unsafe(method(autoreverses))]
         #[unsafe(method_family = none)]
         pub unsafe fn autoreverses(&self) -> bool;
 
         /// Setter for [`autoreverses`][Self::autoreverses].
-        #[method(setAutoreverses:)]
+        #[unsafe(method(setAutoreverses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutoreverses(&self, autoreverses: bool);
 
         /// The relative delay to start the animation, in relation to its parent animation if applicable. Defaults to 0.
         ///
         /// This property is bridged with CoreAnimations's beginTime. However, for top level animations, startDelay is relative to the current time (unlike CAAnimation's beginTime that is absolute). So if a CAAnimation has a non-zero beginTime, startDelay is initialized as caAnimation.beginTime - CACurrentMediaTime().
-        #[method(startDelay)]
+        #[unsafe(method(startDelay))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDelay(&self) -> NSTimeInterval;
 
         /// Setter for [`startDelay`][Self::startDelay].
-        #[method(setStartDelay:)]
+        #[unsafe(method(setStartDelay:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartDelay(&self, start_delay: NSTimeInterval);
 
         /// Additional offset in active local time. i.e. to convert from parent
         /// time tp to active local time t: t = (tp - begin) * speed + offset.
         /// Defaults to 0.
-        #[method(timeOffset)]
+        #[unsafe(method(timeOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeOffset(&self) -> NSTimeInterval;
 
         /// Setter for [`timeOffset`][Self::timeOffset].
-        #[method(setTimeOffset:)]
+        #[unsafe(method(setTimeOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeOffset(&self, time_offset: NSTimeInterval);
 
         /// When true, the animation remains active after its active duration and evaluates to its end value. Defaults to NO.
-        #[method(fillsForward)]
+        #[unsafe(method(fillsForward))]
         #[unsafe(method_family = none)]
         pub unsafe fn fillsForward(&self) -> bool;
 
         /// Setter for [`fillsForward`][Self::fillsForward].
-        #[method(setFillsForward:)]
+        #[unsafe(method(setFillsForward:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFillsForward(&self, fills_forward: bool);
 
         /// When true, the animation is active before its active duration and evaluates to its start value. Defaults to NO.
-        #[method(fillsBackward)]
+        #[unsafe(method(fillsBackward))]
         #[unsafe(method_family = none)]
         pub unsafe fn fillsBackward(&self) -> bool;
 
         /// Setter for [`fillsBackward`][Self::fillsBackward].
-        #[method(setFillsBackward:)]
+        #[unsafe(method(setFillsBackward:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFillsBackward(&self, fills_backward: bool);
 
@@ -432,24 +432,24 @@ extern_methods!(
         /// The "sceneTime" base is typically used by players or editors that need to preview, edit and being able to change the evaluation time.
         ///
         /// See: SCNSceneSourceAnimationImportPolicyKey
-        #[method(usesSceneTimeBase)]
+        #[unsafe(method(usesSceneTimeBase))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesSceneTimeBase(&self) -> bool;
 
         /// Setter for [`usesSceneTimeBase`][Self::usesSceneTimeBase].
-        #[method(setUsesSceneTimeBase:)]
+        #[unsafe(method(setUsesSceneTimeBase:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesSceneTimeBase(&self, uses_scene_time_base: bool);
 
         #[cfg(feature = "block2")]
         /// Called when the animation starts.
-        #[method(animationDidStart)]
+        #[unsafe(method(animationDidStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationDidStart(&self) -> SCNAnimationDidStartBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`animationDidStart`][Self::animationDidStart].
-        #[method(setAnimationDidStart:)]
+        #[unsafe(method(setAnimationDidStart:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationDidStart(&self, animation_did_start: SCNAnimationDidStartBlock);
 
@@ -457,25 +457,25 @@ extern_methods!(
         /// Called when the animation either completes its active duration or
         /// is removed from the object it is attached to (i.e. the layer). The 'completed' argument of SCNAnimationDidStopBlock
         /// is true if the animation reached the end of its active duration without being removed.
-        #[method(animationDidStop)]
+        #[unsafe(method(animationDidStop))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationDidStop(&self) -> SCNAnimationDidStopBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`animationDidStop`][Self::animationDidStop].
-        #[method(setAnimationDidStop:)]
+        #[unsafe(method(setAnimationDidStop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationDidStop(&self, animation_did_stop: SCNAnimationDidStopBlock);
 
         /// Specifies the animation events attached to the receiver.
         ///
         /// See: SCNAnimationEvent
-        #[method(animationEvents)]
+        #[unsafe(method(animationEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationEvents(&self) -> Option<Retained<NSArray<SCNAnimationEvent>>>;
 
         /// Setter for [`animationEvents`][Self::animationEvents].
-        #[method(setAnimationEvents:)]
+        #[unsafe(method(setAnimationEvents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationEvents(
             &self,
@@ -487,12 +487,12 @@ extern_methods!(
         /// presentation value. The addition function is type-dependent, e.g.
         /// for affine transforms the two matrices are concatenated. Defaults to
         /// NO.
-        #[method(isAdditive)]
+        #[unsafe(method(isAdditive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAdditive(&self) -> bool;
 
         /// Setter for [`isAdditive`][Self::isAdditive].
-        #[method(setAdditive:)]
+        #[unsafe(method(setAdditive:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditive(&self, additive: bool);
 
@@ -501,12 +501,12 @@ extern_methods!(
         /// value at the end of the previous repeat cycle, plus the value of the
         /// current repeat cycle. If false, the value is simply the value
         /// calculated for the current repeat cycle. Defaults to NO.
-        #[method(isCumulative)]
+        #[unsafe(method(isCumulative))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCumulative(&self) -> bool;
 
         /// Setter for [`isCumulative`][Self::isCumulative].
-        #[method(setCumulative:)]
+        #[unsafe(method(setCumulative:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCumulative(&self, cumulative: bool);
     }
@@ -515,11 +515,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNAnimation {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -553,63 +553,63 @@ extern_methods!(
         /// Initialize an animation player with an animation
         ///
         /// Parameter `animation`: The animation to play
-        #[method(animationPlayerWithAnimation:)]
+        #[unsafe(method(animationPlayerWithAnimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationPlayerWithAnimation(
             animation: &SCNAnimation,
         ) -> Retained<SCNAnimationPlayer>;
 
         /// The played animation
-        #[method(animation)]
+        #[unsafe(method(animation))]
         #[unsafe(method_family = none)]
         pub unsafe fn animation(&self) -> Retained<SCNAnimation>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The speed to play the animation at. Defaults to 1.0. Animatable
-        #[method(speed)]
+        #[unsafe(method(speed))]
         #[unsafe(method_family = none)]
         pub unsafe fn speed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`speed`][Self::speed].
-        #[method(setSpeed:)]
+        #[unsafe(method(setSpeed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeed(&self, speed: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Controls the influence of the played animation. When set to 1 the animation is applied without any blending. When set to less than 1, the animation value is blent with the current presentation value of the animated property. Defaults to 1.0. Animatable.
-        #[method(blendFactor)]
+        #[unsafe(method(blendFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn blendFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`blendFactor`][Self::blendFactor].
-        #[method(setBlendFactor:)]
+        #[unsafe(method(setBlendFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBlendFactor(&self, blend_factor: CGFloat);
 
         /// Specifies if the animation is paused. Defaults to NO.
-        #[method(paused)]
+        #[unsafe(method(paused))]
         #[unsafe(method_family = none)]
         pub unsafe fn paused(&self) -> bool;
 
         /// Setter for [`paused`][Self::paused].
-        #[method(setPaused:)]
+        #[unsafe(method(setPaused:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaused(&self, paused: bool);
 
         /// Set paused to NO and restart playing from the beginning of the animation.
-        #[method(play)]
+        #[unsafe(method(play))]
         #[unsafe(method_family = none)]
         pub unsafe fn play(&self);
 
         /// Stop the animation.
-        #[method(stop)]
+        #[unsafe(method(stop))]
         #[unsafe(method_family = none)]
         pub unsafe fn stop(&self);
 
         /// Stop the animation and smoothly blend out the animation over the specified duration.
-        #[method(stopWithBlendOutDuration:)]
+        #[unsafe(method(stopWithBlendOutDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopWithBlendOutDuration(&self, duration: NSTimeInterval);
     }
@@ -618,11 +618,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNAnimationPlayer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -657,7 +657,7 @@ extern_methods!(
         /// Parameter `eventBlock`: The block to call when the event is triggered.
         ///
         /// "time" is relative to animation duration and therefor it has to be a value in the range [0,1].
-        #[method(animationEventWithKeyTime:block:)]
+        #[unsafe(method(animationEventWithKeyTime:block:))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationEventWithKeyTime_block(
             time: CGFloat,
@@ -669,11 +669,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNAnimationEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

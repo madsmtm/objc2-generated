@@ -57,7 +57,7 @@ unsafe impl NSSecureCoding for CXPlayDTMFCallAction {}
 extern_methods!(
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXPlayDTMFCallAction {
-        #[method(initWithCallUUID:digits:type:)]
+        #[unsafe(method(initWithCallUUID:digits:type:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCallUUID_digits_type(
             this: Allocated<Self>,
@@ -66,33 +66,33 @@ extern_methods!(
             r#type: CXPlayDTMFCallActionType,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(initWithCallUUID:)]
+        #[unsafe(method(initWithCallUUID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCallUUID(this: Allocated<Self>, call_uuid: &NSUUID)
             -> Retained<Self>;
 
-        #[method(digits)]
+        #[unsafe(method(digits))]
         #[unsafe(method_family = none)]
         pub unsafe fn digits(&self) -> Retained<NSString>;
 
         /// Setter for [`digits`][Self::digits].
-        #[method(setDigits:)]
+        #[unsafe(method(setDigits:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDigits(&self, digits: &NSString);
 
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> CXPlayDTMFCallActionType;
 
         /// Setter for [`type`][Self::type].
-        #[method(setType:)]
+        #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: CXPlayDTMFCallActionType);
     }
@@ -102,7 +102,7 @@ extern_methods!(
     /// Methods declared on superclass `CXCallAction`
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXPlayDTMFCallAction {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -112,7 +112,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXPlayDTMFCallAction {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

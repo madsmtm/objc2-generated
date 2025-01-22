@@ -88,21 +88,21 @@ extern_methods!(
         ///
         /// The default value is WKContentModeRecommended. The stated
         /// preference is ignored on subframe navigation
-        #[method(preferredContentMode)]
+        #[unsafe(method(preferredContentMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredContentMode(&self) -> WKContentMode;
 
         /// Setter for [`preferredContentMode`][Self::preferredContentMode].
-        #[method(setPreferredContentMode:)]
+        #[unsafe(method(setPreferredContentMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredContentMode(&self, preferred_content_mode: WKContentMode);
 
-        #[method(allowsContentJavaScript)]
+        #[unsafe(method(allowsContentJavaScript))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsContentJavaScript(&self) -> bool;
 
         /// Setter for [`allowsContentJavaScript`][Self::allowsContentJavaScript].
-        #[method(setAllowsContentJavaScript:)]
+        #[unsafe(method(setAllowsContentJavaScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsContentJavaScript(&self, allows_content_java_script: bool);
 
@@ -110,12 +110,12 @@ extern_methods!(
         ///
         /// This mode trades off performance and compatibility in favor of security.
         /// The default value depends on the system setting.
-        #[method(isLockdownModeEnabled)]
+        #[unsafe(method(isLockdownModeEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLockdownModeEnabled(&self) -> bool;
 
         /// Setter for [`isLockdownModeEnabled`][Self::isLockdownModeEnabled].
-        #[method(setLockdownModeEnabled:)]
+        #[unsafe(method(setLockdownModeEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLockdownModeEnabled(&self, lockdown_mode_enabled: bool);
 
@@ -126,14 +126,14 @@ extern_methods!(
         /// The stated preference is ignored on subframe navigation, and it may be ignored based on
         /// system configuration. The upgradeKnownHostsToHTTPS property on WKWebViewConfiguration
         /// supercedes this policy for known hosts.
-        #[method(preferredHTTPSNavigationPolicy)]
+        #[unsafe(method(preferredHTTPSNavigationPolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredHTTPSNavigationPolicy(
             &self,
         ) -> WKWebpagePreferencesUpgradeToHTTPSPolicy;
 
         /// Setter for [`preferredHTTPSNavigationPolicy`][Self::preferredHTTPSNavigationPolicy].
-        #[method(setPreferredHTTPSNavigationPolicy:)]
+        #[unsafe(method(setPreferredHTTPSNavigationPolicy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredHTTPSNavigationPolicy(
             &self,
@@ -145,11 +145,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKWebpagePreferences {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

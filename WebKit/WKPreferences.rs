@@ -55,13 +55,13 @@ extern_methods!(
         /// The minimum font size in points.
         ///
         /// The default value is 0.
-        #[method(minimumFontSize)]
+        #[unsafe(method(minimumFontSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumFontSize(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumFontSize`][Self::minimumFontSize].
-        #[method(setMinimumFontSize:)]
+        #[unsafe(method(setMinimumFontSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumFontSize(&self, minimum_font_size: CGFloat);
 
@@ -69,12 +69,12 @@ extern_methods!(
         /// windows without user interaction.
         ///
         /// The default value is NO in iOS and YES in OS X.
-        #[method(javaScriptCanOpenWindowsAutomatically)]
+        #[unsafe(method(javaScriptCanOpenWindowsAutomatically))]
         #[unsafe(method_family = none)]
         pub unsafe fn javaScriptCanOpenWindowsAutomatically(&self) -> bool;
 
         /// Setter for [`javaScriptCanOpenWindowsAutomatically`][Self::javaScriptCanOpenWindowsAutomatically].
-        #[method(setJavaScriptCanOpenWindowsAutomatically:)]
+        #[unsafe(method(setJavaScriptCanOpenWindowsAutomatically:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJavaScriptCanOpenWindowsAutomatically(
             &self,
@@ -85,12 +85,12 @@ extern_methods!(
         /// shown for suspected fraudulent content such as phishing or malware.
         ///
         /// The default value is YES.
-        #[method(isFraudulentWebsiteWarningEnabled)]
+        #[unsafe(method(isFraudulentWebsiteWarningEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFraudulentWebsiteWarningEnabled(&self) -> bool;
 
         /// Setter for [`isFraudulentWebsiteWarningEnabled`][Self::isFraudulentWebsiteWarningEnabled].
-        #[method(setFraudulentWebsiteWarningEnabled:)]
+        #[unsafe(method(setFraudulentWebsiteWarningEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFraudulentWebsiteWarningEnabled(
             &self,
@@ -100,45 +100,45 @@ extern_methods!(
         /// A Boolean value indicating whether the web view should include backgrounds when printing.
         ///
         /// The default value is `NO`.
-        #[method(shouldPrintBackgrounds)]
+        #[unsafe(method(shouldPrintBackgrounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldPrintBackgrounds(&self) -> bool;
 
         /// Setter for [`shouldPrintBackgrounds`][Self::shouldPrintBackgrounds].
-        #[method(setShouldPrintBackgrounds:)]
+        #[unsafe(method(setShouldPrintBackgrounds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldPrintBackgrounds(&self, should_print_backgrounds: bool);
 
         /// If tabFocusesLinks is YES, the tab key will focus links and form controls.
         /// The Option key temporarily reverses this preference.
-        #[method(tabFocusesLinks)]
+        #[unsafe(method(tabFocusesLinks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tabFocusesLinks(&self) -> bool;
 
         /// Setter for [`tabFocusesLinks`][Self::tabFocusesLinks].
-        #[method(setTabFocusesLinks:)]
+        #[unsafe(method(setTabFocusesLinks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTabFocusesLinks(&self, tab_focuses_links: bool);
 
         /// A Boolean value indicating whether text interaction is disabled.
-        #[method(isTextInteractionEnabled)]
+        #[unsafe(method(isTextInteractionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isTextInteractionEnabled(&self) -> bool;
 
         /// Setter for [`isTextInteractionEnabled`][Self::isTextInteractionEnabled].
-        #[method(setTextInteractionEnabled:)]
+        #[unsafe(method(setTextInteractionEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextInteractionEnabled(&self, text_interaction_enabled: bool);
 
         /// A Boolean value indicating whether WebKit will apply built-in workarounds (quirks)
         /// to improve compatibility with certain known websites. You can disable site-specific quirks
         /// to help test your website without these workarounds. Enabled by default.
-        #[method(isSiteSpecificQuirksModeEnabled)]
+        #[unsafe(method(isSiteSpecificQuirksModeEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSiteSpecificQuirksModeEnabled(&self) -> bool;
 
         /// Setter for [`isSiteSpecificQuirksModeEnabled`][Self::isSiteSpecificQuirksModeEnabled].
-        #[method(setSiteSpecificQuirksModeEnabled:)]
+        #[unsafe(method(setSiteSpecificQuirksModeEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSiteSpecificQuirksModeEnabled(
             &self,
@@ -148,24 +148,24 @@ extern_methods!(
         /// A Boolean value indicating whether Fullscreen API is enabled.
         ///
         /// The default value is NO. We can set it to YES to enable support for the fullscreen API.
-        #[method(isElementFullscreenEnabled)]
+        #[unsafe(method(isElementFullscreenEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isElementFullscreenEnabled(&self) -> bool;
 
         /// Setter for [`isElementFullscreenEnabled`][Self::isElementFullscreenEnabled].
-        #[method(setElementFullscreenEnabled:)]
+        #[unsafe(method(setElementFullscreenEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setElementFullscreenEnabled(&self, element_fullscreen_enabled: bool);
 
         /// Specify the scheduling policy for the web view when it is inactive
         /// and detached from the view hierarchy. Web views are not considered idle when playing media or loading web pages.
         /// A suspended web view will pause JavaScript execution and page layout.
-        #[method(inactiveSchedulingPolicy)]
+        #[unsafe(method(inactiveSchedulingPolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn inactiveSchedulingPolicy(&self) -> WKInactiveSchedulingPolicy;
 
         /// Setter for [`inactiveSchedulingPolicy`][Self::inactiveSchedulingPolicy].
-        #[method(setInactiveSchedulingPolicy:)]
+        #[unsafe(method(setInactiveSchedulingPolicy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInactiveSchedulingPolicy(
             &self,
@@ -177,11 +177,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKPreferences {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -191,35 +191,35 @@ extern_methods!(
     /// WKDeprecated
     unsafe impl WKPreferences {
         #[deprecated = "Java is no longer supported"]
-        #[method(javaEnabled)]
+        #[unsafe(method(javaEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn javaEnabled(&self) -> bool;
 
         /// Setter for [`javaEnabled`][Self::javaEnabled].
         #[deprecated = "Java is no longer supported"]
-        #[method(setJavaEnabled:)]
+        #[unsafe(method(setJavaEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJavaEnabled(&self, java_enabled: bool);
 
         #[deprecated = "Plug-ins are no longer supported"]
-        #[method(plugInsEnabled)]
+        #[unsafe(method(plugInsEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn plugInsEnabled(&self) -> bool;
 
         /// Setter for [`plugInsEnabled`][Self::plugInsEnabled].
         #[deprecated = "Plug-ins are no longer supported"]
-        #[method(setPlugInsEnabled:)]
+        #[unsafe(method(setPlugInsEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlugInsEnabled(&self, plug_ins_enabled: bool);
 
         #[deprecated = "Use WKWebpagePreferences.allowsContentJavaScript to disable content JavaScript on a per-navigation basis"]
-        #[method(javaScriptEnabled)]
+        #[unsafe(method(javaScriptEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn javaScriptEnabled(&self) -> bool;
 
         /// Setter for [`javaScriptEnabled`][Self::javaScriptEnabled].
         #[deprecated = "Use WKWebpagePreferences.allowsContentJavaScript to disable content JavaScript on a per-navigation basis"]
-        #[method(setJavaScriptEnabled:)]
+        #[unsafe(method(setJavaScriptEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJavaScriptEnabled(&self, java_script_enabled: bool);
     }

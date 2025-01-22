@@ -26,74 +26,74 @@ extern_methods!(
     unsafe impl CXCallUpdate {
         #[cfg(feature = "CXHandle")]
         /// Handle for the remote party (for an incoming call, the caller; for an outgoing call, the callee)
-        #[method(remoteHandle)]
+        #[unsafe(method(remoteHandle))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteHandle(&self) -> Option<Retained<CXHandle>>;
 
         #[cfg(feature = "CXHandle")]
         /// Setter for [`remoteHandle`][Self::remoteHandle].
-        #[method(setRemoteHandle:)]
+        #[unsafe(method(setRemoteHandle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRemoteHandle(&self, remote_handle: Option<&CXHandle>);
 
         /// Override the computed caller name to a provider-defined value.
         /// Normally the system will determine the appropriate caller name to display (e.g. using the user's contacts) based on the supplied caller identifier. Set this property to customize.
-        #[method(localizedCallerName)]
+        #[unsafe(method(localizedCallerName))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedCallerName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedCallerName`][Self::localizedCallerName].
-        #[method(setLocalizedCallerName:)]
+        #[unsafe(method(setLocalizedCallerName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedCallerName(&self, localized_caller_name: Option<&NSString>);
 
         /// Whether the call can be held on its own or swapped with another call
-        #[method(supportsHolding)]
+        #[unsafe(method(supportsHolding))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsHolding(&self) -> bool;
 
         /// Setter for [`supportsHolding`][Self::supportsHolding].
-        #[method(setSupportsHolding:)]
+        #[unsafe(method(setSupportsHolding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportsHolding(&self, supports_holding: bool);
 
         /// Whether the call can be grouped (merged) with other calls when it is ungrouped
-        #[method(supportsGrouping)]
+        #[unsafe(method(supportsGrouping))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsGrouping(&self) -> bool;
 
         /// Setter for [`supportsGrouping`][Self::supportsGrouping].
-        #[method(setSupportsGrouping:)]
+        #[unsafe(method(setSupportsGrouping:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportsGrouping(&self, supports_grouping: bool);
 
         /// The call can be ungrouped (taken private) when it is grouped
-        #[method(supportsUngrouping)]
+        #[unsafe(method(supportsUngrouping))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsUngrouping(&self) -> bool;
 
         /// Setter for [`supportsUngrouping`][Self::supportsUngrouping].
-        #[method(setSupportsUngrouping:)]
+        #[unsafe(method(setSupportsUngrouping:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportsUngrouping(&self, supports_ungrouping: bool);
 
         /// The call can send DTMF tones via hard pause digits or in-call keypad entries
-        #[method(supportsDTMF)]
+        #[unsafe(method(supportsDTMF))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsDTMF(&self) -> bool;
 
         /// Setter for [`supportsDTMF`][Self::supportsDTMF].
-        #[method(setSupportsDTMF:)]
+        #[unsafe(method(setSupportsDTMF:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportsDTMF(&self, supports_dtmf: bool);
 
         /// The call includes video in addition to audio.
-        #[method(hasVideo)]
+        #[unsafe(method(hasVideo))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasVideo(&self) -> bool;
 
         /// Setter for [`hasVideo`][Self::hasVideo].
-        #[method(setHasVideo:)]
+        #[unsafe(method(setHasVideo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHasVideo(&self, has_video: bool);
     }
@@ -102,11 +102,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXCallUpdate {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

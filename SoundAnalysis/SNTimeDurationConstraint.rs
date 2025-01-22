@@ -54,7 +54,7 @@ extern_methods!(
         /// The time constraint type.
         ///
         /// The value of this property dictates whether or not other properties associated with this class can be validly accessed. Please refer to the documentation of other individual properties to understand their relationship to this one. This property is always valid to access.
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> SNTimeDurationConstraintType;
 
@@ -63,7 +63,7 @@ extern_methods!(
         /// - Returns: If the constraint type is enumerated, an array of CMTime structures (boxed in NSValue instances) representing the set of allowable time durations. The durations will always be provided sorted in order of ascending time. If the constraint type is not enumerated, an empty array will be returned.
         ///
         /// The `type` property should be queried before this property is accessed. This property will only yield meaningful values if the constraint type is considered to be 'enumerated'. The constraint type is considered to be 'enumerated' if the `type` property is equal to `SNTimeDurationConstraintTypeEnumerated`.
-        #[method(enumeratedDurations)]
+        #[unsafe(method(enumeratedDurations))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumeratedDurations(&self) -> Retained<NSArray<NSValue>>;
 
@@ -73,7 +73,7 @@ extern_methods!(
         /// - Returns: If the constraint type is range, a CMTimeRange representing the range of allowable window durations. If the constraint type is not range, `kCMTimeRangeInvalid`.
         ///
         /// The `type` property should be queried before this property is accessed. This property will only yield meaningful values if the constraint type is considered to be 'range'. The constraint type is considered to be 'range' if the `type` property is equal to `SNTimeDurationConstraintTypeRange`.
-        #[method(durationRange)]
+        #[unsafe(method(durationRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn durationRange(&self) -> CMTimeRange;
 
@@ -82,7 +82,7 @@ extern_methods!(
         /// - Parameter enumeratedDurations: A discrete set of duration values (represented as CMTime values boxed in NSValue instances) permitted by this constraint.
         ///
         /// - Returns: An instance whose `type` is `SNTimeDurationConstraintTypeEnumerated`, and which constrains duration values to the provided set of discrete values.
-        #[method(initWithEnumeratedDurations:)]
+        #[unsafe(method(initWithEnumeratedDurations:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEnumeratedDurations(
             this: Allocated<Self>,
@@ -95,18 +95,18 @@ extern_methods!(
         /// - Parameter durationRange: A continuous range of duration values (represented as CMTime values) permitted by this constraint.
         ///
         /// - Returns: An instance whose `type` is `SNTimeDurationConstraintTypeRange`, and which constrains durations values to the provided range.
-        #[method(initWithDurationRange:)]
+        #[unsafe(method(initWithDurationRange:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDurationRange(
             this: Allocated<Self>,
             duration_range: CMTimeRange,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

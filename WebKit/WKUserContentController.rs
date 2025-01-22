@@ -31,7 +31,7 @@ extern_methods!(
         #[cfg(feature = "WKUserScript")]
         /// The user scripts associated with this user content
         /// controller.
-        #[method(userScripts)]
+        #[unsafe(method(userScripts))]
         #[unsafe(method_family = none)]
         pub unsafe fn userScripts(&self) -> Retained<NSArray<WKUserScript>>;
 
@@ -39,12 +39,12 @@ extern_methods!(
         /// Adds a user script.
         ///
         /// Parameter `userScript`: The user script to add.
-        #[method(addUserScript:)]
+        #[unsafe(method(addUserScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addUserScript(&self, user_script: &WKUserScript);
 
         /// Removes all associated user scripts.
-        #[method(removeAllUserScripts)]
+        #[unsafe(method(removeAllUserScripts))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllUserScripts(&self);
 
@@ -73,7 +73,7 @@ extern_methods!(
         ///
         /// The above restriction applies to any type of script message handler - WKScriptMessageHandler and WKScriptMessageHandlerWithReply
         /// objects will conflict with each other if you try to add them to the same WKContentWorld with the same name.
-        #[method(addScriptMessageHandler:contentWorld:name:)]
+        #[unsafe(method(addScriptMessageHandler:contentWorld:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addScriptMessageHandler_contentWorld_name(
             &self,
@@ -112,7 +112,7 @@ extern_methods!(
         /// objects will conflict with each other if you try to add them to the same WKContentWorld with the same name.
         ///
         /// Refer to the WKScriptMessageHandlerWithReply documentation for examples of how it is more flexible than WKScriptMessageHandler.
-        #[method(addScriptMessageHandlerWithReply:contentWorld:name:)]
+        #[unsafe(method(addScriptMessageHandlerWithReply:contentWorld:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addScriptMessageHandlerWithReply_contentWorld_name(
             &self,
@@ -130,7 +130,7 @@ extern_methods!(
         ///
         /// Calling this method is equivalent to calling addScriptMessageHandler:contentWorld:name:
         /// with [WKContentWorld pageWorld] as the contentWorld argument.
-        #[method(addScriptMessageHandler:name:)]
+        #[unsafe(method(addScriptMessageHandler:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addScriptMessageHandler_name(
             &self,
@@ -144,7 +144,7 @@ extern_methods!(
         /// Parameter `name`: The name of the message handler to remove.
         ///
         /// Parameter `contentWorld`: The WKContentWorld from which to remove the script message handler.
-        #[method(removeScriptMessageHandlerForName:contentWorld:)]
+        #[unsafe(method(removeScriptMessageHandlerForName:contentWorld:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeScriptMessageHandlerForName_contentWorld(
             &self,
@@ -158,7 +158,7 @@ extern_methods!(
         ///
         /// Calling this method is equivalent to calling removeScriptMessageHandlerForName:contentWorld:
         /// with [WKContentWorld pageWorld] as the contentWorld argument.
-        #[method(removeScriptMessageHandlerForName:)]
+        #[unsafe(method(removeScriptMessageHandlerForName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeScriptMessageHandlerForName(&self, name: &NSString);
 
@@ -166,7 +166,7 @@ extern_methods!(
         /// Removes all script message handlers from a given WKContentWorld.
         ///
         /// Parameter `contentWorld`: The WKContentWorld from which to remove all script message handlers.
-        #[method(removeAllScriptMessageHandlersFromContentWorld:)]
+        #[unsafe(method(removeAllScriptMessageHandlersFromContentWorld:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllScriptMessageHandlersFromContentWorld(
             &self,
@@ -174,7 +174,7 @@ extern_methods!(
         );
 
         /// Removes all associated script message handlers.
-        #[method(removeAllScriptMessageHandlers)]
+        #[unsafe(method(removeAllScriptMessageHandlers))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllScriptMessageHandlers(&self);
 
@@ -182,7 +182,7 @@ extern_methods!(
         /// Adds a content rule list.
         ///
         /// Parameter `contentRuleList`: The content rule list to add.
-        #[method(addContentRuleList:)]
+        #[unsafe(method(addContentRuleList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addContentRuleList(&self, content_rule_list: &WKContentRuleList);
 
@@ -190,12 +190,12 @@ extern_methods!(
         /// Removes a content rule list.
         ///
         /// Parameter `contentRuleList`: The content rule list to remove.
-        #[method(removeContentRuleList:)]
+        #[unsafe(method(removeContentRuleList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeContentRuleList(&self, content_rule_list: &WKContentRuleList);
 
         /// Removes all associated content rule lists.
-        #[method(removeAllContentRuleLists)]
+        #[unsafe(method(removeAllContentRuleLists))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllContentRuleLists(&self);
     }
@@ -204,11 +204,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKUserContentController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

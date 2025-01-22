@@ -10,12 +10,12 @@ extern_protocol!(
     pub unsafe trait UIAccessibilityContentSizeCategoryImageAdjusting:
         NSObjectProtocol + MainThreadOnly
     {
-        #[method(adjustsImageSizeForAccessibilityContentSizeCategory)]
+        #[unsafe(method(adjustsImageSizeForAccessibilityContentSizeCategory))]
         #[unsafe(method_family = none)]
         unsafe fn adjustsImageSizeForAccessibilityContentSizeCategory(&self) -> bool;
 
         /// Setter for [`adjustsImageSizeForAccessibilityContentSizeCategory`][Self::adjustsImageSizeForAccessibilityContentSizeCategory].
-        #[method(setAdjustsImageSizeForAccessibilityContentSizeCategory:)]
+        #[unsafe(method(setAdjustsImageSizeForAccessibilityContentSizeCategory:))]
         #[unsafe(method_family = none)]
         unsafe fn setAdjustsImageSizeForAccessibilityContentSizeCategory(
             &self,

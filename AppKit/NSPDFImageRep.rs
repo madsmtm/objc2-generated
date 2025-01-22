@@ -32,35 +32,35 @@ unsafe impl NSObjectProtocol for NSPDFImageRep {}
 extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSPDFImageRep {
-        #[method(imageRepWithData:)]
+        #[unsafe(method(imageRepWithData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageRepWithData(pdf_data: &NSData) -> Option<Retained<Self>>;
 
-        #[method(initWithData:)]
+        #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData(
             this: Allocated<Self>,
             pdf_data: &NSData,
         ) -> Option<Retained<Self>>;
 
-        #[method(PDFRepresentation)]
+        #[unsafe(method(PDFRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn PDFRepresentation(&self) -> Retained<NSData>;
 
-        #[method(bounds)]
+        #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn bounds(&self) -> NSRect;
 
-        #[method(currentPage)]
+        #[unsafe(method(currentPage))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentPage(&self) -> NSInteger;
 
         /// Setter for [`currentPage`][Self::currentPage].
-        #[method(setCurrentPage:)]
+        #[unsafe(method(setCurrentPage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentPage(&self, current_page: NSInteger);
 
-        #[method(pageCount)]
+        #[unsafe(method(pageCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn pageCount(&self) -> NSInteger;
     }
@@ -70,11 +70,11 @@ extern_methods!(
     /// Methods declared on superclass `NSImageRep`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSPDFImageRep {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -87,7 +87,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSPDFImageRep {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

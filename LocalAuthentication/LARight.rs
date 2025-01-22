@@ -63,18 +63,18 @@ extern_methods!(
     unsafe impl LARight {
         /// Provides the current authorization state of the
         /// `LARight`instance
-        #[method(state)]
+        #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> LARightState;
 
         /// An application-supplied integer that can be used to identify right intances. The default value is
         /// `0.`
-        #[method(tag)]
+        #[unsafe(method(tag))]
         #[unsafe(method_family = none)]
         pub unsafe fn tag(&self) -> NSInteger;
 
         /// Setter for [`tag`][Self::tag].
-        #[method(setTag:)]
+        #[unsafe(method(setTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTag(&self, tag: NSInteger);
 
@@ -83,7 +83,7 @@ extern_methods!(
         /// For authorizing a right with default requirements a user will be asked to authenticate using biometry or the device passcode.
         ///
         /// Returns: `LARight`instance
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -94,7 +94,7 @@ extern_methods!(
         /// Parameter `requirement`: Requirement that needs to be satisfied to authorize the right
         ///
         /// Returns: `LARight`instance
-        #[method(initWithRequirement:)]
+        #[unsafe(method(initWithRequirement:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRequirement(
             this: Allocated<Self>,
@@ -107,7 +107,7 @@ extern_methods!(
         /// Parameter `localizedReason`: Localized explanation for the authorization. Appears in the UI presented to the user.
         ///
         /// Parameter `handler`: Completion handler called after the authorization finishes. Returns an error when the authorization fails.
-        #[method(authorizeWithLocalizedReason:completion:)]
+        #[unsafe(method(authorizeWithLocalizedReason:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizeWithLocalizedReason_completion(
             &self,
@@ -120,7 +120,7 @@ extern_methods!(
         ///
         /// Parameter `handler`: Completion handler. Returns
         /// `nil`if the right can be authorized or an error otherwise.
-        #[method(checkCanAuthorizeWithCompletion:)]
+        #[unsafe(method(checkCanAuthorizeWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkCanAuthorizeWithCompletion(
             &self,
@@ -131,7 +131,7 @@ extern_methods!(
         /// Invalidates a previously authorized right.
         ///
         /// Parameter `handler`: Completion handler called after the right is deauthorized.
-        #[method(deauthorizeWithCompletion:)]
+        #[unsafe(method(deauthorizeWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deauthorizeWithCompletion(&self, handler: &block2::Block<dyn Fn()>);
     }
@@ -140,7 +140,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl LARight {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

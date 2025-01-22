@@ -36,7 +36,7 @@ extern_methods!(
         /// This value is null when the device does not support APL.
         ///
         /// Dimensioned as MXUnitAveragePixelLuminance.
-        #[method(averagePixelLuminance)]
+        #[unsafe(method(averagePixelLuminance))]
         #[unsafe(method_family = none)]
         pub unsafe fn averagePixelLuminance(
             &self,
@@ -48,11 +48,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXDisplayMetric {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

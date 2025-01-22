@@ -103,30 +103,30 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKNode {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(node)]
+        #[unsafe(method(node))]
         #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(nodeWithFileNamed:)]
+        #[unsafe(method(nodeWithFileNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method(nodeWithFileNamed:securelyWithClasses:andError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
@@ -135,201 +135,201 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(frame)]
+        #[unsafe(method(frame))]
         #[unsafe(method_family = none)]
         pub unsafe fn frame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Calculates the bounding box including all child nodes in parents coordinate system.
-        #[method(calculateAccumulatedFrame)]
+        #[unsafe(method(calculateAccumulatedFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn calculateAccumulatedFrame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The position of the node in the parent's coordinate system
-        #[method(position)]
+        #[unsafe(method(position))]
         #[unsafe(method_family = none)]
         pub unsafe fn position(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`position`][Self::position].
-        #[method(setPosition:)]
+        #[unsafe(method(setPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPosition(&self, position: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The z-order of the node (used for ordering). Negative z is "into" the screen, Positive z is "out" of the screen. A greater zPosition will sort in front of a lesser zPosition.
-        #[method(zPosition)]
+        #[unsafe(method(zPosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn zPosition(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`zPosition`][Self::zPosition].
-        #[method(setZPosition:)]
+        #[unsafe(method(setZPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZPosition(&self, z_position: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The Euler rotation about the z axis (in radians)
-        #[method(zRotation)]
+        #[unsafe(method(zRotation))]
         #[unsafe(method_family = none)]
         pub unsafe fn zRotation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`zRotation`][Self::zRotation].
-        #[method(setZRotation:)]
+        #[unsafe(method(setZRotation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZRotation(&self, z_rotation: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The scaling in the X axis
-        #[method(xScale)]
+        #[unsafe(method(xScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn xScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`xScale`][Self::xScale].
-        #[method(setXScale:)]
+        #[unsafe(method(setXScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setXScale(&self, x_scale: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The scaling in the Y axis
-        #[method(yScale)]
+        #[unsafe(method(yScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn yScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`yScale`][Self::yScale].
-        #[method(setYScale:)]
+        #[unsafe(method(setYScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setYScale(&self, y_scale: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The speed multiplier applied to all actions run on this node. Inherited by its children.
-        #[method(speed)]
+        #[unsafe(method(speed))]
         #[unsafe(method_family = none)]
         pub unsafe fn speed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`speed`][Self::speed].
-        #[method(setSpeed:)]
+        #[unsafe(method(setSpeed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeed(&self, speed: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Alpha of this node (multiplied by the output color to give the final result)
-        #[method(alpha)]
+        #[unsafe(method(alpha))]
         #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`alpha`][Self::alpha].
-        #[method(setAlpha:)]
+        #[unsafe(method(setAlpha:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlpha(&self, alpha: CGFloat);
 
         /// Controls whether or not the node's actions is updated or paused.
-        #[method(isPaused)]
+        #[unsafe(method(isPaused))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPaused(&self) -> bool;
 
         /// Setter for [`isPaused`][Self::isPaused].
-        #[method(setPaused:)]
+        #[unsafe(method(setPaused:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaused(&self, paused: bool);
 
         /// Controls whether or not the node and its children are rendered.
-        #[method(isHidden)]
+        #[unsafe(method(isHidden))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
 
         /// Setter for [`isHidden`][Self::isHidden].
-        #[method(setHidden:)]
+        #[unsafe(method(setHidden:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
         /// Controls whether or not the node receives touch events
-        #[method(isUserInteractionEnabled)]
+        #[unsafe(method(isUserInteractionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isUserInteractionEnabled(&self) -> bool;
 
         /// Setter for [`isUserInteractionEnabled`][Self::isUserInteractionEnabled].
-        #[method(setUserInteractionEnabled:)]
+        #[unsafe(method(setUserInteractionEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInteractionEnabled(&self, user_interaction_enabled: bool);
 
         /// Determines how this node participates in the focus system.  The default is SKNodeFocusBehaviorNone.
-        #[method(focusBehavior)]
+        #[unsafe(method(focusBehavior))]
         #[unsafe(method_family = none)]
         pub unsafe fn focusBehavior(&self) -> SKNodeFocusBehavior;
 
         /// Setter for [`focusBehavior`][Self::focusBehavior].
-        #[method(setFocusBehavior:)]
+        #[unsafe(method(setFocusBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocusBehavior(&self, focus_behavior: SKNodeFocusBehavior);
 
         /// The parent of the node.
         ///
         /// If this is nil the node has not been added to another group and is thus the root node of its own graph.
-        #[method(parent)]
+        #[unsafe(method(parent))]
         #[unsafe(method_family = none)]
         pub unsafe fn parent(&self) -> Option<Retained<SKNode>>;
 
         /// The children of this node.
-        #[method(children)]
+        #[unsafe(method(children))]
         #[unsafe(method_family = none)]
         pub unsafe fn children(&self) -> Retained<NSArray<SKNode>>;
 
         /// The client assignable name.
         ///
         /// In general, this should be unique among peers in the scene graph.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[cfg(all(feature = "SKEffectNode", feature = "SKScene"))]
         /// The scene that the node is currently in.
-        #[method(scene)]
+        #[unsafe(method(scene))]
         #[unsafe(method_family = none)]
         pub unsafe fn scene(&self) -> Option<Retained<SKScene>>;
 
         #[cfg(feature = "SKPhysicsBody")]
         /// Physics body attached to the node, with synchronized scale, rotation, and position
-        #[method(physicsBody)]
+        #[unsafe(method(physicsBody))]
         #[unsafe(method_family = none)]
         pub unsafe fn physicsBody(&self) -> Option<Retained<SKPhysicsBody>>;
 
         #[cfg(feature = "SKPhysicsBody")]
         /// Setter for [`physicsBody`][Self::physicsBody].
-        #[method(setPhysicsBody:)]
+        #[unsafe(method(setPhysicsBody:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhysicsBody(&self, physics_body: Option<&SKPhysicsBody>);
 
         /// An optional dictionary that can be used to store your own data in a node. Defaults to nil.
-        #[method(userData)]
+        #[unsafe(method(userData))]
         #[unsafe(method_family = none)]
         pub unsafe fn userData(&self) -> Option<Retained<NSMutableDictionary>>;
 
         /// Setter for [`userData`][Self::userData].
-        #[method(setUserData:)]
+        #[unsafe(method(setUserData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserData(&self, user_data: Option<&NSMutableDictionary>);
 
         #[cfg(feature = "SKReachConstraints")]
         /// Kinematic constraints, used in IK solving
-        #[method(reachConstraints)]
+        #[unsafe(method(reachConstraints))]
         #[unsafe(method_family = none)]
         pub unsafe fn reachConstraints(&self) -> Option<Retained<SKReachConstraints>>;
 
         #[cfg(feature = "SKReachConstraints")]
         /// Setter for [`reachConstraints`][Self::reachConstraints].
-        #[method(setReachConstraints:)]
+        #[unsafe(method(setReachConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReachConstraints(&self, reach_constraints: Option<&SKReachConstraints>);
 
@@ -337,13 +337,13 @@ extern_methods!(
         /// Optional array of SKConstraints
         /// Constraints are evaluated each frame after actions and physics.
         /// The node's transform will be changed to satisfy the constraint.
-        #[method(constraints)]
+        #[unsafe(method(constraints))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraints(&self) -> Option<Retained<NSArray<SKConstraint>>>;
 
         #[cfg(feature = "SKConstraint")]
         /// Setter for [`constraints`][Self::constraints].
-        #[method(setConstraints:)]
+        #[unsafe(method(setConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstraints(&self, constraints: Option<&NSArray<SKConstraint>>);
 
@@ -352,14 +352,14 @@ extern_methods!(
         /// Attributes can be used with custom SKShaders.
         /// DEPRECATED: Attributes are only available for node classes supporting SKShader (see SKSpriteNode etc.).
         #[deprecated]
-        #[method(attributeValues)]
+        #[unsafe(method(attributeValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeValues(&self) -> Retained<NSDictionary<NSString, SKAttributeValue>>;
 
         #[cfg(feature = "SKAttribute")]
         /// Setter for [`attributeValues`][Self::attributeValues].
         #[deprecated]
-        #[method(setAttributeValues:)]
+        #[unsafe(method(setAttributeValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributeValues(
             &self,
@@ -368,7 +368,7 @@ extern_methods!(
 
         #[cfg(feature = "SKAttribute")]
         #[deprecated]
-        #[method(valueForAttributeNamed:)]
+        #[unsafe(method(valueForAttributeNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueForAttributeNamed(
             &self,
@@ -377,7 +377,7 @@ extern_methods!(
 
         #[cfg(feature = "SKAttribute")]
         #[deprecated]
-        #[method(setValue:forAttributeNamed:)]
+        #[unsafe(method(setValue:forAttributeNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forAttributeNamed(&self, value: &SKAttributeValue, key: &NSString);
 
@@ -388,7 +388,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `scale`: the uniform scale to set.
-        #[method(setScale:)]
+        #[unsafe(method(setScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScale(&self, scale: CGFloat);
 
@@ -398,36 +398,36 @@ extern_methods!(
         ///
         ///
         /// Parameter `node`: the child node to add.
-        #[method(addChild:)]
+        #[unsafe(method(addChild:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addChild(&self, node: &SKNode);
 
-        #[method(insertChild:atIndex:)]
+        #[unsafe(method(insertChild:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertChild_atIndex(&self, node: &SKNode, index: NSInteger);
 
-        #[method(removeChildrenInArray:)]
+        #[unsafe(method(removeChildrenInArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeChildrenInArray(&self, nodes: &NSArray<SKNode>);
 
-        #[method(removeAllChildren)]
+        #[unsafe(method(removeAllChildren))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllChildren(&self);
 
-        #[method(removeFromParent)]
+        #[unsafe(method(removeFromParent))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromParent(&self);
 
-        #[method(moveToParent:)]
+        #[unsafe(method(moveToParent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveToParent(&self, parent: &SKNode);
 
-        #[method(childNodeWithName:)]
+        #[unsafe(method(childNodeWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn childNodeWithName(&self, name: &NSString) -> Option<Retained<SKNode>>;
 
         #[cfg(feature = "block2")]
-        #[method(enumerateChildNodesWithName:usingBlock:)]
+        #[unsafe(method(enumerateChildNodesWithName:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateChildNodesWithName_usingBlock(
             &self,
@@ -450,21 +450,21 @@ extern_methods!(
         /// Parameter `name`: An Xpath style path that can include simple regular expressions for matching node names.
         ///
         /// See: enumerateChildNodesWithName:usingBlock:
-        #[method(objectForKeyedSubscript:)]
+        #[unsafe(method(objectForKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(&self, name: &NSString) -> Retained<NSArray<SKNode>>;
 
-        #[method(inParentHierarchy:)]
+        #[unsafe(method(inParentHierarchy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn inParentHierarchy(&self, parent: &SKNode) -> bool;
 
         #[cfg(feature = "SKAction")]
-        #[method(runAction:)]
+        #[unsafe(method(runAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runAction(&self, action: &SKAction);
 
         #[cfg(all(feature = "SKAction", feature = "block2"))]
-        #[method(runAction:completion:)]
+        #[unsafe(method(runAction:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runAction_completion(
             &self,
@@ -473,29 +473,29 @@ extern_methods!(
         );
 
         #[cfg(feature = "SKAction")]
-        #[method(runAction:withKey:)]
+        #[unsafe(method(runAction:withKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runAction_withKey(&self, action: &SKAction, key: &NSString);
 
-        #[method(hasActions)]
+        #[unsafe(method(hasActions))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasActions(&self) -> bool;
 
         #[cfg(feature = "SKAction")]
-        #[method(actionForKey:)]
+        #[unsafe(method(actionForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionForKey(&self, key: &NSString) -> Option<Retained<SKAction>>;
 
-        #[method(removeActionForKey:)]
+        #[unsafe(method(removeActionForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeActionForKey(&self, key: &NSString);
 
-        #[method(removeAllActions)]
+        #[unsafe(method(removeAllActions))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllActions(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(containsPoint:)]
+        #[unsafe(method(containsPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsPoint(&self, p: CGPoint) -> bool;
 
@@ -504,30 +504,30 @@ extern_methods!(
         /// If the receiver is returned there is no child node at the given point.
         ///
         /// Returns: a child node or self at the given location.
-        #[method(nodeAtPoint:)]
+        #[unsafe(method(nodeAtPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeAtPoint(&self, p: CGPoint) -> Retained<SKNode>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(nodesAtPoint:)]
+        #[unsafe(method(nodesAtPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodesAtPoint(&self, p: CGPoint) -> Retained<NSArray<SKNode>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(convertPoint:fromNode:)]
+        #[unsafe(method(convertPoint:fromNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertPoint_fromNode(&self, point: CGPoint, node: &SKNode) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(convertPoint:toNode:)]
+        #[unsafe(method(convertPoint:toNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertPoint_toNode(&self, point: CGPoint, node: &SKNode) -> CGPoint;
 
-        #[method(intersectsNode:)]
+        #[unsafe(method(intersectsNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn intersectsNode(&self, node: &SKNode) -> bool;
 
-        #[method(isEqualToNode:)]
+        #[unsafe(method(isEqualToNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToNode(&self, node: &SKNode) -> bool;
     }
@@ -538,7 +538,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKNode {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -550,7 +550,7 @@ extern_category!(
     pub unsafe trait NSEventSKNodeEvent {
         #[cfg(all(feature = "objc2-app-kit", feature = "objc2-core-foundation"))]
         #[cfg(target_os = "macos")]
-        #[method(locationInNode:)]
+        #[unsafe(method(locationInNode:))]
         #[unsafe(method_family = none)]
         unsafe fn locationInNode(&self, node: &SKNode) -> CGPoint;
     }

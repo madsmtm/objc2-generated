@@ -22,12 +22,12 @@ unsafe impl NSObjectProtocol for UIWindowSceneGeometryPreferencesIOS {}
 extern_methods!(
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
     unsafe impl UIWindowSceneGeometryPreferencesIOS {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIOrientation")]
-        #[method(initWithInterfaceOrientations:)]
+        #[unsafe(method(initWithInterfaceOrientations:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithInterfaceOrientations(
             this: Allocated<Self>,
@@ -37,13 +37,13 @@ extern_methods!(
         #[cfg(feature = "UIOrientation")]
         /// The preferred interface orientations. The system will choose the best orientation from the intersection of these
         /// orientations and the current supported orientations. Defaults to an empty mask to indicate no preference.
-        #[method(interfaceOrientations)]
+        #[unsafe(method(interfaceOrientations))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceOrientations(&self) -> UIInterfaceOrientationMask;
 
         #[cfg(feature = "UIOrientation")]
         /// Setter for [`interfaceOrientations`][Self::interfaceOrientations].
-        #[method(setInterfaceOrientations:)]
+        #[unsafe(method(setInterfaceOrientations:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInterfaceOrientations(
             &self,
@@ -56,7 +56,7 @@ extern_methods!(
     /// Methods declared on superclass `UIWindowSceneGeometryPreferences`
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
     unsafe impl UIWindowSceneGeometryPreferencesIOS {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

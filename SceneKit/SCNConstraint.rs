@@ -36,34 +36,34 @@ unsafe impl SCNAnimatable for SCNConstraint {}
 extern_methods!(
     unsafe impl SCNConstraint {
         /// Determines whether the constraint is enabled or not. Defaults to YES.
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Specifies the inflence factor of the receiver. Defaults to 1. Animatable
-        #[method(influenceFactor)]
+        #[unsafe(method(influenceFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn influenceFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`influenceFactor`][Self::influenceFactor].
-        #[method(setInfluenceFactor:)]
+        #[unsafe(method(setInfluenceFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInfluenceFactor(&self, influence_factor: CGFloat);
 
         /// Specifies whether or not the contraint should applies incrementally and have it's effect being cumulated over the rendered frames. Defaults to YES starting macOS 10.13, iOS 11, tvOS 11 and watchOS 4. Defaults to NO in previous versions.
-        #[method(isIncremental)]
+        #[unsafe(method(isIncremental))]
         #[unsafe(method_family = none)]
         pub unsafe fn isIncremental(&self) -> bool;
 
         /// Setter for [`isIncremental`][Self::isIncremental].
-        #[method(setIncremental:)]
+        #[unsafe(method(setIncremental:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncremental(&self, incremental: bool);
     }
@@ -72,11 +72,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNConstraint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -112,67 +112,67 @@ extern_methods!(
         /// Creates and returns a SCNLookAtConstraint object with the specified target.
         ///
         /// Parameter `target`: The target node to look at.
-        #[method(lookAtConstraintWithTarget:)]
+        #[unsafe(method(lookAtConstraintWithTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lookAtConstraintWithTarget(target: Option<&SCNNode>) -> Retained<Self>;
 
         #[cfg(feature = "SCNNode")]
         /// Defines the target node to look at.
-        #[method(target)]
+        #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
         /// Setter for [`target`][Self::target].
-        #[method(setTarget:)]
+        #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&SCNNode>);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Offset look at position in target space. Defaults to zero. Animatable
-        #[method(targetOffset)]
+        #[unsafe(method(targetOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetOffset(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`targetOffset`][Self::targetOffset].
-        #[method(setTargetOffset:)]
+        #[unsafe(method(setTargetOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTargetOffset(&self, target_offset: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Front direction in the constraint owner local space. Defaults to -[SCNNode localFront]. Animatable
-        #[method(localFront)]
+        #[unsafe(method(localFront))]
         #[unsafe(method_family = none)]
         pub unsafe fn localFront(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`localFront`][Self::localFront].
-        #[method(setLocalFront:)]
+        #[unsafe(method(setLocalFront:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalFront(&self, local_front: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Up reference direction in world space. Defaults to -[SCNNode localUp]. Animatable
-        #[method(worldUp)]
+        #[unsafe(method(worldUp))]
         #[unsafe(method_family = none)]
         pub unsafe fn worldUp(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`worldUp`][Self::worldUp].
-        #[method(setWorldUp:)]
+        #[unsafe(method(setWorldUp:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWorldUp(&self, world_up: SCNVector3);
 
         /// Specifies whether the receiver enables the gimbal lock. Defaults to NO.
         ///
         /// Enabling the gimbal lock prevents the receiver from rotating the constrained node around to roll axis.
-        #[method(gimbalLockEnabled)]
+        #[unsafe(method(gimbalLockEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn gimbalLockEnabled(&self) -> bool;
 
         /// Setter for [`gimbalLockEnabled`][Self::gimbalLockEnabled].
-        #[method(setGimbalLockEnabled:)]
+        #[unsafe(method(setGimbalLockEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGimbalLockEnabled(&self, gimbal_lock_enabled: bool);
     }
@@ -181,11 +181,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNLookAtConstraint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -244,17 +244,17 @@ extern_methods!(
         /// Creates and returns a SCNBillboardConstraint constraint.
         ///
         /// A billboard constraint forces the receiver to look into the direction of the current point of view.
-        #[method(billboardConstraint)]
+        #[unsafe(method(billboardConstraint))]
         #[unsafe(method_family = none)]
         pub unsafe fn billboardConstraint() -> Retained<Self>;
 
         /// Specifies the axes on which the billboarding orientation operates. Defaults to SCNBillboardAxisAll.
-        #[method(freeAxes)]
+        #[unsafe(method(freeAxes))]
         #[unsafe(method_family = none)]
         pub unsafe fn freeAxes(&self) -> SCNBillboardAxis;
 
         /// Setter for [`freeAxes`][Self::freeAxes].
-        #[method(setFreeAxes:)]
+        #[unsafe(method(setFreeAxes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFreeAxes(&self, free_axes: SCNBillboardAxis);
     }
@@ -263,11 +263,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNBillboardConstraint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -313,7 +313,7 @@ extern_methods!(
         /// Parameter `block`: The custom block to call to evaluate the constraint.
         ///
         /// The node and its transform are passed to the block. The transform returned by the block will be used to render the node.
-        #[method(transformConstraintInWorldSpace:withBlock:)]
+        #[unsafe(method(transformConstraintInWorldSpace:withBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn transformConstraintInWorldSpace_withBlock(
             world: bool,
@@ -333,7 +333,7 @@ extern_methods!(
         /// Parameter `block`: The custom block to call to evaluate the constraint.
         ///
         /// The node and its position are passed to the block. The position returned by the block will be used to render the node.
-        #[method(positionConstraintInWorldSpace:withBlock:)]
+        #[unsafe(method(positionConstraintInWorldSpace:withBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn positionConstraintInWorldSpace_withBlock(
             world: bool,
@@ -353,7 +353,7 @@ extern_methods!(
         /// Parameter `block`: The custom block to call to evaluate the constraint.
         ///
         /// The node and its quaternion are passed to the block. The quaternion returned by the block will be used to render the node.
-        #[method(orientationConstraintInWorldSpace:withBlock:)]
+        #[unsafe(method(orientationConstraintInWorldSpace:withBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orientationConstraintInWorldSpace_withBlock(
             world: bool,
@@ -365,11 +365,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNTransformConstraint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -407,7 +407,7 @@ extern_methods!(
         /// Parameter `chainRootNode`: The root node of the kinematic chain.
         ///
         /// "chainRootNode" must be an ancestor of the node on which the constraint is applied.
-        #[method(initWithChainRootNode:)]
+        #[unsafe(method(initWithChainRootNode:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithChainRootNode(
             this: Allocated<Self>,
@@ -420,7 +420,7 @@ extern_methods!(
         /// Parameter `chainRootNode`: The root node of the kinematic chain.
         ///
         /// "chainRootNode" must be an ancestor of the node on which the constraint is applied.
-        #[method(inverseKinematicsConstraintWithChainRootNode:)]
+        #[unsafe(method(inverseKinematicsConstraintWithChainRootNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn inverseKinematicsConstraintWithChainRootNode(
             chain_root_node: &SCNNode,
@@ -428,30 +428,30 @@ extern_methods!(
 
         #[cfg(feature = "SCNNode")]
         /// Specifies the root node of the kinematic chain.
-        #[method(chainRootNode)]
+        #[unsafe(method(chainRootNode))]
         #[unsafe(method_family = none)]
         pub unsafe fn chainRootNode(&self) -> Retained<SCNNode>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Specifies the target position (in world space coordinates) of the end joint (i.e the node that owns the IK constraint). Defaults to (0,0,0). Animatable.
-        #[method(targetPosition)]
+        #[unsafe(method(targetPosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetPosition(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`targetPosition`][Self::targetPosition].
-        #[method(setTargetPosition:)]
+        #[unsafe(method(setTargetPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTargetPosition(&self, target_position: SCNVector3);
 
         #[cfg(all(feature = "SCNNode", feature = "objc2-core-foundation"))]
         /// Specifies the maximum rotation allowed (in degrees) for the specified joint from its initial orientation. Defaults to 180.
-        #[method(setMaxAllowedRotationAngle:forJoint:)]
+        #[unsafe(method(setMaxAllowedRotationAngle:forJoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxAllowedRotationAngle_forJoint(&self, angle: CGFloat, node: &SCNNode);
 
         #[cfg(all(feature = "SCNNode", feature = "objc2-core-foundation"))]
-        #[method(maxAllowedRotationAngleForJoint:)]
+        #[unsafe(method(maxAllowedRotationAngleForJoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxAllowedRotationAngleForJoint(&self, node: &SCNNode) -> CGFloat;
     }
@@ -460,11 +460,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNIKConstraint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -498,43 +498,43 @@ extern_methods!(
     unsafe impl SCNDistanceConstraint {
         #[cfg(feature = "SCNNode")]
         /// Creates and returns a SCNDistanceConstraint constraint.
-        #[method(distanceConstraintWithTarget:)]
+        #[unsafe(method(distanceConstraintWithTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn distanceConstraintWithTarget(target: Option<&SCNNode>) -> Retained<Self>;
 
         #[cfg(feature = "SCNNode")]
         /// Defines the target node to keep distance with.
-        #[method(target)]
+        #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
         /// Setter for [`target`][Self::target].
-        #[method(setTarget:)]
+        #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&SCNNode>);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The minimum distance. Defaults to 0. Animatable.
-        #[method(minimumDistance)]
+        #[unsafe(method(minimumDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumDistance(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumDistance`][Self::minimumDistance].
-        #[method(setMinimumDistance:)]
+        #[unsafe(method(setMinimumDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumDistance(&self, minimum_distance: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The minimum distance. Defaults to MAXFLOAT. Animatable.
-        #[method(maximumDistance)]
+        #[unsafe(method(maximumDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumDistance(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumDistance`][Self::maximumDistance].
-        #[method(setMaximumDistance:)]
+        #[unsafe(method(setMaximumDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumDistance(&self, maximum_distance: CGFloat);
     }
@@ -543,11 +543,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNDistanceConstraint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -581,85 +581,85 @@ extern_methods!(
     unsafe impl SCNReplicatorConstraint {
         #[cfg(feature = "SCNNode")]
         /// Creates and returns a SCNReplicatorConstraint constraint.
-        #[method(replicatorConstraintWithTarget:)]
+        #[unsafe(method(replicatorConstraintWithTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replicatorConstraintWithTarget(target: Option<&SCNNode>) -> Retained<Self>;
 
         #[cfg(feature = "SCNNode")]
         /// Defines the target node to replicate
-        #[method(target)]
+        #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
         /// Setter for [`target`][Self::target].
-        #[method(setTarget:)]
+        #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&SCNNode>);
 
         /// Defines whether or not the constraint should replicate the target orientation. Defaults to YES.
-        #[method(replicatesOrientation)]
+        #[unsafe(method(replicatesOrientation))]
         #[unsafe(method_family = none)]
         pub unsafe fn replicatesOrientation(&self) -> bool;
 
         /// Setter for [`replicatesOrientation`][Self::replicatesOrientation].
-        #[method(setReplicatesOrientation:)]
+        #[unsafe(method(setReplicatesOrientation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReplicatesOrientation(&self, replicates_orientation: bool);
 
         /// Defines whether or not the constraint should replicate the target position. Defaults to YES.
-        #[method(replicatesPosition)]
+        #[unsafe(method(replicatesPosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn replicatesPosition(&self) -> bool;
 
         /// Setter for [`replicatesPosition`][Self::replicatesPosition].
-        #[method(setReplicatesPosition:)]
+        #[unsafe(method(setReplicatesPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReplicatesPosition(&self, replicates_position: bool);
 
         /// Defines whether or not the constraint should replicate the target scale. Defaults to YES.
-        #[method(replicatesScale)]
+        #[unsafe(method(replicatesScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn replicatesScale(&self) -> bool;
 
         /// Setter for [`replicatesScale`][Self::replicatesScale].
-        #[method(setReplicatesScale:)]
+        #[unsafe(method(setReplicatesScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReplicatesScale(&self, replicates_scale: bool);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Defines an addition orientation offset. Defaults to no offset. Animatable.
-        #[method(orientationOffset)]
+        #[unsafe(method(orientationOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn orientationOffset(&self) -> SCNQuaternion;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`orientationOffset`][Self::orientationOffset].
-        #[method(setOrientationOffset:)]
+        #[unsafe(method(setOrientationOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrientationOffset(&self, orientation_offset: SCNQuaternion);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Defines an addition orientation offset. Defaults to no offset. Animatable.
-        #[method(positionOffset)]
+        #[unsafe(method(positionOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn positionOffset(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`positionOffset`][Self::positionOffset].
-        #[method(setPositionOffset:)]
+        #[unsafe(method(setPositionOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPositionOffset(&self, position_offset: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Defines an addition scale offset. Defaults to no offset. Animatable.
-        #[method(scaleOffset)]
+        #[unsafe(method(scaleOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleOffset(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`scaleOffset`][Self::scaleOffset].
-        #[method(setScaleOffset:)]
+        #[unsafe(method(setScaleOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScaleOffset(&self, scale_offset: SCNVector3);
     }
@@ -668,11 +668,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNReplicatorConstraint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -705,7 +705,7 @@ unsafe impl SCNAnimatable for SCNAccelerationConstraint {}
 extern_methods!(
     unsafe impl SCNAccelerationConstraint {
         /// Creates and returns a SCNAccelerationConstraint object.
-        #[method(accelerationConstraint)]
+        #[unsafe(method(accelerationConstraint))]
         #[unsafe(method_family = none)]
         pub unsafe fn accelerationConstraint() -> Retained<Self>;
 
@@ -713,13 +713,13 @@ extern_methods!(
         /// Controls the maximum linear acceleration. Defaults to MAXFLOAT. Animatable.
         ///
         /// The maximum linear acceleration is in m.s^-2
-        #[method(maximumLinearAcceleration)]
+        #[unsafe(method(maximumLinearAcceleration))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumLinearAcceleration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumLinearAcceleration`][Self::maximumLinearAcceleration].
-        #[method(setMaximumLinearAcceleration:)]
+        #[unsafe(method(setMaximumLinearAcceleration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumLinearAcceleration(&self, maximum_linear_acceleration: CGFloat);
 
@@ -727,37 +727,37 @@ extern_methods!(
         /// Controls the maximum linear velocity. Defaults to MAXFLOAT. Animatable.
         ///
         /// The maximum linear velocity is in m.s
-        #[method(maximumLinearVelocity)]
+        #[unsafe(method(maximumLinearVelocity))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumLinearVelocity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumLinearVelocity`][Self::maximumLinearVelocity].
-        #[method(setMaximumLinearVelocity:)]
+        #[unsafe(method(setMaximumLinearVelocity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumLinearVelocity(&self, maximum_linear_velocity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Controls the distance at which the node should start decelerating. Defaults to 0. Animatable.
-        #[method(decelerationDistance)]
+        #[unsafe(method(decelerationDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn decelerationDistance(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`decelerationDistance`][Self::decelerationDistance].
-        #[method(setDecelerationDistance:)]
+        #[unsafe(method(setDecelerationDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDecelerationDistance(&self, deceleration_distance: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Specifies the damping factor of the receiver. Optionally reduce the body's linear velocity each frame to simulate fluid/air friction. Value should be zero or greater. Defaults to 0.1. Animatable.
-        #[method(damping)]
+        #[unsafe(method(damping))]
         #[unsafe(method_family = none)]
         pub unsafe fn damping(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`damping`][Self::damping].
-        #[method(setDamping:)]
+        #[unsafe(method(setDamping:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDamping(&self, damping: CGFloat);
     }
@@ -766,11 +766,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNAccelerationConstraint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -803,41 +803,41 @@ unsafe impl SCNAnimatable for SCNSliderConstraint {}
 extern_methods!(
     unsafe impl SCNSliderConstraint {
         /// Creates and returns a SCNSliderConstraint object.
-        #[method(sliderConstraint)]
+        #[unsafe(method(sliderConstraint))]
         #[unsafe(method_family = none)]
         pub unsafe fn sliderConstraint() -> Retained<Self>;
 
         /// Defines the category of node to collide against. Defaults to 0.
-        #[method(collisionCategoryBitMask)]
+        #[unsafe(method(collisionCategoryBitMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn collisionCategoryBitMask(&self) -> NSUInteger;
 
         /// Setter for [`collisionCategoryBitMask`][Self::collisionCategoryBitMask].
-        #[method(setCollisionCategoryBitMask:)]
+        #[unsafe(method(setCollisionCategoryBitMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCollisionCategoryBitMask(&self, collision_category_bit_mask: NSUInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Defines the radius of the slider. Defaults to 1.
-        #[method(radius)]
+        #[unsafe(method(radius))]
         #[unsafe(method_family = none)]
         pub unsafe fn radius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`radius`][Self::radius].
-        #[method(setRadius:)]
+        #[unsafe(method(setRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRadius(&self, radius: CGFloat);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Defines the offset of the slider. Defaults to (0,0,0).
-        #[method(offset)]
+        #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`offset`][Self::offset].
-        #[method(setOffset:)]
+        #[unsafe(method(setOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOffset(&self, offset: SCNVector3);
     }
@@ -846,11 +846,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNSliderConstraint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -861,7 +861,7 @@ extern_protocol!(
     pub unsafe trait SCNAvoidOccluderConstraintDelegate: NSObjectProtocol {
         #[cfg(feature = "SCNNode")]
         #[optional]
-        #[method(avoidOccluderConstraint:shouldAvoidOccluder:forNode:)]
+        #[unsafe(method(avoidOccluderConstraint:shouldAvoidOccluder:forNode:))]
         #[unsafe(method_family = none)]
         unsafe fn avoidOccluderConstraint_shouldAvoidOccluder_forNode(
             &self,
@@ -872,7 +872,7 @@ extern_protocol!(
 
         #[cfg(feature = "SCNNode")]
         #[optional]
-        #[method(avoidOccluderConstraint:didAvoidOccluder:forNode:)]
+        #[unsafe(method(avoidOccluderConstraint:didAvoidOccluder:forNode:))]
         #[unsafe(method_family = none)]
         unsafe fn avoidOccluderConstraint_didAvoidOccluder_forNode(
             &self,
@@ -913,20 +913,20 @@ extern_methods!(
     unsafe impl SCNAvoidOccluderConstraint {
         #[cfg(feature = "SCNNode")]
         /// Creates and returns a SCNAvoidOccluderConstraint object.
-        #[method(avoidOccluderConstraintWithTarget:)]
+        #[unsafe(method(avoidOccluderConstraintWithTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn avoidOccluderConstraintWithTarget(target: Option<&SCNNode>)
             -> Retained<Self>;
 
         /// The receiver's delegate
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Retained<ProtocolObject<dyn SCNAvoidOccluderConstraintDelegate>>;
 
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -935,23 +935,23 @@ extern_methods!(
 
         #[cfg(feature = "SCNNode")]
         /// Defines the target node
-        #[method(target)]
+        #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
         /// Setter for [`target`][Self::target].
-        #[method(setTarget:)]
+        #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&SCNNode>);
 
         /// Defines the category of node to consider as occluder. Defaults to 1.
-        #[method(occluderCategoryBitMask)]
+        #[unsafe(method(occluderCategoryBitMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn occluderCategoryBitMask(&self) -> NSUInteger;
 
         /// Setter for [`occluderCategoryBitMask`][Self::occluderCategoryBitMask].
-        #[method(setOccluderCategoryBitMask:)]
+        #[unsafe(method(setOccluderCategoryBitMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOccluderCategoryBitMask(&self, occluder_category_bit_mask: NSUInteger);
 
@@ -959,13 +959,13 @@ extern_methods!(
         /// Defines the bias the apply after moving the receiver to avoid occluders. Defaults to 10e-5.
         ///
         /// A positive bias will move the receiver closer to the target.
-        #[method(bias)]
+        #[unsafe(method(bias))]
         #[unsafe(method_family = none)]
         pub unsafe fn bias(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bias`][Self::bias].
-        #[method(setBias:)]
+        #[unsafe(method(setBias:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBias(&self, bias: CGFloat);
     }
@@ -974,11 +974,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNAvoidOccluderConstraint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

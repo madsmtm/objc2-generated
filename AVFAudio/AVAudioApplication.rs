@@ -115,12 +115,12 @@ unsafe impl NSObjectProtocol for AVAudioApplication {}
 extern_methods!(
     unsafe impl AVAudioApplication {
         /// Returns the singleton instance
-        #[method(sharedInstance)]
+        #[unsafe(method(sharedInstance))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedInstance() -> Retained<AVAudioApplication>;
 
         /// See: `sharedInstance`
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -128,12 +128,12 @@ extern_methods!(
         /// (microphone etc.) of all audio clients relating to this application will have their samples zeroed out.
         ///
         /// Note: - this is per-application input muting and doesn't affect the hardware mute state.
-        #[method(setInputMuted:error:_)]
+        #[unsafe(method(setInputMuted:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputMuted_error(&self, muted: bool) -> Result<(), Retained<NSError>>;
 
         /// Get the input muted state - return value is boolean 0 for unmuted or value 1 for muted (input samples zeroed out)
-        #[method(isInputMuted)]
+        #[unsafe(method(isInputMuted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isInputMuted(&self) -> bool;
 
@@ -153,7 +153,7 @@ extern_methods!(
         /// Note: This is available on macOS only - for all other platforms input muting will be handled internally. It is recommended only to
         /// perform your input muting logic within this block, and to perform your UI updates for input mute state changes within the handler
         /// for AVAudioApplicationInputMuteStateChangeNotification.
-        #[method(setInputMuteStateChangeHandler:error:_)]
+        #[unsafe(method(setInputMuteStateChangeHandler:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputMuteStateChangeHandler_error(
             &self,
@@ -162,7 +162,7 @@ extern_methods!(
 
         /// Returns an enum indicating whether the user has granted or denied permission to record, or has
         /// not been asked
-        #[method(recordPermission)]
+        #[unsafe(method(recordPermission))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordPermission(&self) -> AVAudioApplicationRecordPermission;
 
@@ -173,7 +173,7 @@ extern_methods!(
         /// denied.  Otherwise, it presents a dialog to notify the user and allow them to choose, and calls
         /// the block once the UI has been dismissed.  'granted' indicates whether permission has been
         /// granted. Note that the block may be called in a different thread context.
-        #[method(requestRecordPermissionWithCompletionHandler:)]
+        #[unsafe(method(requestRecordPermissionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestRecordPermissionWithCompletionHandler(
             response: &block2::Block<dyn Fn(Bool)>,
@@ -181,7 +181,7 @@ extern_methods!(
 
         /// Returns an enum indicating whether the user has granted or denied permission to inject audio into input,
         /// or has not been asked
-        #[method(microphoneInjectionPermission)]
+        #[unsafe(method(microphoneInjectionPermission))]
         #[unsafe(method_family = none)]
         pub unsafe fn microphoneInjectionPermission(
             &self,
@@ -195,7 +195,7 @@ extern_methods!(
         /// user and allow them to choose, and calls the block once the UI has been dismissed.
         /// 'granted' indicates whether permission has been granted. Note that the block may be
         /// called in a different thread context.
-        #[method(requestMicrophoneInjectionPermissionWithCompletionHandler:)]
+        #[unsafe(method(requestMicrophoneInjectionPermissionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestMicrophoneInjectionPermissionWithCompletionHandler(
             response: &block2::Block<dyn Fn(AVAudioApplicationMicrophoneInjectionPermission)>,
@@ -206,7 +206,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioApplication {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

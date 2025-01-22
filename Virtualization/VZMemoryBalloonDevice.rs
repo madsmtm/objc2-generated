@@ -30,11 +30,11 @@ unsafe impl NSObjectProtocol for VZMemoryBalloonDevice {}
 
 extern_methods!(
     unsafe impl VZMemoryBalloonDevice {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

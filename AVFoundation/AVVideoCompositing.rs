@@ -82,34 +82,34 @@ unsafe impl NSObjectProtocol for AVVideoCompositionRenderContext {}
 extern_methods!(
     unsafe impl AVVideoCompositionRenderContext {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(size)]
+        #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(renderTransform)]
+        #[unsafe(method(renderTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderTransform(&self) -> CGAffineTransform;
 
-        #[method(renderScale)]
+        #[unsafe(method(renderScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderScale(&self) -> c_float;
 
-        #[method(pixelAspectRatio)]
+        #[unsafe(method(pixelAspectRatio))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelAspectRatio(&self) -> AVPixelAspectRatio;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(edgeWidths)]
+        #[unsafe(method(edgeWidths))]
         #[unsafe(method_family = none)]
         pub unsafe fn edgeWidths(&self) -> AVEdgeWidths;
 
-        #[method(highQualityRendering)]
+        #[unsafe(method(highQualityRendering))]
         #[unsafe(method_family = none)]
         pub unsafe fn highQualityRendering(&self) -> bool;
 
         #[cfg(feature = "AVVideoComposition")]
-        #[method(videoComposition)]
+        #[unsafe(method(videoComposition))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoComposition(&self) -> Retained<AVVideoComposition>;
 
@@ -117,7 +117,7 @@ extern_methods!(
         /// Vends a CVPixelBuffer to use for rendering
         ///
         /// The buffer will have its kCVImageBufferCleanApertureKey and kCVImageBufferPixelAspectRatioKey attachments set to match the current composition processor properties.
-        #[method(newPixelBuffer)]
+        #[unsafe(method(newPixelBuffer))]
         #[unsafe(method_family = new)]
         pub unsafe fn newPixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
     }
@@ -126,11 +126,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVVideoCompositionRenderContext {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -153,13 +153,13 @@ extern_methods!(
     unsafe impl AVVideoCompositionRenderHint {
         #[cfg(feature = "objc2-core-media")]
         /// The start time of the upcoming composition requests.
-        #[method(startCompositionTime)]
+        #[unsafe(method(startCompositionTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn startCompositionTime(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// The end time of the upcoming composition requests.
-        #[method(endCompositionTime)]
+        #[unsafe(method(endCompositionTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn endCompositionTime(&self) -> CMTime;
     }
@@ -168,11 +168,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVVideoCompositionRenderHint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -189,13 +189,13 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositing?language=objc)
     pub unsafe trait AVVideoCompositing: NSObjectProtocol {
-        #[method(sourcePixelBufferAttributes)]
+        #[unsafe(method(sourcePixelBufferAttributes))]
         #[unsafe(method_family = none)]
         unsafe fn sourcePixelBufferAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
-        #[method(requiredPixelBufferAttributesForRenderContext)]
+        #[unsafe(method(requiredPixelBufferAttributesForRenderContext))]
         #[unsafe(method_family = none)]
         unsafe fn requiredPixelBufferAttributesForRenderContext(
             &self,
@@ -208,7 +208,7 @@ extern_protocol!(
         /// Instances of classes implementing the AVVideoComposting protocol can implement this method to be notified when
         /// the AVVideoCompositionRenderContext instance handing a video composition changes. AVVideoCompositionRenderContext instances
         /// being immutable, such a change will occur every time there is a change in the video composition parameters.
-        #[method(renderContextChanged:)]
+        #[unsafe(method(renderContextChanged:))]
         #[unsafe(method_family = none)]
         unsafe fn renderContextChanged(&self, new_render_context: &AVVideoCompositionRenderContext);
 
@@ -226,7 +226,7 @@ extern_protocol!(
         ///
         /// If the rendered frame is exactly the same as one of the source frames, with no letterboxing, pillboxing or cropping needed,
         /// then the appropriate source pixel buffer may be returned (after CFRetain has been called on it).
-        #[method(startVideoCompositionRequest:)]
+        #[unsafe(method(startVideoCompositionRequest:))]
         #[unsafe(method_family = none)]
         unsafe fn startVideoCompositionRequest(
             &self,
@@ -239,7 +239,7 @@ extern_protocol!(
         /// and called the finishCancelledRequest callback for each of them, or, if cancellation is not possible, finished processing of all the frames
         /// and called the finishWithComposedVideoFrame: callback for each of them.
         #[optional]
-        #[method(cancelAllPendingVideoCompositionRequests)]
+        #[unsafe(method(cancelAllPendingVideoCompositionRequests))]
         #[unsafe(method_family = none)]
         unsafe fn cancelAllPendingVideoCompositionRequests(&self);
 
@@ -248,7 +248,7 @@ extern_protocol!(
         ///
         /// Controls whether the client will receive frames that contain wide color information. Care should be taken to avoid clamping.
         #[optional]
-        #[method(supportsWideColorSourceFrames)]
+        #[unsafe(method(supportsWideColorSourceFrames))]
         #[unsafe(method_family = none)]
         unsafe fn supportsWideColorSourceFrames(&self) -> bool;
 
@@ -259,12 +259,12 @@ extern_protocol!(
         /// If this field is omitted or set to NO, the framework will convert HDR frames to standard dynamic range (SDR) with BT.709 transfer function before sending to the client.
         /// If this field is set to YES, the value of supportsWideColorSourceFrames will be ignored and assumed to be YES.
         #[optional]
-        #[method(supportsHDRSourceFrames)]
+        #[unsafe(method(supportsHDRSourceFrames))]
         #[unsafe(method_family = none)]
         unsafe fn supportsHDRSourceFrames(&self) -> bool;
 
         #[optional]
-        #[method(canConformColorOfSourceFrames)]
+        #[unsafe(method(canConformColorOfSourceFrames))]
         #[unsafe(method_family = none)]
         unsafe fn canConformColorOfSourceFrames(&self) -> bool;
 
@@ -282,7 +282,7 @@ extern_protocol!(
         ///
         /// The method is synchronous. The implementation should return quickly because otherwise the playback would stall and cause frame drops.
         #[optional]
-        #[method(anticipateRenderingUsingHint:)]
+        #[unsafe(method(anticipateRenderingUsingHint:))]
         #[unsafe(method_family = none)]
         unsafe fn anticipateRenderingUsingHint(&self, render_hint: &AVVideoCompositionRenderHint);
 
@@ -298,7 +298,7 @@ extern_protocol!(
         ///
         /// The method is synchronous. The prerolling won't finish until the method returns.
         #[optional]
-        #[method(prerollForRenderingUsingHint:)]
+        #[unsafe(method(prerollForRenderingUsingHint:))]
         #[unsafe(method_family = none)]
         unsafe fn prerollForRenderingUsingHint(&self, render_hint: &AVVideoCompositionRenderHint);
     }
@@ -321,24 +321,24 @@ unsafe impl NSObjectProtocol for AVAsynchronousVideoCompositionRequest {}
 
 extern_methods!(
     unsafe impl AVAsynchronousVideoCompositionRequest {
-        #[method(renderContext)]
+        #[unsafe(method(renderContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderContext(&self) -> Retained<AVVideoCompositionRenderContext>;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(compositionTime)]
+        #[unsafe(method(compositionTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn compositionTime(&self) -> CMTime;
 
-        #[method(sourceTrackIDs)]
+        #[unsafe(method(sourceTrackIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
 
-        #[method(sourceSampleDataTrackIDs)]
+        #[unsafe(method(sourceSampleDataTrackIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceSampleDataTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
 
-        #[method(videoCompositionInstruction)]
+        #[unsafe(method(videoCompositionInstruction))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionInstruction(
             &self,
@@ -348,7 +348,7 @@ extern_methods!(
         /// Returns the source CVPixelBufferRef for the given track ID
         ///
         /// Parameter `trackID`: The track ID for the requested source frame
-        #[method(sourceFrameByTrackID:)]
+        #[unsafe(method(sourceFrameByTrackID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceFrameByTrackID(
             &self,
@@ -359,7 +359,7 @@ extern_methods!(
         /// Returns the source CMSampleBufferRef for the given track ID
         ///
         /// Parameter `trackID`: The track ID for the requested source sample buffer
-        #[method(sourceSampleBufferByTrackID:)]
+        #[unsafe(method(sourceSampleBufferByTrackID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceSampleBufferByTrackID(
             &self,
@@ -370,7 +370,7 @@ extern_methods!(
         /// Returns the source AVTimedMetadataGroup * for the given track ID
         ///
         /// Parameter `trackID`: The track ID for the requested source timed metadata group.
-        #[method(sourceTimedMetadataByTrackID:)]
+        #[unsafe(method(sourceTimedMetadataByTrackID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceTimedMetadataByTrackID(
             &self,
@@ -381,15 +381,15 @@ extern_methods!(
         /// The method that the custom compositor calls when composition succeeds.
         ///
         /// Parameter `composedVideoFrame`: The video frame to finish with.
-        #[method(finishWithComposedVideoFrame:)]
+        #[unsafe(method(finishWithComposedVideoFrame:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishWithComposedVideoFrame(&self, composed_video_frame: &CVPixelBuffer);
 
-        #[method(finishWithError:)]
+        #[unsafe(method(finishWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishWithError(&self, error: &NSError);
 
-        #[method(finishCancelledRequest)]
+        #[unsafe(method(finishCancelledRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishCancelledRequest(&self);
     }
@@ -398,11 +398,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAsynchronousVideoCompositionRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -426,24 +426,24 @@ unsafe impl NSObjectProtocol for AVAsynchronousCIImageFilteringRequest {}
 extern_methods!(
     unsafe impl AVAsynchronousCIImageFilteringRequest {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(renderSize)]
+        #[unsafe(method(renderSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(compositionTime)]
+        #[unsafe(method(compositionTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn compositionTime(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
-        #[method(sourceImage)]
+        #[unsafe(method(sourceImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceImage(&self) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
-        #[method(finishWithImage:context:)]
+        #[unsafe(method(finishWithImage:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishWithImage_context(
             &self,
@@ -451,7 +451,7 @@ extern_methods!(
             context: Option<&CIContext>,
         );
 
-        #[method(finishWithError:)]
+        #[unsafe(method(finishWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishWithError(&self, error: &NSError);
     }
@@ -460,11 +460,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAsynchronousCIImageFilteringRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -477,29 +477,29 @@ extern_protocol!(
     #[name = "AVVideoCompositionInstruction"]
     pub unsafe trait AVVideoCompositionInstructionProtocol: NSObjectProtocol {
         #[cfg(feature = "objc2-core-media")]
-        #[method(timeRange)]
+        #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
         unsafe fn timeRange(&self) -> CMTimeRange;
 
-        #[method(enablePostProcessing)]
+        #[unsafe(method(enablePostProcessing))]
         #[unsafe(method_family = none)]
         unsafe fn enablePostProcessing(&self) -> bool;
 
-        #[method(containsTweening)]
+        #[unsafe(method(containsTweening))]
         #[unsafe(method_family = none)]
         unsafe fn containsTweening(&self) -> bool;
 
-        #[method(requiredSourceTrackIDs)]
+        #[unsafe(method(requiredSourceTrackIDs))]
         #[unsafe(method_family = none)]
         unsafe fn requiredSourceTrackIDs(&self) -> Option<Retained<NSArray<NSValue>>>;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(passthroughTrackID)]
+        #[unsafe(method(passthroughTrackID))]
         #[unsafe(method_family = none)]
         unsafe fn passthroughTrackID(&self) -> CMPersistentTrackID;
 
         #[optional]
-        #[method(requiredSourceSampleDataTrackIDs)]
+        #[unsafe(method(requiredSourceSampleDataTrackIDs))]
         #[unsafe(method_family = none)]
         unsafe fn requiredSourceSampleDataTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
     }

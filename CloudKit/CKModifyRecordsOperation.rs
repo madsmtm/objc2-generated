@@ -79,12 +79,12 @@ unsafe impl NSObjectProtocol for CKModifyRecordsOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifyRecordsOperation {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID"))]
-        #[method(initWithRecordsToSave:recordIDsToDelete:)]
+        #[unsafe(method(initWithRecordsToSave:recordIDsToDelete:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordsToSave_recordIDsToDelete(
             this: Allocated<Self>,
@@ -93,24 +93,24 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
-        #[method(recordsToSave)]
+        #[unsafe(method(recordsToSave))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordsToSave(&self) -> Option<Retained<NSArray<CKRecord>>>;
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`recordsToSave`][Self::recordsToSave].
-        #[method(setRecordsToSave:)]
+        #[unsafe(method(setRecordsToSave:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordsToSave(&self, records_to_save: Option<&NSArray<CKRecord>>);
 
         #[cfg(feature = "CKRecordID")]
-        #[method(recordIDsToDelete)]
+        #[unsafe(method(recordIDsToDelete))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordIDsToDelete(&self) -> Option<Retained<NSArray<CKRecordID>>>;
 
         #[cfg(feature = "CKRecordID")]
         /// Setter for [`recordIDsToDelete`][Self::recordIDsToDelete].
-        #[method(setRecordIDsToDelete:)]
+        #[unsafe(method(setRecordIDsToDelete:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordIDsToDelete(
             &self,
@@ -126,23 +126,23 @@ extern_methods!(
         /// `CKShare`record is always treated as
         /// `CKRecordSaveIfServerRecordUnchanged,`regardless of the
         /// `savePolicy`specified.
-        #[method(savePolicy)]
+        #[unsafe(method(savePolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn savePolicy(&self) -> CKRecordSavePolicy;
 
         /// Setter for [`savePolicy`][Self::savePolicy].
-        #[method(setSavePolicy:)]
+        #[unsafe(method(setSavePolicy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSavePolicy(&self, save_policy: CKRecordSavePolicy);
 
         /// This property is kept by the server to identify the last known request from this client.
         /// Multiple requests from the client with the same change token will be ignored by the server.
-        #[method(clientChangeTokenData)]
+        #[unsafe(method(clientChangeTokenData))]
         #[unsafe(method_family = none)]
         pub unsafe fn clientChangeTokenData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`clientChangeTokenData`][Self::clientChangeTokenData].
-        #[method(setClientChangeTokenData:)]
+        #[unsafe(method(setClientChangeTokenData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClientChangeTokenData(&self, client_change_token_data: Option<&NSData>);
 
@@ -153,12 +153,12 @@ extern_methods!(
         /// Server-side write atomicity is only enforced on zones that have
         /// `CKRecordZoneCapabilityAtomic.`If
         /// `isAtomic`is YES, client-side checks are enforced regardless of the zone's capabilities.  (For example, if a record is malformed, and cannot be sent to the server, the client will forcibly fail all other records-to-be-modified in that zone)
-        #[method(atomic)]
+        #[unsafe(method(atomic))]
         #[unsafe(method_family = none)]
         pub unsafe fn atomic(&self) -> bool;
 
         /// Setter for [`atomic`][Self::atomic].
-        #[method(setAtomic:)]
+        #[unsafe(method(setAtomic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAtomic(&self, atomic: bool);
 
@@ -172,7 +172,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(perRecordProgressBlock)]
+        #[unsafe(method(perRecordProgressBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordProgressBlock(
             &self,
@@ -180,7 +180,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
         /// Setter for [`perRecordProgressBlock`][Self::perRecordProgressBlock].
-        #[method(setPerRecordProgressBlock:)]
+        #[unsafe(method(setPerRecordProgressBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordProgressBlock(
             &self,
@@ -198,7 +198,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated]
-        #[method(perRecordCompletionBlock)]
+        #[unsafe(method(perRecordCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordCompletionBlock(
             &self,
@@ -207,7 +207,7 @@ extern_methods!(
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
         /// Setter for [`perRecordCompletionBlock`][Self::perRecordCompletionBlock].
         #[deprecated]
-        #[method(setPerRecordCompletionBlock:)]
+        #[unsafe(method(setPerRecordCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordCompletionBlock(
             &self,
@@ -229,7 +229,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(perRecordSaveBlock)]
+        #[unsafe(method(perRecordSaveBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordSaveBlock(
             &self,
@@ -237,7 +237,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`perRecordSaveBlock`][Self::perRecordSaveBlock].
-        #[method(setPerRecordSaveBlock:)]
+        #[unsafe(method(setPerRecordSaveBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordSaveBlock(
             &self,
@@ -253,7 +253,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(perRecordDeleteBlock)]
+        #[unsafe(method(perRecordDeleteBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordDeleteBlock(
             &self,
@@ -261,7 +261,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`perRecordDeleteBlock`][Self::perRecordDeleteBlock].
-        #[method(setPerRecordDeleteBlock:)]
+        #[unsafe(method(setPerRecordDeleteBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordDeleteBlock(
             &self,
@@ -292,7 +292,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(modifyRecordsCompletionBlock)]
+        #[unsafe(method(modifyRecordsCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifyRecordsCompletionBlock(
             &self,
@@ -302,7 +302,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`modifyRecordsCompletionBlock`][Self::modifyRecordsCompletionBlock].
-        #[method(setModifyRecordsCompletionBlock:)]
+        #[unsafe(method(setModifyRecordsCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModifyRecordsCompletionBlock(
             &self,
@@ -319,7 +319,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifyRecordsOperation {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

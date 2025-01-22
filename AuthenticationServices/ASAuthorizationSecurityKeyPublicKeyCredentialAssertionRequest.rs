@@ -46,7 +46,7 @@ extern_methods!(
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
         /// A list of descriptors indicating credentials that may be used to sign in. If this is non-empty, only credentials matching the provided descriptors can be used when authenticating.
-        #[method(allowedCredentials)]
+        #[unsafe(method(allowedCredentials))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedCredentials(
             &self,
@@ -54,7 +54,7 @@ extern_methods!(
 
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
         /// Setter for [`allowedCredentials`][Self::allowedCredentials].
-        #[method(setAllowedCredentials:)]
+        #[unsafe(method(setAllowedCredentials:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedCredentials(
             &self,
@@ -62,12 +62,12 @@ extern_methods!(
         );
 
         /// Use this value to request the appid WebAuthn extension. This can only be requested by web browsers.
-        #[method(appID)]
+        #[unsafe(method(appID))]
         #[unsafe(method_family = none)]
         pub unsafe fn appID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`appID`][Self::appID].
-        #[method(setAppID:)]
+        #[unsafe(method(setAppID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAppID(&self, app_id: Option<&NSString>);
     }
@@ -77,11 +77,11 @@ extern_methods!(
     /// Methods declared on superclass `ASAuthorizationRequest`
     #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

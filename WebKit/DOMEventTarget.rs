@@ -11,7 +11,7 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait DOMEventTarget: NSObjectProtocol + NSCopying {
         #[cfg(feature = "DOMEventListener")]
-        #[method(addEventListener:listener:useCapture:)]
+        #[unsafe(method(addEventListener:listener:useCapture:))]
         #[unsafe(method_family = none)]
         unsafe fn addEventListener_listener_useCapture(
             &self,
@@ -21,7 +21,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "DOMEventListener")]
-        #[method(removeEventListener:listener:useCapture:)]
+        #[unsafe(method(removeEventListener:listener:useCapture:))]
         #[unsafe(method_family = none)]
         unsafe fn removeEventListener_listener_useCapture(
             &self,
@@ -36,13 +36,13 @@ extern_protocol!(
             feature = "WebScriptObject"
         ))]
         #[deprecated]
-        #[method(dispatchEvent:)]
+        #[unsafe(method(dispatchEvent:))]
         #[unsafe(method_family = none)]
         unsafe fn dispatchEvent(&self, event: Option<&DOMEvent>) -> bool;
 
         #[cfg(feature = "DOMEventListener")]
         #[deprecated]
-        #[method(addEventListener:::)]
+        #[unsafe(method(addEventListener:::))]
         #[unsafe(method_family = none)]
         unsafe fn addEventListener(
             &self,
@@ -53,7 +53,7 @@ extern_protocol!(
 
         #[cfg(feature = "DOMEventListener")]
         #[deprecated]
-        #[method(removeEventListener:::)]
+        #[unsafe(method(removeEventListener:::))]
         #[unsafe(method_family = none)]
         unsafe fn removeEventListener(
             &self,

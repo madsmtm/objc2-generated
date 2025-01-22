@@ -22,18 +22,18 @@ unsafe impl NSSecureCoding for SKTextureAtlas {}
 
 extern_methods!(
     unsafe impl SKTextureAtlas {
-        #[method(atlasNamed:)]
+        #[unsafe(method(atlasNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn atlasNamed(name: &NSString) -> Retained<Self>;
 
-        #[method(atlasWithDictionary:)]
+        #[unsafe(method(atlasWithDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn atlasWithDictionary(
             properties: &NSDictionary<NSString, AnyObject>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "SKTexture")]
-        #[method(textureNamed:)]
+        #[unsafe(method(textureNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureNamed(&self, name: &NSString) -> Retained<SKTexture>;
 
@@ -44,7 +44,7 @@ extern_methods!(
         /// Parameter `textureAtlases`: an array of SKTextureAtlas to be preloaded
         ///
         /// Parameter `completionHandler`: will be called upon the preload completion
-        #[method(preloadTextureAtlases:withCompletionHandler:)]
+        #[unsafe(method(preloadTextureAtlases:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preloadTextureAtlases_withCompletionHandler(
             texture_atlases: &NSArray<SKTextureAtlas>,
@@ -60,7 +60,7 @@ extern_methods!(
         /// Parameter `atlasNames`: is an array of the SKTextureAtlas, that were located and preloaded.
         ///
         /// Parameter `completionHandler`: will be called upon the preload completion.
-        #[method(preloadTextureAtlasesNamed:withCompletionHandler:)]
+        #[unsafe(method(preloadTextureAtlasesNamed:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preloadTextureAtlasesNamed_withCompletionHandler(
             atlas_names: &NSArray<NSString>,
@@ -71,14 +71,14 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Request that this texture atlas be loaded into vram on the next render update, with a callback handler.
-        #[method(preloadWithCompletionHandler:)]
+        #[unsafe(method(preloadWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preloadWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn()>,
         );
 
-        #[method(textureNames)]
+        #[unsafe(method(textureNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureNames(&self) -> Retained<NSArray<NSString>>;
     }
@@ -87,11 +87,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKTextureAtlas {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

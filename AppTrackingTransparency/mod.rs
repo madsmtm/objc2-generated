@@ -129,7 +129,7 @@ extern_methods!(
         /// a per-app basis. Application developers must call
         /// `requestTrackingAuthorizationWithCompletionHandler:` for the ability to
         /// track users.
-        #[method(trackingAuthorizationStatus)]
+        #[unsafe(method(trackingAuthorizationStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackingAuthorizationStatus() -> ATTrackingManagerAuthorizationStatus;
 
@@ -164,17 +164,17 @@ extern_methods!(
         /// key must be in the
         /// <doc
         /// ://com.apple.documentation/documentation/bundleresources/information_property_list>.
-        #[method(requestTrackingAuthorizationWithCompletionHandler:)]
+        #[unsafe(method(requestTrackingAuthorizationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestTrackingAuthorizationWithCompletionHandler(
             completion: &block2::Block<dyn Fn(ATTrackingManagerAuthorizationStatus)>,
         );
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

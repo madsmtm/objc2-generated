@@ -12,7 +12,7 @@ extern_protocol!(
     pub unsafe trait NSFileProviderServiceSource {
         /// The service name that uniquely identifies the service (using reverse domain
         /// name notation for you service name is recommended).
-        #[method(serviceName)]
+        #[unsafe(method(serviceName))]
         #[unsafe(method_family = none)]
         unsafe fn serviceName(&self) -> Retained<NSFileProviderServiceName>;
 
@@ -26,7 +26,7 @@ extern_protocol!(
         /// and setting up properties on the new connection, like its exported object and
         /// interfaces (that both the file provider and the client application have agreed
         /// on).
-        #[method(makeListenerEndpointAndReturnError:_)]
+        #[unsafe(method(makeListenerEndpointAndReturnError:_))]
         #[unsafe(method_family = none)]
         unsafe fn makeListenerEndpointAndReturnError(
             &self,
@@ -37,7 +37,7 @@ extern_protocol!(
         /// A restricted service can only be accessed by processes that can manage the domain the service is attached to. It is only accessible
         /// through `-[NSFileProviderManager getServiceWithName:itemIdentifier:completionHandler:]`
         #[optional]
-        #[method(isRestricted)]
+        #[unsafe(method(isRestricted))]
         #[unsafe(method_family = none)]
         unsafe fn isRestricted(&self) -> bool;
     }
@@ -53,7 +53,7 @@ extern_methods!(
     #[cfg(feature = "Extension")]
     unsafe impl NSFileProviderExtension {
         #[cfg(feature = "NSFileProviderItem")]
-        #[method(supportedServiceSourcesForItemIdentifier:error:_)]
+        #[unsafe(method(supportedServiceSourcesForItemIdentifier:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedServiceSourcesForItemIdentifier_error(
             &self,
@@ -71,7 +71,7 @@ extern_methods!(
     unsafe impl NSFileProviderManager {
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         /// Retrieve the service with the specified named for the specified item.
-        #[method(getServiceWithName:itemIdentifier:completionHandler:)]
+        #[unsafe(method(getServiceWithName:itemIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getServiceWithName_itemIdentifier_completionHandler(
             &self,

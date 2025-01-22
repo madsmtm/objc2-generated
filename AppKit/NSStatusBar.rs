@@ -27,26 +27,26 @@ unsafe impl NSObjectProtocol for NSStatusBar {}
 
 extern_methods!(
     unsafe impl NSStatusBar {
-        #[method(systemStatusBar)]
+        #[unsafe(method(systemStatusBar))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemStatusBar() -> Retained<NSStatusBar>;
 
         #[cfg(all(feature = "NSStatusItem", feature = "objc2-core-foundation"))]
-        #[method(statusItemWithLength:)]
+        #[unsafe(method(statusItemWithLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn statusItemWithLength(&self, length: CGFloat) -> Retained<NSStatusItem>;
 
         #[cfg(feature = "NSStatusItem")]
-        #[method(removeStatusItem:)]
+        #[unsafe(method(removeStatusItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeStatusItem(&self, item: &NSStatusItem);
 
-        #[method(isVertical)]
+        #[unsafe(method(isVertical))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVertical(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(thickness)]
+        #[unsafe(method(thickness))]
         #[unsafe(method_family = none)]
         pub unsafe fn thickness(&self) -> CGFloat;
     }
@@ -55,11 +55,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSStatusBar {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

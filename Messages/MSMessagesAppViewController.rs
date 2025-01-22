@@ -66,7 +66,7 @@ extern_protocol!(
         /// This method will only be called if the `presentationStyle` is `MSMessagesAppPresentationStyleTranscript`.
         ///
         /// Parameter `size`: The maximum size the view will be displayed at.
-        #[method(contentSizeThatFits:)]
+        #[unsafe(method(contentSizeThatFits:))]
         #[unsafe(method_family = none)]
         unsafe fn contentSizeThatFits(&self, size: CGSize) -> CGSize;
     }
@@ -109,17 +109,17 @@ extern_methods!(
     unsafe impl MSMessagesAppViewController {
         #[cfg(feature = "MSConversation")]
         /// Current active conversation.
-        #[method(activeConversation)]
+        #[unsafe(method(activeConversation))]
         #[unsafe(method_family = none)]
         pub unsafe fn activeConversation(&self) -> Option<Retained<MSConversation>>;
 
         /// Get the presentation extension's current presentation style.
-        #[method(presentationStyle)]
+        #[unsafe(method(presentationStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentationStyle(&self) -> MSMessagesAppPresentationStyle;
 
         /// The context for which the extension was launched
-        #[method(presentationContext)]
+        #[unsafe(method(presentationContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentationContext(&self) -> MSMessagesAppPresentationContext;
 
@@ -128,7 +128,7 @@ extern_methods!(
         /// When the current `presentationStyle` is `MSMessagesAppPresentationStyleTranscript`, a new instance of `MSMessagesAppViewController` will be instantiated with the requested presentation style if needed.
         ///
         /// Parameter `presentationStyle`: The presentation style to transition to. `MSMessagesAppPresentationStyleTranscript` is not a valid presentation style to request.
-        #[method(requestPresentationStyle:)]
+        #[unsafe(method(requestPresentationStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestPresentationStyle(
             &self,
@@ -139,7 +139,7 @@ extern_methods!(
         /// Called when the extension is about to become active.
         ///
         /// Parameter `conversation`: The current conversation.
-        #[method(willBecomeActiveWithConversation:)]
+        #[unsafe(method(willBecomeActiveWithConversation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn willBecomeActiveWithConversation(&self, conversation: &MSConversation);
 
@@ -147,7 +147,7 @@ extern_methods!(
         /// Called when the extension has become active.
         ///
         /// Parameter `conversation`: The current conversation.
-        #[method(didBecomeActiveWithConversation:)]
+        #[unsafe(method(didBecomeActiveWithConversation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didBecomeActiveWithConversation(&self, conversation: &MSConversation);
 
@@ -155,7 +155,7 @@ extern_methods!(
         /// Called when the extension will resign active.
         ///
         /// Parameter `conversation`: The current conversation.
-        #[method(willResignActiveWithConversation:)]
+        #[unsafe(method(willResignActiveWithConversation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn willResignActiveWithConversation(&self, conversation: &MSConversation);
 
@@ -163,7 +163,7 @@ extern_methods!(
         /// Called when the extension has resigned active.
         ///
         /// Parameter `conversation`: The current conversation.
-        #[method(didResignActiveWithConversation:)]
+        #[unsafe(method(didResignActiveWithConversation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didResignActiveWithConversation(&self, conversation: &MSConversation);
     }
@@ -173,7 +173,7 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MSMessagesAppViewController {
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -181,7 +181,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -194,11 +194,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MSMessagesAppViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -211,7 +211,7 @@ extern_methods!(
         /// Tells Messages to dismiss the extension and present the keyboard.
         ///
         /// Calling this method does nothing when the `presentationStyle` is `MSMessagesAppPresentationStyleTranscript`.
-        #[method(dismiss)]
+        #[unsafe(method(dismiss))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismiss(&self);
 
@@ -223,7 +223,7 @@ extern_methods!(
         /// Parameter `message`: The message selected.
         ///
         /// Parameter `conversation`: The conversation.
-        #[method(willSelectMessage:conversation:)]
+        #[unsafe(method(willSelectMessage:conversation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn willSelectMessage_conversation(
             &self,
@@ -239,7 +239,7 @@ extern_methods!(
         /// Parameter `message`: The message selected.
         ///
         /// Parameter `conversation`: The conversation.
-        #[method(didSelectMessage:conversation:)]
+        #[unsafe(method(didSelectMessage:conversation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didSelectMessage_conversation(
             &self,
@@ -255,7 +255,7 @@ extern_methods!(
         /// Parameter `message`: The message received.
         ///
         /// Parameter `conversation`: The conversation.
-        #[method(didReceiveMessage:conversation:)]
+        #[unsafe(method(didReceiveMessage:conversation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didReceiveMessage_conversation(
             &self,
@@ -271,7 +271,7 @@ extern_methods!(
         /// Parameter `message`: The message being sent.
         ///
         /// Parameter `conversation`: The conversation the message belongs to.
-        #[method(didStartSendingMessage:conversation:)]
+        #[unsafe(method(didStartSendingMessage:conversation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didStartSendingMessage_conversation(
             &self,
@@ -287,7 +287,7 @@ extern_methods!(
         /// Parameter `message`: The message sent.
         ///
         /// Parameter `conversation`: The conversation.
-        #[method(didCancelSendingMessage:conversation:)]
+        #[unsafe(method(didCancelSendingMessage:conversation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didCancelSendingMessage_conversation(
             &self,
@@ -300,7 +300,7 @@ extern_methods!(
         /// This method will not be called when the `presentationStyle` is `MSMessagesAppPresentationStyleTranscript`.
         ///
         /// Parameter `presentationStyle`: The new presentation style.
-        #[method(willTransitionToPresentationStyle:)]
+        #[unsafe(method(willTransitionToPresentationStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn willTransitionToPresentationStyle(
             &self,
@@ -312,7 +312,7 @@ extern_methods!(
         /// This method will not be called when the `presentationStyle` is `MSMessagesAppPresentationStyleTranscript`.
         ///
         /// Parameter `presentationStyle`: The new presentation style.
-        #[method(didTransitionToPresentationStyle:)]
+        #[unsafe(method(didTransitionToPresentationStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didTransitionToPresentationStyle(
             &self,

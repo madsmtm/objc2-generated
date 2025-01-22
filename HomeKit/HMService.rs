@@ -31,17 +31,17 @@ extern_methods!(
     unsafe impl HMService {
         #[cfg(feature = "HMAccessory")]
         /// Accessory that provides this service.
-        #[method(accessory)]
+        #[unsafe(method(accessory))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessory(&self) -> Option<Retained<HMAccessory>>;
 
         /// The type of the service, e.g. HMServiceTypeLightbulb.
-        #[method(serviceType)]
+        #[unsafe(method(serviceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceType(&self) -> Retained<NSString>;
 
         /// The localized description of the service.
-        #[method(localizedDescription)]
+        #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Retained<NSString>;
 
@@ -50,7 +50,7 @@ extern_methods!(
         ///
         /// Returns the service's name that is associated with HomeKit. The initial value is the value of
         /// the name characteristic of the service, if it has one.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
@@ -59,19 +59,19 @@ extern_methods!(
         ///
         /// This could be any of the HomeKit Accessory Profile defined services (except HMServiceTypeOutlet
         /// or HMServiceTypeSwitch) that supports HMCharacteristicTypePowerState characteristic.
-        #[method(associatedServiceType)]
+        #[unsafe(method(associatedServiceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn associatedServiceType(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Array of HMCharacteristic objects that represents all the characteristics
         /// provided by the service.
-        #[method(characteristics)]
+        #[unsafe(method(characteristics))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristics(&self) -> Retained<NSArray<HMCharacteristic>>;
 
         /// A unique identifier for the service.
-        #[method(uniqueIdentifier)]
+        #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
@@ -80,7 +80,7 @@ extern_methods!(
         ///
         /// Applications should use this property to filter out services that the users
         /// should not directly interact with, e.g. HMServiceTypeAccessoryInformation.
-        #[method(isUserInteractive)]
+        #[unsafe(method(isUserInteractive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isUserInteractive(&self) -> bool;
 
@@ -88,7 +88,7 @@ extern_methods!(
         ///
         ///
         /// Applications should use this property to show the primary service on the accessory.
-        #[method(isPrimaryService)]
+        #[unsafe(method(isPrimaryService))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPrimaryService(&self) -> bool;
 
@@ -97,7 +97,7 @@ extern_methods!(
         ///
         /// Applications should use this property to show logical grouping of services on the accessory.
         /// linkedServices will be nil when the service does not link to any other services.
-        #[method(linkedServices)]
+        #[unsafe(method(linkedServices))]
         #[unsafe(method_family = none)]
         pub unsafe fn linkedServices(&self) -> Option<Retained<NSArray<HMService>>>;
 
@@ -105,7 +105,7 @@ extern_methods!(
         ///
         ///
         /// This property is nil for HAP accessories, and set to a valid value for Matter devices.
-        #[method(matterEndpointID)]
+        #[unsafe(method(matterEndpointID))]
         #[unsafe(method_family = none)]
         pub unsafe fn matterEndpointID(&self) -> Option<Retained<NSNumber>>;
 
@@ -122,7 +122,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(updateName:completionHandler:)]
+        #[unsafe(method(updateName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateName_completionHandler(
             &self,
@@ -151,7 +151,7 @@ extern_methods!(
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
-        #[method(updateAssociatedServiceType:completionHandler:)]
+        #[unsafe(method(updateAssociatedServiceType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateAssociatedServiceType_completionHandler(
             &self,
@@ -160,7 +160,7 @@ extern_methods!(
         );
 
         #[deprecated = "HMService objects are created by their parent container objects. Directly creating them is not supported."]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -169,7 +169,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMService {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

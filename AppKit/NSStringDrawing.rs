@@ -21,23 +21,23 @@ unsafe impl NSObjectProtocol for NSStringDrawingContext {}
 extern_methods!(
     unsafe impl NSStringDrawingContext {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(minimumScaleFactor)]
+        #[unsafe(method(minimumScaleFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumScaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumScaleFactor`][Self::minimumScaleFactor].
-        #[method(setMinimumScaleFactor:)]
+        #[unsafe(method(setMinimumScaleFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumScaleFactor(&self, minimum_scale_factor: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(actualScaleFactor)]
+        #[unsafe(method(actualScaleFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn actualScaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(totalBounds)]
+        #[unsafe(method(totalBounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalBounds(&self) -> CGRect;
     }
@@ -46,11 +46,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSStringDrawingContext {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -60,7 +60,7 @@ extern_category!(
     /// Category on [`NSString`].
     pub unsafe trait NSStringDrawing {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(sizeWithAttributes:)]
+        #[unsafe(method(sizeWithAttributes:))]
         #[unsafe(method_family = none)]
         unsafe fn sizeWithAttributes(
             &self,
@@ -68,7 +68,7 @@ extern_category!(
         ) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(drawAtPoint:withAttributes:)]
+        #[unsafe(method(drawAtPoint:withAttributes:))]
         #[unsafe(method_family = none)]
         unsafe fn drawAtPoint_withAttributes(
             &self,
@@ -77,7 +77,7 @@ extern_category!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(drawInRect:withAttributes:)]
+        #[unsafe(method(drawInRect:withAttributes:))]
         #[unsafe(method_family = none)]
         unsafe fn drawInRect_withAttributes(
             &self,
@@ -94,17 +94,17 @@ extern_category!(
     #[doc(alias = "NSStringDrawing")]
     pub unsafe trait NSAttributedStringNSStringDrawing {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(size)]
+        #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         unsafe fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(drawAtPoint:)]
+        #[unsafe(method(drawAtPoint:))]
         #[unsafe(method_family = none)]
         unsafe fn drawAtPoint(&self, point: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(drawInRect:)]
+        #[unsafe(method(drawInRect:))]
         #[unsafe(method_family = none)]
         unsafe fn drawInRect(&self, rect: CGRect);
     }
@@ -149,7 +149,7 @@ extern_category!(
     #[doc(alias = "NSExtendedStringDrawing")]
     pub unsafe trait NSStringNSExtendedStringDrawing {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(drawWithRect:options:attributes:context:)]
+        #[unsafe(method(drawWithRect:options:attributes:context:))]
         #[unsafe(method_family = none)]
         unsafe fn drawWithRect_options_attributes_context(
             &self,
@@ -160,7 +160,7 @@ extern_category!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(boundingRectWithSize:options:attributes:context:)]
+        #[unsafe(method(boundingRectWithSize:options:attributes:context:))]
         #[unsafe(method_family = none)]
         unsafe fn boundingRectWithSize_options_attributes_context(
             &self,
@@ -179,7 +179,7 @@ extern_category!(
     #[doc(alias = "NSExtendedStringDrawing")]
     pub unsafe trait NSAttributedStringNSExtendedStringDrawing {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(drawWithRect:options:context:)]
+        #[unsafe(method(drawWithRect:options:context:))]
         #[unsafe(method_family = none)]
         unsafe fn drawWithRect_options_context(
             &self,
@@ -189,7 +189,7 @@ extern_category!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(boundingRectWithSize:options:context:)]
+        #[unsafe(method(boundingRectWithSize:options:context:))]
         #[unsafe(method_family = none)]
         unsafe fn boundingRectWithSize_options_context(
             &self,
@@ -206,7 +206,7 @@ extern_category!(
     /// Category on [`NSString`].
     /// ********************** Deprecated ***********************
     pub unsafe trait NSStringDrawingDeprecated {
-        #[method(drawWithRect:options:attributes:)]
+        #[unsafe(method(drawWithRect:options:attributes:))]
         #[unsafe(method_family = none)]
         unsafe fn drawWithRect_options_attributes(
             &self,
@@ -215,7 +215,7 @@ extern_category!(
             attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         );
 
-        #[method(boundingRectWithSize:options:attributes:)]
+        #[unsafe(method(boundingRectWithSize:options:attributes:))]
         #[unsafe(method_family = none)]
         unsafe fn boundingRectWithSize_options_attributes(
             &self,
@@ -232,11 +232,11 @@ extern_category!(
     /// Category "NSStringDrawingDeprecated" on [`NSAttributedString`].
     #[doc(alias = "NSStringDrawingDeprecated")]
     pub unsafe trait NSAttributedStringNSStringDrawingDeprecated {
-        #[method(drawWithRect:options:)]
+        #[unsafe(method(drawWithRect:options:))]
         #[unsafe(method_family = none)]
         unsafe fn drawWithRect_options(&self, rect: NSRect, options: NSStringDrawingOptions);
 
-        #[method(boundingRectWithSize:options:)]
+        #[unsafe(method(boundingRectWithSize:options:))]
         #[unsafe(method_family = none)]
         unsafe fn boundingRectWithSize_options(
             &self,

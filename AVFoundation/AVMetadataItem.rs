@@ -36,39 +36,39 @@ unsafe impl NSObjectProtocol for AVMetadataItem {}
 extern_methods!(
     unsafe impl AVMetadataItem {
         #[cfg(feature = "AVMetadataIdentifiers")]
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<AVMetadataIdentifier>>;
 
-        #[method(extendedLanguageTag)]
+        #[unsafe(method(extendedLanguageTag))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
 
-        #[method(locale)]
+        #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(time)]
+        #[unsafe(method(time))]
         #[unsafe(method_family = none)]
         pub unsafe fn time(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> CMTime;
 
-        #[method(dataType)]
+        #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataType(&self) -> Option<Retained<NSString>>;
 
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self)
             -> Option<Retained<AnyObject /* NSObjectProtocol+ NSCopying */>>;
 
         #[cfg(feature = "AVMetadataFormat")]
-        #[method(extraAttributes)]
+        #[unsafe(method(extraAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn extraAttributes(
             &self,
@@ -79,11 +79,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMetadataItem {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -92,7 +92,7 @@ extern_methods!(
 extern_methods!(
     /// AVMetadataItemDateRepresentation
     unsafe impl AVMetadataItem {
-        #[method(startDate)]
+        #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
     }
@@ -101,19 +101,19 @@ extern_methods!(
 extern_methods!(
     /// AVMetadataItemTypeCoercion
     unsafe impl AVMetadataItem {
-        #[method(stringValue)]
+        #[unsafe(method(stringValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
 
-        #[method(numberValue)]
+        #[unsafe(method(numberValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberValue(&self) -> Option<Retained<NSNumber>>;
 
-        #[method(dateValue)]
+        #[unsafe(method(dateValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn dateValue(&self) -> Option<Retained<NSDate>>;
 
-        #[method(dataValue)]
+        #[unsafe(method(dataValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataValue(&self) -> Option<Retained<NSData>>;
     }
@@ -123,7 +123,7 @@ extern_methods!(
     /// AVAsynchronousKeyValueLoading
     unsafe impl AVMetadataItem {
         #[cfg(feature = "block2")]
-        #[method(loadValuesAsynchronouslyForKeys:completionHandler:)]
+        #[unsafe(method(loadValuesAsynchronouslyForKeys:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadValuesAsynchronouslyForKeys_completionHandler(
             &self,
@@ -143,7 +143,7 @@ extern_methods!(
         /// Parameter `preferredLanguages`: An array of language identifiers in order of preference, each of which is an IETF BCP 47 (RFC 4646) language identifier. Use +[NSLocale preferredLanguages] to obtain the user's list of preferred languages.
         ///
         /// Returns: An instance of NSArray containing metadata items of the specified NSArray that match a preferred language, sorted according to the order of preference of the language each matches.
-        #[method(metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:)]
+        #[unsafe(method(metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataItemsFromArray_filteredAndSortedAccordingToPreferredLanguages(
             metadata_items: &NSArray<AVMetadataItem>,
@@ -158,7 +158,7 @@ extern_methods!(
         /// Parameter `identifier`: The identifier that must be matched for a metadata item to be copied to the output array. Items are considered a match not only when their identifiers are equal to the specified identifier, and also when their identifiers conform to the specified identifier.
         ///
         /// Returns: An instance of NSArray containing the metadata items of the target NSArray that match the specified identifier.
-        #[method(metadataItemsFromArray:filteredByIdentifier:)]
+        #[unsafe(method(metadataItemsFromArray:filteredByIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataItemsFromArray_filteredByIdentifier(
             metadata_items: &NSArray<AVMetadataItem>,
@@ -172,7 +172,7 @@ extern_methods!(
         /// Parameter `metadataItemFilter`: The AVMetadataItemFilter object for filtering the metadataItems.
         ///
         /// Returns: An instance of NSArray containing the metadata items of the target NSArray that have not been removed by metadataItemFilter.
-        #[method(metadataItemsFromArray:filteredByMetadataItemFilter:)]
+        #[unsafe(method(metadataItemsFromArray:filteredByMetadataItemFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataItemsFromArray_filteredByMetadataItemFilter(
             metadata_items: &NSArray<AVMetadataItem>,
@@ -196,7 +196,7 @@ extern_methods!(
         /// Metadata keys that are not instances of NSString, NSNumber, or NSData cannot be converted to metadata identifiers; they also cannot be written to media resources via AVAssetExportSession or AVAssetWriter.  Metadata item keySpaces must be a string of one to four printable ASCII characters.
         ///
         /// For custom identifiers, the keySpace AVMetadataKeySpaceQuickTimeMetadata is recommended.  This keySpace defines its key values to be expressed as reverse-DNS strings, which allows third parties to define their own keys in a well established way that avoids collisions.
-        #[method(identifierForKey:keySpace:)]
+        #[unsafe(method(identifierForKey:keySpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifierForKey_keySpace(
             key: &AnyObject,
@@ -204,30 +204,30 @@ extern_methods!(
         ) -> Option<Retained<AVMetadataIdentifier>>;
 
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVMetadataIdentifiers"))]
-        #[method(keySpaceForIdentifier:)]
+        #[unsafe(method(keySpaceForIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn keySpaceForIdentifier(
             identifier: &AVMetadataIdentifier,
         ) -> Option<Retained<AVMetadataKeySpace>>;
 
         #[cfg(feature = "AVMetadataIdentifiers")]
-        #[method(keyForIdentifier:)]
+        #[unsafe(method(keyForIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyForIdentifier(
             identifier: &AVMetadataIdentifier,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method(key)]
+        #[unsafe(method(key))]
         #[unsafe(method_family = none)]
         pub unsafe fn key(&self) -> Option<Retained<AnyObject /* NSObjectProtocol+ NSCopying */>>;
 
         #[cfg(feature = "AVMetadataFormat")]
-        #[method(commonKey)]
+        #[unsafe(method(commonKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn commonKey(&self) -> Option<Retained<AVMetadataKey>>;
 
         #[cfg(feature = "AVMetadataFormat")]
-        #[method(keySpace)]
+        #[unsafe(method(keySpace))]
         #[unsafe(method_family = none)]
         pub unsafe fn keySpace(&self) -> Option<Retained<AVMetadataKeySpace>>;
     }
@@ -260,77 +260,77 @@ unsafe impl NSObjectProtocol for AVMutableMetadataItem {}
 extern_methods!(
     unsafe impl AVMutableMetadataItem {
         #[cfg(feature = "AVMetadataIdentifiers")]
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<AVMetadataIdentifier>>;
 
         #[cfg(feature = "AVMetadataIdentifiers")]
         /// Setter for [`identifier`][Self::identifier].
-        #[method(setIdentifier:)]
+        #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&AVMetadataIdentifier>);
 
-        #[method(extendedLanguageTag)]
+        #[unsafe(method(extendedLanguageTag))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`extendedLanguageTag`][Self::extendedLanguageTag].
-        #[method(setExtendedLanguageTag:)]
+        #[unsafe(method(setExtendedLanguageTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtendedLanguageTag(&self, extended_language_tag: Option<&NSString>);
 
-        #[method(locale)]
+        #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
 
         /// Setter for [`locale`][Self::locale].
-        #[method(setLocale:)]
+        #[unsafe(method(setLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(time)]
+        #[unsafe(method(time))]
         #[unsafe(method_family = none)]
         pub unsafe fn time(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`time`][Self::time].
-        #[method(setTime:)]
+        #[unsafe(method(setTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTime(&self, time: CMTime);
 
         #[cfg(feature = "objc2-core-media")]
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`duration`][Self::duration].
-        #[method(setDuration:)]
+        #[unsafe(method(setDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDuration(&self, duration: CMTime);
 
-        #[method(dataType)]
+        #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`dataType`][Self::dataType].
-        #[method(setDataType:)]
+        #[unsafe(method(setDataType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataType(&self, data_type: Option<&NSString>);
 
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self)
             -> Option<Retained<AnyObject /* NSObjectProtocol+ NSCopying */>>;
 
         /// Setter for [`value`][Self::value].
-        #[method(setValue:)]
+        #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: Option<&AnyObject /* NSObjectProtocol+ NSCopying */>);
 
         #[cfg(feature = "AVMetadataFormat")]
-        #[method(extraAttributes)]
+        #[unsafe(method(extraAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn extraAttributes(
             &self,
@@ -338,7 +338,7 @@ extern_methods!(
 
         #[cfg(feature = "AVMetadataFormat")]
         /// Setter for [`extraAttributes`][Self::extraAttributes].
-        #[method(setExtraAttributes:)]
+        #[unsafe(method(setExtraAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtraAttributes(
             &self,
@@ -346,7 +346,7 @@ extern_methods!(
         );
 
         /// Returns an instance of AVMutableMetadataItem.
-        #[method(metadataItem)]
+        #[unsafe(method(metadataItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataItem() -> Retained<AVMutableMetadataItem>;
     }
@@ -355,11 +355,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMutableMetadataItem {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -368,12 +368,12 @@ extern_methods!(
 extern_methods!(
     /// AVMutableMetadataItemDateRepresentation
     unsafe impl AVMutableMetadataItem {
-        #[method(startDate)]
+        #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`startDate`][Self::startDate].
-        #[method(setStartDate:)]
+        #[unsafe(method(setStartDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartDate(&self, start_date: Option<&NSDate>);
     }
@@ -383,22 +383,22 @@ extern_methods!(
     /// AVMutableMetadataItemKeyAndKeyspace
     unsafe impl AVMutableMetadataItem {
         #[cfg(feature = "AVMetadataFormat")]
-        #[method(keySpace)]
+        #[unsafe(method(keySpace))]
         #[unsafe(method_family = none)]
         pub unsafe fn keySpace(&self) -> Option<Retained<AVMetadataKeySpace>>;
 
         #[cfg(feature = "AVMetadataFormat")]
         /// Setter for [`keySpace`][Self::keySpace].
-        #[method(setKeySpace:)]
+        #[unsafe(method(setKeySpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeySpace(&self, key_space: Option<&AVMetadataKeySpace>);
 
-        #[method(key)]
+        #[unsafe(method(key))]
         #[unsafe(method_family = none)]
         pub unsafe fn key(&self) -> Option<Retained<AnyObject /* NSObjectProtocol+ NSCopying */>>;
 
         /// Setter for [`key`][Self::key].
-        #[method(setKey:)]
+        #[unsafe(method(setKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKey(&self, key: Option<&AnyObject /* NSObjectProtocol+ NSCopying */>);
     }
@@ -420,7 +420,7 @@ extern_methods!(
         /// When -loadValuesAsynchronouslyForKeys:completionHandler: is invoked on an AVMetadataItem created via +metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler: and
         /// "
         /// value" is among the keys for which loading is requested, the block you provide as the value loading handler will be executed on an arbitrary dispatch queue, off the main thread. The handler can perform I/O and other necessary operations to obtain the value. If loading of the value succeeds, provide the value by invoking -[AVMetadataItemValueRequest respondWithValue:]. If loading of the value fails, provide an instance of NSError that describes the failure by invoking -[AVMetadataItemValueRequest respondWithError:].
-        #[method(metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler:)]
+        #[unsafe(method(metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataItemWithPropertiesOfMetadataItem_valueLoadingHandler(
             metadata_item: &AVMetadataItem,
@@ -440,14 +440,14 @@ unsafe impl NSObjectProtocol for AVMetadataItemValueRequest {}
 
 extern_methods!(
     unsafe impl AVMetadataItemValueRequest {
-        #[method(metadataItem)]
+        #[unsafe(method(metadataItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataItem(&self) -> Option<Retained<AVMetadataItem>>;
 
         /// Allows you to respond to an AVMetadataItemValueRequest by providing a value.
         ///
         /// Parameter `value`: The value of the AVMetadataItem.
-        #[method(respondWithValue:)]
+        #[unsafe(method(respondWithValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn respondWithValue(
             &self,
@@ -457,7 +457,7 @@ extern_methods!(
         /// Allows you to respond to an AVMetadataItemValueRequest in the case of failure.
         ///
         /// Parameter `error`: An instance of NSError that describes a failure encountered while loading the value of an AVMetadataItem.
-        #[method(respondWithError:)]
+        #[unsafe(method(respondWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn respondWithError(&self, error: &NSError);
     }
@@ -466,11 +466,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMetadataItemValueRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -495,7 +495,7 @@ unsafe impl NSObjectProtocol for AVMetadataItemFilter {}
 
 extern_methods!(
     unsafe impl AVMetadataItemFilter {
-        #[method(metadataItemFilterForSharing)]
+        #[unsafe(method(metadataItemFilterForSharing))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataItemFilterForSharing() -> Retained<AVMetadataItemFilter>;
     }
@@ -504,11 +504,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMetadataItemFilter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -518,7 +518,7 @@ extern_methods!(
     /// AVMetadataItemArrayFilteringDeprecable
     unsafe impl AVMetadataItem {
         /// Instead, use metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:.
-        #[method(metadataItemsFromArray:withLocale:)]
+        #[unsafe(method(metadataItemsFromArray:withLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataItemsFromArray_withLocale(
             metadata_items: &NSArray<AVMetadataItem>,
@@ -527,7 +527,7 @@ extern_methods!(
 
         #[cfg(feature = "AVMetadataFormat")]
         /// Instead, use metadataItemsFromArray:filteredByIdentifier:.
-        #[method(metadataItemsFromArray:withKey:keySpace:)]
+        #[unsafe(method(metadataItemsFromArray:withKey:keySpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataItemsFromArray_withKey_keySpace(
             metadata_items: &NSArray<AVMetadataItem>,

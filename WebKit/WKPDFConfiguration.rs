@@ -32,25 +32,25 @@ extern_methods!(
         ///
         /// If the rect is set to the null rect, the bounds of the currently displayed web page will be used.
         /// The initial value is the null rect.
-        #[method(rect)]
+        #[unsafe(method(rect))]
         #[unsafe(method_family = none)]
         pub unsafe fn rect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`rect`][Self::rect].
-        #[method(setRect:)]
+        #[unsafe(method(setRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRect(&self, rect: CGRect);
 
         /// A Boolean value indicating whether the PDF should allow transparent backgrounds.
         ///
         /// The default value is `NO`.
-        #[method(allowTransparentBackground)]
+        #[unsafe(method(allowTransparentBackground))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowTransparentBackground(&self) -> bool;
 
         /// Setter for [`allowTransparentBackground`][Self::allowTransparentBackground].
-        #[method(setAllowTransparentBackground:)]
+        #[unsafe(method(setAllowTransparentBackground:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowTransparentBackground(&self, allow_transparent_background: bool);
     }
@@ -59,11 +59,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKPDFConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

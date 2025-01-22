@@ -19,12 +19,12 @@ unsafe impl NSObjectProtocol for SKAdImpression {}
 extern_methods!(
     unsafe impl SKAdImpression {
         /// The App Store item identifier for the source app.
-        #[method(sourceAppStoreItemIdentifier)]
+        #[unsafe(method(sourceAppStoreItemIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceAppStoreItemIdentifier(&self) -> Retained<NSNumber>;
 
         /// Setter for [`sourceAppStoreItemIdentifier`][Self::sourceAppStoreItemIdentifier].
-        #[method(setSourceAppStoreItemIdentifier:)]
+        #[unsafe(method(setSourceAppStoreItemIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceAppStoreItemIdentifier(
             &self,
@@ -32,12 +32,12 @@ extern_methods!(
         );
 
         /// The App Store item identifier for the app being advertised.
-        #[method(advertisedAppStoreItemIdentifier)]
+        #[unsafe(method(advertisedAppStoreItemIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn advertisedAppStoreItemIdentifier(&self) -> Retained<NSNumber>;
 
         /// Setter for [`advertisedAppStoreItemIdentifier`][Self::advertisedAppStoreItemIdentifier].
-        #[method(setAdvertisedAppStoreItemIdentifier:)]
+        #[unsafe(method(setAdvertisedAppStoreItemIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdvertisedAppStoreItemIdentifier(
             &self,
@@ -45,102 +45,102 @@ extern_methods!(
         );
 
         /// The identifier for the ad network.
-        #[method(adNetworkIdentifier)]
+        #[unsafe(method(adNetworkIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn adNetworkIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`adNetworkIdentifier`][Self::adNetworkIdentifier].
-        #[method(setAdNetworkIdentifier:)]
+        #[unsafe(method(setAdNetworkIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdNetworkIdentifier(&self, ad_network_identifier: &NSString);
 
         /// The ad campaign identifier.
-        #[method(adCampaignIdentifier)]
+        #[unsafe(method(adCampaignIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn adCampaignIdentifier(&self) -> Retained<NSNumber>;
 
         /// Setter for [`adCampaignIdentifier`][Self::adCampaignIdentifier].
-        #[method(setAdCampaignIdentifier:)]
+        #[unsafe(method(setAdCampaignIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdCampaignIdentifier(&self, ad_campaign_identifier: &NSNumber);
 
         /// The source identifier
-        #[method(sourceIdentifier)]
+        #[unsafe(method(sourceIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceIdentifier(&self) -> Retained<NSNumber>;
 
         /// Setter for [`sourceIdentifier`][Self::sourceIdentifier].
-        #[method(setSourceIdentifier:)]
+        #[unsafe(method(setSourceIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceIdentifier(&self, source_identifier: &NSNumber);
 
         /// The nonce used to generate the signature.
-        #[method(adImpressionIdentifier)]
+        #[unsafe(method(adImpressionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn adImpressionIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`adImpressionIdentifier`][Self::adImpressionIdentifier].
-        #[method(setAdImpressionIdentifier:)]
+        #[unsafe(method(setAdImpressionIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdImpressionIdentifier(&self, ad_impression_identifier: &NSString);
 
         /// The type of ad being presented.
-        #[method(adType)]
+        #[unsafe(method(adType))]
         #[unsafe(method_family = none)]
         pub unsafe fn adType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`adType`][Self::adType].
-        #[method(setAdType:)]
+        #[unsafe(method(setAdType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdType(&self, ad_type: Option<&NSString>);
 
         /// The description of the ad.
-        #[method(adDescription)]
+        #[unsafe(method(adDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn adDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`adDescription`][Self::adDescription].
-        #[method(setAdDescription:)]
+        #[unsafe(method(setAdDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdDescription(&self, ad_description: Option<&NSString>);
 
         /// Name of entity that purchased the ad being presented.
-        #[method(adPurchaserName)]
+        #[unsafe(method(adPurchaserName))]
         #[unsafe(method_family = none)]
         pub unsafe fn adPurchaserName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`adPurchaserName`][Self::adPurchaserName].
-        #[method(setAdPurchaserName:)]
+        #[unsafe(method(setAdPurchaserName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdPurchaserName(&self, ad_purchaser_name: Option<&NSString>);
 
         /// The timestamp of the start and end call.
-        #[method(timestamp)]
+        #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> Retained<NSNumber>;
 
         /// Setter for [`timestamp`][Self::timestamp].
-        #[method(setTimestamp:)]
+        #[unsafe(method(setTimestamp:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimestamp(&self, timestamp: &NSNumber);
 
         /// The signature of the impression.
-        #[method(signature)]
+        #[unsafe(method(signature))]
         #[unsafe(method_family = none)]
         pub unsafe fn signature(&self) -> Retained<NSString>;
 
         /// Setter for [`signature`][Self::signature].
-        #[method(setSignature:)]
+        #[unsafe(method(setSignature:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSignature(&self, signature: &NSString);
 
         /// The version of SKAdNetwork being used.
-        #[method(version)]
+        #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> Retained<NSString>;
 
         /// Setter for [`version`][Self::version].
-        #[method(setVersion:)]
+        #[unsafe(method(setVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVersion(&self, version: &NSString);
     }
@@ -149,11 +149,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKAdImpression {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

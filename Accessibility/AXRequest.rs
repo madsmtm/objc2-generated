@@ -27,20 +27,20 @@ unsafe impl NSSecureCoding for AXRequest {}
 
 extern_methods!(
     unsafe impl AXRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(currentRequest)]
+        #[unsafe(method(currentRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentRequest() -> Option<Retained<AXRequest>>;
 
         #[cfg(feature = "AXTechnology")]
-        #[method(technology)]
+        #[unsafe(method(technology))]
         #[unsafe(method_family = none)]
         pub unsafe fn technology(&self) -> Retained<AXTechnology>;
     }

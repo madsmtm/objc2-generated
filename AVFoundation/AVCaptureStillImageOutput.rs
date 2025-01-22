@@ -30,11 +30,11 @@ extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureStillImageOutput {
         #[deprecated = "Use AVCapturePhotoOutput instead."]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -45,13 +45,13 @@ extern_methods!(
         ///
         /// On iOS, the only currently supported keys are AVVideoCodecKey and kCVPixelBufferPixelFormatTypeKey. Use -availableImageDataCVPixelFormatTypes and -availableImageDataCodecTypes to determine what codec keys and pixel formats are supported. AVVideoQualityKey is supported on iOS 6.0 and later and may only be used when AVVideoCodecKey is set to AVVideoCodecTypeJPEG.
         #[deprecated = "Use AVCapturePhotoOutput instead."]
-        #[method(outputSettings)]
+        #[unsafe(method(outputSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputSettings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`outputSettings`][Self::outputSettings].
         #[deprecated = "Use AVCapturePhotoOutput instead."]
-        #[method(setOutputSettings:)]
+        #[unsafe(method(setOutputSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputSettings(&self, output_settings: &NSDictionary<NSString, AnyObject>);
 
@@ -60,7 +60,7 @@ extern_methods!(
         ///
         /// The value of this property is an NSArray of NSNumbers that can be used as values for the kCVPixelBufferPixelFormatTypeKey in the receiver's outputSettings property. The first format in the returned list is the most efficient output format.
         #[deprecated = "Use AVCapturePhotoOutput instead."]
-        #[method(availableImageDataCVPixelFormatTypes)]
+        #[unsafe(method(availableImageDataCVPixelFormatTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableImageDataCVPixelFormatTypes(&self) -> Retained<NSArray<NSNumber>>;
 
@@ -70,7 +70,7 @@ extern_methods!(
         ///
         /// The value of this property is an NSArray of AVVideoCodecTypes that can be used as values for the AVVideoCodecKey in the receiver's outputSettings property.
         #[deprecated = "Use AVCapturePhotoOutput instead."]
-        #[method(availableImageDataCodecTypes)]
+        #[unsafe(method(availableImageDataCodecTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableImageDataCodecTypes(&self) -> Retained<NSArray<AVVideoCodecType>>;
 
@@ -78,7 +78,7 @@ extern_methods!(
         ///
         ///
         /// The receiver's automaticallyEnablesStillImageStabilizationWhenAvailable property can only be set if this property returns YES. Its value may change as the session's -sessionPreset or input device's -activeFormat changes.
-        #[method(isStillImageStabilizationSupported)]
+        #[unsafe(method(isStillImageStabilizationSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStillImageStabilizationSupported(&self) -> bool;
 
@@ -86,12 +86,12 @@ extern_methods!(
         ///
         ///
         /// On a receiver where -isStillImageStabilizationSupported returns YES, image stabilization may be applied to reduce blur commonly found in low light photos. When stabilization is enabled, still image captures incur additional latency. The default value is YES when supported, NO otherwise. Setting this property throws an NSInvalidArgumentException if -isStillImageStabilizationSupported returns NO.
-        #[method(automaticallyEnablesStillImageStabilizationWhenAvailable)]
+        #[unsafe(method(automaticallyEnablesStillImageStabilizationWhenAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticallyEnablesStillImageStabilizationWhenAvailable(&self) -> bool;
 
         /// Setter for [`automaticallyEnablesStillImageStabilizationWhenAvailable`][Self::automaticallyEnablesStillImageStabilizationWhenAvailable].
-        #[method(setAutomaticallyEnablesStillImageStabilizationWhenAvailable:)]
+        #[unsafe(method(setAutomaticallyEnablesStillImageStabilizationWhenAvailable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyEnablesStillImageStabilizationWhenAvailable(
             &self,
@@ -104,7 +104,7 @@ extern_methods!(
         /// On a receiver where -isStillImageStabilizationSupported returns YES, and automaticallyEnablesStillImageStabilizationWhenAvailable is set to YES, this property may be key-value observed, or queried from inside your key-value observation callback for the
         /// "
         /// capturingStillImage" property, to find out if still image stabilization is being applied to the current capture.
-        #[method(isStillImageStabilizationActive)]
+        #[unsafe(method(isStillImageStabilizationActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStillImageStabilizationActive(&self) -> bool;
 
@@ -112,12 +112,12 @@ extern_methods!(
         ///
         ///
         /// By default, AVCaptureStillImageOutput emits images with the same dimensions as its source AVCaptureDevice's activeFormat.formatDescription. However, if you set this property to YES, the receiver emits still images at its source AVCaptureDevice's activeFormat.highResolutionStillImageDimensions. Note that if you enable video stabilization (see AVCaptureConnection's preferredVideoStabilizationMode) for any output, the high resolution still images emitted by AVCaptureStillImageOutput may be smaller by 10 or more percent.
-        #[method(isHighResolutionStillImageOutputEnabled)]
+        #[unsafe(method(isHighResolutionStillImageOutputEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHighResolutionStillImageOutputEnabled(&self) -> bool;
 
         /// Setter for [`isHighResolutionStillImageOutputEnabled`][Self::isHighResolutionStillImageOutputEnabled].
-        #[method(setHighResolutionStillImageOutputEnabled:)]
+        #[unsafe(method(setHighResolutionStillImageOutputEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHighResolutionStillImageOutputEnabled(
             &self,
@@ -128,7 +128,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is a BOOL that becomes true when a still image is being captured, and false when no still image capture is underway. This property is key-value observable.
-        #[method(isCapturingStillImage)]
+        #[unsafe(method(isCapturingStillImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCapturingStillImage(&self) -> bool;
 
@@ -155,7 +155,7 @@ extern_methods!(
         ///
         /// Calls to captureStillImageAsynchronouslyFromConnection:completionHandler: are not synchronized with AVCaptureDevice manual control completion handlers. Setting a device manual control, waiting for its completion, then calling captureStillImageAsynchronouslyFromConnection:completionHandler: DOES NOT ensure that the still image returned reflects your manual control change. It may be from an earlier time. You can compare your manual control completion handler sync time to the returned still image's presentation time. You can retrieve the sample buffer's pts using CMSampleBufferGetPresentationTimestamp(). If the still image has an earlier timestamp, your manual control command does not apply to it.
         #[deprecated = "Use AVCapturePhotoOutput instead."]
-        #[method(captureStillImageAsynchronouslyFromConnection:completionHandler:)]
+        #[unsafe(method(captureStillImageAsynchronouslyFromConnection:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captureStillImageAsynchronouslyFromConnection_completionHandler(
             &self,
@@ -172,7 +172,7 @@ extern_methods!(
         ///
         /// This method returns an NSData representation of a JPEG still image sample buffer, merging the image data and Exif metadata sample buffer attachments without recompressing the image. The returned NSData is suitable for writing to disk.
         #[deprecated = "Use AVCapturePhotoOutput instead."]
-        #[method(jpegStillImageNSDataRepresentation:)]
+        #[unsafe(method(jpegStillImageNSDataRepresentation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn jpegStillImageNSDataRepresentation(
             jpeg_sample_buffer: &CMSampleBuffer,
@@ -196,11 +196,11 @@ unsafe impl NSObjectProtocol for AVCaptureBracketedStillImageSettings {}
 
 extern_methods!(
     unsafe impl AVCaptureBracketedStillImageSettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -231,7 +231,7 @@ extern_methods!(
         /// Parameter `ISO`: The ISO. Pass AVCaptureISOCurrent to leave the ISO unchanged for this bracketed image.
         ///
         /// Returns: An initialized AVCaptureManualExposureBracketedStillImageSettings instance.
-        #[method(manualExposureSettingsWithExposureDuration:ISO:)]
+        #[unsafe(method(manualExposureSettingsWithExposureDuration:ISO:))]
         #[unsafe(method_family = none)]
         pub unsafe fn manualExposureSettingsWithExposureDuration_ISO(
             duration: CMTime,
@@ -240,12 +240,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-media")]
         /// The exposure duration for the still image.
-        #[method(exposureDuration)]
+        #[unsafe(method(exposureDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn exposureDuration(&self) -> CMTime;
 
         /// The ISO for the still image.
-        #[method(ISO)]
+        #[unsafe(method(ISO))]
         #[unsafe(method_family = none)]
         pub unsafe fn ISO(&self) -> c_float;
     }
@@ -254,11 +254,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVCaptureBracketedStillImageSettings`
     unsafe impl AVCaptureManualExposureBracketedStillImageSettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -286,14 +286,14 @@ extern_methods!(
         /// Parameter `exposureTargetBias`: The exposure target bias. Pass AVCaptureExposureTargetBiasCurrent to leave the exposureTargetBias unchanged for this image.
         ///
         /// Returns: An initialized AVCaptureAutoExposureBracketedStillImageSettings instance.
-        #[method(autoExposureSettingsWithExposureTargetBias:)]
+        #[unsafe(method(autoExposureSettingsWithExposureTargetBias:))]
         #[unsafe(method_family = none)]
         pub unsafe fn autoExposureSettingsWithExposureTargetBias(
             exposure_target_bias: c_float,
         ) -> Retained<Self>;
 
         /// The exposure bias for the auto exposure bracketed settings
-        #[method(exposureTargetBias)]
+        #[unsafe(method(exposureTargetBias))]
         #[unsafe(method_family = none)]
         pub unsafe fn exposureTargetBias(&self) -> c_float;
     }
@@ -302,11 +302,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVCaptureBracketedStillImageSettings`
     unsafe impl AVCaptureAutoExposureBracketedStillImageSettings {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -327,7 +327,7 @@ extern_methods!(
         ///
         /// AVCaptureStillImageOutput can only satisfy a limited number of image requests in a single bracket without exhausting system resources. The maximum number of still images that may be taken in a single bracket depends on the size of the images being captured, and consequently may vary with AVCaptureSession -sessionPreset and AVCaptureDevice -activeFormat. Some formats do not support bracketed capture and return a maxBracketedCaptureStillImageCount of 0. This read-only property is key-value observable. If you exceed -maxBracketedCaptureStillImageCount, then -captureStillImageBracketAsynchronouslyFromConnection:withSettingsArray:completionHandler: fails and the completionHandler is called [settings count] times with a NULL sample buffer and AVErrorMaximumStillImageCaptureRequestsExceeded.
         #[deprecated = "Use AVCapturePhotoOutput maxBracketedCapturePhotoCount instead."]
-        #[method(maxBracketedCaptureStillImageCount)]
+        #[unsafe(method(maxBracketedCaptureStillImageCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxBracketedCaptureStillImageCount(&self) -> NSUInteger;
 
@@ -336,7 +336,7 @@ extern_methods!(
         ///
         /// The receiver's lensStabilizationDuringBracketedCaptureEnabled property can only be set if this property returns YES. Its value may change as the session's -sessionPreset or input device's -activeFormat changes. This read-only property is key-value observable.
         #[deprecated = "Use AVCapturePhotoOutput lensStabilizationDuringBracketedCaptureSupported instead."]
-        #[method(isLensStabilizationDuringBracketedCaptureSupported)]
+        #[unsafe(method(isLensStabilizationDuringBracketedCaptureSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLensStabilizationDuringBracketedCaptureSupported(&self) -> bool;
 
@@ -345,13 +345,13 @@ extern_methods!(
         ///
         /// On a receiver where -isLensStabilizationDuringBracketedCaptureSupported returns YES, lens stabilization may be applied to the bracket to reduce blur commonly found in low light photos. When lens stabilization is enabled, bracketed still image captures incur additional latency. Lens stabilization is more effective with longer-exposure captures, and offers limited or no benefit for exposure durations shorter than 1/30 of a second. It is possible that during the bracket, the lens stabilization module may run out of correction range and therefore will not be active for every frame in the bracket. Each emitted CMSampleBuffer from the bracket will have an attachment of kCMSampleBufferAttachmentKey_StillImageLensStabilizationInfo indicating additional information about stabilization was applied to the buffer, if any. The default value of -isLensStabilizationDuringBracketedCaptureEnabled is NO. This value will be set to NO when -isLensStabilizationDuringBracketedCaptureSupported changes to NO. Setting this property throws an NSInvalidArgumentException if -isLensStabilizationDuringBracketedCaptureSupported returns NO. This property is key-value observable.
         #[deprecated = "Use AVCapturePhotoOutput with AVCapturePhotoBracketSettings instead."]
-        #[method(isLensStabilizationDuringBracketedCaptureEnabled)]
+        #[unsafe(method(isLensStabilizationDuringBracketedCaptureEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLensStabilizationDuringBracketedCaptureEnabled(&self) -> bool;
 
         /// Setter for [`isLensStabilizationDuringBracketedCaptureEnabled`][Self::isLensStabilizationDuringBracketedCaptureEnabled].
         #[deprecated = "Use AVCapturePhotoOutput with AVCapturePhotoBracketSettings instead."]
-        #[method(setLensStabilizationDuringBracketedCaptureEnabled:)]
+        #[unsafe(method(setLensStabilizationDuringBracketedCaptureEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLensStabilizationDuringBracketedCaptureEnabled(
             &self,
@@ -371,7 +371,7 @@ extern_methods!(
         ///
         /// -maxBracketedCaptureStillImageCount tells you the maximum number of images that may be taken in a single bracket given the current AVCaptureDevice/AVCaptureSession/AVCaptureStillImageOutput configuration. But before taking a still image bracket, additional resources may need to be allocated. By calling -prepareToCaptureStillImageBracketFromConnection:withSettingsArray:completionHandler: first, you are able to deterministically know when the receiver is ready to capture the bracket with the specified settings array.
         #[deprecated = "Use AVCapturePhotoOutput setPreparedPhotoSettingsArray:completionHandler: instead."]
-        #[method(prepareToCaptureStillImageBracketFromConnection:withSettingsArray:completionHandler:)]
+        #[unsafe(method(prepareToCaptureStillImageBracketFromConnection:withSettingsArray:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareToCaptureStillImageBracketFromConnection_withSettingsArray_completionHandler(
             &self,
@@ -397,7 +397,7 @@ extern_methods!(
         ///
         /// If you have not called -prepareToCaptureStillImageBracketFromConnection:withSettingsArray:completionHandler: for this still image bracket request, the bracket may not be taken immediately, as the receiver may internally need to prepare resources.
         #[deprecated = "Use AVCapturePhotoOutput capturePhotoWithSettings:delegate: instead."]
-        #[method(captureStillImageBracketAsynchronouslyFromConnection:withSettingsArray:completionHandler:)]
+        #[unsafe(method(captureStillImageBracketAsynchronouslyFromConnection:withSettingsArray:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captureStillImageBracketAsynchronouslyFromConnection_withSettingsArray_completionHandler(
             &self,

@@ -17,16 +17,16 @@ unsafe impl NSObjectProtocol for PHPersistentChangeFetchResult {}
 
 extern_methods!(
     unsafe impl PHPersistentChangeFetchResult {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "PHPersistentChange", feature = "block2"))]
-        #[method(enumerateChangesWithBlock:)]
+        #[unsafe(method(enumerateChangesWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateChangesWithBlock(
             &self,

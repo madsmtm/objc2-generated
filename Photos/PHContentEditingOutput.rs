@@ -21,7 +21,7 @@ unsafe impl NSObjectProtocol for PHContentEditingOutput {}
 extern_methods!(
     unsafe impl PHContentEditingOutput {
         #[cfg(feature = "PHContentEditingInput")]
-        #[method(initWithContentEditingInput:)]
+        #[unsafe(method(initWithContentEditingInput:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentEditingInput(
             this: Allocated<Self>,
@@ -29,36 +29,36 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "PHAdjustmentData")]
-        #[method(adjustmentData)]
+        #[unsafe(method(adjustmentData))]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustmentData(&self) -> Option<Retained<PHAdjustmentData>>;
 
         #[cfg(feature = "PHAdjustmentData")]
         /// Setter for [`adjustmentData`][Self::adjustmentData].
-        #[method(setAdjustmentData:)]
+        #[unsafe(method(setAdjustmentData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdjustmentData(&self, adjustment_data: Option<&PHAdjustmentData>);
 
         /// File URL where the rendered output in the default format, with adjustments baked-in, needs to be written to.
-        #[method(renderedContentURL)]
+        #[unsafe(method(renderedContentURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderedContentURL(&self) -> Retained<NSURL>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         /// Returns the default type for the rendered content output
-        #[method(defaultRenderedContentType)]
+        #[unsafe(method(defaultRenderedContentType))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultRenderedContentType(&self) -> Option<Retained<UTType>>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         /// Returns the supported types for the rendered content output
-        #[method(supportedRenderedContentTypes)]
+        #[unsafe(method(supportedRenderedContentTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedRenderedContentTypes(&self) -> Retained<NSArray<UTType>>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         /// Returns a file URL where the rendered output in the specified format, with adjustments baked-in, needs to be written to. Returns nil and provides an error identifying the reason if the format is unsupported or the requested content URL cannot be provided
-        #[method(renderedContentURLForType:error:_)]
+        #[unsafe(method(renderedContentURLForType:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderedContentURLForType_error(
             &self,
@@ -70,11 +70,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHContentEditingOutput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

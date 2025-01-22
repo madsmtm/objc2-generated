@@ -257,21 +257,21 @@ extern_category!(
     #[doc(alias = "NSFileProviderError")]
     pub unsafe trait NSErrorNSFileProviderError {
         #[cfg(feature = "NSFileProviderItem")]
-        #[method(fileProviderErrorForCollisionWithItem:)]
+        #[unsafe(method(fileProviderErrorForCollisionWithItem:))]
         #[unsafe(method_family = none)]
         unsafe fn fileProviderErrorForCollisionWithItem(
             existing_item: &NSFileProviderItem,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSFileProviderItem")]
-        #[method(fileProviderErrorForNonExistentItemWithIdentifier:)]
+        #[unsafe(method(fileProviderErrorForNonExistentItemWithIdentifier:))]
         #[unsafe(method_family = none)]
         unsafe fn fileProviderErrorForNonExistentItemWithIdentifier(
             item_identifier: &NSFileProviderItemIdentifier,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSFileProviderItem")]
-        #[method(fileProviderErrorForRejectedDeletionOfItem:)]
+        #[unsafe(method(fileProviderErrorForRejectedDeletionOfItem:))]
         #[unsafe(method_family = none)]
         unsafe fn fileProviderErrorForRejectedDeletionOfItem(
             updated_version: &NSFileProviderItem,

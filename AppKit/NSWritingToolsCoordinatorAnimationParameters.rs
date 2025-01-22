@@ -43,19 +43,19 @@ unsafe impl NSObjectProtocol for NSWritingToolsCoordinatorAnimationParameters {}
 
 extern_methods!(
     unsafe impl NSWritingToolsCoordinatorAnimationParameters {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The number of seconds it takes the system animations to run.
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The number of seconds the system waits before starting its animations.
-        #[method(delay)]
+        #[unsafe(method(delay))]
         #[unsafe(method_family = none)]
         pub unsafe fn delay(&self) -> CGFloat;
 
@@ -69,13 +69,13 @@ extern_methods!(
         /// current progress of the animations as a percentage value between
         /// `0.0` to `1.0`. The system executes your block multiple times during
         /// the course of the animations, providing an updated completion value each time.
-        #[method(progressHandler)]
+        #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn progressHandler(&self) -> *mut block2::Block<dyn Fn(c_float)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
-        #[method(setProgressHandler:)]
+        #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(
             &self,
@@ -89,13 +89,13 @@ extern_methods!(
         /// animations finish. The block you provide must have no return value
         /// and no parameters. The system executes this block once when the current
         /// animation finish.
-        #[method(completionHandler)]
+        #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionHandler`][Self::completionHandler].
-        #[method(setCompletionHandler:)]
+        #[unsafe(method(setCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionHandler(
             &self,
@@ -107,7 +107,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSWritingToolsCoordinatorAnimationParameters {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

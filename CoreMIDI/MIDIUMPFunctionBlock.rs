@@ -35,48 +35,48 @@ extern_methods!(
     unsafe impl MIDIUMPFunctionBlock {
         #[cfg(feature = "objc2-foundation")]
         /// A string containing the Function Block's name.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "MIDIMessages", feature = "MIDIUMPCI"))]
         /// The device-unique ID for this Function Block.
-        #[method(functionBlockID)]
+        #[unsafe(method(functionBlockID))]
         #[unsafe(method_family = none)]
         pub unsafe fn functionBlockID(&self) -> MIDIUMPFunctionBlockID;
 
         #[cfg(feature = "MIDIMessages")]
         /// The direction of the Function Block: input, output, or bidirectional.
-        #[method(direction)]
+        #[unsafe(method(direction))]
         #[unsafe(method_family = none)]
         pub unsafe fn direction(&self) -> MIDIUMPFunctionBlockDirection;
 
         #[cfg(feature = "MIDIMessages")]
         /// The first Group spanned by this Function Block.
-        #[method(firstGroup)]
+        #[unsafe(method(firstGroup))]
         #[unsafe(method_family = none)]
         pub unsafe fn firstGroup(&self) -> MIDIUMPGroupNumber;
 
         #[cfg(feature = "MIDIMessages")]
         /// The total number of groups spanned by this Function Block.
-        #[method(totalGroupsSpanned)]
+        #[unsafe(method(totalGroupsSpanned))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalGroupsSpanned(&self) -> MIDIUInteger7;
 
         /// The maximum number of simultaneous Sysex8 streams.
-        #[method(maxSysEx8Streams)]
+        #[unsafe(method(maxSysEx8Streams))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxSysEx8Streams(&self) -> u8;
 
         #[cfg(feature = "MIDIMessages")]
         /// MIDI 1.0 speed information.
-        #[method(MIDI1Info)]
+        #[unsafe(method(MIDI1Info))]
         #[unsafe(method_family = none)]
         pub unsafe fn MIDI1Info(&self) -> MIDIUMPFunctionBlockMIDI1Info;
 
         #[cfg(feature = "MIDIMessages")]
         /// A hint for UI about the primary usage of this Function Block.
-        #[method(UIHint)]
+        #[unsafe(method(UIHint))]
         #[unsafe(method_family = none)]
         pub unsafe fn UIHint(&self) -> MIDIUMPFunctionBlockUIHint;
 
@@ -85,7 +85,7 @@ extern_methods!(
         ///
         ///
         /// If the function block does not belong to an endpoint this property will be nil.
-        #[method(UMPEndpoint)]
+        #[unsafe(method(UMPEndpoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn UMPEndpoint(&self) -> Option<Retained<MIDIUMPEndpoint>>;
 
@@ -96,16 +96,16 @@ extern_methods!(
         /// If a Function Block was created as a MIDICIDevice object, this property will
         /// provide an in-place MIDICIDevice interface that may be used with MIDI-CI API. If the
         /// device was not created as a MIDICIDevice, this method returns nil.
-        #[method(midiCIDevice)]
+        #[unsafe(method(midiCIDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn midiCIDevice(&self) -> Option<Retained<MIDICIDevice>>;
 
         /// The enable state of this Function Block.
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -116,7 +116,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDIUMPFunctionBlock {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

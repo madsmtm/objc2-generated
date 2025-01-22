@@ -35,12 +35,12 @@ unsafe impl NSObjectProtocol for CMMotionActivityManager {}
 
 extern_methods!(
     unsafe impl CMMotionActivityManager {
-        #[method(isActivityAvailable)]
+        #[unsafe(method(isActivityAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isActivityAvailable() -> bool;
 
         #[cfg(feature = "CMAuthorization")]
-        #[method(authorizationStatus)]
+        #[unsafe(method(authorizationStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus() -> CMAuthorizationStatus;
 
@@ -49,7 +49,7 @@ extern_methods!(
             feature = "CMMotionActivity",
             feature = "block2"
         ))]
-        #[method(queryActivityStartingFromDate:toDate:toQueue:withHandler:)]
+        #[unsafe(method(queryActivityStartingFromDate:toDate:toQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryActivityStartingFromDate_toDate_toQueue_withHandler(
             &self,
@@ -64,7 +64,7 @@ extern_methods!(
             feature = "CMMotionActivity",
             feature = "block2"
         ))]
-        #[method(startActivityUpdatesToQueue:withHandler:)]
+        #[unsafe(method(startActivityUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startActivityUpdatesToQueue_withHandler(
             &self,
@@ -72,7 +72,7 @@ extern_methods!(
             handler: CMMotionActivityHandler,
         );
 
-        #[method(stopActivityUpdates)]
+        #[unsafe(method(stopActivityUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopActivityUpdates(&self);
     }
@@ -81,11 +81,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMMotionActivityManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

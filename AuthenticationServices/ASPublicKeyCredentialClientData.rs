@@ -42,15 +42,15 @@ unsafe impl NSObjectProtocol for ASPublicKeyCredentialClientData {}
 
 extern_methods!(
     unsafe impl ASPublicKeyCredentialClientData {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithChallenge:origin:)]
+        #[unsafe(method(initWithChallenge:origin:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithChallenge_origin(
             this: Allocated<Self>,
@@ -59,42 +59,42 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The challenge to be signed during the operation.
-        #[method(challenge)]
+        #[unsafe(method(challenge))]
         #[unsafe(method_family = none)]
         pub unsafe fn challenge(&self) -> Retained<NSData>;
 
         /// Setter for [`challenge`][Self::challenge].
-        #[method(setChallenge:)]
+        #[unsafe(method(setChallenge:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChallenge(&self, challenge: &NSData);
 
         /// The origin for where the request was performed.
-        #[method(origin)]
+        #[unsafe(method(origin))]
         #[unsafe(method_family = none)]
         pub unsafe fn origin(&self) -> Retained<NSString>;
 
         /// Setter for [`origin`][Self::origin].
-        #[method(setOrigin:)]
+        #[unsafe(method(setOrigin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrigin(&self, origin: &NSString);
 
         /// The top-level origin, if applicable.
-        #[method(topOrigin)]
+        #[unsafe(method(topOrigin))]
         #[unsafe(method_family = none)]
         pub unsafe fn topOrigin(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`topOrigin`][Self::topOrigin].
-        #[method(setTopOrigin:)]
+        #[unsafe(method(setTopOrigin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTopOrigin(&self, top_origin: Option<&NSString>);
 
         /// Indicates whether this is a cross-origin request, if applicable.
-        #[method(crossOrigin)]
+        #[unsafe(method(crossOrigin))]
         #[unsafe(method_family = none)]
         pub unsafe fn crossOrigin(&self) -> ASPublicKeyCredentialClientDataCrossOriginValue;
 
         /// Setter for [`crossOrigin`][Self::crossOrigin].
-        #[method(setCrossOrigin:)]
+        #[unsafe(method(setCrossOrigin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCrossOrigin(
             &self,

@@ -1574,7 +1574,7 @@ unsafe impl NSObjectProtocol for CATapDescription {}
 extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl CATapDescription {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -1583,7 +1583,7 @@ extern_methods!(
         /// both right and left channels.
         ///
         /// Parameter `processesObjectIDsToIncludeInTap`: An NSArray of NSNumbers where each NSNumber holds an AudioObjectID of the process object to include in the tap
-        #[method(initStereoMixdownOfProcesses:)]
+        #[unsafe(method(initStereoMixdownOfProcesses:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initStereoMixdownOfProcesses(
             this: Allocated<Self>,
@@ -1596,7 +1596,7 @@ extern_methods!(
         ///
         /// Parameter `processesObjectIDsToExcludeFromTap`: An NSArray of NSNumbers where each NSNumber holds an AudioObjectID of the process object to exclude from the tap.
         /// All other processes that output audio will be included in the tap.
-        #[method(initStereoGlobalTapButExcludeProcesses:)]
+        #[unsafe(method(initStereoGlobalTapButExcludeProcesses:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initStereoGlobalTapButExcludeProcesses(
             this: Allocated<Self>,
@@ -1607,7 +1607,7 @@ extern_methods!(
         /// Mix all given process audio streams audio to mono.
         ///
         /// Parameter `processesObjectIDsToIncludeInTap`: An NSArray of NSNumbers where each NSNumber holds an AudioObjectID of the process object to include in the tap
-        #[method(initMonoMixdownOfProcesses:)]
+        #[unsafe(method(initMonoMixdownOfProcesses:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initMonoMixdownOfProcesses(
             this: Allocated<Self>,
@@ -1619,7 +1619,7 @@ extern_methods!(
         ///
         /// Parameter `processesObjectIDsToExcludeFromTap`: An NSArray of NSNumbers where each NSNumber holds an AudioObjectID of the process object to exclude from the tap.
         /// All other processes that output audio will be included in the tap.
-        #[method(initMonoGlobalTapButExcludeProcesses:)]
+        #[unsafe(method(initMonoGlobalTapButExcludeProcesses:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initMonoGlobalTapButExcludeProcesses(
             this: Allocated<Self>,
@@ -1636,7 +1636,7 @@ extern_methods!(
         ///
         /// Parameter `stream`: NSInteger that represents the index of the stream on the device whose audio will be captured. The format of the tap
         /// will match the format of this stream.
-        #[method(initWithProcesses:andDeviceUID:withStream:)]
+        #[unsafe(method(initWithProcesses:andDeviceUID:withStream:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithProcesses_andDeviceUID_withStream(
             this: Allocated<Self>,
@@ -1655,7 +1655,7 @@ extern_methods!(
         ///
         /// Parameter `stream`: NSInteger that represents the index of the stream on the device whose audio will be captured. The format of the tap
         /// will match the format of this stream.
-        #[method(initExcludingProcesses:andDeviceUID:withStream:)]
+        #[unsafe(method(initExcludingProcesses:andDeviceUID:withStream:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initExcludingProcesses_andDeviceUID_withStream(
             this: Allocated<Self>,
@@ -1666,112 +1666,112 @@ extern_methods!(
 
         #[cfg(feature = "objc2-foundation")]
         /// Human readable name of this tap.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-foundation")]
         /// Setter for [`name`][Self::name].
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
 
         #[cfg(feature = "objc2-foundation")]
         /// UID of this tap.
-        #[method(UUID)]
+        #[unsafe(method(UUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "objc2-foundation")]
         /// Setter for [`UUID`][Self::UUID].
-        #[method(setUUID:)]
+        #[unsafe(method(setUUID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUUID(&self, uuid: &NSUUID);
 
         #[cfg(feature = "objc2-foundation")]
         /// An NSArray of NSNumbers where each NSNumber holds the AudioObjectID of the process object to tap or exclude.
-        #[method(processes)]
+        #[unsafe(method(processes))]
         #[unsafe(method_family = none)]
         pub unsafe fn processes(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-foundation")]
         /// Setter for [`processes`][Self::processes].
-        #[method(setProcesses:)]
+        #[unsafe(method(setProcesses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProcesses(&self, processes: &NSArray<NSNumber>);
 
         /// True if this description is a mono mixdown of channels.
-        #[method(isMono)]
+        #[unsafe(method(isMono))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMono(&self) -> bool;
 
         /// Setter for [`isMono`][Self::isMono].
-        #[method(setMono:)]
+        #[unsafe(method(setMono:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMono(&self, mono: bool);
 
         /// True if this description should tap all processes except the process listed in the 'processes' property.
-        #[method(isExclusive)]
+        #[unsafe(method(isExclusive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isExclusive(&self) -> bool;
 
         /// Setter for [`isExclusive`][Self::isExclusive].
-        #[method(setExclusive:)]
+        #[unsafe(method(setExclusive:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExclusive(&self, exclusive: bool);
 
         /// True if this description is a mono or stereo mix of the tapped device's channels.
-        #[method(isMixdown)]
+        #[unsafe(method(isMixdown))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMixdown(&self) -> bool;
 
         /// Setter for [`isMixdown`][Self::isMixdown].
-        #[method(setMixdown:)]
+        #[unsafe(method(setMixdown:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMixdown(&self, mixdown: bool);
 
         /// True if this tap is only visible to the client process that created the tap.
-        #[method(isPrivate)]
+        #[unsafe(method(isPrivate))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPrivate(&self) -> bool;
 
         /// Setter for [`isPrivate`][Self::isPrivate].
-        #[method(setPrivate:)]
+        #[unsafe(method(setPrivate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrivate(&self, private_tap: bool);
 
         /// Set the tap's mute behavior. See CATapMuteBehavior above.
-        #[method(isMuted)]
+        #[unsafe(method(isMuted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMuted(&self) -> CATapMuteBehavior;
 
         /// Setter for [`isMuted`][Self::isMuted].
-        #[method(setMuteBehavior:)]
+        #[unsafe(method(setMuteBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMuteBehavior(&self, mute_behavior: CATapMuteBehavior);
 
         #[cfg(feature = "objc2-foundation")]
         /// An optional deviceUID that will have a value if this tap only taps a specific hardware device
-        #[method(deviceUID)]
+        #[unsafe(method(deviceUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceUID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-foundation")]
         /// Setter for [`deviceUID`][Self::deviceUID].
-        #[method(setDeviceUID:)]
+        #[unsafe(method(setDeviceUID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDeviceUID(&self, device_uid: Option<&NSString>);
 
         #[cfg(feature = "objc2-foundation")]
         /// An optional NSNumber that will have a value if this tap taps a specific device stream.
         /// The value represents the index of the hardware stream.
-        #[method(stream)]
+        #[unsafe(method(stream))]
         #[unsafe(method_family = none)]
         pub unsafe fn stream(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "objc2-foundation")]
         /// Setter for [`stream`][Self::stream].
-        #[method(setStream:)]
+        #[unsafe(method(setStream:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStream(&self, stream: Option<&NSNumber>);
     }
@@ -1782,7 +1782,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl CATapDescription {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

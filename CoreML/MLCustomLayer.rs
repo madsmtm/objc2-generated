@@ -12,21 +12,21 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcustomlayer?language=objc)
     pub unsafe trait MLCustomLayer {
-        #[method(initWithParameterDictionary:error:_)]
+        #[unsafe(method(initWithParameterDictionary:error:_))]
         #[unsafe(method_family = init)]
         unsafe fn initWithParameterDictionary_error(
             this: Allocated<Self>,
             parameters: &NSDictionary<NSString, AnyObject>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method(setWeightData:error:_)]
+        #[unsafe(method(setWeightData:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn setWeightData_error(
             &self,
             weights: &NSArray<NSData>,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method(outputShapesForInputShapes:error:_)]
+        #[unsafe(method(outputShapesForInputShapes:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn outputShapesForInputShapes_error(
             &self,
@@ -34,7 +34,7 @@ extern_protocol!(
         ) -> Result<Retained<NSArray<NSArray<NSNumber>>>, Retained<NSError>>;
 
         #[cfg(feature = "MLMultiArray")]
-        #[method(evaluateOnCPUWithInputs:outputs:error:_)]
+        #[unsafe(method(evaluateOnCPUWithInputs:outputs:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn evaluateOnCPUWithInputs_outputs_error(
             &self,
@@ -45,7 +45,7 @@ extern_protocol!(
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         #[optional]
-        #[method(encodeToCommandBuffer:inputs:outputs:error:_)]
+        #[unsafe(method(encodeToCommandBuffer:inputs:outputs:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn encodeToCommandBuffer_inputs_outputs_error(
             &self,

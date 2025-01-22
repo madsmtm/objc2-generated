@@ -30,17 +30,17 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCounter {
         #[deprecated]
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method(listStyle)]
+        #[unsafe(method(listStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn listStyle(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method(separator)]
+        #[unsafe(method(separator))]
         #[unsafe(method_family = none)]
         pub unsafe fn separator(&self) -> Retained<NSString>;
     }
@@ -51,7 +51,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCounter {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -61,7 +61,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCounter {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

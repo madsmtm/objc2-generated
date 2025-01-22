@@ -63,7 +63,7 @@ extern_methods!(
         /// The call returns an error if Rosetta is not available for a directory share. To install Rosetta support, use +[VZLinuxRosettaDirectoryShare installRosettaIfNeeded:].
         ///
         /// See: +[VZLinuxRosettaDirectoryShare installRosettaIfNeeded:]
-        #[method(initWithError:_)]
+        #[unsafe(method(initWithError:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithError(
             this: Allocated<Self>,
@@ -77,7 +77,7 @@ extern_methods!(
         /// The call prompts the user through the download and install flow for Rosetta. This call is successful if the error is nil.
         ///
         /// See: +[VZLinuxRosettaDirectoryShare availability]
-        #[method(installRosettaWithCompletionHandler:)]
+        #[unsafe(method(installRosettaWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn installRosettaWithCompletionHandler(
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
@@ -85,18 +85,18 @@ extern_methods!(
 
         #[cfg(feature = "VZLinuxRosettaCachingOptions")]
         /// Enable translation caching and configure the socket communication type for Rosetta.
-        #[method(options)]
+        #[unsafe(method(options))]
         #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> Option<Retained<VZLinuxRosettaCachingOptions>>;
 
         #[cfg(feature = "VZLinuxRosettaCachingOptions")]
         /// Setter for [`options`][Self::options].
-        #[method(setOptions:)]
+        #[unsafe(method(setOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOptions(&self, options: Option<&VZLinuxRosettaCachingOptions>);
 
         /// Check the availability of Rosetta support for the directory share.
-        #[method(availability)]
+        #[unsafe(method(availability))]
         #[unsafe(method_family = none)]
         pub unsafe fn availability() -> VZLinuxRosettaAvailability;
     }
@@ -106,11 +106,11 @@ extern_methods!(
     /// Methods declared on superclass `VZDirectoryShare`
     #[cfg(feature = "VZDirectoryShare")]
     unsafe impl VZLinuxRosettaDirectoryShare {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

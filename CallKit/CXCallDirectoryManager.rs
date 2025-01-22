@@ -40,12 +40,12 @@ unsafe impl NSObjectProtocol for CXCallDirectoryManager {}
 
 extern_methods!(
     unsafe impl CXCallDirectoryManager {
-        #[method(sharedInstance)]
+        #[unsafe(method(sharedInstance))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedInstance() -> Retained<CXCallDirectoryManager>;
 
         #[cfg(feature = "block2")]
-        #[method(reloadExtensionWithIdentifier:completionHandler:)]
+        #[unsafe(method(reloadExtensionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadExtensionWithIdentifier_completionHandler(
             &self,
@@ -54,7 +54,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(getEnabledStatusForExtensionWithIdentifier:completionHandler:)]
+        #[unsafe(method(getEnabledStatusForExtensionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getEnabledStatusForExtensionWithIdentifier_completionHandler(
             &self,
@@ -63,7 +63,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(openSettingsWithCompletionHandler:)]
+        #[unsafe(method(openSettingsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openSettingsWithCompletionHandler(
             &self,
@@ -75,11 +75,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXCallDirectoryManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

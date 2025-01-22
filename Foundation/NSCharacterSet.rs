@@ -42,120 +42,120 @@ unsafe impl NSSecureCoding for NSCharacterSet {}
 
 extern_methods!(
     unsafe impl NSCharacterSet {
-        #[method(controlCharacterSet)]
+        #[unsafe(method(controlCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn controlCharacterSet() -> Retained<NSCharacterSet>;
 
-        #[method(whitespaceCharacterSet)]
+        #[unsafe(method(whitespaceCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn whitespaceCharacterSet() -> Retained<NSCharacterSet>;
 
-        #[method(whitespaceAndNewlineCharacterSet)]
+        #[unsafe(method(whitespaceAndNewlineCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn whitespaceAndNewlineCharacterSet() -> Retained<NSCharacterSet>;
 
-        #[method(decimalDigitCharacterSet)]
+        #[unsafe(method(decimalDigitCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn decimalDigitCharacterSet() -> Retained<NSCharacterSet>;
 
-        #[method(letterCharacterSet)]
+        #[unsafe(method(letterCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn letterCharacterSet() -> Retained<NSCharacterSet>;
 
-        #[method(lowercaseLetterCharacterSet)]
+        #[unsafe(method(lowercaseLetterCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn lowercaseLetterCharacterSet() -> Retained<NSCharacterSet>;
 
-        #[method(uppercaseLetterCharacterSet)]
+        #[unsafe(method(uppercaseLetterCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn uppercaseLetterCharacterSet() -> Retained<NSCharacterSet>;
 
-        #[method(nonBaseCharacterSet)]
+        #[unsafe(method(nonBaseCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn nonBaseCharacterSet() -> Retained<NSCharacterSet>;
 
-        #[method(alphanumericCharacterSet)]
+        #[unsafe(method(alphanumericCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn alphanumericCharacterSet() -> Retained<NSCharacterSet>;
 
-        #[method(decomposableCharacterSet)]
+        #[unsafe(method(decomposableCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn decomposableCharacterSet() -> Retained<NSCharacterSet>;
 
-        #[method(illegalCharacterSet)]
+        #[unsafe(method(illegalCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn illegalCharacterSet() -> Retained<NSCharacterSet>;
 
-        #[method(punctuationCharacterSet)]
+        #[unsafe(method(punctuationCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn punctuationCharacterSet() -> Retained<NSCharacterSet>;
 
-        #[method(capitalizedLetterCharacterSet)]
+        #[unsafe(method(capitalizedLetterCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn capitalizedLetterCharacterSet() -> Retained<NSCharacterSet>;
 
-        #[method(symbolCharacterSet)]
+        #[unsafe(method(symbolCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolCharacterSet() -> Retained<NSCharacterSet>;
 
-        #[method(newlineCharacterSet)]
+        #[unsafe(method(newlineCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn newlineCharacterSet() -> Retained<NSCharacterSet>;
 
         #[cfg(feature = "NSRange")]
-        #[method(characterSetWithRange:)]
+        #[unsafe(method(characterSetWithRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterSetWithRange(a_range: NSRange) -> Retained<NSCharacterSet>;
 
         #[cfg(feature = "NSString")]
-        #[method(characterSetWithCharactersInString:)]
+        #[unsafe(method(characterSetWithCharactersInString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterSetWithCharactersInString(
             a_string: &NSString,
         ) -> Retained<NSCharacterSet>;
 
         #[cfg(feature = "NSData")]
-        #[method(characterSetWithBitmapRepresentation:)]
+        #[unsafe(method(characterSetWithBitmapRepresentation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterSetWithBitmapRepresentation(
             data: &NSData,
         ) -> Retained<NSCharacterSet>;
 
         #[cfg(feature = "NSString")]
-        #[method(characterSetWithContentsOfFile:)]
+        #[unsafe(method(characterSetWithContentsOfFile:))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterSetWithContentsOfFile(
             f_name: &NSString,
         ) -> Option<Retained<NSCharacterSet>>;
 
         #[cfg(feature = "NSCoder")]
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(characterIsMember:)]
+        #[unsafe(method(characterIsMember:))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterIsMember(&self, a_character: unichar) -> bool;
 
         #[cfg(feature = "NSData")]
-        #[method(bitmapRepresentation)]
+        #[unsafe(method(bitmapRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn bitmapRepresentation(&self) -> Retained<NSData>;
 
-        #[method(invertedSet)]
+        #[unsafe(method(invertedSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn invertedSet(&self) -> Retained<NSCharacterSet>;
 
-        #[method(longCharacterIsMember:)]
+        #[unsafe(method(longCharacterIsMember:))]
         #[unsafe(method_family = none)]
         pub unsafe fn longCharacterIsMember(&self, the_long_char: UTF32Char) -> bool;
 
-        #[method(isSupersetOfSet:)]
+        #[unsafe(method(isSupersetOfSet:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSupersetOfSet(&self, the_other_set: &NSCharacterSet) -> bool;
 
-        #[method(hasMemberInPlane:)]
+        #[unsafe(method(hasMemberInPlane:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasMemberInPlane(&self, the_plane: u8) -> bool;
     }
@@ -164,11 +164,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCharacterSet {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -208,118 +208,118 @@ unsafe impl NSSecureCoding for NSMutableCharacterSet {}
 extern_methods!(
     unsafe impl NSMutableCharacterSet {
         #[cfg(feature = "NSRange")]
-        #[method(addCharactersInRange:)]
+        #[unsafe(method(addCharactersInRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addCharactersInRange(&self, a_range: NSRange);
 
         #[cfg(feature = "NSRange")]
-        #[method(removeCharactersInRange:)]
+        #[unsafe(method(removeCharactersInRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeCharactersInRange(&self, a_range: NSRange);
 
         #[cfg(feature = "NSString")]
-        #[method(addCharactersInString:)]
+        #[unsafe(method(addCharactersInString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addCharactersInString(&self, a_string: &NSString);
 
         #[cfg(feature = "NSString")]
-        #[method(removeCharactersInString:)]
+        #[unsafe(method(removeCharactersInString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeCharactersInString(&self, a_string: &NSString);
 
-        #[method(formUnionWithCharacterSet:)]
+        #[unsafe(method(formUnionWithCharacterSet:))]
         #[unsafe(method_family = none)]
         pub unsafe fn formUnionWithCharacterSet(&self, other_set: &NSCharacterSet);
 
-        #[method(formIntersectionWithCharacterSet:)]
+        #[unsafe(method(formIntersectionWithCharacterSet:))]
         #[unsafe(method_family = none)]
         pub unsafe fn formIntersectionWithCharacterSet(&self, other_set: &NSCharacterSet);
 
-        #[method(invert)]
+        #[unsafe(method(invert))]
         #[unsafe(method_family = none)]
         pub unsafe fn invert(&self);
 
-        #[method(controlCharacterSet)]
+        #[unsafe(method(controlCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn controlCharacterSet() -> Retained<NSMutableCharacterSet>;
 
-        #[method(whitespaceCharacterSet)]
+        #[unsafe(method(whitespaceCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn whitespaceCharacterSet() -> Retained<NSMutableCharacterSet>;
 
-        #[method(whitespaceAndNewlineCharacterSet)]
+        #[unsafe(method(whitespaceAndNewlineCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn whitespaceAndNewlineCharacterSet() -> Retained<NSMutableCharacterSet>;
 
-        #[method(decimalDigitCharacterSet)]
+        #[unsafe(method(decimalDigitCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn decimalDigitCharacterSet() -> Retained<NSMutableCharacterSet>;
 
-        #[method(letterCharacterSet)]
+        #[unsafe(method(letterCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn letterCharacterSet() -> Retained<NSMutableCharacterSet>;
 
-        #[method(lowercaseLetterCharacterSet)]
+        #[unsafe(method(lowercaseLetterCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn lowercaseLetterCharacterSet() -> Retained<NSMutableCharacterSet>;
 
-        #[method(uppercaseLetterCharacterSet)]
+        #[unsafe(method(uppercaseLetterCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn uppercaseLetterCharacterSet() -> Retained<NSMutableCharacterSet>;
 
-        #[method(nonBaseCharacterSet)]
+        #[unsafe(method(nonBaseCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn nonBaseCharacterSet() -> Retained<NSMutableCharacterSet>;
 
-        #[method(alphanumericCharacterSet)]
+        #[unsafe(method(alphanumericCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn alphanumericCharacterSet() -> Retained<NSMutableCharacterSet>;
 
-        #[method(decomposableCharacterSet)]
+        #[unsafe(method(decomposableCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn decomposableCharacterSet() -> Retained<NSMutableCharacterSet>;
 
-        #[method(illegalCharacterSet)]
+        #[unsafe(method(illegalCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn illegalCharacterSet() -> Retained<NSMutableCharacterSet>;
 
-        #[method(punctuationCharacterSet)]
+        #[unsafe(method(punctuationCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn punctuationCharacterSet() -> Retained<NSMutableCharacterSet>;
 
-        #[method(capitalizedLetterCharacterSet)]
+        #[unsafe(method(capitalizedLetterCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn capitalizedLetterCharacterSet() -> Retained<NSMutableCharacterSet>;
 
-        #[method(symbolCharacterSet)]
+        #[unsafe(method(symbolCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolCharacterSet() -> Retained<NSMutableCharacterSet>;
 
-        #[method(newlineCharacterSet)]
+        #[unsafe(method(newlineCharacterSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn newlineCharacterSet() -> Retained<NSMutableCharacterSet>;
 
         #[cfg(feature = "NSRange")]
-        #[method(characterSetWithRange:)]
+        #[unsafe(method(characterSetWithRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterSetWithRange(a_range: NSRange) -> Retained<NSMutableCharacterSet>;
 
         #[cfg(feature = "NSString")]
-        #[method(characterSetWithCharactersInString:)]
+        #[unsafe(method(characterSetWithCharactersInString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterSetWithCharactersInString(
             a_string: &NSString,
         ) -> Retained<NSMutableCharacterSet>;
 
         #[cfg(feature = "NSData")]
-        #[method(characterSetWithBitmapRepresentation:)]
+        #[unsafe(method(characterSetWithBitmapRepresentation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterSetWithBitmapRepresentation(
             data: &NSData,
         ) -> Retained<NSMutableCharacterSet>;
 
         #[cfg(feature = "NSString")]
-        #[method(characterSetWithContentsOfFile:)]
+        #[unsafe(method(characterSetWithContentsOfFile:))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterSetWithContentsOfFile(
             f_name: &NSString,
@@ -331,7 +331,7 @@ extern_methods!(
     /// Methods declared on superclass `NSCharacterSet`
     unsafe impl NSMutableCharacterSet {
         #[cfg(feature = "NSCoder")]
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
@@ -340,11 +340,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMutableCharacterSet {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

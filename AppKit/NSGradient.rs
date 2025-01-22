@@ -57,7 +57,7 @@ unsafe impl NSSecureCoding for NSGradient {}
 extern_methods!(
     unsafe impl NSGradient {
         #[cfg(feature = "NSColor")]
-        #[method(initWithStartingColor:endingColor:)]
+        #[unsafe(method(initWithStartingColor:endingColor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStartingColor_endingColor(
             this: Allocated<Self>,
@@ -66,7 +66,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSColor")]
-        #[method(initWithColors:)]
+        #[unsafe(method(initWithColors:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithColors(
             this: Allocated<Self>,
@@ -78,7 +78,7 @@ extern_methods!(
             feature = "NSColorSpace",
             feature = "objc2-core-foundation"
         ))]
-        #[method(initWithColors:atLocations:colorSpace:)]
+        #[unsafe(method(initWithColors:atLocations:colorSpace:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithColors_atLocations_colorSpace(
             this: Allocated<Self>,
@@ -87,14 +87,14 @@ extern_methods!(
             color_space: &NSColorSpace,
         ) -> Option<Retained<Self>>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(drawFromPoint:toPoint:options:)]
+        #[unsafe(method(drawFromPoint:toPoint:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawFromPoint_toPoint_options(
             &self,
@@ -104,17 +104,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(drawInRect:angle:)]
+        #[unsafe(method(drawInRect:angle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawInRect_angle(&self, rect: NSRect, angle: CGFloat);
 
         #[cfg(all(feature = "NSBezierPath", feature = "objc2-core-foundation"))]
-        #[method(drawInBezierPath:angle:)]
+        #[unsafe(method(drawInBezierPath:angle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawInBezierPath_angle(&self, path: &NSBezierPath, angle: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(drawFromCenter:radius:toCenter:radius:options:)]
+        #[unsafe(method(drawFromCenter:radius:toCenter:radius:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawFromCenter_radius_toCenter_radius_options(
             &self,
@@ -125,7 +125,7 @@ extern_methods!(
             options: NSGradientDrawingOptions,
         );
 
-        #[method(drawInRect:relativeCenterPosition:)]
+        #[unsafe(method(drawInRect:relativeCenterPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawInRect_relativeCenterPosition(
             &self,
@@ -134,7 +134,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSBezierPath")]
-        #[method(drawInBezierPath:relativeCenterPosition:)]
+        #[unsafe(method(drawInBezierPath:relativeCenterPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawInBezierPath_relativeCenterPosition(
             &self,
@@ -143,16 +143,16 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSColorSpace")]
-        #[method(colorSpace)]
+        #[unsafe(method(colorSpace))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorSpace(&self) -> Retained<NSColorSpace>;
 
-        #[method(numberOfColorStops)]
+        #[unsafe(method(numberOfColorStops))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfColorStops(&self) -> NSInteger;
 
         #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
-        #[method(getColor:location:atIndex:)]
+        #[unsafe(method(getColor:location:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getColor_location_atIndex(
             &self,
@@ -162,7 +162,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
-        #[method(interpolatedColorAtLocation:)]
+        #[unsafe(method(interpolatedColorAtLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interpolatedColorAtLocation(&self, location: CGFloat) -> Retained<NSColor>;
     }
@@ -171,11 +171,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -57,11 +57,11 @@ unsafe impl NSObjectProtocol for AVCaptionConversionValidator {}
 
 extern_methods!(
     unsafe impl AVCaptionConversionValidator {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -81,7 +81,7 @@ extern_methods!(
         /// Returns: A new instance of AVCaptionConversionValidator configured to perform the specified validation.
         ///
         /// This method throws an exception if the conversion setting's AVCaptionMediaTypeKey is not equal to AVMediaTypeClosedCaption, or if its AVCaptionMediaSubTypeKey is not equal to kCMClosedCaptionFormatType_CEA608.
-        #[method(captionConversionValidatorWithCaptions:timeRange:conversionSettings:)]
+        #[unsafe(method(captionConversionValidatorWithCaptions:timeRange:conversionSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captionConversionValidatorWithCaptions_timeRange_conversionSettings(
             captions: &NSArray<AVCaption>,
@@ -103,7 +103,7 @@ extern_methods!(
         /// Parameter `conversionSettings`: Describes the conversion operation for which the captions are to be validated.
         ///
         /// Returns: A new instance of AVCaptionConversionValidator configured to perform the specified validation.
-        #[method(initWithCaptions:timeRange:conversionSettings:)]
+        #[unsafe(method(initWithCaptions:timeRange:conversionSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCaptions_timeRange_conversionSettings(
             this: Allocated<Self>,
@@ -113,13 +113,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Indicates the status of the validation.
-        #[method(status)]
+        #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> AVCaptionConversionValidatorStatus;
 
         #[cfg(feature = "AVCaption")]
         /// The array of captions to be validated for the specified conversion operation.
-        #[method(captions)]
+        #[unsafe(method(captions))]
         #[unsafe(method_family = none)]
         pub unsafe fn captions(&self) -> Retained<NSArray<AVCaption>>;
 
@@ -127,7 +127,7 @@ extern_methods!(
         /// The timeRange of the media timeline into which the specified captions must be integrated.
         ///
         /// The start of this timeRange may be less than the start of the timeRange of the initial caption in the captions array, if the captions are to appear only after the start of accompanying video or audio. If no definite duration for the media timeline is known, the timeRange can have a duration of kCMTimePositiveInfinity. However, in order to perform a comprehensive validation of a conversion to closed captions, setting the duration of the timeRange to the duration of accompanying video media is recommended.
-        #[method(timeRange)]
+        #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
@@ -139,7 +139,7 @@ extern_methods!(
         /// It is an error to invoke this method when the value of status is greater than AVCaptionConversionValidatorStatusUnknown.
         /// If you wish to stop a validation operation in progress before it has been completed, send the message stopValidating to the receiver.
         /// When the validation is complete and all warnings have been reported, the block will be executed once with a value of nil for its warning parameter. When this occurs, the value of status will have been changed to AVCaptionConversionValidatorStatusCompleted.
-        #[method(validateCaptionConversionWithWarningHandler:)]
+        #[unsafe(method(validateCaptionConversionWithWarningHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateCaptionConversionWithWarningHandler(
             &self,
@@ -149,12 +149,12 @@ extern_methods!(
         /// Stops validation and changes the value of status to AVCaptionConversionValidatorStatusStopped.
         ///
         /// You can call this method at any time, even within your warning handler.
-        #[method(stopValidating)]
+        #[unsafe(method(stopValidating))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopValidating(&self);
 
         /// Provides the collection of warnings for problems that have been encountered. While the value of status is AVCaptionConversionValidatorStatusValidating, the count of warnings may increase.
-        #[method(warnings)]
+        #[unsafe(method(warnings))]
         #[unsafe(method_family = none)]
         pub unsafe fn warnings(&self) -> Retained<NSArray<AVCaptionConversionWarning>>;
     }
@@ -193,30 +193,30 @@ unsafe impl NSObjectProtocol for AVCaptionConversionWarning {}
 
 extern_methods!(
     unsafe impl AVCaptionConversionWarning {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Indicates the type of warning provided by the receiver.
-        #[method(warningType)]
+        #[unsafe(method(warningType))]
         #[unsafe(method_family = none)]
         pub unsafe fn warningType(&self) -> Retained<AVCaptionConversionWarningType>;
 
         /// Indicates the range of captions in the validator's captions array for which the specified warning has been issued.
         ///
         /// Only captions with the same start time and duration will be referenced. If captions with different start times and durations exhibit similar problems, a separate instance of AVCaptionConversionWarning will be used to indicate each problematic case. If the referenced captions have multiple problems, a separate instance of AVCaptionConversionWarning will be issued to indicate each problem.
-        #[method(rangeOfCaptions)]
+        #[unsafe(method(rangeOfCaptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn rangeOfCaptions(&self) -> NSRange;
 
         /// Indicates an adjustment to the indicated captions that can be applied in order to correct the problem.
         ///
         /// If the value of adjustment is not nil and the conversion operation is performed without correcting the problem, the adjustment will be applied during conversion. If the value of adjustment is nil and the conversion operation is performed without correcting the problem, the indicated captions will be omitted from the output media data.
-        #[method(adjustment)]
+        #[unsafe(method(adjustment))]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustment(&self) -> Option<Retained<AVCaptionConversionAdjustment>>;
     }
@@ -255,16 +255,16 @@ unsafe impl NSObjectProtocol for AVCaptionConversionAdjustment {}
 
 extern_methods!(
     unsafe impl AVCaptionConversionAdjustment {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Indicates the type of adjustment described by the receiver.
-        #[method(adjustmentType)]
+        #[unsafe(method(adjustmentType))]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustmentType(&self) -> Retained<AVCaptionConversionAdjustmentType>;
     }
@@ -289,11 +289,11 @@ unsafe impl NSObjectProtocol for AVCaptionConversionTimeRangeAdjustment {}
 
 extern_methods!(
     unsafe impl AVCaptionConversionTimeRangeAdjustment {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -301,7 +301,7 @@ extern_methods!(
         /// Indicates the amount by which the timeRange.start of the captions must be adjusted in order to correct a problem.
         ///
         /// The value may any numeric value, positive, negative, or zero.
-        #[method(startTimeOffset)]
+        #[unsafe(method(startTimeOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn startTimeOffset(&self) -> CMTime;
 
@@ -309,7 +309,7 @@ extern_methods!(
         /// Indicates the amount by which the timeRange.duration of the captions must be adjusted in order to correct a problem.
         ///
         /// The value may any numeric value, positive, negative, or zero.
-        #[method(durationOffset)]
+        #[unsafe(method(durationOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn durationOffset(&self) -> CMTime;
     }

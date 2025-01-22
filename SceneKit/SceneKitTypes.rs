@@ -229,34 +229,34 @@ extern_category!(
     /// Adds methods to wrap vectors in NSValue objects.
     pub unsafe trait NSValueSceneKitAdditions {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueWithSCNVector3:)]
+        #[unsafe(method(valueWithSCNVector3:))]
         #[unsafe(method_family = none)]
         unsafe fn valueWithSCNVector3(v: SCNVector3) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueWithSCNVector4:)]
+        #[unsafe(method(valueWithSCNVector4:))]
         #[unsafe(method_family = none)]
         unsafe fn valueWithSCNVector4(v: SCNVector4) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
-        #[method(valueWithSCNMatrix4:)]
+        #[unsafe(method(valueWithSCNMatrix4:))]
         #[unsafe(method_family = none)]
         unsafe fn valueWithSCNMatrix4(v: SCNMatrix4) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(SCNVector3Value)]
+        #[unsafe(method(SCNVector3Value))]
         #[unsafe(method_family = none)]
         unsafe fn SCNVector3Value(&self) -> SCNVector3;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(SCNVector4Value)]
+        #[unsafe(method(SCNVector4Value))]
         #[unsafe(method_family = none)]
         unsafe fn SCNVector4Value(&self) -> SCNVector4;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
-        #[method(SCNMatrix4Value)]
+        #[unsafe(method(SCNMatrix4Value))]
         #[unsafe(method_family = none)]
         unsafe fn SCNMatrix4Value(&self) -> SCNMatrix4;
     }

@@ -109,37 +109,37 @@ extern_methods!(
         /// When a web view is initialized, a new web content process
         /// will be created for it from the specified pool, or an existing process in
         /// that pool will be used.
-        #[method(processPool)]
+        #[unsafe(method(processPool))]
         #[unsafe(method_family = none)]
         pub unsafe fn processPool(&self) -> Retained<WKProcessPool>;
 
         #[cfg(feature = "WKProcessPool")]
         /// Setter for [`processPool`][Self::processPool].
-        #[method(setProcessPool:)]
+        #[unsafe(method(setProcessPool:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProcessPool(&self, process_pool: &WKProcessPool);
 
         #[cfg(feature = "WKPreferences")]
         /// The preference settings to be used by the web view.
-        #[method(preferences)]
+        #[unsafe(method(preferences))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferences(&self) -> Retained<WKPreferences>;
 
         #[cfg(feature = "WKPreferences")]
         /// Setter for [`preferences`][Self::preferences].
-        #[method(setPreferences:)]
+        #[unsafe(method(setPreferences:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferences(&self, preferences: &WKPreferences);
 
         #[cfg(feature = "WKUserContentController")]
         /// The user content controller to associate with the web view.
-        #[method(userContentController)]
+        #[unsafe(method(userContentController))]
         #[unsafe(method_family = none)]
         pub unsafe fn userContentController(&self) -> Retained<WKUserContentController>;
 
         #[cfg(feature = "WKUserContentController")]
         /// Setter for [`userContentController`][Self::userContentController].
-        #[method(setUserContentController:)]
+        #[unsafe(method(setUserContentController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserContentController(
             &self,
@@ -148,13 +148,13 @@ extern_methods!(
 
         #[cfg(feature = "WKWebsiteDataStore")]
         /// The website data store to be used by the web view.
-        #[method(websiteDataStore)]
+        #[unsafe(method(websiteDataStore))]
         #[unsafe(method_family = none)]
         pub unsafe fn websiteDataStore(&self) -> Retained<WKWebsiteDataStore>;
 
         #[cfg(feature = "WKWebsiteDataStore")]
         /// Setter for [`websiteDataStore`][Self::websiteDataStore].
-        #[method(setWebsiteDataStore:)]
+        #[unsafe(method(setWebsiteDataStore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWebsiteDataStore(&self, website_data_store: &WKWebsiteDataStore);
 
@@ -162,12 +162,12 @@ extern_methods!(
         /// content rendering until it is fully loaded into memory.
         ///
         /// The default value is NO.
-        #[method(suppressesIncrementalRendering)]
+        #[unsafe(method(suppressesIncrementalRendering))]
         #[unsafe(method_family = none)]
         pub unsafe fn suppressesIncrementalRendering(&self) -> bool;
 
         /// Setter for [`suppressesIncrementalRendering`][Self::suppressesIncrementalRendering].
-        #[method(setSuppressesIncrementalRendering:)]
+        #[unsafe(method(setSuppressesIncrementalRendering:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuppressesIncrementalRendering(
             &self,
@@ -175,12 +175,12 @@ extern_methods!(
         );
 
         /// The name of the application as used in the user agent string.
-        #[method(applicationNameForUserAgent)]
+        #[unsafe(method(applicationNameForUserAgent))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationNameForUserAgent(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`applicationNameForUserAgent`][Self::applicationNameForUserAgent].
-        #[method(setApplicationNameForUserAgent:)]
+        #[unsafe(method(setApplicationNameForUserAgent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setApplicationNameForUserAgent(
             &self,
@@ -190,12 +190,12 @@ extern_methods!(
         /// A Boolean value indicating whether AirPlay is allowed.
         ///
         /// The default value is YES.
-        #[method(allowsAirPlayForMediaPlayback)]
+        #[unsafe(method(allowsAirPlayForMediaPlayback))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsAirPlayForMediaPlayback(&self) -> bool;
 
         /// Setter for [`allowsAirPlayForMediaPlayback`][Self::allowsAirPlayForMediaPlayback].
-        #[method(setAllowsAirPlayForMediaPlayback:)]
+        #[unsafe(method(setAllowsAirPlayForMediaPlayback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsAirPlayForMediaPlayback(
             &self,
@@ -205,21 +205,21 @@ extern_methods!(
         /// A Boolean value indicating whether HTTP requests to servers known to support HTTPS should be automatically upgraded to HTTPS requests.
         ///
         /// The default value is YES.
-        #[method(upgradeKnownHostsToHTTPS)]
+        #[unsafe(method(upgradeKnownHostsToHTTPS))]
         #[unsafe(method_family = none)]
         pub unsafe fn upgradeKnownHostsToHTTPS(&self) -> bool;
 
         /// Setter for [`upgradeKnownHostsToHTTPS`][Self::upgradeKnownHostsToHTTPS].
-        #[method(setUpgradeKnownHostsToHTTPS:)]
+        #[unsafe(method(setUpgradeKnownHostsToHTTPS:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpgradeKnownHostsToHTTPS(&self, upgrade_known_hosts_to_https: bool);
 
-        #[method(mediaTypesRequiringUserActionForPlayback)]
+        #[unsafe(method(mediaTypesRequiringUserActionForPlayback))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaTypesRequiringUserActionForPlayback(&self) -> WKAudiovisualMediaTypes;
 
         /// Setter for [`mediaTypesRequiringUserActionForPlayback`][Self::mediaTypesRequiringUserActionForPlayback].
-        #[method(setMediaTypesRequiringUserActionForPlayback:)]
+        #[unsafe(method(setMediaTypesRequiringUserActionForPlayback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaTypesRequiringUserActionForPlayback(
             &self,
@@ -231,25 +231,25 @@ extern_methods!(
         ///
         /// These default webpage preferences are additionally passed to the navigation delegate
         /// in -webView:decidePolicyForNavigationAction:preferences:decisionHandler:.
-        #[method(defaultWebpagePreferences)]
+        #[unsafe(method(defaultWebpagePreferences))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultWebpagePreferences(&self) -> Retained<WKWebpagePreferences>;
 
         #[cfg(feature = "WKWebpagePreferences")]
         /// Setter for [`defaultWebpagePreferences`][Self::defaultWebpagePreferences].
-        #[method(setDefaultWebpagePreferences:)]
+        #[unsafe(method(setDefaultWebpagePreferences:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultWebpagePreferences(
             &self,
             default_webpage_preferences: Option<&WKWebpagePreferences>,
         );
 
-        #[method(limitsNavigationsToAppBoundDomains)]
+        #[unsafe(method(limitsNavigationsToAppBoundDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn limitsNavigationsToAppBoundDomains(&self) -> bool;
 
         /// Setter for [`limitsNavigationsToAppBoundDomains`][Self::limitsNavigationsToAppBoundDomains].
-        #[method(setLimitsNavigationsToAppBoundDomains:)]
+        #[unsafe(method(setLimitsNavigationsToAppBoundDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLimitsNavigationsToAppBoundDomains(
             &self,
@@ -261,12 +261,12 @@ extern_methods!(
         /// The default value is `NO`. If false, inline predictions
         /// are disabled regardless of the system setting. If true, they are enabled based
         /// on the system setting.
-        #[method(allowsInlinePredictions)]
+        #[unsafe(method(allowsInlinePredictions))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsInlinePredictions(&self) -> bool;
 
         /// Setter for [`allowsInlinePredictions`][Self::allowsInlinePredictions].
-        #[method(setAllowsInlinePredictions:)]
+        #[unsafe(method(setAllowsInlinePredictions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsInlinePredictions(&self, allows_inline_predictions: bool);
 
@@ -274,12 +274,12 @@ extern_methods!(
         ///
         /// Possible values are described in WKUserInterfaceDirectionPolicy.
         /// The default value is WKUserInterfaceDirectionPolicyContent.
-        #[method(userInterfaceDirectionPolicy)]
+        #[unsafe(method(userInterfaceDirectionPolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInterfaceDirectionPolicy(&self) -> WKUserInterfaceDirectionPolicy;
 
         /// Setter for [`userInterfaceDirectionPolicy`][Self::userInterfaceDirectionPolicy].
-        #[method(setUserInterfaceDirectionPolicy:)]
+        #[unsafe(method(setUserInterfaceDirectionPolicy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInterfaceDirectionPolicy(
             &self,
@@ -287,7 +287,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "WKURLSchemeHandler")]
-        #[method(setURLSchemeHandler:forURLScheme:)]
+        #[unsafe(method(setURLSchemeHandler:forURLScheme:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURLSchemeHandler_forURLScheme(
             &self,
@@ -296,7 +296,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "WKURLSchemeHandler")]
-        #[method(urlSchemeHandlerForURLScheme:)]
+        #[unsafe(method(urlSchemeHandlerForURLScheme:))]
         #[unsafe(method_family = none)]
         pub unsafe fn urlSchemeHandlerForURLScheme(
             &self,
@@ -307,12 +307,12 @@ extern_methods!(
         ///
         /// The default value is `NO`. If `NO`, adaptive image glyphs are inserted as regular
         /// images. If `YES`, they are inserted with the full adaptive sizing behavior.
-        #[method(supportsAdaptiveImageGlyph)]
+        #[unsafe(method(supportsAdaptiveImageGlyph))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsAdaptiveImageGlyph(&self) -> bool;
 
         /// Setter for [`supportsAdaptiveImageGlyph`][Self::supportsAdaptiveImageGlyph].
-        #[method(setSupportsAdaptiveImageGlyph:)]
+        #[unsafe(method(setSupportsAdaptiveImageGlyph:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportsAdaptiveImageGlyph(&self, supports_adaptive_image_glyph: bool);
 
@@ -321,14 +321,14 @@ extern_methods!(
         /// The preferred behavior of Writing Tools.
         ///
         /// The default behavior is equivalent to `NSWritingToolsBehaviorLimited`.
-        #[method(writingToolsBehavior)]
+        #[unsafe(method(writingToolsBehavior))]
         #[unsafe(method_family = none)]
         pub unsafe fn writingToolsBehavior(&self) -> NSWritingToolsBehavior;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`writingToolsBehavior`][Self::writingToolsBehavior].
-        #[method(setWritingToolsBehavior:)]
+        #[unsafe(method(setWritingToolsBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWritingToolsBehavior(
             &self,
@@ -340,11 +340,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKWebViewConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

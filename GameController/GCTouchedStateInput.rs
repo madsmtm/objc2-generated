@@ -20,7 +20,7 @@ extern_protocol!(
     pub unsafe trait GCTouchedStateInput: NSObjectProtocol {
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Set this block if you want to be notified when the touched state changes.
-        #[method(touchedDidChangeHandler)]
+        #[unsafe(method(touchedDidChangeHandler))]
         #[unsafe(method_family = none)]
         unsafe fn touchedDidChangeHandler(
             &self,
@@ -34,7 +34,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Setter for [`touchedDidChangeHandler`][Self::touchedDidChangeHandler].
-        #[method(setTouchedDidChangeHandler:)]
+        #[unsafe(method(setTouchedDidChangeHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setTouchedDidChangeHandler(
             &self,
@@ -57,7 +57,7 @@ extern_protocol!(
         /// See: touchedDidChangeHandler
         ///
         /// See: GCPressedStateInput
-        #[method(isTouched)]
+        #[unsafe(method(isTouched))]
         #[unsafe(method_family = none)]
         unsafe fn isTouched(&self) -> bool;
 
@@ -66,7 +66,7 @@ extern_protocol!(
         /// This time interval is not relative to any specific point in time.  You can
         /// subtract a previous timestamp from the returned timestamp to determine the time
         /// (in seconds) between changes to the value.
-        #[method(lastTouchedStateTimestamp)]
+        #[unsafe(method(lastTouchedStateTimestamp))]
         #[unsafe(method_family = none)]
         unsafe fn lastTouchedStateTimestamp(&self) -> NSTimeInterval;
 
@@ -76,14 +76,14 @@ extern_protocol!(
         /// This should be treated as a lower bound of the event latency.  It may not
         /// include (wired or wireless) transmission latency, or latency accrued on
         /// the device before the event was transmitted to the host.
-        #[method(lastTouchedStateLatency)]
+        #[unsafe(method(lastTouchedStateLatency))]
         #[unsafe(method_family = none)]
         unsafe fn lastTouchedStateLatency(&self) -> NSTimeInterval;
 
         #[cfg(feature = "GCPhysicalInputSource")]
         /// An object describing the physical action(s) the user performs to manipulate
         /// this input.
-        #[method(sources)]
+        #[unsafe(method(sources))]
         #[unsafe(method_family = none)]
         unsafe fn sources(&self) -> Retained<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }

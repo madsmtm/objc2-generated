@@ -28,7 +28,7 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKStatisticsQuery {
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics", feature = "block2"))]
-        #[method(initWithQuantityType:quantitySamplePredicate:options:completionHandler:)]
+        #[unsafe(method(initWithQuantityType:quantitySamplePredicate:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithQuantityType_quantitySamplePredicate_options_completionHandler(
             this: Allocated<Self>,
@@ -46,7 +46,7 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKStatisticsQuery {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -56,7 +56,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKStatisticsQuery {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

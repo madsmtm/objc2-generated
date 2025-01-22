@@ -11,23 +11,23 @@ extern_protocol!(
     #[cfg(feature = "MKAnnotation")]
     pub unsafe trait MKOverlay: MKAnnotation {
         #[cfg(feature = "objc2-core-location")]
-        #[method(coordinate)]
+        #[unsafe(method(coordinate))]
         #[unsafe(method_family = none)]
         unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "MKGeometry")]
-        #[method(boundingMapRect)]
+        #[unsafe(method(boundingMapRect))]
         #[unsafe(method_family = none)]
         unsafe fn boundingMapRect(&self) -> MKMapRect;
 
         #[cfg(feature = "MKGeometry")]
         #[optional]
-        #[method(intersectsMapRect:)]
+        #[unsafe(method(intersectsMapRect:))]
         #[unsafe(method_family = none)]
         unsafe fn intersectsMapRect(&self, map_rect: MKMapRect) -> bool;
 
         #[optional]
-        #[method(canReplaceMapContent)]
+        #[unsafe(method(canReplaceMapContent))]
         #[unsafe(method_family = none)]
         unsafe fn canReplaceMapContent(&self) -> bool;
     }

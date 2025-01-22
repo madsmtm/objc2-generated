@@ -17,16 +17,16 @@ unsafe impl NSObjectProtocol for NSThread {}
 
 extern_methods!(
     unsafe impl NSThread {
-        #[method(currentThread)]
+        #[unsafe(method(currentThread))]
         #[unsafe(method_family = none)]
         pub fn currentThread() -> Retained<NSThread>;
 
         #[cfg(feature = "block2")]
-        #[method(detachNewThreadWithBlock:)]
+        #[unsafe(method(detachNewThreadWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detachNewThreadWithBlock(block: &block2::Block<dyn Fn()>);
 
-        #[method(detachNewThreadSelector:toTarget:withObject:)]
+        #[unsafe(method(detachNewThreadSelector:toTarget:withObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detachNewThreadSelector_toTarget_withObject(
             selector: Sel,
@@ -34,104 +34,104 @@ extern_methods!(
             argument: Option<&AnyObject>,
         );
 
-        #[method(isMultiThreaded)]
+        #[unsafe(method(isMultiThreaded))]
         #[unsafe(method_family = none)]
         pub fn isMultiThreaded() -> bool;
 
         #[cfg(feature = "NSDictionary")]
-        #[method(threadDictionary)]
+        #[unsafe(method(threadDictionary))]
         #[unsafe(method_family = none)]
         pub unsafe fn threadDictionary(&self) -> Retained<NSMutableDictionary>;
 
         #[cfg(feature = "NSDate")]
-        #[method(sleepUntilDate:)]
+        #[unsafe(method(sleepUntilDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sleepUntilDate(date: &NSDate);
 
         #[cfg(feature = "NSDate")]
-        #[method(sleepForTimeInterval:)]
+        #[unsafe(method(sleepForTimeInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sleepForTimeInterval(ti: NSTimeInterval);
 
-        #[method(exit)]
+        #[unsafe(method(exit))]
         #[unsafe(method_family = none)]
         pub unsafe fn exit();
 
-        #[method(threadPriority)]
+        #[unsafe(method(threadPriority))]
         #[unsafe(method_family = none)]
         pub unsafe fn threadPriority_class() -> c_double;
 
-        #[method(setThreadPriority:)]
+        #[unsafe(method(setThreadPriority:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setThreadPriority_class(p: c_double) -> bool;
 
-        #[method(threadPriority)]
+        #[unsafe(method(threadPriority))]
         #[unsafe(method_family = none)]
         pub unsafe fn threadPriority(&self) -> c_double;
 
         /// Setter for [`threadPriority`][Self::threadPriority].
-        #[method(setThreadPriority:)]
+        #[unsafe(method(setThreadPriority:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setThreadPriority(&self, thread_priority: c_double);
 
         #[cfg(feature = "NSObjCRuntime")]
-        #[method(qualityOfService)]
+        #[unsafe(method(qualityOfService))]
         #[unsafe(method_family = none)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
         #[cfg(feature = "NSObjCRuntime")]
         /// Setter for [`qualityOfService`][Self::qualityOfService].
-        #[method(setQualityOfService:)]
+        #[unsafe(method(setQualityOfService:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
-        #[method(callStackReturnAddresses)]
+        #[unsafe(method(callStackReturnAddresses))]
         #[unsafe(method_family = none)]
         pub unsafe fn callStackReturnAddresses() -> Retained<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method(callStackSymbols)]
+        #[unsafe(method(callStackSymbols))]
         #[unsafe(method_family = none)]
         pub unsafe fn callStackSymbols() -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
-        #[method(stackSize)]
+        #[unsafe(method(stackSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn stackSize(&self) -> NSUInteger;
 
         /// Setter for [`stackSize`][Self::stackSize].
-        #[method(setStackSize:)]
+        #[unsafe(method(setStackSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStackSize(&self, stack_size: NSUInteger);
 
-        #[method(isMainThread)]
+        #[unsafe(method(isMainThread))]
         #[unsafe(method_family = none)]
         pub fn isMainThread(&self) -> bool;
 
-        #[method(isMainThread)]
+        #[unsafe(method(isMainThread))]
         #[unsafe(method_family = none)]
         pub fn isMainThread_class() -> bool;
 
-        #[method(mainThread)]
+        #[unsafe(method(mainThread))]
         #[unsafe(method_family = none)]
         pub fn mainThread() -> Retained<NSThread>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithTarget:selector:object:)]
+        #[unsafe(method(initWithTarget:selector:object:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_selector_object(
             this: Allocated<Self>,
@@ -141,34 +141,34 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method(initWithBlock:)]
+        #[unsafe(method(initWithBlock:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBlock(
             this: Allocated<Self>,
             block: &block2::Block<dyn Fn()>,
         ) -> Retained<Self>;
 
-        #[method(isExecuting)]
+        #[unsafe(method(isExecuting))]
         #[unsafe(method_family = none)]
         pub unsafe fn isExecuting(&self) -> bool;
 
-        #[method(isFinished)]
+        #[unsafe(method(isFinished))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFinished(&self) -> bool;
 
-        #[method(isCancelled)]
+        #[unsafe(method(isCancelled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCancelled(&self) -> bool;
 
-        #[method(cancel)]
+        #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
-        #[method(start)]
+        #[unsafe(method(start))]
         #[unsafe(method_family = none)]
         pub unsafe fn start(&self);
 
-        #[method(main)]
+        #[unsafe(method(main))]
         #[unsafe(method_family = none)]
         pub unsafe fn main(&self);
     }
@@ -177,7 +177,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSThread {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -213,7 +213,7 @@ extern_category!(
     #[doc(alias = "NSThreadPerformAdditions")]
     pub unsafe trait NSObjectNSThreadPerformAdditions {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method(performSelectorOnMainThread:withObject:waitUntilDone:modes:)]
+        #[unsafe(method(performSelectorOnMainThread:withObject:waitUntilDone:modes:))]
         #[unsafe(method_family = none)]
         unsafe fn performSelectorOnMainThread_withObject_waitUntilDone_modes(
             &self,
@@ -223,7 +223,7 @@ extern_category!(
             array: Option<&NSArray<NSString>>,
         );
 
-        #[method(performSelectorOnMainThread:withObject:waitUntilDone:)]
+        #[unsafe(method(performSelectorOnMainThread:withObject:waitUntilDone:))]
         #[unsafe(method_family = none)]
         unsafe fn performSelectorOnMainThread_withObject_waitUntilDone(
             &self,
@@ -233,7 +233,7 @@ extern_category!(
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method(performSelector:onThread:withObject:waitUntilDone:modes:)]
+        #[unsafe(method(performSelector:onThread:withObject:waitUntilDone:modes:))]
         #[unsafe(method_family = none)]
         unsafe fn performSelector_onThread_withObject_waitUntilDone_modes(
             &self,
@@ -244,7 +244,7 @@ extern_category!(
             array: Option<&NSArray<NSString>>,
         );
 
-        #[method(performSelector:onThread:withObject:waitUntilDone:)]
+        #[unsafe(method(performSelector:onThread:withObject:waitUntilDone:))]
         #[unsafe(method_family = none)]
         unsafe fn performSelector_onThread_withObject_waitUntilDone(
             &self,
@@ -254,7 +254,7 @@ extern_category!(
             wait: bool,
         );
 
-        #[method(performSelectorInBackground:withObject:)]
+        #[unsafe(method(performSelectorInBackground:withObject:))]
         #[unsafe(method_family = none)]
         unsafe fn performSelectorInBackground_withObject(
             &self,

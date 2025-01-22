@@ -9,13 +9,13 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeatureprovider?language=objc)
     pub unsafe trait MLFeatureProvider {
-        #[method(featureNames)]
+        #[unsafe(method(featureNames))]
         #[unsafe(method_family = none)]
         unsafe fn featureNames(&self) -> Retained<NSSet<NSString>>;
 
         #[cfg(feature = "MLFeatureValue")]
         /// Returns nil if the provided featureName is not in the set of featureNames
-        #[method(featureValueForName:)]
+        #[unsafe(method(featureValueForName:))]
         #[unsafe(method_family = none)]
         unsafe fn featureValueForName(
             &self,

@@ -49,7 +49,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(webView:shouldBeginEditingInDOMRange:)]
+        #[unsafe(method(webView:shouldBeginEditingInDOMRange:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_shouldBeginEditingInDOMRange(
             &self,
@@ -67,7 +67,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(webView:shouldEndEditingInDOMRange:)]
+        #[unsafe(method(webView:shouldEndEditingInDOMRange:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_shouldEndEditingInDOMRange(
             &self,
@@ -86,7 +86,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(webView:shouldInsertNode:replacingDOMRange:givenAction:)]
+        #[unsafe(method(webView:shouldInsertNode:replacingDOMRange:givenAction:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_shouldInsertNode_replacingDOMRange_givenAction(
             &self,
@@ -106,7 +106,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(webView:shouldInsertText:replacingDOMRange:givenAction:)]
+        #[unsafe(method(webView:shouldInsertText:replacingDOMRange:givenAction:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_shouldInsertText_replacingDOMRange_givenAction(
             &self,
@@ -126,7 +126,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(webView:shouldDeleteDOMRange:)]
+        #[unsafe(method(webView:shouldDeleteDOMRange:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_shouldDeleteDOMRange(
             &self,
@@ -144,7 +144,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(webView:shouldChangeSelectedDOMRange:toDOMRange:affinity:stillSelecting:)]
+        #[unsafe(method(webView:shouldChangeSelectedDOMRange:toDOMRange:affinity:stillSelecting:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_shouldChangeSelectedDOMRange_toDOMRange_affinity_stillSelecting(
             &self,
@@ -166,7 +166,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(webView:shouldApplyStyle:toElementsInDOMRange:)]
+        #[unsafe(method(webView:shouldApplyStyle:toElementsInDOMRange:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_shouldApplyStyle_toElementsInDOMRange(
             &self,
@@ -185,7 +185,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(webView:shouldChangeTypingStyle:toStyle:)]
+        #[unsafe(method(webView:shouldChangeTypingStyle:toStyle:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_shouldChangeTypingStyle_toStyle(
             &self,
@@ -198,7 +198,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(webView:doCommandBySelector:)]
+        #[unsafe(method(webView:doCommandBySelector:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_doCommandBySelector(
             &self,
@@ -208,31 +208,31 @@ extern_protocol!(
 
         #[deprecated]
         #[optional]
-        #[method(webViewDidBeginEditing:)]
+        #[unsafe(method(webViewDidBeginEditing:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewDidBeginEditing(&self, notification: Option<&NSNotification>);
 
         #[deprecated]
         #[optional]
-        #[method(webViewDidChange:)]
+        #[unsafe(method(webViewDidChange:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewDidChange(&self, notification: Option<&NSNotification>);
 
         #[deprecated]
         #[optional]
-        #[method(webViewDidEndEditing:)]
+        #[unsafe(method(webViewDidEndEditing:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewDidEndEditing(&self, notification: Option<&NSNotification>);
 
         #[deprecated]
         #[optional]
-        #[method(webViewDidChangeTypingStyle:)]
+        #[unsafe(method(webViewDidChangeTypingStyle:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewDidChangeTypingStyle(&self, notification: Option<&NSNotification>);
 
         #[deprecated]
         #[optional]
-        #[method(webViewDidChangeSelection:)]
+        #[unsafe(method(webViewDidChangeSelection:))]
         #[unsafe(method_family = none)]
         unsafe fn webViewDidChangeSelection(&self, notification: Option<&NSNotification>);
 
@@ -240,7 +240,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method(undoManagerForWebView:)]
+        #[unsafe(method(undoManagerForWebView:))]
         #[unsafe(method_family = none)]
         unsafe fn undoManagerForWebView(
             &self,

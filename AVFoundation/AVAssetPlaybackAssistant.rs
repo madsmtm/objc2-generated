@@ -60,11 +60,11 @@ unsafe impl NSObjectProtocol for AVAssetPlaybackAssistant {}
 
 extern_methods!(
     unsafe impl AVAssetPlaybackAssistant {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -74,7 +74,7 @@ extern_methods!(
         /// Parameter `asset`: An instance of AVAsset.
         ///
         /// Returns: An instance of AVAssetPlaybackAssistant.
-        #[method(assetPlaybackAssistantWithAsset:)]
+        #[unsafe(method(assetPlaybackAssistantWithAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetPlaybackAssistantWithAsset(asset: &AVAsset) -> Retained<Self>;
 
@@ -84,7 +84,7 @@ extern_methods!(
         /// Parameter `completionHandler`: Called with an array of AVAssetPlaybackConfigurationOption values describing capabilities of the asset.
         ///
         /// completionHandler is called when all of the AVAssetPlaybackConfigurationOption values have been loaded. If AVAssetPlaybackAssistant encounters failures when inspecting the contents of the asset, it will return no AVAssetPlaybackConfigurationOptions associated with those contents.
-        #[method(loadPlaybackConfigurationOptionsWithCompletionHandler:)]
+        #[unsafe(method(loadPlaybackConfigurationOptionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadPlaybackConfigurationOptionsWithCompletionHandler(
             &self,

@@ -48,21 +48,21 @@ unsafe impl NSObjectProtocol for UISwipeGestureRecognizer {}
 extern_methods!(
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UISwipeGestureRecognizer {
-        #[method(numberOfTouchesRequired)]
+        #[unsafe(method(numberOfTouchesRequired))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfTouchesRequired(&self) -> NSUInteger;
 
         /// Setter for [`numberOfTouchesRequired`][Self::numberOfTouchesRequired].
-        #[method(setNumberOfTouchesRequired:)]
+        #[unsafe(method(setNumberOfTouchesRequired:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSUInteger);
 
-        #[method(direction)]
+        #[unsafe(method(direction))]
         #[unsafe(method_family = none)]
         pub unsafe fn direction(&self) -> UISwipeGestureRecognizerDirection;
 
         /// Setter for [`direction`][Self::direction].
-        #[method(setDirection:)]
+        #[unsafe(method(setDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirection(&self, direction: UISwipeGestureRecognizerDirection);
     }
@@ -72,7 +72,7 @@ extern_methods!(
     /// Methods declared on superclass `UIGestureRecognizer`
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UISwipeGestureRecognizer {
-        #[method(initWithTarget:action:)]
+        #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
             this: Allocated<Self>,
@@ -80,11 +80,11 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -97,7 +97,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UISwipeGestureRecognizer {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

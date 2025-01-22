@@ -99,25 +99,25 @@ extern_methods!(
     unsafe impl AVPlayerView {
         #[cfg(feature = "objc2-av-foundation")]
         /// The player from which to source the media content for the view.
-        #[method(player)]
+        #[unsafe(method(player))]
         #[unsafe(method_family = none)]
         pub unsafe fn player(&self) -> Option<Retained<AVPlayer>>;
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Setter for [`player`][Self::player].
-        #[method(setPlayer:)]
+        #[unsafe(method(setPlayer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlayer(&self, player: Option<&AVPlayer>);
 
         /// The style of the playback controls pane currently associated with the view.
         ///
         /// After macOS 11, the floating style controls will always be used when presenting in fullscreen and AVPlayerViewControlsStyleNone is not specified.
-        #[method(controlsStyle)]
+        #[unsafe(method(controlsStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn controlsStyle(&self) -> AVPlayerViewControlsStyle;
 
         /// Setter for [`controlsStyle`][Self::controlsStyle].
-        #[method(setControlsStyle:)]
+        #[unsafe(method(setControlsStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setControlsStyle(&self, controls_style: AVPlayerViewControlsStyle);
 
@@ -125,50 +125,50 @@ extern_methods!(
         /// A string defining how the video is displayed within an AVPlayerLayer bounds rect.
         ///
         /// Options are AVLayerVideoGravityResizeAspect, AVLayerVideoGravityResizeAspectFill and AVLayerVideoGravityResize. AVLayerVideoGravityResizeAspect is default.
-        #[method(videoGravity)]
+        #[unsafe(method(videoGravity))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoGravity(&self) -> Retained<AVLayerVideoGravity>;
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Setter for [`videoGravity`][Self::videoGravity].
-        #[method(setVideoGravity:)]
+        #[unsafe(method(setVideoGravity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoGravity(&self, video_gravity: &AVLayerVideoGravity);
 
         /// Boolean indicating that the first video frame has been made ready for display for the current item of the associated AVPlayer.
-        #[method(isReadyForDisplay)]
+        #[unsafe(method(isReadyForDisplay))]
         #[unsafe(method_family = none)]
         pub unsafe fn isReadyForDisplay(&self) -> bool;
 
         /// The current size and position of the video image as displayed within the receiver's view's bounds.
-        #[method(videoBounds)]
+        #[unsafe(method(videoBounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoBounds(&self) -> NSRect;
 
         /// Use the content overlay view to add additional custom views between the video content and the controls.
-        #[method(contentOverlayView)]
+        #[unsafe(method(contentOverlayView))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentOverlayView(&self) -> Option<Retained<NSView>>;
 
         /// Whether or not the now playing info center should be updated. Default is YES.
-        #[method(updatesNowPlayingInfoCenter)]
+        #[unsafe(method(updatesNowPlayingInfoCenter))]
         #[unsafe(method_family = none)]
         pub unsafe fn updatesNowPlayingInfoCenter(&self) -> bool;
 
         /// Setter for [`updatesNowPlayingInfoCenter`][Self::updatesNowPlayingInfoCenter].
-        #[method(setUpdatesNowPlayingInfoCenter:)]
+        #[unsafe(method(setUpdatesNowPlayingInfoCenter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpdatesNowPlayingInfoCenter(&self, updates_now_playing_info_center: bool);
 
         /// The receiver's delegate.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn AVPlayerViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -181,13 +181,13 @@ extern_methods!(
         /// By default this property will be set to the systemDefaultSpeeds class property. Setting this property to nil will hide the playback speed selection UI.
         ///
         /// To set the currently selected playback speed programmatically, either set the defaultRate on the AVPlayer associated with this view controller or use the selectSpeed method on AVPlayerView.
-        #[method(speeds)]
+        #[unsafe(method(speeds))]
         #[unsafe(method_family = none)]
         pub unsafe fn speeds(&self) -> Retained<NSArray<AVPlaybackSpeed>>;
 
         #[cfg(feature = "AVPlaybackSpeed")]
         /// Setter for [`speeds`][Self::speeds].
-        #[method(setSpeeds:)]
+        #[unsafe(method(setSpeeds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeeds(&self, speeds: &NSArray<AVPlaybackSpeed>);
 
@@ -195,7 +195,7 @@ extern_methods!(
         /// The currently selected playback speed.
         ///
         /// Changes to the associated AVPlayer's defaultRate will be reflected in this property and vice versa. If the associated AVPlayer's defaultRate is set to a value that does not match a speed in the speeds list property, the selected speed will be nil.
-        #[method(selectedSpeed)]
+        #[unsafe(method(selectedSpeed))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedSpeed(&self) -> Option<Retained<AVPlaybackSpeed>>;
 
@@ -205,29 +205,29 @@ extern_methods!(
         /// Sets the input AVPlaybackSpeed as the selected speed.
         ///
         /// Calls to selectSpeed with AVPlaybackSpeeds not contained within the speeds property array will be ignored.
-        #[method(selectSpeed:)]
+        #[unsafe(method(selectSpeed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectSpeed(&self, speed: &AVPlaybackSpeed);
 
         /// When set to YES, the AVPlayerView will try to find objects, text and people while the media is paused. When an object is found, the user will be able to interact with it selecting and right clicking to present a context menu. Default is YES.
-        #[method(allowsVideoFrameAnalysis)]
+        #[unsafe(method(allowsVideoFrameAnalysis))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsVideoFrameAnalysis(&self) -> bool;
 
         /// Setter for [`allowsVideoFrameAnalysis`][Self::allowsVideoFrameAnalysis].
-        #[method(setAllowsVideoFrameAnalysis:)]
+        #[unsafe(method(setAllowsVideoFrameAnalysis:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsVideoFrameAnalysis(&self, allows_video_frame_analysis: bool);
 
         #[cfg(feature = "AVKitTypes")]
         /// The types of items AVPlayerView looks for in a paused video frame.
-        #[method(videoFrameAnalysisTypes)]
+        #[unsafe(method(videoFrameAnalysisTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoFrameAnalysisTypes(&self) -> AVVideoFrameAnalysisType;
 
         #[cfg(feature = "AVKitTypes")]
         /// Setter for [`videoFrameAnalysisTypes`][Self::videoFrameAnalysisTypes].
-        #[method(setVideoFrameAnalysisTypes:)]
+        #[unsafe(method(setVideoFrameAnalysisTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoFrameAnalysisTypes(
             &self,
@@ -237,12 +237,12 @@ extern_methods!(
         /// Whether the magnify gesture will change the video's view magnification.
         ///
         /// The default value is NO. This property only effects whether the magnify gesture triggers magnification. A client can still programmatically change magnification even when the value of this is NO. This behavior matches the behavior of NSScrollView.
-        #[method(allowsMagnification)]
+        #[unsafe(method(allowsMagnification))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsMagnification(&self) -> bool;
 
         /// Setter for [`allowsMagnification`][Self::allowsMagnification].
-        #[method(setAllowsMagnification:)]
+        #[unsafe(method(setAllowsMagnification:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsMagnification(&self, allows_magnification: bool);
 
@@ -250,13 +250,13 @@ extern_methods!(
         /// The factor by which the video's view is currently scaled.
         ///
         /// The default value is 1.0. The value cannot be smaller than 1.0 or larger 64.0. Nearest neighbor interpolation will be used once the content has been zoomed past a certain factor.
-        #[method(magnification)]
+        #[unsafe(method(magnification))]
         #[unsafe(method_family = none)]
         pub unsafe fn magnification(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`magnification`][Self::magnification].
-        #[method(setMagnification:)]
+        #[unsafe(method(setMagnification:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMagnification(&self, magnification: CGFloat);
 
@@ -268,7 +268,7 @@ extern_methods!(
         /// Parameter `point`: The point (in view space) on which to center magnification.
         ///
         /// The magnification cannot be smaller than 1.0 or larger 64.0. Nearest neighbor interpolation will be used once the content has been zoomed past a certain factor.
-        #[method(setMagnification:centeredAtPoint:)]
+        #[unsafe(method(setMagnification:centeredAtPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMagnification_centeredAtPoint(
             &self,
@@ -283,11 +283,11 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -301,7 +301,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -312,7 +312,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -324,52 +324,52 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
         /// Replace scanning controls in the playback UI with frame stepping buttons. Default is NO.
-        #[method(showsFrameSteppingButtons)]
+        #[unsafe(method(showsFrameSteppingButtons))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsFrameSteppingButtons(&self) -> bool;
 
         /// Setter for [`showsFrameSteppingButtons`][Self::showsFrameSteppingButtons].
-        #[method(setShowsFrameSteppingButtons:)]
+        #[unsafe(method(setShowsFrameSteppingButtons:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsFrameSteppingButtons(&self, shows_frame_stepping_buttons: bool);
 
         /// Whether or not the controls pane will show a sharing service button when the current player item can be shared. Default is NO.
-        #[method(showsSharingServiceButton)]
+        #[unsafe(method(showsSharingServiceButton))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsSharingServiceButton(&self) -> bool;
 
         /// Setter for [`showsSharingServiceButton`][Self::showsSharingServiceButton].
-        #[method(setShowsSharingServiceButton:)]
+        #[unsafe(method(setShowsSharingServiceButton:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsSharingServiceButton(&self, shows_sharing_service_button: bool);
 
         /// Clients can set this property in order to show an action pop up button. Default is nil.
-        #[method(actionPopUpButtonMenu)]
+        #[unsafe(method(actionPopUpButtonMenu))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionPopUpButtonMenu(&self) -> Option<Retained<NSMenu>>;
 
         /// Setter for [`actionPopUpButtonMenu`][Self::actionPopUpButtonMenu].
-        #[method(setActionPopUpButtonMenu:)]
+        #[unsafe(method(setActionPopUpButtonMenu:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActionPopUpButtonMenu(&self, action_pop_up_button_menu: Option<&NSMenu>);
 
         /// Whether or not the controls pane will show a full screen toggle button. Default is NO.
-        #[method(showsFullScreenToggleButton)]
+        #[unsafe(method(showsFullScreenToggleButton))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsFullScreenToggleButton(&self) -> bool;
 
         /// Setter for [`showsFullScreenToggleButton`][Self::showsFullScreenToggleButton].
-        #[method(setShowsFullScreenToggleButton:)]
+        #[unsafe(method(setShowsFullScreenToggleButton:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsFullScreenToggleButton(&self, shows_full_screen_toggle_button: bool);
 
         /// If timecodes are available, allow the AVPlayerView controls to enter timecode mode. Default is NO.
-        #[method(showsTimecodes)]
+        #[unsafe(method(showsTimecodes))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsTimecodes(&self) -> bool;
 
         /// Setter for [`showsTimecodes`][Self::showsTimecodes].
-        #[method(setShowsTimecodes:)]
+        #[unsafe(method(setShowsTimecodes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsTimecodes(&self, shows_timecodes: bool);
     }
@@ -405,7 +405,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
         /// Whether or not the current media can be trimmed.
-        #[method(canBeginTrimming)]
+        #[unsafe(method(canBeginTrimming))]
         #[unsafe(method_family = none)]
         pub unsafe fn canBeginTrimming(&self) -> bool;
 
@@ -413,7 +413,7 @@ extern_methods!(
         /// Parameter `handler`: A completion handler that is executed when the user selects either the Trim or Cancel button in the trimming UI.
         ///
         /// Sets the controls panel into trimming mode and blocks until the user selects either the Trim or the Cancel button.
-        #[method(beginTrimmingWithCompletionHandler:)]
+        #[unsafe(method(beginTrimmingWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginTrimmingWithCompletionHandler(
             &self,
@@ -432,7 +432,7 @@ extern_methods!(
         /// Parameter `chapterTitle`: The chapter title (optional).
         ///
         /// Display the provided chapter number and title momentarily.
-        #[method(flashChapterNumber:chapterTitle:)]
+        #[unsafe(method(flashChapterNumber:chapterTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn flashChapterNumber_chapterTitle(
             &self,
@@ -448,12 +448,12 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
         /// Whether or not the receiver allows Picture in Picture playback. Default is NO.
-        #[method(allowsPictureInPicturePlayback)]
+        #[unsafe(method(allowsPictureInPicturePlayback))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsPictureInPicturePlayback(&self) -> bool;
 
         /// Setter for [`allowsPictureInPicturePlayback`][Self::allowsPictureInPicturePlayback].
-        #[method(setAllowsPictureInPicturePlayback:)]
+        #[unsafe(method(setAllowsPictureInPicturePlayback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsPictureInPicturePlayback(
             &self,
@@ -461,7 +461,7 @@ extern_methods!(
         );
 
         /// A delegate for customizing Picture in Picture playback experience.
-        #[method(pictureInPictureDelegate)]
+        #[unsafe(method(pictureInPictureDelegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn pictureInPictureDelegate(
             &self,
@@ -469,7 +469,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`pictureInPictureDelegate`][Self::pictureInPictureDelegate].
-        #[method(setPictureInPictureDelegate:)]
+        #[unsafe(method(setPictureInPictureDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPictureInPictureDelegate(
             &self,
@@ -491,7 +491,7 @@ extern_protocol!(
         ///
         /// The delegate can implement this method to be notified when the AVPlayerView will enter full screen.
         #[optional]
-        #[method(playerViewWillEnterFullScreen:)]
+        #[unsafe(method(playerViewWillEnterFullScreen:))]
         #[unsafe(method_family = none)]
         unsafe fn playerViewWillEnterFullScreen(&self, player_view: &AVPlayerView);
 
@@ -501,7 +501,7 @@ extern_protocol!(
         ///
         /// The delegate can implement this method to be notified when the AVPlayerView did enter full screen.
         #[optional]
-        #[method(playerViewDidEnterFullScreen:)]
+        #[unsafe(method(playerViewDidEnterFullScreen:))]
         #[unsafe(method_family = none)]
         unsafe fn playerViewDidEnterFullScreen(&self, player_view: &AVPlayerView);
 
@@ -511,7 +511,7 @@ extern_protocol!(
         ///
         /// The delegate can implement this method to be notified when the AVPlayerView will exit full screen.
         #[optional]
-        #[method(playerViewWillExitFullScreen:)]
+        #[unsafe(method(playerViewWillExitFullScreen:))]
         #[unsafe(method_family = none)]
         unsafe fn playerViewWillExitFullScreen(&self, player_view: &AVPlayerView);
 
@@ -521,7 +521,7 @@ extern_protocol!(
         ///
         /// The delegate can implement this method to be notified when the AVPlayerView did exit full screen.
         #[optional]
-        #[method(playerViewDidExitFullScreen:)]
+        #[unsafe(method(playerViewDidExitFullScreen:))]
         #[unsafe(method_family = none)]
         unsafe fn playerViewDidExitFullScreen(&self, player_view: &AVPlayerView);
 
@@ -533,7 +533,7 @@ extern_protocol!(
         ///
         /// The delegate can implement this method to restore the user interface before exiting fullscreen.
         #[optional]
-        #[method(playerView:restoreUserInterfaceForFullScreenExitWithCompletionHandler:)]
+        #[unsafe(method(playerView:restoreUserInterfaceForFullScreenExitWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playerView_restoreUserInterfaceForFullScreenExitWithCompletionHandler(
             &self,
@@ -552,7 +552,7 @@ extern_protocol!(
         ///
         /// Delegate can implement this method to be notified when Picture in Picture will start.
         #[optional]
-        #[method(playerViewWillStartPictureInPicture:)]
+        #[unsafe(method(playerViewWillStartPictureInPicture:))]
         #[unsafe(method_family = none)]
         unsafe fn playerViewWillStartPictureInPicture(&self, player_view: &AVPlayerView);
 
@@ -562,7 +562,7 @@ extern_protocol!(
         ///
         /// Delegate can implement this method to be notified when Picture in Picture did start.
         #[optional]
-        #[method(playerViewDidStartPictureInPicture:)]
+        #[unsafe(method(playerViewDidStartPictureInPicture:))]
         #[unsafe(method_family = none)]
         unsafe fn playerViewDidStartPictureInPicture(&self, player_view: &AVPlayerView);
 
@@ -574,7 +574,7 @@ extern_protocol!(
         ///
         /// Delegate can implement this method to be notified when Picture in Picture failed to start.
         #[optional]
-        #[method(playerView:failedToStartPictureInPictureWithError:)]
+        #[unsafe(method(playerView:failedToStartPictureInPictureWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn playerView_failedToStartPictureInPictureWithError(
             &self,
@@ -588,7 +588,7 @@ extern_protocol!(
         ///
         /// Delegate can implement this method to be notified when Picture in Picture will stop.
         #[optional]
-        #[method(playerViewWillStopPictureInPicture:)]
+        #[unsafe(method(playerViewWillStopPictureInPicture:))]
         #[unsafe(method_family = none)]
         unsafe fn playerViewWillStopPictureInPicture(&self, player_view: &AVPlayerView);
 
@@ -598,7 +598,7 @@ extern_protocol!(
         ///
         /// Delegate can implement this method to be notified when Picture in Picture did stop.
         #[optional]
-        #[method(playerViewDidStopPictureInPicture:)]
+        #[unsafe(method(playerViewDidStopPictureInPicture:))]
         #[unsafe(method_family = none)]
         unsafe fn playerViewDidStopPictureInPicture(&self, player_view: &AVPlayerView);
 
@@ -610,7 +610,7 @@ extern_protocol!(
         ///
         /// Delegate can implement this method to restore the user interface before Picture in Picture stops.
         #[optional]
-        #[method(playerView:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:)]
+        #[unsafe(method(playerView:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playerView_restoreUserInterfaceForPictureInPictureStopWithCompletionHandler(
             &self,
@@ -624,7 +624,7 @@ extern_protocol!(
         ///
         /// Delegate can implement this method and return NO to prevent player view from automatically being miniaturized or losing focus when Picture in Picture starts.
         #[optional]
-        #[method(playerViewShouldAutomaticallyDismissAtPictureInPictureStart:)]
+        #[unsafe(method(playerViewShouldAutomaticallyDismissAtPictureInPictureStart:))]
         #[unsafe(method_family = none)]
         unsafe fn playerViewShouldAutomaticallyDismissAtPictureInPictureStart(
             &self,

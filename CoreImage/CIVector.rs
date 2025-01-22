@@ -30,7 +30,7 @@ unsafe impl NSSecureCoding for CIVector {}
 extern_methods!(
     unsafe impl CIVector {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(vectorWithValues:count:)]
+        #[unsafe(method(vectorWithValues:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn vectorWithValues_count(
             values: NonNull<CGFloat>,
@@ -38,22 +38,22 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(vectorWithX:)]
+        #[unsafe(method(vectorWithX:))]
         #[unsafe(method_family = none)]
         pub unsafe fn vectorWithX(x: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(vectorWithX:Y:)]
+        #[unsafe(method(vectorWithX:Y:))]
         #[unsafe(method_family = none)]
         pub unsafe fn vectorWithX_Y(x: CGFloat, y: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(vectorWithX:Y:Z:)]
+        #[unsafe(method(vectorWithX:Y:Z:))]
         #[unsafe(method_family = none)]
         pub unsafe fn vectorWithX_Y_Z(x: CGFloat, y: CGFloat, z: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(vectorWithX:Y:Z:W:)]
+        #[unsafe(method(vectorWithX:Y:Z:W:))]
         #[unsafe(method_family = none)]
         pub unsafe fn vectorWithX_Y_Z_W(
             x: CGFloat,
@@ -63,26 +63,26 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(vectorWithCGPoint:)]
+        #[unsafe(method(vectorWithCGPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn vectorWithCGPoint(p: CGPoint) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(vectorWithCGRect:)]
+        #[unsafe(method(vectorWithCGRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn vectorWithCGRect(r: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(vectorWithCGAffineTransform:)]
+        #[unsafe(method(vectorWithCGAffineTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn vectorWithCGAffineTransform(t: CGAffineTransform) -> Retained<Self>;
 
-        #[method(vectorWithString:)]
+        #[unsafe(method(vectorWithString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn vectorWithString(representation: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithValues:count:)]
+        #[unsafe(method(initWithValues:count:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithValues_count(
             this: Allocated<Self>,
@@ -91,17 +91,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithX:)]
+        #[unsafe(method(initWithX:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithX(this: Allocated<Self>, x: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithX:Y:)]
+        #[unsafe(method(initWithX:Y:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithX_Y(this: Allocated<Self>, x: CGFloat, y: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithX:Y:Z:)]
+        #[unsafe(method(initWithX:Y:Z:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithX_Y_Z(
             this: Allocated<Self>,
@@ -111,7 +111,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithX:Y:Z:W:)]
+        #[unsafe(method(initWithX:Y:Z:W:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithX_Y_Z_W(
             this: Allocated<Self>,
@@ -122,24 +122,24 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithCGPoint:)]
+        #[unsafe(method(initWithCGPoint:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCGPoint(this: Allocated<Self>, p: CGPoint) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithCGRect:)]
+        #[unsafe(method(initWithCGRect:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCGRect(this: Allocated<Self>, r: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithCGAffineTransform:)]
+        #[unsafe(method(initWithCGAffineTransform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCGAffineTransform(
             this: Allocated<Self>,
             r: CGAffineTransform,
         ) -> Retained<Self>;
 
-        #[method(initWithString:)]
+        #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithString(
             this: Allocated<Self>,
@@ -147,50 +147,50 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueAtIndex:)]
+        #[unsafe(method(valueAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueAtIndex(&self, index: usize) -> CGFloat;
 
-        #[method(count)]
+        #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> usize;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(X)]
+        #[unsafe(method(X))]
         #[unsafe(method_family = none)]
         pub unsafe fn X(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(Y)]
+        #[unsafe(method(Y))]
         #[unsafe(method_family = none)]
         pub unsafe fn Y(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(Z)]
+        #[unsafe(method(Z))]
         #[unsafe(method_family = none)]
         pub unsafe fn Z(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(W)]
+        #[unsafe(method(W))]
         #[unsafe(method_family = none)]
         pub unsafe fn W(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(CGPointValue)]
+        #[unsafe(method(CGPointValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn CGPointValue(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(CGRectValue)]
+        #[unsafe(method(CGRectValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn CGRectValue(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(CGAffineTransformValue)]
+        #[unsafe(method(CGAffineTransformValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn CGAffineTransformValue(&self) -> CGAffineTransform;
 
-        #[method(stringRepresentation)]
+        #[unsafe(method(stringRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringRepresentation(&self) -> Retained<NSString>;
     }
@@ -199,11 +199,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIVector {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -53,7 +53,7 @@ extern_methods!(
         ///
         /// Parameter `transform`: This matrix is an array of 3 floats.
         /// The default if no transform is specifed is BT.601/JPEG: {0.299f, 0.587f, 0.114f};
-        #[method(initWithDevice:thresholdValue:maximumValue:linearGrayColorTransform:)]
+        #[unsafe(method(initWithDevice:thresholdValue:maximumValue:linearGrayColorTransform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_thresholdValue_maximumValue_linearGrayColorTransform(
             this: Allocated<Self>,
@@ -76,7 +76,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -84,7 +84,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -92,17 +92,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The threshold value used to init the threshold filter
-        #[method(thresholdValue)]
+        #[unsafe(method(thresholdValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn thresholdValue(&self) -> c_float;
 
         /// The maximum value used to init the threshold filter
-        #[method(maximumValue)]
+        #[unsafe(method(maximumValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumValue(&self) -> c_float;
 
         /// The color transform used to init the threshold filter
-        #[method(transform)]
+        #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> NonNull<c_float>;
     }
@@ -120,7 +120,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -133,11 +133,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageThresholdBinary {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -188,7 +188,7 @@ extern_methods!(
         ///
         /// Parameter `transform`: This matrix is an array of 3 floats.
         /// The default if no transform is specifed is BT.601/JPEG: {0.299f, 0.587f, 0.114f};
-        #[method(initWithDevice:thresholdValue:maximumValue:linearGrayColorTransform:)]
+        #[unsafe(method(initWithDevice:thresholdValue:maximumValue:linearGrayColorTransform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_thresholdValue_maximumValue_linearGrayColorTransform(
             this: Allocated<Self>,
@@ -211,7 +211,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -219,7 +219,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -227,17 +227,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The threshold value used to init the threshold filter
-        #[method(thresholdValue)]
+        #[unsafe(method(thresholdValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn thresholdValue(&self) -> c_float;
 
         /// The maximum value used to init the threshold filter
-        #[method(maximumValue)]
+        #[unsafe(method(maximumValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumValue(&self) -> c_float;
 
         /// The color transform used to init the threshold filter
-        #[method(transform)]
+        #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> NonNull<c_float>;
     }
@@ -255,7 +255,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -268,11 +268,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageThresholdBinaryInverse {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -321,7 +321,7 @@ extern_methods!(
         ///
         /// Parameter `transform`: This matrix is an array of 3 floats.
         /// The default if no transform is specifed is BT.601/JPEG: {0.299f, 0.587f, 0.114f};
-        #[method(initWithDevice:thresholdValue:linearGrayColorTransform:)]
+        #[unsafe(method(initWithDevice:thresholdValue:linearGrayColorTransform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_thresholdValue_linearGrayColorTransform(
             this: Allocated<Self>,
@@ -343,7 +343,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -351,7 +351,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -359,12 +359,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The threshold value used to init the threshold filter
-        #[method(thresholdValue)]
+        #[unsafe(method(thresholdValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn thresholdValue(&self) -> c_float;
 
         /// The color transform used to init the threshold filter
-        #[method(transform)]
+        #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> NonNull<c_float>;
     }
@@ -382,7 +382,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -395,11 +395,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageThresholdTruncate {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -448,7 +448,7 @@ extern_methods!(
         ///
         /// Parameter `transform`: This matrix is an array of 3 floats.
         /// The default if no transform is specifed is BT.601/JPEG: {0.299f, 0.587f, 0.114f};
-        #[method(initWithDevice:thresholdValue:linearGrayColorTransform:)]
+        #[unsafe(method(initWithDevice:thresholdValue:linearGrayColorTransform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_thresholdValue_linearGrayColorTransform(
             this: Allocated<Self>,
@@ -457,7 +457,7 @@ extern_methods!(
             transform: *const c_float,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -477,7 +477,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -486,12 +486,12 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         /// The threshold value used to init the threshold filter
-        #[method(thresholdValue)]
+        #[unsafe(method(thresholdValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn thresholdValue(&self) -> c_float;
 
         /// The color transform used to init the threshold filter
-        #[method(transform)]
+        #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> NonNull<c_float>;
     }
@@ -509,7 +509,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -522,11 +522,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageThresholdToZero {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -575,7 +575,7 @@ extern_methods!(
         ///
         /// Parameter `transform`: This matrix is an array of 3 floats.
         /// The default if no transform is specifed is BT.601/JPEG: {0.299f, 0.587f, 0.114f};
-        #[method(initWithDevice:thresholdValue:linearGrayColorTransform:)]
+        #[unsafe(method(initWithDevice:thresholdValue:linearGrayColorTransform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_thresholdValue_linearGrayColorTransform(
             this: Allocated<Self>,
@@ -597,7 +597,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -605,7 +605,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -613,12 +613,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The threshold value used to init the threshold filter
-        #[method(thresholdValue)]
+        #[unsafe(method(thresholdValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn thresholdValue(&self) -> c_float;
 
         /// The color transform used to init the threshold filter
-        #[method(transform)]
+        #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> NonNull<c_float>;
     }
@@ -636,7 +636,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -649,11 +649,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageThresholdToZeroInverse {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -117,7 +117,7 @@ extern_methods!(
     #[cfg(feature = "CBManager")]
     unsafe impl CBCentralManager {
         /// The delegate object that will receive central events.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -125,7 +125,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -133,7 +133,7 @@ extern_methods!(
         );
 
         /// Whether or not the central is currently scanning.
-        #[method(isScanning)]
+        #[unsafe(method(isScanning))]
         #[unsafe(method_family = none)]
         pub unsafe fn isScanning(&self) -> bool;
 
@@ -141,11 +141,11 @@ extern_methods!(
         ///
         ///
         /// Returns a boolean value representing the support for the provided features.
-        #[method(supportsFeatures:)]
+        #[unsafe(method(supportsFeatures:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsFeatures(features: CBCentralManagerFeature) -> bool;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -173,7 +173,7 @@ extern_methods!(
         /// CBPeripheral
         /// </code>
         /// objects.
-        #[method(retrievePeripheralsWithIdentifiers:)]
+        #[unsafe(method(retrievePeripheralsWithIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retrievePeripheralsWithIdentifiers(
             &self,
@@ -197,7 +197,7 @@ extern_methods!(
         ///  
         ///
         /// ```
-        #[method(retrieveConnectedPeripheralsWithServices:)]
+        #[unsafe(method(retrieveConnectedPeripheralsWithServices:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retrieveConnectedPeripheralsWithServices(
             &self,
@@ -257,7 +257,7 @@ extern_methods!(
         /// See also: CBCentralManagerScanOptionAllowDuplicatesKey
         ///
         /// See also: CBCentralManagerScanOptionSolicitedServiceUUIDsKey
-        #[method(scanForPeripheralsWithServices:options:)]
+        #[unsafe(method(scanForPeripheralsWithServices:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanForPeripheralsWithServices_options(
             &self,
@@ -266,7 +266,7 @@ extern_methods!(
         );
 
         /// Stops scanning for peripherals.
-        #[method(stopScan)]
+        #[unsafe(method(stopScan))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopScan(&self);
 
@@ -303,7 +303,7 @@ extern_methods!(
         ///  
         ///
         /// ```
-        #[method(connectPeripheral:options:)]
+        #[unsafe(method(connectPeripheral:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectPeripheral_options(
             &self,
@@ -335,7 +335,7 @@ extern_methods!(
         ///
         ///
         /// See: centralManager:didDisconnectPeripheral:error:
-        #[method(cancelPeripheralConnection:)]
+        #[unsafe(method(cancelPeripheralConnection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelPeripheralConnection(&self, peripheral: &CBPeripheral);
 
@@ -355,7 +355,7 @@ extern_methods!(
         ///  
         ///
         /// ```
-        #[method(registerForConnectionEventsWithOptions:)]
+        #[unsafe(method(registerForConnectionEventsWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForConnectionEventsWithOptions(
             &self,
@@ -368,7 +368,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CBManager")]
     unsafe impl CBCentralManager {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -413,7 +413,7 @@ extern_protocol!(
         ///
         ///
         /// See: state
-        #[method(centralManagerDidUpdateState:)]
+        #[unsafe(method(centralManagerDidUpdateState:))]
         #[unsafe(method_family = none)]
         unsafe fn centralManagerDidUpdateState(&self, central: &CBCentralManager);
 
@@ -438,7 +438,7 @@ extern_protocol!(
         ///
         /// See also: CBCentralManagerRestoredStateScanOptionsKey;
         #[optional]
-        #[method(centralManager:willRestoreState:)]
+        #[unsafe(method(centralManager:willRestoreState:))]
         #[unsafe(method_family = none)]
         unsafe fn centralManager_willRestoreState(
             &self,
@@ -494,7 +494,7 @@ extern_protocol!(
         ///
         /// ```
         #[optional]
-        #[method(centralManager:didDiscoverPeripheral:advertisementData:RSSI:)]
+        #[unsafe(method(centralManager:didDiscoverPeripheral:advertisementData:RSSI:))]
         #[unsafe(method_family = none)]
         unsafe fn centralManager_didDiscoverPeripheral_advertisementData_RSSI(
             &self,
@@ -523,7 +523,7 @@ extern_protocol!(
         ///
         /// ```
         #[optional]
-        #[method(centralManager:didConnectPeripheral:)]
+        #[unsafe(method(centralManager:didConnectPeripheral:))]
         #[unsafe(method_family = none)]
         unsafe fn centralManager_didConnectPeripheral(
             &self,
@@ -553,7 +553,7 @@ extern_protocol!(
         ///
         /// ```
         #[optional]
-        #[method(centralManager:didFailToConnectPeripheral:error:)]
+        #[unsafe(method(centralManager:didFailToConnectPeripheral:error:))]
         #[unsafe(method_family = none)]
         unsafe fn centralManager_didFailToConnectPeripheral_error(
             &self,
@@ -585,7 +585,7 @@ extern_protocol!(
         ///
         /// ```
         #[optional]
-        #[method(centralManager:didDisconnectPeripheral:error:)]
+        #[unsafe(method(centralManager:didDisconnectPeripheral:error:))]
         #[unsafe(method_family = none)]
         unsafe fn centralManager_didDisconnectPeripheral_error(
             &self,
@@ -629,7 +629,7 @@ extern_protocol!(
         ///
         /// ```
         #[optional]
-        #[method(centralManager:didDisconnectPeripheral:timestamp:isReconnecting:error:)]
+        #[unsafe(method(centralManager:didDisconnectPeripheral:timestamp:isReconnecting:error:))]
         #[unsafe(method_family = none)]
         unsafe fn centralManager_didDisconnectPeripheral_timestamp_isReconnecting_error(
             &self,
@@ -665,7 +665,7 @@ extern_protocol!(
         ///
         /// ```
         #[optional]
-        #[method(centralManager:connectionEventDidOccur:forPeripheral:)]
+        #[unsafe(method(centralManager:connectionEventDidOccur:forPeripheral:))]
         #[unsafe(method_family = none)]
         unsafe fn centralManager_connectionEventDidOccur_forPeripheral(
             &self,
@@ -693,7 +693,7 @@ extern_protocol!(
         ///
         /// ```
         #[optional]
-        #[method(centralManager:didUpdateANCSAuthorizationForPeripheral:)]
+        #[unsafe(method(centralManager:didUpdateANCSAuthorizationForPeripheral:))]
         #[unsafe(method_family = none)]
         unsafe fn centralManager_didUpdateANCSAuthorizationForPeripheral(
             &self,

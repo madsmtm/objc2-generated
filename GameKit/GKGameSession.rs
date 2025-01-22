@@ -60,52 +60,52 @@ unsafe impl NSObjectProtocol for GKGameSession {}
 extern_methods!(
     unsafe impl GKGameSession {
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKCloudPlayer"))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(owner)]
+        #[unsafe(method(owner))]
         #[unsafe(method_family = none)]
         pub unsafe fn owner(&self) -> Retained<GKCloudPlayer>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKCloudPlayer"))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(players)]
+        #[unsafe(method(players))]
         #[unsafe(method_family = none)]
         pub unsafe fn players(&self) -> Retained<NSArray<GKCloudPlayer>>;
 
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(lastModifiedDate)]
+        #[unsafe(method(lastModifiedDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastModifiedDate(&self) -> Retained<NSDate>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKCloudPlayer"))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(lastModifiedPlayer)]
+        #[unsafe(method(lastModifiedPlayer))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastModifiedPlayer(&self) -> Retained<GKCloudPlayer>;
 
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(maxNumberOfConnectedPlayers)]
+        #[unsafe(method(maxNumberOfConnectedPlayers))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxNumberOfConnectedPlayers(&self) -> NSInteger;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKCloudPlayer"))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(badgedPlayers)]
+        #[unsafe(method(badgedPlayers))]
         #[unsafe(method_family = none)]
         pub unsafe fn badgedPlayers(&self) -> Retained<NSArray<GKCloudPlayer>>;
 
         #[cfg(feature = "block2")]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:)]
+        #[unsafe(method(createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createSessionInContainer_withTitle_maxConnectedPlayers_completionHandler(
             container_name: Option<&NSString>,
@@ -116,7 +116,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(loadSessionsInContainer:completionHandler:)]
+        #[unsafe(method(loadSessionsInContainer:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSessionsInContainer_completionHandler(
             container_name: Option<&NSString>,
@@ -125,7 +125,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(loadSessionWithIdentifier:completionHandler:)]
+        #[unsafe(method(loadSessionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSessionWithIdentifier_completionHandler(
             identifier: &NSString,
@@ -134,7 +134,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(removeSessionWithIdentifier:completionHandler:)]
+        #[unsafe(method(removeSessionWithIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeSessionWithIdentifier_completionHandler(
             identifier: &NSString,
@@ -143,7 +143,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(getShareURLWithCompletionHandler:)]
+        #[unsafe(method(getShareURLWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getShareURLWithCompletionHandler(
             &self,
@@ -152,7 +152,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(loadDataWithCompletionHandler:)]
+        #[unsafe(method(loadDataWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadDataWithCompletionHandler(
             &self,
@@ -161,7 +161,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(saveData:completionHandler:)]
+        #[unsafe(method(saveData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveData_completionHandler(
             &self,
@@ -171,7 +171,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(setConnectionState:completionHandler:)]
+        #[unsafe(method(setConnectionState:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConnectionState_completionHandler(
             &self,
@@ -181,7 +181,7 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKCloudPlayer"))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(playersWithConnectionState:)]
+        #[unsafe(method(playersWithConnectionState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playersWithConnectionState(
             &self,
@@ -190,7 +190,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(sendData:withTransportType:completionHandler:)]
+        #[unsafe(method(sendData:withTransportType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendData_withTransportType_completionHandler(
             &self,
@@ -205,7 +205,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:)]
+        #[unsafe(method(sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendMessageWithLocalizedFormatKey_arguments_data_toPlayers_badgePlayers_completionHandler(
             &self,
@@ -223,7 +223,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method(clearBadgeForPlayers:completionHandler:)]
+        #[unsafe(method(clearBadgeForPlayers:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearBadgeForPlayers_completionHandler(
             &self,
@@ -236,11 +236,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKGameSession {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

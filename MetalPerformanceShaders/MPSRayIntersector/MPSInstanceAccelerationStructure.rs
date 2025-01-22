@@ -213,7 +213,7 @@ extern_methods!(
         /// structure group. If a polygon acceleration structure is rebuilt or refit, the instance
         /// acceleration structure must subsequently be rebuilt or refit.
         #[deprecated]
-        #[method(accelerationStructures)]
+        #[unsafe(method(accelerationStructures))]
         #[unsafe(method_family = none)]
         pub unsafe fn accelerationStructures(
             &self,
@@ -222,7 +222,7 @@ extern_methods!(
         #[cfg(feature = "MPSPolygonAccelerationStructure")]
         /// Setter for [`accelerationStructures`][Self::accelerationStructures].
         #[deprecated]
-        #[method(setAccelerationStructures:)]
+        #[unsafe(method(setAccelerationStructures:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccelerationStructures(
             &self,
@@ -232,13 +232,13 @@ extern_methods!(
         /// Buffer containing the 32 bit unsigned integer index into the acceleration structure array
         /// for each instance
         #[deprecated]
-        #[method(instanceBuffer)]
+        #[unsafe(method(instanceBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn instanceBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`instanceBuffer`][Self::instanceBuffer].
         #[deprecated]
-        #[method(setInstanceBuffer:)]
+        #[unsafe(method(setInstanceBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstanceBuffer(
             &self,
@@ -248,25 +248,25 @@ extern_methods!(
         /// Offset, in bytes, into the instance buffer. Defaults to 0 bytes. Must be aligned to 4
         /// bytes.
         #[deprecated]
-        #[method(instanceBufferOffset)]
+        #[unsafe(method(instanceBufferOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn instanceBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`instanceBufferOffset`][Self::instanceBufferOffset].
         #[deprecated]
-        #[method(setInstanceBufferOffset:)]
+        #[unsafe(method(setInstanceBufferOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstanceBufferOffset(&self, instance_buffer_offset: NSUInteger);
 
         /// Buffer containing one column major matrix_float4x4 transformation matrix per instance
         #[deprecated]
-        #[method(transformBuffer)]
+        #[unsafe(method(transformBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn transformBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`transformBuffer`][Self::transformBuffer].
         #[deprecated]
-        #[method(setTransformBuffer:)]
+        #[unsafe(method(setTransformBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransformBuffer(
             &self,
@@ -276,63 +276,63 @@ extern_methods!(
         /// Offset, in bytes, into the transform buffer. Defaults to 0 bytes. Must be aligned to the
         /// stride of the transform type.
         #[deprecated]
-        #[method(transformBufferOffset)]
+        #[unsafe(method(transformBufferOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn transformBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`transformBufferOffset`][Self::transformBufferOffset].
         #[deprecated]
-        #[method(setTransformBufferOffset:)]
+        #[unsafe(method(setTransformBufferOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransformBufferOffset(&self, transform_buffer_offset: NSUInteger);
 
         /// Instance transform type. Defaults to MPSTransformTypeFloat4x4. Changes to this property
         /// require rebuilding the acceleration structure.
         #[deprecated]
-        #[method(transformType)]
+        #[unsafe(method(transformType))]
         #[unsafe(method_family = none)]
         pub unsafe fn transformType(&self) -> MPSTransformType;
 
         /// Setter for [`transformType`][Self::transformType].
         #[deprecated]
-        #[method(setTransformType:)]
+        #[unsafe(method(setTransformType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransformType(&self, transform_type: MPSTransformType);
 
         /// Mask buffer containing one uint32_t mask per instance. May be nil.
         #[deprecated]
-        #[method(maskBuffer)]
+        #[unsafe(method(maskBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn maskBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`maskBuffer`][Self::maskBuffer].
         #[deprecated]
-        #[method(setMaskBuffer:)]
+        #[unsafe(method(setMaskBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaskBuffer(&self, mask_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         /// Offset, in bytes, into the mask buffer. Defaults to 0 bytes. Must be aligned to 4 bytes.
         #[deprecated]
-        #[method(maskBufferOffset)]
+        #[unsafe(method(maskBufferOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn maskBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`maskBufferOffset`][Self::maskBufferOffset].
         #[deprecated]
-        #[method(setMaskBufferOffset:)]
+        #[unsafe(method(setMaskBufferOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaskBufferOffset(&self, mask_buffer_offset: NSUInteger);
 
         /// Number of instances. Changes to this property require rebuilding the acceleration
         /// structure.
         #[deprecated]
-        #[method(instanceCount)]
+        #[unsafe(method(instanceCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn instanceCount(&self) -> NSUInteger;
 
         /// Setter for [`instanceCount`][Self::instanceCount].
         #[deprecated]
-        #[method(setInstanceCount:)]
+        #[unsafe(method(setInstanceCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstanceCount(&self, instance_count: NSUInteger);
     }
@@ -347,13 +347,13 @@ extern_methods!(
     ))]
     unsafe impl MPSInstanceAccelerationStructure {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the acceleration structure with a Metal device
         #[deprecated]
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -364,7 +364,7 @@ extern_methods!(
         /// properties such as the vertex buffer, instance buffer, etc. are set to nil. Encode and decode
         /// these buffers along with the acceleration structure instead.
         #[deprecated]
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -380,7 +380,7 @@ extern_methods!(
         /// The Metal device is determined from the acceleration structure group. All
         /// acceleration structures in the instance hierarchy must share the same group.
         #[deprecated]
-        #[method(initWithGroup:)]
+        #[unsafe(method(initWithGroup:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithGroup(
             this: Allocated<Self>,
@@ -394,7 +394,7 @@ extern_methods!(
         /// vertex buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with
         /// the acceleration structure instead.
         #[deprecated]
-        #[method(initWithCoder:group:)]
+        #[unsafe(method(initWithCoder:group:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_group(
             this: Allocated<Self>,
@@ -420,7 +420,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -437,7 +437,7 @@ extern_methods!(
         feature = "MPSKernel"
     ))]
     unsafe impl MPSInstanceAccelerationStructure {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

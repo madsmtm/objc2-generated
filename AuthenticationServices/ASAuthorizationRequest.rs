@@ -29,15 +29,15 @@ extern_methods!(
     unsafe impl ASAuthorizationRequest {
         #[cfg(feature = "ASAuthorizationProvider")]
         /// The provider object that is being used to service this request
-        #[method(provider)]
+        #[unsafe(method(provider))]
         #[unsafe(method_family = none)]
         pub unsafe fn provider(&self) -> Retained<ProtocolObject<dyn ASAuthorizationProvider>>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

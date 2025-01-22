@@ -13,21 +13,21 @@ extern_protocol!(
         #[cfg(feature = "BADownload")]
         /// A download has started.
         #[optional]
-        #[method(downloadDidBegin:)]
+        #[unsafe(method(downloadDidBegin:))]
         #[unsafe(method_family = none)]
         unsafe fn downloadDidBegin(&self, download: &BADownload);
 
         #[cfg(feature = "BADownload")]
         /// A download has paused.
         #[optional]
-        #[method(downloadDidPause:)]
+        #[unsafe(method(downloadDidPause:))]
         #[unsafe(method_family = none)]
         unsafe fn downloadDidPause(&self, download: &BADownload);
 
         #[cfg(feature = "BADownload")]
         /// A download has made progress in bytes / total so far / total expected.
         #[optional]
-        #[method(download:didWriteBytes:totalBytesWritten:totalBytesExpectedToWrite:)]
+        #[unsafe(method(download:didWriteBytes:totalBytesWritten:totalBytesExpectedToWrite:))]
         #[unsafe(method_family = none)]
         unsafe fn download_didWriteBytes_totalBytesWritten_totalBytesExpectedToWrite(
             &self,
@@ -40,7 +40,7 @@ extern_protocol!(
         #[cfg(all(feature = "BADownload", feature = "block2"))]
         /// A download has tried to start but gotten a challenge quest.
         #[optional]
-        #[method(download:didReceiveChallenge:completionHandler:)]
+        #[unsafe(method(download:didReceiveChallenge:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn download_didReceiveChallenge_completionHandler(
             &self,
@@ -54,7 +54,7 @@ extern_protocol!(
         #[cfg(feature = "BADownload")]
         /// A download has failed with a specific error.
         #[optional]
-        #[method(download:failedWithError:)]
+        #[unsafe(method(download:failedWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn download_failedWithError(&self, download: &BADownload, error: &NSError);
 
@@ -69,7 +69,7 @@ extern_protocol!(
         /// Warning: The file is marked by the system for deletion when the device becomes low on storage. Avoid copying or modifying
         /// the file, as this may remove the system's ability to delete the file.
         #[optional]
-        #[method(download:finishedWithFileURL:)]
+        #[unsafe(method(download:finishedWithFileURL:))]
         #[unsafe(method_family = none)]
         unsafe fn download_finishedWithFileURL(&self, download: &BADownload, file_url: &NSURL);
     }
@@ -86,21 +86,21 @@ unsafe impl NSObjectProtocol for BADownloadManager {}
 
 extern_methods!(
     unsafe impl BADownloadManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Gets the singleton downloader object.
-        #[method(sharedManager)]
+        #[unsafe(method(sharedManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedManager() -> Retained<BADownloadManager>;
 
         /// A object confroming to BADownloadManagerDelegate to get notified when actions occur.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -108,7 +108,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -127,7 +127,7 @@ extern_methods!(
         /// Warning: This method can block and should not be called from the main thread.
         ///
         /// See also: BADownloadManager:fetchCurrentDownloadsWithCompletionHandler
-        #[method(fetchCurrentDownloads:_)]
+        #[unsafe(method(fetchCurrentDownloads:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchCurrentDownloads(
             &self,
@@ -139,7 +139,7 @@ extern_methods!(
         /// Fetches the current list of scheduled or in-flight downloads queued by your application or extension.
         ///
         /// Parameter `completionHandler`: A block to recieve the currently scheduled or in-flight downloads. The block is called on the same queue as all the other completion blocks in the class.
-        #[method(fetchCurrentDownloadsWithCompletionHandler:)]
+        #[unsafe(method(fetchCurrentDownloadsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchCurrentDownloadsWithCompletionHandler(
             &self,
@@ -159,7 +159,7 @@ extern_methods!(
         /// Returns: YES if
         /// `download`was scheduled. NO and
         /// `error`set if the download could not be scheduled.
-        #[method(scheduleDownload:error:_)]
+        #[unsafe(method(scheduleDownload:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleDownload_error(
             &self,
@@ -174,7 +174,7 @@ extern_methods!(
         ///
         /// Parameter `performHandler`: A block that will be executed once exclusive control is acquired.
         /// If an error is non-nil then a problem occurred acquiring exclusive access.
-        #[method(performWithExclusiveControl:)]
+        #[unsafe(method(performWithExclusiveControl:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performWithExclusiveControl(
             &self,
@@ -191,7 +191,7 @@ extern_methods!(
         ///
         /// Parameter `performHandler`: A block that will be executed once exclusive control is acquired.
         /// If an error is non-nil then a problem occurred acquiring exclusive access.
-        #[method(performWithExclusiveControlBeforeDate:performHandler:)]
+        #[unsafe(method(performWithExclusiveControlBeforeDate:performHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performWithExclusiveControlBeforeDate_performHandler(
             &self,
@@ -207,7 +207,7 @@ extern_methods!(
         /// the application and not the download extension. If this API is called from the download extension, NO will be returned along with a NSError with the settings
         /// BAErrorDomain : BAErrorCodeCallFromExtensionNotAllowed. If this API is called from a app while it is in the background, NO will be returned along with a NSError
         /// with the settings BAErrorDomain : BAErrorCodeCallFromInactiveProcessNotAllowed.
-        #[method(startForegroundDownload:error:_)]
+        #[unsafe(method(startForegroundDownload:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn startForegroundDownload_error(
             &self,
@@ -222,7 +222,7 @@ extern_methods!(
         ///
         /// Returns: YES if the download is canceled. NO if the download could not be canceled,
         /// `error`will be set with a reason why.
-        #[method(cancelDownload:error:_)]
+        #[unsafe(method(cancelDownload:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelDownload_error(
             &self,

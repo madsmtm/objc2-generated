@@ -47,7 +47,7 @@ extern_methods!(
         /// The returned AVAudioUnit instance normally will be of a subclass (AVAudioUnitEffect,
         /// AVAudioUnitGenerator, AVAudioUnitMIDIInstrument, or AVAudioUnitTimeEffect), selected
         /// according to the component's type.
-        #[method(instantiateWithComponentDescription:options:completionHandler:)]
+        #[unsafe(method(instantiateWithComponentDescription:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateWithComponentDescription_options_completionHandler(
             audio_component_description: AudioComponentDescription,
@@ -62,7 +62,7 @@ extern_methods!(
         /// Parameter `outError`: A pointer to a NSError object
         ///
         /// If the .aupreset file cannot be successfully loaded, an error is returned.
-        #[method(loadAudioUnitPresetAtURL:error:_)]
+        #[unsafe(method(loadAudioUnitPresetAtURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAudioUnitPresetAtURL_error(
             &self,
@@ -72,7 +72,7 @@ extern_methods!(
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
         /// AudioComponentDescription of the underlying audio unit.
-        #[method(audioComponentDescription)]
+        #[unsafe(method(audioComponentDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioComponentDescription(&self) -> AudioComponentDescription;
 
@@ -86,7 +86,7 @@ extern_methods!(
         /// No operations that may conflict with state maintained by the engine should be performed
         /// directly on the audio unit. These include changing initialization state, stream formats,
         /// channel layouts or connections to other audio units.
-        #[method(audioUnit)]
+        #[unsafe(method(audioUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioUnit(&self) -> AudioUnit;
 
@@ -101,22 +101,22 @@ extern_methods!(
         /// As with the audioUnit property, no operations that may conflict with state maintained by the
         /// engine should be performed directly on the audio unit. These include changing initialization
         /// state, stream formats, channel layouts or connections to other audio units.
-        #[method(AUAudioUnit)]
+        #[unsafe(method(AUAudioUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn AUAudioUnit(&self) -> Retained<AUAudioUnit>;
 
         /// Name of the audio unit.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Manufacturer name of the audio unit.
-        #[method(manufacturerName)]
+        #[unsafe(method(manufacturerName))]
         #[unsafe(method_family = none)]
         pub unsafe fn manufacturerName(&self) -> Retained<NSString>;
 
         /// Version number of the audio unit.
-        #[method(version)]
+        #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> NSUInteger;
     }
@@ -126,11 +126,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioUnit {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

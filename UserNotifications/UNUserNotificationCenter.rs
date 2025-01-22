@@ -59,7 +59,7 @@ unsafe impl NSObjectProtocol for UNUserNotificationCenter {}
 
 extern_methods!(
     unsafe impl UNUserNotificationCenter {
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -67,27 +67,27 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UNUserNotificationCenterDelegate>>,
         );
 
-        #[method(supportsContentExtensions)]
+        #[unsafe(method(supportsContentExtensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsContentExtensions(&self) -> bool;
 
-        #[method(currentNotificationCenter)]
+        #[unsafe(method(currentNotificationCenter))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentNotificationCenter() -> Retained<UNUserNotificationCenter>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method(requestAuthorizationWithOptions:completionHandler:)]
+        #[unsafe(method(requestAuthorizationWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationWithOptions_completionHandler(
             &self,
@@ -96,12 +96,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "UNNotificationCategory")]
-        #[method(setNotificationCategories:)]
+        #[unsafe(method(setNotificationCategories:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotificationCategories(&self, categories: &NSSet<UNNotificationCategory>);
 
         #[cfg(all(feature = "UNNotificationCategory", feature = "block2"))]
-        #[method(getNotificationCategoriesWithCompletionHandler:)]
+        #[unsafe(method(getNotificationCategoriesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getNotificationCategoriesWithCompletionHandler(
             &self,
@@ -109,7 +109,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UNNotificationSettings", feature = "block2"))]
-        #[method(getNotificationSettingsWithCompletionHandler:)]
+        #[unsafe(method(getNotificationSettingsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getNotificationSettingsWithCompletionHandler(
             &self,
@@ -117,7 +117,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UNNotificationRequest", feature = "block2"))]
-        #[method(addNotificationRequest:withCompletionHandler:)]
+        #[unsafe(method(addNotificationRequest:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addNotificationRequest_withCompletionHandler(
             &self,
@@ -126,45 +126,45 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UNNotificationRequest", feature = "block2"))]
-        #[method(getPendingNotificationRequestsWithCompletionHandler:)]
+        #[unsafe(method(getPendingNotificationRequestsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPendingNotificationRequestsWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<UNNotificationRequest>>)>,
         );
 
-        #[method(removePendingNotificationRequestsWithIdentifiers:)]
+        #[unsafe(method(removePendingNotificationRequestsWithIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removePendingNotificationRequestsWithIdentifiers(
             &self,
             identifiers: &NSArray<NSString>,
         );
 
-        #[method(removeAllPendingNotificationRequests)]
+        #[unsafe(method(removeAllPendingNotificationRequests))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllPendingNotificationRequests(&self);
 
         #[cfg(all(feature = "UNNotification", feature = "block2"))]
-        #[method(getDeliveredNotificationsWithCompletionHandler:)]
+        #[unsafe(method(getDeliveredNotificationsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getDeliveredNotificationsWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<UNNotification>>)>,
         );
 
-        #[method(removeDeliveredNotificationsWithIdentifiers:)]
+        #[unsafe(method(removeDeliveredNotificationsWithIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeDeliveredNotificationsWithIdentifiers(
             &self,
             identifiers: &NSArray<NSString>,
         );
 
-        #[method(removeAllDeliveredNotifications)]
+        #[unsafe(method(removeAllDeliveredNotifications))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllDeliveredNotifications(&self);
 
         #[cfg(feature = "block2")]
-        #[method(setBadgeCount:withCompletionHandler:)]
+        #[unsafe(method(setBadgeCount:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadgeCount_withCompletionHandler(
             &self,
@@ -177,7 +177,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNUserNotificationCenter {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -221,7 +221,7 @@ extern_protocol!(
     pub unsafe trait UNUserNotificationCenterDelegate: NSObjectProtocol {
         #[cfg(all(feature = "UNNotification", feature = "block2"))]
         #[optional]
-        #[method(userNotificationCenter:willPresentNotification:withCompletionHandler:)]
+        #[unsafe(method(userNotificationCenter:willPresentNotification:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn userNotificationCenter_willPresentNotification_withCompletionHandler(
             &self,
@@ -232,7 +232,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UNNotificationResponse", feature = "block2"))]
         #[optional]
-        #[method(userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:)]
+        #[unsafe(method(userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn userNotificationCenter_didReceiveNotificationResponse_withCompletionHandler(
             &self,
@@ -243,7 +243,7 @@ extern_protocol!(
 
         #[cfg(feature = "UNNotification")]
         #[optional]
-        #[method(userNotificationCenter:openSettingsForNotification:)]
+        #[unsafe(method(userNotificationCenter:openSettingsForNotification:))]
         #[unsafe(method_family = none)]
         unsafe fn userNotificationCenter_openSettingsForNotification(
             &self,

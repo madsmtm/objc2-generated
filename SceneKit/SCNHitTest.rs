@@ -108,54 +108,54 @@ extern_methods!(
     unsafe impl SCNHitTestResult {
         #[cfg(feature = "SCNNode")]
         /// The hit node.
-        #[method(node)]
+        #[unsafe(method(node))]
         #[unsafe(method_family = none)]
         pub unsafe fn node(&self) -> Retained<SCNNode>;
 
         /// Index of the hit geometry element.
-        #[method(geometryIndex)]
+        #[unsafe(method(geometryIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryIndex(&self) -> NSInteger;
 
         /// Index of the hit primitive of the geometry element.
-        #[method(faceIndex)]
+        #[unsafe(method(faceIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn faceIndex(&self) -> NSInteger;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Intersection point in the node's local coordinate system.
-        #[method(localCoordinates)]
+        #[unsafe(method(localCoordinates))]
         #[unsafe(method_family = none)]
         pub unsafe fn localCoordinates(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Intersection point in the world coordinate system.
-        #[method(worldCoordinates)]
+        #[unsafe(method(worldCoordinates))]
         #[unsafe(method_family = none)]
         pub unsafe fn worldCoordinates(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Intersection normal in the node's local coordinate system.
-        #[method(localNormal)]
+        #[unsafe(method(localNormal))]
         #[unsafe(method_family = none)]
         pub unsafe fn localNormal(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Intersection normal in the world coordinate system.
-        #[method(worldNormal)]
+        #[unsafe(method(worldNormal))]
         #[unsafe(method_family = none)]
         pub unsafe fn worldNormal(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// World transform of the hit node.
-        #[method(modelTransform)]
+        #[unsafe(method(modelTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelTransform(&self) -> SCNMatrix4;
 
         #[cfg(feature = "SCNNode")]
         /// The hit bone. Only available if the node hit has a SCNSkinner attached.
-        #[method(boneNode)]
+        #[unsafe(method(boneNode))]
         #[unsafe(method_family = none)]
         pub unsafe fn boneNode(&self) -> Option<Retained<SCNNode>>;
 
@@ -163,7 +163,7 @@ extern_methods!(
         /// Returns the texture coordinates at the point of intersection, for a given mapping channel.
         ///
         /// Parameter `channel`: The texture coordinates source index of the geometry to use. The channel must exists on the geometry otherwise {0,0} will be returned.
-        #[method(textureCoordinatesWithMappingChannel:)]
+        #[unsafe(method(textureCoordinatesWithMappingChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureCoordinatesWithMappingChannel(&self, channel: NSInteger) -> CGPoint;
     }
@@ -172,11 +172,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNHitTestResult {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -33,24 +33,24 @@ extern_methods!(
         /// `maxScore.`
         /// Should be between zero and
         /// `maxScore`[0.0,maxScore].
-        #[method(score)]
+        #[unsafe(method(score))]
         #[unsafe(method_family = none)]
         pub unsafe fn score(&self) -> c_double;
 
         /// Setter for [`score`][Self::score].
-        #[method(setScore:)]
+        #[unsafe(method(setScore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScore(&self, score: c_double);
 
         /// Total score possible.
         ///
         /// Must be greater than zero.
-        #[method(maxScore)]
+        #[unsafe(method(maxScore))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxScore(&self) -> c_double;
 
         /// Setter for [`maxScore`][Self::maxScore].
-        #[method(setMaxScore:)]
+        #[unsafe(method(setMaxScore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxScore(&self, max_score: c_double);
 
@@ -64,7 +64,7 @@ extern_methods!(
         /// Parameter `score`: The score the user received.
         ///
         /// Parameter `maxScore`: The maximum score possible.
-        #[method(initWithIdentifier:title:score:maxScore:)]
+        #[unsafe(method(initWithIdentifier:title:score:maxScore:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_title_score_maxScore(
             this: Allocated<Self>,
@@ -80,11 +80,11 @@ extern_methods!(
     /// Methods declared on superclass `CLSActivityItem`
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
     unsafe impl CLSScoreItem {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

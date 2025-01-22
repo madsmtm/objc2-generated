@@ -27,11 +27,11 @@ unsafe impl NSObjectProtocol for NSController {}
 
 extern_methods!(
     unsafe impl NSController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -39,24 +39,24 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSKeyValueBinding")]
-        #[method(objectDidBeginEditing:)]
+        #[unsafe(method(objectDidBeginEditing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectDidBeginEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
 
         #[cfg(feature = "NSKeyValueBinding")]
-        #[method(objectDidEndEditing:)]
+        #[unsafe(method(objectDidEndEditing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectDidEndEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
 
-        #[method(discardEditing)]
+        #[unsafe(method(discardEditing))]
         #[unsafe(method_family = none)]
         pub unsafe fn discardEditing(&self);
 
-        #[method(commitEditing)]
+        #[unsafe(method(commitEditing))]
         #[unsafe(method_family = none)]
         pub unsafe fn commitEditing(&self) -> bool;
 
-        #[method(commitEditingWithDelegate:didCommitSelector:contextInfo:)]
+        #[unsafe(method(commitEditingWithDelegate:didCommitSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
             &self,
@@ -65,7 +65,7 @@ extern_methods!(
             context_info: *mut c_void,
         );
 
-        #[method(isEditing)]
+        #[unsafe(method(isEditing))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEditing(&self) -> bool;
     }
@@ -74,7 +74,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -54,7 +54,7 @@ extern_methods!(
         /// Pass this descriptor to the keysToFetch of the
         /// `CNContactFetchRequest`if you want to display the contact in a
         /// `CNContactViewController.`
-        #[method(descriptorForRequiredKeys)]
+        #[unsafe(method(descriptorForRequiredKeys))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorForRequiredKeys(
             mtm: MainThreadMarker,
@@ -66,13 +66,13 @@ extern_methods!(
         ///
         /// When
         /// `contact`is nil, displays an empty selection state.
-        #[method(contact)]
+        #[unsafe(method(contact))]
         #[unsafe(method_family = none)]
         pub unsafe fn contact(&self) -> Option<Retained<CNContact>>;
 
         #[cfg(feature = "objc2-contacts")]
         /// Setter for [`contact`][Self::contact].
-        #[method(setContact:)]
+        #[unsafe(method(setContact:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContact(&self, contact: Option<&CNContact>);
     }
@@ -83,7 +83,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl CNContactViewController {
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -91,7 +91,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -105,7 +105,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl CNContactViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -116,7 +116,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl CNContactViewController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

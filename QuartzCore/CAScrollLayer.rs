@@ -37,21 +37,21 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAScrollLayer {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(scrollToPoint:)]
+        #[unsafe(method(scrollToPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollToPoint(&self, p: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(scrollToRect:)]
+        #[unsafe(method(scrollToRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollToRect(&self, r: CGRect);
 
-        #[method(scrollMode)]
+        #[unsafe(method(scrollMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollMode(&self) -> Retained<CAScrollLayerScrollMode>;
 
         /// Setter for [`scrollMode`][Self::scrollMode].
-        #[method(setScrollMode:)]
+        #[unsafe(method(setScrollMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScrollMode(&self, scroll_mode: &CAScrollLayerScrollMode);
     }
@@ -62,15 +62,15 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAScrollLayer {
         /// Layer creation and initialization. *
-        #[method(layer)]
+        #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithLayer:)]
+        #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
@@ -80,7 +80,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CAScrollLayer {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -91,17 +91,17 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CALayer {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(scrollPoint:)]
+        #[unsafe(method(scrollPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollPoint(&self, p: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(scrollRectToVisible:)]
+        #[unsafe(method(scrollRectToVisible:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollRectToVisible(&self, r: CGRect);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(visibleRect)]
+        #[unsafe(method(visibleRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn visibleRect(&self) -> CGRect;
     }

@@ -339,7 +339,7 @@ extern_methods!(
         /// available, and `false` when they aren’t. Writing Tools support might
         /// be unavailable because of device constraints or because the system isn’t
         /// ready to process Writing Tools requests.
-        #[method(isWritingToolsAvailable)]
+        #[unsafe(method(isWritingToolsAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isWritingToolsAvailable(mtm: MainThreadMarker) -> bool;
 
@@ -354,7 +354,7 @@ extern_methods!(
         /// Create the coordinator object during your view’s initialization, and assign
         /// the object to your view. Assign the coordinator to the ``NSView/writingToolsCoordinator``
         /// property of your view.
-        #[method(initWithDelegate:)]
+        #[unsafe(method(initWithDelegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
@@ -367,7 +367,7 @@ extern_methods!(
         /// object. The object must adopt the ``NSWritingToolsCoordinator/Delegate``
         /// protocol, and be capable of modifying your view’s text storage and
         /// refreshing the view’s layout and appearance.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -380,7 +380,7 @@ extern_methods!(
         /// object. The system updates this property automatically when you assign the
         /// coordinator to the ``NSView/writingToolsCoordinator`` property of your view.
         /// The value of this property is `nil` if there is no associated view.
-        #[method(view)]
+        #[unsafe(method(view))]
         #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Option<Retained<NSView>>;
 
@@ -400,14 +400,14 @@ extern_methods!(
         /// If you display your view’s text using multiple text containers, implement the
         /// ``NSWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:singleContainerSubrangesOf:in:)``
         /// method to request multiple previews.
-        #[method(effectContainerView)]
+        #[unsafe(method(effectContainerView))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectContainerView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`effectContainerView`][Self::effectContainerView].
-        #[method(setEffectContainerView:)]
+        #[unsafe(method(setEffectContainerView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEffectContainerView(&self, effect_container_view: Option<&NSView>);
 
@@ -428,14 +428,14 @@ extern_methods!(
         /// ``NSWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:singleContainerSubrangesOf:in:)``
         /// and ``NSWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:decorationContainerViewFor:in:)``
         /// methods to provide separate decoration views for each container.
-        #[method(decorationContainerView)]
+        #[unsafe(method(decorationContainerView))]
         #[unsafe(method_family = none)]
         pub unsafe fn decorationContainerView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`decorationContainerView`][Self::decorationContainerView].
-        #[method(setDecorationContainerView:)]
+        #[unsafe(method(setDecorationContainerView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDecorationContainerView(&self, decoration_container_view: Option<&NSView>);
 
@@ -446,7 +446,7 @@ extern_methods!(
         /// the system reports state changes to the delegate’s
         /// ``NSWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:willChangeTo:completion:)``
         /// method and updates this property accordingly.
-        #[method(state)]
+        #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> NSWritingToolsCoordinatorState;
 
@@ -456,7 +456,7 @@ extern_methods!(
         /// method dismisses the system’s Writing Tools UI and stops any in-flight
         /// interactions with your view. This method does not undo any changes that
         /// Writing Tools already made to your view’s content.
-        #[method(stopWritingTools)]
+        #[unsafe(method(stopWritingTools))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopWritingTools(&self);
 
@@ -467,13 +467,13 @@ extern_methods!(
         /// Use this property to request an inline or panel-based experience,
         /// or to disable Writing Tools for your view altogether. The default
         /// value of this property is ``NSWritingToolsBehavior/default``.
-        #[method(preferredBehavior)]
+        #[unsafe(method(preferredBehavior))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredBehavior(&self) -> NSWritingToolsBehavior;
 
         #[cfg(feature = "NSTextCheckingClient")]
         /// Setter for [`preferredBehavior`][Self::preferredBehavior].
-        #[method(setPreferredBehavior:)]
+        #[unsafe(method(setPreferredBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredBehavior(&self, preferred_behavior: NSWritingToolsBehavior);
 
@@ -485,7 +485,7 @@ extern_methods!(
         /// making the choice. The value in this property is never the default option,
         /// and is instead one of the specific options such as ``NSWritingToolsBehavior/none``,
         /// ``NSWritingToolsBehavior/limited``, or ``NSWritingToolsBehavior/complete``.
-        #[method(behavior)]
+        #[unsafe(method(behavior))]
         #[unsafe(method_family = none)]
         pub unsafe fn behavior(&self) -> NSWritingToolsBehavior;
 
@@ -498,13 +498,13 @@ extern_methods!(
         /// types of content, specify the types you do support in this property.
         /// The default value of this property is ``NSWritingToolsResult/default``,
         /// which lets the system determine the type of content to generate.
-        #[method(preferredResultOptions)]
+        #[unsafe(method(preferredResultOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredResultOptions(&self) -> NSWritingToolsResultOptions;
 
         #[cfg(feature = "NSTextCheckingClient")]
         /// Setter for [`preferredResultOptions`][Self::preferredResultOptions].
-        #[method(setPreferredResultOptions:)]
+        #[unsafe(method(setPreferredResultOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredResultOptions(
             &self,
@@ -518,7 +518,7 @@ extern_methods!(
         /// for your view. Writing Tools takes the value in the
         /// ``NSWritingToolsCoordinator/preferredResultOptions`` property into
         /// consideration when determining this value.
-        #[method(resultOptions)]
+        #[unsafe(method(resultOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultOptions(&self) -> NSWritingToolsResultOptions;
 
@@ -561,7 +561,7 @@ extern_methods!(
         ///
         /// > Warning: Failure to call this method for a change can cause Writing Tools
         /// to deliver inaccurate information to your delegate and lead to data loss.
-        #[method(updateRange:withText:reason:forContextWithIdentifier:)]
+        #[unsafe(method(updateRange:withText:reason:forContextWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateRange_withText_reason_forContextWithIdentifier(
             &self,
@@ -590,7 +590,7 @@ extern_methods!(
         /// If a text change affects the text inside a context object, call the
         /// ``updateRange(_:with:reason:forContextWithIdentifier:)`` method to report
         /// that change instead.
-        #[method(updateForReflowedTextInContextWithIdentifier:)]
+        #[unsafe(method(updateForReflowedTextInContextWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateForReflowedTextInContextWithIdentifier(&self, context_id: &NSUUID);
     }
@@ -599,11 +599,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSWritingToolsCoordinator {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -675,7 +675,7 @@ extern_protocol!(
         /// Pass the context objects you create to the provided completion handler before
         /// your method returns. Writing Tools waits for you to call the completion
         /// handler before proceeding with the operation.
-        #[method(writingToolsCoordinator:requestsContextsForScope:completion:)]
+        #[unsafe(method(writingToolsCoordinator:requestsContextsForScope:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn writingToolsCoordinator_requestsContextsForScope_completion(
             &self,
@@ -742,7 +742,7 @@ extern_protocol!(
         /// you need to modify other parts of your interface to reflect the changes,
         /// use the provided ``NSWritingToolsCoordinator/AnimationParameters`` object
         /// to create additional animations to run at the same time as the system-provided animations.
-        #[method(writingToolsCoordinator:replaceRange:inContext:proposedText:reason:animationParameters:completion:)]
+        #[unsafe(method(writingToolsCoordinator:replaceRange:inContext:proposedText:reason:animationParameters:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn writingToolsCoordinator_replaceRange_inContext_proposedText_reason_animationParameters_completion(
             &self,
@@ -778,7 +778,7 @@ extern_protocol!(
         /// to update the text selection accordingly. Use this method to update the
         /// current selection in your view’s text storage. When you finish making the
         /// changes, call the provided completion block to let Writing Tools know you’re finished.
-        #[method(writingToolsCoordinator:selectRanges:inContext:completion:)]
+        #[unsafe(method(writingToolsCoordinator:selectRanges:inContext:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn writingToolsCoordinator_selectRanges_inContext_completion(
             &self,
@@ -831,7 +831,7 @@ extern_protocol!(
         /// starts at character `100` in your text storage, and an interaction occurs
         /// with the character at location `102`, specify a range with a location of
         /// `2` and a length of `1`.
-        #[method(writingToolsCoordinator:requestsRangeInContextWithIdentifierForPoint:completion:)]
+        #[unsafe(method(writingToolsCoordinator:requestsRangeInContextWithIdentifierForPoint:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn writingToolsCoordinator_requestsRangeInContextWithIdentifierForPoint_completion(
             &self,
@@ -884,7 +884,7 @@ extern_protocol!(
         /// Create a Bezier path for each rectangle, and convert the coordinates of each path
         /// to the coordinate space of the view in your coordinator's ``NSWritingToolsCoordinator/decorationContainerView``
         /// property. Pass the resulting paths to the completion handler.
-        #[method(writingToolsCoordinator:requestsBoundingBezierPathsForRange:inContext:completion:)]
+        #[unsafe(method(writingToolsCoordinator:requestsBoundingBezierPathsForRange:inContext:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn writingToolsCoordinator_requestsBoundingBezierPathsForRange_inContext_completion(
             &self,
@@ -937,7 +937,7 @@ extern_protocol!(
         /// property. Use those rectangles to create the Bezier paths for your text.
         /// For example, you might create a path with a straight or wavy line at the
         /// bottom of the rectangle.
-        #[method(writingToolsCoordinator:requestsUnderlinePathsForRange:inContext:completion:)]
+        #[unsafe(method(writingToolsCoordinator:requestsUnderlinePathsForRange:inContext:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn writingToolsCoordinator_requestsUnderlinePathsForRange_inContext_completion(
             &self,
@@ -991,7 +991,7 @@ extern_protocol!(
         /// method in the sequence only after you call the completion handler of the previous
         /// method. However, multiple animations can run simultaneously, so check the
         /// `textAnimation` and `range` parameters to differentiate sequences.
-        #[method(writingToolsCoordinator:prepareForTextAnimation:forRange:inContext:completion:)]
+        #[unsafe(method(writingToolsCoordinator:prepareForTextAnimation:forRange:inContext:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn writingToolsCoordinator_prepareForTextAnimation_forRange_inContext_completion(
             &self,
@@ -1049,7 +1049,7 @@ extern_protocol!(
         /// method in the sequence only after you call the completion handler of the
         /// previous method. However, multiple animations can run simultaneously, so
         /// check the `textAnimation` parameter to differentiate sequences.
-        #[method(writingToolsCoordinator:requestsPreviewForTextAnimation:ofRange:inContext:completion:)]
+        #[unsafe(method(writingToolsCoordinator:requestsPreviewForTextAnimation:ofRange:inContext:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn writingToolsCoordinator_requestsPreviewForTextAnimation_ofRange_inContext_completion(
             &self,
@@ -1098,7 +1098,7 @@ extern_protocol!(
         /// method in the sequence only after you call the completion handler of the
         /// previous method. However, multiple animations can run simultaneously, so
         /// check the `textAnimation` parameter to differentiate sequences.
-        #[method(writingToolsCoordinator:requestsPreviewForRect:inContext:completion:)]
+        #[unsafe(method(writingToolsCoordinator:requestsPreviewForRect:inContext:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn writingToolsCoordinator_requestsPreviewForRect_inContext_completion(
             &self,
@@ -1142,7 +1142,7 @@ extern_protocol!(
         /// calls to this method with calls to prepare an animation of a different
         /// type. In your implementation of this method, make sure the actions you
         /// take don’t interfere with other in-flight animations.
-        #[method(writingToolsCoordinator:finishTextAnimation:forRange:inContext:completion:)]
+        #[unsafe(method(writingToolsCoordinator:finishTextAnimation:forRange:inContext:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn writingToolsCoordinator_finishTextAnimation_forRange_inContext_completion(
             &self,
@@ -1203,7 +1203,7 @@ extern_protocol!(
         /// Your implementation of that method must create a preview suitable for animating
         /// the content from the underlying text container.
         #[optional]
-        #[method(writingToolsCoordinator:requestsSingleContainerSubrangesOfRange:inContext:completion:)]
+        #[unsafe(method(writingToolsCoordinator:requestsSingleContainerSubrangesOfRange:inContext:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn writingToolsCoordinator_requestsSingleContainerSubrangesOfRange_inContext_completion(
             &self,
@@ -1251,7 +1251,7 @@ extern_protocol!(
         /// If your view has only one text container, use the coordinator’s ``NSWritingToolsCoordinator/decorationContainerView``
         /// property to specify the view to use for proofreading marks.
         #[optional]
-        #[method(writingToolsCoordinator:requestsDecorationContainerViewForRange:inContext:completion:)]
+        #[unsafe(method(writingToolsCoordinator:requestsDecorationContainerViewForRange:inContext:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn writingToolsCoordinator_requestsDecorationContainerViewForRange_inContext_completion(
             &self,
@@ -1285,7 +1285,7 @@ extern_protocol!(
         /// your view’s content. For example, it moves to the ``NSWritingToolsCoordinator/State/interactiveUpdating``
         /// state when it’s making changes to your view’s text storage.
         #[optional]
-        #[method(writingToolsCoordinator:willChangeToState:completion:)]
+        #[unsafe(method(writingToolsCoordinator:willChangeToState:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn writingToolsCoordinator_willChangeToState_completion(
             &self,
@@ -1350,7 +1350,7 @@ extern_methods!(
         /// in the coordinate space of your text view. Each rectangle contains a
         /// bounding rectangle for text that is part of the preview. When applying
         /// visual effects, the system adds highlights only to the text in the specified rectangles.
-        #[method(initWithSnapshotImage:presentationFrame:candidateRects:)]
+        #[unsafe(method(initWithSnapshotImage:presentationFrame:candidateRects:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSnapshotImage_presentationFrame_candidateRects(
             this: Allocated<Self>,
@@ -1371,7 +1371,7 @@ extern_methods!(
         /// system uses this rectangle to place your image precisely over your view’s
         /// actual text. Set its size to the size of your snapshot image, and set its
         /// origin to the point that allows the system to place your image directly over the text.
-        #[method(initWithSnapshotImage:presentationFrame:)]
+        #[unsafe(method(initWithSnapshotImage:presentationFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSnapshotImage_presentationFrame(
             this: Allocated<Self>,
@@ -1379,7 +1379,7 @@ extern_methods!(
             presentation_frame: NSRect,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -1390,7 +1390,7 @@ extern_methods!(
         /// You specify this image at initialization time. The system uses it to
         /// implement any visual effects involving your view’s text. Create the image
         /// with your text on a transparent background.
-        #[method(previewImage)]
+        #[unsafe(method(previewImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewImage(&self) -> Retained<CGImage>;
 
@@ -1400,7 +1400,7 @@ extern_methods!(
         /// You specify this value at initialization time. The system uses it to
         /// position the preview image over the text in your view. Make sure the
         /// frame rectangle is in your view's coordinate space.
-        #[method(presentationFrame)]
+        #[unsafe(method(presentationFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentationFrame(&self) -> NSRect;
 
@@ -1415,7 +1415,7 @@ extern_methods!(
         /// in the coordinate space of the target view. Each rectangle contains a bounding
         /// rectangle for text that is part of the preview. When applying visual effects,
         /// the system adds highlights only to the text in the specified rectangles.
-        #[method(candidateRects)]
+        #[unsafe(method(candidateRects))]
         #[unsafe(method_family = none)]
         pub unsafe fn candidateRects(&self) -> Retained<NSArray<NSValue>>;
     }
@@ -1424,7 +1424,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextPreview {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

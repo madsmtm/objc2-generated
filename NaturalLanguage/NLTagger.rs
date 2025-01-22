@@ -71,7 +71,7 @@ unsafe impl NSObjectProtocol for NLTagger {}
 extern_methods!(
     unsafe impl NLTagger {
         #[cfg(feature = "NLTagScheme")]
-        #[method(initWithTagSchemes:)]
+        #[unsafe(method(initWithTagSchemes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTagSchemes(
             this: Allocated<Self>,
@@ -79,16 +79,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NLTagScheme")]
-        #[method(tagSchemes)]
+        #[unsafe(method(tagSchemes))]
         #[unsafe(method_family = none)]
         pub unsafe fn tagSchemes(&self) -> Retained<NSArray<NLTagScheme>>;
 
-        #[method(string)]
+        #[unsafe(method(string))]
         #[unsafe(method_family = none)]
         pub unsafe fn string(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`string`][Self::string].
-        #[method(setString:)]
+        #[unsafe(method(setString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setString(&self, string: Option<&NSString>);
 
@@ -97,7 +97,7 @@ extern_methods!(
             feature = "NLTagScheme",
             feature = "NLTokenizer"
         ))]
-        #[method(availableTagSchemesForUnit:language:)]
+        #[unsafe(method(availableTagSchemesForUnit:language:))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableTagSchemesForUnit_language(
             unit: NLTokenUnit,
@@ -105,7 +105,7 @@ extern_methods!(
         ) -> Retained<NSArray<NLTagScheme>>;
 
         #[cfg(feature = "NLTokenizer")]
-        #[method(tokenRangeAtIndex:unit:)]
+        #[unsafe(method(tokenRangeAtIndex:unit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tokenRangeAtIndex_unit(
             &self,
@@ -114,17 +114,17 @@ extern_methods!(
         ) -> NSRange;
 
         #[cfg(feature = "NLTokenizer")]
-        #[method(tokenRangeForRange:unit:)]
+        #[unsafe(method(tokenRangeForRange:unit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tokenRangeForRange_unit(&self, range: NSRange, unit: NLTokenUnit) -> NSRange;
 
         #[cfg(feature = "NLLanguage")]
-        #[method(dominantLanguage)]
+        #[unsafe(method(dominantLanguage))]
         #[unsafe(method_family = none)]
         pub unsafe fn dominantLanguage(&self) -> Option<Retained<NLLanguage>>;
 
         #[cfg(all(feature = "NLTagScheme", feature = "NLTokenizer", feature = "block2"))]
-        #[method(enumerateTagsInRange:unit:scheme:options:usingBlock:)]
+        #[unsafe(method(enumerateTagsInRange:unit:scheme:options:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateTagsInRange_unit_scheme_options_usingBlock(
             &self,
@@ -136,7 +136,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NLTagScheme", feature = "NLTokenizer"))]
-        #[method(tagAtIndex:unit:scheme:tokenRange:)]
+        #[unsafe(method(tagAtIndex:unit:scheme:tokenRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tagAtIndex_unit_scheme_tokenRange(
             &self,
@@ -147,7 +147,7 @@ extern_methods!(
         ) -> Option<Retained<NLTag>>;
 
         #[cfg(all(feature = "NLTagScheme", feature = "NLTokenizer"))]
-        #[method(tagsInRange:unit:scheme:options:tokenRanges:)]
+        #[unsafe(method(tagsInRange:unit:scheme:options:tokenRanges:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tagsInRange_unit_scheme_options_tokenRanges(
             &self,
@@ -159,7 +159,7 @@ extern_methods!(
         ) -> Retained<NSArray<NLTag>>;
 
         #[cfg(all(feature = "NLTagScheme", feature = "NLTokenizer"))]
-        #[method(tagHypothesesAtIndex:unit:scheme:maximumCount:tokenRange:)]
+        #[unsafe(method(tagHypothesesAtIndex:unit:scheme:maximumCount:tokenRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tagHypothesesAtIndex_unit_scheme_maximumCount_tokenRange(
             &self,
@@ -171,16 +171,16 @@ extern_methods!(
         ) -> Retained<NSDictionary<NLTag, NSNumber>>;
 
         #[cfg(feature = "NLLanguage")]
-        #[method(setLanguage:range:)]
+        #[unsafe(method(setLanguage:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLanguage_range(&self, language: &NLLanguage, range: NSRange);
 
-        #[method(setOrthography:range:)]
+        #[unsafe(method(setOrthography:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrthography_range(&self, orthography: &NSOrthography, range: NSRange);
 
         #[cfg(all(feature = "NLModel", feature = "NLTagScheme"))]
-        #[method(setModels:forTagScheme:)]
+        #[unsafe(method(setModels:forTagScheme:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModels_forTagScheme(
             &self,
@@ -189,7 +189,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NLModel", feature = "NLTagScheme"))]
-        #[method(modelsForTagScheme:)]
+        #[unsafe(method(modelsForTagScheme:))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelsForTagScheme(
             &self,
@@ -197,7 +197,7 @@ extern_methods!(
         ) -> Retained<NSArray<NLModel>>;
 
         #[cfg(all(feature = "NLGazetteer", feature = "NLTagScheme"))]
-        #[method(setGazetteers:forTagScheme:)]
+        #[unsafe(method(setGazetteers:forTagScheme:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGazetteers_forTagScheme(
             &self,
@@ -206,7 +206,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NLGazetteer", feature = "NLTagScheme"))]
-        #[method(gazetteersForTagScheme:)]
+        #[unsafe(method(gazetteersForTagScheme:))]
         #[unsafe(method_family = none)]
         pub unsafe fn gazetteersForTagScheme(
             &self,
@@ -214,7 +214,7 @@ extern_methods!(
         ) -> Retained<NSArray<NLGazetteer>>;
 
         #[cfg(all(feature = "NLLanguage", feature = "NLTagScheme", feature = "block2"))]
-        #[method(requestAssetsForLanguage:tagScheme:completionHandler:)]
+        #[unsafe(method(requestAssetsForLanguage:tagScheme:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAssetsForLanguage_tagScheme_completionHandler(
             language: &NLLanguage,
@@ -227,11 +227,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NLTagger {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

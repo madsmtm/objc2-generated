@@ -170,12 +170,12 @@ extern_methods!(
         /// -[UIApplication openURL:]
         /// </tt>
         /// .
-        #[method(canSendMail)]
+        #[unsafe(method(canSendMail))]
         #[unsafe(method_family = none)]
         pub unsafe fn canSendMail(mtm: MainThreadMarker) -> bool;
 
         /// This property is the delegate for the MFMailComposeViewControllerDelegate method callbacks.
-        #[method(mailComposeDelegate)]
+        #[unsafe(method(mailComposeDelegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn mailComposeDelegate(
             &self,
@@ -183,7 +183,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`mailComposeDelegate`][Self::mailComposeDelegate].
-        #[method(setMailComposeDelegate:)]
+        #[unsafe(method(setMailComposeDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMailComposeDelegate(
             &self,
@@ -199,7 +199,7 @@ extern_methods!(
         /// </p>
         ///
         /// Parameter `subject`: A NSString specifying the message's Subject header.
-        #[method(setSubject:)]
+        #[unsafe(method(setSubject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubject(&self, subject: &NSString);
 
@@ -214,7 +214,7 @@ extern_methods!(
         /// </p>
         ///
         /// Parameter `toRecipients`: A NSArray of NSString instances specifying the email addresses of recipients.
-        #[method(setToRecipients:)]
+        #[unsafe(method(setToRecipients:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setToRecipients(&self, to_recipients: Option<&NSArray<NSString>>);
 
@@ -229,7 +229,7 @@ extern_methods!(
         /// </p>
         ///
         /// Parameter `ccRecipients`: A NSArray of NSString instances specifying the email addresses of recipients.
-        #[method(setCcRecipients:)]
+        #[unsafe(method(setCcRecipients:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCcRecipients(&self, cc_recipients: Option<&NSArray<NSString>>);
 
@@ -244,7 +244,7 @@ extern_methods!(
         /// </p>
         ///
         /// Parameter `bccRecipients`: A NSArray of NSString instances specifying the email addresses of recipients.
-        #[method(setBccRecipients:)]
+        #[unsafe(method(setBccRecipients:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBccRecipients(&self, bcc_recipients: Option<&NSArray<NSString>>);
 
@@ -256,7 +256,7 @@ extern_methods!(
         /// Parameter `body`: A NSString containing the body contents of the email message.
         ///
         /// Parameter `isHTML`: A boolean value indicating if the body argument is to be interpreted as HTML content.
-        #[method(setMessageBody:isHTML:)]
+        #[unsafe(method(setMessageBody:isHTML:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMessageBody_isHTML(&self, body: &NSString, is_html: bool);
 
@@ -284,7 +284,7 @@ extern_methods!(
         /// nil
         /// </tt>
         /// .
-        #[method(addAttachmentData:mimeType:fileName:)]
+        #[unsafe(method(addAttachmentData:mimeType:fileName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAttachmentData_mimeType_fileName(
             &self,
@@ -300,7 +300,7 @@ extern_methods!(
         /// After the view has been presented to the user, this method will no longer change the value.
         ///
         /// Parameter `emailAddress`: A NSString specifying the preferred email address used to send this message.
-        #[method(setPreferredSendingEmailAddress:)]
+        #[unsafe(method(setPreferredSendingEmailAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreferredSendingEmailAddress(&self, email_address: &NSString);
     }
@@ -310,7 +310,7 @@ extern_methods!(
     /// Methods declared on superclass `UINavigationController`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MFMailComposeViewController {
-        #[method(initWithNavigationBarClass:toolbarClass:)]
+        #[unsafe(method(initWithNavigationBarClass:toolbarClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
             this: Allocated<Self>,
@@ -318,14 +318,14 @@ extern_methods!(
             toolbar_class: Option<&AnyClass>,
         ) -> Retained<Self>;
 
-        #[method(initWithRootViewController:)]
+        #[unsafe(method(initWithRootViewController:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRootViewController(
             this: Allocated<Self>,
             root_view_controller: &UIViewController,
         ) -> Retained<Self>;
 
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -333,7 +333,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -346,11 +346,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MFMailComposeViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -382,7 +382,7 @@ extern_protocol!(
         /// if
         /// result did not indicate failure.
         #[optional]
-        #[method(mailComposeController:didFinishWithResult:error:)]
+        #[unsafe(method(mailComposeController:didFinishWithResult:error:))]
         #[unsafe(method_family = none)]
         unsafe fn mailComposeController_didFinishWithResult_error(
             &self,

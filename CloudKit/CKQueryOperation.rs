@@ -28,11 +28,11 @@ unsafe impl NSSecureCoding for CKQueryCursor {}
 
 extern_methods!(
     unsafe impl CKQueryCursor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -61,16 +61,16 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKQueryOperation {
         /// Queries invoked within a sharedCloudDatabase must specify a zoneID.  Cross-zone queries are not supported in a sharedCloudDatabase
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKQuery")]
-        #[method(initWithQuery:)]
+        #[unsafe(method(initWithQuery:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithQuery(this: Allocated<Self>, query: &CKQuery) -> Retained<Self>;
 
-        #[method(initWithCursor:)]
+        #[unsafe(method(initWithCursor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCursor(
             this: Allocated<Self>,
@@ -78,22 +78,22 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKQuery")]
-        #[method(query)]
+        #[unsafe(method(query))]
         #[unsafe(method_family = none)]
         pub unsafe fn query(&self) -> Option<Retained<CKQuery>>;
 
         #[cfg(feature = "CKQuery")]
         /// Setter for [`query`][Self::query].
-        #[method(setQuery:)]
+        #[unsafe(method(setQuery:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQuery(&self, query: Option<&CKQuery>);
 
-        #[method(cursor)]
+        #[unsafe(method(cursor))]
         #[unsafe(method_family = none)]
         pub unsafe fn cursor(&self) -> Option<Retained<CKQueryCursor>>;
 
         /// Setter for [`cursor`][Self::cursor].
-        #[method(setCursor:)]
+        #[unsafe(method(setCursor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCursor(&self, cursor: Option<&CKQueryCursor>);
 
@@ -104,13 +104,13 @@ extern_methods!(
         /// For query operations constructed using a cursor, this property is ignored and instead will be evaluated in the record zone in which the cursor was originally created.
         /// Queries that do not specify a
         /// `zoneID`will perform a query across all zones in the database.
-        #[method(zoneID)]
+        #[unsafe(method(zoneID))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoneID(&self) -> Option<Retained<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Setter for [`zoneID`][Self::zoneID].
-        #[method(setZoneID:)]
+        #[unsafe(method(setZoneID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZoneID(&self, zone_id: Option<&CKRecordZoneID>);
 
@@ -122,12 +122,12 @@ extern_methods!(
         /// - During the process of querying and fetching the results, some records were deleted, or became un-readable by the current user.
         /// When determining if there are more records to fetch, always check for the presence of a cursor in
         /// `queryCompletionBlock.`
-        #[method(resultsLimit)]
+        #[unsafe(method(resultsLimit))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultsLimit(&self) -> NSUInteger;
 
         /// Setter for [`resultsLimit`][Self::resultsLimit].
-        #[method(setResultsLimit:)]
+        #[unsafe(method(setResultsLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
@@ -138,13 +138,13 @@ extern_methods!(
         /// If nil, declares the entire record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
         /// Defaults to
         /// `nil.`
-        #[method(desiredKeys)]
+        #[unsafe(method(desiredKeys))]
         #[unsafe(method_family = none)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`desiredKeys`][Self::desiredKeys].
-        #[method(setDesiredKeys:)]
+        #[unsafe(method(setDesiredKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
 
@@ -160,14 +160,14 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated = "Use recordMatchedBlock instead, which surfaces per-record errors"]
-        #[method(recordFetchedBlock)]
+        #[unsafe(method(recordFetchedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordFetchedBlock(&self) -> *mut block2::Block<dyn Fn(NonNull<CKRecord>)>;
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
         /// Setter for [`recordFetchedBlock`][Self::recordFetchedBlock].
         #[deprecated = "Use recordMatchedBlock instead, which surfaces per-record errors"]
-        #[method(setRecordFetchedBlock:)]
+        #[unsafe(method(setRecordFetchedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordFetchedBlock(
             &self,
@@ -184,7 +184,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(recordMatchedBlock)]
+        #[unsafe(method(recordMatchedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordMatchedBlock(
             &self,
@@ -192,7 +192,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`recordMatchedBlock`][Self::recordMatchedBlock].
-        #[method(setRecordMatchedBlock:)]
+        #[unsafe(method(setRecordMatchedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordMatchedBlock(
             &self,
@@ -220,7 +220,7 @@ extern_methods!(
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
-        #[method(queryCompletionBlock)]
+        #[unsafe(method(queryCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryCompletionBlock(
             &self,
@@ -228,7 +228,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Setter for [`queryCompletionBlock`][Self::queryCompletionBlock].
-        #[method(setQueryCompletionBlock:)]
+        #[unsafe(method(setQueryCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQueryCompletionBlock(
             &self,
@@ -243,7 +243,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKQueryOperation {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

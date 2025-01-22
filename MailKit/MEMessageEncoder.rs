@@ -26,7 +26,7 @@ extern_protocol!(
         /// Parameter `composeContext`: -
         /// `MEComposeContext`instance which corresponds to the
         /// `message`being composed.
-        #[method(getEncodingStatusForMessage:composeContext:completionHandler:)]
+        #[unsafe(method(getEncodingStatusForMessage:composeContext:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn getEncodingStatusForMessage_composeContext_completionHandler(
             &self,
@@ -55,7 +55,7 @@ extern_protocol!(
         /// Parameter `composeContext`: -
         /// `MEComposeContext`instance which corresponds to the
         /// `message`being composed.
-        #[method(encodeMessage:composeContext:completionHandler:)]
+        #[unsafe(method(encodeMessage:composeContext:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeMessage_composeContext_completionHandler(
             &self,

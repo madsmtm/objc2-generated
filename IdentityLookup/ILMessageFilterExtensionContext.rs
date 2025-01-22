@@ -29,7 +29,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completion`: Completion block containing either the network response to the HTTPS request or an error.
-        #[method(deferQueryRequestToNetworkWithCompletion:)]
+        #[unsafe(method(deferQueryRequestToNetworkWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deferQueryRequestToNetworkWithCompletion(
             &self,
@@ -41,11 +41,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ILMessageFilterExtensionContext {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

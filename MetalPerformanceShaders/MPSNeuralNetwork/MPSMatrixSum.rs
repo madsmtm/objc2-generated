@@ -61,7 +61,7 @@ unsafe impl NSSecureCoding for MPSMatrixSum {}
 extern_methods!(
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixSum {
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -80,7 +80,7 @@ extern_methods!(
         ///
         /// Parameter `transpose`: If YES the result of the summation is to be transposed
         /// prior to applying the bias and activation.
-        #[method(initWithDevice:count:rows:columns:transpose:)]
+        #[unsafe(method(initWithDevice:count:rows:columns:transpose:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_count_rows_columns_transpose(
             this: Allocated<Self>,
@@ -92,22 +92,22 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The number of rows to sum.
-        #[method(rows)]
+        #[unsafe(method(rows))]
         #[unsafe(method_family = none)]
         pub unsafe fn rows(&self) -> NSUInteger;
 
         /// The number of columns to sum.
-        #[method(columns)]
+        #[unsafe(method(columns))]
         #[unsafe(method_family = none)]
         pub unsafe fn columns(&self) -> NSUInteger;
 
         /// The number of matrices to sum.
-        #[method(count)]
+        #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
 
         /// The transposition used to initialize the kernel.
-        #[method(transpose)]
+        #[unsafe(method(transpose))]
         #[unsafe(method_family = none)]
         pub unsafe fn transpose(&self) -> bool;
 
@@ -115,12 +115,12 @@ extern_methods!(
         /// start writing results.  This property is modifiable and defaults
         /// to [0, 0] at initialization time.  If a different origin is desired
         /// then this should be modified prior to encoding the kernel.
-        #[method(resultMatrixOrigin)]
+        #[unsafe(method(resultMatrixOrigin))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultMatrixOrigin(&self) -> MTLOrigin;
 
         /// Setter for [`resultMatrixOrigin`][Self::resultMatrixOrigin].
-        #[method(setResultMatrixOrigin:)]
+        #[unsafe(method(setResultMatrixOrigin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResultMatrixOrigin(&self, result_matrix_origin: MTLOrigin);
 
@@ -144,7 +144,7 @@ extern_methods!(
         /// Parameter `parameterB`: parameterB of neuron activation that is shared across all output values.
         ///
         /// Parameter `parameterC`: parameterC of neuron activation that is shared across all output values.
-        #[method(setNeuronType:parameterA:parameterB:parameterC:)]
+        #[unsafe(method(setNeuronType:parameterA:parameterB:parameterC:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeuronType_parameterA_parameterB_parameterC(
             &self,
@@ -156,22 +156,22 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNNeuronType")]
         /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
-        #[method(neuronType)]
+        #[unsafe(method(neuronType))]
         #[unsafe(method_family = none)]
         pub unsafe fn neuronType(&self) -> MPSCNNNeuronType;
 
         /// Neuron parameter A.
-        #[method(neuronParameterA)]
+        #[unsafe(method(neuronParameterA))]
         #[unsafe(method_family = none)]
         pub unsafe fn neuronParameterA(&self) -> c_float;
 
         /// Neuron parameter B.
-        #[method(neuronParameterB)]
+        #[unsafe(method(neuronParameterB))]
         #[unsafe(method_family = none)]
         pub unsafe fn neuronParameterB(&self) -> c_float;
 
         /// Neuron parameter C.
-        #[method(neuronParameterC)]
+        #[unsafe(method(neuronParameterC))]
         #[unsafe(method_family = none)]
         pub unsafe fn neuronParameterC(&self) -> c_float;
 
@@ -194,7 +194,7 @@ extern_methods!(
         /// prior to applying the neuron function, if any.  May be nil.
         ///
         /// Parameter `startIndex`: The starting index into the scale and offset vectors.
-        #[method(encodeToCommandBuffer:sourceMatrices:resultMatrix:scaleVector:offsetVector:biasVector:startIndex:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceMatrices:resultMatrix:scaleVector:offsetVector:biasVector:startIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceMatrices_resultMatrix_scaleVector_offsetVector_biasVector_startIndex(
             &self,
@@ -216,7 +216,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixSum object.
         ///
         /// Returns: A new MPSMatrixSum object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -238,7 +238,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -251,11 +251,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixSum {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

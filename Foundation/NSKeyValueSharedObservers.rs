@@ -20,11 +20,11 @@ unsafe impl NSObjectProtocol for NSKeyValueSharedObserversSnapshot {}
 
 extern_methods!(
     unsafe impl NSKeyValueSharedObserversSnapshot {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -45,18 +45,18 @@ unsafe impl NSObjectProtocol for NSKeyValueSharedObservers {}
 extern_methods!(
     unsafe impl NSKeyValueSharedObservers {
         /// A new collection of observables for an observable object of the given class
-        #[method(initWithObservableClass:)]
+        #[unsafe(method(initWithObservableClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObservableClass(
             this: Allocated<Self>,
             observable_class: &AnyClass,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -76,7 +76,7 @@ extern_methods!(
         /// specify what is included in observation notifications. For possible values
         /// see NSKeyValueObservingOptions.
         /// - Parameter context: Arbitrary data which is passed to the observer object
-        #[method(addSharedObserver:forKey:options:context:)]
+        #[unsafe(method(addSharedObserver:forKey:options:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSharedObserver_forKey_options_context(
             &self,
@@ -87,7 +87,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSKeyValueObserving", feature = "NSString"))]
-        #[method(addObserver:forKeyPath:options:context:)]
+        #[unsafe(method(addObserver:forKeyPath:options:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserver_forKeyPath_options_context(
             &self,
@@ -99,7 +99,7 @@ extern_methods!(
 
         /// A momentary snapshot of all observers added to the collection thus far, that
         /// can be assigned to an observable using ``-[NSObject setSharedObservers:]``
-        #[method(snapshot)]
+        #[unsafe(method(snapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshot(&self) -> Retained<NSKeyValueSharedObserversSnapshot>;
     }
@@ -123,7 +123,7 @@ extern_category!(
         /// - Invariant: `sharedObserers` was initialized with the class of this object
         /// - Throws: Exception if the class of the receiving observable object does not
         /// match the class with which `sharedObserers` was initialized.
-        #[method(setSharedObservers:)]
+        #[unsafe(method(setSharedObservers:))]
         #[unsafe(method_family = none)]
         unsafe fn setSharedObservers(
             &self,

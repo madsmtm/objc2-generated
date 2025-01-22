@@ -58,35 +58,35 @@ extern_methods!(
     unsafe impl HKWorkoutConfiguration {
         #[cfg(feature = "HKWorkout")]
         /// Indicates the type of workout for the configuration.
-        #[method(activityType)]
+        #[unsafe(method(activityType))]
         #[unsafe(method_family = none)]
         pub unsafe fn activityType(&self) -> HKWorkoutActivityType;
 
         #[cfg(feature = "HKWorkout")]
         /// Setter for [`activityType`][Self::activityType].
-        #[method(setActivityType:)]
+        #[unsafe(method(setActivityType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivityType(&self, activity_type: HKWorkoutActivityType);
 
         /// Indicates the type of location (indoors vs. outdoors) for the configuration.
-        #[method(locationType)]
+        #[unsafe(method(locationType))]
         #[unsafe(method_family = none)]
         pub unsafe fn locationType(&self) -> HKWorkoutSessionLocationType;
 
         /// Setter for [`locationType`][Self::locationType].
-        #[method(setLocationType:)]
+        #[unsafe(method(setLocationType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocationType(&self, location_type: HKWorkoutSessionLocationType);
 
         #[cfg(feature = "HKMetadata")]
         /// Indicates the type of swimming location (pool vs. open water) where the workout will take place.
-        #[method(swimmingLocationType)]
+        #[unsafe(method(swimmingLocationType))]
         #[unsafe(method_family = none)]
         pub unsafe fn swimmingLocationType(&self) -> HKWorkoutSwimmingLocationType;
 
         #[cfg(feature = "HKMetadata")]
         /// Setter for [`swimmingLocationType`][Self::swimmingLocationType].
-        #[method(setSwimmingLocationType:)]
+        #[unsafe(method(setSwimmingLocationType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSwimmingLocationType(
             &self,
@@ -98,13 +98,13 @@ extern_methods!(
         ///
         /// This metric represents the length of the pool where the workout takes place. It should be a quantity with
         /// a unit representing length.
-        #[method(lapLength)]
+        #[unsafe(method(lapLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn lapLength(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         /// Setter for [`lapLength`][Self::lapLength].
-        #[method(setLapLength:)]
+        #[unsafe(method(setLapLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLapLength(&self, lap_length: Option<&HKQuantity>);
     }
@@ -113,11 +113,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKWorkoutConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -25,13 +25,13 @@ extern_methods!(
         #[cfg(feature = "MLCTypes")]
         /// The softmax operation.  Supported values are softmax and log softmax.
         #[deprecated]
-        #[method(operation)]
+        #[unsafe(method(operation))]
         #[unsafe(method_family = none)]
         pub unsafe fn operation(&self) -> MLCSoftmaxOperation;
 
         /// The  dimension over which softmax operation should be performed
         #[deprecated]
-        #[method(dimension)]
+        #[unsafe(method(dimension))]
         #[unsafe(method_family = none)]
         pub unsafe fn dimension(&self) -> NSUInteger;
 
@@ -42,7 +42,7 @@ extern_methods!(
         ///
         /// Returns: A new softmax layer
         #[deprecated]
-        #[method(layerWithOperation:)]
+        #[unsafe(method(layerWithOperation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithOperation(operation: MLCSoftmaxOperation) -> Retained<Self>;
 
@@ -55,7 +55,7 @@ extern_methods!(
         ///
         /// Returns: A new softmax layer
         #[deprecated]
-        #[method(layerWithOperation:dimension:)]
+        #[unsafe(method(layerWithOperation:dimension:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithOperation_dimension(
             operation: MLCSoftmaxOperation,
@@ -69,12 +69,12 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCSoftmaxLayer {
         #[deprecated]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

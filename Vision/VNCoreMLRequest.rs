@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for VNCoreMLModel {}
 
 extern_methods!(
     unsafe impl VNCoreMLModel {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -34,25 +34,25 @@ extern_methods!(
         ///
         ///
         /// Parameter `error`: Returns the error code and description, if the model is not supported.
-        #[method(modelForMLModel:error:_)]
+        #[unsafe(method(modelForMLModel:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelForMLModel_error(
             model: &MLModel,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// The name of the MLFeatureValue that Vision will set from the VNRequestHandler. Vision will use the first input it finds by default but it can be set to another featureName instead.
-        #[method(inputImageFeatureName)]
+        #[unsafe(method(inputImageFeatureName))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputImageFeatureName(&self) -> Retained<NSString>;
 
         /// Setter for [`inputImageFeatureName`][Self::inputImageFeatureName].
-        #[method(setInputImageFeatureName:)]
+        #[unsafe(method(setInputImageFeatureName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputImageFeatureName(&self, input_image_feature_name: &NSString);
 
         #[cfg(feature = "objc2-core-ml")]
         /// An optional object conforming to the MLFeatureProvider protocol that is used by the model during the predict call to support inputs that are not supplied by Vision. Vision will provide the image for the inputImageFeatureName from the the VNRequestHandler. A feature provider is necessary for models that have more than one input and require those parameters to be set. Models that only have one image input will not use the feature provider as that input will be set by Vision.
-        #[method(featureProvider)]
+        #[unsafe(method(featureProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn featureProvider(
             &self,
@@ -60,7 +60,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-ml")]
         /// Setter for [`featureProvider`][Self::featureProvider].
-        #[method(setFeatureProvider:)]
+        #[unsafe(method(setFeatureProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFeatureProvider(
             &self,
@@ -72,7 +72,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNCoreMLModel {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -104,18 +104,18 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNCoreMLRequest {
         /// The model from CoreML wrapped in a VNCoreMLModel.
-        #[method(model)]
+        #[unsafe(method(model))]
         #[unsafe(method_family = none)]
         pub unsafe fn model(&self) -> Retained<VNCoreMLModel>;
 
         #[cfg(feature = "VNTypes")]
-        #[method(imageCropAndScaleOption)]
+        #[unsafe(method(imageCropAndScaleOption))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageCropAndScaleOption(&self) -> VNImageCropAndScaleOption;
 
         #[cfg(feature = "VNTypes")]
         /// Setter for [`imageCropAndScaleOption`][Self::imageCropAndScaleOption].
-        #[method(setImageCropAndScaleOption:)]
+        #[unsafe(method(setImageCropAndScaleOption:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageCropAndScaleOption(
             &self,
@@ -126,7 +126,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `model`: The VNCoreMLModel to be used.
-        #[method(initWithModel:)]
+        #[unsafe(method(initWithModel:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithModel(this: Allocated<Self>, model: &VNCoreMLModel)
             -> Retained<Self>;
@@ -139,7 +139,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method(initWithModel:completionHandler:)]
+        #[unsafe(method(initWithModel:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithModel_completionHandler(
             this: Allocated<Self>,
@@ -147,12 +147,12 @@ extern_methods!(
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method(initWithCompletionHandler:)]
+        #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -165,7 +165,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNCoreMLRequest {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

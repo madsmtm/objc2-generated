@@ -21,25 +21,25 @@ unsafe impl NSObjectProtocol for PHAssetCollectionChangeRequest {}
 extern_methods!(
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetCollectionChangeRequest {
-        #[method(creationRequestForAssetCollectionWithTitle:)]
+        #[unsafe(method(creationRequestForAssetCollectionWithTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationRequestForAssetCollectionWithTitle(
             title: &NSString,
         ) -> Retained<Self>;
 
         #[cfg(feature = "PHObject")]
-        #[method(placeholderForCreatedAssetCollection)]
+        #[unsafe(method(placeholderForCreatedAssetCollection))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderForCreatedAssetCollection(&self) -> Retained<PHObjectPlaceholder>;
 
-        #[method(deleteAssetCollections:)]
+        #[unsafe(method(deleteAssetCollections:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAssetCollections(
             asset_collections: &ProtocolObject<dyn NSFastEnumeration>,
         );
 
         #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
-        #[method(changeRequestForAssetCollection:)]
+        #[unsafe(method(changeRequestForAssetCollection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForAssetCollection(
             asset_collection: &PHAssetCollection,
@@ -51,27 +51,27 @@ extern_methods!(
             feature = "PHFetchResult",
             feature = "PHObject"
         ))]
-        #[method(changeRequestForAssetCollection:assets:)]
+        #[unsafe(method(changeRequestForAssetCollection:assets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForAssetCollection_assets(
             asset_collection: &PHAssetCollection,
             assets: Option<&PHFetchResult<PHAsset>>,
         ) -> Option<Retained<Self>>;
 
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
-        #[method(addAssets:)]
+        #[unsafe(method(addAssets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);
 
-        #[method(insertAssets:atIndexes:)]
+        #[unsafe(method(insertAssets:atIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertAssets_atIndexes(
             &self,
@@ -79,15 +79,15 @@ extern_methods!(
             indexes: &NSIndexSet,
         );
 
-        #[method(removeAssets:)]
+        #[unsafe(method(removeAssets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);
 
-        #[method(removeAssetsAtIndexes:)]
+        #[unsafe(method(removeAssetsAtIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAssetsAtIndexes(&self, indexes: &NSIndexSet);
 
-        #[method(replaceAssetsAtIndexes:withAssets:)]
+        #[unsafe(method(replaceAssetsAtIndexes:withAssets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceAssetsAtIndexes_withAssets(
             &self,
@@ -95,7 +95,7 @@ extern_methods!(
             assets: &ProtocolObject<dyn NSFastEnumeration>,
         );
 
-        #[method(moveAssetsAtIndexes:toIndex:)]
+        #[unsafe(method(moveAssetsAtIndexes:toIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveAssetsAtIndexes_toIndex(
             &self,
@@ -109,11 +109,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetCollectionChangeRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

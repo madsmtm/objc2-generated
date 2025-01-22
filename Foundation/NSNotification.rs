@@ -36,21 +36,21 @@ unsafe impl NSObjectProtocol for NSNotification {}
 extern_methods!(
     unsafe impl NSNotification {
         #[cfg(feature = "NSString")]
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSNotificationName>;
 
-        #[method(object)]
+        #[unsafe(method(object))]
         #[unsafe(method_family = none)]
         pub unsafe fn object(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSDictionary")]
-        #[method(userInfo)]
+        #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(initWithName:object:userInfo:)]
+        #[unsafe(method(initWithName:object:userInfo:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_object_userInfo(
             this: Allocated<Self>,
@@ -60,7 +60,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -73,7 +73,7 @@ extern_methods!(
     /// NSNotificationCreation
     unsafe impl NSNotification {
         #[cfg(feature = "NSString")]
-        #[method(notificationWithName:object:)]
+        #[unsafe(method(notificationWithName:object:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationWithName_object(
             a_name: &NSNotificationName,
@@ -81,7 +81,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(notificationWithName:object:userInfo:)]
+        #[unsafe(method(notificationWithName:object:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationWithName_object_userInfo(
             a_name: &NSNotificationName,
@@ -108,12 +108,12 @@ unsafe impl NSObjectProtocol for NSNotificationCenter {}
 
 extern_methods!(
     unsafe impl NSNotificationCenter {
-        #[method(defaultCenter)]
+        #[unsafe(method(defaultCenter))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultCenter() -> Retained<NSNotificationCenter>;
 
         #[cfg(feature = "NSString")]
-        #[method(addObserver:selector:name:object:)]
+        #[unsafe(method(addObserver:selector:name:object:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserver_selector_name_object(
             &self,
@@ -123,12 +123,12 @@ extern_methods!(
             an_object: Option<&AnyObject>,
         );
 
-        #[method(postNotification:)]
+        #[unsafe(method(postNotification:))]
         #[unsafe(method_family = none)]
         pub unsafe fn postNotification(&self, notification: &NSNotification);
 
         #[cfg(feature = "NSString")]
-        #[method(postNotificationName:object:)]
+        #[unsafe(method(postNotificationName:object:))]
         #[unsafe(method_family = none)]
         pub unsafe fn postNotificationName_object(
             &self,
@@ -137,7 +137,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method(postNotificationName:object:userInfo:)]
+        #[unsafe(method(postNotificationName:object:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn postNotificationName_object_userInfo(
             &self,
@@ -146,12 +146,12 @@ extern_methods!(
             a_user_info: Option<&NSDictionary>,
         );
 
-        #[method(removeObserver:)]
+        #[unsafe(method(removeObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObserver(&self, observer: &AnyObject);
 
         #[cfg(feature = "NSString")]
-        #[method(removeObserver:name:object:)]
+        #[unsafe(method(removeObserver:name:object:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObserver_name_object(
             &self,
@@ -161,7 +161,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSOperation", feature = "NSString", feature = "block2"))]
-        #[method(addObserverForName:object:queue:usingBlock:)]
+        #[unsafe(method(addObserverForName:object:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserverForName_object_queue_usingBlock(
             &self,
@@ -176,11 +176,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNotificationCenter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

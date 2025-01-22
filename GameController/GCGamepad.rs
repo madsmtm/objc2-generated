@@ -32,20 +32,20 @@ extern_methods!(
     unsafe impl GCGamepad {
         #[cfg(feature = "GCController")]
         #[deprecated]
-        #[method(controller)]
+        #[unsafe(method(controller))]
         #[unsafe(method_family = none)]
         pub unsafe fn controller(&self) -> Option<Retained<GCController>>;
 
         #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
         #[deprecated]
-        #[method(valueChangedHandler)]
+        #[unsafe(method(valueChangedHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueChangedHandler(&self) -> GCGamepadValueChangedHandler;
 
         #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
         /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         #[deprecated]
-        #[method(setValueChangedHandler:)]
+        #[unsafe(method(setValueChangedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueChangedHandler(
             &self,
@@ -60,14 +60,14 @@ extern_methods!(
         /// If your application is heavily multithreaded this may also be useful to guarantee atomicity of input handling as
         /// a snapshot will not change based on user input once it is taken.
         #[deprecated]
-        #[method(saveSnapshot)]
+        #[unsafe(method(saveSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveSnapshot(&self) -> Retained<GCGamepadSnapshot>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         /// Required to be analog in the Standard profile. All the elements of this directional input are thus analog.
         #[deprecated]
-        #[method(dpad)]
+        #[unsafe(method(dpad))]
         #[unsafe(method_family = none)]
         pub unsafe fn dpad(&self) -> Retained<GCControllerDirectionPad>;
 
@@ -83,39 +83,39 @@ extern_methods!(
         /// /
         /// A
         #[deprecated]
-        #[method(buttonA)]
+        #[unsafe(method(buttonA))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonA(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[deprecated]
-        #[method(buttonB)]
+        #[unsafe(method(buttonB))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonB(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[deprecated]
-        #[method(buttonX)]
+        #[unsafe(method(buttonX))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonX(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         #[deprecated]
-        #[method(buttonY)]
+        #[unsafe(method(buttonY))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonY(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// Shoulder buttons are required to be analog inputs.
         #[deprecated]
-        #[method(leftShoulder)]
+        #[unsafe(method(leftShoulder))]
         #[unsafe(method_family = none)]
         pub unsafe fn leftShoulder(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// Shoulder buttons are required to be analog inputs.
         #[deprecated]
-        #[method(rightShoulder)]
+        #[unsafe(method(rightShoulder))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightShoulder(&self) -> Retained<GCControllerButtonInput>;
     }
@@ -125,11 +125,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCGamepad {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

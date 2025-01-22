@@ -21,19 +21,19 @@ unsafe impl NSObjectProtocol for WKNavigationResponse {}
 extern_methods!(
     unsafe impl WKNavigationResponse {
         /// A Boolean value indicating whether the frame being navigated is the main frame.
-        #[method(isForMainFrame)]
+        #[unsafe(method(isForMainFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn isForMainFrame(&self) -> bool;
 
         /// The frame's response.
-        #[method(response)]
+        #[unsafe(method(response))]
         #[unsafe(method_family = none)]
         pub unsafe fn response(&self) -> Retained<NSURLResponse>;
 
         /// A Boolean value indicating whether WebKit can display the response's MIME type natively.
         ///
         /// Allowing a navigation response with a MIME type that can't be shown will cause the navigation to fail.
-        #[method(canShowMIMEType)]
+        #[unsafe(method(canShowMIMEType))]
         #[unsafe(method_family = none)]
         pub unsafe fn canShowMIMEType(&self) -> bool;
     }
@@ -42,11 +42,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKNavigationResponse {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

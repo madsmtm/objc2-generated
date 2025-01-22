@@ -40,13 +40,13 @@ extern_methods!(
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCMouseInput {
         #[cfg(feature = "block2")]
-        #[method(mouseMovedHandler)]
+        #[unsafe(method(mouseMovedHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn mouseMovedHandler(&self) -> GCMouseMoved;
 
         #[cfg(feature = "block2")]
         /// Setter for [`mouseMovedHandler`][Self::mouseMovedHandler].
-        #[method(setMouseMovedHandler:)]
+        #[unsafe(method(setMouseMovedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMouseMovedHandler(&self, mouse_moved_handler: GCMouseMoved);
 
@@ -56,28 +56,28 @@ extern_methods!(
             feature = "GCDeviceCursor"
         ))]
         /// Scroll is a dpad with undefined range.
-        #[method(scroll)]
+        #[unsafe(method(scroll))]
         #[unsafe(method_family = none)]
         pub unsafe fn scroll(&self) -> Retained<GCDeviceCursor>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// Mouse buttons that can be used only as digital inputs
-        #[method(leftButton)]
+        #[unsafe(method(leftButton))]
         #[unsafe(method_family = none)]
         pub unsafe fn leftButton(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[method(rightButton)]
+        #[unsafe(method(rightButton))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightButton(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[method(middleButton)]
+        #[unsafe(method(middleButton))]
         #[unsafe(method_family = none)]
         pub unsafe fn middleButton(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[method(auxiliaryButtons)]
+        #[unsafe(method(auxiliaryButtons))]
         #[unsafe(method_family = none)]
         pub unsafe fn auxiliaryButtons(&self)
             -> Option<Retained<NSArray<GCControllerButtonInput>>>;
@@ -88,11 +88,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCMouseInput {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

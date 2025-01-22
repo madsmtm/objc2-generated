@@ -51,7 +51,7 @@ unsafe impl NSObjectProtocol for UIGestureRecognizer {}
 
 extern_methods!(
     unsafe impl UIGestureRecognizer {
-        #[method(initWithTarget:action:)]
+        #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
             this: Allocated<Self>,
@@ -59,108 +59,108 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(addTarget:action:)]
+        #[unsafe(method(addTarget:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTarget_action(&self, target: &AnyObject, action: Sel);
 
-        #[method(removeTarget:action:)]
+        #[unsafe(method(removeTarget:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTarget_action(&self, target: Option<&AnyObject>, action: Option<Sel>);
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn UIGestureRecognizerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIGestureRecognizerDelegate>>,
         );
 
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
-        #[method(setEnabled:)]
+        #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method(view)]
+        #[unsafe(method(view))]
         #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Option<Retained<UIView>>;
 
-        #[method(cancelsTouchesInView)]
+        #[unsafe(method(cancelsTouchesInView))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelsTouchesInView(&self) -> bool;
 
         /// Setter for [`cancelsTouchesInView`][Self::cancelsTouchesInView].
-        #[method(setCancelsTouchesInView:)]
+        #[unsafe(method(setCancelsTouchesInView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCancelsTouchesInView(&self, cancels_touches_in_view: bool);
 
-        #[method(delaysTouchesBegan)]
+        #[unsafe(method(delaysTouchesBegan))]
         #[unsafe(method_family = none)]
         pub unsafe fn delaysTouchesBegan(&self) -> bool;
 
         /// Setter for [`delaysTouchesBegan`][Self::delaysTouchesBegan].
-        #[method(setDelaysTouchesBegan:)]
+        #[unsafe(method(setDelaysTouchesBegan:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelaysTouchesBegan(&self, delays_touches_began: bool);
 
-        #[method(delaysTouchesEnded)]
+        #[unsafe(method(delaysTouchesEnded))]
         #[unsafe(method_family = none)]
         pub unsafe fn delaysTouchesEnded(&self) -> bool;
 
         /// Setter for [`delaysTouchesEnded`][Self::delaysTouchesEnded].
-        #[method(setDelaysTouchesEnded:)]
+        #[unsafe(method(setDelaysTouchesEnded:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelaysTouchesEnded(&self, delays_touches_ended: bool);
 
-        #[method(allowedTouchTypes)]
+        #[unsafe(method(allowedTouchTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedTouchTypes(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`allowedTouchTypes`][Self::allowedTouchTypes].
-        #[method(setAllowedTouchTypes:)]
+        #[unsafe(method(setAllowedTouchTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedTouchTypes(&self, allowed_touch_types: &NSArray<NSNumber>);
 
-        #[method(allowedPressTypes)]
+        #[unsafe(method(allowedPressTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedPressTypes(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`allowedPressTypes`][Self::allowedPressTypes].
-        #[method(setAllowedPressTypes:)]
+        #[unsafe(method(setAllowedPressTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedPressTypes(&self, allowed_press_types: &NSArray<NSNumber>);
 
-        #[method(requiresExclusiveTouchType)]
+        #[unsafe(method(requiresExclusiveTouchType))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresExclusiveTouchType(&self) -> bool;
 
         /// Setter for [`requiresExclusiveTouchType`][Self::requiresExclusiveTouchType].
-        #[method(setRequiresExclusiveTouchType:)]
+        #[unsafe(method(setRequiresExclusiveTouchType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiresExclusiveTouchType(&self, requires_exclusive_touch_type: bool);
 
-        #[method(requireGestureRecognizerToFail:)]
+        #[unsafe(method(requireGestureRecognizerToFail:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requireGestureRecognizerToFail(
             &self,
@@ -172,11 +172,11 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method(locationInView:)]
+        #[unsafe(method(locationInView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn locationInView(&self, view: Option<&UIView>) -> CGPoint;
 
-        #[method(numberOfTouches)]
+        #[unsafe(method(numberOfTouches))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfTouches(&self) -> NSUInteger;
 
@@ -185,7 +185,7 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method(locationOfTouch:inView:)]
+        #[unsafe(method(locationOfTouch:inView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn locationOfTouch_inView(
             &self,
@@ -193,22 +193,22 @@ extern_methods!(
             view: Option<&UIView>,
         ) -> CGPoint;
 
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
-        #[method(setName:)]
+        #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "UICommand")]
-        #[method(modifierFlags)]
+        #[unsafe(method(modifierFlags))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifierFlags(&self) -> UIKeyModifierFlags;
 
         #[cfg(feature = "UIEvent")]
-        #[method(buttonMask)]
+        #[unsafe(method(buttonMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonMask(&self) -> UIEventButtonMask;
     }
@@ -217,7 +217,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIGestureRecognizer {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -227,7 +227,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigesturerecognizerdelegate?language=objc)
     pub unsafe trait UIGestureRecognizerDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
-        #[method(gestureRecognizerShouldBegin:)]
+        #[unsafe(method(gestureRecognizerShouldBegin:))]
         #[unsafe(method_family = none)]
         unsafe fn gestureRecognizerShouldBegin(
             &self,
@@ -235,7 +235,7 @@ extern_protocol!(
         ) -> bool;
 
         #[optional]
-        #[method(gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:)]
+        #[unsafe(method(gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:))]
         #[unsafe(method_family = none)]
         unsafe fn gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer(
             &self,
@@ -244,7 +244,7 @@ extern_protocol!(
         ) -> bool;
 
         #[optional]
-        #[method(gestureRecognizer:shouldRequireFailureOfGestureRecognizer:)]
+        #[unsafe(method(gestureRecognizer:shouldRequireFailureOfGestureRecognizer:))]
         #[unsafe(method_family = none)]
         unsafe fn gestureRecognizer_shouldRequireFailureOfGestureRecognizer(
             &self,
@@ -253,7 +253,7 @@ extern_protocol!(
         ) -> bool;
 
         #[optional]
-        #[method(gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:)]
+        #[unsafe(method(gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:))]
         #[unsafe(method_family = none)]
         unsafe fn gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer(
             &self,
@@ -263,7 +263,7 @@ extern_protocol!(
 
         #[cfg(feature = "UITouch")]
         #[optional]
-        #[method(gestureRecognizer:shouldReceiveTouch:)]
+        #[unsafe(method(gestureRecognizer:shouldReceiveTouch:))]
         #[unsafe(method_family = none)]
         unsafe fn gestureRecognizer_shouldReceiveTouch(
             &self,
@@ -273,7 +273,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIPress")]
         #[optional]
-        #[method(gestureRecognizer:shouldReceivePress:)]
+        #[unsafe(method(gestureRecognizer:shouldReceivePress:))]
         #[unsafe(method_family = none)]
         unsafe fn gestureRecognizer_shouldReceivePress(
             &self,
@@ -283,7 +283,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIEvent")]
         #[optional]
-        #[method(gestureRecognizer:shouldReceiveEvent:)]
+        #[unsafe(method(gestureRecognizer:shouldReceiveEvent:))]
         #[unsafe(method_family = none)]
         unsafe fn gestureRecognizer_shouldReceiveEvent(
             &self,

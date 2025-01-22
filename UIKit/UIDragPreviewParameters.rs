@@ -35,11 +35,11 @@ extern_methods!(
     /// Methods declared on superclass `UIPreviewParameters`
     #[cfg(feature = "UIPreviewParameters")]
     unsafe impl UIDragPreviewParameters {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithTextLineRects:)]
+        #[unsafe(method(initWithTextLineRects:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTextLineRects(
             this: Allocated<Self>,
@@ -52,7 +52,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIPreviewParameters")]
     unsafe impl UIDragPreviewParameters {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

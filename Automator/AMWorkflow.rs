@@ -24,29 +24,29 @@ unsafe impl NSObjectProtocol for AMWorkflow {}
 
 extern_methods!(
     unsafe impl AMWorkflow {
-        #[method(runWorkflowAtURL:withInput:error:_)]
+        #[unsafe(method(runWorkflowAtURL:withInput:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn runWorkflowAtURL_withInput_error(
             file_url: &NSURL,
             input: Option<&AnyObject>,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(initWithContentsOfURL:error:_)]
+        #[unsafe(method(initWithContentsOfURL:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             file_url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method(writeToURL:error:_)]
+        #[unsafe(method(writeToURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_error(&self, file_url: &NSURL) -> Result<(), Retained<NSError>>;
 
-        #[method(setValue:forVariableWithName:)]
+        #[unsafe(method(setValue:forVariableWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forVariableWithName(
             &self,
@@ -54,7 +54,7 @@ extern_methods!(
             variable_name: &NSString,
         ) -> bool;
 
-        #[method(valueForVariableWithName:)]
+        #[unsafe(method(valueForVariableWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueForVariableWithName(
             &self,
@@ -62,21 +62,21 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "AMAction")]
-        #[method(addAction:)]
+        #[unsafe(method(addAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAction(&self, action: &AMAction);
 
         #[cfg(feature = "AMAction")]
-        #[method(removeAction:)]
+        #[unsafe(method(removeAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAction(&self, action: &AMAction);
 
         #[cfg(feature = "AMAction")]
-        #[method(insertAction:atIndex:)]
+        #[unsafe(method(insertAction:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertAction_atIndex(&self, action: &AMAction, index: NSUInteger);
 
-        #[method(moveActionAtIndex:toIndex:)]
+        #[unsafe(method(moveActionAtIndex:toIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveActionAtIndex_toIndex(
             &self,
@@ -84,25 +84,25 @@ extern_methods!(
             end_index: NSUInteger,
         );
 
-        #[method(fileURL)]
+        #[unsafe(method(fileURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "AMAction")]
-        #[method(actions)]
+        #[unsafe(method(actions))]
         #[unsafe(method_family = none)]
         pub unsafe fn actions(&self) -> Retained<NSArray<AMAction>>;
 
-        #[method(input)]
+        #[unsafe(method(input))]
         #[unsafe(method_family = none)]
         pub unsafe fn input(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`input`][Self::input].
-        #[method(setInput:)]
+        #[unsafe(method(setInput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInput(&self, input: Option<&AnyObject>);
 
-        #[method(output)]
+        #[unsafe(method(output))]
         #[unsafe(method_family = none)]
         pub unsafe fn output(&self) -> Option<Retained<AnyObject>>;
     }
@@ -111,7 +111,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AMWorkflow {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

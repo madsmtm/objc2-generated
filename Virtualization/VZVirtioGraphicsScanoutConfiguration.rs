@@ -40,7 +40,7 @@ extern_methods!(
         /// Parameter `widthInPixels`: The width of the scanout, in pixels.
         ///
         /// Parameter `heightInPixels`: The height of the scanout, in pixels.
-        #[method(initWithWidthInPixels:heightInPixels:)]
+        #[unsafe(method(initWithWidthInPixels:heightInPixels:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWidthInPixels_heightInPixels(
             this: Allocated<Self>,
@@ -49,22 +49,22 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The width of the scanout, in pixels.
-        #[method(widthInPixels)]
+        #[unsafe(method(widthInPixels))]
         #[unsafe(method_family = none)]
         pub unsafe fn widthInPixels(&self) -> NSInteger;
 
         /// Setter for [`widthInPixels`][Self::widthInPixels].
-        #[method(setWidthInPixels:)]
+        #[unsafe(method(setWidthInPixels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidthInPixels(&self, width_in_pixels: NSInteger);
 
         /// The height of the scanout, in pixels.
-        #[method(heightInPixels)]
+        #[unsafe(method(heightInPixels))]
         #[unsafe(method_family = none)]
         pub unsafe fn heightInPixels(&self) -> NSInteger;
 
         /// Setter for [`heightInPixels`][Self::heightInPixels].
-        #[method(setHeightInPixels:)]
+        #[unsafe(method(setHeightInPixels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeightInPixels(&self, height_in_pixels: NSInteger);
     }
@@ -74,11 +74,11 @@ extern_methods!(
     /// Methods declared on superclass `VZGraphicsDisplayConfiguration`
     #[cfg(feature = "VZGraphicsDisplayConfiguration")]
     unsafe impl VZVirtioGraphicsScanoutConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

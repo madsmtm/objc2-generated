@@ -78,46 +78,46 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLHRElement {
         #[deprecated]
-        #[method(align)]
+        #[unsafe(method(align))]
         #[unsafe(method_family = none)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
         #[deprecated]
-        #[method(setAlign:)]
+        #[unsafe(method(setAlign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[deprecated]
-        #[method(noShade)]
+        #[unsafe(method(noShade))]
         #[unsafe(method_family = none)]
         pub unsafe fn noShade(&self) -> bool;
 
         /// Setter for [`noShade`][Self::noShade].
         #[deprecated]
-        #[method(setNoShade:)]
+        #[unsafe(method(setNoShade:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNoShade(&self, no_shade: bool);
 
         #[deprecated]
-        #[method(size)]
+        #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> Retained<NSString>;
 
         /// Setter for [`size`][Self::size].
         #[deprecated]
-        #[method(setSize:)]
+        #[unsafe(method(setSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSize(&self, size: Option<&NSString>);
 
         #[deprecated]
-        #[method(width)]
+        #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> Retained<NSString>;
 
         /// Setter for [`width`][Self::width].
         #[deprecated]
-        #[method(setWidth:)]
+        #[unsafe(method(setWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: Option<&NSString>);
     }
@@ -134,7 +134,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLHRElement {
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -150,7 +150,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLHRElement {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

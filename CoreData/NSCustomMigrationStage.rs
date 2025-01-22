@@ -22,17 +22,17 @@ extern_methods!(
     #[cfg(feature = "NSMigrationStage")]
     unsafe impl NSCustomMigrationStage {
         #[cfg(feature = "NSManagedObjectModelReference")]
-        #[method(currentModel)]
+        #[unsafe(method(currentModel))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentModel(&self) -> Retained<NSManagedObjectModelReference>;
 
         #[cfg(feature = "NSManagedObjectModelReference")]
-        #[method(nextModel)]
+        #[unsafe(method(nextModel))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextModel(&self) -> Retained<NSManagedObjectModelReference>;
 
         #[cfg(all(feature = "NSStagedMigrationManager", feature = "block2"))]
-        #[method(willMigrateHandler)]
+        #[unsafe(method(willMigrateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn willMigrateHandler(
             &self,
@@ -46,7 +46,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSStagedMigrationManager", feature = "block2"))]
         /// Setter for [`willMigrateHandler`][Self::willMigrateHandler].
-        #[method(setWillMigrateHandler:)]
+        #[unsafe(method(setWillMigrateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWillMigrateHandler(
             &self,
@@ -62,7 +62,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSStagedMigrationManager", feature = "block2"))]
-        #[method(didMigrateHandler)]
+        #[unsafe(method(didMigrateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn didMigrateHandler(
             &self,
@@ -76,7 +76,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSStagedMigrationManager", feature = "block2"))]
         /// Setter for [`didMigrateHandler`][Self::didMigrateHandler].
-        #[method(setDidMigrateHandler:)]
+        #[unsafe(method(setDidMigrateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDidMigrateHandler(
             &self,
@@ -91,12 +91,12 @@ extern_methods!(
             >,
         );
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectModelReference")]
-        #[method(initWithCurrentModelReference:nextModelReference:)]
+        #[unsafe(method(initWithCurrentModelReference:nextModelReference:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCurrentModelReference_nextModelReference(
             this: Allocated<Self>,
@@ -110,7 +110,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSMigrationStage")]
     unsafe impl NSCustomMigrationStage {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

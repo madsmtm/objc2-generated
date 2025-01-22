@@ -37,11 +37,11 @@ unsafe impl RefEncode for MDLTransformOpRotationOrder {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformop?language=objc)
     pub unsafe trait MDLTransformOp {
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method(IsInverseOp)]
+        #[unsafe(method(IsInverseOp))]
         #[unsafe(method_family = none)]
         unsafe fn IsInverseOp(&self) -> bool;
     }
@@ -60,12 +60,12 @@ unsafe impl NSObjectProtocol for MDLTransformRotateXOp {}
 
 extern_methods!(
     unsafe impl MDLTransformRotateXOp {
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MDLAnimatedValueTypes")]
-        #[method(animatedValue)]
+        #[unsafe(method(animatedValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn animatedValue(&self) -> Retained<MDLAnimatedScalar>;
     }
@@ -74,11 +74,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLTransformRotateXOp {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -97,12 +97,12 @@ unsafe impl NSObjectProtocol for MDLTransformRotateYOp {}
 
 extern_methods!(
     unsafe impl MDLTransformRotateYOp {
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MDLAnimatedValueTypes")]
-        #[method(animatedValue)]
+        #[unsafe(method(animatedValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn animatedValue(&self) -> Retained<MDLAnimatedScalar>;
     }
@@ -111,11 +111,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLTransformRotateYOp {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -134,12 +134,12 @@ unsafe impl NSObjectProtocol for MDLTransformRotateZOp {}
 
 extern_methods!(
     unsafe impl MDLTransformRotateZOp {
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MDLAnimatedValueTypes")]
-        #[method(animatedValue)]
+        #[unsafe(method(animatedValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn animatedValue(&self) -> Retained<MDLAnimatedScalar>;
     }
@@ -148,11 +148,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLTransformRotateZOp {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -171,12 +171,12 @@ unsafe impl NSObjectProtocol for MDLTransformRotateOp {}
 
 extern_methods!(
     unsafe impl MDLTransformRotateOp {
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MDLAnimatedValueTypes")]
-        #[method(animatedValue)]
+        #[unsafe(method(animatedValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn animatedValue(&self) -> Retained<MDLAnimatedVector3>;
     }
@@ -185,11 +185,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLTransformRotateOp {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -208,12 +208,12 @@ unsafe impl NSObjectProtocol for MDLTransformTranslateOp {}
 
 extern_methods!(
     unsafe impl MDLTransformTranslateOp {
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MDLAnimatedValueTypes")]
-        #[method(animatedValue)]
+        #[unsafe(method(animatedValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn animatedValue(&self) -> Retained<MDLAnimatedVector3>;
     }
@@ -222,11 +222,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLTransformTranslateOp {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -245,12 +245,12 @@ unsafe impl NSObjectProtocol for MDLTransformScaleOp {}
 
 extern_methods!(
     unsafe impl MDLTransformScaleOp {
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MDLAnimatedValueTypes")]
-        #[method(animatedValue)]
+        #[unsafe(method(animatedValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn animatedValue(&self) -> Retained<MDLAnimatedVector3>;
     }
@@ -259,11 +259,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLTransformScaleOp {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -282,12 +282,12 @@ unsafe impl NSObjectProtocol for MDLTransformMatrixOp {}
 
 extern_methods!(
     unsafe impl MDLTransformMatrixOp {
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MDLAnimatedValueTypes")]
-        #[method(animatedValue)]
+        #[unsafe(method(animatedValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn animatedValue(&self) -> Retained<MDLAnimatedMatrix4x4>;
     }
@@ -296,11 +296,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLTransformMatrixOp {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -319,12 +319,12 @@ unsafe impl NSObjectProtocol for MDLTransformOrientOp {}
 
 extern_methods!(
     unsafe impl MDLTransformOrientOp {
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MDLAnimatedValueTypes")]
-        #[method(animatedValue)]
+        #[unsafe(method(animatedValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn animatedValue(&self) -> Retained<MDLAnimatedQuaternion>;
     }
@@ -333,11 +333,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLTransformOrientOp {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -366,11 +366,11 @@ unsafe impl NSObjectProtocol for MDLTransformStack {}
 
 extern_methods!(
     unsafe impl MDLTransformStack {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(addTranslateOp:inverse:)]
+        #[unsafe(method(addTranslateOp:inverse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTranslateOp_inverse(
             &self,
@@ -378,7 +378,7 @@ extern_methods!(
             inverse: bool,
         ) -> Retained<MDLTransformTranslateOp>;
 
-        #[method(addRotateXOp:inverse:)]
+        #[unsafe(method(addRotateXOp:inverse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRotateXOp_inverse(
             &self,
@@ -386,7 +386,7 @@ extern_methods!(
             inverse: bool,
         ) -> Retained<MDLTransformRotateXOp>;
 
-        #[method(addRotateYOp:inverse:)]
+        #[unsafe(method(addRotateYOp:inverse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRotateYOp_inverse(
             &self,
@@ -394,7 +394,7 @@ extern_methods!(
             inverse: bool,
         ) -> Retained<MDLTransformRotateYOp>;
 
-        #[method(addRotateZOp:inverse:)]
+        #[unsafe(method(addRotateZOp:inverse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRotateZOp_inverse(
             &self,
@@ -402,7 +402,7 @@ extern_methods!(
             inverse: bool,
         ) -> Retained<MDLTransformRotateZOp>;
 
-        #[method(addRotateOp:order:inverse:)]
+        #[unsafe(method(addRotateOp:order:inverse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRotateOp_order_inverse(
             &self,
@@ -411,7 +411,7 @@ extern_methods!(
             inverse: bool,
         ) -> Retained<MDLTransformRotateOp>;
 
-        #[method(addScaleOp:inverse:)]
+        #[unsafe(method(addScaleOp:inverse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addScaleOp_inverse(
             &self,
@@ -419,7 +419,7 @@ extern_methods!(
             inverse: bool,
         ) -> Retained<MDLTransformScaleOp>;
 
-        #[method(addMatrixOp:inverse:)]
+        #[unsafe(method(addMatrixOp:inverse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMatrixOp_inverse(
             &self,
@@ -427,7 +427,7 @@ extern_methods!(
             inverse: bool,
         ) -> Retained<MDLTransformMatrixOp>;
 
-        #[method(addOrientOp:inverse:)]
+        #[unsafe(method(addOrientOp:inverse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addOrientOp_inverse(
             &self,
@@ -436,19 +436,19 @@ extern_methods!(
         ) -> Retained<MDLTransformOrientOp>;
 
         #[cfg(feature = "MDLAnimatedValueTypes")]
-        #[method(animatedValueWithName:)]
+        #[unsafe(method(animatedValueWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn animatedValueWithName(&self, name: &NSString) -> Retained<MDLAnimatedValue>;
 
-        #[method(count)]
+        #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
 
-        #[method(keyTimes)]
+        #[unsafe(method(keyTimes))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyTimes(&self) -> Retained<NSArray<NSNumber>>;
 
-        #[method(transformOps)]
+        #[unsafe(method(transformOps))]
         #[unsafe(method_family = none)]
         pub unsafe fn transformOps(&self) -> Retained<NSArray<ProtocolObject<dyn MDLTransformOp>>>;
     }
@@ -457,7 +457,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLTransformStack {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

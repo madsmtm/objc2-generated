@@ -42,12 +42,12 @@ unsafe impl NSObjectProtocol for UIDocumentBrowserAction {}
 
 extern_methods!(
     unsafe impl UIDocumentBrowserAction {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method(initWithIdentifier:localizedTitle:availability:handler:)]
+        #[unsafe(method(initWithIdentifier:localizedTitle:availability:handler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_localizedTitle_availability_handler(
             this: Allocated<Self>,
@@ -57,46 +57,46 @@ extern_methods!(
             handler: &block2::Block<dyn Fn(NonNull<NSArray<NSURL>>)>,
         ) -> Retained<Self>;
 
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
-        #[method(localizedTitle)]
+        #[unsafe(method(localizedTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
-        #[method(availability)]
+        #[unsafe(method(availability))]
         #[unsafe(method_family = none)]
         pub unsafe fn availability(&self) -> UIDocumentBrowserActionAvailability;
 
         #[cfg(feature = "UIImage")]
-        #[method(image)]
+        #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`image`][Self::image].
-        #[method(setImage:)]
+        #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         /// Allows clients to restrict the action to only a specific set of content types. Default: [UTTypeItem.identifier]
-        #[method(supportedContentTypes)]
+        #[unsafe(method(supportedContentTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedContentTypes(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`supportedContentTypes`][Self::supportedContentTypes].
-        #[method(setSupportedContentTypes:)]
+        #[unsafe(method(setSupportedContentTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedContentTypes(&self, supported_content_types: &NSArray<NSString>);
 
         /// If NO, the action is only available, if there is only one item selected. Default: YES.
-        #[method(supportsMultipleItems)]
+        #[unsafe(method(supportsMultipleItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsMultipleItems(&self) -> bool;
 
         /// Setter for [`supportsMultipleItems`][Self::supportsMultipleItems].
-        #[method(setSupportsMultipleItems:)]
+        #[unsafe(method(setSupportsMultipleItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportsMultipleItems(&self, supports_multiple_items: bool);
     }
@@ -105,7 +105,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDocumentBrowserAction {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

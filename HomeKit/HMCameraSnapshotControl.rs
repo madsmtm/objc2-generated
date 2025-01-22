@@ -30,7 +30,7 @@ extern_methods!(
     #[cfg(feature = "HMCameraControl")]
     unsafe impl HMCameraSnapshotControl {
         /// Delegate that receives updates on the camera snapshot changes.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -38,7 +38,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -47,17 +47,17 @@ extern_methods!(
 
         #[cfg(all(feature = "HMCameraSnapshot", feature = "HMCameraSource"))]
         /// Represents the most recent snapshot taken from the camera.
-        #[method(mostRecentSnapshot)]
+        #[unsafe(method(mostRecentSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn mostRecentSnapshot(&self) -> Option<Retained<HMCameraSnapshot>>;
 
         /// Takes an image snapshot.
-        #[method(takeSnapshot)]
+        #[unsafe(method(takeSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeSnapshot(&self);
 
         #[deprecated = "HMCameraSnapshotControl objects are created by their parent container objects. Directly creating them is not supported."]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -67,7 +67,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HMCameraControl")]
     unsafe impl HMCameraSnapshotControl {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -94,7 +94,7 @@ extern_protocol!(
         ///
         /// Parameter `error`: Error will be populated if the snapshot could not be taken.
         #[optional]
-        #[method(cameraSnapshotControl:didTakeSnapshot:error:)]
+        #[unsafe(method(cameraSnapshotControl:didTakeSnapshot:error:))]
         #[unsafe(method_family = none)]
         unsafe fn cameraSnapshotControl_didTakeSnapshot_error(
             &self,
@@ -109,7 +109,7 @@ extern_protocol!(
         ///
         /// Parameter `cameraSnapshotControl`: Sender of this message.
         #[optional]
-        #[method(cameraSnapshotControlDidUpdateMostRecentSnapshot:)]
+        #[unsafe(method(cameraSnapshotControlDidUpdateMostRecentSnapshot:))]
         #[unsafe(method_family = none)]
         unsafe fn cameraSnapshotControlDidUpdateMostRecentSnapshot(
             &self,

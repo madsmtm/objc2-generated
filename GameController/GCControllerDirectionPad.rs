@@ -38,13 +38,13 @@ extern_methods!(
     #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerDirectionPad {
         #[cfg(feature = "block2")]
-        #[method(valueChangedHandler)]
+        #[unsafe(method(valueChangedHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueChangedHandler(&self) -> GCControllerDirectionPadValueChangedHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
-        #[method(setValueChangedHandler:)]
+        #[unsafe(method(setValueChangedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueChangedHandler(
             &self,
@@ -52,32 +52,32 @@ extern_methods!(
         );
 
         #[cfg(feature = "GCControllerAxisInput")]
-        #[method(xAxis)]
+        #[unsafe(method(xAxis))]
         #[unsafe(method_family = none)]
         pub unsafe fn xAxis(&self) -> Retained<GCControllerAxisInput>;
 
         #[cfg(feature = "GCControllerAxisInput")]
-        #[method(yAxis)]
+        #[unsafe(method(yAxis))]
         #[unsafe(method_family = none)]
         pub unsafe fn yAxis(&self) -> Retained<GCControllerAxisInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
-        #[method(up)]
+        #[unsafe(method(up))]
         #[unsafe(method_family = none)]
         pub unsafe fn up(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
-        #[method(down)]
+        #[unsafe(method(down))]
         #[unsafe(method_family = none)]
         pub unsafe fn down(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
-        #[method(left)]
+        #[unsafe(method(left))]
         #[unsafe(method_family = none)]
         pub unsafe fn left(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
-        #[method(right)]
+        #[unsafe(method(right))]
         #[unsafe(method_family = none)]
         pub unsafe fn right(&self) -> Retained<GCControllerButtonInput>;
 
@@ -93,7 +93,7 @@ extern_methods!(
         /// See: value
         ///
         /// See: pressed
-        #[method(setValueForXAxis:yAxis:)]
+        #[unsafe(method(setValueForXAxis:yAxis:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueForXAxis_yAxis(&self, x_axis: c_float, y_axis: c_float);
     }
@@ -103,11 +103,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerDirectionPad {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

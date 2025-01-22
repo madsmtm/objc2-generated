@@ -25,30 +25,30 @@ extern_methods!(
     unsafe impl MEMessageEncodingResult {
         #[cfg(feature = "MEEncodedOutgoingMessage")]
         /// The encoded message. Nil if no need to encode or an error occured while encoding
-        #[method(encodedMessage)]
+        #[unsafe(method(encodedMessage))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodedMessage(&self) -> Option<Retained<MEEncodedOutgoingMessage>>;
 
         /// Any error that occured while attempting to sign the outgoing message.
-        #[method(signingError)]
+        #[unsafe(method(signingError))]
         #[unsafe(method_family = none)]
         pub unsafe fn signingError(&self) -> Option<Retained<NSError>>;
 
         /// Any error that occured while attempting to encrypt the outgoing message.
-        #[method(encryptionError)]
+        #[unsafe(method(encryptionError))]
         #[unsafe(method_family = none)]
         pub unsafe fn encryptionError(&self) -> Option<Retained<NSError>>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MEEncodedOutgoingMessage")]
-        #[method(initWithEncodedMessage:signingError:encryptionError:)]
+        #[unsafe(method(initWithEncodedMessage:signingError:encryptionError:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEncodedMessage_signingError_encryptionError(
             this: Allocated<Self>,

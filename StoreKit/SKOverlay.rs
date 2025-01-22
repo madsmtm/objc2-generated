@@ -11,13 +11,13 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlaydelegate?language=objc)
     pub unsafe trait SKOverlayDelegate: NSObjectProtocol {
         #[optional]
-        #[method(storeOverlay:didFailToLoadWithError:)]
+        #[unsafe(method(storeOverlay:didFailToLoadWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn storeOverlay_didFailToLoadWithError(&self, overlay: &SKOverlay, error: &NSError);
 
         #[cfg(feature = "SKOverlayTransitionContext")]
         #[optional]
-        #[method(storeOverlay:willStartPresentation:)]
+        #[unsafe(method(storeOverlay:willStartPresentation:))]
         #[unsafe(method_family = none)]
         unsafe fn storeOverlay_willStartPresentation(
             &self,
@@ -27,7 +27,7 @@ extern_protocol!(
 
         #[cfg(feature = "SKOverlayTransitionContext")]
         #[optional]
-        #[method(storeOverlay:didFinishPresentation:)]
+        #[unsafe(method(storeOverlay:didFinishPresentation:))]
         #[unsafe(method_family = none)]
         unsafe fn storeOverlay_didFinishPresentation(
             &self,
@@ -37,7 +37,7 @@ extern_protocol!(
 
         #[cfg(feature = "SKOverlayTransitionContext")]
         #[optional]
-        #[method(storeOverlay:willStartDismissal:)]
+        #[unsafe(method(storeOverlay:willStartDismissal:))]
         #[unsafe(method_family = none)]
         unsafe fn storeOverlay_willStartDismissal(
             &self,
@@ -47,7 +47,7 @@ extern_protocol!(
 
         #[cfg(feature = "SKOverlayTransitionContext")]
         #[optional]
-        #[method(storeOverlay:didFinishDismissal:)]
+        #[unsafe(method(storeOverlay:didFinishDismissal:))]
         #[unsafe(method_family = none)]
         unsafe fn storeOverlay_didFinishDismissal(
             &self,
@@ -68,11 +68,11 @@ unsafe impl NSObjectProtocol for SKOverlay {}
 
 extern_methods!(
     unsafe impl SKOverlay {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -80,7 +80,7 @@ extern_methods!(
         /// Creates an overlay with the provided configuration.
         ///
         /// Parameter `configuration`: the configuration for the overlay.
-        #[method(initWithConfiguration:)]
+        #[unsafe(method(initWithConfiguration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
@@ -88,19 +88,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// A delegate for overlay events.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn SKOverlayDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn SKOverlayDelegate>>);
 
         #[cfg(feature = "SKOverlayConfiguration")]
         /// The overlay configuration.
-        #[method(configuration)]
+        #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<SKOverlayConfiguration>;
     }

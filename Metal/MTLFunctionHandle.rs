@@ -10,16 +10,16 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionhandle?language=objc)
     pub unsafe trait MTLFunctionHandle: NSObjectProtocol {
         #[cfg(feature = "MTLLibrary")]
-        #[method(functionType)]
+        #[unsafe(method(functionType))]
         #[unsafe(method_family = none)]
         fn functionType(&self) -> MTLFunctionType;
 
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MTLDevice")]
-        #[method(device)]
+        #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
     }

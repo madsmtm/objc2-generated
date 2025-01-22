@@ -31,11 +31,11 @@ unsafe impl NSSecureCoding for PHPersistentChangeToken {}
 
 extern_methods!(
     unsafe impl PHPersistentChangeToken {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

@@ -31,13 +31,13 @@ unsafe impl NSObjectProtocol for NSUserDefaultsController {}
 extern_methods!(
     #[cfg(feature = "NSController")]
     unsafe impl NSUserDefaultsController {
-        #[method(sharedUserDefaultsController)]
+        #[unsafe(method(sharedUserDefaultsController))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedUserDefaultsController(
             mtm: MainThreadMarker,
         ) -> Retained<NSUserDefaultsController>;
 
-        #[method(initWithDefaults:initialValues:)]
+        #[unsafe(method(initWithDefaults:initialValues:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDefaults_initialValues(
             this: Allocated<Self>,
@@ -45,55 +45,55 @@ extern_methods!(
             initial_values: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method(defaults)]
+        #[unsafe(method(defaults))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaults(&self) -> Retained<NSUserDefaults>;
 
-        #[method(initialValues)]
+        #[unsafe(method(initialValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn initialValues(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`initialValues`][Self::initialValues].
-        #[method(setInitialValues:)]
+        #[unsafe(method(setInitialValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialValues(
             &self,
             initial_values: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
-        #[method(appliesImmediately)]
+        #[unsafe(method(appliesImmediately))]
         #[unsafe(method_family = none)]
         pub unsafe fn appliesImmediately(&self) -> bool;
 
         /// Setter for [`appliesImmediately`][Self::appliesImmediately].
-        #[method(setAppliesImmediately:)]
+        #[unsafe(method(setAppliesImmediately:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAppliesImmediately(&self, applies_immediately: bool);
 
-        #[method(hasUnappliedChanges)]
+        #[unsafe(method(hasUnappliedChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasUnappliedChanges(&self) -> bool;
 
-        #[method(values)]
+        #[unsafe(method(values))]
         #[unsafe(method_family = none)]
         pub unsafe fn values(&self) -> Retained<AnyObject>;
 
-        #[method(revert:)]
+        #[unsafe(method(revert:))]
         #[unsafe(method_family = none)]
         pub unsafe fn revert(&self, sender: Option<&AnyObject>);
 
-        #[method(save:)]
+        #[unsafe(method(save:))]
         #[unsafe(method_family = none)]
         pub unsafe fn save(&self, sender: Option<&AnyObject>);
 
-        #[method(revertToInitialValues:)]
+        #[unsafe(method(revertToInitialValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn revertToInitialValues(&self, sender: Option<&AnyObject>);
     }
@@ -103,7 +103,7 @@ extern_methods!(
     /// Methods declared on superclass `NSController`
     #[cfg(feature = "NSController")]
     unsafe impl NSUserDefaultsController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -113,7 +113,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSController")]
     unsafe impl NSUserDefaultsController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

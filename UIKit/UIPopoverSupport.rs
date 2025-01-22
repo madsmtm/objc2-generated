@@ -42,26 +42,26 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIViewController {
         #[deprecated]
-        #[method(isModalInPopover)]
+        #[unsafe(method(isModalInPopover))]
         #[unsafe(method_family = none)]
         pub unsafe fn isModalInPopover(&self) -> bool;
 
         /// Setter for [`isModalInPopover`][Self::isModalInPopover].
         #[deprecated]
-        #[method(setModalInPopover:)]
+        #[unsafe(method(setModalInPopover:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModalInPopover(&self, modal_in_popover: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
-        #[method(contentSizeForViewInPopover)]
+        #[unsafe(method(contentSizeForViewInPopover))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentSizeForViewInPopover(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentSizeForViewInPopover`][Self::contentSizeForViewInPopover].
         #[deprecated]
-        #[method(setContentSizeForViewInPopover:)]
+        #[unsafe(method(setContentSizeForViewInPopover:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentSizeForViewInPopover(
             &self,

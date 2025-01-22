@@ -25,16 +25,16 @@ unsafe impl NSObjectProtocol for MLNeuralEngineComputeDevice {}
 
 extern_methods!(
     unsafe impl MLNeuralEngineComputeDevice {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The total number of cores in the NeuralEngine.
-        #[method(totalCoreCount)]
+        #[unsafe(method(totalCoreCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalCoreCount(&self) -> NSInteger;
     }

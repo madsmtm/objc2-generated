@@ -57,7 +57,7 @@ extern_methods!(
         /// Parameter `width`: The width of the plane.
         ///
         /// Parameter `height`: The height of the plane.
-        #[method(planeWithWidth:height:)]
+        #[unsafe(method(planeWithWidth:height:))]
         #[unsafe(method_family = none)]
         pub unsafe fn planeWithWidth_height(width: CGFloat, height: CGFloat) -> Retained<Self>;
 
@@ -65,13 +65,13 @@ extern_methods!(
         /// The plane extent along the X axis. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 1.
-        #[method(width)]
+        #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`width`][Self::width].
-        #[method(setWidth:)]
+        #[unsafe(method(setWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: CGFloat);
 
@@ -79,37 +79,37 @@ extern_methods!(
         /// The plane extent along the Y axis. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 1.
-        #[method(height)]
+        #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`height`][Self::height].
-        #[method(setHeight:)]
+        #[unsafe(method(setHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeight(&self, height: CGFloat);
 
         /// The number of subdivisions along the X axis. Animatable.
         ///
         /// If the value is less than 1, the behavior is undefined. The default value is 1.
-        #[method(widthSegmentCount)]
+        #[unsafe(method(widthSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn widthSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`widthSegmentCount`][Self::widthSegmentCount].
-        #[method(setWidthSegmentCount:)]
+        #[unsafe(method(setWidthSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidthSegmentCount(&self, width_segment_count: NSInteger);
 
         /// The number of subdivisions along the Y axis. The default value is 1. Animatable.
         ///
         /// If the value is less than 1, the behavior is undefined. The default value is 1.
-        #[method(heightSegmentCount)]
+        #[unsafe(method(heightSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn heightSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`heightSegmentCount`][Self::heightSegmentCount].
-        #[method(setHeightSegmentCount:)]
+        #[unsafe(method(setHeightSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeightSegmentCount(&self, height_segment_count: NSInteger);
 
@@ -117,25 +117,25 @@ extern_methods!(
         /// The corner radius. Animatable.
         ///
         /// If the value is strictly less than 0, the geometry is empty. The default value is 0.
-        #[method(cornerRadius)]
+        #[unsafe(method(cornerRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn cornerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`cornerRadius`][Self::cornerRadius].
-        #[method(setCornerRadius:)]
+        #[unsafe(method(setCornerRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
 
         /// The number of subdivisions for the rounded corners. Animatable.
         ///
         /// If the value is less than 1, the behavior is undefined. The default value is 10.
-        #[method(cornerSegmentCount)]
+        #[unsafe(method(cornerSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cornerSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`cornerSegmentCount`][Self::cornerSegmentCount].
-        #[method(setCornerSegmentCount:)]
+        #[unsafe(method(setCornerSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCornerSegmentCount(&self, corner_segment_count: NSInteger);
     }
@@ -148,7 +148,7 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[method(geometry)]
+        #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
@@ -159,7 +159,7 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[method(geometryWithSources:elements:)]
+        #[unsafe(method(geometryWithSources:elements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
@@ -233,7 +233,7 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[method(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
@@ -247,11 +247,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNPlane {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -306,7 +306,7 @@ extern_methods!(
         /// Parameter `length`: The length of the box.
         ///
         /// Parameter `chamferRadius`: The chamfer radius of the box.
-        #[method(boxWithWidth:height:length:chamferRadius:)]
+        #[unsafe(method(boxWithWidth:height:length:chamferRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn boxWithWidth_height_length_chamferRadius(
             width: CGFloat,
@@ -319,13 +319,13 @@ extern_methods!(
         /// The width of the box. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 1.
-        #[method(width)]
+        #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`width`][Self::width].
-        #[method(setWidth:)]
+        #[unsafe(method(setWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: CGFloat);
 
@@ -333,13 +333,13 @@ extern_methods!(
         /// The height of the box. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 1.
-        #[method(height)]
+        #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`height`][Self::height].
-        #[method(setHeight:)]
+        #[unsafe(method(setHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeight(&self, height: CGFloat);
 
@@ -347,13 +347,13 @@ extern_methods!(
         /// The length of the box. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 1.
-        #[method(length)]
+        #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`length`][Self::length].
-        #[method(setLength:)]
+        #[unsafe(method(setLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLength(&self, length: CGFloat);
 
@@ -361,61 +361,61 @@ extern_methods!(
         /// The chamfer radius. Animatable.
         ///
         /// If the value is strictly less than 0, the geometry is empty. The default value is 0.
-        #[method(chamferRadius)]
+        #[unsafe(method(chamferRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn chamferRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`chamferRadius`][Self::chamferRadius].
-        #[method(setChamferRadius:)]
+        #[unsafe(method(setChamferRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChamferRadius(&self, chamfer_radius: CGFloat);
 
         /// The number of subdivisions along the X axis. Animatable.
         ///
         /// If the value is less than 1, the behavior is undefined. The default value is 1.
-        #[method(widthSegmentCount)]
+        #[unsafe(method(widthSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn widthSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`widthSegmentCount`][Self::widthSegmentCount].
-        #[method(setWidthSegmentCount:)]
+        #[unsafe(method(setWidthSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidthSegmentCount(&self, width_segment_count: NSInteger);
 
         /// The number of subdivisions along the Y axis. Animatable.
         ///
         /// If the value is less than 1, the behavior is undefined. The default value is 1.
-        #[method(heightSegmentCount)]
+        #[unsafe(method(heightSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn heightSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`heightSegmentCount`][Self::heightSegmentCount].
-        #[method(setHeightSegmentCount:)]
+        #[unsafe(method(setHeightSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeightSegmentCount(&self, height_segment_count: NSInteger);
 
         /// The number of subdivisions along the Z axis. Animatable.
         ///
         /// If the value is less than 1, the behavior is undefined. The default value is 1.
-        #[method(lengthSegmentCount)]
+        #[unsafe(method(lengthSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn lengthSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`lengthSegmentCount`][Self::lengthSegmentCount].
-        #[method(setLengthSegmentCount:)]
+        #[unsafe(method(setLengthSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLengthSegmentCount(&self, length_segment_count: NSInteger);
 
         /// The number of chamfer subdivisions. Animatable.
         ///
         /// If the value is less than 1, the behavior is undefined. The default value is 10.
-        #[method(chamferSegmentCount)]
+        #[unsafe(method(chamferSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn chamferSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`chamferSegmentCount`][Self::chamferSegmentCount].
-        #[method(setChamferSegmentCount:)]
+        #[unsafe(method(setChamferSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChamferSegmentCount(&self, chamfer_segment_count: NSInteger);
     }
@@ -428,7 +428,7 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[method(geometry)]
+        #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
@@ -439,7 +439,7 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[method(geometryWithSources:elements:)]
+        #[unsafe(method(geometryWithSources:elements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
@@ -513,7 +513,7 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[method(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
@@ -527,11 +527,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNBox {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -584,7 +584,7 @@ extern_methods!(
         /// Parameter `height`: The height of the pyramid.
         ///
         /// Parameter `length`: The length of the pyramid.
-        #[method(pyramidWithWidth:height:length:)]
+        #[unsafe(method(pyramidWithWidth:height:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pyramidWithWidth_height_length(
             width: CGFloat,
@@ -596,13 +596,13 @@ extern_methods!(
         /// The width of the pyramid base. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 1.
-        #[method(width)]
+        #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`width`][Self::width].
-        #[method(setWidth:)]
+        #[unsafe(method(setWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: CGFloat);
 
@@ -610,13 +610,13 @@ extern_methods!(
         /// The height of the pyramid. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 1.
-        #[method(height)]
+        #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`height`][Self::height].
-        #[method(setHeight:)]
+        #[unsafe(method(setHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeight(&self, height: CGFloat);
 
@@ -624,49 +624,49 @@ extern_methods!(
         /// The length of the pyramid base. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 1.
-        #[method(length)]
+        #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`length`][Self::length].
-        #[method(setLength:)]
+        #[unsafe(method(setLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLength(&self, length: CGFloat);
 
         /// The number of subdivisions along the X axis. Animatable.
         ///
         /// If the value is less than 1, the behavior is undefined. The default value is 1.
-        #[method(widthSegmentCount)]
+        #[unsafe(method(widthSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn widthSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`widthSegmentCount`][Self::widthSegmentCount].
-        #[method(setWidthSegmentCount:)]
+        #[unsafe(method(setWidthSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidthSegmentCount(&self, width_segment_count: NSInteger);
 
         /// The number of subdivisions along the Y axis. Animatable.
         ///
         /// If the value is less than 1, the behavior is undefined. The default value is 1.
-        #[method(heightSegmentCount)]
+        #[unsafe(method(heightSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn heightSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`heightSegmentCount`][Self::heightSegmentCount].
-        #[method(setHeightSegmentCount:)]
+        #[unsafe(method(setHeightSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeightSegmentCount(&self, height_segment_count: NSInteger);
 
         /// The number of subdivisions along the Z axis. Animatable.
         ///
         /// If the value is less than 1, the behavior is undefined. The default value is 1.
-        #[method(lengthSegmentCount)]
+        #[unsafe(method(lengthSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn lengthSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`lengthSegmentCount`][Self::lengthSegmentCount].
-        #[method(setLengthSegmentCount:)]
+        #[unsafe(method(setLengthSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLengthSegmentCount(&self, length_segment_count: NSInteger);
     }
@@ -679,7 +679,7 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[method(geometry)]
+        #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
@@ -690,7 +690,7 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[method(geometryWithSources:elements:)]
+        #[unsafe(method(geometryWithSources:elements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
@@ -764,7 +764,7 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[method(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
@@ -778,11 +778,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNPyramid {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -831,7 +831,7 @@ extern_methods!(
         /// Creates and returns a sphere with given radius.
         ///
         /// Parameter `radius`: The radius of the sphere.
-        #[method(sphereWithRadius:)]
+        #[unsafe(method(sphereWithRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sphereWithRadius(radius: CGFloat) -> Retained<Self>;
 
@@ -839,37 +839,37 @@ extern_methods!(
         /// The sphere radius. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 0.5.
-        #[method(radius)]
+        #[unsafe(method(radius))]
         #[unsafe(method_family = none)]
         pub unsafe fn radius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`radius`][Self::radius].
-        #[method(setRadius:)]
+        #[unsafe(method(setRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRadius(&self, radius: CGFloat);
 
         /// Indicate if the geometry is a geosphere.
         ///
         /// The default value is NO.
-        #[method(isGeodesic)]
+        #[unsafe(method(isGeodesic))]
         #[unsafe(method_family = none)]
         pub unsafe fn isGeodesic(&self) -> bool;
 
         /// Setter for [`isGeodesic`][Self::isGeodesic].
-        #[method(setGeodesic:)]
+        #[unsafe(method(setGeodesic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGeodesic(&self, geodesic: bool);
 
         /// The number of segments along both spherical coordinates. Animatable.
         ///
         /// If the value is less than 3, the behavior is undefined. The default value is 48.
-        #[method(segmentCount)]
+        #[unsafe(method(segmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentCount(&self) -> NSInteger;
 
         /// Setter for [`segmentCount`][Self::segmentCount].
-        #[method(setSegmentCount:)]
+        #[unsafe(method(setSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSegmentCount(&self, segment_count: NSInteger);
     }
@@ -882,7 +882,7 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[method(geometry)]
+        #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
@@ -893,7 +893,7 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[method(geometryWithSources:elements:)]
+        #[unsafe(method(geometryWithSources:elements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
@@ -967,7 +967,7 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[method(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
@@ -981,11 +981,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNSphere {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1036,7 +1036,7 @@ extern_methods!(
         /// Parameter `radius`: The radius of the cylinder.
         ///
         /// Parameter `height`: The height of the cylinder.
-        #[method(cylinderWithRadius:height:)]
+        #[unsafe(method(cylinderWithRadius:height:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cylinderWithRadius_height(radius: CGFloat, height: CGFloat)
             -> Retained<Self>;
@@ -1045,13 +1045,13 @@ extern_methods!(
         /// The radius of the cylinder. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 0.5.
-        #[method(radius)]
+        #[unsafe(method(radius))]
         #[unsafe(method_family = none)]
         pub unsafe fn radius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`radius`][Self::radius].
-        #[method(setRadius:)]
+        #[unsafe(method(setRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRadius(&self, radius: CGFloat);
 
@@ -1059,37 +1059,37 @@ extern_methods!(
         /// The height of the cylinder. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 1.
-        #[method(height)]
+        #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`height`][Self::height].
-        #[method(setHeight:)]
+        #[unsafe(method(setHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeight(&self, height: CGFloat);
 
         /// The number of subdivisions along the radial coordinate. Animatable.
         ///
         /// If the value is less than 3, the behavior is undefined. The default value is 48.
-        #[method(radialSegmentCount)]
+        #[unsafe(method(radialSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn radialSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`radialSegmentCount`][Self::radialSegmentCount].
-        #[method(setRadialSegmentCount:)]
+        #[unsafe(method(setRadialSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRadialSegmentCount(&self, radial_segment_count: NSInteger);
 
         /// The number of subdivisions along the Y axis. Animatable.
         ///
         /// If the value is less than 1, the behavior is undefined. The default value is 1.
-        #[method(heightSegmentCount)]
+        #[unsafe(method(heightSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn heightSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`heightSegmentCount`][Self::heightSegmentCount].
-        #[method(setHeightSegmentCount:)]
+        #[unsafe(method(setHeightSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeightSegmentCount(&self, height_segment_count: NSInteger);
     }
@@ -1102,7 +1102,7 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[method(geometry)]
+        #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
@@ -1113,7 +1113,7 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[method(geometryWithSources:elements:)]
+        #[unsafe(method(geometryWithSources:elements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
@@ -1187,7 +1187,7 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[method(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
@@ -1201,11 +1201,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNCylinder {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1258,7 +1258,7 @@ extern_methods!(
         /// Parameter `bottomRadius`: The radius at the bottom of the cone.
         ///
         /// Parameter `height`: The height of the cone.
-        #[method(coneWithTopRadius:bottomRadius:height:)]
+        #[unsafe(method(coneWithTopRadius:bottomRadius:height:))]
         #[unsafe(method_family = none)]
         pub unsafe fn coneWithTopRadius_bottomRadius_height(
             top_radius: CGFloat,
@@ -1270,13 +1270,13 @@ extern_methods!(
         /// The radius at the top of the cone. Animatable.
         ///
         /// If the value is less than 0, the geometry is empty. The default value is 0.
-        #[method(topRadius)]
+        #[unsafe(method(topRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn topRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`topRadius`][Self::topRadius].
-        #[method(setTopRadius:)]
+        #[unsafe(method(setTopRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTopRadius(&self, top_radius: CGFloat);
 
@@ -1284,13 +1284,13 @@ extern_methods!(
         /// The radius at the bottom of the cone. Animatable.
         ///
         /// If the value is less than 0, the geometry is empty. The default value is 0.5.
-        #[method(bottomRadius)]
+        #[unsafe(method(bottomRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn bottomRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bottomRadius`][Self::bottomRadius].
-        #[method(setBottomRadius:)]
+        #[unsafe(method(setBottomRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBottomRadius(&self, bottom_radius: CGFloat);
 
@@ -1298,37 +1298,37 @@ extern_methods!(
         /// The height of the cone. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 1.
-        #[method(height)]
+        #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`height`][Self::height].
-        #[method(setHeight:)]
+        #[unsafe(method(setHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeight(&self, height: CGFloat);
 
         /// The number of subdivisions along the radial coordinate. Animatable.
         ///
         /// If the value is less than 3, the behavior is undefined. The default value is 48.
-        #[method(radialSegmentCount)]
+        #[unsafe(method(radialSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn radialSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`radialSegmentCount`][Self::radialSegmentCount].
-        #[method(setRadialSegmentCount:)]
+        #[unsafe(method(setRadialSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRadialSegmentCount(&self, radial_segment_count: NSInteger);
 
         /// The number of subdivisions along the Y axis. Animatable.
         ///
         /// If the value is less than 1, the behavior is undefined. The default value is 1.
-        #[method(heightSegmentCount)]
+        #[unsafe(method(heightSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn heightSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`heightSegmentCount`][Self::heightSegmentCount].
-        #[method(setHeightSegmentCount:)]
+        #[unsafe(method(setHeightSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeightSegmentCount(&self, height_segment_count: NSInteger);
     }
@@ -1341,7 +1341,7 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[method(geometry)]
+        #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
@@ -1352,7 +1352,7 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[method(geometryWithSources:elements:)]
+        #[unsafe(method(geometryWithSources:elements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
@@ -1426,7 +1426,7 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[method(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
@@ -1440,11 +1440,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNCone {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1497,7 +1497,7 @@ extern_methods!(
         /// Parameter `outerRadius`: The outer radius of the tube.
         ///
         /// Parameter `height`: The height of the tube.
-        #[method(tubeWithInnerRadius:outerRadius:height:)]
+        #[unsafe(method(tubeWithInnerRadius:outerRadius:height:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tubeWithInnerRadius_outerRadius_height(
             inner_radius: CGFloat,
@@ -1509,13 +1509,13 @@ extern_methods!(
         /// The inner radius of the tube. Animatable.
         ///
         /// If the value is less than or equal to 0, or if it is greater than or equal to the outer radius, then the geometry is empty. The default value is 0.25.
-        #[method(innerRadius)]
+        #[unsafe(method(innerRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn innerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`innerRadius`][Self::innerRadius].
-        #[method(setInnerRadius:)]
+        #[unsafe(method(setInnerRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInnerRadius(&self, inner_radius: CGFloat);
 
@@ -1523,13 +1523,13 @@ extern_methods!(
         /// The outer radius of the tube. Animatable.
         ///
         /// If the value is less than or equal to 0, or if it is less than or equal to the inner radius, then the geometry is empty. The default value is 0.5.
-        #[method(outerRadius)]
+        #[unsafe(method(outerRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn outerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`outerRadius`][Self::outerRadius].
-        #[method(setOuterRadius:)]
+        #[unsafe(method(setOuterRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOuterRadius(&self, outer_radius: CGFloat);
 
@@ -1537,37 +1537,37 @@ extern_methods!(
         /// The height of the tube. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 1.
-        #[method(height)]
+        #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`height`][Self::height].
-        #[method(setHeight:)]
+        #[unsafe(method(setHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeight(&self, height: CGFloat);
 
         /// The number of subdivisions along the radial coordinate. Animatable.
         ///
         /// If the value is less than 3, the behavior is undefined. The default value is 48.
-        #[method(radialSegmentCount)]
+        #[unsafe(method(radialSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn radialSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`radialSegmentCount`][Self::radialSegmentCount].
-        #[method(setRadialSegmentCount:)]
+        #[unsafe(method(setRadialSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRadialSegmentCount(&self, radial_segment_count: NSInteger);
 
         /// The number of subdivisions along the Y axis. Animatable.
         ///
         /// If the value is less than 1, the behavior is undefined. The default value is 1.
-        #[method(heightSegmentCount)]
+        #[unsafe(method(heightSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn heightSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`heightSegmentCount`][Self::heightSegmentCount].
-        #[method(setHeightSegmentCount:)]
+        #[unsafe(method(setHeightSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeightSegmentCount(&self, height_segment_count: NSInteger);
     }
@@ -1580,7 +1580,7 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[method(geometry)]
+        #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
@@ -1591,7 +1591,7 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[method(geometryWithSources:elements:)]
+        #[unsafe(method(geometryWithSources:elements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
@@ -1665,7 +1665,7 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[method(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
@@ -1679,11 +1679,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNTube {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1734,7 +1734,7 @@ extern_methods!(
         /// Parameter `capRadius`: The radius of the capsule.
         ///
         /// Parameter `height`: The height of the capsule.
-        #[method(capsuleWithCapRadius:height:)]
+        #[unsafe(method(capsuleWithCapRadius:height:))]
         #[unsafe(method_family = none)]
         pub unsafe fn capsuleWithCapRadius_height(
             cap_radius: CGFloat,
@@ -1745,13 +1745,13 @@ extern_methods!(
         /// The cap radius of the capsule. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 0.5.
-        #[method(capRadius)]
+        #[unsafe(method(capRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn capRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`capRadius`][Self::capRadius].
-        #[method(setCapRadius:)]
+        #[unsafe(method(setCapRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCapRadius(&self, cap_radius: CGFloat);
 
@@ -1759,49 +1759,49 @@ extern_methods!(
         /// The height of the capsule. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 2.
-        #[method(height)]
+        #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`height`][Self::height].
-        #[method(setHeight:)]
+        #[unsafe(method(setHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeight(&self, height: CGFloat);
 
         /// The number of subdivisions along the radial coordinate. Animatable.
         ///
         /// If the value is less than 3, the behavior is undefined. The default value is 48.
-        #[method(radialSegmentCount)]
+        #[unsafe(method(radialSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn radialSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`radialSegmentCount`][Self::radialSegmentCount].
-        #[method(setRadialSegmentCount:)]
+        #[unsafe(method(setRadialSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRadialSegmentCount(&self, radial_segment_count: NSInteger);
 
         /// The number of subdivisions along the Y axis. Animatable.
         ///
         /// If the value is less than 1, the behavior is undefined. The default value is 1.
-        #[method(heightSegmentCount)]
+        #[unsafe(method(heightSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn heightSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`heightSegmentCount`][Self::heightSegmentCount].
-        #[method(setHeightSegmentCount:)]
+        #[unsafe(method(setHeightSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeightSegmentCount(&self, height_segment_count: NSInteger);
 
         /// The number of subdivisions in the cap. Animatable.
         ///
         /// If the value is less than 2, the behavior is undefined. The default value is 24.
-        #[method(capSegmentCount)]
+        #[unsafe(method(capSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn capSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`capSegmentCount`][Self::capSegmentCount].
-        #[method(setCapSegmentCount:)]
+        #[unsafe(method(setCapSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCapSegmentCount(&self, cap_segment_count: NSInteger);
     }
@@ -1814,7 +1814,7 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[method(geometry)]
+        #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
@@ -1825,7 +1825,7 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[method(geometryWithSources:elements:)]
+        #[unsafe(method(geometryWithSources:elements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
@@ -1899,7 +1899,7 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[method(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
@@ -1913,11 +1913,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNCapsule {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1968,7 +1968,7 @@ extern_methods!(
         /// Parameter `ringRadius`: The radius of the ring.
         ///
         /// Parameter `pipeRadius`: The radius of the pipe.
-        #[method(torusWithRingRadius:pipeRadius:)]
+        #[unsafe(method(torusWithRingRadius:pipeRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn torusWithRingRadius_pipeRadius(
             ring_radius: CGFloat,
@@ -1979,13 +1979,13 @@ extern_methods!(
         /// The radius of the torus ring. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 0.5.
-        #[method(ringRadius)]
+        #[unsafe(method(ringRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn ringRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`ringRadius`][Self::ringRadius].
-        #[method(setRingRadius:)]
+        #[unsafe(method(setRingRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRingRadius(&self, ring_radius: CGFloat);
 
@@ -1993,37 +1993,37 @@ extern_methods!(
         /// The radius of the torus pipe. Animatable.
         ///
         /// If the value is less than or equal to 0, the geometry is empty. The default value is 0.25.
-        #[method(pipeRadius)]
+        #[unsafe(method(pipeRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn pipeRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`pipeRadius`][Self::pipeRadius].
-        #[method(setPipeRadius:)]
+        #[unsafe(method(setPipeRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPipeRadius(&self, pipe_radius: CGFloat);
 
         /// The number of subdivisions of the ring. Animatable.
         ///
         /// If the value is less than 3, the behavior is undefined. The default value is 48.
-        #[method(ringSegmentCount)]
+        #[unsafe(method(ringSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn ringSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`ringSegmentCount`][Self::ringSegmentCount].
-        #[method(setRingSegmentCount:)]
+        #[unsafe(method(setRingSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRingSegmentCount(&self, ring_segment_count: NSInteger);
 
         /// The number of subdivisions of the pipe. Animatable.
         ///
         /// If the value is less than 3, the behavior is undefined. The default value is 24.
-        #[method(pipeSegmentCount)]
+        #[unsafe(method(pipeSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn pipeSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`pipeSegmentCount`][Self::pipeSegmentCount].
-        #[method(setPipeSegmentCount:)]
+        #[unsafe(method(setPipeSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPipeSegmentCount(&self, pipe_segment_count: NSInteger);
     }
@@ -2036,7 +2036,7 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[method(geometry)]
+        #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
@@ -2047,7 +2047,7 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[method(geometryWithSources:elements:)]
+        #[unsafe(method(geometryWithSources:elements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
@@ -2121,7 +2121,7 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[method(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
@@ -2135,11 +2135,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNTorus {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2187,7 +2187,7 @@ extern_methods!(
         /// Creates and returns a floor.
         ///
         /// A floor is an infinite plane.
-        #[method(floor)]
+        #[unsafe(method(floor))]
         #[unsafe(method_family = none)]
         pub unsafe fn floor() -> Retained<Self>;
 
@@ -2195,13 +2195,13 @@ extern_methods!(
         /// Specifies the reflectivity of the floor. Animatable.
         ///
         /// If the value is greater than zero then the surface will reflect other objects in the scene. The default value is 0.25.
-        #[method(reflectivity)]
+        #[unsafe(method(reflectivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn reflectivity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`reflectivity`][Self::reflectivity].
-        #[method(setReflectivity:)]
+        #[unsafe(method(setReflectivity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReflectivity(&self, reflectivity: CGFloat);
 
@@ -2209,13 +2209,13 @@ extern_methods!(
         /// Specifies the distance from the floor where the falloff begins. Animatable.
         ///
         /// The default value is 0.
-        #[method(reflectionFalloffStart)]
+        #[unsafe(method(reflectionFalloffStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn reflectionFalloffStart(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`reflectionFalloffStart`][Self::reflectionFalloffStart].
-        #[method(setReflectionFalloffStart:)]
+        #[unsafe(method(setReflectionFalloffStart:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReflectionFalloffStart(&self, reflection_falloff_start: CGFloat);
 
@@ -2223,23 +2223,23 @@ extern_methods!(
         /// Specifies the distance from the floor where the falloff finishes. Animatable.
         ///
         /// If the value is 0 then there is no falloff. The default value is 0.
-        #[method(reflectionFalloffEnd)]
+        #[unsafe(method(reflectionFalloffEnd))]
         #[unsafe(method_family = none)]
         pub unsafe fn reflectionFalloffEnd(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`reflectionFalloffEnd`][Self::reflectionFalloffEnd].
-        #[method(setReflectionFalloffEnd:)]
+        #[unsafe(method(setReflectionFalloffEnd:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReflectionFalloffEnd(&self, reflection_falloff_end: CGFloat);
 
         /// Determines the node categories to reflect. Defaults to all bits set.
-        #[method(reflectionCategoryBitMask)]
+        #[unsafe(method(reflectionCategoryBitMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn reflectionCategoryBitMask(&self) -> NSUInteger;
 
         /// Setter for [`reflectionCategoryBitMask`][Self::reflectionCategoryBitMask].
-        #[method(setReflectionCategoryBitMask:)]
+        #[unsafe(method(setReflectionCategoryBitMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReflectionCategoryBitMask(&self, reflection_category_bit_mask: NSUInteger);
 
@@ -2247,13 +2247,13 @@ extern_methods!(
         /// The floor extent along the X axis. Animatable.
         ///
         /// If the value is equal to 0, the floor is infinite on the X axis. The default value is 0.
-        #[method(width)]
+        #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`width`][Self::width].
-        #[method(setWidth:)]
+        #[unsafe(method(setWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: CGFloat);
 
@@ -2261,13 +2261,13 @@ extern_methods!(
         /// The floor extent along the Z axis. Animatable.
         ///
         /// If the value is equal to 0, the floor is infinite on the Z axis. The default value is 0.
-        #[method(length)]
+        #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`length`][Self::length].
-        #[method(setLength:)]
+        #[unsafe(method(setLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLength(&self, length: CGFloat);
 
@@ -2275,13 +2275,13 @@ extern_methods!(
         /// Specifies the resolution scale factor of the buffer used to render the reflection.
         ///
         /// Defaults to 1.0.
-        #[method(reflectionResolutionScaleFactor)]
+        #[unsafe(method(reflectionResolutionScaleFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn reflectionResolutionScaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`reflectionResolutionScaleFactor`][Self::reflectionResolutionScaleFactor].
-        #[method(setReflectionResolutionScaleFactor:)]
+        #[unsafe(method(setReflectionResolutionScaleFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReflectionResolutionScaleFactor(
             &self,
@@ -2297,7 +2297,7 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[method(geometry)]
+        #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
@@ -2308,7 +2308,7 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[method(geometryWithSources:elements:)]
+        #[unsafe(method(geometryWithSources:elements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
@@ -2382,7 +2382,7 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[method(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
@@ -2396,11 +2396,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNFloor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2451,7 +2451,7 @@ extern_methods!(
         /// Parameter `string`: The text to be represented.
         ///
         /// Parameter `extrusionDepth`: The extrusion depth.
-        #[method(textWithString:extrusionDepth:)]
+        #[unsafe(method(textWithString:extrusionDepth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textWithString_extrusionDepth(
             string: Option<&AnyObject>,
@@ -2462,25 +2462,25 @@ extern_methods!(
         /// The extrusion depth. Animatable.
         ///
         /// If the value is 0, we get a mono-sided, 2D version of the text.
-        #[method(extrusionDepth)]
+        #[unsafe(method(extrusionDepth))]
         #[unsafe(method_family = none)]
         pub unsafe fn extrusionDepth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`extrusionDepth`][Self::extrusionDepth].
-        #[method(setExtrusionDepth:)]
+        #[unsafe(method(setExtrusionDepth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtrusionDepth(&self, extrusion_depth: CGFloat);
 
         /// The text to be represented. The text must be an instance of NSString or NSAttributedString.
         ///
         /// The default value is nil.
-        #[method(string)]
+        #[unsafe(method(string))]
         #[unsafe(method_family = none)]
         pub unsafe fn string(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`string`][Self::string].
-        #[method(setString:)]
+        #[unsafe(method(setString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setString(&self, string: Option<&AnyObject>);
 
@@ -2489,26 +2489,26 @@ extern_methods!(
         /// The font used to represent the text.
         ///
         /// The font property is only used when the string property is not an NSAttributedString. Defaults to the system font (12 point).
-        #[method(font)]
+        #[unsafe(method(font))]
         #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`font`][Self::font].
-        #[method(setFont:)]
+        #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
         /// Determines whether the text is wrapped to fit within the bounds.
         ///
         /// For the text to be wrapped you first need to set its bounds, otherwise the text is not wrapped. The default value is NO.
-        #[method(isWrapped)]
+        #[unsafe(method(isWrapped))]
         #[unsafe(method_family = none)]
         pub unsafe fn isWrapped(&self) -> bool;
 
         /// Setter for [`isWrapped`][Self::isWrapped].
-        #[method(setWrapped:)]
+        #[unsafe(method(setWrapped:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWrapped(&self, wrapped: bool);
 
@@ -2516,43 +2516,43 @@ extern_methods!(
         /// A container within which the text may be wrapped or truncated.
         ///
         /// The text will start at the top-left corner of the rect. You need to set this property for text truncation or alignment to work. Getting this property when it has never been set returns CGRectZero.
-        #[method(containerFrame)]
+        #[unsafe(method(containerFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn containerFrame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`containerFrame`][Self::containerFrame].
-        #[method(setContainerFrame:)]
+        #[unsafe(method(setContainerFrame:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContainerFrame(&self, container_frame: CGRect);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Returns the bounding box size the receiver occupies.
-        #[method(textSize)]
+        #[unsafe(method(textSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn textSize(&self) -> CGSize;
 
         /// Describes how the text is truncated to fit within the bounds.
         ///
         /// For the text to be truncated you first need to set its bounds, otherwise the text is not truncated. The default value is kCATruncationNone. See truncation modes in CATextLayer.h.
-        #[method(truncationMode)]
+        #[unsafe(method(truncationMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn truncationMode(&self) -> Retained<NSString>;
 
         /// Setter for [`truncationMode`][Self::truncationMode].
-        #[method(setTruncationMode:)]
+        #[unsafe(method(setTruncationMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTruncationMode(&self, truncation_mode: &NSString);
 
         /// Determines how individual lines of text are horizontally aligned within the bounds.
         ///
         /// For the text to be aligned you first need to set its bounds, otherwise the text is not aligned. The default value is kCAAlignmentNatural. See alignments in CATextLayer.h.
-        #[method(alignmentMode)]
+        #[unsafe(method(alignmentMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignmentMode(&self) -> Retained<NSString>;
 
         /// Setter for [`alignmentMode`][Self::alignmentMode].
-        #[method(setAlignmentMode:)]
+        #[unsafe(method(setAlignmentMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlignmentMode(&self, alignment_mode: &NSString);
 
@@ -2560,13 +2560,13 @@ extern_methods!(
         /// The chamfer radius. Animatable.
         ///
         /// Values are clamped to the range [0, extrusionDepth / 2]. The actual chamfer radius might be different to the one here specified: large values are clipped to a per-glyph max value. The default value is 0.
-        #[method(chamferRadius)]
+        #[unsafe(method(chamferRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn chamferRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`chamferRadius`][Self::chamferRadius].
-        #[method(setChamferRadius:)]
+        #[unsafe(method(setChamferRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChamferRadius(&self, chamfer_radius: CGFloat);
 
@@ -2574,13 +2574,13 @@ extern_methods!(
         ///
         /// If the value is less than 1, the behavior is undefined. The default value is 10.
         #[deprecated = "Use SCNText.chamferProfile instead"]
-        #[method(chamferSegmentCount)]
+        #[unsafe(method(chamferSegmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn chamferSegmentCount(&self) -> NSInteger;
 
         /// Setter for [`chamferSegmentCount`][Self::chamferSegmentCount].
         #[deprecated = "Use SCNText.chamferProfile instead"]
-        #[method(setChamferSegmentCount:)]
+        #[unsafe(method(setChamferSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChamferSegmentCount(&self, chamfer_segment_count: NSInteger);
 
@@ -2589,14 +2589,14 @@ extern_methods!(
         /// Describes the profile used to when "chamferRadius" is not nil. When "chamferProfile" is nil we fallback on a path representing a quadrant.
         ///
         /// The profile should be a 2D curve beginning at (0,1) and ending at (1,0). The "flatness" property is also used to flatten this path. The default value is nil.
-        #[method(chamferProfile)]
+        #[unsafe(method(chamferProfile))]
         #[unsafe(method_family = none)]
         pub unsafe fn chamferProfile(&self) -> Option<Retained<NSBezierPath>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`chamferProfile`][Self::chamferProfile].
-        #[method(setChamferProfile:)]
+        #[unsafe(method(setChamferProfile:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChamferProfile(&self, chamfer_profile: Option<&NSBezierPath>);
 
@@ -2604,13 +2604,13 @@ extern_methods!(
         /// Specifies the accuracy (or smoothness) with which fonts are rendered.
         ///
         /// Smaller numbers give smoother curves at the expense of more computation and heavier geometries in terms of vertices. The default value is 0.6, which yields smooth curves.
-        #[method(flatness)]
+        #[unsafe(method(flatness))]
         #[unsafe(method_family = none)]
         pub unsafe fn flatness(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`flatness`][Self::flatness].
-        #[method(setFlatness:)]
+        #[unsafe(method(setFlatness:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFlatness(&self, flatness: CGFloat);
     }
@@ -2623,7 +2623,7 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[method(geometry)]
+        #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
@@ -2634,7 +2634,7 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[method(geometryWithSources:elements:)]
+        #[unsafe(method(geometryWithSources:elements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
@@ -2708,7 +2708,7 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[method(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
@@ -2722,11 +2722,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNText {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2800,7 +2800,7 @@ extern_methods!(
         /// Parameter `path`: The cubic Bezier spline to extrude.
         ///
         /// Parameter `extrusionDepth`: The extrusion depth.
-        #[method(shapeWithPath:extrusionDepth:)]
+        #[unsafe(method(shapeWithPath:extrusionDepth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeWithPath_extrusionDepth(
             path: Option<&NSBezierPath>,
@@ -2812,14 +2812,14 @@ extern_methods!(
         /// The path defining the shape to be rendered.
         ///
         /// The path defines the outline of the shape. The path is filled using the even-odd rule. If the path is self-intersecting, the behavior is undefined.
-        #[method(path)]
+        #[unsafe(method(path))]
         #[unsafe(method_family = none)]
         pub unsafe fn path(&self) -> Option<Retained<NSBezierPath>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`path`][Self::path].
-        #[method(setPath:)]
+        #[unsafe(method(setPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: Option<&NSBezierPath>);
 
@@ -2827,25 +2827,25 @@ extern_methods!(
         /// The extrusion depth. Animatable.
         ///
         /// If the value is 0, we get a mono-sided, 2D version of the shape.
-        #[method(extrusionDepth)]
+        #[unsafe(method(extrusionDepth))]
         #[unsafe(method_family = none)]
         pub unsafe fn extrusionDepth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`extrusionDepth`][Self::extrusionDepth].
-        #[method(setExtrusionDepth:)]
+        #[unsafe(method(setExtrusionDepth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtrusionDepth(&self, extrusion_depth: CGFloat);
 
         /// The sides of the text that are chamfered.
         ///
         /// The default value is SCNChamferModeBoth.
-        #[method(chamferMode)]
+        #[unsafe(method(chamferMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn chamferMode(&self) -> SCNChamferMode;
 
         /// Setter for [`chamferMode`][Self::chamferMode].
-        #[method(setChamferMode:)]
+        #[unsafe(method(setChamferMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChamferMode(&self, chamfer_mode: SCNChamferMode);
 
@@ -2853,13 +2853,13 @@ extern_methods!(
         /// The chamfer radius. Animatable.
         ///
         /// Values are clamped to the range [0, extrusionDepth / 2]. The default value is 0.
-        #[method(chamferRadius)]
+        #[unsafe(method(chamferRadius))]
         #[unsafe(method_family = none)]
         pub unsafe fn chamferRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`chamferRadius`][Self::chamferRadius].
-        #[method(setChamferRadius:)]
+        #[unsafe(method(setChamferRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChamferRadius(&self, chamfer_radius: CGFloat);
 
@@ -2868,14 +2868,14 @@ extern_methods!(
         /// Describes the profile used to when "chamferRadius" is not nil. When "chamferProfile" is nil we fallback on a path representing a quadrant.
         ///
         /// The profile should be a 2D curve beginning at (0,1) and ending at (1,0). The "flatness" property is also used to flatten this path. The default value is nil.
-        #[method(chamferProfile)]
+        #[unsafe(method(chamferProfile))]
         #[unsafe(method_family = none)]
         pub unsafe fn chamferProfile(&self) -> Option<Retained<NSBezierPath>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`chamferProfile`][Self::chamferProfile].
-        #[method(setChamferProfile:)]
+        #[unsafe(method(setChamferProfile:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChamferProfile(&self, chamfer_profile: Option<&NSBezierPath>);
     }
@@ -2888,7 +2888,7 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[method(geometry)]
+        #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
@@ -2899,7 +2899,7 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[method(geometryWithSources:elements:)]
+        #[unsafe(method(geometryWithSources:elements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
@@ -2973,7 +2973,7 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[method(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
@@ -2987,11 +2987,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNShape {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

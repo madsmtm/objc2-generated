@@ -27,7 +27,7 @@ extern_methods!(
     unsafe impl GKScore {
         /// Initialize the score with the local player and current date.
         #[deprecated]
-        #[method(initWithLeaderboardIdentifier:)]
+        #[unsafe(method(initWithLeaderboardIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLeaderboardIdentifier(
             this: Allocated<Self>,
@@ -36,7 +36,7 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// Initialize the achievement for a specific player. Use to submit participant scores when ending a turn-based match.
-        #[method(initWithLeaderboardIdentifier:player:)]
+        #[unsafe(method(initWithLeaderboardIdentifier:player:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLeaderboardIdentifier_player(
             this: Allocated<Self>,
@@ -46,68 +46,68 @@ extern_methods!(
 
         /// The score value as a 64bit integer.
         #[deprecated]
-        #[method(value)]
+        #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> i64;
 
         /// Setter for [`value`][Self::value].
         #[deprecated]
-        #[method(setValue:)]
+        #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: i64);
 
         /// The score formatted as a string, localized with a label
         #[deprecated]
-        #[method(formattedValue)]
+        #[unsafe(method(formattedValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn formattedValue(&self) -> Option<Retained<NSString>>;
 
         /// leaderboard identifier (required)
-        #[method(leaderboardIdentifier)]
+        #[unsafe(method(leaderboardIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn leaderboardIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`leaderboardIdentifier`][Self::leaderboardIdentifier].
-        #[method(setLeaderboardIdentifier:)]
+        #[unsafe(method(setLeaderboardIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeaderboardIdentifier(&self, leaderboard_identifier: &NSString);
 
         /// optional additional context that allows a game to store and retrieve additional data associated with the store.  Default value of zero is returned if no value is set.
-        #[method(context)]
+        #[unsafe(method(context))]
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> u64;
 
         /// Setter for [`context`][Self::context].
-        #[method(setContext:)]
+        #[unsafe(method(setContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContext(&self, context: u64);
 
         /// The date this score was recorded. A newly initialized, unsubmitted GKScore records the current date at init time.
         #[deprecated]
-        #[method(date)]
+        #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// The player that recorded the score.
-        #[method(player)]
+        #[unsafe(method(player))]
         #[unsafe(method_family = none)]
         pub unsafe fn player(&self) -> Option<Retained<GKPlayer>>;
 
         /// The rank of the player within the leaderboard, only valid when returned from GKLeaderboard
         #[deprecated]
-        #[method(rank)]
+        #[unsafe(method(rank))]
         #[unsafe(method_family = none)]
         pub unsafe fn rank(&self) -> NSInteger;
 
         /// Convenience property to make the leaderboard associated with this GKScore, the default leaderboard for this player. Default value is false.
         /// If true, reporting that score will make the category this score belongs to, the default leaderboard for this user
-        #[method(shouldSetDefaultLeaderboard)]
+        #[unsafe(method(shouldSetDefaultLeaderboard))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldSetDefaultLeaderboard(&self) -> bool;
 
         /// Setter for [`shouldSetDefaultLeaderboard`][Self::shouldSetDefaultLeaderboard].
-        #[method(setShouldSetDefaultLeaderboard:)]
+        #[unsafe(method(setShouldSetDefaultLeaderboard:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldSetDefaultLeaderboard(&self, should_set_default_leaderboard: bool);
 
@@ -117,7 +117,7 @@ extern_methods!(
         /// 1. Value not set
         /// 2. Local player not authenticated
         /// 3. Communications problem
-        #[method(reportScores:withCompletionHandler:)]
+        #[unsafe(method(reportScores:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportScores_withCompletionHandler(
             scores: &NSArray<GKScore>,
@@ -129,11 +129,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKScore {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -144,7 +144,7 @@ extern_methods!(
     unsafe impl GKScore {
         #[cfg(feature = "block2")]
         #[deprecated]
-        #[method(reportScoreWithCompletionHandler:)]
+        #[unsafe(method(reportScoreWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportScoreWithCompletionHandler(
             &self,
@@ -152,7 +152,7 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method(initWithCategory:)]
+        #[unsafe(method(initWithCategory:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCategory(
             this: Allocated<Self>,
@@ -160,13 +160,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method(category)]
+        #[unsafe(method(category))]
         #[unsafe(method_family = none)]
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`category`][Self::category].
         #[deprecated]
-        #[method(setCategory:)]
+        #[unsafe(method(setCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
     }
@@ -177,7 +177,7 @@ extern_methods!(
     unsafe impl GKScore {
         /// * This method is obsolete. Calling this initialiser does nothing and will return nil **
         #[deprecated]
-        #[method(initWithLeaderboardIdentifier:forPlayer:)]
+        #[unsafe(method(initWithLeaderboardIdentifier:forPlayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLeaderboardIdentifier_forPlayer(
             this: Allocated<Self>,
@@ -187,7 +187,7 @@ extern_methods!(
 
         /// * This property is obsolete. **
         #[deprecated]
-        #[method(playerID)]
+        #[unsafe(method(playerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;
     }

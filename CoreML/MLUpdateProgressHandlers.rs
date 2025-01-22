@@ -24,7 +24,7 @@ extern_methods!(
             feature = "MLUpdateProgressEvent",
             feature = "block2"
         ))]
-        #[method(initForEvents:progressHandler:completionHandler:)]
+        #[unsafe(method(initForEvents:progressHandler:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initForEvents_progressHandler_completionHandler(
             this: Allocated<Self>,
@@ -33,11 +33,11 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(NonNull<MLUpdateContext>)>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -160,11 +160,11 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISegmentedControl {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -172,7 +172,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         /// Initializes the segmented control with the given items. Items may be NSStrings, UIImages, or (as of iOS 14.0) UIActions. When constructing from a UIAction segments will prefer images over titles when both are provided. The segmented control is automatically sized to fit content.
-        #[method(initWithItems:)]
+        #[unsafe(method(initWithItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
@@ -185,7 +185,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Initializes the segmented control with the given frame and segments constructed from the given UIActions. Segments will prefer images over titles when both are provided. Selecting a segment calls UIAction.actionHandler as well as handlers for the ValueChanged and PrimaryActionTriggered control events.
-        #[method(initWithFrame:actions:)]
+        #[unsafe(method(initWithFrame:actions:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_actions(
             this: Allocated<Self>,
@@ -195,7 +195,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Insert a segment with the given action at the given index. Segments will prefer images over titles when both are provided. When the segment is selected UIAction.actionHandler is called. If a segment already exists with the action's identifier that segment will either be updated (if the index is the same) or it will be removed (if different).
-        #[method(insertSegmentWithAction:atIndex:animated:)]
+        #[unsafe(method(insertSegmentWithAction:atIndex:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertSegmentWithAction_atIndex_animated(
             &self,
@@ -206,13 +206,13 @@ extern_methods!(
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Reconfigures the given segment with this action. Segments will prefer images over titles when both are provided. When the segment is selected UIAction.actionHandler is called. UIAction.identifier must either match the action of the existing segment at this index, or be unique within all actions associated with the segmented control, or this method will assert.
-        #[method(setAction:forSegmentAtIndex:)]
+        #[unsafe(method(setAction:forSegmentAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAction_forSegmentAtIndex(&self, action: &UIAction, segment: NSUInteger);
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Fetch the action for the given segment, if one has been assigned to that segment
-        #[method(actionForSegmentAtIndex:)]
+        #[unsafe(method(actionForSegmentAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionForSegmentAtIndex(
             &self,
@@ -221,7 +221,7 @@ extern_methods!(
 
         #[cfg(feature = "UIAction")]
         /// Returns the index of the segment associated with the given actionIdentifier, or NSNotFound if the identifier could not be found.
-        #[method(segmentIndexForActionIdentifier:)]
+        #[unsafe(method(segmentIndexForActionIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentIndexForActionIdentifier(
             &self,
@@ -229,45 +229,45 @@ extern_methods!(
         ) -> NSInteger;
 
         #[deprecated = "The segmentedControlStyle property no longer has any effect"]
-        #[method(segmentedControlStyle)]
+        #[unsafe(method(segmentedControlStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentedControlStyle(&self) -> UISegmentedControlStyle;
 
         /// Setter for [`segmentedControlStyle`][Self::segmentedControlStyle].
         #[deprecated = "The segmentedControlStyle property no longer has any effect"]
-        #[method(setSegmentedControlStyle:)]
+        #[unsafe(method(setSegmentedControlStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSegmentedControlStyle(
             &self,
             segmented_control_style: UISegmentedControlStyle,
         );
 
-        #[method(isMomentary)]
+        #[unsafe(method(isMomentary))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMomentary(&self) -> bool;
 
         /// Setter for [`isMomentary`][Self::isMomentary].
-        #[method(setMomentary:)]
+        #[unsafe(method(setMomentary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMomentary(&self, momentary: bool);
 
-        #[method(numberOfSegments)]
+        #[unsafe(method(numberOfSegments))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfSegments(&self) -> NSUInteger;
 
-        #[method(apportionsSegmentWidthsByContent)]
+        #[unsafe(method(apportionsSegmentWidthsByContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn apportionsSegmentWidthsByContent(&self) -> bool;
 
         /// Setter for [`apportionsSegmentWidthsByContent`][Self::apportionsSegmentWidthsByContent].
-        #[method(setApportionsSegmentWidthsByContent:)]
+        #[unsafe(method(setApportionsSegmentWidthsByContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setApportionsSegmentWidthsByContent(
             &self,
             apportions_segment_widths_by_content: bool,
         );
 
-        #[method(insertSegmentWithTitle:atIndex:animated:)]
+        #[unsafe(method(insertSegmentWithTitle:atIndex:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertSegmentWithTitle_atIndex_animated(
             &self,
@@ -277,7 +277,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIImage")]
-        #[method(insertSegmentWithImage:atIndex:animated:)]
+        #[unsafe(method(insertSegmentWithImage:atIndex:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertSegmentWithImage_atIndex_animated(
             &self,
@@ -286,15 +286,15 @@ extern_methods!(
             animated: bool,
         );
 
-        #[method(removeSegmentAtIndex:animated:)]
+        #[unsafe(method(removeSegmentAtIndex:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeSegmentAtIndex_animated(&self, segment: NSUInteger, animated: bool);
 
-        #[method(removeAllSegments)]
+        #[unsafe(method(removeAllSegments))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllSegments(&self);
 
-        #[method(setTitle:forSegmentAtIndex:)]
+        #[unsafe(method(setTitle:forSegmentAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle_forSegmentAtIndex(
             &self,
@@ -302,7 +302,7 @@ extern_methods!(
             segment: NSUInteger,
         );
 
-        #[method(titleForSegmentAtIndex:)]
+        #[unsafe(method(titleForSegmentAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleForSegmentAtIndex(
             &self,
@@ -310,7 +310,7 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIImage")]
-        #[method(setImage:forSegmentAtIndex:)]
+        #[unsafe(method(setImage:forSegmentAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImage_forSegmentAtIndex(
             &self,
@@ -319,7 +319,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIImage")]
-        #[method(imageForSegmentAtIndex:)]
+        #[unsafe(method(imageForSegmentAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageForSegmentAtIndex(
             &self,
@@ -327,17 +327,17 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(setWidth:forSegmentAtIndex:)]
+        #[unsafe(method(setWidth:forSegmentAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidth_forSegmentAtIndex(&self, width: CGFloat, segment: NSUInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(widthForSegmentAtIndex:)]
+        #[unsafe(method(widthForSegmentAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn widthForSegmentAtIndex(&self, segment: NSUInteger) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(setContentOffset:forSegmentAtIndex:)]
+        #[unsafe(method(setContentOffset:forSegmentAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentOffset_forSegmentAtIndex(
             &self,
@@ -346,35 +346,35 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(contentOffsetForSegmentAtIndex:)]
+        #[unsafe(method(contentOffsetForSegmentAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentOffsetForSegmentAtIndex(&self, segment: NSUInteger) -> CGSize;
 
-        #[method(setEnabled:forSegmentAtIndex:)]
+        #[unsafe(method(setEnabled:forSegmentAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnabled_forSegmentAtIndex(&self, enabled: bool, segment: NSUInteger);
 
-        #[method(isEnabledForSegmentAtIndex:)]
+        #[unsafe(method(isEnabledForSegmentAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabledForSegmentAtIndex(&self, segment: NSUInteger) -> bool;
 
-        #[method(selectedSegmentIndex)]
+        #[unsafe(method(selectedSegmentIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedSegmentIndex(&self) -> NSInteger;
 
         /// Setter for [`selectedSegmentIndex`][Self::selectedSegmentIndex].
-        #[method(setSelectedSegmentIndex:)]
+        #[unsafe(method(setSelectedSegmentIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedSegmentIndex(&self, selected_segment_index: NSInteger);
 
         #[cfg(feature = "UIColor")]
-        #[method(selectedSegmentTintColor)]
+        #[unsafe(method(selectedSegmentTintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedSegmentTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`selectedSegmentTintColor`][Self::selectedSegmentTintColor].
-        #[method(setSelectedSegmentTintColor:)]
+        #[unsafe(method(setSelectedSegmentTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedSegmentTintColor(
             &self,
@@ -382,7 +382,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method(setBackgroundImage:forState:barMetrics:)]
+        #[unsafe(method(setBackgroundImage:forState:barMetrics:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImage_forState_barMetrics(
             &self,
@@ -392,7 +392,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method(backgroundImageForState:barMetrics:)]
+        #[unsafe(method(backgroundImageForState:barMetrics:))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundImageForState_barMetrics(
             &self,
@@ -401,7 +401,7 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method(setDividerImage:forLeftSegmentState:rightSegmentState:barMetrics:)]
+        #[unsafe(method(setDividerImage:forLeftSegmentState:rightSegmentState:barMetrics:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDividerImage_forLeftSegmentState_rightSegmentState_barMetrics(
             &self,
@@ -412,7 +412,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method(dividerImageForLeftSegmentState:rightSegmentState:barMetrics:)]
+        #[unsafe(method(dividerImageForLeftSegmentState:rightSegmentState:barMetrics:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dividerImageForLeftSegmentState_rightSegmentState_barMetrics(
             &self,
@@ -421,7 +421,7 @@ extern_methods!(
             bar_metrics: UIBarMetrics,
         ) -> Option<Retained<UIImage>>;
 
-        #[method(setTitleTextAttributes:forState:)]
+        #[unsafe(method(setTitleTextAttributes:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleTextAttributes_forState(
             &self,
@@ -429,7 +429,7 @@ extern_methods!(
             state: UIControlState,
         );
 
-        #[method(titleTextAttributesForState:)]
+        #[unsafe(method(titleTextAttributesForState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleTextAttributesForState(
             &self,
@@ -441,7 +441,7 @@ extern_methods!(
             feature = "UIGeometry",
             feature = "objc2-core-foundation"
         ))]
-        #[method(setContentPositionAdjustment:forSegmentType:barMetrics:)]
+        #[unsafe(method(setContentPositionAdjustment:forSegmentType:barMetrics:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentPositionAdjustment_forSegmentType_barMetrics(
             &self,
@@ -455,7 +455,7 @@ extern_methods!(
             feature = "UIGeometry",
             feature = "objc2-core-foundation"
         ))]
-        #[method(contentPositionAdjustmentForSegmentType:barMetrics:)]
+        #[unsafe(method(contentPositionAdjustmentForSegmentType:barMetrics:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentPositionAdjustmentForSegmentType_barMetrics(
             &self,
@@ -475,7 +475,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
-        #[method(initWithFrame:primaryAction:)]
+        #[unsafe(method(initWithFrame:primaryAction:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,
@@ -489,11 +489,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISegmentedControl {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

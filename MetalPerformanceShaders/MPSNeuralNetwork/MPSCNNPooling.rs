@@ -51,7 +51,7 @@ extern_methods!(
         /// Parameter `kernelHeight`: The height of the kernel.  Can be an odd or even value.
         ///
         /// Returns: A valid MPSCNNPooling object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -73,7 +73,7 @@ extern_methods!(
         /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
         ///
         /// Returns: A valid MPSCNNPooling object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -93,7 +93,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSCNNPooling object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -101,7 +101,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -122,7 +122,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -135,11 +135,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPooling {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -191,7 +191,7 @@ extern_methods!(
         /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
         ///
         /// Returns: A valid MPSCNNPooling object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -211,7 +211,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSCNNPooling object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -234,7 +234,7 @@ extern_methods!(
         /// Parameter `kernelHeight`: The height of the kernel.  Can be an odd or even value.
         ///
         /// Returns: A valid MPSCNNPooling object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -243,7 +243,7 @@ extern_methods!(
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -264,7 +264,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -277,11 +277,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingMax {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -337,12 +337,12 @@ extern_methods!(
         /// The zero padding size is used to shrink the pooling window to fit inside the area bound by the source image
         /// and its padding region, but the effect is that the normalization factor of the average computation is computed
         /// also for the zeros in the padding region.
-        #[method(zeroPadSizeX)]
+        #[unsafe(method(zeroPadSizeX))]
         #[unsafe(method_family = none)]
         pub unsafe fn zeroPadSizeX(&self) -> NSUInteger;
 
         /// Setter for [`zeroPadSizeX`][Self::zeroPadSizeX].
-        #[method(setZeroPadSizeX:)]
+        #[unsafe(method(setZeroPadSizeX:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZeroPadSizeX(&self, zero_pad_size_x: NSUInteger);
 
@@ -356,12 +356,12 @@ extern_methods!(
         /// The zero padding size is used to shrink the pooling window to fit inside the area bound by the source image
         /// and its padding region, but the effect is that the normalization factor of the average computation is computed
         /// also for the zeros in the padding region.
-        #[method(zeroPadSizeY)]
+        #[unsafe(method(zeroPadSizeY))]
         #[unsafe(method_family = none)]
         pub unsafe fn zeroPadSizeY(&self) -> NSUInteger;
 
         /// Setter for [`zeroPadSizeY`][Self::zeroPadSizeY].
-        #[method(setZeroPadSizeY:)]
+        #[unsafe(method(setZeroPadSizeY:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZeroPadSizeY(&self, zero_pad_size_y: NSUInteger);
 
@@ -378,7 +378,7 @@ extern_methods!(
         /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
         ///
         /// Returns: A valid MPSCNNPooling object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -398,7 +398,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSCNNPooling object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -421,7 +421,7 @@ extern_methods!(
         /// Parameter `kernelHeight`: The height of the kernel.  Can be an odd or even value.
         ///
         /// Returns: A valid MPSCNNPooling object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -430,7 +430,7 @@ extern_methods!(
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -451,7 +451,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -464,11 +464,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingAverage {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -521,7 +521,7 @@ extern_methods!(
         /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
         ///
         /// Returns: A valid MPSCNNPooling object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -541,7 +541,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSCNNPooling object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -564,7 +564,7 @@ extern_methods!(
         /// Parameter `kernelHeight`: The height of the kernel.  Can be an odd or even value.
         ///
         /// Returns: A valid MPSCNNPooling object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -573,7 +573,7 @@ extern_methods!(
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -594,7 +594,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -607,11 +607,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingL2Norm {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -651,12 +651,12 @@ extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNDilatedPoolingMax {
         /// dilationRateX for accessing the image passed in as source
-        #[method(dilationRateX)]
+        #[unsafe(method(dilationRateX))]
         #[unsafe(method_family = none)]
         pub unsafe fn dilationRateX(&self) -> NSUInteger;
 
         /// dilationRateY for accessing the image passed in as source
-        #[method(dilationRateY)]
+        #[unsafe(method(dilationRateY))]
         #[unsafe(method_family = none)]
         pub unsafe fn dilationRateY(&self) -> NSUInteger;
 
@@ -677,7 +677,7 @@ extern_methods!(
         /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
         ///
         /// Returns: A valid MPSCNNDilatedPoolingMax object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:dilationRateX:dilationRateY:strideInPixelsX:strideInPixelsY:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:dilationRateX:dilationRateY:strideInPixelsX:strideInPixelsY:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_dilationRateX_dilationRateY_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -700,7 +700,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNDilatedPoolingMax
         ///
         /// Returns: A new MPSCNNDilatedPoolingMax object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -723,7 +723,7 @@ extern_methods!(
         /// Parameter `kernelHeight`: The height of the kernel.  Can be an odd or even value.
         ///
         /// Returns: A valid MPSCNNPooling object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -745,7 +745,7 @@ extern_methods!(
         /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
         ///
         /// Returns: A valid MPSCNNPooling object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -756,7 +756,7 @@ extern_methods!(
             stride_in_pixels_y: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -777,7 +777,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -790,11 +790,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNDilatedPoolingMax {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -877,12 +877,12 @@ extern_methods!(
         /// source area rectangle and primary source bounds is used.
         /// Default: A size where every component is NSUIntegerMax indicating the entire rest of the image,
         /// starting from an offset (see primaryOffset).
-        #[method(sourceSize)]
+        #[unsafe(method(sourceSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceSize(&self) -> MTLSize;
 
         /// Setter for [`sourceSize`][Self::sourceSize].
-        #[method(setSourceSize:)]
+        #[unsafe(method(setSourceSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceSize(&self, source_size: MTLSize);
 
@@ -895,7 +895,7 @@ extern_methods!(
         /// Parameter `kernelHeight`: The height of the kernel.  Can be an odd or even value.
         ///
         /// Returns: A valid MPSCNNPoolingGradient object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -917,7 +917,7 @@ extern_methods!(
         /// Parameter `strideInPixelsY`: The input stride (upsampling factor) in the y dimension.
         ///
         /// Returns: A valid MPSCNNPoolingGradient object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -928,7 +928,7 @@ extern_methods!(
             stride_in_pixels_y: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -944,7 +944,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPoolingGradient
         ///
         /// Returns: A new MPSCNNPooling object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -966,7 +966,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -979,11 +979,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1071,12 +1071,12 @@ extern_methods!(
         /// The zero padding size is used to shrink the pooling window to fit inside the area bound by the source image
         /// and its padding region, but the effect is that the normalization factor of the average computation is computed
         /// also for the zeros in the padding region.
-        #[method(zeroPadSizeX)]
+        #[unsafe(method(zeroPadSizeX))]
         #[unsafe(method_family = none)]
         pub unsafe fn zeroPadSizeX(&self) -> NSUInteger;
 
         /// Setter for [`zeroPadSizeX`][Self::zeroPadSizeX].
-        #[method(setZeroPadSizeX:)]
+        #[unsafe(method(setZeroPadSizeX:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZeroPadSizeX(&self, zero_pad_size_x: NSUInteger);
 
@@ -1090,12 +1090,12 @@ extern_methods!(
         /// The zero padding size is used to shrink the pooling window to fit inside the area bound by the source image
         /// and its padding region, but the effect is that the normalization factor of the average computation is computed
         /// also for the zeros in the padding region.
-        #[method(zeroPadSizeY)]
+        #[unsafe(method(zeroPadSizeY))]
         #[unsafe(method_family = none)]
         pub unsafe fn zeroPadSizeY(&self) -> NSUInteger;
 
         /// Setter for [`zeroPadSizeY`][Self::zeroPadSizeY].
-        #[method(setZeroPadSizeY:)]
+        #[unsafe(method(setZeroPadSizeY:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZeroPadSizeY(&self, zero_pad_size_y: NSUInteger);
 
@@ -1112,7 +1112,7 @@ extern_methods!(
         /// Parameter `strideInPixelsY`: The input stride (upsampling factor) in the y dimension.
         ///
         /// Returns: A valid MPSCNNPoolingGradient object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -1132,7 +1132,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPoolingAverageGradient
         ///
         /// Returns: A new MPSCNNPoolingAverageGradient object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1155,7 +1155,7 @@ extern_methods!(
         /// Parameter `kernelHeight`: The height of the kernel.  Can be an odd or even value.
         ///
         /// Returns: A valid MPSCNNPoolingGradient object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -1164,7 +1164,7 @@ extern_methods!(
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1185,7 +1185,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1198,11 +1198,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingAverageGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1294,7 +1294,7 @@ extern_methods!(
         /// Parameter `strideInPixelsY`: The input stride (upsampling factor) in the y dimension.
         ///
         /// Returns: A valid MPSCNNPoolingGradient object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -1314,7 +1314,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPoolingMaxGradient
         ///
         /// Returns: A new MPSCNNPoolingMaxGradient object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1337,7 +1337,7 @@ extern_methods!(
         /// Parameter `kernelHeight`: The height of the kernel.  Can be an odd or even value.
         ///
         /// Returns: A valid MPSCNNPoolingGradient object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -1346,7 +1346,7 @@ extern_methods!(
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1367,7 +1367,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1380,11 +1380,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingMaxGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1462,7 +1462,7 @@ extern_methods!(
         /// Parameter `strideInPixelsY`: The input stride (upsampling factor) in the y dimension.
         ///
         /// Returns: A valid MPSCNNPoolingL2NormGradient object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -1482,7 +1482,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPoolingL2NormGradient
         ///
         /// Returns: A new MPSCNNPoolingL2NormGradient object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1505,7 +1505,7 @@ extern_methods!(
         /// Parameter `kernelHeight`: The height of the kernel.  Can be an odd or even value.
         ///
         /// Returns: A valid MPSCNNPoolingGradient object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -1514,7 +1514,7 @@ extern_methods!(
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1535,7 +1535,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1548,11 +1548,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingL2NormGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1614,7 +1614,7 @@ extern_methods!(
         /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
         ///
         /// Returns: A valid MPSCNNDilatedPoolingMax object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:dilationRateX:dilationRateY:strideInPixelsX:strideInPixelsY:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:dilationRateX:dilationRateY:strideInPixelsX:strideInPixelsY:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_dilationRateX_dilationRateY_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -1627,7 +1627,7 @@ extern_methods!(
             stride_in_pixels_y: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -1647,7 +1647,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPoolingMaxGradient
         ///
         /// Returns: A new MPSCNNPoolingMaxGradient object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1670,7 +1670,7 @@ extern_methods!(
         /// Parameter `kernelHeight`: The height of the kernel.  Can be an odd or even value.
         ///
         /// Returns: A valid MPSCNNPoolingGradient object or nil, if failure.
-        #[method(initWithDevice:kernelWidth:kernelHeight:)]
+        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -1679,7 +1679,7 @@ extern_methods!(
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1700,7 +1700,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1713,11 +1713,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNDilatedPoolingMaxGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

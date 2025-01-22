@@ -25,7 +25,7 @@ extern_methods!(
     unsafe impl MPContentItem {
         /// Designated initializer. A unique identifier is required to identify the item
         /// for later use.
-        #[method(initWithIdentifier:)]
+        #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
@@ -33,86 +33,86 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// A unique identifier for this content item. (Required)
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// A title for this item. Usually this would be the track name, if representing
         /// a song, the episode name of a podcast, etc.
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
-        #[method(setTitle:)]
+        #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         /// A subtitle for this item. If this were representing a song, this would
         /// usually be the artist or composer.
-        #[method(subtitle)]
+        #[unsafe(method(subtitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
-        #[method(setSubtitle:)]
+        #[unsafe(method(setSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
         #[cfg(feature = "MPMediaItem")]
         /// Artwork for this item. Examples of artwork for a content item are the album
         /// cover for a song, or a movie poster for a movie.
-        #[method(artwork)]
+        #[unsafe(method(artwork))]
         #[unsafe(method_family = none)]
         pub unsafe fn artwork(&self) -> Option<Retained<MPMediaItemArtwork>>;
 
         #[cfg(feature = "MPMediaItem")]
         /// Setter for [`artwork`][Self::artwork].
-        #[method(setArtwork:)]
+        #[unsafe(method(setArtwork:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setArtwork(&self, artwork: Option<&MPMediaItemArtwork>);
 
         /// Represents the current playback progress of the item.
         /// 0.0 = not watched/listened/viewed, 1.0 = fully watched/listened/viewed
         /// Default is -1.0 (no progress indicator shown)
-        #[method(playbackProgress)]
+        #[unsafe(method(playbackProgress))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackProgress(&self) -> c_float;
 
         /// Setter for [`playbackProgress`][Self::playbackProgress].
-        #[method(setPlaybackProgress:)]
+        #[unsafe(method(setPlaybackProgress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlaybackProgress(&self, playback_progress: c_float);
 
         /// Represents whether this content item is streaming content, i.e. from the cloud
         /// where the content is not stored locally.
-        #[method(isStreamingContent)]
+        #[unsafe(method(isStreamingContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStreamingContent(&self) -> bool;
 
         /// Setter for [`isStreamingContent`][Self::isStreamingContent].
-        #[method(setStreamingContent:)]
+        #[unsafe(method(setStreamingContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStreamingContent(&self, streaming_content: bool);
 
         /// Represents whether this content item is explicit content
-        #[method(isExplicitContent)]
+        #[unsafe(method(isExplicitContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn isExplicitContent(&self) -> bool;
 
         /// Setter for [`isExplicitContent`][Self::isExplicitContent].
-        #[method(setExplicitContent:)]
+        #[unsafe(method(setExplicitContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExplicitContent(&self, explicit_content: bool);
 
         /// Represents whether the content item is a container that may contain other
         /// content items, e.g. an album or a playlist.
-        #[method(isContainer)]
+        #[unsafe(method(isContainer))]
         #[unsafe(method_family = none)]
         pub unsafe fn isContainer(&self) -> bool;
 
         /// Setter for [`isContainer`][Self::isContainer].
-        #[method(setContainer:)]
+        #[unsafe(method(setContainer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContainer(&self, container: bool);
 
@@ -121,12 +121,12 @@ extern_methods!(
         /// for playback means the app should play each song in the album in order. An
         /// example of a content item that may not be playable is a genre, since an app
         /// experience typically doesn't involve selecting an entire genre for playback.
-        #[method(isPlayable)]
+        #[unsafe(method(isPlayable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPlayable(&self) -> bool;
 
         /// Setter for [`isPlayable`][Self::isPlayable].
-        #[method(setPlayable:)]
+        #[unsafe(method(setPlayable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlayable(&self, playable: bool);
     }
@@ -135,11 +135,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPContentItem {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

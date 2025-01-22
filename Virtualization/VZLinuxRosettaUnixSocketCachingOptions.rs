@@ -35,7 +35,7 @@ extern_methods!(
         /// Rosetta can be optionally configured to use cached translations from the Rosetta translation daemon communicating through a Unix Domain Socket.
         /// If path exceeds maximumPathLength UTF-8 bytes, nil is returned and the error is set.
         /// The guest operating system must have a directory at path created in order for translation caching to operate correctly.
-        #[method(initWithPath:error:_)]
+        #[unsafe(method(initWithPath:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPath_error(
             this: Allocated<Self>,
@@ -45,19 +45,19 @@ extern_methods!(
         /// Initialize default options to be set on a VZLinuxRosettaDirectoryShare.
         ///
         /// The default translation caching configuration uses a Unix Domain Socket at /run/rosettad/rosetta.sock.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Path set by initWithPath.
         ///
         /// This is the path of the Unix Domain Socket to be used by Rosetta.
-        #[method(path)]
+        #[unsafe(method(path))]
         #[unsafe(method_family = none)]
         pub unsafe fn path(&self) -> Retained<NSString>;
 
         /// The maximum allowed length of path, as defined by the sockaddr_un structure in Linux.
-        #[method(maximumPathLength)]
+        #[unsafe(method(maximumPathLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumPathLength() -> NSUInteger;
     }
@@ -67,7 +67,7 @@ extern_methods!(
     /// Methods declared on superclass `VZLinuxRosettaCachingOptions`
     #[cfg(feature = "VZLinuxRosettaCachingOptions")]
     unsafe impl VZLinuxRosettaUnixSocketCachingOptions {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

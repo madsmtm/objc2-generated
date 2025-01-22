@@ -28,17 +28,17 @@ extern_methods!(
         ///
         /// Returns: A NSUInteger value
         #[deprecated]
-        #[method(deviceMemorySize)]
+        #[unsafe(method(deviceMemorySize))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceMemorySize(&self) -> NSUInteger;
 
         #[deprecated]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -48,7 +48,7 @@ extern_methods!(
         ///
         /// Returns: A new inference graph object
         #[deprecated]
-        #[method(graphWithGraphObjects:)]
+        #[unsafe(method(graphWithGraphObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn graphWithGraphObjects(graph_objects: &NSArray<MLCGraph>) -> Retained<Self>;
 
@@ -59,7 +59,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(addInputs:)]
+        #[unsafe(method(addInputs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addInputs(&self, inputs: &NSDictionary<NSString, MLCTensor>) -> bool;
 
@@ -79,7 +79,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(addInputs:lossLabels:lossLabelWeights:)]
+        #[unsafe(method(addInputs:lossLabels:lossLabelWeights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addInputs_lossLabels_lossLabelWeights(
             &self,
@@ -95,7 +95,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(addOutputs:)]
+        #[unsafe(method(addOutputs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addOutputs(&self, outputs: &NSDictionary<NSString, MLCTensor>) -> bool;
 
@@ -108,7 +108,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(compileWithOptions:device:)]
+        #[unsafe(method(compileWithOptions:device:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compileWithOptions_device(
             &self,
@@ -135,7 +135,7 @@ extern_methods!(
         /// Parameter `inputTensorsData`: The tensor data to be used with these constant input tensors
         ///
         /// Returns: A boolean indicating success or failure
-        #[method(compileWithOptions:device:inputTensors:inputTensorsData:)]
+        #[unsafe(method(compileWithOptions:device:inputTensors:inputTensorsData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compileWithOptions_device_inputTensors_inputTensorsData(
             &self,
@@ -154,7 +154,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(linkWithGraphs:)]
+        #[unsafe(method(linkWithGraphs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn linkWithGraphs(&self, graphs: &NSArray<MLCInferenceGraph>) -> bool;
 
@@ -180,7 +180,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(executeWithInputsData:batchSize:options:completionHandler:)]
+        #[unsafe(method(executeWithInputsData:batchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithInputsData_batchSize_options_completionHandler(
             &self,
@@ -214,7 +214,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(executeWithInputsData:outputsData:batchSize:options:completionHandler:)]
+        #[unsafe(method(executeWithInputsData:outputsData:batchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithInputsData_outputsData_batchSize_options_completionHandler(
             &self,
@@ -251,7 +251,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)]
+        #[unsafe(method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithInputsData_lossLabelsData_lossLabelWeightsData_batchSize_options_completionHandler(
             &self,
@@ -291,7 +291,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[deprecated]
-        #[method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)]
+        #[unsafe(method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithInputsData_lossLabelsData_lossLabelWeightsData_outputsData_batchSize_options_completionHandler(
             &self,
@@ -314,7 +314,7 @@ extern_methods!(
         ///
         /// Returns: A new graph.
         #[deprecated]
-        #[method(graph)]
+        #[unsafe(method(graph))]
         #[unsafe(method_family = none)]
         pub unsafe fn graph() -> Retained<Self>;
     }

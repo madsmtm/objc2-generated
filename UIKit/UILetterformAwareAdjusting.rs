@@ -41,12 +41,12 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiletterformawareadjusting?language=objc)
     pub unsafe trait UILetterformAwareAdjusting: NSObjectProtocol + MainThreadOnly {
         /// `sizingRule` defaults to `UILetterformAwareSizingRuleTypographic` and determines what rule is used during the calculation of `-sizeThatFits:` and `-intrinsicContentSize`
-        #[method(sizingRule)]
+        #[unsafe(method(sizingRule))]
         #[unsafe(method_family = none)]
         unsafe fn sizingRule(&self) -> UILetterformAwareSizingRule;
 
         /// Setter for [`sizingRule`][Self::sizingRule].
-        #[method(setSizingRule:)]
+        #[unsafe(method(setSizingRule:))]
         #[unsafe(method_family = none)]
         unsafe fn setSizingRule(&self, sizing_rule: UILetterformAwareSizingRule);
     }

@@ -34,7 +34,7 @@ extern_protocol!(
     pub unsafe trait UITextInteractionDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
-        #[method(interactionShouldBegin:atPoint:)]
+        #[unsafe(method(interactionShouldBegin:atPoint:))]
         #[unsafe(method_family = none)]
         unsafe fn interactionShouldBegin_atPoint(
             &self,
@@ -43,12 +43,12 @@ extern_protocol!(
         ) -> bool;
 
         #[optional]
-        #[method(interactionWillBegin:)]
+        #[unsafe(method(interactionWillBegin:))]
         #[unsafe(method_family = none)]
         unsafe fn interactionWillBegin(&self, interaction: &UITextInteraction);
 
         #[optional]
-        #[method(interactionDidEnd:)]
+        #[unsafe(method(interactionDidEnd:))]
         #[unsafe(method_family = none)]
         unsafe fn interactionDidEnd(&self, interaction: &UITextInteraction);
     }
@@ -69,7 +69,7 @@ unsafe impl UIInteraction for UITextInteraction {}
 
 extern_methods!(
     unsafe impl UITextInteraction {
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -77,7 +77,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -89,7 +89,7 @@ extern_methods!(
             feature = "UITextInput",
             feature = "UITextInputTraits"
         ))]
-        #[method(textInput)]
+        #[unsafe(method(textInput))]
         #[unsafe(method_family = none)]
         pub unsafe fn textInput(&self) -> Option<Retained<UIResponder>>;
 
@@ -100,22 +100,22 @@ extern_methods!(
         ))]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`textInput`][Self::textInput].
-        #[method(setTextInput:)]
+        #[unsafe(method(setTextInput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextInput(&self, text_input: Option<&UIResponder>);
 
-        #[method(textInteractionMode)]
+        #[unsafe(method(textInteractionMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn textInteractionMode(&self) -> UITextInteractionMode;
 
         #[cfg(feature = "UIGestureRecognizer")]
-        #[method(gesturesForFailureRequirements)]
+        #[unsafe(method(gesturesForFailureRequirements))]
         #[unsafe(method_family = none)]
         pub unsafe fn gesturesForFailureRequirements(
             &self,
         ) -> Retained<NSArray<UIGestureRecognizer>>;
 
-        #[method(textInteractionForMode:)]
+        #[unsafe(method(textInteractionForMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textInteractionForMode(
             mode: UITextInteractionMode,
@@ -127,11 +127,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextInteraction {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

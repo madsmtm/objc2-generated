@@ -41,7 +41,7 @@ extern_methods!(
         /// The tag is presented as a label in the guest identifying this device for mounting. The tag must be valid, which can be checked with +[VZVirtioFileSystemDeviceConfiguration validateTag:error:].
         ///
         /// See: +[VZVirtioFileSystemDeviceConfiguration validateTag:error:]
-        #[method(initWithTag:)]
+        #[unsafe(method(initWithTag:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTag(this: Allocated<Self>, tag: &NSString) -> Retained<Self>;
 
@@ -52,7 +52,7 @@ extern_methods!(
         /// Parameter `error`: If not nil, assigned with an error describing why the tag is not valid.
         ///
         /// The tag must be non-empty and less than 36 bytes when encoded in UTF-8.
-        #[method(validateTag:error:_)]
+        #[unsafe(method(validateTag:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateTag_error(tag: &NSString) -> Result<(), Retained<NSError>>;
 
@@ -61,12 +61,12 @@ extern_methods!(
         /// The tag is presented as a label in the guest identifying this device for mounting. The tag must be valid, which can be checked with +[VZVirtioFileSystemDeviceConfiguration validateTag:error:].
         ///
         /// See: +[VZVirtioFileSystemDeviceConfiguration validateTag:error:]
-        #[method(tag)]
+        #[unsafe(method(tag))]
         #[unsafe(method_family = none)]
         pub unsafe fn tag(&self) -> Retained<NSString>;
 
         /// Setter for [`tag`][Self::tag].
-        #[method(setTag:)]
+        #[unsafe(method(setTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTag(&self, tag: &NSString);
 
@@ -78,20 +78,20 @@ extern_methods!(
         /// See: VZMultipleDirectoryShare
         ///
         /// See: VZLinuxRosettaDirectoryShare
-        #[method(share)]
+        #[unsafe(method(share))]
         #[unsafe(method_family = none)]
         pub unsafe fn share(&self) -> Option<Retained<VZDirectoryShare>>;
 
         #[cfg(feature = "VZDirectoryShare")]
         /// Setter for [`share`][Self::share].
-        #[method(setShare:)]
+        #[unsafe(method(setShare:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShare(&self, share: Option<&VZDirectoryShare>);
 
         /// The macOS automount tag.
         ///
         /// A device configured with this tag will be automatically mounted in a macOS guest.
-        #[method(macOSGuestAutomountTag)]
+        #[unsafe(method(macOSGuestAutomountTag))]
         #[unsafe(method_family = none)]
         pub unsafe fn macOSGuestAutomountTag() -> Retained<NSString>;
     }
@@ -101,11 +101,11 @@ extern_methods!(
     /// Methods declared on superclass `VZDirectorySharingDeviceConfiguration`
     #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
     unsafe impl VZVirtioFileSystemDeviceConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

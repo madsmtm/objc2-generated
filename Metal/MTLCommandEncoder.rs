@@ -67,37 +67,37 @@ extern_protocol!(
     pub unsafe trait MTLCommandEncoder: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.
-        #[method(device)]
+        #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// A string to help identify this object.
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         fn setLabel(&self, label: Option<&NSString>);
 
         /// Declare that all command generation from this encoder is complete, and detach from the MTLCommandBuffer.
-        #[method(endEncoding)]
+        #[unsafe(method(endEncoding))]
         #[unsafe(method_family = none)]
         fn endEncoding(&self);
 
         /// Inserts a debug string into the command buffer.  This does not change any API behavior, but can be useful when debugging.
-        #[method(insertDebugSignpost:)]
+        #[unsafe(method(insertDebugSignpost:))]
         #[unsafe(method_family = none)]
         fn insertDebugSignpost(&self, string: &NSString);
 
         /// Push a new named string onto a stack of string labels.
-        #[method(pushDebugGroup:)]
+        #[unsafe(method(pushDebugGroup:))]
         #[unsafe(method_family = none)]
         fn pushDebugGroup(&self, string: &NSString);
 
         /// Pop the latest named string off of the stack.
-        #[method(popDebugGroup)]
+        #[unsafe(method(popDebugGroup))]
         #[unsafe(method_family = none)]
         fn popDebugGroup(&self);
     }

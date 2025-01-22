@@ -13,28 +13,28 @@ extern_protocol!(
         NSObjectProtocol + NSSecureCoding + NSCopying
     {
         /// The challenge to use when signing the request.
-        #[method(challenge)]
+        #[unsafe(method(challenge))]
         #[unsafe(method_family = none)]
         unsafe fn challenge(&self) -> Retained<NSData>;
 
         /// Setter for [`challenge`][Self::challenge].
-        #[method(setChallenge:)]
+        #[unsafe(method(setChallenge:))]
         #[unsafe(method_family = none)]
         unsafe fn setChallenge(&self, challenge: &NSData);
 
         /// The Relying Party identifier used to scope this request.
-        #[method(relyingPartyIdentifier)]
+        #[unsafe(method(relyingPartyIdentifier))]
         #[unsafe(method_family = none)]
         unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`relyingPartyIdentifier`][Self::relyingPartyIdentifier].
-        #[method(setRelyingPartyIdentifier:)]
+        #[unsafe(method(setRelyingPartyIdentifier:))]
         #[unsafe(method_family = none)]
         unsafe fn setRelyingPartyIdentifier(&self, relying_party_identifier: &NSString);
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialDescriptor")]
         /// A list of credentials to allow for this request. If this list is nonempty, only credentials matching the provided descriptors can be used to sign in.
-        #[method(allowedCredentials)]
+        #[unsafe(method(allowedCredentials))]
         #[unsafe(method_family = none)]
         unsafe fn allowedCredentials(
             &self,
@@ -42,7 +42,7 @@ extern_protocol!(
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialDescriptor")]
         /// Setter for [`allowedCredentials`][Self::allowedCredentials].
-        #[method(setAllowedCredentials:)]
+        #[unsafe(method(setAllowedCredentials:))]
         #[unsafe(method_family = none)]
         unsafe fn setAllowedCredentials(
             &self,
@@ -53,7 +53,7 @@ extern_protocol!(
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         /// A preference for whether the authenticator should attempt to verify that it is being used by its owner, such as through a PIN or biometrics.
-        #[method(userVerificationPreference)]
+        #[unsafe(method(userVerificationPreference))]
         #[unsafe(method_family = none)]
         unsafe fn userVerificationPreference(
             &self,
@@ -61,7 +61,7 @@ extern_protocol!(
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         /// Setter for [`userVerificationPreference`][Self::userVerificationPreference].
-        #[method(setUserVerificationPreference:)]
+        #[unsafe(method(setUserVerificationPreference:))]
         #[unsafe(method_family = none)]
         unsafe fn setUserVerificationPreference(
             &self,

@@ -46,28 +46,28 @@ unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialAsserti
 
 extern_methods!(
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialAssertion {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
-        #[method(attachment)]
+        #[unsafe(method(attachment))]
         #[unsafe(method_family = none)]
         pub unsafe fn attachment(&self) -> ASAuthorizationPublicKeyCredentialAttachment;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput")]
-        #[method(largeBlob)]
+        #[unsafe(method(largeBlob))]
         #[unsafe(method_family = none)]
         pub unsafe fn largeBlob(
             &self,
         ) -> Option<Retained<ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput>>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionOutput")]
-        #[method(prf)]
+        #[unsafe(method(prf))]
         #[unsafe(method_family = none)]
         pub unsafe fn prf(
             &self,

@@ -375,37 +375,37 @@ extern_methods!(
         #[cfg(feature = "MPSAccelerationStructureGroup")]
         /// The group this acceleration structure was created with
         #[deprecated]
-        #[method(group)]
+        #[unsafe(method(group))]
         #[unsafe(method_family = none)]
         pub unsafe fn group(&self) -> Retained<MPSAccelerationStructureGroup>;
 
         /// Status indicating whether the acceleration structure has finished building
         #[deprecated]
-        #[method(status)]
+        #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> MPSAccelerationStructureStatus;
 
         /// Acceleration structure usage options. Changes to this property require rebuilding the
         /// acceleration structure. Defaults to MPSAccelerationStructureUsageNone.
         #[deprecated]
-        #[method(usage)]
+        #[unsafe(method(usage))]
         #[unsafe(method_family = none)]
         pub unsafe fn usage(&self) -> MPSAccelerationStructureUsage;
 
         /// Setter for [`usage`][Self::usage].
         #[deprecated]
-        #[method(setUsage:)]
+        #[unsafe(method(setUsage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsage(&self, usage: MPSAccelerationStructureUsage);
 
         #[deprecated]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the acceleration structure with a Metal device
         #[deprecated]
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -416,7 +416,7 @@ extern_methods!(
         /// properties such as the vertex buffer, instance buffer, etc. are set to nil. Encode and decode
         /// these buffers along with the acceleration structure instead.
         #[deprecated]
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -432,7 +432,7 @@ extern_methods!(
         /// The Metal device is determined from the acceleration structure group. All
         /// acceleration structures in the instance hierarchy must share the same group.
         #[deprecated]
-        #[method(initWithGroup:)]
+        #[unsafe(method(initWithGroup:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithGroup(
             this: Allocated<Self>,
@@ -446,7 +446,7 @@ extern_methods!(
         /// vertex buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with
         /// the acceleration structure instead.
         #[deprecated]
-        #[method(initWithCoder:group:)]
+        #[unsafe(method(initWithCoder:group:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_group(
             this: Allocated<Self>,
@@ -471,7 +471,7 @@ extern_methods!(
         /// buffer, etc. must be completed (and, for managed buffers, synchronized). Any prior intersection
         /// tests must also be completed before the acceleration structure can be rebuilt.
         #[deprecated]
-        #[method(rebuild)]
+        #[unsafe(method(rebuild))]
         #[unsafe(method_family = none)]
         pub unsafe fn rebuild(&self);
 
@@ -493,7 +493,7 @@ extern_methods!(
         /// synchronized). Any prior intersection tests must also be completed before the acceleration
         /// structure can be rebuilt.
         #[deprecated]
-        #[method(rebuildWithCompletionHandler:)]
+        #[unsafe(method(rebuildWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rebuildWithCompletionHandler(
             &self,
@@ -514,7 +514,7 @@ extern_methods!(
         /// rebuilt instead. The acceleration structure must be rebuilt at least once before this method can
         /// be called.
         #[deprecated]
-        #[method(encodeRefitToCommandBuffer:)]
+        #[unsafe(method(encodeRefitToCommandBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRefitToCommandBuffer(
             &self,
@@ -535,7 +535,7 @@ extern_methods!(
         ///
         /// Parameter `device`: New Metal device
         #[deprecated]
-        #[method(copyWithZone:device:)]
+        #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -558,7 +558,7 @@ extern_methods!(
         ///
         /// Parameter `group`: New acceleration structure group
         #[deprecated]
-        #[method(copyWithZone:group:)]
+        #[unsafe(method(copyWithZone:group:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_group(
             &self,
@@ -576,7 +576,7 @@ extern_methods!(
         ///
         /// Parameter `coder`: An archiver object
         #[deprecated]
-        #[method(encodeWithCoder:)]
+        #[unsafe(method(encodeWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
     }
@@ -594,7 +594,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -607,7 +607,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSAccelerationStructure {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

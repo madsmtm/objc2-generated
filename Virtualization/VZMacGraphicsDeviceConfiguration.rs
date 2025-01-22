@@ -33,7 +33,7 @@ unsafe impl NSObjectProtocol for VZMacGraphicsDeviceConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZGraphicsDeviceConfiguration")]
     unsafe impl VZMacGraphicsDeviceConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -44,7 +44,7 @@ extern_methods!(
         /// The displays to be attached to this graphics device.
         ///
         /// Maximum of one display is supported.
-        #[method(displays)]
+        #[unsafe(method(displays))]
         #[unsafe(method_family = none)]
         pub unsafe fn displays(&self) -> Retained<NSArray<VZMacGraphicsDisplayConfiguration>>;
 
@@ -53,7 +53,7 @@ extern_methods!(
             feature = "VZMacGraphicsDisplayConfiguration"
         ))]
         /// Setter for [`displays`][Self::displays].
-        #[method(setDisplays:)]
+        #[unsafe(method(setDisplays:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplays(&self, displays: &NSArray<VZMacGraphicsDisplayConfiguration>);
     }
@@ -63,7 +63,7 @@ extern_methods!(
     /// Methods declared on superclass `VZGraphicsDeviceConfiguration`
     #[cfg(feature = "VZGraphicsDeviceConfiguration")]
     unsafe impl VZMacGraphicsDeviceConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

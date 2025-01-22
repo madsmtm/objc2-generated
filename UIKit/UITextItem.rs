@@ -51,36 +51,36 @@ unsafe impl NSObjectProtocol for UITextItem {}
 extern_methods!(
     unsafe impl UITextItem {
         /// The content type of the text item.
-        #[method(contentType)]
+        #[unsafe(method(contentType))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentType(&self) -> UITextItemContentType;
 
         /// The range of the text item.
-        #[method(range)]
+        #[unsafe(method(range))]
         #[unsafe(method_family = none)]
         pub unsafe fn range(&self) -> NSRange;
 
         /// The link represented by the text item. This value is `nil` if the `contentType != UITextItemContentTypeLink`
-        #[method(link)]
+        #[unsafe(method(link))]
         #[unsafe(method_family = none)]
         pub unsafe fn link(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSTextAttachment")]
         /// The text attachment represented by the text item. This value is `nil` if the `contentType != UITextItemContentTypeTextAttachment`
-        #[method(textAttachment)]
+        #[unsafe(method(textAttachment))]
         #[unsafe(method_family = none)]
         pub unsafe fn textAttachment(&self) -> Option<Retained<NSTextAttachment>>;
 
         /// The custom tag identifier represented by the text item. This value is `nil` if the `contentType != UITextItemContentTypeTag`
-        #[method(tagIdentifier)]
+        #[unsafe(method(tagIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn tagIdentifier(&self) -> Option<Retained<NSString>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -101,21 +101,21 @@ unsafe impl NSObjectProtocol for UITextItemMenuPreview {}
 extern_methods!(
     unsafe impl UITextItemMenuPreview {
         /// Show the default system preview for the given text item.
-        #[method(defaultPreview)]
+        #[unsafe(method(defaultPreview))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultPreview(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Show the specified preview view for the given text item.
-        #[method(initWithView:)]
+        #[unsafe(method(initWithView:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -138,7 +138,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `menu`: The menu to be presented.
-        #[method(configurationWithMenu:)]
+        #[unsafe(method(configurationWithMenu:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationWithMenu(menu: &UIMenu) -> Retained<Self>;
 
@@ -150,18 +150,18 @@ extern_methods!(
         ///
         /// Parameter `preview`: The preview associated with the menu. Specify
         /// `nil`for no preview.
-        #[method(configurationWithPreview:menu:)]
+        #[unsafe(method(configurationWithPreview:menu:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationWithPreview_menu(
             preview: Option<&UITextItemMenuPreview>,
             menu: &UIMenu,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -19,25 +19,25 @@ unsafe impl NSObjectProtocol for UIStatusBarManager {}
 
 extern_methods!(
     unsafe impl UIStatusBarManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "UIApplication")]
-        #[method(statusBarStyle)]
+        #[unsafe(method(statusBarStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn statusBarStyle(&self) -> UIStatusBarStyle;
 
-        #[method(isStatusBarHidden)]
+        #[unsafe(method(isStatusBarHidden))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStatusBarHidden(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(statusBarFrame)]
+        #[unsafe(method(statusBarFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn statusBarFrame(&self) -> CGRect;
     }
@@ -51,7 +51,7 @@ extern_methods!(
         feature = "UIWindowScene"
     ))]
     unsafe impl UIWindowScene {
-        #[method(statusBarManager)]
+        #[unsafe(method(statusBarManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn statusBarManager(&self) -> Option<Retained<UIStatusBarManager>>;
     }

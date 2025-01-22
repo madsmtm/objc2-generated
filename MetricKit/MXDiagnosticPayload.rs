@@ -33,7 +33,7 @@ extern_methods!(
     unsafe impl MXDiagnosticPayload {
         #[cfg(all(feature = "MXCPUExceptionDiagnostic", feature = "MXDiagnostic"))]
         /// An array containing CPU exception diagnostics for this application.
-        #[method(cpuExceptionDiagnostics)]
+        #[unsafe(method(cpuExceptionDiagnostics))]
         #[unsafe(method_family = none)]
         pub unsafe fn cpuExceptionDiagnostics(
             &self,
@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(all(feature = "MXDiagnostic", feature = "MXDiskWriteExceptionDiagnostic"))]
         /// An array containing disk write exception diagnostics for this application.
-        #[method(diskWriteExceptionDiagnostics)]
+        #[unsafe(method(diskWriteExceptionDiagnostics))]
         #[unsafe(method_family = none)]
         pub unsafe fn diskWriteExceptionDiagnostics(
             &self,
@@ -49,13 +49,13 @@ extern_methods!(
 
         #[cfg(all(feature = "MXDiagnostic", feature = "MXHangDiagnostic"))]
         /// An array containing hang diagnostics for this application.
-        #[method(hangDiagnostics)]
+        #[unsafe(method(hangDiagnostics))]
         #[unsafe(method_family = none)]
         pub unsafe fn hangDiagnostics(&self) -> Option<Retained<NSArray<MXHangDiagnostic>>>;
 
         #[cfg(all(feature = "MXAppLaunchDiagnostic", feature = "MXDiagnostic"))]
         /// An array containing app launch diagnostics for this application.
-        #[method(appLaunchDiagnostics)]
+        #[unsafe(method(appLaunchDiagnostics))]
         #[unsafe(method_family = none)]
         pub unsafe fn appLaunchDiagnostics(
             &self,
@@ -63,31 +63,31 @@ extern_methods!(
 
         #[cfg(all(feature = "MXCrashDiagnostic", feature = "MXDiagnostic"))]
         /// An array containing crash diagnostics for this application.
-        #[method(crashDiagnostics)]
+        #[unsafe(method(crashDiagnostics))]
         #[unsafe(method_family = none)]
         pub unsafe fn crashDiagnostics(&self) -> Option<Retained<NSArray<MXCrashDiagnostic>>>;
 
         /// An NSDate object that indicates the start time for which the payload was generated.
-        #[method(timeStampBegin)]
+        #[unsafe(method(timeStampBegin))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeStampBegin(&self) -> Retained<NSDate>;
 
         /// An NSDate object that indicates the end time for which the payload was generated.
-        #[method(timeStampEnd)]
+        #[unsafe(method(timeStampEnd))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeStampEnd(&self) -> Retained<NSDate>;
 
         /// Convenience method to return a JSON representation of this diagnostic payload.
         ///
         /// Returns: An NSData object containing the JSON representation
-        #[method(JSONRepresentation)]
+        #[unsafe(method(JSONRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
         /// Convenience method to return a NSDictionary representation of this diagnostic payload.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
-        #[method(dictionaryRepresentation)]
+        #[unsafe(method(dictionaryRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
@@ -96,11 +96,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXDiagnosticPayload {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

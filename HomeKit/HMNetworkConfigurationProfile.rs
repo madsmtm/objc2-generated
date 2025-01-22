@@ -27,7 +27,7 @@ extern_methods!(
     #[cfg(feature = "HMAccessoryProfile")]
     unsafe impl HMNetworkConfigurationProfile {
         /// The delegate of the receiver.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -35,7 +35,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -43,11 +43,11 @@ extern_methods!(
         );
 
         /// Indicates if the associated accessory's access to the network is restricted.
-        #[method(isNetworkAccessRestricted)]
+        #[unsafe(method(isNetworkAccessRestricted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNetworkAccessRestricted(&self) -> bool;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -57,7 +57,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HMAccessoryProfile")]
     unsafe impl HMNetworkConfigurationProfile {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -72,7 +72,7 @@ extern_protocol!(
         ///
         /// Parameter `profile`: Sender of the message.
         #[optional]
-        #[method(profileDidUpdateNetworkAccessMode:)]
+        #[unsafe(method(profileDidUpdateNetworkAccessMode:))]
         #[unsafe(method_family = none)]
         unsafe fn profileDidUpdateNetworkAccessMode(&self, profile: &HMNetworkConfigurationProfile);
     }

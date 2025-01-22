@@ -52,7 +52,7 @@ extern_methods!(
         ///
         /// This request will generate a collection of names for supported animals by current recognition algorithm.
         #[deprecated]
-        #[method(knownAnimalIdentifiersForRevision:error:_)]
+        #[unsafe(method(knownAnimalIdentifiersForRevision:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn knownAnimalIdentifiersForRevision_error(
             request_revision: NSUInteger,
@@ -67,7 +67,7 @@ extern_methods!(
         ///
         ///
         /// Returns: The collection of classification identifiers, or nil if a failure occurs.
-        #[method(supportedIdentifiersAndReturnError:_)]
+        #[unsafe(method(supportedIdentifiersAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedIdentifiersAndReturnError(
             &self,
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         /// VNRecognizedObjectObservation results.
-        #[method(results)]
+        #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNRecognizedObjectObservation>>>;
     }
@@ -86,7 +86,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNRecognizeAnimalsRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -95,7 +95,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method(initWithCompletionHandler:)]
+        #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -108,7 +108,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNRecognizeAnimalsRequest {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

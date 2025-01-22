@@ -34,7 +34,7 @@ extern_methods!(
         /// An NSString representation of the application version from which this payload was generated.
         ///
         /// If the application version was changed during the aggregation of this data, this value will reflect the latest application version at the time of retrieval.
-        #[method(latestApplicationVersion)]
+        #[unsafe(method(latestApplicationVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn latestApplicationVersion(&self) -> Retained<NSString>;
 
@@ -43,35 +43,35 @@ extern_methods!(
         /// A value of YES indicates that this payload's data reflects multiple application versions.
         ///
         /// A value of NO indicates that this payload only reflects data from the application version specified by latestApplicationVersion.
-        #[method(includesMultipleApplicationVersions)]
+        #[unsafe(method(includesMultipleApplicationVersions))]
         #[unsafe(method_family = none)]
         pub unsafe fn includesMultipleApplicationVersions(&self) -> bool;
 
         /// An NSDate object that indicates the time which the payload was generated.
-        #[method(timeStampBegin)]
+        #[unsafe(method(timeStampBegin))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeStampBegin(&self) -> Retained<NSDate>;
 
         /// An NSDate object that indicates the time which the payload was generated.
-        #[method(timeStampEnd)]
+        #[unsafe(method(timeStampEnd))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeStampEnd(&self) -> Retained<NSDate>;
 
         #[cfg(all(feature = "MXCPUMetric", feature = "MXMetric"))]
         /// An object containing CPU metrics for this application.
-        #[method(cpuMetrics)]
+        #[unsafe(method(cpuMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn cpuMetrics(&self) -> Option<Retained<MXCPUMetric>>;
 
         #[cfg(all(feature = "MXGPUMetric", feature = "MXMetric"))]
         /// An object containing GPU metrics for this application.
-        #[method(gpuMetrics)]
+        #[unsafe(method(gpuMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn gpuMetrics(&self) -> Option<Retained<MXGPUMetric>>;
 
         #[cfg(all(feature = "MXCellularConditionMetric", feature = "MXMetric"))]
         /// An object containing a cellular condition metrics for this application.
-        #[method(cellularConditionMetrics)]
+        #[unsafe(method(cellularConditionMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn cellularConditionMetrics(
             &self,
@@ -79,31 +79,31 @@ extern_methods!(
 
         #[cfg(all(feature = "MXAppRunTimeMetric", feature = "MXMetric"))]
         /// An object containing running mode metrics for this application.
-        #[method(applicationTimeMetrics)]
+        #[unsafe(method(applicationTimeMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationTimeMetrics(&self) -> Option<Retained<MXAppRunTimeMetric>>;
 
         #[cfg(all(feature = "MXLocationActivityMetric", feature = "MXMetric"))]
         /// An object containing location activity metrics for this application.
-        #[method(locationActivityMetrics)]
+        #[unsafe(method(locationActivityMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn locationActivityMetrics(&self) -> Option<Retained<MXLocationActivityMetric>>;
 
         #[cfg(all(feature = "MXMetric", feature = "MXNetworkTransferMetric"))]
         /// An object containing network transfer metrics for this application.
-        #[method(networkTransferMetrics)]
+        #[unsafe(method(networkTransferMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkTransferMetrics(&self) -> Option<Retained<MXNetworkTransferMetric>>;
 
         #[cfg(all(feature = "MXAppLaunchMetric", feature = "MXMetric"))]
         /// An object containing launch metrics for this application.
-        #[method(applicationLaunchMetrics)]
+        #[unsafe(method(applicationLaunchMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationLaunchMetrics(&self) -> Option<Retained<MXAppLaunchMetric>>;
 
         #[cfg(all(feature = "MXAppResponsivenessMetric", feature = "MXMetric"))]
         /// An object containing hang metrics for this application.
-        #[method(applicationResponsivenessMetrics)]
+        #[unsafe(method(applicationResponsivenessMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationResponsivenessMetrics(
             &self,
@@ -111,50 +111,50 @@ extern_methods!(
 
         #[cfg(all(feature = "MXDiskIOMetric", feature = "MXMetric"))]
         /// An object containing disk IO metrics for this application.
-        #[method(diskIOMetrics)]
+        #[unsafe(method(diskIOMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn diskIOMetrics(&self) -> Option<Retained<MXDiskIOMetric>>;
 
         #[cfg(all(feature = "MXMemoryMetric", feature = "MXMetric"))]
         /// An object containing memory metrics for this application.
-        #[method(memoryMetrics)]
+        #[unsafe(method(memoryMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn memoryMetrics(&self) -> Option<Retained<MXMemoryMetric>>;
 
         #[cfg(all(feature = "MXDisplayMetric", feature = "MXMetric"))]
         /// An object containing display metrics for this application.
-        #[method(displayMetrics)]
+        #[unsafe(method(displayMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayMetrics(&self) -> Option<Retained<MXDisplayMetric>>;
 
         #[cfg(all(feature = "MXAnimationMetric", feature = "MXMetric"))]
         /// An object containing animation metrics for this application.
-        #[method(animationMetrics)]
+        #[unsafe(method(animationMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationMetrics(&self) -> Option<Retained<MXAnimationMetric>>;
 
         #[cfg(all(feature = "MXAppExitMetric", feature = "MXMetric"))]
         /// An object containing exit metrics for this application.
-        #[method(applicationExitMetrics)]
+        #[unsafe(method(applicationExitMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationExitMetrics(&self) -> Option<Retained<MXAppExitMetric>>;
 
         #[cfg(all(feature = "MXMetric", feature = "MXSignpostMetric"))]
         /// An array containing signpost metrics for this application.
-        #[method(signpostMetrics)]
+        #[unsafe(method(signpostMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn signpostMetrics(&self) -> Option<Retained<NSArray<MXSignpostMetric>>>;
 
         #[cfg(feature = "MXMetaData")]
         /// An object containing extra metadata for this payload.
-        #[method(metaData)]
+        #[unsafe(method(metaData))]
         #[unsafe(method_family = none)]
         pub unsafe fn metaData(&self) -> Option<Retained<MXMetaData>>;
 
         /// Convenience method to return a JSON representation of this payload.
         ///
         /// Returns: An NSData object containing the JSON representation
-        #[method(JSONRepresentation)]
+        #[unsafe(method(JSONRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
@@ -162,14 +162,14 @@ extern_methods!(
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
         #[deprecated]
-        #[method(DictionaryRepresentation)]
+        #[unsafe(method(DictionaryRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn DictionaryRepresentation(&self) -> Retained<NSDictionary>;
 
         /// Convenience method to return a NSDictionary representation of this payload.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
-        #[method(dictionaryRepresentation)]
+        #[unsafe(method(dictionaryRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
@@ -178,11 +178,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXMetricPayload {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

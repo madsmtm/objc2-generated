@@ -10,12 +10,12 @@ extern_protocol!(
     pub unsafe trait UIContentSizeCategoryAdjusting:
         NSObjectProtocol + MainThreadOnly
     {
-        #[method(adjustsFontForContentSizeCategory)]
+        #[unsafe(method(adjustsFontForContentSizeCategory))]
         #[unsafe(method_family = none)]
         unsafe fn adjustsFontForContentSizeCategory(&self) -> bool;
 
         /// Setter for [`adjustsFontForContentSizeCategory`][Self::adjustsFontForContentSizeCategory].
-        #[method(setAdjustsFontForContentSizeCategory:)]
+        #[unsafe(method(setAdjustsFontForContentSizeCategory:))]
         #[unsafe(method_family = none)]
         unsafe fn setAdjustsFontForContentSizeCategory(
             &self,

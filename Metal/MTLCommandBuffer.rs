@@ -237,34 +237,34 @@ unsafe impl NSObjectProtocol for MTLCommandBufferDescriptor {}
 extern_methods!(
     unsafe impl MTLCommandBufferDescriptor {
         /// If YES, the created command buffer holds strong references to objects needed for it to execute. If NO, the created command buffer does not hold strong references to objects needed for it to execute.
-        #[method(retainedReferences)]
+        #[unsafe(method(retainedReferences))]
         #[unsafe(method_family = none)]
         pub unsafe fn retainedReferences(&self) -> bool;
 
         /// Setter for [`retainedReferences`][Self::retainedReferences].
-        #[method(setRetainedReferences:)]
+        #[unsafe(method(setRetainedReferences:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRetainedReferences(&self, retained_references: bool);
 
         /// A set of options to influence the error reporting of the created command buffer. See MTLCommandBufferErrorOption.
-        #[method(errorOptions)]
+        #[unsafe(method(errorOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorOptions(&self) -> MTLCommandBufferErrorOption;
 
         /// Setter for [`errorOptions`][Self::errorOptions].
-        #[method(setErrorOptions:)]
+        #[unsafe(method(setErrorOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setErrorOptions(&self, error_options: MTLCommandBufferErrorOption);
 
         #[cfg(feature = "MTLLogState")]
         /// Contains information related to shader logging.
-        #[method(logState)]
+        #[unsafe(method(logState))]
         #[unsafe(method_family = none)]
         pub unsafe fn logState(&self) -> Option<Retained<ProtocolObject<dyn MTLLogState>>>;
 
         #[cfg(feature = "MTLLogState")]
         /// Setter for [`logState`][Self::logState].
-        #[method(setLogState:)]
+        #[unsafe(method(setLogState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLogState(&self, log_state: Option<&ProtocolObject<dyn MTLLogState>>);
     }
@@ -273,11 +273,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLCommandBufferDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -289,17 +289,17 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferencoderinfo?language=objc)
     pub unsafe trait MTLCommandBufferEncoderInfo: NSObjectProtocol {
         /// The debug label given to the associated Metal command encoder at command buffer submission.
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         unsafe fn label(&self) -> Retained<NSString>;
 
         /// The debug signposts inserted into the associated Metal command encoder.
-        #[method(debugSignposts)]
+        #[unsafe(method(debugSignposts))]
         #[unsafe(method_family = none)]
         unsafe fn debugSignposts(&self) -> Retained<NSArray<NSString>>;
 
         /// The error state of the associated Metal command encoder.
-        #[method(errorState)]
+        #[unsafe(method(errorState))]
         #[unsafe(method_family = none)]
         unsafe fn errorState(&self) -> MTLCommandEncoderErrorState;
     }
@@ -345,77 +345,77 @@ extern_protocol!(
     pub unsafe trait MTLCommandBuffer: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.
-        #[method(device)]
+        #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLCommandQueue")]
         /// The command queue this command buffer was created from.
-        #[method(commandQueue)]
+        #[unsafe(method(commandQueue))]
         #[unsafe(method_family = none)]
         unsafe fn commandQueue(&self) -> Retained<ProtocolObject<dyn MTLCommandQueue>>;
 
         /// If YES, this command buffer holds strong references to objects needed to execute this command buffer.
-        #[method(retainedReferences)]
+        #[unsafe(method(retainedReferences))]
         #[unsafe(method_family = none)]
         unsafe fn retainedReferences(&self) -> bool;
 
         /// The set of options configuring the error reporting of the created command buffer.
-        #[method(errorOptions)]
+        #[unsafe(method(errorOptions))]
         #[unsafe(method_family = none)]
         unsafe fn errorOptions(&self) -> MTLCommandBufferErrorOption;
 
         /// A string to help identify this object.
-        #[method(label)]
+        #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
-        #[method(setLabel:)]
+        #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(kernelStartTime)]
+        #[unsafe(method(kernelStartTime))]
         #[unsafe(method_family = none)]
         unsafe fn kernelStartTime(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(kernelEndTime)]
+        #[unsafe(method(kernelEndTime))]
         #[unsafe(method_family = none)]
         unsafe fn kernelEndTime(&self) -> CFTimeInterval;
 
         #[cfg(feature = "MTLFunctionLog")]
         /// Logs generated by the command buffer during execution of the GPU commands. Valid after GPU execution is completed
-        #[method(logs)]
+        #[unsafe(method(logs))]
         #[unsafe(method_family = none)]
         unsafe fn logs(&self) -> Retained<ProtocolObject<dyn MTLLogContainer>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The host time in seconds that GPU starts executing this command buffer. Returns zero if it has not started. This usually can be called in command buffer completion handler.
-        #[method(GPUStartTime)]
+        #[unsafe(method(GPUStartTime))]
         #[unsafe(method_family = none)]
         unsafe fn GPUStartTime(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The host time in seconds that GPU finishes executing this command buffer. Returns zero if CPU has not received completion notification. This usually can be called in command buffer completion handler.
-        #[method(GPUEndTime)]
+        #[unsafe(method(GPUEndTime))]
         #[unsafe(method_family = none)]
         unsafe fn GPUEndTime(&self) -> CFTimeInterval;
 
         /// Append this command buffer to the end of its MTLCommandQueue.
-        #[method(enqueue)]
+        #[unsafe(method(enqueue))]
         #[unsafe(method_family = none)]
         fn enqueue(&self);
 
         /// Commit a command buffer so it can be executed as soon as possible.
-        #[method(commit)]
+        #[unsafe(method(commit))]
         #[unsafe(method_family = none)]
         fn commit(&self);
 
         #[cfg(feature = "block2")]
         /// Adds a block to be called when this command buffer has been scheduled for execution.
-        #[method(addScheduledHandler:)]
+        #[unsafe(method(addScheduledHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn addScheduledHandler(&self, block: MTLCommandBufferHandler);
 
@@ -423,7 +423,7 @@ extern_protocol!(
         /// Add a drawable present that will be invoked when this command buffer has been scheduled for execution.
         ///
         /// The submission thread will be lock stepped with present call been serviced by window server
-        #[method(presentDrawable:)]
+        #[unsafe(method(presentDrawable:))]
         #[unsafe(method_family = none)]
         fn presentDrawable(&self, drawable: &ProtocolObject<dyn MTLDrawable>);
 
@@ -431,7 +431,7 @@ extern_protocol!(
         /// Add a drawable present for a specific host time that will be invoked when this command buffer has been scheduled for execution.
         ///
         /// The submission thread will be lock stepped with present call been serviced by window server
-        #[method(presentDrawable:atTime:)]
+        #[unsafe(method(presentDrawable:atTime:))]
         #[unsafe(method_family = none)]
         unsafe fn presentDrawable_atTime(
             &self,
@@ -448,7 +448,7 @@ extern_protocol!(
         ///
         /// The difference of this API versus presentDrawable:atTime is that this API defers calculation of the presentation time until the previous frame's actual presentation time is known, thus to be able to maintain a more consistent and stable frame time. This also provides an easy way to set frame rate.
         /// The submission thread will be lock stepped with present call been serviced by window server
-        #[method(presentDrawable:afterMinimumDuration:)]
+        #[unsafe(method(presentDrawable:afterMinimumDuration:))]
         #[unsafe(method_family = none)]
         unsafe fn presentDrawable_afterMinimumDuration(
             &self,
@@ -457,34 +457,34 @@ extern_protocol!(
         );
 
         /// Synchronously wait for this command buffer to be scheduled.
-        #[method(waitUntilScheduled)]
+        #[unsafe(method(waitUntilScheduled))]
         #[unsafe(method_family = none)]
         fn waitUntilScheduled(&self);
 
         #[cfg(feature = "block2")]
         /// Add a block to be called when this command buffer has completed execution.
-        #[method(addCompletedHandler:)]
+        #[unsafe(method(addCompletedHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn addCompletedHandler(&self, block: MTLCommandBufferHandler);
 
         /// Synchronously wait for this command buffer to complete.
-        #[method(waitUntilCompleted)]
+        #[unsafe(method(waitUntilCompleted))]
         #[unsafe(method_family = none)]
         unsafe fn waitUntilCompleted(&self);
 
         /// status reports the current stage in the lifetime of MTLCommandBuffer, as it proceeds to enqueued, committed, scheduled, and completed.
-        #[method(status)]
+        #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         fn status(&self) -> MTLCommandBufferStatus;
 
         /// If an error occurred during execution, the NSError may contain more details about the problem.
-        #[method(error)]
+        #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[cfg(all(feature = "MTLBlitCommandEncoder", feature = "MTLCommandEncoder"))]
         /// returns a blit command encoder to encode into this command buffer.
-        #[method(blitCommandEncoder)]
+        #[unsafe(method(blitCommandEncoder))]
         #[unsafe(method_family = none)]
         fn blitCommandEncoder(&self)
             -> Option<Retained<ProtocolObject<dyn MTLBlitCommandEncoder>>>;
@@ -495,7 +495,7 @@ extern_protocol!(
             feature = "MTLRenderPass"
         ))]
         /// returns a render command endcoder to encode into this command buffer.
-        #[method(renderCommandEncoderWithDescriptor:)]
+        #[unsafe(method(renderCommandEncoderWithDescriptor:))]
         #[unsafe(method_family = none)]
         fn renderCommandEncoderWithDescriptor(
             &self,
@@ -508,7 +508,7 @@ extern_protocol!(
             feature = "MTLComputePass"
         ))]
         /// returns a compute command endcoder to encode into this command buffer.
-        #[method(computeCommandEncoderWithDescriptor:)]
+        #[unsafe(method(computeCommandEncoderWithDescriptor:))]
         #[unsafe(method_family = none)]
         unsafe fn computeCommandEncoderWithDescriptor(
             &self,
@@ -521,7 +521,7 @@ extern_protocol!(
             feature = "MTLCommandEncoder"
         ))]
         /// returns a blit command endcoder to encode into this command buffer.
-        #[method(blitCommandEncoderWithDescriptor:)]
+        #[unsafe(method(blitCommandEncoderWithDescriptor:))]
         #[unsafe(method_family = none)]
         unsafe fn blitCommandEncoderWithDescriptor(
             &self,
@@ -530,7 +530,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLCommandEncoder", feature = "MTLComputeCommandEncoder"))]
         /// returns a compute command encoder to encode into this command buffer.
-        #[method(computeCommandEncoder)]
+        #[unsafe(method(computeCommandEncoder))]
         #[unsafe(method_family = none)]
         fn computeCommandEncoder(
             &self,
@@ -540,7 +540,7 @@ extern_protocol!(
         /// returns a compute command encoder to encode into this command buffer. Optionally allow this command encoder to execute dispatches concurrently.
         ///
         /// On devices that do not support concurrent command encoders, this call is equivalent to computeCommandEncoder
-        #[method(computeCommandEncoderWithDispatchType:)]
+        #[unsafe(method(computeCommandEncoderWithDispatchType:))]
         #[unsafe(method_family = none)]
         fn computeCommandEncoderWithDispatchType(
             &self,
@@ -551,7 +551,7 @@ extern_protocol!(
         /// Encodes a command that pauses execution of this command buffer until the specified event reaches a given value.
         ///
         /// This method may only be called if there is no current command encoder on the receiver.
-        #[method(encodeWaitForEvent:value:)]
+        #[unsafe(method(encodeWaitForEvent:value:))]
         #[unsafe(method_family = none)]
         fn encodeWaitForEvent_value(&self, event: &ProtocolObject<dyn MTLEvent>, value: u64);
 
@@ -559,7 +559,7 @@ extern_protocol!(
         /// Encodes a command that signals an event with a given value.
         ///
         /// This method may only be called if there is no current command encoder on the receiver.
-        #[method(encodeSignalEvent:value:)]
+        #[unsafe(method(encodeSignalEvent:value:))]
         #[unsafe(method_family = none)]
         fn encodeSignalEvent_value(&self, event: &ProtocolObject<dyn MTLEvent>, value: u64);
 
@@ -569,7 +569,7 @@ extern_protocol!(
             feature = "MTLRenderPass"
         ))]
         /// returns a parallel render pass encoder to encode into this command buffer.
-        #[method(parallelRenderCommandEncoderWithDescriptor:)]
+        #[unsafe(method(parallelRenderCommandEncoderWithDescriptor:))]
         #[unsafe(method_family = none)]
         fn parallelRenderCommandEncoderWithDescriptor(
             &self,
@@ -580,7 +580,7 @@ extern_protocol!(
             feature = "MTLCommandEncoder",
             feature = "MTLResourceStateCommandEncoder"
         ))]
-        #[method(resourceStateCommandEncoder)]
+        #[unsafe(method(resourceStateCommandEncoder))]
         #[unsafe(method_family = none)]
         unsafe fn resourceStateCommandEncoder(
             &self,
@@ -591,7 +591,7 @@ extern_protocol!(
             feature = "MTLResourceStateCommandEncoder",
             feature = "MTLResourceStatePass"
         ))]
-        #[method(resourceStateCommandEncoderWithDescriptor:)]
+        #[unsafe(method(resourceStateCommandEncoderWithDescriptor:))]
         #[unsafe(method_family = none)]
         unsafe fn resourceStateCommandEncoderWithDescriptor(
             &self,
@@ -602,7 +602,7 @@ extern_protocol!(
             feature = "MTLAccelerationStructureCommandEncoder",
             feature = "MTLCommandEncoder"
         ))]
-        #[method(accelerationStructureCommandEncoder)]
+        #[unsafe(method(accelerationStructureCommandEncoder))]
         #[unsafe(method_family = none)]
         fn accelerationStructureCommandEncoder(
             &self,
@@ -612,7 +612,7 @@ extern_protocol!(
             feature = "MTLAccelerationStructureCommandEncoder",
             feature = "MTLCommandEncoder"
         ))]
-        #[method(accelerationStructureCommandEncoderWithDescriptor:)]
+        #[unsafe(method(accelerationStructureCommandEncoderWithDescriptor:))]
         #[unsafe(method_family = none)]
         unsafe fn accelerationStructureCommandEncoderWithDescriptor(
             &self,
@@ -620,24 +620,24 @@ extern_protocol!(
         ) -> Retained<ProtocolObject<dyn MTLAccelerationStructureCommandEncoder>>;
 
         /// Push a new named string onto a stack of string labels.
-        #[method(pushDebugGroup:)]
+        #[unsafe(method(pushDebugGroup:))]
         #[unsafe(method_family = none)]
         fn pushDebugGroup(&self, string: &NSString);
 
         /// Pop the latest named string off of the stack.
-        #[method(popDebugGroup)]
+        #[unsafe(method(popDebugGroup))]
         #[unsafe(method_family = none)]
         fn popDebugGroup(&self);
 
         #[cfg(feature = "MTLResidencySet")]
         /// Marks the residency set as part of the current command buffer execution. This ensures that the residency set is resident during execution of the command buffer.
-        #[method(useResidencySet:)]
+        #[unsafe(method(useResidencySet:))]
         #[unsafe(method_family = none)]
         unsafe fn useResidencySet(&self, residency_set: &ProtocolObject<dyn MTLResidencySet>);
 
         #[cfg(feature = "MTLResidencySet")]
         /// Marks the residency sets as part of the current command buffer execution. This ensures that the residency sets are resident during execution of the command buffer.
-        #[method(useResidencySets:count:)]
+        #[unsafe(method(useResidencySets:count:))]
         #[unsafe(method_family = none)]
         unsafe fn useResidencySets_count(
             &self,

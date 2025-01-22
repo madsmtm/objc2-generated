@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for MCNearbyServiceAdvertiser {}
 extern_methods!(
     unsafe impl MCNearbyServiceAdvertiser {
         #[cfg(feature = "MCPeerID")]
-        #[method(initWithPeer:discoveryInfo:serviceType:)]
+        #[unsafe(method(initWithPeer:discoveryInfo:serviceType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPeer_discoveryInfo_serviceType(
             this: Allocated<Self>,
@@ -28,15 +28,15 @@ extern_methods!(
             service_type: &NSString,
         ) -> Retained<Self>;
 
-        #[method(startAdvertisingPeer)]
+        #[unsafe(method(startAdvertisingPeer))]
         #[unsafe(method_family = none)]
         pub unsafe fn startAdvertisingPeer(&self);
 
-        #[method(stopAdvertisingPeer)]
+        #[unsafe(method(stopAdvertisingPeer))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopAdvertisingPeer(&self);
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -44,7 +44,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -52,15 +52,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "MCPeerID")]
-        #[method(myPeerID)]
+        #[unsafe(method(myPeerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn myPeerID(&self) -> Retained<MCPeerID>;
 
-        #[method(discoveryInfo)]
+        #[unsafe(method(discoveryInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoveryInfo(&self) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
-        #[method(serviceType)]
+        #[unsafe(method(serviceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceType(&self) -> Retained<NSString>;
     }
@@ -69,11 +69,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MCNearbyServiceAdvertiser {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -83,7 +83,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyserviceadvertiserdelegate?language=objc)
     pub unsafe trait MCNearbyServiceAdvertiserDelegate: NSObjectProtocol {
         #[cfg(all(feature = "MCPeerID", feature = "MCSession", feature = "block2"))]
-        #[method(advertiser:didReceiveInvitationFromPeer:withContext:invitationHandler:)]
+        #[unsafe(method(advertiser:didReceiveInvitationFromPeer:withContext:invitationHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn advertiser_didReceiveInvitationFromPeer_withContext_invitationHandler(
             &self,
@@ -94,7 +94,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(advertiser:didNotStartAdvertisingPeer:)]
+        #[unsafe(method(advertiser:didNotStartAdvertisingPeer:))]
         #[unsafe(method_family = none)]
         unsafe fn advertiser_didNotStartAdvertisingPeer(
             &self,

@@ -45,66 +45,66 @@ unsafe impl NSObjectProtocol for GKAccessPoint {}
 
 extern_methods!(
     unsafe impl GKAccessPoint {
-        #[method(shared)]
+        #[unsafe(method(shared))]
         #[unsafe(method_family = none)]
         pub unsafe fn shared() -> Retained<GKAccessPoint>;
 
         /// set this true to enable access point in your app.  Setting this will cause the access point to appear after the notification banner is presented.  If it already was presented it will appear immediately
-        #[method(isActive)]
+        #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isActive(&self) -> bool;
 
         /// Setter for [`isActive`][Self::isActive].
-        #[method(setActive:)]
+        #[unsafe(method(setActive:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActive(&self, active: bool);
 
         /// set this on tvOS to put the accessPoint into focused mode
-        #[method(isFocused)]
+        #[unsafe(method(isFocused))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFocused(&self) -> bool;
 
         /// Setter for [`isFocused`][Self::isFocused].
-        #[method(setFocused:)]
+        #[unsafe(method(setFocused:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocused(&self, focused: bool);
 
-        #[method(isVisible)]
+        #[unsafe(method(isVisible))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVisible(&self) -> bool;
 
         /// observable property that indicates when the access point is visible.
-        #[method(isPresentingGameCenter)]
+        #[unsafe(method(isPresentingGameCenter))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPresentingGameCenter(&self) -> bool;
 
         /// Set this property to true if you wish to show the highlights for most recent achievement, current rank on default leaderboard, etc
-        #[method(showHighlights)]
+        #[unsafe(method(showHighlights))]
         #[unsafe(method_family = none)]
         pub unsafe fn showHighlights(&self) -> bool;
 
         /// Setter for [`showHighlights`][Self::showHighlights].
-        #[method(setShowHighlights:)]
+        #[unsafe(method(setShowHighlights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowHighlights(&self, show_highlights: bool);
 
         /// These properties control the placement of the widget
-        #[method(location)]
+        #[unsafe(method(location))]
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> GKAccessPointLocation;
 
         /// Setter for [`location`][Self::location].
-        #[method(setLocation:)]
+        #[unsafe(method(setLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocation(&self, location: GKAccessPointLocation);
 
-        #[method(frameInScreenCoordinates)]
+        #[unsafe(method(frameInScreenCoordinates))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameInScreenCoordinates(&self) -> NSRect;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method(parentWindow)]
+        #[unsafe(method(parentWindow))]
         #[unsafe(method_family = none)]
         pub unsafe fn parentWindow(&self, mtm: MainThreadMarker) -> Option<Retained<NSWindow>>;
 
@@ -112,18 +112,18 @@ extern_methods!(
         #[cfg(target_os = "macos")]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`parentWindow`][Self::parentWindow].
-        #[method(setParentWindow:)]
+        #[unsafe(method(setParentWindow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 
         #[cfg(feature = "block2")]
         /// this lets the developer trigger the access point as if the user had touched it.  This is useful for games that use controllers or the remote on AppleTV.  the argument lets you specify a specific state (default, profile, achievements, leaderboards) for GameCenterViewController
-        #[method(triggerAccessPointWithHandler:)]
+        #[unsafe(method(triggerAccessPointWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointWithHandler(&self, handler: &block2::Block<dyn Fn()>);
 
         #[cfg(all(feature = "GKGameCenterViewController", feature = "block2"))]
-        #[method(triggerAccessPointWithState:handler:)]
+        #[unsafe(method(triggerAccessPointWithState:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointWithState_handler(
             &self,
@@ -132,7 +132,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(triggerAccessPointWithAchievementID:handler:)]
+        #[unsafe(method(triggerAccessPointWithAchievementID:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointWithAchievementID_handler(
             &self,
@@ -141,7 +141,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(triggerAccessPointWithLeaderboardSetID:handler:)]
+        #[unsafe(method(triggerAccessPointWithLeaderboardSetID:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointWithLeaderboardSetID_handler(
             &self,
@@ -150,7 +150,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "GKLeaderboard", feature = "block2"))]
-        #[method(triggerAccessPointWithLeaderboardID:playerScope:timeScope:handler:)]
+        #[unsafe(method(triggerAccessPointWithLeaderboardID:playerScope:timeScope:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointWithLeaderboardID_playerScope_timeScope_handler(
             &self,
@@ -161,7 +161,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
-        #[method(triggerAccessPointWithPlayer:handler:)]
+        #[unsafe(method(triggerAccessPointWithPlayer:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerAccessPointWithPlayer_handler(
             &self,
@@ -174,11 +174,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKAccessPoint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

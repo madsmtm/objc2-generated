@@ -88,102 +88,102 @@ unsafe impl NSUserInterfaceItemIdentification for NSProgressIndicator {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSProgressIndicator {
-        #[method(isIndeterminate)]
+        #[unsafe(method(isIndeterminate))]
         #[unsafe(method_family = none)]
         pub unsafe fn isIndeterminate(&self) -> bool;
 
         /// Setter for [`isIndeterminate`][Self::isIndeterminate].
-        #[method(setIndeterminate:)]
+        #[unsafe(method(setIndeterminate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndeterminate(&self, indeterminate: bool);
 
         #[cfg(feature = "NSCell")]
-        #[method(controlSize)]
+        #[unsafe(method(controlSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
         #[cfg(feature = "NSCell")]
         /// Setter for [`controlSize`][Self::controlSize].
-        #[method(setControlSize:)]
+        #[unsafe(method(setControlSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
-        #[method(doubleValue)]
+        #[unsafe(method(doubleValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn doubleValue(&self) -> c_double;
 
         /// Setter for [`doubleValue`][Self::doubleValue].
-        #[method(setDoubleValue:)]
+        #[unsafe(method(setDoubleValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDoubleValue(&self, double_value: c_double);
 
-        #[method(incrementBy:)]
+        #[unsafe(method(incrementBy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn incrementBy(&self, delta: c_double);
 
-        #[method(minValue)]
+        #[unsafe(method(minValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn minValue(&self) -> c_double;
 
         /// Setter for [`minValue`][Self::minValue].
-        #[method(setMinValue:)]
+        #[unsafe(method(setMinValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinValue(&self, min_value: c_double);
 
-        #[method(maxValue)]
+        #[unsafe(method(maxValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxValue(&self) -> c_double;
 
         /// Setter for [`maxValue`][Self::maxValue].
-        #[method(setMaxValue:)]
+        #[unsafe(method(setMaxValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxValue(&self, max_value: c_double);
 
-        #[method(observedProgress)]
+        #[unsafe(method(observedProgress))]
         #[unsafe(method_family = none)]
         pub unsafe fn observedProgress(&self) -> Option<Retained<NSProgress>>;
 
         /// Setter for [`observedProgress`][Self::observedProgress].
-        #[method(setObservedProgress:)]
+        #[unsafe(method(setObservedProgress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObservedProgress(&self, observed_progress: Option<&NSProgress>);
 
-        #[method(usesThreadedAnimation)]
+        #[unsafe(method(usesThreadedAnimation))]
         #[unsafe(method_family = none)]
         pub unsafe fn usesThreadedAnimation(&self) -> bool;
 
         /// Setter for [`usesThreadedAnimation`][Self::usesThreadedAnimation].
-        #[method(setUsesThreadedAnimation:)]
+        #[unsafe(method(setUsesThreadedAnimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesThreadedAnimation(&self, uses_threaded_animation: bool);
 
-        #[method(startAnimation:)]
+        #[unsafe(method(startAnimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startAnimation(&self, sender: Option<&AnyObject>);
 
-        #[method(stopAnimation:)]
+        #[unsafe(method(stopAnimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopAnimation(&self, sender: Option<&AnyObject>);
 
-        #[method(style)]
+        #[unsafe(method(style))]
         #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> NSProgressIndicatorStyle;
 
         /// Setter for [`style`][Self::style].
-        #[method(setStyle:)]
+        #[unsafe(method(setStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStyle(&self, style: NSProgressIndicatorStyle);
 
-        #[method(sizeToFit)]
+        #[unsafe(method(sizeToFit))]
         #[unsafe(method_family = none)]
         pub unsafe fn sizeToFit(&self);
 
-        #[method(isDisplayedWhenStopped)]
+        #[unsafe(method(isDisplayedWhenStopped))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDisplayedWhenStopped(&self) -> bool;
 
         /// Setter for [`isDisplayedWhenStopped`][Self::isDisplayedWhenStopped].
-        #[method(setDisplayedWhenStopped:)]
+        #[unsafe(method(setDisplayedWhenStopped:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayedWhenStopped(&self, displayed_when_stopped: bool);
     }
@@ -193,11 +193,11 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSProgressIndicator {
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -210,7 +210,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSProgressIndicator {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -220,7 +220,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSProgressIndicator {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -268,41 +268,41 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSProgressIndicator {
         #[deprecated = "The animationDelay property does nothing."]
-        #[method(animationDelay)]
+        #[unsafe(method(animationDelay))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationDelay(&self) -> NSTimeInterval;
 
         #[deprecated = "The animationDelay property does nothing."]
-        #[method(setAnimationDelay:)]
+        #[unsafe(method(setAnimationDelay:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationDelay(&self, delay: NSTimeInterval);
 
         #[deprecated = "Use -startAnimation and -stopAnimation instead."]
-        #[method(animate:)]
+        #[unsafe(method(animate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn animate(&self, sender: Option<&AnyObject>);
 
         #[deprecated = "The bezeled property is not respected on 10.15 and later"]
-        #[method(isBezeled)]
+        #[unsafe(method(isBezeled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBezeled(&self) -> bool;
 
         /// Setter for [`isBezeled`][Self::isBezeled].
         #[deprecated = "The bezeled property is not respected on 10.15 and later"]
-        #[method(setBezeled:)]
+        #[unsafe(method(setBezeled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBezeled(&self, bezeled: bool);
 
         #[cfg(feature = "NSCell")]
         #[deprecated = "The controlTint property is not respected on 10.15 and later"]
-        #[method(controlTint)]
+        #[unsafe(method(controlTint))]
         #[unsafe(method_family = none)]
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
         #[cfg(feature = "NSCell")]
         /// Setter for [`controlTint`][Self::controlTint].
         #[deprecated = "The controlTint property is not respected on 10.15 and later"]
-        #[method(setControlTint:)]
+        #[unsafe(method(setControlTint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setControlTint(&self, control_tint: NSControlTint);
     }

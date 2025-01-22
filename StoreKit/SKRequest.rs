@@ -20,24 +20,24 @@ unsafe impl NSObjectProtocol for SKRequest {}
 extern_methods!(
     unsafe impl SKRequest {
         #[deprecated = "No longer supported"]
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn SKRequestDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "No longer supported"]
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn SKRequestDelegate>>);
 
         #[deprecated = "No longer supported"]
-        #[method(cancel)]
+        #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
         #[deprecated = "No longer supported"]
-        #[method(start)]
+        #[unsafe(method(start))]
         #[unsafe(method_family = none)]
         pub unsafe fn start(&self);
     }
@@ -46,11 +46,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -62,13 +62,13 @@ extern_protocol!(
     pub unsafe trait SKRequestDelegate: NSObjectProtocol {
         #[deprecated = "No longer supported"]
         #[optional]
-        #[method(requestDidFinish:)]
+        #[unsafe(method(requestDidFinish:))]
         #[unsafe(method_family = none)]
         unsafe fn requestDidFinish(&self, request: &SKRequest);
 
         #[deprecated = "No longer supported"]
         #[optional]
-        #[method(request:didFailWithError:)]
+        #[unsafe(method(request:didFailWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn request_didFailWithError(&self, request: &SKRequest, error: &NSError);
     }

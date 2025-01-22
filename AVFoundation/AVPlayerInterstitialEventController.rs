@@ -160,11 +160,11 @@ unsafe impl NSObjectProtocol for AVPlayerInterstitialEvent {}
 
 extern_methods!(
     unsafe impl AVPlayerInterstitialEvent {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -189,7 +189,7 @@ extern_methods!(
         ///
         /// Returns: An instance of AVPlayerInterstitialEvent.
         #[deprecated = "Use interstitialEventWithPrimaryItem:time: instead"]
-        #[method(interstitialEventWithPrimaryItem:identifier:time:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:)]
+        #[unsafe(method(interstitialEventWithPrimaryItem:identifier:time:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEventWithPrimaryItem_identifier_time_templateItems_restrictions_resumptionOffset_playoutLimit_userDefinedAttributes(
             primary_item: &AVPlayerItem,
@@ -223,7 +223,7 @@ extern_methods!(
         ///
         /// Returns: An instance of AVPlayerInterstitialEvent.
         #[deprecated = "Use interstitialEventWithPrimaryItem:date: instead"]
-        #[method(interstitialEventWithPrimaryItem:identifier:date:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:)]
+        #[unsafe(method(interstitialEventWithPrimaryItem:identifier:date:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEventWithPrimaryItem_identifier_date_templateItems_restrictions_resumptionOffset_playoutLimit_userDefinedAttributes(
             primary_item: &AVPlayerItem,
@@ -244,7 +244,7 @@ extern_methods!(
         /// Parameter `time`: The time within the duration of the primary item at which playback of the primary content should be temporarily suspended and the interstitial items played.
         ///
         /// Returns: An instance of AVPlayerInterstitialEvent.
-        #[method(interstitialEventWithPrimaryItem:time:)]
+        #[unsafe(method(interstitialEventWithPrimaryItem:time:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEventWithPrimaryItem_time(
             primary_item: &AVPlayerItem,
@@ -259,7 +259,7 @@ extern_methods!(
         /// Parameter `date`: The date within the date range of the primary item at which playback of the primary content should be temporarily suspended and the interstitial items played.
         ///
         /// Returns: An instance of AVPlayerInterstitialEvent.
-        #[method(interstitialEventWithPrimaryItem:date:)]
+        #[unsafe(method(interstitialEventWithPrimaryItem:date:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEventWithPrimaryItem_date(
             primary_item: &AVPlayerItem,
@@ -268,14 +268,14 @@ extern_methods!(
 
         #[cfg(feature = "AVPlayerItem")]
         /// An AVPlayerItem representing the primary content during the playback of which the interstitial event should occur. The primaryItem must have an AVAsset that provides an intrinsic mapping from its timeline to real-time dates.
-        #[method(primaryItem)]
+        #[unsafe(method(primaryItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryItem(&self, mtm: MainThreadMarker) -> Option<Retained<AVPlayerItem>>;
 
         /// An external identifier for the event.
         ///
         /// If an event is set on an AVPlayerInterstitialEventController that already has an event with the same identifier, the old event will be replaced by the new one.
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
@@ -283,14 +283,14 @@ extern_methods!(
         /// The time within the duration of the primary item at which playback of the primary content should be temporarily suspended and the interstitial items played.
         ///
         /// Will have a value equal to kCMTimeInvalid if the event was initialized with a date instead of a time.
-        #[method(time)]
+        #[unsafe(method(time))]
         #[unsafe(method_family = none)]
         pub unsafe fn time(&self) -> CMTime;
 
         /// The date within the date range of the primary item at which playback of the primary content should be temporarily suspended and the interstitial items played.
         ///
         /// Will have a value of nil if the event was initialized with a time instead of a date.
-        #[method(date)]
+        #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Option<Retained<NSDate>>;
 
@@ -300,7 +300,7 @@ extern_methods!(
         /// If you want the instances of AVURLAsset used during interstitial playback to be identical to the ones you specify for templateItems in AVPlayerInterstitialEvents that you set on an AVPlayerInterstitialEventController, rather than equivalent AVURLAssets with the same URL, you must create them with a value for the key AVURLAssetPrimarySessionIdentifierKey that's equal to the httpSessionIdentifier of the primary AVPlayerItem's asset. See AVAsset.h. This is especially useful if you require the use of a custom AVAssetResourceLoader delegate for interstitial assets.
         ///
         /// An NSInvalidArgumentException will be raised if any of the template items employs an AVAsset that lacks a URL, such as an AVComposition.
-        #[method(templateItems)]
+        #[unsafe(method(templateItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn templateItems(
             &self,
@@ -308,7 +308,7 @@ extern_methods!(
         ) -> Retained<NSArray<AVPlayerItem>>;
 
         /// Indicates restrictions on the use of end user playback controls that are imposed by the event.
-        #[method(restrictions)]
+        #[unsafe(method(restrictions))]
         #[unsafe(method_family = none)]
         pub unsafe fn restrictions(&self) -> AVPlayerInterstitialEventRestrictions;
 
@@ -316,7 +316,7 @@ extern_methods!(
         /// Specifies the offset in time at which playback of the primary item should resume after interstitial playback has finished.
         ///
         /// Definite numeric values are supported. The value kCMTimeIndefinite can also be used, in order to specify that the effective resumption time offset should accord with the wallclock time elapsed during interstitial playback; this value is typically suitable for live broadcasts. The default value is kCMTimeZero.
-        #[method(resumptionOffset)]
+        #[unsafe(method(resumptionOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn resumptionOffset(&self) -> CMTime;
 
@@ -324,64 +324,64 @@ extern_methods!(
         /// Specifies the offset in time at which playback of the interstitial event should end.
         ///
         /// Can be any positive numeric value, or invalid. The default value is kCMTimeInvalid, which means there is no limit.
-        #[method(playoutLimit)]
+        #[unsafe(method(playoutLimit))]
         #[unsafe(method_family = none)]
         pub unsafe fn playoutLimit(&self) -> CMTime;
 
         /// Specifies that the start time of interstitial playback should be snapped to a segment boundary of the primary asset
         ///
         /// If true, the start time or date of the interstitial will be adjusted to the nearest segment boundary when the primary player is playing an HTTP Live Streaming asset.
-        #[method(alignsStartWithPrimarySegmentBoundary)]
+        #[unsafe(method(alignsStartWithPrimarySegmentBoundary))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignsStartWithPrimarySegmentBoundary(&self) -> bool;
 
         /// Specifies that the resumption time of primary playback should be snapped to a segment boundary of the primary asset
         ///
         /// If true, the resumption time of primary playback following an interstitial will be adjusted to the nearest segment boundary when the primary player is playing an HTTP Live Streaming asset.
-        #[method(alignsResumptionWithPrimarySegmentBoundary)]
+        #[unsafe(method(alignsResumptionWithPrimarySegmentBoundary))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignsResumptionWithPrimarySegmentBoundary(&self) -> bool;
 
         /// The cue property is used to schedule event playback at a predefined position of primary playback.
-        #[method(cue)]
+        #[unsafe(method(cue))]
         #[unsafe(method_family = none)]
         pub unsafe fn cue(&self) -> Retained<AVPlayerInterstitialEventCue>;
 
         /// Specifies that the interstitial should be scheduled for playback once only, and suppressed for subsequent replay.
         ///
         /// The "once" provision takes effect at the start of interstitial playback. The interstitial will not be scheduled again even if the first playback is canceled before completion.
-        #[method(willPlayOnce)]
+        #[unsafe(method(willPlayOnce))]
         #[unsafe(method_family = none)]
         pub unsafe fn willPlayOnce(&self) -> bool;
 
         /// Attributes of the event defined by the content vendor or the client.
         ///
         /// Dictionary keys are attribute names. Dictionary values are attribute values.
-        #[method(userDefinedAttributes)]
+        #[unsafe(method(userDefinedAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn userDefinedAttributes(&self) -> Retained<NSDictionary>;
 
         /// The asset list JSON response as a dictionary, or nil if no asset list response has been loaded for the event.
         ///
         /// If the AVPlayerInterstitialEvent's templateItems is empty and the assetListResponse is nil, then an asset list read is expected. If the AVPlayerInterstitialEvent's templateItems is not empty and the assetListResponse is nil, then an asset list read is not expected.
-        #[method(assetListResponse)]
+        #[unsafe(method(assetListResponse))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetListResponse(&self) -> Option<Retained<NSDictionary>>;
 
         /// Indicates this event's occupancy on AVPlayerItemIntegratedTimeline. The default value is AVPlayerInterstitialEventTimelineSinglePointOccupancy.
-        #[method(timelineOccupancy)]
+        #[unsafe(method(timelineOccupancy))]
         #[unsafe(method_family = none)]
         pub unsafe fn timelineOccupancy(&self) -> AVPlayerInterstitialEventTimelineOccupancy;
 
         /// Indicates this event will supplement the primary content and should be presented unified with the primary item. The default value is NO.
-        #[method(supplementsPrimaryContent)]
+        #[unsafe(method(supplementsPrimaryContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn supplementsPrimaryContent(&self) -> bool;
 
         /// Indicates this event's content is dynamic and server may respond with different interstitial assets for other particpants in coordinated playback.
         ///
         /// Indicates this event's content is dynamic and server may respond with different interstitial assets for other particpants in coordinated playback. If this value is set to NO and the primary asset is particpating in coordinated playback, this event will participate in coordinated playback as well. The default value is YES.
-        #[method(contentMayVary)]
+        #[unsafe(method(contentMayVary))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentMayVary(&self) -> bool;
     }
@@ -415,14 +415,14 @@ extern_methods!(
         /// Parameter `primaryPlayer`: The AVPlayer that will play the primaryItems of the receiver's interstitial events.
         ///
         /// Returns: An instance of AVPlayerInterstitialEventMonitor.
-        #[method(interstitialEventMonitorWithPrimaryPlayer:)]
+        #[unsafe(method(interstitialEventMonitorWithPrimaryPlayer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEventMonitorWithPrimaryPlayer(
             primary_player: &AVPlayer,
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVPlayer")]
-        #[method(initWithPrimaryPlayer:)]
+        #[unsafe(method(initWithPrimaryPlayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPrimaryPlayer(
             this: Allocated<Self>,
@@ -431,13 +431,13 @@ extern_methods!(
 
         #[cfg(feature = "AVPlayer")]
         /// The AVPlayer that will play the primaryItems of the receiver's interstitial events.
-        #[method(primaryPlayer)]
+        #[unsafe(method(primaryPlayer))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryPlayer(&self, mtm: MainThreadMarker) -> Option<Retained<AVPlayer>>;
 
         #[cfg(feature = "AVPlayer")]
         /// The AVQueuePlayer that will play interstitial items during suspension of playback of primary items.
-        #[method(interstitialPlayer)]
+        #[unsafe(method(interstitialPlayer))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialPlayer(&self, mtm: MainThreadMarker) -> Retained<AVQueuePlayer>;
 
@@ -446,12 +446,12 @@ extern_methods!(
         /// When interstitial events follow a schedule specified intrinsically within the content of primary items, the value of this property will typically change whenever the currentItem of the primaryPlayer changes. For HLS content that specifies interstitials via the use of DATERANGE tags, the value of this property may also change whenever the set of DATERANGE tags in the currentItem's media playlist changes.
         /// When interstitial events follow a schedule specified via use of an AVPlayerInterstitialEventController, the value of this property changes only when a new schedule is set on the AVPlayerInterstitialEventController.
         /// The events returned in this array are immutable. Attempting to mutate them will trigger an exception. To alter an event, make a copy and mutate the copy.
-        #[method(events)]
+        #[unsafe(method(events))]
         #[unsafe(method_family = none)]
         pub unsafe fn events(&self) -> Retained<NSArray<AVPlayerInterstitialEvent>>;
 
         /// The current interstitial event. Has a value of nil during playback of primary content by the primary player.
-        #[method(currentEvent)]
+        #[unsafe(method(currentEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentEvent(&self) -> Option<Retained<AVPlayerInterstitialEvent>>;
     }
@@ -460,11 +460,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerInterstitialEventMonitor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -556,7 +556,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayerInterstitialEventController.
         ///
         /// This method throws an exception if the primary player is an interstitial player.
-        #[method(interstitialEventControllerWithPrimaryPlayer:)]
+        #[unsafe(method(interstitialEventControllerWithPrimaryPlayer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEventControllerWithPrimaryPlayer(
             primary_player: &AVPlayer,
@@ -564,7 +564,7 @@ extern_methods!(
 
         #[cfg(feature = "AVPlayer")]
         /// This method throws an exception if the primary player is an interstitial player.
-        #[method(initWithPrimaryPlayer:)]
+        #[unsafe(method(initWithPrimaryPlayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPrimaryPlayer(
             this: Allocated<Self>,
@@ -584,12 +584,12 @@ extern_methods!(
         /// The receiver will make a copy of the events that are set on it. Subsequent mutations on the original events will have no effect on the copy.
         ///
         /// An NSInvalidArgumentException will be raised if an under-specified AVPlayerInterstitialEvent is set, such as one with a nil primaryItem, or with neither a time nor a date.
-        #[method(events)]
+        #[unsafe(method(events))]
         #[unsafe(method_family = none)]
         pub unsafe fn events(&self) -> Retained<NSArray<AVPlayerInterstitialEvent>>;
 
         /// Setter for [`events`][Self::events].
-        #[method(setEvents:)]
+        #[unsafe(method(setEvents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEvents(&self, events: Option<&NSArray<AVPlayerInterstitialEvent>>);
 
@@ -601,7 +601,7 @@ extern_methods!(
         /// If invoked during the handling of coinciding interstitial events, they will all be canceled.
         /// When you cancel interstitial events via the use of this method, the value of resumptionOffset that you pass overrides the events' resumptionOffset.
         /// Has no effect while currentEvent is nil.
-        #[method(cancelCurrentEventWithResumptionOffset:)]
+        #[unsafe(method(cancelCurrentEventWithResumptionOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelCurrentEventWithResumptionOffset(&self, resumption_offset: CMTime);
     }
@@ -616,7 +616,7 @@ extern_methods!(
         /// Parameter `primaryPlayer`: The AVPlayer that will play the primaryItems of the receiver's interstitial events.
         ///
         /// Returns: An instance of AVPlayerInterstitialEventMonitor.
-        #[method(interstitialEventMonitorWithPrimaryPlayer:)]
+        #[unsafe(method(interstitialEventMonitorWithPrimaryPlayer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEventMonitorWithPrimaryPlayer(
             primary_player: &AVPlayer,
@@ -627,11 +627,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerInterstitialEventController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -660,12 +660,12 @@ extern_methods!(
         /// Allows interstitials to be played according to a schedule that's specified by server-side directives. The default value is YES. A value of NO prevents automatic scheduling of future server-side interstitial events. Events specified by an AVPlayerInterstitialEventController override server-side events, regardless of the value of this property.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
-        #[method(automaticallyHandlesInterstitialEvents)]
+        #[unsafe(method(automaticallyHandlesInterstitialEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticallyHandlesInterstitialEvents(&self) -> bool;
 
         /// Setter for [`automaticallyHandlesInterstitialEvents`][Self::automaticallyHandlesInterstitialEvents].
-        #[method(setAutomaticallyHandlesInterstitialEvents:)]
+        #[unsafe(method(setAutomaticallyHandlesInterstitialEvents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyHandlesInterstitialEvents(
             &self,
@@ -673,7 +673,7 @@ extern_methods!(
         );
 
         /// If the item was created automatically according to a template item for looping, for interstitial playback, or for other purposes, indicates the AVPlayerItem that was used as the template.
-        #[method(templatePlayerItem)]
+        #[unsafe(method(templatePlayerItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn templatePlayerItem(&self) -> Option<Retained<AVPlayerItem>>;
     }

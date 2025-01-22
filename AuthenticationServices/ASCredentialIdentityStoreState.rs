@@ -21,7 +21,7 @@ extern_methods!(
         /// Returns: YES if the credential identity store is enabled.
         ///
         /// You can only modify the credential identity store when it is enabled.
-        #[method(isEnabled)]
+        #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
@@ -34,7 +34,7 @@ extern_methods!(
         /// are supported, you can update the credential identity store with only the new changes
         /// since the last time it was updated. Otherwise, you should update the credential identity
         /// store by adding all credential identities.
-        #[method(supportsIncrementalUpdates)]
+        #[unsafe(method(supportsIncrementalUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsIncrementalUpdates(&self) -> bool;
     }
@@ -43,11 +43,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASCredentialIdentityStoreState {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

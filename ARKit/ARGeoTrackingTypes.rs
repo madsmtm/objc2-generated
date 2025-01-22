@@ -198,25 +198,25 @@ extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl ARGeoTrackingStatus {
         /// The state of geo tracking.
-        #[method(state)]
+        #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> ARGeoTrackingState;
 
         /// The accuracy of geo tracking.
-        #[method(accuracy)]
+        #[unsafe(method(accuracy))]
         #[unsafe(method_family = none)]
         pub unsafe fn accuracy(&self) -> ARGeoTrackingAccuracy;
 
         /// Reason for geo tracking state.
-        #[method(stateReason)]
+        #[unsafe(method(stateReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateReason(&self) -> ARGeoTrackingStateReason;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

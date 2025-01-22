@@ -30,7 +30,7 @@ extern_methods!(
             feature = "UIView"
         ))]
         /// The cursor view to be animated.
-        #[method(cursorView)]
+        #[unsafe(method(cursorView))]
         #[unsafe(method_family = none)]
         pub unsafe fn cursorView(&self) -> Option<Retained<UIView>>;
 
@@ -41,7 +41,7 @@ extern_methods!(
             feature = "UIView"
         ))]
         /// The object that implements the UITextInput protocol, used to query for geometry information regarding cursor placement.
-        #[method(textInput)]
+        #[unsafe(method(textInput))]
         #[unsafe(method_family = none)]
         pub unsafe fn textInput(&self) -> Option<Retained<UIView>>;
 
@@ -53,7 +53,7 @@ extern_methods!(
             feature = "UIView"
         ))]
         /// Creates an animator for the given text cursor view implementation, and the document object that implements the UITextInput protocol.
-        #[method(initWithTextCursorView:textInput:)]
+        #[unsafe(method(initWithTextCursorView:textInput:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTextCursorView_textInput(
             this: Allocated<Self>,
@@ -62,7 +62,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         /// Controls the visibility of the cursor.
-        #[method(setCursorVisible:animated:)]
+        #[unsafe(method(setCursorVisible:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCursorVisible_animated(&self, visible: bool, animated: bool);
 
@@ -70,7 +70,7 @@ extern_methods!(
         /// Controls the placement of the cursor, using
         /// `textInput`and
         /// `position`to compute the final frame for the cursor view.
-        #[method(placeCursorAtPosition:animated:)]
+        #[unsafe(method(placeCursorAtPosition:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeCursorAtPosition_animated(
             &self,
@@ -80,7 +80,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// Optionally, provide an animation block or completion block to run alongside cursor appearance or position update animations.
-        #[method(animateAlongsideChanges:completion:)]
+        #[unsafe(method(animateAlongsideChanges:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn animateAlongsideChanges_completion(
             &self,
@@ -88,7 +88,7 @@ extern_methods!(
             completion: Option<&block2::Block<dyn Fn()>>,
         );
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -97,7 +97,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextCursorDropPositionAnimator {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

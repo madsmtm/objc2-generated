@@ -28,7 +28,7 @@ unsafe impl NSObjectProtocol for HMAccessorySetupRequest {}
 
 extern_methods!(
     unsafe impl HMAccessorySetupRequest {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -37,24 +37,24 @@ extern_methods!(
         ///
         /// Note: When this is non-nil, the following entitlement is required:
         /// com.apple.developer.homekit.allow-setup-payload
-        #[method(payload)]
+        #[unsafe(method(payload))]
         #[unsafe(method_family = none)]
         pub unsafe fn payload(&self) -> Option<Retained<HMAccessorySetupPayload>>;
 
         #[cfg(feature = "HMAccessorySetupPayload")]
         /// Setter for [`payload`][Self::payload].
-        #[method(setPayload:)]
+        #[unsafe(method(setPayload:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPayload(&self, payload: Option<&HMAccessorySetupPayload>);
 
         /// The -[HMHome uniqueIdentifier] that corresponds to the HMHome that the accessory should be
         /// added to when being set up. If nil, then the user will be prompted to choose a home
-        #[method(homeUniqueIdentifier)]
+        #[unsafe(method(homeUniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn homeUniqueIdentifier(&self) -> Option<Retained<NSUUID>>;
 
         /// Setter for [`homeUniqueIdentifier`][Self::homeUniqueIdentifier].
-        #[method(setHomeUniqueIdentifier:)]
+        #[unsafe(method(setHomeUniqueIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHomeUniqueIdentifier(&self, home_unique_identifier: Option<&NSUUID>);
 
@@ -63,12 +63,12 @@ extern_methods!(
         /// room may be suggested
         ///
         /// Note: This value will be ignored if homeUniqueIdentifier is nil
-        #[method(suggestedRoomUniqueIdentifier)]
+        #[unsafe(method(suggestedRoomUniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn suggestedRoomUniqueIdentifier(&self) -> Option<Retained<NSUUID>>;
 
         /// Setter for [`suggestedRoomUniqueIdentifier`][Self::suggestedRoomUniqueIdentifier].
-        #[method(setSuggestedRoomUniqueIdentifier:)]
+        #[unsafe(method(setSuggestedRoomUniqueIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuggestedRoomUniqueIdentifier(
             &self,
@@ -80,12 +80,12 @@ extern_methods!(
         ///
         /// Note: If an accessory bridge is being set up, then this value only applies to the accessory bridge
         /// and not any accessories behind the bridge
-        #[method(suggestedAccessoryName)]
+        #[unsafe(method(suggestedAccessoryName))]
         #[unsafe(method_family = none)]
         pub unsafe fn suggestedAccessoryName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`suggestedAccessoryName`][Self::suggestedAccessoryName].
-        #[method(setSuggestedAccessoryName:)]
+        #[unsafe(method(setSuggestedAccessoryName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSuggestedAccessoryName(&self, suggested_accessory_name: Option<&NSString>);
     }
@@ -94,7 +94,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMAccessorySetupRequest {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -25,7 +25,7 @@ extern_methods!(
         /// Begins or attaches to an existing color sampling session which presents UI to the user for selecting a color from their screen. The handler will be called on the main thread when the user completes the session (either by selection, or cancelation). In the event of user-cancellation, `colorSelectionHandler` will be called with `nil`.
         ///
         /// The calling NSColorSampler instance is retained until the sampling session is completed.
-        #[method(showSamplerWithSelectionHandler:)]
+        #[unsafe(method(showSamplerWithSelectionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showSamplerWithSelectionHandler(
             &self,
@@ -37,11 +37,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSColorSampler {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -41,11 +41,11 @@ extern_methods!(
     /// Methods declared on superclass `CLBeaconIdentityCondition`
     #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
     unsafe impl CLBeaconIdentityConstraint {
-        #[method(initWithUUID:)]
+        #[unsafe(method(initWithUUID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUUID(this: Allocated<Self>, uuid: &NSUUID) -> Retained<Self>;
 
-        #[method(initWithUUID:major:)]
+        #[unsafe(method(initWithUUID:major:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUUID_major(
             this: Allocated<Self>,
@@ -53,7 +53,7 @@ extern_methods!(
             major: CLBeaconMajorValue,
         ) -> Retained<Self>;
 
-        #[method(initWithUUID:major:minor:)]
+        #[unsafe(method(initWithUUID:major:minor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUUID_major_minor(
             this: Allocated<Self>,
@@ -68,11 +68,11 @@ extern_methods!(
     /// Methods declared on superclass `CLCondition`
     #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]
     unsafe impl CLBeaconIdentityConstraint {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

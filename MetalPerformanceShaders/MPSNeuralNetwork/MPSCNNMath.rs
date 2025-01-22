@@ -44,7 +44,7 @@ extern_methods!(
         feature = "MPSState"
     ))]
     unsafe impl MPSCNNArithmeticGradientState {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -63,7 +63,7 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `bufferSize`: The size of the buffer in bytes
-        #[method(temporaryStateWithCommandBuffer:bufferSize:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:bufferSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -75,7 +75,7 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `descriptor`: A descriptor for the new temporary texture
-        #[method(temporaryStateWithCommandBuffer:textureDescriptor:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:textureDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -85,13 +85,13 @@ extern_methods!(
         /// Create a new autoreleased temporary state object without underlying resource
         ///
         /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
-        #[method(temporaryStateWithCommandBuffer:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:bufferSize:)]
+        #[unsafe(method(initWithDevice:bufferSize:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_bufferSize(
             this: Allocated<Self>,
@@ -99,7 +99,7 @@ extern_methods!(
             buffer_size: usize,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:textureDescriptor:)]
+        #[unsafe(method(initWithDevice:textureDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_textureDescriptor(
             this: Allocated<Self>,
@@ -110,7 +110,7 @@ extern_methods!(
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
-        #[method(initWithResource:)]
+        #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
@@ -123,7 +123,7 @@ extern_methods!(
         /// This occurs when -resource or -resourceAtIndex: is called.
         ///
         /// Parameter `resourceList`: The list of resources to create.
-        #[method(initWithDevice:resourceList:)]
+        #[unsafe(method(initWithDevice:resourceList:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
@@ -134,7 +134,7 @@ extern_methods!(
         /// Initialize a temporary state to hold a number of textures and buffers
         ///
         /// The textures occur first in sequence
-        #[method(temporaryStateWithCommandBuffer:resourceList:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:resourceList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -147,7 +147,7 @@ extern_methods!(
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
-        #[method(initWithResources:)]
+        #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
@@ -164,7 +164,7 @@ extern_methods!(
         feature = "MPSState"
     ))]
     unsafe impl MPSCNNArithmeticGradientState {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -248,41 +248,41 @@ unsafe impl NSSecureCoding for MPSCNNArithmetic {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNArithmetic {
-        #[method(primaryScale)]
+        #[unsafe(method(primaryScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryScale(&self) -> c_float;
 
         /// Setter for [`primaryScale`][Self::primaryScale].
-        #[method(setPrimaryScale:)]
+        #[unsafe(method(setPrimaryScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryScale(&self, primary_scale: c_float);
 
-        #[method(secondaryScale)]
+        #[unsafe(method(secondaryScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryScale(&self) -> c_float;
 
         /// Setter for [`secondaryScale`][Self::secondaryScale].
-        #[method(setSecondaryScale:)]
+        #[unsafe(method(setSecondaryScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryScale(&self, secondary_scale: c_float);
 
-        #[method(bias)]
+        #[unsafe(method(bias))]
         #[unsafe(method_family = none)]
         pub unsafe fn bias(&self) -> c_float;
 
         /// Setter for [`bias`][Self::bias].
-        #[method(setBias:)]
+        #[unsafe(method(setBias:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBias(&self, bias: c_float);
 
         /// The primarySource stride in the feature channel dimension. The only supported values are 0 or 1.
         /// The default value for each dimension is 1.
-        #[method(primaryStrideInFeatureChannels)]
+        #[unsafe(method(primaryStrideInFeatureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryStrideInFeatureChannels(&self) -> NSUInteger;
 
         /// Setter for [`primaryStrideInFeatureChannels`][Self::primaryStrideInFeatureChannels].
-        #[method(setPrimaryStrideInFeatureChannels:)]
+        #[unsafe(method(setPrimaryStrideInFeatureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryStrideInFeatureChannels(
             &self,
@@ -291,12 +291,12 @@ extern_methods!(
 
         /// The secondarySource stride in the feature channel dimension. The only supported values are 0 or 1.
         /// The default value for each dimension is 1.
-        #[method(secondaryStrideInFeatureChannels)]
+        #[unsafe(method(secondaryStrideInFeatureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryStrideInFeatureChannels(&self) -> NSUInteger;
 
         /// Setter for [`secondaryStrideInFeatureChannels`][Self::secondaryStrideInFeatureChannels].
-        #[method(setSecondaryStrideInFeatureChannels:)]
+        #[unsafe(method(setSecondaryStrideInFeatureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryStrideInFeatureChannels(
             &self,
@@ -306,28 +306,28 @@ extern_methods!(
         /// minimumValue is to clamp the result of an arithmetic operation:
         /// result = clamp(result, minimumValue, maximumValue).
         /// The default value of minimumValue is -FLT_MAX.
-        #[method(minimumValue)]
+        #[unsafe(method(minimumValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumValue(&self) -> c_float;
 
         /// Setter for [`minimumValue`][Self::minimumValue].
-        #[method(setMinimumValue:)]
+        #[unsafe(method(setMinimumValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumValue(&self, minimum_value: c_float);
 
         /// maximumValue is used to clamp the result of an arithmetic operation:
         /// result = clamp(result, minimumValue, maximumValue).
         /// The default value of maximumValue is FLT_MAX.
-        #[method(maximumValue)]
+        #[unsafe(method(maximumValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumValue(&self) -> c_float;
 
         /// Setter for [`maximumValue`][Self::maximumValue].
-        #[method(setMaximumValue:)]
+        #[unsafe(method(setMaximumValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumValue(&self, maximum_value: c_float);
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -354,7 +354,7 @@ extern_methods!(
         ///
         /// Parameter `destinationImage`: A valid MPSImage to be overwritten by result image. destinationImage
         /// may not alias primarySourceImage or secondarySourceImage.
-        #[method(encodeToCommandBuffer:primaryImage:secondaryImage:destinationState:destinationImage:)]
+        #[unsafe(method(encodeToCommandBuffer:primaryImage:secondaryImage:destinationState:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_primaryImage_secondaryImage_destinationState_destinationImage(
             &self,
@@ -388,7 +388,7 @@ extern_methods!(
         /// Parameter `destinationImages`: An array of MPSImage objects to contain the result images.
         /// destinationImages may not alias primarySourceImages or secondarySourceImages
         /// in any manner.
-        #[method(encodeBatchToCommandBuffer:primaryImages:secondaryImages:destinationStates:destinationImages:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:primaryImages:secondaryImages:destinationStates:destinationImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_primaryImages_secondaryImages_destinationStates_destinationImages(
             &self,
@@ -418,7 +418,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -440,7 +440,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -453,11 +453,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNArithmetic {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -502,7 +502,7 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on.
         ///
         /// Returns: A valid MPSCNNAdd object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -528,7 +528,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -550,7 +550,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -563,11 +563,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNAdd {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -612,7 +612,7 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on.
         ///
         /// Returns: A valid MPSCNNSubtract object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -638,7 +638,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -660,7 +660,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -673,11 +673,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNSubtract {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -722,7 +722,7 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on.
         ///
         /// Returns: A valid MPSCNNMultiply object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -748,7 +748,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -770,7 +770,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -783,11 +783,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNMultiply {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -832,7 +832,7 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on.
         ///
         /// Returns: A valid MPSCNNDivide object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -858,7 +858,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -880,7 +880,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -893,11 +893,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNDivide {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -970,12 +970,12 @@ extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNCompare {
         /// The comparison type to use
-        #[method(comparisonType)]
+        #[unsafe(method(comparisonType))]
         #[unsafe(method_family = none)]
         pub unsafe fn comparisonType(&self) -> MPSNNComparisonType;
 
         /// Setter for [`comparisonType`][Self::comparisonType].
-        #[method(setComparisonType:)]
+        #[unsafe(method(setComparisonType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setComparisonType(&self, comparison_type: MPSNNComparisonType);
 
@@ -985,12 +985,12 @@ extern_methods!(
         /// result = |b - a|
         /// <
         /// = threshold
-        #[method(threshold)]
+        #[unsafe(method(threshold))]
         #[unsafe(method_family = none)]
         pub unsafe fn threshold(&self) -> c_float;
 
         /// Setter for [`threshold`][Self::threshold].
-        #[method(setThreshold:)]
+        #[unsafe(method(setThreshold:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setThreshold(&self, threshold: c_float);
 
@@ -999,7 +999,7 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on.
         ///
         /// Returns: A valid MPSNNCompare object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1025,7 +1025,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1047,7 +1047,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1060,11 +1060,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNCompare {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1168,41 +1168,41 @@ unsafe impl NSSecureCoding for MPSCNNArithmeticGradient {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNArithmeticGradient {
-        #[method(primaryScale)]
+        #[unsafe(method(primaryScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryScale(&self) -> c_float;
 
         /// Setter for [`primaryScale`][Self::primaryScale].
-        #[method(setPrimaryScale:)]
+        #[unsafe(method(setPrimaryScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryScale(&self, primary_scale: c_float);
 
-        #[method(secondaryScale)]
+        #[unsafe(method(secondaryScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryScale(&self) -> c_float;
 
         /// Setter for [`secondaryScale`][Self::secondaryScale].
-        #[method(setSecondaryScale:)]
+        #[unsafe(method(setSecondaryScale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryScale(&self, secondary_scale: c_float);
 
-        #[method(bias)]
+        #[unsafe(method(bias))]
         #[unsafe(method_family = none)]
         pub unsafe fn bias(&self) -> c_float;
 
         /// Setter for [`bias`][Self::bias].
-        #[method(setBias:)]
+        #[unsafe(method(setBias:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBias(&self, bias: c_float);
 
         /// The secondarySource stride in the feature channel dimension. The only supported values are 0 or 1.
         /// The default value for each dimension is 1.
-        #[method(secondaryStrideInFeatureChannels)]
+        #[unsafe(method(secondaryStrideInFeatureChannels))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryStrideInFeatureChannels(&self) -> NSUInteger;
 
         /// Setter for [`secondaryStrideInFeatureChannels`][Self::secondaryStrideInFeatureChannels].
-        #[method(setSecondaryStrideInFeatureChannels:)]
+        #[unsafe(method(setSecondaryStrideInFeatureChannels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryStrideInFeatureChannels(
             &self,
@@ -1212,41 +1212,41 @@ extern_methods!(
         /// minimumValue is to clamp the result of an arithmetic operation:
         /// result = clamp(result, minimumValue, maximumValue).
         /// The default value of minimumValue is -FLT_MAX.
-        #[method(minimumValue)]
+        #[unsafe(method(minimumValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumValue(&self) -> c_float;
 
         /// Setter for [`minimumValue`][Self::minimumValue].
-        #[method(setMinimumValue:)]
+        #[unsafe(method(setMinimumValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumValue(&self, minimum_value: c_float);
 
         /// maximumValue is used to clamp the result of an arithmetic operation:
         /// result = clamp(result, minimumValue, maximumValue).
         /// The default value of maximumValue is FLT_MAX.
-        #[method(maximumValue)]
+        #[unsafe(method(maximumValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumValue(&self) -> c_float;
 
         /// Setter for [`maximumValue`][Self::maximumValue].
-        #[method(setMaximumValue:)]
+        #[unsafe(method(setMaximumValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumValue(&self, maximum_value: c_float);
 
         /// The isSecondarySourceFilter property is used to indicate whether the arithmetic gradient
         /// filter is operating on the primary or secondary source image from the forward pass.
-        #[method(isSecondarySourceFilter)]
+        #[unsafe(method(isSecondarySourceFilter))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSecondarySourceFilter(&self) -> bool;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:isSecondarySourceFilter:)]
+        #[unsafe(method(initWithDevice:isSecondarySourceFilter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_isSecondarySourceFilter(
             this: Allocated<Self>,
@@ -1273,7 +1273,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1295,7 +1295,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1308,11 +1308,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNArithmeticGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1378,7 +1378,7 @@ extern_methods!(
         /// filter is operating on the primary or secondary source image from the forward pass.
         ///
         /// Returns: A valid MPSCNNAddGradient object or nil, if failure.
-        #[method(initWithDevice:isSecondarySourceFilter:)]
+        #[unsafe(method(initWithDevice:isSecondarySourceFilter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_isSecondarySourceFilter(
             this: Allocated<Self>,
@@ -1392,7 +1392,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNArithmeticGradient`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNAddGradient {
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1418,7 +1418,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1440,7 +1440,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1453,11 +1453,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNAddGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1525,7 +1525,7 @@ extern_methods!(
         /// filter is operating on the primary or secondary source image from the forward pass.
         ///
         /// Returns: A valid MPSCNNSubtractGradient object or nil, if failure.
-        #[method(initWithDevice:isSecondarySourceFilter:)]
+        #[unsafe(method(initWithDevice:isSecondarySourceFilter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_isSecondarySourceFilter(
             this: Allocated<Self>,
@@ -1539,7 +1539,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNArithmeticGradient`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNSubtractGradient {
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1565,7 +1565,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1587,7 +1587,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1600,11 +1600,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNSubtractGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1673,7 +1673,7 @@ extern_methods!(
         /// filter is operating on the primary or secondary source image from the forward pass.
         ///
         /// Returns: A valid MPSCNNMultiplyGradient object or nil, if failure.
-        #[method(initWithDevice:isSecondarySourceFilter:)]
+        #[unsafe(method(initWithDevice:isSecondarySourceFilter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_isSecondarySourceFilter(
             this: Allocated<Self>,
@@ -1687,7 +1687,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNArithmeticGradient`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNMultiplyGradient {
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1713,7 +1713,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1735,7 +1735,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1748,11 +1748,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNMultiplyGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

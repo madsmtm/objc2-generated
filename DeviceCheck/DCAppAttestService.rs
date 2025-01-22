@@ -51,7 +51,7 @@ extern_methods!(
         ///
         /// Use the shared instance of the service to generate and to certify a
         /// cryptographic key, and then to assert your app’s validity using that key.
-        #[method(sharedService)]
+        #[unsafe(method(sharedService))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedService() -> Retained<DCAppAttestService>;
 
@@ -83,7 +83,7 @@ extern_methods!(
         /// watchOS 9 or later. For these extensions, you can use the results from
         /// ``DeviceCheck/DCAppAttestService/supported`` to indicate whether your
         /// WatchKit extension bypasses attestation.
-        #[method(isSupported)]
+        #[unsafe(method(isSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSupported(&self) -> bool;
 
@@ -135,7 +135,7 @@ extern_methods!(
         /// stores the key in the Secure Enclave.
         /// - `error`:  A ``DeviceCheck/DCError-swift.struct`` instance that indicates the
         /// reason for failure, or `nil` on success.
-        #[method(generateKeyWithCompletionHandler:)]
+        #[unsafe(method(generateKeyWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateKeyWithCompletionHandler(
             &self,
@@ -206,7 +206,7 @@ extern_methods!(
         /// associated with `keyId`. Send this to your server for processing.
         /// - `error`: A ``DeviceCheck/DCError-swift.struct`` instance that indicates the reason for
         /// failure, or `nil` on success.
-        #[method(attestKey:clientDataHash:completionHandler:)]
+        #[unsafe(method(attestKey:clientDataHash:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attestKey_clientDataHash_completionHandler(
             &self,
@@ -259,7 +259,7 @@ extern_methods!(
         /// the following parameters:
         /// - `assertionObject`: A data structure that you send to your server for processing.
         /// - `error` : A ``DeviceCheck/DCError-swift.struct`` instance that indicates the reason for failure, or `nil` on success.
-        #[method(generateAssertion:clientDataHash:completionHandler:)]
+        #[unsafe(method(generateAssertion:clientDataHash:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateAssertion_clientDataHash_completionHandler(
             &self,
@@ -273,11 +273,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl DCAppAttestService {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

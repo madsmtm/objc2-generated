@@ -19,12 +19,12 @@ unsafe impl NSObjectProtocol for OSALanguageInstance {}
 extern_methods!(
     unsafe impl OSALanguageInstance {
         #[cfg(feature = "OSALanguage")]
-        #[method(languageInstanceWithLanguage:)]
+        #[unsafe(method(languageInstanceWithLanguage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn languageInstanceWithLanguage(language: &OSALanguage) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguage")]
-        #[method(initWithLanguage:)]
+        #[unsafe(method(initWithLanguage:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLanguage(
             this: Allocated<Self>,
@@ -32,20 +32,20 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguage")]
-        #[method(language)]
+        #[unsafe(method(language))]
         #[unsafe(method_family = none)]
         pub unsafe fn language(&self) -> Retained<OSALanguage>;
 
-        #[method(defaultTarget)]
+        #[unsafe(method(defaultTarget))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultTarget(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         /// Setter for [`defaultTarget`][Self::defaultTarget].
-        #[method(setDefaultTarget:)]
+        #[unsafe(method(setDefaultTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultTarget(&self, default_target: Option<&NSAppleEventDescriptor>);
 
-        #[method(richTextFromDescriptor:)]
+        #[unsafe(method(richTextFromDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn richTextFromDescriptor(
             &self,
@@ -57,11 +57,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSALanguageInstance {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

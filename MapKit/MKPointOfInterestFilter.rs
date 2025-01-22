@@ -27,16 +27,16 @@ unsafe impl NSSecureCoding for MKPointOfInterestFilter {}
 
 extern_methods!(
     unsafe impl MKPointOfInterestFilter {
-        #[method(filterIncludingAllCategories)]
+        #[unsafe(method(filterIncludingAllCategories))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterIncludingAllCategories() -> Retained<MKPointOfInterestFilter>;
 
-        #[method(filterExcludingAllCategories)]
+        #[unsafe(method(filterExcludingAllCategories))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterExcludingAllCategories() -> Retained<MKPointOfInterestFilter>;
 
         #[cfg(feature = "MKPointOfInterestCategory")]
-        #[method(initIncludingCategories:)]
+        #[unsafe(method(initIncludingCategories:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initIncludingCategories(
             this: Allocated<Self>,
@@ -44,7 +44,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MKPointOfInterestCategory")]
-        #[method(initExcludingCategories:)]
+        #[unsafe(method(initExcludingCategories:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initExcludingCategories(
             this: Allocated<Self>,
@@ -52,12 +52,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MKPointOfInterestCategory")]
-        #[method(includesCategory:)]
+        #[unsafe(method(includesCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn includesCategory(&self, category: &MKPointOfInterestCategory) -> bool;
 
         #[cfg(feature = "MKPointOfInterestCategory")]
-        #[method(excludesCategory:)]
+        #[unsafe(method(excludesCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn excludesCategory(&self, category: &MKPointOfInterestCategory) -> bool;
     }
@@ -66,11 +66,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKPointOfInterestFilter {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -72,76 +72,76 @@ unsafe impl NSSecureCoding for NSAffineTransform {}
 
 extern_methods!(
     unsafe impl NSAffineTransform {
-        #[method(transform)]
+        #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform() -> Retained<NSAffineTransform>;
 
-        #[method(initWithTransform:)]
+        #[unsafe(method(initWithTransform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTransform(
             this: Allocated<Self>,
             transform: &NSAffineTransform,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(translateXBy:yBy:)]
+        #[unsafe(method(translateXBy:yBy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn translateXBy_yBy(&self, delta_x: CGFloat, delta_y: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(rotateByDegrees:)]
+        #[unsafe(method(rotateByDegrees:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rotateByDegrees(&self, angle: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(rotateByRadians:)]
+        #[unsafe(method(rotateByRadians:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rotateByRadians(&self, angle: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(scaleBy:)]
+        #[unsafe(method(scaleBy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleBy(&self, scale: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(scaleXBy:yBy:)]
+        #[unsafe(method(scaleXBy:yBy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleXBy_yBy(&self, scale_x: CGFloat, scale_y: CGFloat);
 
-        #[method(invert)]
+        #[unsafe(method(invert))]
         #[unsafe(method_family = none)]
         pub unsafe fn invert(&self);
 
-        #[method(appendTransform:)]
+        #[unsafe(method(appendTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendTransform(&self, transform: &NSAffineTransform);
 
-        #[method(prependTransform:)]
+        #[unsafe(method(prependTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prependTransform(&self, transform: &NSAffineTransform);
 
         #[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
-        #[method(transformPoint:)]
+        #[unsafe(method(transformPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn transformPoint(&self, a_point: NSPoint) -> NSPoint;
 
         #[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
-        #[method(transformSize:)]
+        #[unsafe(method(transformSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn transformSize(&self, a_size: NSSize) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(transformStruct)]
+        #[unsafe(method(transformStruct))]
         #[unsafe(method_family = none)]
         pub unsafe fn transformStruct(&self) -> NSAffineTransformStruct;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`transformStruct`][Self::transformStruct].
-        #[method(setTransformStruct:)]
+        #[unsafe(method(setTransformStruct:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransformStruct(&self, transform_struct: NSAffineTransformStruct);
     }
@@ -150,7 +150,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAffineTransform {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for NSAnimationContext {}
 extern_methods!(
     unsafe impl NSAnimationContext {
         #[cfg(feature = "block2")]
-        #[method(runAnimationGroup:completionHandler:)]
+        #[unsafe(method(runAnimationGroup:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runAnimationGroup_completionHandler(
             changes: &block2::Block<dyn Fn(NonNull<NSAnimationContext>) + '_>,
@@ -30,66 +30,66 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(runAnimationGroup:)]
+        #[unsafe(method(runAnimationGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runAnimationGroup(
             changes: &block2::Block<dyn Fn(NonNull<NSAnimationContext>) + '_>,
         );
 
-        #[method(beginGrouping)]
+        #[unsafe(method(beginGrouping))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginGrouping();
 
-        #[method(endGrouping)]
+        #[unsafe(method(endGrouping))]
         #[unsafe(method_family = none)]
         pub unsafe fn endGrouping();
 
-        #[method(currentContext)]
+        #[unsafe(method(currentContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentContext() -> Retained<NSAnimationContext>;
 
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         /// Setter for [`duration`][Self::duration].
-        #[method(setDuration:)]
+        #[unsafe(method(setDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDuration(&self, duration: NSTimeInterval);
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
-        #[method(timingFunction)]
+        #[unsafe(method(timingFunction))]
         #[unsafe(method_family = none)]
         pub unsafe fn timingFunction(&self) -> Option<Retained<CAMediaTimingFunction>>;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
         /// Setter for [`timingFunction`][Self::timingFunction].
-        #[method(setTimingFunction:)]
+        #[unsafe(method(setTimingFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimingFunction(&self, timing_function: Option<&CAMediaTimingFunction>);
 
         #[cfg(feature = "block2")]
-        #[method(completionHandler)]
+        #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionHandler`][Self::completionHandler].
-        #[method(setCompletionHandler:)]
+        #[unsafe(method(setCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn()>>,
         );
 
-        #[method(allowsImplicitAnimation)]
+        #[unsafe(method(allowsImplicitAnimation))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsImplicitAnimation(&self) -> bool;
 
         /// Setter for [`allowsImplicitAnimation`][Self::allowsImplicitAnimation].
-        #[method(setAllowsImplicitAnimation:)]
+        #[unsafe(method(setAllowsImplicitAnimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsImplicitAnimation(&self, allows_implicit_animation: bool);
     }
@@ -98,11 +98,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAnimationContext {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

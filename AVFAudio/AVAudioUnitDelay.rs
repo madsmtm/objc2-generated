@@ -48,12 +48,12 @@ extern_methods!(
         /// Range:      0 -> 2
         /// Default:    1
         /// Unit:       Seconds
-        #[method(delayTime)]
+        #[unsafe(method(delayTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn delayTime(&self) -> NSTimeInterval;
 
         /// Setter for [`delayTime`][Self::delayTime].
-        #[method(setDelayTime:)]
+        #[unsafe(method(setDelayTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelayTime(&self, delay_time: NSTimeInterval);
 
@@ -61,12 +61,12 @@ extern_methods!(
         /// Range:      -100 -> 100
         /// Default:    50
         /// Unit:       Percent
-        #[method(feedback)]
+        #[unsafe(method(feedback))]
         #[unsafe(method_family = none)]
         pub unsafe fn feedback(&self) -> c_float;
 
         /// Setter for [`feedback`][Self::feedback].
-        #[method(setFeedback:)]
+        #[unsafe(method(setFeedback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFeedback(&self, feedback: c_float);
 
@@ -74,12 +74,12 @@ extern_methods!(
         /// Range:      10 -> (samplerate/2)
         /// Default:    15000
         /// Unit:       Hertz
-        #[method(lowPassCutoff)]
+        #[unsafe(method(lowPassCutoff))]
         #[unsafe(method_family = none)]
         pub unsafe fn lowPassCutoff(&self) -> c_float;
 
         /// Setter for [`lowPassCutoff`][Self::lowPassCutoff].
-        #[method(setLowPassCutoff:)]
+        #[unsafe(method(setLowPassCutoff:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLowPassCutoff(&self, low_pass_cutoff: c_float);
 
@@ -87,12 +87,12 @@ extern_methods!(
         /// Range:      0 (all dry) -> 100 (all wet)
         /// Default:    100
         /// Unit:       Percent
-        #[method(wetDryMix)]
+        #[unsafe(method(wetDryMix))]
         #[unsafe(method_family = none)]
         pub unsafe fn wetDryMix(&self) -> c_float;
 
         /// Setter for [`wetDryMix`][Self::wetDryMix].
-        #[method(setWetDryMix:)]
+        #[unsafe(method(setWetDryMix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWetDryMix(&self, wet_dry_mix: c_float);
     }
@@ -119,7 +119,7 @@ extern_methods!(
         /// kAudioUnitType_Panner
         /// kAudioUnitType_RemoteEffect
         /// kAudioUnitType_RemoteMusicEffect
-        #[method(initWithAudioComponentDescription:)]
+        #[unsafe(method(initWithAudioComponentDescription:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
@@ -136,11 +136,11 @@ extern_methods!(
         feature = "AVAudioUnitEffect"
     ))]
     unsafe impl AVAudioUnitDelay {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

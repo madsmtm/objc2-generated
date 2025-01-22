@@ -24,7 +24,7 @@ unsafe impl NSObjectProtocol for WKAudioFileAsset {}
 extern_methods!(
     unsafe impl WKAudioFileAsset {
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -37,7 +37,7 @@ extern_methods!(
         /// Returns a newly allocated instance of a subclass of WKAudioFileAsset initialized with the specified URL.
         /// Title, ablumTitle, and artist properties are initialized to the values found in the common metadata of the media resource
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method(assetWithURL:)]
+        #[unsafe(method(assetWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
 
@@ -55,7 +55,7 @@ extern_methods!(
         ///
         /// Returns a newly allocated instance of a subclass of WKAudioFileAsset initialized with the specified URL.
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method(assetWithURL:title:albumTitle:artist:)]
+        #[unsafe(method(assetWithURL:title:albumTitle:artist:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL_title_albumTitle_artist(
             url: &NSURL,
@@ -65,27 +65,27 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method(URL)]
+        #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method(duration)]
+        #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method(title)]
+        #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method(albumTitle)]
+        #[unsafe(method(albumTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn albumTitle(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method(artist)]
+        #[unsafe(method(artist))]
         #[unsafe(method_family = none)]
         pub unsafe fn artist(&self) -> Option<Retained<NSString>>;
     }
@@ -94,7 +94,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKAudioFileAsset {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

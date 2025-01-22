@@ -31,7 +31,7 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method(initWithContainer:center:transform:)]
+        #[unsafe(method(initWithContainer:center:transform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContainer_center_transform(
             this: Allocated<Self>,
@@ -45,7 +45,7 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method(initWithContainer:center:)]
+        #[unsafe(method(initWithContainer:center:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContainer_center(
             this: Allocated<Self>,
@@ -53,26 +53,26 @@ extern_methods!(
             center: CGPoint,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method(container)]
+        #[unsafe(method(container))]
         #[unsafe(method_family = none)]
         pub unsafe fn container(&self) -> Retained<UIView>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(center)]
+        #[unsafe(method(center))]
         #[unsafe(method_family = none)]
         pub unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(transform)]
+        #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> CGAffineTransform;
     }
@@ -101,7 +101,7 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
-        #[method(initWithView:parameters:target:)]
+        #[unsafe(method(initWithView:parameters:target:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithView_parameters_target(
             this: Allocated<Self>,
@@ -115,7 +115,7 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
-        #[method(initWithView:parameters:)]
+        #[unsafe(method(initWithView:parameters:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithView_parameters(
             this: Allocated<Self>,
@@ -124,38 +124,38 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method(initWithView:)]
+        #[unsafe(method(initWithView:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(target)]
+        #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Retained<UIPreviewTarget>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method(view)]
+        #[unsafe(method(view))]
         #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Retained<UIView>;
 
         #[cfg(feature = "UIPreviewParameters")]
-        #[method(parameters)]
+        #[unsafe(method(parameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn parameters(&self) -> Retained<UIPreviewParameters>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(size)]
+        #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> CGSize;
 
-        #[method(retargetedPreviewWithTarget:)]
+        #[unsafe(method(retargetedPreviewWithTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retargetedPreviewWithTarget(
             &self,

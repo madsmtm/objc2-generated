@@ -63,7 +63,7 @@ unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSHashTable<
 extern_methods!(
     unsafe impl<ObjectType: Message> NSHashTable<ObjectType> {
         #[cfg(feature = "NSPointerFunctions")]
-        #[method(initWithOptions:capacity:)]
+        #[unsafe(method(initWithOptions:capacity:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOptions_capacity(
             this: Allocated<Self>,
@@ -72,7 +72,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method(initWithPointerFunctions:capacity:)]
+        #[unsafe(method(initWithPointerFunctions:capacity:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPointerFunctions_capacity(
             this: Allocated<Self>,
@@ -81,90 +81,90 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method(hashTableWithOptions:)]
+        #[unsafe(method(hashTableWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hashTableWithOptions(
             options: NSPointerFunctionsOptions,
         ) -> Retained<NSHashTable<ObjectType>>;
 
         #[deprecated = "GC no longer supported"]
-        #[method(hashTableWithWeakObjects)]
+        #[unsafe(method(hashTableWithWeakObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn hashTableWithWeakObjects() -> Retained<AnyObject>;
 
-        #[method(weakObjectsHashTable)]
+        #[unsafe(method(weakObjectsHashTable))]
         #[unsafe(method_family = none)]
         pub unsafe fn weakObjectsHashTable() -> Retained<NSHashTable<ObjectType>>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method(pointerFunctions)]
+        #[unsafe(method(pointerFunctions))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
-        #[method(count)]
+        #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
 
-        #[method(member:)]
+        #[unsafe(method(member:))]
         #[unsafe(method_family = none)]
         pub unsafe fn member(&self, object: Option<&ObjectType>) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
-        #[method(objectEnumerator)]
+        #[unsafe(method(objectEnumerator))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
-        #[method(addObject:)]
+        #[unsafe(method(addObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObject(&self, object: Option<&ObjectType>);
 
-        #[method(removeObject:)]
+        #[unsafe(method(removeObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObject(&self, object: Option<&ObjectType>);
 
-        #[method(removeAllObjects)]
+        #[unsafe(method(removeAllObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllObjects(&self);
 
         #[cfg(feature = "NSArray")]
-        #[method(allObjects)]
+        #[unsafe(method(allObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn allObjects(&self) -> Retained<NSArray<ObjectType>>;
 
-        #[method(anyObject)]
+        #[unsafe(method(anyObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn anyObject(&self) -> Option<Retained<ObjectType>>;
 
-        #[method(containsObject:)]
+        #[unsafe(method(containsObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsObject(&self, an_object: Option<&ObjectType>) -> bool;
 
-        #[method(intersectsHashTable:)]
+        #[unsafe(method(intersectsHashTable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn intersectsHashTable(&self, other: &NSHashTable<ObjectType>) -> bool;
 
-        #[method(isEqualToHashTable:)]
+        #[unsafe(method(isEqualToHashTable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToHashTable(&self, other: &NSHashTable<ObjectType>) -> bool;
 
-        #[method(isSubsetOfHashTable:)]
+        #[unsafe(method(isSubsetOfHashTable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSubsetOfHashTable(&self, other: &NSHashTable<ObjectType>) -> bool;
 
-        #[method(intersectHashTable:)]
+        #[unsafe(method(intersectHashTable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn intersectHashTable(&self, other: &NSHashTable<ObjectType>);
 
-        #[method(unionHashTable:)]
+        #[unsafe(method(unionHashTable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unionHashTable(&self, other: &NSHashTable<ObjectType>);
 
-        #[method(minusHashTable:)]
+        #[unsafe(method(minusHashTable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn minusHashTable(&self, other: &NSHashTable<ObjectType>);
 
         #[cfg(feature = "NSSet")]
-        #[method(setRepresentation)]
+        #[unsafe(method(setRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRepresentation(&self) -> Retained<NSSet<ObjectType>>;
     }
@@ -173,11 +173,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSHashTable<ObjectType> {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

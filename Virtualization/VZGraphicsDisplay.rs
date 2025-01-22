@@ -33,17 +33,17 @@ unsafe impl NSObjectProtocol for VZGraphicsDisplay {}
 
 extern_methods!(
     unsafe impl VZGraphicsDisplay {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The size of the display, in pixels.
-        #[method(sizeInPixels)]
+        #[unsafe(method(sizeInPixels))]
         #[unsafe(method_family = none)]
         pub unsafe fn sizeInPixels(&self) -> CGSize;
 
@@ -60,7 +60,7 @@ extern_methods!(
         /// not respond to the new size. The guest not using the size does not return an error.
         ///
         /// Reconfiguration triggers a display state change which can be tracked by VZGraphicsDisplayObservers.
-        #[method(reconfigureWithSizeInPixels:error:_)]
+        #[unsafe(method(reconfigureWithSizeInPixels:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn reconfigureWithSizeInPixels_error(
             &self,
@@ -83,7 +83,7 @@ extern_methods!(
         /// return an error.
         ///
         /// Reconfiguration triggers a display state change which can be tracked by VZGraphicsDisplayObservers.
-        #[method(reconfigureWithConfiguration:error:_)]
+        #[unsafe(method(reconfigureWithConfiguration:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn reconfigureWithConfiguration_error(
             &self,
@@ -93,14 +93,14 @@ extern_methods!(
         /// Add an observer.
         ///
         /// Parameter `observer`: The new observer to be notified of display state changes.
-        #[method(addObserver:)]
+        #[unsafe(method(addObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserver(&self, observer: &ProtocolObject<dyn VZGraphicsDisplayObserver>);
 
         /// Remove an observer.
         ///
         /// Parameter `observer`: The observer to be removed.
-        #[method(removeObserver:)]
+        #[unsafe(method(removeObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObserver(
             &self,
@@ -121,7 +121,7 @@ extern_protocol!(
         ///
         /// Parameter `display`: The display whose state is changing.
         #[optional]
-        #[method(displayDidBeginReconfiguration:)]
+        #[unsafe(method(displayDidBeginReconfiguration:))]
         #[unsafe(method_family = none)]
         unsafe fn displayDidBeginReconfiguration(&self, display: &VZGraphicsDisplay);
 
@@ -132,7 +132,7 @@ extern_protocol!(
         ///
         /// Parameter `display`: The display whose state is changing.
         #[optional]
-        #[method(displayDidEndReconfiguration:)]
+        #[unsafe(method(displayDidEndReconfiguration:))]
         #[unsafe(method_family = none)]
         unsafe fn displayDidEndReconfiguration(&self, display: &VZGraphicsDisplay);
     }

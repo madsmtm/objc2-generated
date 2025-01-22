@@ -26,18 +26,18 @@ unsafe impl NSObjectProtocol for NSURLSession {}
 
 extern_methods!(
     unsafe impl NSURLSession {
-        #[method(sharedSession)]
+        #[unsafe(method(sharedSession))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedSession() -> Retained<NSURLSession>;
 
-        #[method(sessionWithConfiguration:)]
+        #[unsafe(method(sessionWithConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionWithConfiguration(
             configuration: &NSURLSessionConfiguration,
         ) -> Retained<NSURLSession>;
 
         #[cfg(feature = "NSOperation")]
-        #[method(sessionWithConfiguration:delegate:delegateQueue:)]
+        #[unsafe(method(sessionWithConfiguration:delegate:delegateQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionWithConfiguration_delegate_delegateQueue(
             configuration: &NSURLSessionConfiguration,
@@ -46,40 +46,40 @@ extern_methods!(
         ) -> Retained<NSURLSession>;
 
         #[cfg(feature = "NSOperation")]
-        #[method(delegateQueue)]
+        #[unsafe(method(delegateQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegateQueue(&self) -> Retained<NSOperationQueue>;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn NSURLSessionDelegate>>>;
 
-        #[method(configuration)]
+        #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<NSURLSessionConfiguration>;
 
         #[cfg(feature = "NSString")]
-        #[method(sessionDescription)]
+        #[unsafe(method(sessionDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionDescription(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`sessionDescription`][Self::sessionDescription].
-        #[method(setSessionDescription:)]
+        #[unsafe(method(setSessionDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSessionDescription(&self, session_description: Option<&NSString>);
 
-        #[method(finishTasksAndInvalidate)]
+        #[unsafe(method(finishTasksAndInvalidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishTasksAndInvalidate(&self);
 
-        #[method(invalidateAndCancel)]
+        #[unsafe(method(invalidateAndCancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidateAndCancel(&self);
 
         #[cfg(feature = "block2")]
-        #[method(resetWithCompletionHandler:)]
+        #[unsafe(method(resetWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetWithCompletionHandler(
             &self,
@@ -87,7 +87,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(flushWithCompletionHandler:)]
+        #[unsafe(method(flushWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn flushWithCompletionHandler(
             &self,
@@ -95,7 +95,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSArray", feature = "block2"))]
-        #[method(getTasksWithCompletionHandler:)]
+        #[unsafe(method(getTasksWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getTasksWithCompletionHandler(
             &self,
@@ -109,7 +109,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSArray", feature = "block2"))]
-        #[method(getAllTasksWithCompletionHandler:)]
+        #[unsafe(method(getAllTasksWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAllTasksWithCompletionHandler(
             &self,
@@ -117,7 +117,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSURLRequest")]
-        #[method(dataTaskWithRequest:)]
+        #[unsafe(method(dataTaskWithRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataTaskWithRequest(
             &self,
@@ -125,12 +125,12 @@ extern_methods!(
         ) -> Retained<NSURLSessionDataTask>;
 
         #[cfg(feature = "NSURL")]
-        #[method(dataTaskWithURL:)]
+        #[unsafe(method(dataTaskWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataTaskWithURL(&self, url: &NSURL) -> Retained<NSURLSessionDataTask>;
 
         #[cfg(all(feature = "NSURL", feature = "NSURLRequest"))]
-        #[method(uploadTaskWithRequest:fromFile:)]
+        #[unsafe(method(uploadTaskWithRequest:fromFile:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uploadTaskWithRequest_fromFile(
             &self,
@@ -139,7 +139,7 @@ extern_methods!(
         ) -> Retained<NSURLSessionUploadTask>;
 
         #[cfg(all(feature = "NSData", feature = "NSURLRequest"))]
-        #[method(uploadTaskWithRequest:fromData:)]
+        #[unsafe(method(uploadTaskWithRequest:fromData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uploadTaskWithRequest_fromData(
             &self,
@@ -156,7 +156,7 @@ extern_methods!(
         ///
         /// - Parameter resumeData: Resume data blob from an incomplete upload, such as data returned by the cancelByProducingResumeData: method.
         /// - Returns: A new session upload task, or nil if the resumeData is invalid.
-        #[method(uploadTaskWithResumeData:)]
+        #[unsafe(method(uploadTaskWithResumeData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uploadTaskWithResumeData(
             &self,
@@ -164,7 +164,7 @@ extern_methods!(
         ) -> Retained<NSURLSessionUploadTask>;
 
         #[cfg(feature = "NSURLRequest")]
-        #[method(uploadTaskWithStreamedRequest:)]
+        #[unsafe(method(uploadTaskWithStreamedRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uploadTaskWithStreamedRequest(
             &self,
@@ -172,7 +172,7 @@ extern_methods!(
         ) -> Retained<NSURLSessionUploadTask>;
 
         #[cfg(feature = "NSURLRequest")]
-        #[method(downloadTaskWithRequest:)]
+        #[unsafe(method(downloadTaskWithRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadTaskWithRequest(
             &self,
@@ -180,13 +180,13 @@ extern_methods!(
         ) -> Retained<NSURLSessionDownloadTask>;
 
         #[cfg(feature = "NSURL")]
-        #[method(downloadTaskWithURL:)]
+        #[unsafe(method(downloadTaskWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadTaskWithURL(&self, url: &NSURL)
             -> Retained<NSURLSessionDownloadTask>;
 
         #[cfg(feature = "NSData")]
-        #[method(downloadTaskWithResumeData:)]
+        #[unsafe(method(downloadTaskWithResumeData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadTaskWithResumeData(
             &self,
@@ -194,7 +194,7 @@ extern_methods!(
         ) -> Retained<NSURLSessionDownloadTask>;
 
         #[cfg(feature = "NSString")]
-        #[method(streamTaskWithHostName:port:)]
+        #[unsafe(method(streamTaskWithHostName:port:))]
         #[unsafe(method_family = none)]
         pub unsafe fn streamTaskWithHostName_port(
             &self,
@@ -204,7 +204,7 @@ extern_methods!(
 
         #[cfg(feature = "NSNetServices")]
         #[deprecated = "Use nw_connection_t in Network framework instead"]
-        #[method(streamTaskWithNetService:)]
+        #[unsafe(method(streamTaskWithNetService:))]
         #[unsafe(method_family = none)]
         pub unsafe fn streamTaskWithNetService(
             &self,
@@ -212,7 +212,7 @@ extern_methods!(
         ) -> Retained<NSURLSessionStreamTask>;
 
         #[cfg(feature = "NSURL")]
-        #[method(webSocketTaskWithURL:)]
+        #[unsafe(method(webSocketTaskWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn webSocketTaskWithURL(
             &self,
@@ -220,7 +220,7 @@ extern_methods!(
         ) -> Retained<NSURLSessionWebSocketTask>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString", feature = "NSURL"))]
-        #[method(webSocketTaskWithURL:protocols:)]
+        #[unsafe(method(webSocketTaskWithURL:protocols:))]
         #[unsafe(method_family = none)]
         pub unsafe fn webSocketTaskWithURL_protocols(
             &self,
@@ -229,7 +229,7 @@ extern_methods!(
         ) -> Retained<NSURLSessionWebSocketTask>;
 
         #[cfg(feature = "NSURLRequest")]
-        #[method(webSocketTaskWithRequest:)]
+        #[unsafe(method(webSocketTaskWithRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn webSocketTaskWithRequest(
             &self,
@@ -237,12 +237,12 @@ extern_methods!(
         ) -> Retained<NSURLSessionWebSocketTask>;
 
         #[deprecated = "Please use +[NSURLSession sessionWithConfiguration:] or other class methods to create instances"]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Please use +[NSURLSession sessionWithConfiguration:] or other class methods to create instances"]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -258,7 +258,7 @@ extern_methods!(
             feature = "NSURLResponse",
             feature = "block2"
         ))]
-        #[method(dataTaskWithRequest:completionHandler:)]
+        #[unsafe(method(dataTaskWithRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataTaskWithRequest_completionHandler(
             &self,
@@ -275,7 +275,7 @@ extern_methods!(
             feature = "NSURLResponse",
             feature = "block2"
         ))]
-        #[method(dataTaskWithURL:completionHandler:)]
+        #[unsafe(method(dataTaskWithURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataTaskWithURL_completionHandler(
             &self,
@@ -293,7 +293,7 @@ extern_methods!(
             feature = "NSURLResponse",
             feature = "block2"
         ))]
-        #[method(uploadTaskWithRequest:fromFile:completionHandler:)]
+        #[unsafe(method(uploadTaskWithRequest:fromFile:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uploadTaskWithRequest_fromFile_completionHandler(
             &self,
@@ -311,7 +311,7 @@ extern_methods!(
             feature = "NSURLResponse",
             feature = "block2"
         ))]
-        #[method(uploadTaskWithRequest:fromData:completionHandler:)]
+        #[unsafe(method(uploadTaskWithRequest:fromData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uploadTaskWithRequest_fromData_completionHandler(
             &self,
@@ -334,7 +334,7 @@ extern_methods!(
         /// - Parameter resumeData: Resume data blob from an incomplete upload, such as data returned by the cancelByProducingResumeData: method.
         /// - Parameter completionHandler: The completion handler to call when the load request is complete.
         /// - Returns: A new session upload task, or nil if the resumeData is invalid.
-        #[method(uploadTaskWithResumeData:completionHandler:)]
+        #[unsafe(method(uploadTaskWithResumeData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uploadTaskWithResumeData_completionHandler(
             &self,
@@ -351,7 +351,7 @@ extern_methods!(
             feature = "NSURLResponse",
             feature = "block2"
         ))]
-        #[method(downloadTaskWithRequest:completionHandler:)]
+        #[unsafe(method(downloadTaskWithRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadTaskWithRequest_completionHandler(
             &self,
@@ -367,7 +367,7 @@ extern_methods!(
             feature = "NSURLResponse",
             feature = "block2"
         ))]
-        #[method(downloadTaskWithURL:completionHandler:)]
+        #[unsafe(method(downloadTaskWithURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadTaskWithURL_completionHandler(
             &self,
@@ -384,7 +384,7 @@ extern_methods!(
             feature = "NSURLResponse",
             feature = "block2"
         ))]
-        #[method(downloadTaskWithResumeData:completionHandler:)]
+        #[unsafe(method(downloadTaskWithResumeData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadTaskWithResumeData_completionHandler(
             &self,
@@ -446,33 +446,33 @@ unsafe impl NSProgressReporting for NSURLSessionTask {}
 
 extern_methods!(
     unsafe impl NSURLSessionTask {
-        #[method(taskIdentifier)]
+        #[unsafe(method(taskIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn taskIdentifier(&self) -> NSUInteger;
 
         #[cfg(feature = "NSURLRequest")]
-        #[method(originalRequest)]
+        #[unsafe(method(originalRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn originalRequest(&self) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(feature = "NSURLRequest")]
-        #[method(currentRequest)]
+        #[unsafe(method(currentRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentRequest(&self) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(feature = "NSURLResponse")]
-        #[method(response)]
+        #[unsafe(method(response))]
         #[unsafe(method_family = none)]
         pub unsafe fn response(&self) -> Option<Retained<NSURLResponse>>;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSURLSessionTaskDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -480,118 +480,118 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSProgress")]
-        #[method(progress)]
+        #[unsafe(method(progress))]
         #[unsafe(method_family = none)]
         pub unsafe fn progress(&self) -> Retained<NSProgress>;
 
         #[cfg(feature = "NSDate")]
-        #[method(earliestBeginDate)]
+        #[unsafe(method(earliestBeginDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn earliestBeginDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`earliestBeginDate`][Self::earliestBeginDate].
-        #[method(setEarliestBeginDate:)]
+        #[unsafe(method(setEarliestBeginDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEarliestBeginDate(&self, earliest_begin_date: Option<&NSDate>);
 
-        #[method(countOfBytesClientExpectsToSend)]
+        #[unsafe(method(countOfBytesClientExpectsToSend))]
         #[unsafe(method_family = none)]
         pub unsafe fn countOfBytesClientExpectsToSend(&self) -> i64;
 
         /// Setter for [`countOfBytesClientExpectsToSend`][Self::countOfBytesClientExpectsToSend].
-        #[method(setCountOfBytesClientExpectsToSend:)]
+        #[unsafe(method(setCountOfBytesClientExpectsToSend:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCountOfBytesClientExpectsToSend(
             &self,
             count_of_bytes_client_expects_to_send: i64,
         );
 
-        #[method(countOfBytesClientExpectsToReceive)]
+        #[unsafe(method(countOfBytesClientExpectsToReceive))]
         #[unsafe(method_family = none)]
         pub unsafe fn countOfBytesClientExpectsToReceive(&self) -> i64;
 
         /// Setter for [`countOfBytesClientExpectsToReceive`][Self::countOfBytesClientExpectsToReceive].
-        #[method(setCountOfBytesClientExpectsToReceive:)]
+        #[unsafe(method(setCountOfBytesClientExpectsToReceive:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCountOfBytesClientExpectsToReceive(
             &self,
             count_of_bytes_client_expects_to_receive: i64,
         );
 
-        #[method(countOfBytesSent)]
+        #[unsafe(method(countOfBytesSent))]
         #[unsafe(method_family = none)]
         pub unsafe fn countOfBytesSent(&self) -> i64;
 
-        #[method(countOfBytesReceived)]
+        #[unsafe(method(countOfBytesReceived))]
         #[unsafe(method_family = none)]
         pub unsafe fn countOfBytesReceived(&self) -> i64;
 
-        #[method(countOfBytesExpectedToSend)]
+        #[unsafe(method(countOfBytesExpectedToSend))]
         #[unsafe(method_family = none)]
         pub unsafe fn countOfBytesExpectedToSend(&self) -> i64;
 
-        #[method(countOfBytesExpectedToReceive)]
+        #[unsafe(method(countOfBytesExpectedToReceive))]
         #[unsafe(method_family = none)]
         pub unsafe fn countOfBytesExpectedToReceive(&self) -> i64;
 
         #[cfg(feature = "NSString")]
-        #[method(taskDescription)]
+        #[unsafe(method(taskDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn taskDescription(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`taskDescription`][Self::taskDescription].
-        #[method(setTaskDescription:)]
+        #[unsafe(method(setTaskDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTaskDescription(&self, task_description: Option<&NSString>);
 
-        #[method(cancel)]
+        #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
-        #[method(state)]
+        #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> NSURLSessionTaskState;
 
         #[cfg(feature = "NSError")]
-        #[method(error)]
+        #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
-        #[method(suspend)]
+        #[unsafe(method(suspend))]
         #[unsafe(method_family = none)]
         pub unsafe fn suspend(&self);
 
-        #[method(resume)]
+        #[unsafe(method(resume))]
         #[unsafe(method_family = none)]
         pub unsafe fn resume(&self);
 
-        #[method(priority)]
+        #[unsafe(method(priority))]
         #[unsafe(method_family = none)]
         pub unsafe fn priority(&self) -> c_float;
 
         /// Setter for [`priority`][Self::priority].
-        #[method(setPriority:)]
+        #[unsafe(method(setPriority:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPriority(&self, priority: c_float);
 
-        #[method(prefersIncrementalDelivery)]
+        #[unsafe(method(prefersIncrementalDelivery))]
         #[unsafe(method_family = none)]
         pub unsafe fn prefersIncrementalDelivery(&self) -> bool;
 
         /// Setter for [`prefersIncrementalDelivery`][Self::prefersIncrementalDelivery].
-        #[method(setPrefersIncrementalDelivery:)]
+        #[unsafe(method(setPrefersIncrementalDelivery:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrefersIncrementalDelivery(&self, prefers_incremental_delivery: bool);
 
         #[deprecated = "Not supported"]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Not supported"]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -639,12 +639,12 @@ unsafe impl NSProgressReporting for NSURLSessionDataTask {}
 extern_methods!(
     unsafe impl NSURLSessionDataTask {
         #[deprecated = "Please use -[NSURLSession dataTaskWithRequest:] or other NSURLSession methods to create instances"]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Please use -[NSURLSession dataTaskWithRequest:] or other NSURLSession methods to create instances"]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -677,12 +677,12 @@ unsafe impl NSProgressReporting for NSURLSessionUploadTask {}
 extern_methods!(
     unsafe impl NSURLSessionUploadTask {
         #[deprecated = "Please use -[NSURLSession uploadTaskWithStreamedRequest:] or other NSURLSession methods to create instances"]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Please use -[NSURLSession uploadTaskWithStreamedRequest:] or other NSURLSession methods to create instances"]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -693,7 +693,7 @@ extern_methods!(
         /// https://datatracker.ietf.org/doc/draft-ietf-httpbis-resumable-upload/
         ///
         /// - Parameter completionHandler: The completion handler to call when the upload has been successfully canceled.
-        #[method(cancelByProducingResumeData:)]
+        #[unsafe(method(cancelByProducingResumeData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelByProducingResumeData(
             &self,
@@ -729,7 +729,7 @@ unsafe impl NSProgressReporting for NSURLSessionDownloadTask {}
 extern_methods!(
     unsafe impl NSURLSessionDownloadTask {
         #[cfg(all(feature = "NSData", feature = "block2"))]
-        #[method(cancelByProducingResumeData:)]
+        #[unsafe(method(cancelByProducingResumeData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelByProducingResumeData(
             &self,
@@ -737,12 +737,12 @@ extern_methods!(
         );
 
         #[deprecated = "Please use -[NSURLSession downloadTaskWithRequest:] or other NSURLSession methods to create instances"]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Please use -[NSURLSession downloadTaskWithRequest:] or other NSURLSession methods to create instances"]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -780,7 +780,7 @@ extern_methods!(
             feature = "NSError",
             feature = "block2"
         ))]
-        #[method(readDataOfMinLength:maxLength:timeout:completionHandler:)]
+        #[unsafe(method(readDataOfMinLength:maxLength:timeout:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readDataOfMinLength_maxLength_timeout_completionHandler(
             &self,
@@ -796,7 +796,7 @@ extern_methods!(
             feature = "NSError",
             feature = "block2"
         ))]
-        #[method(writeData:timeout:completionHandler:)]
+        #[unsafe(method(writeData:timeout:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeData_timeout_completionHandler(
             &self,
@@ -805,34 +805,34 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
 
-        #[method(captureStreams)]
+        #[unsafe(method(captureStreams))]
         #[unsafe(method_family = none)]
         pub unsafe fn captureStreams(&self);
 
-        #[method(closeWrite)]
+        #[unsafe(method(closeWrite))]
         #[unsafe(method_family = none)]
         pub unsafe fn closeWrite(&self);
 
-        #[method(closeRead)]
+        #[unsafe(method(closeRead))]
         #[unsafe(method_family = none)]
         pub unsafe fn closeRead(&self);
 
-        #[method(startSecureConnection)]
+        #[unsafe(method(startSecureConnection))]
         #[unsafe(method_family = none)]
         pub unsafe fn startSecureConnection(&self);
 
         #[deprecated = "TLS cannot be disabled once it is enabled"]
-        #[method(stopSecureConnection)]
+        #[unsafe(method(stopSecureConnection))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopSecureConnection(&self);
 
         #[deprecated = "Please use -[NSURLSession streamTaskWithHostName:port:] or other NSURLSession methods to create instances"]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Please use -[NSURLSession streamTaskWithHostName:port:] or other NSURLSession methods to create instances"]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -874,34 +874,34 @@ unsafe impl NSObjectProtocol for NSURLSessionWebSocketMessage {}
 extern_methods!(
     unsafe impl NSURLSessionWebSocketMessage {
         #[cfg(feature = "NSData")]
-        #[method(initWithData:)]
+        #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method(initWithString:)]
+        #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[method(type)]
+        #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> NSURLSessionWebSocketMessageType;
 
         #[cfg(feature = "NSData")]
-        #[method(data)]
+        #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSString")]
-        #[method(string)]
+        #[unsafe(method(string))]
         #[unsafe(method_family = none)]
         pub unsafe fn string(&self) -> Option<Retained<NSString>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -976,7 +976,7 @@ unsafe impl NSProgressReporting for NSURLSessionWebSocketTask {}
 extern_methods!(
     unsafe impl NSURLSessionWebSocketTask {
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        #[method(sendMessage:completionHandler:)]
+        #[unsafe(method(sendMessage:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendMessage_completionHandler(
             &self,
@@ -985,7 +985,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        #[method(receiveMessageWithCompletionHandler:)]
+        #[unsafe(method(receiveMessageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn receiveMessageWithCompletionHandler(
             &self,
@@ -995,7 +995,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
-        #[method(sendPingWithPongReceiveHandler:)]
+        #[unsafe(method(sendPingWithPongReceiveHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendPingWithPongReceiveHandler(
             &self,
@@ -1003,7 +1003,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSData")]
-        #[method(cancelWithCloseCode:reason:)]
+        #[unsafe(method(cancelWithCloseCode:reason:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelWithCloseCode_reason(
             &self,
@@ -1011,29 +1011,29 @@ extern_methods!(
             reason: Option<&NSData>,
         );
 
-        #[method(maximumMessageSize)]
+        #[unsafe(method(maximumMessageSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumMessageSize(&self) -> NSInteger;
 
         /// Setter for [`maximumMessageSize`][Self::maximumMessageSize].
-        #[method(setMaximumMessageSize:)]
+        #[unsafe(method(setMaximumMessageSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumMessageSize(&self, maximum_message_size: NSInteger);
 
-        #[method(closeCode)]
+        #[unsafe(method(closeCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn closeCode(&self) -> NSURLSessionWebSocketCloseCode;
 
         #[cfg(feature = "NSData")]
-        #[method(closeReason)]
+        #[unsafe(method(closeReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn closeReason(&self) -> Option<Retained<NSData>>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1106,45 +1106,45 @@ unsafe impl NSObjectProtocol for NSURLSessionConfiguration {}
 
 extern_methods!(
     unsafe impl NSURLSessionConfiguration {
-        #[method(defaultSessionConfiguration)]
+        #[unsafe(method(defaultSessionConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultSessionConfiguration() -> Retained<NSURLSessionConfiguration>;
 
-        #[method(ephemeralSessionConfiguration)]
+        #[unsafe(method(ephemeralSessionConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn ephemeralSessionConfiguration() -> Retained<NSURLSessionConfiguration>;
 
         #[cfg(feature = "NSString")]
-        #[method(backgroundSessionConfigurationWithIdentifier:)]
+        #[unsafe(method(backgroundSessionConfigurationWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundSessionConfigurationWithIdentifier(
             identifier: &NSString,
         ) -> Retained<NSURLSessionConfiguration>;
 
         #[cfg(feature = "NSString")]
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSURLRequest")]
-        #[method(requestCachePolicy)]
+        #[unsafe(method(requestCachePolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestCachePolicy(&self) -> NSURLRequestCachePolicy;
 
         #[cfg(feature = "NSURLRequest")]
         /// Setter for [`requestCachePolicy`][Self::requestCachePolicy].
-        #[method(setRequestCachePolicy:)]
+        #[unsafe(method(setRequestCachePolicy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequestCachePolicy(&self, request_cache_policy: NSURLRequestCachePolicy);
 
         #[cfg(feature = "NSDate")]
-        #[method(timeoutIntervalForRequest)]
+        #[unsafe(method(timeoutIntervalForRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeoutIntervalForRequest(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`timeoutIntervalForRequest`][Self::timeoutIntervalForRequest].
-        #[method(setTimeoutIntervalForRequest:)]
+        #[unsafe(method(setTimeoutIntervalForRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeoutIntervalForRequest(
             &self,
@@ -1152,13 +1152,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSDate")]
-        #[method(timeoutIntervalForResource)]
+        #[unsafe(method(timeoutIntervalForResource))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeoutIntervalForResource(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`timeoutIntervalForResource`][Self::timeoutIntervalForResource].
-        #[method(setTimeoutIntervalForResource:)]
+        #[unsafe(method(setTimeoutIntervalForResource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeoutIntervalForResource(
             &self,
@@ -1166,139 +1166,139 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSURLRequest")]
-        #[method(networkServiceType)]
+        #[unsafe(method(networkServiceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkServiceType(&self) -> NSURLRequestNetworkServiceType;
 
         #[cfg(feature = "NSURLRequest")]
         /// Setter for [`networkServiceType`][Self::networkServiceType].
-        #[method(setNetworkServiceType:)]
+        #[unsafe(method(setNetworkServiceType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNetworkServiceType(
             &self,
             network_service_type: NSURLRequestNetworkServiceType,
         );
 
-        #[method(allowsCellularAccess)]
+        #[unsafe(method(allowsCellularAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsCellularAccess(&self) -> bool;
 
         /// Setter for [`allowsCellularAccess`][Self::allowsCellularAccess].
-        #[method(setAllowsCellularAccess:)]
+        #[unsafe(method(setAllowsCellularAccess:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCellularAccess(&self, allows_cellular_access: bool);
 
-        #[method(allowsExpensiveNetworkAccess)]
+        #[unsafe(method(allowsExpensiveNetworkAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsExpensiveNetworkAccess(&self) -> bool;
 
         /// Setter for [`allowsExpensiveNetworkAccess`][Self::allowsExpensiveNetworkAccess].
-        #[method(setAllowsExpensiveNetworkAccess:)]
+        #[unsafe(method(setAllowsExpensiveNetworkAccess:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsExpensiveNetworkAccess(&self, allows_expensive_network_access: bool);
 
-        #[method(allowsConstrainedNetworkAccess)]
+        #[unsafe(method(allowsConstrainedNetworkAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsConstrainedNetworkAccess(&self) -> bool;
 
         /// Setter for [`allowsConstrainedNetworkAccess`][Self::allowsConstrainedNetworkAccess].
-        #[method(setAllowsConstrainedNetworkAccess:)]
+        #[unsafe(method(setAllowsConstrainedNetworkAccess:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsConstrainedNetworkAccess(
             &self,
             allows_constrained_network_access: bool,
         );
 
-        #[method(requiresDNSSECValidation)]
+        #[unsafe(method(requiresDNSSECValidation))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresDNSSECValidation(&self) -> bool;
 
         /// Setter for [`requiresDNSSECValidation`][Self::requiresDNSSECValidation].
-        #[method(setRequiresDNSSECValidation:)]
+        #[unsafe(method(setRequiresDNSSECValidation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiresDNSSECValidation(&self, requires_dnssec_validation: bool);
 
-        #[method(waitsForConnectivity)]
+        #[unsafe(method(waitsForConnectivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn waitsForConnectivity(&self) -> bool;
 
         /// Setter for [`waitsForConnectivity`][Self::waitsForConnectivity].
-        #[method(setWaitsForConnectivity:)]
+        #[unsafe(method(setWaitsForConnectivity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWaitsForConnectivity(&self, waits_for_connectivity: bool);
 
-        #[method(isDiscretionary)]
+        #[unsafe(method(isDiscretionary))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDiscretionary(&self) -> bool;
 
         /// Setter for [`isDiscretionary`][Self::isDiscretionary].
-        #[method(setDiscretionary:)]
+        #[unsafe(method(setDiscretionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDiscretionary(&self, discretionary: bool);
 
         #[cfg(feature = "NSString")]
-        #[method(sharedContainerIdentifier)]
+        #[unsafe(method(sharedContainerIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedContainerIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`sharedContainerIdentifier`][Self::sharedContainerIdentifier].
-        #[method(setSharedContainerIdentifier:)]
+        #[unsafe(method(setSharedContainerIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSharedContainerIdentifier(
             &self,
             shared_container_identifier: Option<&NSString>,
         );
 
-        #[method(sessionSendsLaunchEvents)]
+        #[unsafe(method(sessionSendsLaunchEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionSendsLaunchEvents(&self) -> bool;
 
         /// Setter for [`sessionSendsLaunchEvents`][Self::sessionSendsLaunchEvents].
-        #[method(setSessionSendsLaunchEvents:)]
+        #[unsafe(method(setSessionSendsLaunchEvents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSessionSendsLaunchEvents(&self, session_sends_launch_events: bool);
 
         #[cfg(feature = "NSDictionary")]
-        #[method(connectionProxyDictionary)]
+        #[unsafe(method(connectionProxyDictionary))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectionProxyDictionary(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSDictionary")]
         /// Setter for [`connectionProxyDictionary`][Self::connectionProxyDictionary].
-        #[method(setConnectionProxyDictionary:)]
+        #[unsafe(method(setConnectionProxyDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConnectionProxyDictionary(
             &self,
             connection_proxy_dictionary: Option<&NSDictionary>,
         );
 
-        #[method(HTTPShouldUsePipelining)]
+        #[unsafe(method(HTTPShouldUsePipelining))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPShouldUsePipelining(&self) -> bool;
 
         /// Setter for [`HTTPShouldUsePipelining`][Self::HTTPShouldUsePipelining].
-        #[method(setHTTPShouldUsePipelining:)]
+        #[unsafe(method(setHTTPShouldUsePipelining:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPShouldUsePipelining(&self, http_should_use_pipelining: bool);
 
-        #[method(HTTPShouldSetCookies)]
+        #[unsafe(method(HTTPShouldSetCookies))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPShouldSetCookies(&self) -> bool;
 
         /// Setter for [`HTTPShouldSetCookies`][Self::HTTPShouldSetCookies].
-        #[method(setHTTPShouldSetCookies:)]
+        #[unsafe(method(setHTTPShouldSetCookies:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPShouldSetCookies(&self, http_should_set_cookies: bool);
 
         #[cfg(feature = "NSHTTPCookieStorage")]
-        #[method(HTTPCookieAcceptPolicy)]
+        #[unsafe(method(HTTPCookieAcceptPolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPCookieAcceptPolicy(&self) -> NSHTTPCookieAcceptPolicy;
 
         #[cfg(feature = "NSHTTPCookieStorage")]
         /// Setter for [`HTTPCookieAcceptPolicy`][Self::HTTPCookieAcceptPolicy].
-        #[method(setHTTPCookieAcceptPolicy:)]
+        #[unsafe(method(setHTTPCookieAcceptPolicy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPCookieAcceptPolicy(
             &self,
@@ -1306,25 +1306,25 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSDictionary")]
-        #[method(HTTPAdditionalHeaders)]
+        #[unsafe(method(HTTPAdditionalHeaders))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPAdditionalHeaders(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSDictionary")]
         /// Setter for [`HTTPAdditionalHeaders`][Self::HTTPAdditionalHeaders].
-        #[method(setHTTPAdditionalHeaders:)]
+        #[unsafe(method(setHTTPAdditionalHeaders:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPAdditionalHeaders(
             &self,
             http_additional_headers: Option<&NSDictionary>,
         );
 
-        #[method(HTTPMaximumConnectionsPerHost)]
+        #[unsafe(method(HTTPMaximumConnectionsPerHost))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPMaximumConnectionsPerHost(&self) -> NSInteger;
 
         /// Setter for [`HTTPMaximumConnectionsPerHost`][Self::HTTPMaximumConnectionsPerHost].
-        #[method(setHTTPMaximumConnectionsPerHost:)]
+        #[unsafe(method(setHTTPMaximumConnectionsPerHost:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPMaximumConnectionsPerHost(
             &self,
@@ -1332,13 +1332,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSHTTPCookieStorage")]
-        #[method(HTTPCookieStorage)]
+        #[unsafe(method(HTTPCookieStorage))]
         #[unsafe(method_family = none)]
         pub unsafe fn HTTPCookieStorage(&self) -> Option<Retained<NSHTTPCookieStorage>>;
 
         #[cfg(feature = "NSHTTPCookieStorage")]
         /// Setter for [`HTTPCookieStorage`][Self::HTTPCookieStorage].
-        #[method(setHTTPCookieStorage:)]
+        #[unsafe(method(setHTTPCookieStorage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHTTPCookieStorage(
             &self,
@@ -1346,13 +1346,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSURLCredentialStorage")]
-        #[method(URLCredentialStorage)]
+        #[unsafe(method(URLCredentialStorage))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLCredentialStorage(&self) -> Option<Retained<NSURLCredentialStorage>>;
 
         #[cfg(feature = "NSURLCredentialStorage")]
         /// Setter for [`URLCredentialStorage`][Self::URLCredentialStorage].
-        #[method(setURLCredentialStorage:)]
+        #[unsafe(method(setURLCredentialStorage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURLCredentialStorage(
             &self,
@@ -1360,22 +1360,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSURLCache")]
-        #[method(URLCache)]
+        #[unsafe(method(URLCache))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLCache(&self) -> Option<Retained<NSURLCache>>;
 
         #[cfg(feature = "NSURLCache")]
         /// Setter for [`URLCache`][Self::URLCache].
-        #[method(setURLCache:)]
+        #[unsafe(method(setURLCache:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setURLCache(&self, url_cache: Option<&NSURLCache>);
 
-        #[method(shouldUseExtendedBackgroundIdleMode)]
+        #[unsafe(method(shouldUseExtendedBackgroundIdleMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldUseExtendedBackgroundIdleMode(&self) -> bool;
 
         /// Setter for [`shouldUseExtendedBackgroundIdleMode`][Self::shouldUseExtendedBackgroundIdleMode].
-        #[method(setShouldUseExtendedBackgroundIdleMode:)]
+        #[unsafe(method(setShouldUseExtendedBackgroundIdleMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldUseExtendedBackgroundIdleMode(
             &self,
@@ -1383,22 +1383,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSArray")]
-        #[method(protocolClasses)]
+        #[unsafe(method(protocolClasses))]
         #[unsafe(method_family = none)]
         pub unsafe fn protocolClasses(&self) -> Option<Retained<NSArray<AnyClass>>>;
 
         #[cfg(feature = "NSArray")]
         /// Setter for [`protocolClasses`][Self::protocolClasses].
-        #[method(setProtocolClasses:)]
+        #[unsafe(method(setProtocolClasses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProtocolClasses(&self, protocol_classes: Option<&NSArray<AnyClass>>);
 
-        #[method(multipathServiceType)]
+        #[unsafe(method(multipathServiceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn multipathServiceType(&self) -> NSURLSessionMultipathServiceType;
 
         /// Setter for [`multipathServiceType`][Self::multipathServiceType].
-        #[method(setMultipathServiceType:)]
+        #[unsafe(method(setMultipathServiceType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMultipathServiceType(
             &self,
@@ -1406,12 +1406,12 @@ extern_methods!(
         );
 
         #[deprecated = "Please use NSURLSessionConfiguration.defaultSessionConfiguration or other class methods to create instances"]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Please use NSURLSessionConfiguration.defaultSessionConfiguration or other class methods to create instances"]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1492,7 +1492,7 @@ extern_protocol!(
     pub unsafe trait NSURLSessionDelegate: NSObjectProtocol {
         #[cfg(feature = "NSError")]
         #[optional]
-        #[method(URLSession:didBecomeInvalidWithError:)]
+        #[unsafe(method(URLSession:didBecomeInvalidWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_didBecomeInvalidWithError(
             &self,
@@ -1506,7 +1506,7 @@ extern_protocol!(
             feature = "block2"
         ))]
         #[optional]
-        #[method(URLSession:didReceiveChallenge:completionHandler:)]
+        #[unsafe(method(URLSession:didReceiveChallenge:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_didReceiveChallenge_completionHandler(
             &self,
@@ -1518,7 +1518,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(URLSessionDidFinishEventsForBackgroundURLSession:)]
+        #[unsafe(method(URLSessionDidFinishEventsForBackgroundURLSession:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSessionDidFinishEventsForBackgroundURLSession(&self, session: &NSURLSession);
     }
@@ -1528,13 +1528,13 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskdelegate?language=objc)
     pub unsafe trait NSURLSessionTaskDelegate: NSURLSessionDelegate {
         #[optional]
-        #[method(URLSession:didCreateTask:)]
+        #[unsafe(method(URLSession:didCreateTask:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_didCreateTask(&self, session: &NSURLSession, task: &NSURLSessionTask);
 
         #[cfg(all(feature = "NSURLRequest", feature = "block2"))]
         #[optional]
-        #[method(URLSession:task:willBeginDelayedRequest:completionHandler:)]
+        #[unsafe(method(URLSession:task:willBeginDelayedRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_task_willBeginDelayedRequest_completionHandler(
             &self,
@@ -1547,7 +1547,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(URLSession:taskIsWaitingForConnectivity:)]
+        #[unsafe(method(URLSession:taskIsWaitingForConnectivity:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_taskIsWaitingForConnectivity(
             &self,
@@ -1561,7 +1561,7 @@ extern_protocol!(
             feature = "block2"
         ))]
         #[optional]
-        #[method(URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:)]
+        #[unsafe(method(URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_task_willPerformHTTPRedirection_newRequest_completionHandler(
             &self,
@@ -1578,7 +1578,7 @@ extern_protocol!(
             feature = "block2"
         ))]
         #[optional]
-        #[method(URLSession:task:didReceiveChallenge:completionHandler:)]
+        #[unsafe(method(URLSession:task:didReceiveChallenge:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_task_didReceiveChallenge_completionHandler(
             &self,
@@ -1592,7 +1592,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSStream", feature = "block2"))]
         #[optional]
-        #[method(URLSession:task:needNewBodyStream:)]
+        #[unsafe(method(URLSession:task:needNewBodyStream:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_task_needNewBodyStream(
             &self,
@@ -1610,7 +1610,7 @@ extern_protocol!(
         /// - Parameter offset: The starting offset required for the body stream.
         /// - Parameter completionHandler: A completion handler that your delegate method should call with the new body stream.
         #[optional]
-        #[method(URLSession:task:needNewBodyStreamFromOffset:completionHandler:)]
+        #[unsafe(method(URLSession:task:needNewBodyStreamFromOffset:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_task_needNewBodyStreamFromOffset_completionHandler(
             &self,
@@ -1621,7 +1621,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:)]
+        #[unsafe(method(URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_task_didSendBodyData_totalBytesSent_totalBytesExpectedToSend(
             &self,
@@ -1634,7 +1634,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSURLResponse")]
         #[optional]
-        #[method(URLSession:task:didReceiveInformationalResponse:)]
+        #[unsafe(method(URLSession:task:didReceiveInformationalResponse:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_task_didReceiveInformationalResponse(
             &self,
@@ -1644,7 +1644,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(URLSession:task:didFinishCollectingMetrics:)]
+        #[unsafe(method(URLSession:task:didFinishCollectingMetrics:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_task_didFinishCollectingMetrics(
             &self,
@@ -1655,7 +1655,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSError")]
         #[optional]
-        #[method(URLSession:task:didCompleteWithError:)]
+        #[unsafe(method(URLSession:task:didCompleteWithError:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_task_didCompleteWithError(
             &self,
@@ -1671,7 +1671,7 @@ extern_protocol!(
     pub unsafe trait NSURLSessionDataDelegate: NSURLSessionTaskDelegate {
         #[cfg(all(feature = "NSURLResponse", feature = "block2"))]
         #[optional]
-        #[method(URLSession:dataTask:didReceiveResponse:completionHandler:)]
+        #[unsafe(method(URLSession:dataTask:didReceiveResponse:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_dataTask_didReceiveResponse_completionHandler(
             &self,
@@ -1682,7 +1682,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(URLSession:dataTask:didBecomeDownloadTask:)]
+        #[unsafe(method(URLSession:dataTask:didBecomeDownloadTask:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_dataTask_didBecomeDownloadTask(
             &self,
@@ -1692,7 +1692,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(URLSession:dataTask:didBecomeStreamTask:)]
+        #[unsafe(method(URLSession:dataTask:didBecomeStreamTask:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_dataTask_didBecomeStreamTask(
             &self,
@@ -1703,7 +1703,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSData")]
         #[optional]
-        #[method(URLSession:dataTask:didReceiveData:)]
+        #[unsafe(method(URLSession:dataTask:didReceiveData:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_dataTask_didReceiveData(
             &self,
@@ -1714,7 +1714,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSURLCache", feature = "block2"))]
         #[optional]
-        #[method(URLSession:dataTask:willCacheResponse:completionHandler:)]
+        #[unsafe(method(URLSession:dataTask:willCacheResponse:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_dataTask_willCacheResponse_completionHandler(
             &self,
@@ -1730,7 +1730,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiondownloaddelegate?language=objc)
     pub unsafe trait NSURLSessionDownloadDelegate: NSURLSessionTaskDelegate {
         #[cfg(feature = "NSURL")]
-        #[method(URLSession:downloadTask:didFinishDownloadingToURL:)]
+        #[unsafe(method(URLSession:downloadTask:didFinishDownloadingToURL:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_downloadTask_didFinishDownloadingToURL(
             &self,
@@ -1740,7 +1740,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:)]
+        #[unsafe(method(URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_downloadTask_didWriteData_totalBytesWritten_totalBytesExpectedToWrite(
             &self,
@@ -1752,7 +1752,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(URLSession:downloadTask:didResumeAtOffset:expectedTotalBytes:)]
+        #[unsafe(method(URLSession:downloadTask:didResumeAtOffset:expectedTotalBytes:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_downloadTask_didResumeAtOffset_expectedTotalBytes(
             &self,
@@ -1768,7 +1768,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionstreamdelegate?language=objc)
     pub unsafe trait NSURLSessionStreamDelegate: NSURLSessionTaskDelegate {
         #[optional]
-        #[method(URLSession:readClosedForStreamTask:)]
+        #[unsafe(method(URLSession:readClosedForStreamTask:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_readClosedForStreamTask(
             &self,
@@ -1777,7 +1777,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(URLSession:writeClosedForStreamTask:)]
+        #[unsafe(method(URLSession:writeClosedForStreamTask:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_writeClosedForStreamTask(
             &self,
@@ -1786,7 +1786,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method(URLSession:betterRouteDiscoveredForStreamTask:)]
+        #[unsafe(method(URLSession:betterRouteDiscoveredForStreamTask:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_betterRouteDiscoveredForStreamTask(
             &self,
@@ -1796,7 +1796,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSStream")]
         #[optional]
-        #[method(URLSession:streamTask:didBecomeInputStream:outputStream:)]
+        #[unsafe(method(URLSession:streamTask:didBecomeInputStream:outputStream:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_streamTask_didBecomeInputStream_outputStream(
             &self,
@@ -1813,7 +1813,7 @@ extern_protocol!(
     pub unsafe trait NSURLSessionWebSocketDelegate: NSURLSessionTaskDelegate {
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(URLSession:webSocketTask:didOpenWithProtocol:)]
+        #[unsafe(method(URLSession:webSocketTask:didOpenWithProtocol:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_webSocketTask_didOpenWithProtocol(
             &self,
@@ -1824,7 +1824,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSData")]
         #[optional]
-        #[method(URLSession:webSocketTask:didCloseWithCode:reason:)]
+        #[unsafe(method(URLSession:webSocketTask:didCloseWithCode:reason:))]
         #[unsafe(method_family = none)]
         unsafe fn URLSession_webSocketTask_didCloseWithCode_reason(
             &self,
@@ -1855,7 +1855,7 @@ extern_methods!(
     unsafe impl NSURLSessionConfiguration {
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method(backgroundSessionConfiguration:)]
+        #[unsafe(method(backgroundSessionConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundSessionConfiguration(
             identifier: &NSString,
@@ -1929,170 +1929,170 @@ unsafe impl NSObjectProtocol for NSURLSessionTaskTransactionMetrics {}
 extern_methods!(
     unsafe impl NSURLSessionTaskTransactionMetrics {
         #[cfg(feature = "NSURLRequest")]
-        #[method(request)]
+        #[unsafe(method(request))]
         #[unsafe(method_family = none)]
         pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSURLResponse")]
-        #[method(response)]
+        #[unsafe(method(response))]
         #[unsafe(method_family = none)]
         pub unsafe fn response(&self) -> Option<Retained<NSURLResponse>>;
 
         #[cfg(feature = "NSDate")]
-        #[method(fetchStartDate)]
+        #[unsafe(method(fetchStartDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchStartDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[method(domainLookupStartDate)]
+        #[unsafe(method(domainLookupStartDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn domainLookupStartDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[method(domainLookupEndDate)]
+        #[unsafe(method(domainLookupEndDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn domainLookupEndDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[method(connectStartDate)]
+        #[unsafe(method(connectStartDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectStartDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[method(secureConnectionStartDate)]
+        #[unsafe(method(secureConnectionStartDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn secureConnectionStartDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[method(secureConnectionEndDate)]
+        #[unsafe(method(secureConnectionEndDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn secureConnectionEndDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[method(connectEndDate)]
+        #[unsafe(method(connectEndDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectEndDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[method(requestStartDate)]
+        #[unsafe(method(requestStartDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestStartDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[method(requestEndDate)]
+        #[unsafe(method(requestEndDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestEndDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[method(responseStartDate)]
+        #[unsafe(method(responseStartDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn responseStartDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[method(responseEndDate)]
+        #[unsafe(method(responseEndDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn responseEndDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSString")]
-        #[method(networkProtocolName)]
+        #[unsafe(method(networkProtocolName))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkProtocolName(&self) -> Option<Retained<NSString>>;
 
-        #[method(isProxyConnection)]
+        #[unsafe(method(isProxyConnection))]
         #[unsafe(method_family = none)]
         pub unsafe fn isProxyConnection(&self) -> bool;
 
-        #[method(isReusedConnection)]
+        #[unsafe(method(isReusedConnection))]
         #[unsafe(method_family = none)]
         pub unsafe fn isReusedConnection(&self) -> bool;
 
-        #[method(resourceFetchType)]
+        #[unsafe(method(resourceFetchType))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceFetchType(&self) -> NSURLSessionTaskMetricsResourceFetchType;
 
-        #[method(countOfRequestHeaderBytesSent)]
+        #[unsafe(method(countOfRequestHeaderBytesSent))]
         #[unsafe(method_family = none)]
         pub unsafe fn countOfRequestHeaderBytesSent(&self) -> i64;
 
-        #[method(countOfRequestBodyBytesSent)]
+        #[unsafe(method(countOfRequestBodyBytesSent))]
         #[unsafe(method_family = none)]
         pub unsafe fn countOfRequestBodyBytesSent(&self) -> i64;
 
-        #[method(countOfRequestBodyBytesBeforeEncoding)]
+        #[unsafe(method(countOfRequestBodyBytesBeforeEncoding))]
         #[unsafe(method_family = none)]
         pub unsafe fn countOfRequestBodyBytesBeforeEncoding(&self) -> i64;
 
-        #[method(countOfResponseHeaderBytesReceived)]
+        #[unsafe(method(countOfResponseHeaderBytesReceived))]
         #[unsafe(method_family = none)]
         pub unsafe fn countOfResponseHeaderBytesReceived(&self) -> i64;
 
-        #[method(countOfResponseBodyBytesReceived)]
+        #[unsafe(method(countOfResponseBodyBytesReceived))]
         #[unsafe(method_family = none)]
         pub unsafe fn countOfResponseBodyBytesReceived(&self) -> i64;
 
-        #[method(countOfResponseBodyBytesAfterDecoding)]
+        #[unsafe(method(countOfResponseBodyBytesAfterDecoding))]
         #[unsafe(method_family = none)]
         pub unsafe fn countOfResponseBodyBytesAfterDecoding(&self) -> i64;
 
         #[cfg(feature = "NSString")]
-        #[method(localAddress)]
+        #[unsafe(method(localAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn localAddress(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSValue")]
-        #[method(localPort)]
+        #[unsafe(method(localPort))]
         #[unsafe(method_family = none)]
         pub unsafe fn localPort(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSString")]
-        #[method(remoteAddress)]
+        #[unsafe(method(remoteAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteAddress(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSValue")]
-        #[method(remotePort)]
+        #[unsafe(method(remotePort))]
         #[unsafe(method_family = none)]
         pub unsafe fn remotePort(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
-        #[method(negotiatedTLSProtocolVersion)]
+        #[unsafe(method(negotiatedTLSProtocolVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn negotiatedTLSProtocolVersion(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
-        #[method(negotiatedTLSCipherSuite)]
+        #[unsafe(method(negotiatedTLSCipherSuite))]
         #[unsafe(method_family = none)]
         pub unsafe fn negotiatedTLSCipherSuite(&self) -> Option<Retained<NSNumber>>;
 
-        #[method(isCellular)]
+        #[unsafe(method(isCellular))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCellular(&self) -> bool;
 
-        #[method(isExpensive)]
+        #[unsafe(method(isExpensive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isExpensive(&self) -> bool;
 
-        #[method(isConstrained)]
+        #[unsafe(method(isConstrained))]
         #[unsafe(method_family = none)]
         pub unsafe fn isConstrained(&self) -> bool;
 
-        #[method(isMultipath)]
+        #[unsafe(method(isMultipath))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMultipath(&self) -> bool;
 
-        #[method(domainResolutionProtocol)]
+        #[unsafe(method(domainResolutionProtocol))]
         #[unsafe(method_family = none)]
         pub unsafe fn domainResolutionProtocol(
             &self,
         ) -> NSURLSessionTaskMetricsDomainResolutionProtocol;
 
         #[deprecated = "Not supported"]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Not supported"]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2114,28 +2114,28 @@ unsafe impl NSObjectProtocol for NSURLSessionTaskMetrics {}
 extern_methods!(
     unsafe impl NSURLSessionTaskMetrics {
         #[cfg(feature = "NSArray")]
-        #[method(transactionMetrics)]
+        #[unsafe(method(transactionMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn transactionMetrics(
             &self,
         ) -> Retained<NSArray<NSURLSessionTaskTransactionMetrics>>;
 
         #[cfg(feature = "NSDateInterval")]
-        #[method(taskInterval)]
+        #[unsafe(method(taskInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn taskInterval(&self) -> Retained<NSDateInterval>;
 
-        #[method(redirectCount)]
+        #[unsafe(method(redirectCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn redirectCount(&self) -> NSUInteger;
 
         #[deprecated = "Not supported"]
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Not supported"]
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

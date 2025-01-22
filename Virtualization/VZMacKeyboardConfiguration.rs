@@ -37,7 +37,7 @@ unsafe impl NSObjectProtocol for VZMacKeyboardConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZKeyboardConfiguration")]
     unsafe impl VZMacKeyboardConfiguration {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -47,7 +47,7 @@ extern_methods!(
     /// Methods declared on superclass `VZKeyboardConfiguration`
     #[cfg(feature = "VZKeyboardConfiguration")]
     unsafe impl VZMacKeyboardConfiguration {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

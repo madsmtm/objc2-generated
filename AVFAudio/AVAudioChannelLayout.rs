@@ -34,7 +34,7 @@ unsafe impl NSSecureCoding for AVAudioChannelLayout {}
 
 extern_methods!(
     unsafe impl AVAudioChannelLayout {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -45,7 +45,7 @@ extern_methods!(
         ///
         /// Returns nil if the tag is either kAudioChannelLayoutTag_UseChannelDescriptions or
         /// kAudioChannelLayoutTag_UseChannelBitmap.
-        #[method(initWithLayoutTag:)]
+        #[unsafe(method(initWithLayoutTag:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayoutTag(
             this: Allocated<Self>,
@@ -59,7 +59,7 @@ extern_methods!(
         ///
         /// If the provided layout's tag is kAudioChannelLayoutTag_UseChannelDescriptions, this
         /// initializer attempts to convert it to a more specific tag.
-        #[method(initWithLayout:)]
+        #[unsafe(method(initWithLayout:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayout(
             this: Allocated<Self>,
@@ -71,37 +71,37 @@ extern_methods!(
         /// Parameter `object`: The AVAudioChannelLayout to compare against.
         ///
         /// The underlying AudioChannelLayoutTag and AudioChannelLayout are compared for equality.
-        #[method(isEqual:)]
+        #[unsafe(method(isEqual:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqual(&self, object: &AnyObject) -> bool;
 
         #[cfg(feature = "objc2-core-audio-types")]
         /// Create from a layout tag.
-        #[method(layoutWithLayoutTag:)]
+        #[unsafe(method(layoutWithLayoutTag:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutWithLayoutTag(layout_tag: AudioChannelLayoutTag) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-audio-types")]
         /// Create from an AudioChannelLayout
-        #[method(layoutWithLayout:)]
+        #[unsafe(method(layoutWithLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutWithLayout(layout: NonNull<AudioChannelLayout>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-audio-types")]
         /// The layout's tag.
-        #[method(layoutTag)]
+        #[unsafe(method(layoutTag))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutTag(&self) -> AudioChannelLayoutTag;
 
         #[cfg(feature = "objc2-core-audio-types")]
         /// The underlying AudioChannelLayout.
-        #[method(layout)]
+        #[unsafe(method(layout))]
         #[unsafe(method_family = none)]
         pub unsafe fn layout(&self) -> NonNull<AudioChannelLayout>;
 
         #[cfg(feature = "AVAudioTypes")]
         /// The number of channels of audio data.
-        #[method(channelCount)]
+        #[unsafe(method(channelCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelCount(&self) -> AVAudioChannelCount;
     }
@@ -110,7 +110,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioChannelLayout {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

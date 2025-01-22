@@ -29,30 +29,30 @@ extern_methods!(
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceGroup {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(setCornerRadius:)]
+        #[unsafe(method(setCornerRadius:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
 
         #[cfg(feature = "objc2-ui-kit")]
-        #[method(setContentInset:)]
+        #[unsafe(method(setContentInset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentInset(&self, content_inset: UIEdgeInsets);
 
         #[cfg(feature = "objc2-ui-kit")]
-        #[method(setBackgroundColor:)]
+        #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, color: Option<&UIColor>);
 
         #[cfg(feature = "objc2-ui-kit")]
-        #[method(setBackgroundImage:)]
+        #[unsafe(method(setBackgroundImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImage(&self, image: Option<&UIImage>);
 
-        #[method(setBackgroundImageData:)]
+        #[unsafe(method(setBackgroundImageData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImageData(&self, image_data: Option<&NSData>);
 
-        #[method(setBackgroundImageNamed:)]
+        #[unsafe(method(setBackgroundImageNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImageNamed(&self, image_name: Option<&NSString>);
     }
@@ -62,7 +62,7 @@ extern_methods!(
     /// Methods declared on superclass `WKInterfaceObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceGroup {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -72,7 +72,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceGroup {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

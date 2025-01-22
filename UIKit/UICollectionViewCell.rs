@@ -95,16 +95,16 @@ unsafe impl UITraitEnvironment for UICollectionReusableView {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICollectionReusableView {
-        #[method(reuseIdentifier)]
+        #[unsafe(method(reuseIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn reuseIdentifier(&self) -> Option<Retained<NSString>>;
 
-        #[method(prepareForReuse)]
+        #[unsafe(method(prepareForReuse))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareForReuse(&self);
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method(applyLayoutAttributes:)]
+        #[unsafe(method(applyLayoutAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyLayoutAttributes(
             &self,
@@ -112,7 +112,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method(willTransitionFromLayout:toLayout:)]
+        #[unsafe(method(willTransitionFromLayout:toLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn willTransitionFromLayout_toLayout(
             &self,
@@ -121,7 +121,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method(didTransitionFromLayout:toLayout:)]
+        #[unsafe(method(didTransitionFromLayout:toLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didTransitionFromLayout_toLayout(
             &self,
@@ -130,7 +130,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method(preferredLayoutAttributesFittingAttributes:)]
+        #[unsafe(method(preferredLayoutAttributesFittingAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredLayoutAttributesFittingAttributes(
             &self,
@@ -144,11 +144,11 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICollectionReusableView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -161,11 +161,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICollectionReusableView {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -250,14 +250,14 @@ extern_methods!(
         /// Returns the current configuration state for the cell.
         /// To add your own custom state(s), override the getter and call super to obtain an instance with the
         /// system properties set, then set your own custom states as desired.
-        #[method(configurationState)]
+        #[unsafe(method(configurationState))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationState(&self) -> Retained<UICellConfigurationState>;
 
         /// Requests the cell update its configuration for its current state. This method is called automatically
         /// when the cell's `configurationState` may have changed, as well as in other circumstances where an
         /// update may be required. Multiple requests may be coalesced into a single update at the appropriate time.
-        #[method(setNeedsUpdateConfiguration)]
+        #[unsafe(method(setNeedsUpdateConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNeedsUpdateConfiguration(&self);
 
@@ -267,7 +267,7 @@ extern_methods!(
         ))]
         /// Subclasses should override this method and update the cell's configuration using the state provided.
         /// This method should not be called directly, use `setNeedsUpdateConfiguration` to request an update.
-        #[method(updateConfigurationUsingState:)]
+        #[unsafe(method(updateConfigurationUsingState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateConfigurationUsingState(&self, state: &UICellConfigurationState);
 
@@ -278,7 +278,7 @@ extern_methods!(
         ))]
         /// Optional block-based alternative to overriding `-updateConfigurationUsingState:` in a subclass. This handler
         /// is called after `-updateConfigurationUsingState:`. Setting a new handler triggers `setNeedsUpdateConfiguration`.
-        #[method(configurationUpdateHandler)]
+        #[unsafe(method(configurationUpdateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationUpdateHandler(
             &self,
@@ -290,7 +290,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`configurationUpdateHandler`][Self::configurationUpdateHandler].
-        #[method(setConfigurationUpdateHandler:)]
+        #[unsafe(method(setConfigurationUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfigurationUpdateHandler(
             &self,
@@ -301,7 +301,7 @@ extern_methods!(
         /// Setting a content configuration replaces the existing contentView of the cell with a new content view instance from the configuration,
         /// or directly applies the configuration to the existing content view if the configuration is compatible with the existing content view type.
         /// The default value is nil. After a configuration has been set, setting this property to nil will replace the current content view with a new content view.
-        #[method(contentConfiguration)]
+        #[unsafe(method(contentConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentConfiguration(
             &self,
@@ -309,7 +309,7 @@ extern_methods!(
 
         #[cfg(feature = "UIContentConfiguration")]
         /// Setter for [`contentConfiguration`][Self::contentConfiguration].
-        #[method(setContentConfiguration:)]
+        #[unsafe(method(setContentConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContentConfiguration(
             &self,
@@ -318,61 +318,61 @@ extern_methods!(
 
         /// When YES, the cell will automatically call -updatedConfigurationForState: on its `contentConfiguration` when the cell's
         /// configuration state changes, and apply the updated configuration back to the cell. The default value is YES.
-        #[method(automaticallyUpdatesContentConfiguration)]
+        #[unsafe(method(automaticallyUpdatesContentConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticallyUpdatesContentConfiguration(&self) -> bool;
 
         /// Setter for [`automaticallyUpdatesContentConfiguration`][Self::automaticallyUpdatesContentConfiguration].
-        #[method(setAutomaticallyUpdatesContentConfiguration:)]
+        #[unsafe(method(setAutomaticallyUpdatesContentConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyUpdatesContentConfiguration(
             &self,
             automatically_updates_content_configuration: bool,
         );
 
-        #[method(contentView)]
+        #[unsafe(method(contentView))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentView(&self) -> Retained<UIView>;
 
-        #[method(isSelected)]
+        #[unsafe(method(isSelected))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSelected(&self) -> bool;
 
         /// Setter for [`isSelected`][Self::isSelected].
-        #[method(setSelected:)]
+        #[unsafe(method(setSelected:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelected(&self, selected: bool);
 
-        #[method(isHighlighted)]
+        #[unsafe(method(isHighlighted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHighlighted(&self) -> bool;
 
         /// Setter for [`isHighlighted`][Self::isHighlighted].
-        #[method(setHighlighted:)]
+        #[unsafe(method(setHighlighted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
-        #[method(dragStateDidChange:)]
+        #[unsafe(method(dragStateDidChange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dragStateDidChange(&self, drag_state: UICollectionViewCellDragState);
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Returns a default background configuration for the cell's style.
         /// This background configuration represents the default appearance that the cell will use.
-        #[method(defaultBackgroundConfiguration)]
+        #[unsafe(method(defaultBackgroundConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultBackgroundConfiguration(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Setting a background configuration supersedes the cell's backgroundView and selectedBackgroundView. The default value is nil.
-        #[method(backgroundConfiguration)]
+        #[unsafe(method(backgroundConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundConfiguration(&self)
             -> Option<Retained<UIBackgroundConfiguration>>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Setter for [`backgroundConfiguration`][Self::backgroundConfiguration].
-        #[method(setBackgroundConfiguration:)]
+        #[unsafe(method(setBackgroundConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundConfiguration(
             &self,
@@ -381,33 +381,33 @@ extern_methods!(
 
         /// When YES, the cell will automatically call -updatedConfigurationForState: on its `backgroundConfiguration` when the cell's
         /// configuration state changes, and apply the updated configuration back to the cell. The default value is YES.
-        #[method(automaticallyUpdatesBackgroundConfiguration)]
+        #[unsafe(method(automaticallyUpdatesBackgroundConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticallyUpdatesBackgroundConfiguration(&self) -> bool;
 
         /// Setter for [`automaticallyUpdatesBackgroundConfiguration`][Self::automaticallyUpdatesBackgroundConfiguration].
-        #[method(setAutomaticallyUpdatesBackgroundConfiguration:)]
+        #[unsafe(method(setAutomaticallyUpdatesBackgroundConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyUpdatesBackgroundConfiguration(
             &self,
             automatically_updates_background_configuration: bool,
         );
 
-        #[method(backgroundView)]
+        #[unsafe(method(backgroundView))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`backgroundView`][Self::backgroundView].
-        #[method(setBackgroundView:)]
+        #[unsafe(method(setBackgroundView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundView(&self, background_view: Option<&UIView>);
 
-        #[method(selectedBackgroundView)]
+        #[unsafe(method(selectedBackgroundView))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedBackgroundView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`selectedBackgroundView`][Self::selectedBackgroundView].
-        #[method(setSelectedBackgroundView:)]
+        #[unsafe(method(setSelectedBackgroundView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedBackgroundView(&self, selected_background_view: Option<&UIView>);
     }
@@ -418,11 +418,11 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICollectionViewCell {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(initWithFrame:)]
+        #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -435,11 +435,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICollectionViewCell {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

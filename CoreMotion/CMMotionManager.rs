@@ -35,37 +35,37 @@ unsafe impl NSObjectProtocol for CMMotionManager {}
 
 extern_methods!(
     unsafe impl CMMotionManager {
-        #[method(accelerometerUpdateInterval)]
+        #[unsafe(method(accelerometerUpdateInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn accelerometerUpdateInterval(&self) -> NSTimeInterval;
 
         /// Setter for [`accelerometerUpdateInterval`][Self::accelerometerUpdateInterval].
-        #[method(setAccelerometerUpdateInterval:)]
+        #[unsafe(method(setAccelerometerUpdateInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccelerometerUpdateInterval(
             &self,
             accelerometer_update_interval: NSTimeInterval,
         );
 
-        #[method(isAccelerometerAvailable)]
+        #[unsafe(method(isAccelerometerAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAccelerometerAvailable(&self) -> bool;
 
-        #[method(isAccelerometerActive)]
+        #[unsafe(method(isAccelerometerActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAccelerometerActive(&self) -> bool;
 
         #[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem"))]
-        #[method(accelerometerData)]
+        #[unsafe(method(accelerometerData))]
         #[unsafe(method_family = none)]
         pub unsafe fn accelerometerData(&self) -> Option<Retained<CMAccelerometerData>>;
 
-        #[method(startAccelerometerUpdates)]
+        #[unsafe(method(startAccelerometerUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn startAccelerometerUpdates(&self);
 
         #[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem", feature = "block2"))]
-        #[method(startAccelerometerUpdatesToQueue:withHandler:)]
+        #[unsafe(method(startAccelerometerUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startAccelerometerUpdatesToQueue_withHandler(
             &self,
@@ -73,38 +73,38 @@ extern_methods!(
             handler: CMAccelerometerHandler,
         );
 
-        #[method(stopAccelerometerUpdates)]
+        #[unsafe(method(stopAccelerometerUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopAccelerometerUpdates(&self);
 
-        #[method(gyroUpdateInterval)]
+        #[unsafe(method(gyroUpdateInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn gyroUpdateInterval(&self) -> NSTimeInterval;
 
         /// Setter for [`gyroUpdateInterval`][Self::gyroUpdateInterval].
-        #[method(setGyroUpdateInterval:)]
+        #[unsafe(method(setGyroUpdateInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGyroUpdateInterval(&self, gyro_update_interval: NSTimeInterval);
 
-        #[method(isGyroAvailable)]
+        #[unsafe(method(isGyroAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isGyroAvailable(&self) -> bool;
 
-        #[method(isGyroActive)]
+        #[unsafe(method(isGyroActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isGyroActive(&self) -> bool;
 
         #[cfg(all(feature = "CMGyro", feature = "CMLogItem"))]
-        #[method(gyroData)]
+        #[unsafe(method(gyroData))]
         #[unsafe(method_family = none)]
         pub unsafe fn gyroData(&self) -> Option<Retained<CMGyroData>>;
 
-        #[method(startGyroUpdates)]
+        #[unsafe(method(startGyroUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn startGyroUpdates(&self);
 
         #[cfg(all(feature = "CMGyro", feature = "CMLogItem", feature = "block2"))]
-        #[method(startGyroUpdatesToQueue:withHandler:)]
+        #[unsafe(method(startGyroUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startGyroUpdatesToQueue_withHandler(
             &self,
@@ -112,41 +112,41 @@ extern_methods!(
             handler: CMGyroHandler,
         );
 
-        #[method(stopGyroUpdates)]
+        #[unsafe(method(stopGyroUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopGyroUpdates(&self);
 
-        #[method(magnetometerUpdateInterval)]
+        #[unsafe(method(magnetometerUpdateInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn magnetometerUpdateInterval(&self) -> NSTimeInterval;
 
         /// Setter for [`magnetometerUpdateInterval`][Self::magnetometerUpdateInterval].
-        #[method(setMagnetometerUpdateInterval:)]
+        #[unsafe(method(setMagnetometerUpdateInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMagnetometerUpdateInterval(
             &self,
             magnetometer_update_interval: NSTimeInterval,
         );
 
-        #[method(isMagnetometerAvailable)]
+        #[unsafe(method(isMagnetometerAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMagnetometerAvailable(&self) -> bool;
 
-        #[method(isMagnetometerActive)]
+        #[unsafe(method(isMagnetometerActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMagnetometerActive(&self) -> bool;
 
         #[cfg(all(feature = "CMLogItem", feature = "CMMagnetometer"))]
-        #[method(magnetometerData)]
+        #[unsafe(method(magnetometerData))]
         #[unsafe(method_family = none)]
         pub unsafe fn magnetometerData(&self) -> Option<Retained<CMMagnetometerData>>;
 
-        #[method(startMagnetometerUpdates)]
+        #[unsafe(method(startMagnetometerUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn startMagnetometerUpdates(&self);
 
         #[cfg(all(feature = "CMLogItem", feature = "CMMagnetometer", feature = "block2"))]
-        #[method(startMagnetometerUpdatesToQueue:withHandler:)]
+        #[unsafe(method(startMagnetometerUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startMagnetometerUpdatesToQueue_withHandler(
             &self,
@@ -154,16 +154,16 @@ extern_methods!(
             handler: CMMagnetometerHandler,
         );
 
-        #[method(stopMagnetometerUpdates)]
+        #[unsafe(method(stopMagnetometerUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopMagnetometerUpdates(&self);
 
-        #[method(deviceMotionUpdateInterval)]
+        #[unsafe(method(deviceMotionUpdateInterval))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceMotionUpdateInterval(&self) -> NSTimeInterval;
 
         /// Setter for [`deviceMotionUpdateInterval`][Self::deviceMotionUpdateInterval].
-        #[method(setDeviceMotionUpdateInterval:)]
+        #[unsafe(method(setDeviceMotionUpdateInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDeviceMotionUpdateInterval(
             &self,
@@ -171,34 +171,34 @@ extern_methods!(
         );
 
         #[cfg(feature = "CMAttitude")]
-        #[method(availableAttitudeReferenceFrames)]
+        #[unsafe(method(availableAttitudeReferenceFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableAttitudeReferenceFrames() -> CMAttitudeReferenceFrame;
 
         #[cfg(feature = "CMAttitude")]
-        #[method(attitudeReferenceFrame)]
+        #[unsafe(method(attitudeReferenceFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn attitudeReferenceFrame(&self) -> CMAttitudeReferenceFrame;
 
-        #[method(isDeviceMotionAvailable)]
+        #[unsafe(method(isDeviceMotionAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDeviceMotionAvailable(&self) -> bool;
 
-        #[method(isDeviceMotionActive)]
+        #[unsafe(method(isDeviceMotionActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDeviceMotionActive(&self) -> bool;
 
         #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem"))]
-        #[method(deviceMotion)]
+        #[unsafe(method(deviceMotion))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceMotion(&self) -> Option<Retained<CMDeviceMotion>>;
 
-        #[method(startDeviceMotionUpdates)]
+        #[unsafe(method(startDeviceMotionUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDeviceMotionUpdates(&self);
 
         #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem", feature = "block2"))]
-        #[method(startDeviceMotionUpdatesToQueue:withHandler:)]
+        #[unsafe(method(startDeviceMotionUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDeviceMotionUpdatesToQueue_withHandler(
             &self,
@@ -207,7 +207,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "CMAttitude")]
-        #[method(startDeviceMotionUpdatesUsingReferenceFrame:)]
+        #[unsafe(method(startDeviceMotionUpdatesUsingReferenceFrame:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDeviceMotionUpdatesUsingReferenceFrame(
             &self,
@@ -220,7 +220,7 @@ extern_methods!(
             feature = "CMLogItem",
             feature = "block2"
         ))]
-        #[method(startDeviceMotionUpdatesUsingReferenceFrame:toQueue:withHandler:)]
+        #[unsafe(method(startDeviceMotionUpdatesUsingReferenceFrame:toQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDeviceMotionUpdatesUsingReferenceFrame_toQueue_withHandler(
             &self,
@@ -229,16 +229,16 @@ extern_methods!(
             handler: CMDeviceMotionHandler,
         );
 
-        #[method(stopDeviceMotionUpdates)]
+        #[unsafe(method(stopDeviceMotionUpdates))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopDeviceMotionUpdates(&self);
 
-        #[method(showsDeviceMovementDisplay)]
+        #[unsafe(method(showsDeviceMovementDisplay))]
         #[unsafe(method_family = none)]
         pub unsafe fn showsDeviceMovementDisplay(&self) -> bool;
 
         /// Setter for [`showsDeviceMovementDisplay`][Self::showsDeviceMovementDisplay].
-        #[method(setShowsDeviceMovementDisplay:)]
+        #[unsafe(method(setShowsDeviceMovementDisplay:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsDeviceMovementDisplay(&self, shows_device_movement_display: bool);
     }
@@ -247,11 +247,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMMotionManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

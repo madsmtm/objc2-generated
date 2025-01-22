@@ -65,13 +65,13 @@ unsafe impl UITraitEnvironment for EKEventViewController {}
 extern_methods!(
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl EKEventViewController {
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn EKEventViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -82,13 +82,13 @@ extern_methods!(
         /// Specifies the event to view.
         ///
         /// You must set this prior to displaying the view controller.
-        #[method(event)]
+        #[unsafe(method(event))]
         #[unsafe(method_family = none)]
         pub unsafe fn event(&self) -> Option<Retained<EKEvent>>;
 
         #[cfg(feature = "objc2-event-kit")]
         /// Setter for [`event`][Self::event].
-        #[method(setEvent:)]
+        #[unsafe(method(setEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEvent(&self, event: Option<&EKEvent>);
 
@@ -99,12 +99,12 @@ extern_methods!(
         /// if the event was not created by the current user (i.e. it's an event they were
         /// invited to). And lastly, if the event was never saved, the edit button will not
         /// appear.
-        #[method(allowsEditing)]
+        #[unsafe(method(allowsEditing))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsEditing(&self) -> bool;
 
         /// Setter for [`allowsEditing`][Self::allowsEditing].
-        #[method(setAllowsEditing:)]
+        #[unsafe(method(setAllowsEditing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsEditing(&self, allows_editing: bool);
 
@@ -113,12 +113,12 @@ extern_methods!(
         /// This option only affects calendar invites at present. If the event is an invite,
         /// and this option is set, a table cell will appear that allows the user to preview
         /// the event along with their other events for the day.
-        #[method(allowsCalendarPreview)]
+        #[unsafe(method(allowsCalendarPreview))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsCalendarPreview(&self) -> bool;
 
         /// Setter for [`allowsCalendarPreview`][Self::allowsCalendarPreview].
-        #[method(setAllowsCalendarPreview:)]
+        #[unsafe(method(setAllowsCalendarPreview:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCalendarPreview(&self, allows_calendar_preview: bool);
     }
@@ -128,7 +128,7 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl EKEventViewController {
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -136,7 +136,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -149,11 +149,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl EKEventViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -185,7 +185,7 @@ extern_protocol!(
         /// Parameter `controller`: the controller in question
         ///
         /// Parameter `action`: the action that is triggering the dismissal
-        #[method(eventViewController:didCompleteWithAction:)]
+        #[unsafe(method(eventViewController:didCompleteWithAction:))]
         #[unsafe(method_family = none)]
         unsafe fn eventViewController_didCompleteWithAction(
             &self,

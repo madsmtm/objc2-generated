@@ -93,7 +93,7 @@ extern_protocol!(
         /// result of frame targeting, then it will be created once you call
         /// this method.
         #[deprecated]
-        #[method(use)]
+        #[unsafe(method(use))]
         #[unsafe(method_family = none)]
         unsafe fn r#use(&self);
 
@@ -104,7 +104,7 @@ extern_protocol!(
         /// based on content type, without having to stop and restart the
         /// load.
         #[deprecated]
-        #[method(download)]
+        #[unsafe(method(download))]
         #[unsafe(method_family = none)]
         unsafe fn download(&self);
 
@@ -116,7 +116,7 @@ extern_protocol!(
         /// opening a new window behind the current one, opening the URL in an
         /// external app, revealing the location in Finder if a file URL, etc.
         #[deprecated]
-        #[method(ignore)]
+        #[unsafe(method(ignore))]
         #[unsafe(method_family = none)]
         unsafe fn ignore(&self);
     }
@@ -167,7 +167,7 @@ extern_protocol!(
         /// on every redirect.
         #[deprecated]
         #[optional]
-        #[method(webView:decidePolicyForNavigationAction:request:frame:decisionListener:)]
+        #[unsafe(method(webView:decidePolicyForNavigationAction:request:frame:decisionListener:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_decidePolicyForNavigationAction_request_frame_decisionListener(
             &self,
@@ -201,7 +201,7 @@ extern_protocol!(
         /// in its action. This is to avoid possible confusion about the modifiers.
         #[deprecated]
         #[optional]
-        #[method(webView:decidePolicyForNewWindowAction:request:newFrameName:decisionListener:)]
+        #[unsafe(method(webView:decidePolicyForNewWindowAction:request:newFrameName:decisionListener:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_decidePolicyForNewWindowAction_request_newFrameName_decisionListener(
             &self,
@@ -226,7 +226,7 @@ extern_protocol!(
         /// Parameter `listener`: The object to call when the decision is made
         #[deprecated]
         #[optional]
-        #[method(webView:decidePolicyForMIMEType:request:frame:decisionListener:)]
+        #[unsafe(method(webView:decidePolicyForMIMEType:request:frame:decisionListener:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_decidePolicyForMIMEType_request_frame_decisionListener(
             &self,
@@ -246,7 +246,7 @@ extern_protocol!(
         /// Parameter `frame`: The frame in which the policy could not be implemented.
         #[deprecated]
         #[optional]
-        #[method(webView:unableToImplementPolicyWithError:frame:)]
+        #[unsafe(method(webView:unableToImplementPolicyWithError:frame:))]
         #[unsafe(method_family = none)]
         unsafe fn webView_unableToImplementPolicyWithError_frame(
             &self,

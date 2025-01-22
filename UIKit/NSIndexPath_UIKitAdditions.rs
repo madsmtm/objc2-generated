@@ -10,24 +10,24 @@ extern_category!(
     /// Category "UIKitAdditions" on [`NSIndexPath`].
     #[doc(alias = "UIKitAdditions")]
     pub unsafe trait NSIndexPathUIKitAdditions {
-        #[method(indexPathForRow:inSection:)]
+        #[unsafe(method(indexPathForRow:inSection:))]
         #[unsafe(method_family = none)]
         unsafe fn indexPathForRow_inSection(row: NSInteger, section: NSInteger) -> Retained<Self>;
 
-        #[method(indexPathForItem:inSection:)]
+        #[unsafe(method(indexPathForItem:inSection:))]
         #[unsafe(method_family = none)]
         unsafe fn indexPathForItem_inSection(item: NSInteger, section: NSInteger)
             -> Retained<Self>;
 
-        #[method(section)]
+        #[unsafe(method(section))]
         #[unsafe(method_family = none)]
         unsafe fn section(&self) -> NSInteger;
 
-        #[method(row)]
+        #[unsafe(method(row))]
         #[unsafe(method_family = none)]
         unsafe fn row(&self) -> NSInteger;
 
-        #[method(item)]
+        #[unsafe(method(item))]
         #[unsafe(method_family = none)]
         unsafe fn item(&self) -> NSInteger;
     }

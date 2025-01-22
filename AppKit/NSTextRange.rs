@@ -9,7 +9,7 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlocation?language=objc)
     pub unsafe trait NSTextLocation: NSObjectProtocol {
-        #[method(compare:)]
+        #[unsafe(method(compare:))]
         #[unsafe(method_family = none)]
         unsafe fn compare(
             &self,
@@ -29,7 +29,7 @@ unsafe impl NSObjectProtocol for NSTextRange {}
 
 extern_methods!(
     unsafe impl NSTextRange {
-        #[method(initWithLocation:endLocation:)]
+        #[unsafe(method(initWithLocation:endLocation:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocation_endLocation(
             this: Allocated<Self>,
@@ -37,60 +37,60 @@ extern_methods!(
             end_location: Option<&ProtocolObject<dyn NSTextLocation>>,
         ) -> Option<Retained<Self>>;
 
-        #[method(initWithLocation:)]
+        #[unsafe(method(initWithLocation:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocation(
             this: Allocated<Self>,
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(isEmpty)]
+        #[unsafe(method(isEmpty))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEmpty(&self) -> bool;
 
-        #[method(location)]
+        #[unsafe(method(location))]
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> Retained<ProtocolObject<dyn NSTextLocation>>;
 
-        #[method(endLocation)]
+        #[unsafe(method(endLocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn endLocation(&self) -> Retained<ProtocolObject<dyn NSTextLocation>>;
 
-        #[method(isEqualToTextRange:)]
+        #[unsafe(method(isEqualToTextRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToTextRange(&self, text_range: &NSTextRange) -> bool;
 
-        #[method(containsLocation:)]
+        #[unsafe(method(containsLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsLocation(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> bool;
 
-        #[method(containsRange:)]
+        #[unsafe(method(containsRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsRange(&self, text_range: &NSTextRange) -> bool;
 
-        #[method(intersectsWithTextRange:)]
+        #[unsafe(method(intersectsWithTextRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn intersectsWithTextRange(&self, text_range: &NSTextRange) -> bool;
 
-        #[method(textRangeByIntersectingWithTextRange:)]
+        #[unsafe(method(textRangeByIntersectingWithTextRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textRangeByIntersectingWithTextRange(
             &self,
             text_range: &NSTextRange,
         ) -> Option<Retained<Self>>;
 
-        #[method(textRangeByFormingUnionWithTextRange:)]
+        #[unsafe(method(textRangeByFormingUnionWithTextRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textRangeByFormingUnionWithTextRange(
             &self,

@@ -32,18 +32,18 @@ unsafe impl NSObjectProtocol for WKContentWorld {}
 
 extern_methods!(
     unsafe impl WKContentWorld {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Retrieve the main world that page content itself uses.
         ///
         /// When interacting with page content in a WKWebView using the page content world you can disrupt the operation of page content (e.g. by conflicting with variable names in JavaScript set by the web page content itself).
-        #[method(pageWorld)]
+        #[unsafe(method(pageWorld))]
         #[unsafe(method_family = none)]
         pub unsafe fn pageWorld(mtm: MainThreadMarker) -> Retained<WKContentWorld>;
 
@@ -51,7 +51,7 @@ extern_methods!(
         ///
         /// When using a content world different from the page content world you can still manipulate the DOM and built-in DOM APIs but without conflicting with other aspects of the page content (e.g. JavaScript from the web page content itself)
         /// Repeated calls will retrieve the same WKContentWorld instance.
-        #[method(defaultClientWorld)]
+        #[unsafe(method(defaultClientWorld))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultClientWorld(mtm: MainThreadMarker) -> Retained<WKContentWorld>;
 
@@ -63,7 +63,7 @@ extern_methods!(
         /// As long as a particular named WKContentWorld instance has not been deallocated, repeated calls with the same name will retrieve that same WKContentWorld instance.
         /// Each named content world is distinct from all other named content worlds, the defaultClientWorld, and the pageWorld.
         /// The name can be used to keep distinct worlds identifiable anywhere a world might be surfaced in a user interface. For example, the different worlds used in your application will be surfaced by name in the WebKit Web Inspector.
-        #[method(worldWithName:)]
+        #[unsafe(method(worldWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn worldWithName(
             name: &NSString,
@@ -74,7 +74,7 @@ extern_methods!(
         ///
         /// The pageWorld and defaultClientWorld instances will have a nil name.
         /// All other instances will have the non-nil name they were accessed by.
-        #[method(name)]
+        #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
     }

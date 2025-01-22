@@ -29,11 +29,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSGraphObject {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -63,11 +63,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSGraphType {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -94,25 +94,25 @@ extern_methods!(
     unsafe impl MPSGraphShapedType {
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// The Shape of the shaped type.
-        #[method(shape)]
+        #[unsafe(method(shape))]
         #[unsafe(method_family = none)]
         pub unsafe fn shape(&self) -> Option<Retained<MPSShape>>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Setter for [`shape`][Self::shape].
-        #[method(setShape:)]
+        #[unsafe(method(setShape:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShape(&self, shape: Option<&MPSShape>);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// The data type of the shaped type.
-        #[method(dataType)]
+        #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataType(&self) -> MPSDataType;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Setter for [`dataType`][Self::dataType].
-        #[method(setDataType:)]
+        #[unsafe(method(setDataType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataType(&self, data_type: MPSDataType);
 
@@ -123,7 +123,7 @@ extern_methods!(
         /// - shape: The shape of the shaped type.
         /// - dataType: The dataType of the shaped type.
         /// - Returns: A valid MPSGraphShapedType, or nil if allocation failure.
-        #[method(initWithShape:dataType:)]
+        #[unsafe(method(initWithShape:dataType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithShape_dataType(
             this: Allocated<Self>,
@@ -136,7 +136,7 @@ extern_methods!(
         /// - Parameters:
         /// - object: shapedType to compare to
         /// - Returns: true if equal, false if unequal
-        #[method(isEqualTo:)]
+        #[unsafe(method(isEqualTo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualTo(&self, object: Option<&MPSGraphShapedType>) -> bool;
     }
@@ -145,11 +145,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSGraphShapedType {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -25,16 +25,16 @@ unsafe impl NSSecureCoding for MEComposeSession {}
 
 extern_methods!(
     unsafe impl MEComposeSession {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// A unique identifier for the session.
-        #[method(sessionID)]
+        #[unsafe(method(sessionID))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionID(&self) -> Retained<NSUUID>;
 
@@ -42,14 +42,14 @@ extern_methods!(
         /// An instance of
         /// `MEMessage`that represents properties of the mail message that author is composing in this
         /// `MEComposeSession`
-        #[method(mailMessage)]
+        #[unsafe(method(mailMessage))]
         #[unsafe(method_family = none)]
         pub unsafe fn mailMessage(&self) -> Retained<MEMessage>;
 
         #[cfg(feature = "MEComposeContext")]
         /// An instance of
         /// `MEComposeContext`that provides additional information about the compose session.
-        #[method(composeContext)]
+        #[unsafe(method(composeContext))]
         #[unsafe(method_family = none)]
         pub unsafe fn composeContext(&self) -> Retained<MEComposeContext>;
 
@@ -58,7 +58,7 @@ extern_methods!(
         /// Extensions can use this call this method to regenerate
         /// `MEAddressAnnotation`instances to replace those that were previously generated for this session. This will result in invocations to
         /// `-[MEComposeSessionHandler``session:annotateAddressesWithCompletionHandler:].`
-        #[method(reloadSession)]
+        #[unsafe(method(reloadSession))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadSession(&self);
     }
@@ -102,7 +102,7 @@ extern_protocol!(
         ///
         /// Parameter `session`: -
         /// `MEComposeSession`instance that is tied to the compose window that is opened.
-        #[method(mailComposeSessionDidBegin:)]
+        #[unsafe(method(mailComposeSessionDidBegin:))]
         #[unsafe(method_family = none)]
         unsafe fn mailComposeSessionDidBegin(&self, session: &MEComposeSession);
 
@@ -110,7 +110,7 @@ extern_protocol!(
         ///
         /// Parameter `session`: -
         /// `MEComposeSession`instance that is tied to the compose window that was closed.
-        #[method(mailComposeSessionDidEnd:)]
+        #[unsafe(method(mailComposeSessionDidEnd:))]
         #[unsafe(method_family = none)]
         unsafe fn mailComposeSessionDidEnd(&self, session: &MEComposeSession);
 
@@ -118,7 +118,7 @@ extern_protocol!(
         /// A view controller to be presented in Mail compose window.
         ///
         /// Mail will call this method when user clicks on the extension's button.
-        #[method(viewControllerForSession:)]
+        #[unsafe(method(viewControllerForSession:))]
         #[unsafe(method_family = none)]
         unsafe fn viewControllerForSession(
             &self,
@@ -134,7 +134,7 @@ extern_protocol!(
         ///
         /// Mail will call this method based on user's input in To, Cc or Bcc fields.
         #[optional]
-        #[method(session:annotateAddressesWithCompletionHandler:)]
+        #[unsafe(method(session:annotateAddressesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn session_annotateAddressesWithCompletionHandler(
             &self,
@@ -150,7 +150,7 @@ extern_protocol!(
         /// Mail will call this method when user clicks on the send message button. Extensions can provide an error from the
         /// `MEComposeSessionErrorDomain`error domain to indicate why message validation has failed.
         #[optional]
-        #[method(session:canSendMessageWithCompletionHandler:)]
+        #[unsafe(method(session:canSendMessageWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn session_canSendMessageWithCompletionHandler(
             &self,
@@ -164,7 +164,7 @@ extern_protocol!(
         /// `MEMessage`that user is composing as part of this
         /// `MEComposeSession.`Keys in this dictionary will be normalized to lowercase before they are set on the message.
         #[optional]
-        #[method(additionalHeadersForSession:)]
+        #[unsafe(method(additionalHeadersForSession:))]
         #[unsafe(method_family = none)]
         unsafe fn additionalHeadersForSession(
             &self,

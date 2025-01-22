@@ -34,16 +34,16 @@ unsafe impl NSObjectProtocol for VNStatefulRequest {}
 extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNStatefulRequest {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method(initWithCompletionHandler:)]
+        #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -57,7 +57,7 @@ extern_methods!(
         /// Parameter `frameAnalysisSpacing`: The reciprocal of maximum rate at which buffers will be processed. The request will not process buffers that fall within the frameAnalysisSpacing after it has performed the analysis. The analysis is not done by wall time but by analysis of of the time stamps of the samplebuffers being processed.
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method(initWithFrameAnalysisSpacing:completionHandler:)]
+        #[unsafe(method(initWithFrameAnalysisSpacing:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
             this: Allocated<Self>,
@@ -68,7 +68,7 @@ extern_methods!(
         /// The minimum number of frames that the request has to process on before reporting back any observation. This information is provided by the request once initialized with its required paramters.
         ///
         /// Video based request often need a minimum number of frames before they can report back any observation. An example would be that a movement detection requires at least 5 frames to be detected. The minimumLatencyFrameCount for that request would report 5 and only after 5 frames have been processed an observation would be returned in the results. This latency is indicative of how responsive a request is in respect to the incoming data.
-        #[method(minimumLatencyFrameCount)]
+        #[unsafe(method(minimumLatencyFrameCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumLatencyFrameCount(&self) -> NSInteger;
 
@@ -76,7 +76,7 @@ extern_methods!(
         /// The reciprocal of maximum rate at which buffers will be processed.
         ///
         /// The request will not process buffers that fall within the `frameAnalysisSpacing` after it has performed the analysis. The analysis is not done by wall time but by analysis of of the time stamps of the samplebuffers being processed.
-        #[method(frameAnalysisSpacing)]
+        #[unsafe(method(frameAnalysisSpacing))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameAnalysisSpacing(&self) -> CMTime;
     }

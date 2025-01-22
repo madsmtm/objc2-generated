@@ -14,7 +14,7 @@ extern_methods!(
     #[cfg(feature = "CIImage")]
     unsafe impl CIImage {
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(imageWithImageProvider:size::format:colorSpace:options:)]
+        #[unsafe(method(imageWithImageProvider:size::format:colorSpace:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithImageProvider_size__format_colorSpace_options(
             p: &AnyObject,
@@ -26,7 +26,7 @@ extern_methods!(
         ) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(initWithImageProvider:size::format:colorSpace:options:)]
+        #[unsafe(method(initWithImageProvider:size::format:colorSpace:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImageProvider_size__format_colorSpace_options(
             this: Allocated<Self>,
@@ -45,7 +45,7 @@ extern_category!(
     #[doc(alias = "CIImageProvider")]
     /// Informal protocol used to lazily supply image data.
     pub unsafe trait NSObjectCIImageProvider {
-        #[method(provideImageData:bytesPerRow:origin::size::userInfo:)]
+        #[unsafe(method(provideImageData:bytesPerRow:origin::size::userInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn provideImageData_bytesPerRow_origin__size__userInfo(
             &self,

@@ -42,7 +42,7 @@ unsafe impl NSObjectProtocol for NSXMLParser {}
 extern_methods!(
     unsafe impl NSXMLParser {
         #[cfg(feature = "NSURL")]
-        #[method(initWithContentsOfURL:)]
+        #[unsafe(method(initWithContentsOfURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
@@ -50,59 +50,59 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSData")]
-        #[method(initWithData:)]
+        #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
         #[cfg(feature = "NSStream")]
-        #[method(initWithStream:)]
+        #[unsafe(method(initWithStream:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStream(
             this: Allocated<Self>,
             stream: &NSInputStream,
         ) -> Retained<Self>;
 
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSXMLParserDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSXMLParserDelegate>>,
         );
 
-        #[method(shouldProcessNamespaces)]
+        #[unsafe(method(shouldProcessNamespaces))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldProcessNamespaces(&self) -> bool;
 
         /// Setter for [`shouldProcessNamespaces`][Self::shouldProcessNamespaces].
-        #[method(setShouldProcessNamespaces:)]
+        #[unsafe(method(setShouldProcessNamespaces:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldProcessNamespaces(&self, should_process_namespaces: bool);
 
-        #[method(shouldReportNamespacePrefixes)]
+        #[unsafe(method(shouldReportNamespacePrefixes))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldReportNamespacePrefixes(&self) -> bool;
 
         /// Setter for [`shouldReportNamespacePrefixes`][Self::shouldReportNamespacePrefixes].
-        #[method(setShouldReportNamespacePrefixes:)]
+        #[unsafe(method(setShouldReportNamespacePrefixes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldReportNamespacePrefixes(
             &self,
             should_report_namespace_prefixes: bool,
         );
 
-        #[method(externalEntityResolvingPolicy)]
+        #[unsafe(method(externalEntityResolvingPolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn externalEntityResolvingPolicy(
             &self,
         ) -> NSXMLParserExternalEntityResolvingPolicy;
 
         /// Setter for [`externalEntityResolvingPolicy`][Self::externalEntityResolvingPolicy].
-        #[method(setExternalEntityResolvingPolicy:)]
+        #[unsafe(method(setExternalEntityResolvingPolicy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExternalEntityResolvingPolicy(
             &self,
@@ -110,38 +110,38 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSSet", feature = "NSURL"))]
-        #[method(allowedExternalEntityURLs)]
+        #[unsafe(method(allowedExternalEntityURLs))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedExternalEntityURLs(&self) -> Option<Retained<NSSet<NSURL>>>;
 
         #[cfg(all(feature = "NSSet", feature = "NSURL"))]
         /// Setter for [`allowedExternalEntityURLs`][Self::allowedExternalEntityURLs].
-        #[method(setAllowedExternalEntityURLs:)]
+        #[unsafe(method(setAllowedExternalEntityURLs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedExternalEntityURLs(
             &self,
             allowed_external_entity_ur_ls: Option<&NSSet<NSURL>>,
         );
 
-        #[method(parse)]
+        #[unsafe(method(parse))]
         #[unsafe(method_family = none)]
         pub unsafe fn parse(&self) -> bool;
 
-        #[method(abortParsing)]
+        #[unsafe(method(abortParsing))]
         #[unsafe(method_family = none)]
         pub unsafe fn abortParsing(&self);
 
         #[cfg(feature = "NSError")]
-        #[method(parserError)]
+        #[unsafe(method(parserError))]
         #[unsafe(method_family = none)]
         pub unsafe fn parserError(&self) -> Option<Retained<NSError>>;
 
-        #[method(shouldResolveExternalEntities)]
+        #[unsafe(method(shouldResolveExternalEntities))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldResolveExternalEntities(&self) -> bool;
 
         /// Setter for [`shouldResolveExternalEntities`][Self::shouldResolveExternalEntities].
-        #[method(setShouldResolveExternalEntities:)]
+        #[unsafe(method(setShouldResolveExternalEntities:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShouldResolveExternalEntities(
             &self,
@@ -153,11 +153,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSXMLParser {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -167,20 +167,20 @@ extern_methods!(
     /// NSXMLParserLocatorAdditions
     unsafe impl NSXMLParser {
         #[cfg(feature = "NSString")]
-        #[method(publicID)]
+        #[unsafe(method(publicID))]
         #[unsafe(method_family = none)]
         pub unsafe fn publicID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method(systemID)]
+        #[unsafe(method(systemID))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemID(&self) -> Option<Retained<NSString>>;
 
-        #[method(lineNumber)]
+        #[unsafe(method(lineNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineNumber(&self) -> NSInteger;
 
-        #[method(columnNumber)]
+        #[unsafe(method(columnNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn columnNumber(&self) -> NSInteger;
     }
@@ -190,18 +190,18 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparserdelegate?language=objc)
     pub unsafe trait NSXMLParserDelegate: NSObjectProtocol {
         #[optional]
-        #[method(parserDidStartDocument:)]
+        #[unsafe(method(parserDidStartDocument:))]
         #[unsafe(method_family = none)]
         unsafe fn parserDidStartDocument(&self, parser: &NSXMLParser);
 
         #[optional]
-        #[method(parserDidEndDocument:)]
+        #[unsafe(method(parserDidEndDocument:))]
         #[unsafe(method_family = none)]
         unsafe fn parserDidEndDocument(&self, parser: &NSXMLParser);
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(parser:foundNotationDeclarationWithName:publicID:systemID:)]
+        #[unsafe(method(parser:foundNotationDeclarationWithName:publicID:systemID:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_foundNotationDeclarationWithName_publicID_systemID(
             &self,
@@ -213,7 +213,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(parser:foundUnparsedEntityDeclarationWithName:publicID:systemID:notationName:)]
+        #[unsafe(method(parser:foundUnparsedEntityDeclarationWithName:publicID:systemID:notationName:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_foundUnparsedEntityDeclarationWithName_publicID_systemID_notationName(
             &self,
@@ -226,7 +226,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(parser:foundAttributeDeclarationWithName:forElement:type:defaultValue:)]
+        #[unsafe(method(parser:foundAttributeDeclarationWithName:forElement:type:defaultValue:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_foundAttributeDeclarationWithName_forElement_type_defaultValue(
             &self,
@@ -239,7 +239,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(parser:foundElementDeclarationWithName:model:)]
+        #[unsafe(method(parser:foundElementDeclarationWithName:model:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_foundElementDeclarationWithName_model(
             &self,
@@ -250,7 +250,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(parser:foundInternalEntityDeclarationWithName:value:)]
+        #[unsafe(method(parser:foundInternalEntityDeclarationWithName:value:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_foundInternalEntityDeclarationWithName_value(
             &self,
@@ -261,7 +261,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(parser:foundExternalEntityDeclarationWithName:publicID:systemID:)]
+        #[unsafe(method(parser:foundExternalEntityDeclarationWithName:publicID:systemID:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_foundExternalEntityDeclarationWithName_publicID_systemID(
             &self,
@@ -273,7 +273,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[optional]
-        #[method(parser:didStartElement:namespaceURI:qualifiedName:attributes:)]
+        #[unsafe(method(parser:didStartElement:namespaceURI:qualifiedName:attributes:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_didStartElement_namespaceURI_qualifiedName_attributes(
             &self,
@@ -286,7 +286,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(parser:didEndElement:namespaceURI:qualifiedName:)]
+        #[unsafe(method(parser:didEndElement:namespaceURI:qualifiedName:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_didEndElement_namespaceURI_qualifiedName(
             &self,
@@ -298,7 +298,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(parser:didStartMappingPrefix:toURI:)]
+        #[unsafe(method(parser:didStartMappingPrefix:toURI:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_didStartMappingPrefix_toURI(
             &self,
@@ -309,19 +309,19 @@ extern_protocol!(
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(parser:didEndMappingPrefix:)]
+        #[unsafe(method(parser:didEndMappingPrefix:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_didEndMappingPrefix(&self, parser: &NSXMLParser, prefix: &NSString);
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(parser:foundCharacters:)]
+        #[unsafe(method(parser:foundCharacters:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_foundCharacters(&self, parser: &NSXMLParser, string: &NSString);
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(parser:foundIgnorableWhitespace:)]
+        #[unsafe(method(parser:foundIgnorableWhitespace:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_foundIgnorableWhitespace(
             &self,
@@ -331,7 +331,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(parser:foundProcessingInstructionWithTarget:data:)]
+        #[unsafe(method(parser:foundProcessingInstructionWithTarget:data:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_foundProcessingInstructionWithTarget_data(
             &self,
@@ -342,19 +342,19 @@ extern_protocol!(
 
         #[cfg(feature = "NSString")]
         #[optional]
-        #[method(parser:foundComment:)]
+        #[unsafe(method(parser:foundComment:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_foundComment(&self, parser: &NSXMLParser, comment: &NSString);
 
         #[cfg(feature = "NSData")]
         #[optional]
-        #[method(parser:foundCDATA:)]
+        #[unsafe(method(parser:foundCDATA:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_foundCDATA(&self, parser: &NSXMLParser, cdata_block: &NSData);
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
         #[optional]
-        #[method(parser:resolveExternalEntityName:systemID:)]
+        #[unsafe(method(parser:resolveExternalEntityName:systemID:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_resolveExternalEntityName_systemID(
             &self,
@@ -365,13 +365,13 @@ extern_protocol!(
 
         #[cfg(feature = "NSError")]
         #[optional]
-        #[method(parser:parseErrorOccurred:)]
+        #[unsafe(method(parser:parseErrorOccurred:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_parseErrorOccurred(&self, parser: &NSXMLParser, parse_error: &NSError);
 
         #[cfg(feature = "NSError")]
         #[optional]
-        #[method(parser:validationErrorOccurred:)]
+        #[unsafe(method(parser:validationErrorOccurred:))]
         #[unsafe(method_family = none)]
         unsafe fn parser_validationErrorOccurred(
             &self,

@@ -38,7 +38,7 @@ extern_methods!(
         /// Parameter `relyingParty`: the relying party.
         ///
         /// Parameter `signature`: the signature for the assertion challenge.
-        #[method(initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:)]
+        #[unsafe(method(initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUserHandle_relyingParty_signature_clientDataHash_authenticatorData_credentialID(
             this: Allocated<Self>,
@@ -60,7 +60,7 @@ extern_methods!(
         /// Parameter `signature`: The signature for the assertion challenge.
         ///
         /// Parameter `extensionOutput`: The outputs of WebAuthn extensions processed by the credential provider.
-        #[method(initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:extensionOutput:)]
+        #[unsafe(method(initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:extensionOutput:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUserHandle_relyingParty_signature_clientDataHash_authenticatorData_credentialID_extensionOutput(
             this: Allocated<Self>,
@@ -80,7 +80,7 @@ extern_methods!(
         /// Parameter `relyingParty`: the relying party.
         ///
         /// Parameter `signature`: the signature for the assertion challenge.
-        #[method(credentialWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:)]
+        #[unsafe(method(credentialWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn credentialWithUserHandle_relyingParty_signature_clientDataHash_authenticatorData_credentialID(
             user_handle: &NSData,
@@ -92,38 +92,38 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The user handle of this passkey.
-        #[method(userHandle)]
+        #[unsafe(method(userHandle))]
         #[unsafe(method_family = none)]
         pub unsafe fn userHandle(&self) -> Retained<NSData>;
 
         /// The relying party of this credential.
-        #[method(relyingParty)]
+        #[unsafe(method(relyingParty))]
         #[unsafe(method_family = none)]
         pub unsafe fn relyingParty(&self) -> Retained<NSString>;
 
         /// The signature of this credential.
-        #[method(signature)]
+        #[unsafe(method(signature))]
         #[unsafe(method_family = none)]
         pub unsafe fn signature(&self) -> Retained<NSData>;
 
         /// The hash of the client data for this assertion result.
-        #[method(clientDataHash)]
+        #[unsafe(method(clientDataHash))]
         #[unsafe(method_family = none)]
         pub unsafe fn clientDataHash(&self) -> Retained<NSData>;
 
         /// The authenticator data of the application that created this credential.
-        #[method(authenticatorData)]
+        #[unsafe(method(authenticatorData))]
         #[unsafe(method_family = none)]
         pub unsafe fn authenticatorData(&self) -> Retained<NSData>;
 
         /// The raw credential ID for this passkey credential.
-        #[method(credentialID)]
+        #[unsafe(method(credentialID))]
         #[unsafe(method_family = none)]
         pub unsafe fn credentialID(&self) -> Retained<NSData>;
 
         #[cfg(feature = "ASPasskeyAssertionCredentialExtensionOutput")]
         /// The outputs of WebAuthn extensions processed by the credential provider.
-        #[method(extensionOutput)]
+        #[unsafe(method(extensionOutput))]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionOutput(
             &self,
@@ -131,7 +131,7 @@ extern_methods!(
 
         #[cfg(feature = "ASPasskeyAssertionCredentialExtensionOutput")]
         /// Setter for [`extensionOutput`][Self::extensionOutput].
-        #[method(setExtensionOutput:)]
+        #[unsafe(method(setExtensionOutput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtensionOutput(
             &self,
@@ -143,11 +143,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasskeyAssertionCredential {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

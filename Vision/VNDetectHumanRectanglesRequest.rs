@@ -35,18 +35,18 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectHumanRectanglesRequest {
         /// Boolean property to specify whether the human upper body or full body needs to be detected. The default is YES, meaning the request is setup to detect upper body only
-        #[method(upperBodyOnly)]
+        #[unsafe(method(upperBodyOnly))]
         #[unsafe(method_family = none)]
         pub unsafe fn upperBodyOnly(&self) -> bool;
 
         /// Setter for [`upperBodyOnly`][Self::upperBodyOnly].
-        #[method(setUpperBodyOnly:)]
+        #[unsafe(method(setUpperBodyOnly:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpperBodyOnly(&self, upper_body_only: bool);
 
         #[cfg(feature = "VNObservation")]
         /// VNHumanObservation results.
-        #[method(results)]
+        #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNHumanObservation>>>;
     }
@@ -57,7 +57,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectHumanRectanglesRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -66,7 +66,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method(initWithCompletionHandler:)]
+        #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -79,7 +79,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectHumanRectanglesRequest {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

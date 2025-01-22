@@ -64,12 +64,12 @@ extern_methods!(
         /// NOTE: sourceMatrixOrigin and resultMatrixOrigin from MPSMatrixUnaryKernel
         /// can be used to control the starting points in the source and destination
         /// at kernel encode time (see encodeToCommandBuffer).
-        #[method(sourceRows)]
+        #[unsafe(method(sourceRows))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceRows(&self) -> NSUInteger;
 
         /// Setter for [`sourceRows`][Self::sourceRows].
-        #[method(setSourceRows:)]
+        #[unsafe(method(setSourceRows:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceRows(&self, source_rows: NSUInteger);
 
@@ -86,12 +86,12 @@ extern_methods!(
         /// NOTE: sourceMatrixOrigin and resultMatrixOrigin from MPSMatrixUnaryKernel
         /// can be used to control the starting points in the source and destination
         /// at kernel encode time (see encodeToCommandBuffer).
-        #[method(sourceColumns)]
+        #[unsafe(method(sourceColumns))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceColumns(&self) -> NSUInteger;
 
         /// Setter for [`sourceColumns`][Self::sourceColumns].
-        #[method(setSourceColumns:)]
+        #[unsafe(method(setSourceColumns:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceColumns(&self, source_columns: NSUInteger);
 
@@ -102,7 +102,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixSoftMax object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -134,7 +134,7 @@ extern_methods!(
         ///
         /// The datatypes of the matrices inputMatrix and resultMatrix must match and be either
         /// MPSDataTypeFloat32 or MPSDataTypeFloat16.
-        #[method(encodeToCommandBuffer:inputMatrix:resultMatrix:)]
+        #[unsafe(method(encodeToCommandBuffer:inputMatrix:resultMatrix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inputMatrix_resultMatrix(
             &self,
@@ -152,7 +152,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixSoftMax
         ///
         /// Returns: A new MPSMatrixSoftMax object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -172,7 +172,7 @@ extern_methods!(
         /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(copyWithZone:device:)]
+        #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -194,7 +194,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -207,11 +207,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSoftMax {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -273,7 +273,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixSoftMax object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -289,7 +289,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixSoftMax
         ///
         /// Returns: A new MPSMatrixSoftMax object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -311,7 +311,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -324,11 +324,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixLogSoftMax {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -390,12 +390,12 @@ extern_methods!(
         /// NOTE: primarySourceMatrixOrigin, secondarySourceMatrixOrigin and resultMatrixOrigin
         /// from MPSMatrixBinaryKernel can be used to control the starting points in the primary
         /// source, secondary source, and result matrices respectively.
-        #[method(sourceRows)]
+        #[unsafe(method(sourceRows))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceRows(&self) -> NSUInteger;
 
         /// Setter for [`sourceRows`][Self::sourceRows].
-        #[method(setSourceRows:)]
+        #[unsafe(method(setSourceRows:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceRows(&self, source_rows: NSUInteger);
 
@@ -412,12 +412,12 @@ extern_methods!(
         /// NOTE: primarySourceMatrixOrigin, secondarySourceMatrixOrigin and resultMatrixOrigin
         /// from MPSMatrixBinaryKernel can be used to control the starting points in the primary
         /// source, secondary source, and result matrices respectively.
-        #[method(sourceColumns)]
+        #[unsafe(method(sourceColumns))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceColumns(&self) -> NSUInteger;
 
         /// Setter for [`sourceColumns`][Self::sourceColumns].
-        #[method(setSourceColumns:)]
+        #[unsafe(method(setSourceColumns:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceColumns(&self, source_columns: NSUInteger);
 
@@ -428,7 +428,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixSoftMaxGradient object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -453,7 +453,7 @@ extern_methods!(
         /// Parameter `resultMatrix`: The MPSMatrix object to hold the resulting gradient values
         /// with respect to the forward operation's input.  dL_dX in the
         /// class description.
-        #[method(encodeToCommandBuffer:gradientMatrix:forwardOutputMatrix:resultMatrix:)]
+        #[unsafe(method(encodeToCommandBuffer:gradientMatrix:forwardOutputMatrix:resultMatrix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_gradientMatrix_forwardOutputMatrix_resultMatrix(
             &self,
@@ -472,7 +472,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixSoftMaxGradient
         ///
         /// Returns: A new MPSMatrixSoftMaxGradient object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -492,7 +492,7 @@ extern_methods!(
         /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method(copyWithZone:device:)]
+        #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -514,7 +514,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -527,11 +527,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSoftMaxGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -593,7 +593,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixSoftMaxGradient object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -609,7 +609,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixSoftMaxGradient
         ///
         /// Returns: A new MPSMatrixSoftMaxGradient object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -631,7 +631,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -644,11 +644,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixLogSoftMaxGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

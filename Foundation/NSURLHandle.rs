@@ -102,7 +102,7 @@ extern_protocol!(
     pub unsafe trait NSURLHandleClient {
         #[cfg(feature = "NSData")]
         #[deprecated]
-        #[method(URLHandle:resourceDataDidBecomeAvailable:)]
+        #[unsafe(method(URLHandle:resourceDataDidBecomeAvailable:))]
         #[unsafe(method_family = none)]
         unsafe fn URLHandle_resourceDataDidBecomeAvailable(
             &self,
@@ -111,23 +111,23 @@ extern_protocol!(
         );
 
         #[deprecated]
-        #[method(URLHandleResourceDidBeginLoading:)]
+        #[unsafe(method(URLHandleResourceDidBeginLoading:))]
         #[unsafe(method_family = none)]
         unsafe fn URLHandleResourceDidBeginLoading(&self, sender: Option<&NSURLHandle>);
 
         #[deprecated]
-        #[method(URLHandleResourceDidFinishLoading:)]
+        #[unsafe(method(URLHandleResourceDidFinishLoading:))]
         #[unsafe(method_family = none)]
         unsafe fn URLHandleResourceDidFinishLoading(&self, sender: Option<&NSURLHandle>);
 
         #[deprecated]
-        #[method(URLHandleResourceDidCancelLoading:)]
+        #[unsafe(method(URLHandleResourceDidCancelLoading:))]
         #[unsafe(method_family = none)]
         unsafe fn URLHandleResourceDidCancelLoading(&self, sender: Option<&NSURLHandle>);
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method(URLHandle:resourceDidFailLoadingWithReason:)]
+        #[unsafe(method(URLHandle:resourceDidFailLoadingWithReason:))]
         #[unsafe(method_family = none)]
         unsafe fn URLHandle_resourceDidFailLoadingWithReason(
             &self,
@@ -149,96 +149,96 @@ unsafe impl NSObjectProtocol for NSURLHandle {}
 extern_methods!(
     unsafe impl NSURLHandle {
         #[deprecated]
-        #[method(registerURLHandleClass:)]
+        #[unsafe(method(registerURLHandleClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerURLHandleClass(an_url_handle_subclass: Option<&AnyClass>);
 
         #[cfg(feature = "NSURL")]
         #[deprecated]
-        #[method(URLHandleClassForURL:)]
+        #[unsafe(method(URLHandleClassForURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLHandleClassForURL(an_url: Option<&NSURL>) -> Option<&'static AnyClass>;
 
         #[deprecated]
-        #[method(status)]
+        #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> NSURLHandleStatus;
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method(failureReason)]
+        #[unsafe(method(failureReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn failureReason(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
-        #[method(addClient:)]
+        #[unsafe(method(addClient:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addClient(&self, client: Option<&ProtocolObject<dyn NSURLHandleClient>>);
 
         #[deprecated]
-        #[method(removeClient:)]
+        #[unsafe(method(removeClient:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeClient(&self, client: Option<&ProtocolObject<dyn NSURLHandleClient>>);
 
         #[deprecated]
-        #[method(loadInBackground)]
+        #[unsafe(method(loadInBackground))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadInBackground(&self);
 
         #[deprecated]
-        #[method(cancelLoadInBackground)]
+        #[unsafe(method(cancelLoadInBackground))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelLoadInBackground(&self);
 
         #[cfg(feature = "NSData")]
         #[deprecated]
-        #[method(resourceData)]
+        #[unsafe(method(resourceData))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceData(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSData")]
         #[deprecated]
-        #[method(availableResourceData)]
+        #[unsafe(method(availableResourceData))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableResourceData(&self) -> Option<Retained<NSData>>;
 
         #[deprecated]
-        #[method(expectedResourceDataSize)]
+        #[unsafe(method(expectedResourceDataSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectedResourceDataSize(&self) -> c_longlong;
 
         #[deprecated]
-        #[method(flushCachedData)]
+        #[unsafe(method(flushCachedData))]
         #[unsafe(method_family = none)]
         pub unsafe fn flushCachedData(&self);
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method(backgroundLoadDidFailWithReason:)]
+        #[unsafe(method(backgroundLoadDidFailWithReason:))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundLoadDidFailWithReason(&self, reason: Option<&NSString>);
 
         #[cfg(feature = "NSData")]
         #[deprecated]
-        #[method(didLoadBytes:loadComplete:)]
+        #[unsafe(method(didLoadBytes:loadComplete:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didLoadBytes_loadComplete(&self, new_bytes: Option<&NSData>, yorn: bool);
 
         #[cfg(feature = "NSURL")]
         #[deprecated]
-        #[method(canInitWithURL:)]
+        #[unsafe(method(canInitWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canInitWithURL(an_url: Option<&NSURL>) -> bool;
 
         #[cfg(feature = "NSURL")]
         #[deprecated]
-        #[method(cachedHandleForURL:)]
+        #[unsafe(method(cachedHandleForURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cachedHandleForURL(an_url: Option<&NSURL>) -> Option<Retained<NSURLHandle>>;
 
         #[cfg(feature = "NSURL")]
         #[deprecated]
-        #[method(initWithURL:cached:)]
+        #[unsafe(method(initWithURL:cached:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_cached(
             this: Allocated<Self>,
@@ -248,7 +248,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method(propertyForKey:)]
+        #[unsafe(method(propertyForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyForKey(
             &self,
@@ -257,7 +257,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method(propertyForKeyIfAvailable:)]
+        #[unsafe(method(propertyForKeyIfAvailable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyForKeyIfAvailable(
             &self,
@@ -266,7 +266,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method(writeProperty:forKey:)]
+        #[unsafe(method(writeProperty:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeProperty_forKey(
             &self,
@@ -276,23 +276,23 @@ extern_methods!(
 
         #[cfg(feature = "NSData")]
         #[deprecated]
-        #[method(writeData:)]
+        #[unsafe(method(writeData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeData(&self, data: Option<&NSData>) -> bool;
 
         #[cfg(feature = "NSData")]
         #[deprecated]
-        #[method(loadInForeground)]
+        #[unsafe(method(loadInForeground))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadInForeground(&self) -> Option<Retained<NSData>>;
 
         #[deprecated]
-        #[method(beginLoadInBackground)]
+        #[unsafe(method(beginLoadInBackground))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginLoadInBackground(&self);
 
         #[deprecated]
-        #[method(endLoadInBackground)]
+        #[unsafe(method(endLoadInBackground))]
         #[unsafe(method_family = none)]
         pub unsafe fn endLoadInBackground(&self);
     }
@@ -301,11 +301,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLHandle {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -23,7 +23,7 @@ extern_methods!(
         ///
         /// - Returns: Returns the shared instance of the AdSupport identifier manager
         /// class.
-        #[method(sharedManager)]
+        #[unsafe(method(sharedManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedManager() -> Retained<ASIdentifierManager>;
 
@@ -97,7 +97,7 @@ extern_methods!(
         /// For more information about asking users for permission to track, see [User
         /// Privacy and Data
         /// Use](https://developer.apple.com/app-store/user-privacy-and-data-use/).
-        #[method(advertisingIdentifier)]
+        #[unsafe(method(advertisingIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn advertisingIdentifier(&self) -> Retained<NSUUID>;
 
@@ -110,7 +110,7 @@ extern_methods!(
         /// ://com.apple.documentation/documentation/apptrackingtransparency>
         /// framework.
         #[deprecated = "This has been replaced by functionality in AppTrackingTransparency's ATTrackingManager class."]
-        #[method(isAdvertisingTrackingEnabled)]
+        #[unsafe(method(isAdvertisingTrackingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAdvertisingTrackingEnabled(&self) -> bool;
     }
@@ -119,11 +119,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASIdentifierManager {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -92,11 +92,11 @@ unsafe impl NSObjectProtocol for AVOutputSettingsAssistant {}
 
 extern_methods!(
     unsafe impl AVOutputSettingsAssistant {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -107,7 +107,7 @@ extern_methods!(
         /// Each preset in the returned list can be passed in to +outputSettingsAssistantWithPreset: to create a new instance of AVOutputSettingsAssistant.
         ///
         /// On iOS, the returned array may be different between different device models.
-        #[method(availableOutputSettingsPresets)]
+        #[unsafe(method(availableOutputSettingsPresets))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableOutputSettingsPresets() -> Retained<NSArray<AVOutputSettingsPreset>>;
 
@@ -120,7 +120,7 @@ extern_methods!(
         /// The properties of the returned object can be used as a guide for creating and configuring an AVAssetWriter object and one or more AVAssetWriterInput objects.  If all the suggested properties are respected in creating the AVAssetWriter, the resulting media file will conform to the criteria implied by the preset.
         ///
         /// Use +availableOutputSettingsPresets to get a list of presets identifiers that can be used with this method.
-        #[method(outputSettingsAssistantWithPreset:)]
+        #[unsafe(method(outputSettingsAssistantWithPreset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputSettingsAssistantWithPreset(
             preset_identifier: &AVOutputSettingsPreset,
@@ -129,14 +129,14 @@ extern_methods!(
         /// A dictionary of key/value pairs, as specified in AVAudioSettings.h, to be used when e.g. creating an instance of AVAssetWriterInput
         ///
         /// The value of this property may change as a result of setting a new value for the sourceAudioFormat property.
-        #[method(audioSettings)]
+        #[unsafe(method(audioSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioSettings(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// A dictionary of key/value pairs, as specified in AVVideoSettings.h, to be used when e.g. creating an instance of AVAssetWriterInput
         ///
         /// The value of this property may change as a result of setting a new value for the sourceVideoFormat property.
-        #[method(videoSettings)]
+        #[unsafe(method(videoSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoSettings(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
@@ -144,7 +144,7 @@ extern_methods!(
         /// A UTI indicating the type of file to be written, to be used when e.g. creating an instance of AVAssetWriter
         ///
         /// Use [[UTType typeWithIdentifier:outputFileType] preferredFilenameExtension] to get a suitable file extension for a given file type.
-        #[method(outputFileType)]
+        #[unsafe(method(outputFileType))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputFileType(&self) -> Retained<AVFileType>;
     }
@@ -159,13 +159,13 @@ extern_methods!(
         /// Setting this property will allow the receiver to make a more informed recommendation for the audio settings that should be used.  After setting this property, you should re-query the audioSettings property to get the new recommendation.  The default value is NULL, which means that the receiver does not know anything about the format of your audio data.
         ///
         /// If you set a non-NULL value for this property, and are using the receiver to initialize an AVAssetWriterInput, the same format description should be used to initialize the AVAssetWriterInput, along with the dictionary from the audioSettings property.
-        #[method(sourceAudioFormat)]
+        #[unsafe(method(sourceAudioFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceAudioFormat(&self) -> Option<Retained<CMAudioFormatDescription>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`sourceAudioFormat`][Self::sourceAudioFormat].
-        #[method(setSourceAudioFormat:)]
+        #[unsafe(method(setSourceAudioFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceAudioFormat(
             &self,
@@ -178,13 +178,13 @@ extern_methods!(
         /// Setting this property will allow the receiver to make a more informed recommendation for the video settings that should be used.  After setting this property, you should re-query the videoSettings property to get the new recommendation.  The default value is NULL, which means that the receiver does not know anything about the format of your video data.
         ///
         /// If you set a non-NULL value for this property, and are using the receiver to initialize an AVAssetWriterInput, the same format description should be used to initialize the AVAssetWriterInput, along with the dictionary from the videoSettings property.
-        #[method(sourceVideoFormat)]
+        #[unsafe(method(sourceVideoFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceVideoFormat(&self) -> Option<Retained<CMVideoFormatDescription>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`sourceVideoFormat`][Self::sourceVideoFormat].
-        #[method(setSourceVideoFormat:)]
+        #[unsafe(method(setSourceVideoFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceVideoFormat(
             &self,
@@ -199,13 +199,13 @@ extern_methods!(
         /// The default value is 1/30, which means that the receiver is assuming that your source video has an average frame rate of 30fps.
         ///
         /// It is an error to set this property to a value that is not positive or not numeric.  See CMTIME_IS_NUMERIC.
-        #[method(sourceVideoAverageFrameDuration)]
+        #[unsafe(method(sourceVideoAverageFrameDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceVideoAverageFrameDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`sourceVideoAverageFrameDuration`][Self::sourceVideoAverageFrameDuration].
-        #[method(setSourceVideoAverageFrameDuration:)]
+        #[unsafe(method(setSourceVideoAverageFrameDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceVideoAverageFrameDuration(
             &self,
@@ -222,13 +222,13 @@ extern_methods!(
         /// The default value is 1/30, which means that the receiver is assuming that your source video has a maximum frame rate of 30fps.
         ///
         /// It is an error to set this property to a value that is not positive or not numeric.  See CMTIME_IS_NUMERIC.
-        #[method(sourceVideoMinFrameDuration)]
+        #[unsafe(method(sourceVideoMinFrameDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceVideoMinFrameDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`sourceVideoMinFrameDuration`][Self::sourceVideoMinFrameDuration].
-        #[method(setSourceVideoMinFrameDuration:)]
+        #[unsafe(method(setSourceVideoMinFrameDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSourceVideoMinFrameDuration(
             &self,

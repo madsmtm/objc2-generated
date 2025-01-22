@@ -19,16 +19,16 @@ unsafe impl NSObjectProtocol for UIDocumentProperties {}
 
 extern_methods!(
     unsafe impl UIDocumentProperties {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// When initializing with a url, UIKit will automatically lookup metadata based on the data at that url.
-        #[method(initWithURL:)]
+        #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
@@ -36,7 +36,7 @@ extern_methods!(
         /// To support drag
         /// &
         /// drop, assign a closure to return an array of drag items corresponding to the represented document.
-        #[method(dragItemsProvider)]
+        #[unsafe(method(dragItemsProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn dragItemsProvider(
             &self,
@@ -46,7 +46,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIDragItem", feature = "UIDragSession", feature = "block2"))]
         /// Setter for [`dragItemsProvider`][Self::dragItemsProvider].
-        #[method(setDragItemsProvider:)]
+        #[unsafe(method(setDragItemsProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDragItemsProvider(
             &self,
@@ -66,7 +66,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// To support sharing, assign a closure to return a UIActivityViewController configured to share the represented document.
-        #[method(activityViewControllerProvider)]
+        #[unsafe(method(activityViewControllerProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn activityViewControllerProvider(
             &self,
@@ -79,7 +79,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Setter for [`activityViewControllerProvider`][Self::activityViewControllerProvider].
-        #[method(setActivityViewControllerProvider:)]
+        #[unsafe(method(setActivityViewControllerProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivityViewControllerProvider(
             &self,
@@ -89,12 +89,12 @@ extern_methods!(
         );
 
         /// If enabled, shows an icon representation of the document in the navigation bar.
-        #[method(wantsIconRepresentation)]
+        #[unsafe(method(wantsIconRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn wantsIconRepresentation(&self) -> bool;
 
         /// Setter for [`wantsIconRepresentation`][Self::wantsIconRepresentation].
-        #[method(setWantsIconRepresentation:)]
+        #[unsafe(method(setWantsIconRepresentation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWantsIconRepresentation(&self, wants_icon_representation: bool);
     }

@@ -60,24 +60,24 @@ unsafe impl NSSecureCoding for UNNotificationCategory {}
 
 extern_methods!(
     unsafe impl UNNotificationCategory {
-        #[method(identifier)]
+        #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UNNotificationAction")]
-        #[method(actions)]
+        #[unsafe(method(actions))]
         #[unsafe(method_family = none)]
         pub unsafe fn actions(&self) -> Retained<NSArray<UNNotificationAction>>;
 
-        #[method(intentIdentifiers)]
+        #[unsafe(method(intentIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn intentIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
-        #[method(options)]
+        #[unsafe(method(options))]
         #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> UNNotificationCategoryOptions;
 
-        #[method(hiddenPreviewsBodyPlaceholder)]
+        #[unsafe(method(hiddenPreviewsBodyPlaceholder))]
         #[unsafe(method_family = none)]
         pub unsafe fn hiddenPreviewsBodyPlaceholder(&self) -> Retained<NSString>;
 
@@ -87,12 +87,12 @@ extern_methods!(
         /// of notifications and the list created by joining the argument in each grouped notification.
         /// For example: "%u new messages from %@".
         /// The arguments list is optional, "%u new messages" is also accepted.
-        #[method(categorySummaryFormat)]
+        #[unsafe(method(categorySummaryFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn categorySummaryFormat(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UNNotificationAction")]
-        #[method(categoryWithIdentifier:actions:intentIdentifiers:options:)]
+        #[unsafe(method(categoryWithIdentifier:actions:intentIdentifiers:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn categoryWithIdentifier_actions_intentIdentifiers_options(
             identifier: &NSString,
@@ -102,7 +102,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UNNotificationAction")]
-        #[method(categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:options:)]
+        #[unsafe(method(categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn categoryWithIdentifier_actions_intentIdentifiers_hiddenPreviewsBodyPlaceholder_options(
             identifier: &NSString,
@@ -113,7 +113,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UNNotificationAction")]
-        #[method(categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:categorySummaryFormat:options:)]
+        #[unsafe(method(categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:categorySummaryFormat:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn categoryWithIdentifier_actions_intentIdentifiers_hiddenPreviewsBodyPlaceholder_categorySummaryFormat_options(
             identifier: &NSString,
@@ -124,7 +124,7 @@ extern_methods!(
             options: UNNotificationCategoryOptions,
         ) -> Retained<Self>;
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -133,7 +133,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationCategory {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -35,42 +35,42 @@ extern_methods!(
         /// Data layout of loss data. See MPSImage.h for more information.
         ///
         /// This parameter specifies the layout of loss data.
-        #[method(layout)]
+        #[unsafe(method(layout))]
         #[unsafe(method_family = none)]
         pub unsafe fn layout(&self) -> MPSDataLayout;
 
         /// Size of loss data: (width, height, feature channels}.
         ///
         /// This parameter specifies the size of loss data.
-        #[method(size)]
+        #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> MTLSize;
 
         /// Row bytes of loss data.
         ///
         /// This parameter specifies the row bytes of loss data.
-        #[method(bytesPerRow)]
+        #[unsafe(method(bytesPerRow))]
         #[unsafe(method_family = none)]
         pub unsafe fn bytesPerRow(&self) -> NSUInteger;
 
         /// Setter for [`bytesPerRow`][Self::bytesPerRow].
-        #[method(setBytesPerRow:)]
+        #[unsafe(method(setBytesPerRow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBytesPerRow(&self, bytes_per_row: NSUInteger);
 
         /// Slice bytes of loss data.
         ///
         /// This parameter specifies the slice bytes of loss data.
-        #[method(bytesPerImage)]
+        #[unsafe(method(bytesPerImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn bytesPerImage(&self) -> NSUInteger;
 
         /// Setter for [`bytesPerImage`][Self::bytesPerImage].
-        #[method(setBytesPerImage:)]
+        #[unsafe(method(setBytesPerImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBytesPerImage(&self, bytes_per_image: NSUInteger);
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -87,7 +87,7 @@ extern_methods!(
         /// Parameter `size`: The size of loss data.
         ///
         /// Returns: A valid MPSCNNLossDataDescriptor object or nil, if failure.
-        #[method(cnnLossDataDescriptorWithData:layout:size:)]
+        #[unsafe(method(cnnLossDataDescriptorWithData:layout:size:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cnnLossDataDescriptorWithData_layout_size(
             data: &NSData,
@@ -100,7 +100,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNLossDataDescriptor {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -128,7 +128,7 @@ extern_methods!(
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSCNNLossLabels {
         /// Use one of the interfaces below instead.
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -149,7 +149,7 @@ extern_methods!(
         /// - Size of labels data: (width, height, feature channels}.
         /// - Optionally, row bytes of labels data.
         /// - Optionally, slice bytes of labels data.
-        #[method(initWithDevice:labelsDescriptor:)]
+        #[unsafe(method(initWithDevice:labelsDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_labelsDescriptor(
             this: Allocated<Self>,
@@ -185,7 +185,7 @@ extern_methods!(
         /// - Optionally, slice bytes of weights data.
         /// This parameter is optional. If you are using a single weight, please use the
         /// weight property of the MPSCNNLossDescriptor object.
-        #[method(initWithDevice:lossImageSize:labelsDescriptor:weightsDescriptor:)]
+        #[unsafe(method(initWithDevice:lossImageSize:labelsDescriptor:weightsDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_lossImageSize_labelsDescriptor_weightsDescriptor(
             this: Allocated<Self>,
@@ -215,7 +215,7 @@ extern_methods!(
         /// Parameter `weightsImage`: Describes the weights data.
         /// This parameter is optional. If you are using a single weight, please use the
         /// weight property of the MPSCNNLossDescriptor object.
-        #[method(initWithDevice:lossImageSize:labelsImage:weightsImage:)]
+        #[unsafe(method(initWithDevice:lossImageSize:labelsImage:weightsImage:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_lossImageSize_labelsImage_weightsImage(
             this: Allocated<Self>,
@@ -235,7 +235,7 @@ extern_methods!(
         /// In order to guarantee that the image is correctly synchronized for CPU side access,
         /// it is the application's responsibility to call the [gradientState synchronizeOnCommandBuffer:]
         /// method before accessing the data in the image.
-        #[method(lossImage)]
+        #[unsafe(method(lossImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn lossImage(&self) -> Retained<MPSImage>;
 
@@ -248,7 +248,7 @@ extern_methods!(
         /// In order to guarantee that the image is correctly synchronized for CPU side access,
         /// it is the application's responsibility to call the [gradientState synchronizeOnCommandBuffer:]
         /// method before accessing the data in the image.
-        #[method(labelsImage)]
+        #[unsafe(method(labelsImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn labelsImage(&self) -> Retained<MPSImage>;
 
@@ -261,7 +261,7 @@ extern_methods!(
         /// In order to guarantee that the image is correctly synchronized for CPU side access,
         /// it is the application's responsibility to call the [gradientState synchronizeOnCommandBuffer:]
         /// method before accessing the data in the image.
-        #[method(weightsImage)]
+        #[unsafe(method(weightsImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn weightsImage(&self) -> Retained<MPSImage>;
     }
@@ -276,7 +276,7 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `bufferSize`: The size of the buffer in bytes
-        #[method(temporaryStateWithCommandBuffer:bufferSize:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:bufferSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -288,7 +288,7 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `descriptor`: A descriptor for the new temporary texture
-        #[method(temporaryStateWithCommandBuffer:textureDescriptor:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:textureDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -298,13 +298,13 @@ extern_methods!(
         /// Create a new autoreleased temporary state object without underlying resource
         ///
         /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
-        #[method(temporaryStateWithCommandBuffer:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:bufferSize:)]
+        #[unsafe(method(initWithDevice:bufferSize:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_bufferSize(
             this: Allocated<Self>,
@@ -312,7 +312,7 @@ extern_methods!(
             buffer_size: usize,
         ) -> Retained<Self>;
 
-        #[method(initWithDevice:textureDescriptor:)]
+        #[unsafe(method(initWithDevice:textureDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_textureDescriptor(
             this: Allocated<Self>,
@@ -323,7 +323,7 @@ extern_methods!(
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
-        #[method(initWithResource:)]
+        #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
@@ -336,7 +336,7 @@ extern_methods!(
         /// This occurs when -resource or -resourceAtIndex: is called.
         ///
         /// Parameter `resourceList`: The list of resources to create.
-        #[method(initWithDevice:resourceList:)]
+        #[unsafe(method(initWithDevice:resourceList:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
@@ -347,7 +347,7 @@ extern_methods!(
         /// Initialize a temporary state to hold a number of textures and buffers
         ///
         /// The textures occur first in sequence
-        #[method(temporaryStateWithCommandBuffer:resourceList:)]
+        #[unsafe(method(temporaryStateWithCommandBuffer:resourceList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -360,7 +360,7 @@ extern_methods!(
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
-        #[method(initWithResources:)]
+        #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
@@ -373,7 +373,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSCNNLossLabels {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -410,13 +410,13 @@ extern_methods!(
         /// The type of a loss filter.
         ///
         /// This parameter specifies the type of a loss filter.
-        #[method(lossType)]
+        #[unsafe(method(lossType))]
         #[unsafe(method_family = none)]
         pub unsafe fn lossType(&self) -> MPSCNNLossType;
 
         #[cfg(feature = "MPSCNNTypes")]
         /// Setter for [`lossType`][Self::lossType].
-        #[method(setLossType:)]
+        #[unsafe(method(setLossType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLossType(&self, loss_type: MPSCNNLossType);
 
@@ -425,13 +425,13 @@ extern_methods!(
         ///
         /// This parameter specifies the type of a reduction operation
         /// performed in the loss filter.
-        #[method(reductionType)]
+        #[unsafe(method(reductionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn reductionType(&self) -> MPSCNNReductionType;
 
         #[cfg(feature = "MPSCNNTypes")]
         /// Setter for [`reductionType`][Self::reductionType].
-        #[method(setReductionType:)]
+        #[unsafe(method(setReductionType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReductionType(&self, reduction_type: MPSCNNReductionType);
 
@@ -446,12 +446,12 @@ extern_methods!(
         /// the final forward loss value is computed by first summing over the components and then by
         /// dividing the result with: number of feature channels * width * height * number of images in the batch.
         /// The default value is NO.
-        #[method(reduceAcrossBatch)]
+        #[unsafe(method(reduceAcrossBatch))]
         #[unsafe(method_family = none)]
         pub unsafe fn reduceAcrossBatch(&self) -> bool;
 
         /// Setter for [`reduceAcrossBatch`][Self::reduceAcrossBatch].
-        #[method(setReduceAcrossBatch:)]
+        #[unsafe(method(setReduceAcrossBatch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReduceAcrossBatch(&self, reduce_across_batch: bool);
 
@@ -459,12 +459,12 @@ extern_methods!(
         ///
         /// Each element of a result is multiplied by the weight value.
         /// The default value is 1.0f.
-        #[method(weight)]
+        #[unsafe(method(weight))]
         #[unsafe(method_family = none)]
         pub unsafe fn weight(&self) -> c_float;
 
         /// Setter for [`weight`][Self::weight].
-        #[method(setWeight:)]
+        #[unsafe(method(setWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWeight(&self, weight: c_float);
 
@@ -478,12 +478,12 @@ extern_methods!(
         ///
         /// MPSCNNLossFunctionTypeSigmoidCrossEntropy: given labels (ground truth), it is applied in the following way:
         /// labels = labelSmoothing > 0 ? labels * (1 - labelSmoothing) + 0.5 * labelSmoothing : labels
-        #[method(labelSmoothing)]
+        #[unsafe(method(labelSmoothing))]
         #[unsafe(method_family = none)]
         pub unsafe fn labelSmoothing(&self) -> c_float;
 
         /// Setter for [`labelSmoothing`][Self::labelSmoothing].
-        #[method(setLabelSmoothing:)]
+        #[unsafe(method(setLabelSmoothing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabelSmoothing(&self, label_smoothing: c_float);
 
@@ -494,12 +494,12 @@ extern_methods!(
         ///
         /// Given labels (ground truth), it is applied in the following way:
         /// labels = labelSmoothing > 0 ? labels * (1 - labelSmoothing) + labelSmoothing / numberOfClasses : labels
-        #[method(numberOfClasses)]
+        #[unsafe(method(numberOfClasses))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfClasses(&self) -> NSUInteger;
 
         /// Setter for [`numberOfClasses`][Self::numberOfClasses].
-        #[method(setNumberOfClasses:)]
+        #[unsafe(method(setNumberOfClasses:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfClasses(&self, number_of_classes: NSUInteger);
 
@@ -510,12 +510,12 @@ extern_methods!(
         ///
         /// Given predictions and labels (ground truth), it is applied in the following way:
         /// -(labels * log(predictions + epsilon)) - ((1 - labels) * log(1 - predictions + epsilon))
-        #[method(epsilon)]
+        #[unsafe(method(epsilon))]
         #[unsafe(method_family = none)]
         pub unsafe fn epsilon(&self) -> c_float;
 
         /// Setter for [`epsilon`][Self::epsilon].
-        #[method(setEpsilon:)]
+        #[unsafe(method(setEpsilon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEpsilon(&self, epsilon: c_float);
 
@@ -529,16 +529,16 @@ extern_methods!(
         /// <
         /// = delta, loss = 0.5f * predictions^2
         /// if (|predictions - labels| >  delta, loss = 0.5 * delta^2 + delta * (|predictions - labels| - delta)
-        #[method(delta)]
+        #[unsafe(method(delta))]
         #[unsafe(method_family = none)]
         pub unsafe fn delta(&self) -> c_float;
 
         /// Setter for [`delta`][Self::delta].
-        #[method(setDelta:)]
+        #[unsafe(method(setDelta:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -551,7 +551,7 @@ extern_methods!(
         /// This argument is ignored in the MPSNNLossGradient filter.
         ///
         /// Returns: A valid MPSCNNLossDescriptor object or nil, if failure.
-        #[method(cnnLossDescriptorWithType:reductionType:)]
+        #[unsafe(method(cnnLossDescriptorWithType:reductionType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cnnLossDescriptorWithType_reductionType(
             loss_type: MPSCNNLossType,
@@ -563,7 +563,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNLossDescriptor {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -787,40 +787,40 @@ extern_methods!(
     unsafe impl MPSCNNLoss {
         #[cfg(feature = "MPSCNNTypes")]
         /// See MPSCNNLossDescriptor for information about the following properties.
-        #[method(lossType)]
+        #[unsafe(method(lossType))]
         #[unsafe(method_family = none)]
         pub unsafe fn lossType(&self) -> MPSCNNLossType;
 
         #[cfg(feature = "MPSCNNTypes")]
-        #[method(reductionType)]
+        #[unsafe(method(reductionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn reductionType(&self) -> MPSCNNReductionType;
 
-        #[method(weight)]
+        #[unsafe(method(weight))]
         #[unsafe(method_family = none)]
         pub unsafe fn weight(&self) -> c_float;
 
-        #[method(labelSmoothing)]
+        #[unsafe(method(labelSmoothing))]
         #[unsafe(method_family = none)]
         pub unsafe fn labelSmoothing(&self) -> c_float;
 
-        #[method(numberOfClasses)]
+        #[unsafe(method(numberOfClasses))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfClasses(&self) -> NSUInteger;
 
-        #[method(epsilon)]
+        #[unsafe(method(epsilon))]
         #[unsafe(method_family = none)]
         pub unsafe fn epsilon(&self) -> c_float;
 
-        #[method(delta)]
+        #[unsafe(method(delta))]
         #[unsafe(method_family = none)]
         pub unsafe fn delta(&self) -> c_float;
 
-        #[method(reduceAcrossBatch)]
+        #[unsafe(method(reduceAcrossBatch))]
         #[unsafe(method_family = none)]
         pub unsafe fn reduceAcrossBatch(&self) -> bool;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -834,7 +834,7 @@ extern_methods!(
         /// Parameter `lossDescriptor`: The loss descriptor.
         ///
         /// Returns: A valid MPSCNNLoss object or nil, if failure.
-        #[method(initWithDevice:lossDescriptor:)]
+        #[unsafe(method(initWithDevice:lossDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_lossDescriptor(
             this: Allocated<Self>,
@@ -844,7 +844,7 @@ extern_methods!(
 
         /// <NSSecureCoding
         /// > support
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -869,7 +869,7 @@ extern_methods!(
         /// Parameter `labels`: The object containing the target data (labels) and optionally, weights for the labels.
         ///
         /// Parameter `destinationImage`: The MPSImage into which to write the gradient result.
-        #[method(encodeToCommandBuffer:sourceImage:labels:destinationImage:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceImage:labels:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_labels_destinationImage(
             &self,
@@ -893,7 +893,7 @@ extern_methods!(
         /// Parameter `labels`: The object containing the target data (labels) and optionally, weights for the labels.
         ///
         /// Returns: The MPSImage containing the gradient result.
-        #[method(encodeToCommandBuffer:sourceImage:labels:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceImage:labels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_labels(
             &self,
@@ -903,7 +903,7 @@ extern_methods!(
         ) -> Retained<MPSImage>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[method(encodeBatchToCommandBuffer:sourceImages:labels:destinationImages:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:labels:destinationImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_labels_destinationImages(
             &self,
@@ -914,7 +914,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[method(encodeBatchToCommandBuffer:sourceImages:labels:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:labels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_labels(
             &self,
@@ -937,7 +937,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -950,11 +950,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNLoss {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1018,36 +1018,36 @@ extern_methods!(
         /// The type of a loss filter.
         ///
         /// This parameter specifies the type of a loss filter.
-        #[method(XYLossDescriptor)]
+        #[unsafe(method(XYLossDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn XYLossDescriptor(&self) -> Retained<MPSCNNLossDescriptor>;
 
         /// Setter for [`XYLossDescriptor`][Self::XYLossDescriptor].
-        #[method(setXYLossDescriptor:)]
+        #[unsafe(method(setXYLossDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setXYLossDescriptor(&self, xy_loss_descriptor: &MPSCNNLossDescriptor);
 
         /// The type of a loss filter.
         ///
         /// This parameter specifies the type of a loss filter.
-        #[method(WHLossDescriptor)]
+        #[unsafe(method(WHLossDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn WHLossDescriptor(&self) -> Retained<MPSCNNLossDescriptor>;
 
         /// Setter for [`WHLossDescriptor`][Self::WHLossDescriptor].
-        #[method(setWHLossDescriptor:)]
+        #[unsafe(method(setWHLossDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWHLossDescriptor(&self, wh_loss_descriptor: &MPSCNNLossDescriptor);
 
         /// The type of a loss filter.
         ///
         /// This parameter specifies the type of a loss filter.
-        #[method(confidenceLossDescriptor)]
+        #[unsafe(method(confidenceLossDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn confidenceLossDescriptor(&self) -> Retained<MPSCNNLossDescriptor>;
 
         /// Setter for [`confidenceLossDescriptor`][Self::confidenceLossDescriptor].
-        #[method(setConfidenceLossDescriptor:)]
+        #[unsafe(method(setConfidenceLossDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfidenceLossDescriptor(
             &self,
@@ -1057,12 +1057,12 @@ extern_methods!(
         /// The type of a loss filter.
         ///
         /// This parameter specifies the type of a loss filter.
-        #[method(classesLossDescriptor)]
+        #[unsafe(method(classesLossDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn classesLossDescriptor(&self) -> Retained<MPSCNNLossDescriptor>;
 
         /// Setter for [`classesLossDescriptor`][Self::classesLossDescriptor].
-        #[method(setClassesLossDescriptor:)]
+        #[unsafe(method(setClassesLossDescriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClassesLossDescriptor(
             &self,
@@ -1071,13 +1071,13 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNTypes")]
         /// ReductionType shared accross all losses (so they may generate same sized output)
-        #[method(reductionType)]
+        #[unsafe(method(reductionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn reductionType(&self) -> MPSCNNReductionType;
 
         #[cfg(feature = "MPSCNNTypes")]
         /// Setter for [`reductionType`][Self::reductionType].
-        #[method(setReductionType:)]
+        #[unsafe(method(setReductionType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReductionType(&self, reduction_type: MPSCNNReductionType);
 
@@ -1092,105 +1092,105 @@ extern_methods!(
         /// the final forward loss value is computed by first summing over the components and then by
         /// dividing the result with: number of feature channels * width * height * number of images in the batch.
         /// The default value is NO.
-        #[method(reduceAcrossBatch)]
+        #[unsafe(method(reduceAcrossBatch))]
         #[unsafe(method_family = none)]
         pub unsafe fn reduceAcrossBatch(&self) -> bool;
 
         /// Setter for [`reduceAcrossBatch`][Self::reduceAcrossBatch].
-        #[method(setReduceAcrossBatch:)]
+        #[unsafe(method(setReduceAcrossBatch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReduceAcrossBatch(&self, reduce_across_batch: bool);
 
         /// Rescore pertains to multiplying the confidence groundTruth with IOU (intersection over union)
         /// of predicted bounding box and the groundTruth boundingBox. Default is YES
-        #[method(rescore)]
+        #[unsafe(method(rescore))]
         #[unsafe(method_family = none)]
         pub unsafe fn rescore(&self) -> bool;
 
         /// Setter for [`rescore`][Self::rescore].
-        #[method(setRescore:)]
+        #[unsafe(method(setRescore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRescore(&self, rescore: bool);
 
         /// scale factor for XY loss and loss gradient default is 10.0
-        #[method(scaleXY)]
+        #[unsafe(method(scaleXY))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleXY(&self) -> c_float;
 
         /// Setter for [`scaleXY`][Self::scaleXY].
-        #[method(setScaleXY:)]
+        #[unsafe(method(setScaleXY:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScaleXY(&self, scale_xy: c_float);
 
         /// scale factor for WH loss and loss gradient default is 10.0
-        #[method(scaleWH)]
+        #[unsafe(method(scaleWH))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleWH(&self) -> c_float;
 
         /// Setter for [`scaleWH`][Self::scaleWH].
-        #[method(setScaleWH:)]
+        #[unsafe(method(setScaleWH:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScaleWH(&self, scale_wh: c_float);
 
         /// scale factor for no object confidence loss and loss gradient default is 5.0
-        #[method(scaleNoObject)]
+        #[unsafe(method(scaleNoObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleNoObject(&self) -> c_float;
 
         /// Setter for [`scaleNoObject`][Self::scaleNoObject].
-        #[method(setScaleNoObject:)]
+        #[unsafe(method(setScaleNoObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScaleNoObject(&self, scale_no_object: c_float);
 
         /// scale factor for no object confidence loss and loss gradient default is 100.0
-        #[method(scaleObject)]
+        #[unsafe(method(scaleObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleObject(&self) -> c_float;
 
         /// Setter for [`scaleObject`][Self::scaleObject].
-        #[method(setScaleObject:)]
+        #[unsafe(method(setScaleObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScaleObject(&self, scale_object: c_float);
 
         /// scale factor for no object classes loss and loss gradient default is 2.0
-        #[method(scaleClass)]
+        #[unsafe(method(scaleClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleClass(&self) -> c_float;
 
         /// Setter for [`scaleClass`][Self::scaleClass].
-        #[method(setScaleClass:)]
+        #[unsafe(method(setScaleClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScaleClass(&self, scale_class: c_float);
 
         /// If the prediction IOU with groundTruth is higher than this
         /// value we consider it a confident object presence, default is 0.7
-        #[method(minIOUForObjectPresence)]
+        #[unsafe(method(minIOUForObjectPresence))]
         #[unsafe(method_family = none)]
         pub unsafe fn minIOUForObjectPresence(&self) -> c_float;
 
         /// Setter for [`minIOUForObjectPresence`][Self::minIOUForObjectPresence].
-        #[method(setMinIOUForObjectPresence:)]
+        #[unsafe(method(setMinIOUForObjectPresence:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinIOUForObjectPresence(&self, min_iou_for_object_presence: c_float);
 
         /// If the prediction IOU with groundTruth is lower than this
         /// value we consider it a confident object absence, default is 0.3
-        #[method(maxIOUForObjectAbsence)]
+        #[unsafe(method(maxIOUForObjectAbsence))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxIOUForObjectAbsence(&self) -> c_float;
 
         /// Setter for [`maxIOUForObjectAbsence`][Self::maxIOUForObjectAbsence].
-        #[method(setMaxIOUForObjectAbsence:)]
+        #[unsafe(method(setMaxIOUForObjectAbsence:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxIOUForObjectAbsence(&self, max_iou_for_object_absence: c_float);
 
         /// number of anchor boxes used to detect object per grid cell
-        #[method(numberOfAnchorBoxes)]
+        #[unsafe(method(numberOfAnchorBoxes))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfAnchorBoxes(&self) -> NSUInteger;
 
         /// Setter for [`numberOfAnchorBoxes`][Self::numberOfAnchorBoxes].
-        #[method(setNumberOfAnchorBoxes:)]
+        #[unsafe(method(setNumberOfAnchorBoxes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfAnchorBoxes(&self, number_of_anchor_boxes: NSUInteger);
 
@@ -1212,16 +1212,16 @@ extern_methods!(
         ///               };
         ///               NSData* labelsInputData = [NSData dataWithBytes: gAnchorBoxes length: MAX_NUM_ANCHOR_BOXES * sizeof(anchorBox)];
         /// ```
-        #[method(anchorBoxes)]
+        #[unsafe(method(anchorBoxes))]
         #[unsafe(method_family = none)]
         pub unsafe fn anchorBoxes(&self) -> Retained<NSData>;
 
         /// Setter for [`anchorBoxes`][Self::anchorBoxes].
-        #[method(setAnchorBoxes:)]
+        #[unsafe(method(setAnchorBoxes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnchorBoxes(&self, anchor_boxes: &NSData);
 
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -1241,7 +1241,7 @@ extern_methods!(
         /// Parameter `anchorBoxes`: This is an NSData which has an array of anchorBoxes defined as a struct{ float width; float height; };
         ///
         /// Returns: A valid MPSCNNYOLOLossDescriptor object or nil, if failure.
-        #[method(cnnLossDescriptorWithXYLossType:WHLossType:confidenceLossType:classesLossType:reductionType:anchorBoxes:numberOfAnchorBoxes:)]
+        #[unsafe(method(cnnLossDescriptorWithXYLossType:WHLossType:confidenceLossType:classesLossType:reductionType:anchorBoxes:numberOfAnchorBoxes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cnnLossDescriptorWithXYLossType_WHLossType_confidenceLossType_classesLossType_reductionType_anchorBoxes_numberOfAnchorBoxes(
             xy_loss_type: MPSCNNLossType,
@@ -1258,7 +1258,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNYOLOLossDescriptor {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1293,72 +1293,72 @@ extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNYOLOLoss {
         /// loss filter for prediction of bounding box position
-        #[method(lossXY)]
+        #[unsafe(method(lossXY))]
         #[unsafe(method_family = none)]
         pub unsafe fn lossXY(&self) -> Retained<MPSCNNLoss>;
 
         /// loss filter for prediction of bounding box size
-        #[method(lossWH)]
+        #[unsafe(method(lossWH))]
         #[unsafe(method_family = none)]
         pub unsafe fn lossWH(&self) -> Retained<MPSCNNLoss>;
 
         /// loss filter for prediction of bounding box probability of presence of object
-        #[method(lossConfidence)]
+        #[unsafe(method(lossConfidence))]
         #[unsafe(method_family = none)]
         pub unsafe fn lossConfidence(&self) -> Retained<MPSCNNLoss>;
 
         /// loss filter for prediction of bounding box predicted class of the detected object
-        #[method(lossClasses)]
+        #[unsafe(method(lossClasses))]
         #[unsafe(method_family = none)]
         pub unsafe fn lossClasses(&self) -> Retained<MPSCNNLoss>;
 
         /// See MPSCNNYOLOLossDescriptor for information about the following properties.
-        #[method(scaleXY)]
+        #[unsafe(method(scaleXY))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleXY(&self) -> c_float;
 
-        #[method(scaleWH)]
+        #[unsafe(method(scaleWH))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleWH(&self) -> c_float;
 
-        #[method(scaleNoObject)]
+        #[unsafe(method(scaleNoObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleNoObject(&self) -> c_float;
 
-        #[method(scaleObject)]
+        #[unsafe(method(scaleObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleObject(&self) -> c_float;
 
-        #[method(scaleClass)]
+        #[unsafe(method(scaleClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleClass(&self) -> c_float;
 
-        #[method(minIOUForObjectPresence)]
+        #[unsafe(method(minIOUForObjectPresence))]
         #[unsafe(method_family = none)]
         pub unsafe fn minIOUForObjectPresence(&self) -> c_float;
 
-        #[method(maxIOUForObjectAbsence)]
+        #[unsafe(method(maxIOUForObjectAbsence))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxIOUForObjectAbsence(&self) -> c_float;
 
         #[cfg(feature = "MPSCNNTypes")]
-        #[method(reductionType)]
+        #[unsafe(method(reductionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn reductionType(&self) -> MPSCNNReductionType;
 
-        #[method(numberOfAnchorBoxes)]
+        #[unsafe(method(numberOfAnchorBoxes))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfAnchorBoxes(&self) -> NSUInteger;
 
-        #[method(anchorBoxes)]
+        #[unsafe(method(anchorBoxes))]
         #[unsafe(method_family = none)]
         pub unsafe fn anchorBoxes(&self) -> Retained<NSData>;
 
-        #[method(reduceAcrossBatch)]
+        #[unsafe(method(reduceAcrossBatch))]
         #[unsafe(method_family = none)]
         pub unsafe fn reduceAcrossBatch(&self) -> bool;
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1372,7 +1372,7 @@ extern_methods!(
         /// Parameter `lossDescriptor`: The loss descriptor.
         ///
         /// Returns: A valid MPSCNNLoss object or nil, if failure.
-        #[method(initWithDevice:lossDescriptor:)]
+        #[unsafe(method(initWithDevice:lossDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_lossDescriptor(
             this: Allocated<Self>,
@@ -1382,7 +1382,7 @@ extern_methods!(
 
         /// <NSSecureCoding
         /// > support
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1407,7 +1407,7 @@ extern_methods!(
         /// Parameter `labels`: The object containing the target data (labels) and optionally, weights for the labels.
         ///
         /// Parameter `destinationImage`: The MPSImage into which to write the gradient result.
-        #[method(encodeToCommandBuffer:sourceImage:labels:destinationImage:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceImage:labels:destinationImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_labels_destinationImage(
             &self,
@@ -1431,7 +1431,7 @@ extern_methods!(
         /// Parameter `labels`: The object containing the target data (labels) and optionally, weights for the labels.
         ///
         /// Returns: The MPSImage containing the gradient result.
-        #[method(encodeToCommandBuffer:sourceImage:labels:)]
+        #[unsafe(method(encodeToCommandBuffer:sourceImage:labels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_labels(
             &self,
@@ -1441,7 +1441,7 @@ extern_methods!(
         ) -> Retained<MPSImage>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[method(encodeBatchToCommandBuffer:sourceImages:labels:destinationImages:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:labels:destinationImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_labels_destinationImages(
             &self,
@@ -1452,7 +1452,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[method(encodeBatchToCommandBuffer:sourceImages:labels:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:labels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_labels(
             &self,
@@ -1475,7 +1475,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1488,11 +1488,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNYOLOLoss {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1539,60 +1539,60 @@ extern_methods!(
     unsafe impl MPSNNForwardLoss {
         #[cfg(feature = "MPSCNNTypes")]
         /// See MPSCNNLossDescriptor for information about the following properties.
-        #[method(lossType)]
+        #[unsafe(method(lossType))]
         #[unsafe(method_family = none)]
         pub unsafe fn lossType(&self) -> MPSCNNLossType;
 
         #[cfg(feature = "MPSCNNTypes")]
-        #[method(reductionType)]
+        #[unsafe(method(reductionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn reductionType(&self) -> MPSCNNReductionType;
 
-        #[method(reduceAcrossBatch)]
+        #[unsafe(method(reduceAcrossBatch))]
         #[unsafe(method_family = none)]
         pub unsafe fn reduceAcrossBatch(&self) -> bool;
 
-        #[method(numberOfClasses)]
+        #[unsafe(method(numberOfClasses))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfClasses(&self) -> NSUInteger;
 
-        #[method(weight)]
+        #[unsafe(method(weight))]
         #[unsafe(method_family = none)]
         pub unsafe fn weight(&self) -> c_float;
 
         /// Setter for [`weight`][Self::weight].
-        #[method(setWeight:)]
+        #[unsafe(method(setWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWeight(&self, weight: c_float);
 
-        #[method(labelSmoothing)]
+        #[unsafe(method(labelSmoothing))]
         #[unsafe(method_family = none)]
         pub unsafe fn labelSmoothing(&self) -> c_float;
 
         /// Setter for [`labelSmoothing`][Self::labelSmoothing].
-        #[method(setLabelSmoothing:)]
+        #[unsafe(method(setLabelSmoothing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabelSmoothing(&self, label_smoothing: c_float);
 
-        #[method(epsilon)]
+        #[unsafe(method(epsilon))]
         #[unsafe(method_family = none)]
         pub unsafe fn epsilon(&self) -> c_float;
 
         /// Setter for [`epsilon`][Self::epsilon].
-        #[method(setEpsilon:)]
+        #[unsafe(method(setEpsilon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEpsilon(&self, epsilon: c_float);
 
-        #[method(delta)]
+        #[unsafe(method(delta))]
         #[unsafe(method_family = none)]
         pub unsafe fn delta(&self) -> c_float;
 
         /// Setter for [`delta`][Self::delta].
-        #[method(setDelta:)]
+        #[unsafe(method(setDelta:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1606,7 +1606,7 @@ extern_methods!(
         /// Parameter `lossDescriptor`: The loss descriptor.
         ///
         /// Returns: A valid MPSNNForwardLoss object or nil, if failure.
-        #[method(initWithDevice:lossDescriptor:)]
+        #[unsafe(method(initWithDevice:lossDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_lossDescriptor(
             this: Allocated<Self>,
@@ -1616,7 +1616,7 @@ extern_methods!(
 
         /// <NSSecureCoding
         /// > support
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1641,7 +1641,7 @@ extern_methods!(
         /// temporaryResultStateBatchForCommandBuffer:.
         ///
         /// Parameter `destinationImages`: The MPSImages into which to write the loss results.
-        #[method(encodeBatchToCommandBuffer:sourceImages:labels:weights:destinationStates:destinationImages:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:labels:weights:destinationStates:destinationImages:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_labels_weights_destinationStates_destinationImages(
             &self,
@@ -1674,7 +1674,7 @@ extern_methods!(
         /// Parameter `isTemporary`: Whether the returned state (if any) should be temporary or not.
         ///
         /// Returns: The MPSImages containing the loss computation results.
-        #[method(encodeBatchToCommandBuffer:sourceImages:labels:weights:destinationStates:destinationStateIsTemporary:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:labels:weights:destinationStates:destinationStateIsTemporary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_labels_weights_destinationStates_destinationStateIsTemporary(
             &self,
@@ -1700,7 +1700,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1713,11 +1713,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNForwardLoss {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1758,72 +1758,72 @@ extern_methods!(
     unsafe impl MPSNNLossGradient {
         #[cfg(feature = "MPSCNNTypes")]
         /// See MPSCNNLossDescriptor for information about the following properties.
-        #[method(lossType)]
+        #[unsafe(method(lossType))]
         #[unsafe(method_family = none)]
         pub unsafe fn lossType(&self) -> MPSCNNLossType;
 
         #[cfg(feature = "MPSCNNTypes")]
-        #[method(reductionType)]
+        #[unsafe(method(reductionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn reductionType(&self) -> MPSCNNReductionType;
 
-        #[method(reduceAcrossBatch)]
+        #[unsafe(method(reduceAcrossBatch))]
         #[unsafe(method_family = none)]
         pub unsafe fn reduceAcrossBatch(&self) -> bool;
 
-        #[method(numberOfClasses)]
+        #[unsafe(method(numberOfClasses))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfClasses(&self) -> NSUInteger;
 
-        #[method(weight)]
+        #[unsafe(method(weight))]
         #[unsafe(method_family = none)]
         pub unsafe fn weight(&self) -> c_float;
 
         /// Setter for [`weight`][Self::weight].
-        #[method(setWeight:)]
+        #[unsafe(method(setWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWeight(&self, weight: c_float);
 
-        #[method(labelSmoothing)]
+        #[unsafe(method(labelSmoothing))]
         #[unsafe(method_family = none)]
         pub unsafe fn labelSmoothing(&self) -> c_float;
 
         /// Setter for [`labelSmoothing`][Self::labelSmoothing].
-        #[method(setLabelSmoothing:)]
+        #[unsafe(method(setLabelSmoothing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLabelSmoothing(&self, label_smoothing: c_float);
 
-        #[method(epsilon)]
+        #[unsafe(method(epsilon))]
         #[unsafe(method_family = none)]
         pub unsafe fn epsilon(&self) -> c_float;
 
         /// Setter for [`epsilon`][Self::epsilon].
-        #[method(setEpsilon:)]
+        #[unsafe(method(setEpsilon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEpsilon(&self, epsilon: c_float);
 
-        #[method(delta)]
+        #[unsafe(method(delta))]
         #[unsafe(method_family = none)]
         pub unsafe fn delta(&self) -> c_float;
 
         /// Setter for [`delta`][Self::delta].
-        #[method(setDelta:)]
+        #[unsafe(method(setDelta:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
         /// The computeLabelGradients property is used to control whether the loss gradient
         /// filter computes gradients for the primary (predictions) or secondary (labels) source image from the forward pass.
         /// Default: NO.
-        #[method(computeLabelGradients)]
+        #[unsafe(method(computeLabelGradients))]
         #[unsafe(method_family = none)]
         pub unsafe fn computeLabelGradients(&self) -> bool;
 
         /// Setter for [`computeLabelGradients`][Self::computeLabelGradients].
-        #[method(setComputeLabelGradients:)]
+        #[unsafe(method(setComputeLabelGradients:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setComputeLabelGradients(&self, compute_label_gradients: bool);
 
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1837,7 +1837,7 @@ extern_methods!(
         /// Parameter `lossDescriptor`: The loss descriptor.
         ///
         /// Returns: A valid MPSNNLossGradient object or nil, if failure.
-        #[method(initWithDevice:lossDescriptor:)]
+        #[unsafe(method(initWithDevice:lossDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_lossDescriptor(
             this: Allocated<Self>,
@@ -1847,7 +1847,7 @@ extern_methods!(
 
         /// <NSSecureCoding
         /// > support
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1870,7 +1870,7 @@ extern_methods!(
         ///
         /// Parameter `sourceStates`: Optional gradient state - carries dynamical property values from the forward pass
         /// (weight, labelSmoothing, epsilon, delta).
-        #[method(encodeBatchToCommandBuffer:sourceGradients:sourceImages:labels:weights:sourceStates:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceGradients:sourceImages:labels:weights:sourceStates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceGradients_sourceImages_labels_weights_sourceStates(
             &self,
@@ -1899,7 +1899,7 @@ extern_methods!(
         /// (weight, labelSmoothing, epsilon, delta).
         ///
         /// Parameter `destinationGradients`: The MPSImages into which to write the filter result
-        #[method(encodeBatchToCommandBuffer:sourceGradients:sourceImages:labels:weights:sourceStates:destinationGradients:)]
+        #[unsafe(method(encodeBatchToCommandBuffer:sourceGradients:sourceImages:labels:weights:sourceStates:destinationGradients:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceGradients_sourceImages_labels_weights_sourceStates_destinationGradients(
             &self,
@@ -1926,7 +1926,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1939,11 +1939,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNLossGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2016,7 +2016,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which this MPSNNInitialGradient filter will be used.
         ///
         /// Returns: A valid MPSNNInitialGradient object or nil, if failure.
-        #[method(initWithDevice:)]
+        #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -2042,7 +2042,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method(initWithCoder:device:)]
+        #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -2064,7 +2064,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -2077,11 +2077,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNInitialGradient {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

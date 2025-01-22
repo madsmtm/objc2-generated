@@ -19,19 +19,19 @@ unsafe impl NSObjectProtocol for NSPortNameServer {}
 extern_methods!(
     unsafe impl NSPortNameServer {
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(systemDefaultPortNameServer)]
+        #[unsafe(method(systemDefaultPortNameServer))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemDefaultPortNameServer() -> Retained<NSPortNameServer>;
 
         #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(portForName:)]
+        #[unsafe(method(portForName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn portForName(&self, name: &NSString) -> Option<Retained<NSPort>>;
 
         #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(portForName:host:)]
+        #[unsafe(method(portForName:host:))]
         #[unsafe(method_family = none)]
         pub unsafe fn portForName_host(
             &self,
@@ -41,13 +41,13 @@ extern_methods!(
 
         #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(registerPort:name:)]
+        #[unsafe(method(registerPort:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerPort_name(&self, port: &NSPort, name: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(removePortForName:)]
+        #[unsafe(method(removePortForName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removePortForName(&self, name: &NSString) -> bool;
     }
@@ -56,11 +56,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPortNameServer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -79,19 +79,19 @@ unsafe impl NSObjectProtocol for NSMachBootstrapServer {}
 extern_methods!(
     unsafe impl NSMachBootstrapServer {
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(sharedInstance)]
+        #[unsafe(method(sharedInstance))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedInstance() -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(portForName:)]
+        #[unsafe(method(portForName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn portForName(&self, name: &NSString) -> Option<Retained<NSPort>>;
 
         #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(portForName:host:)]
+        #[unsafe(method(portForName:host:))]
         #[unsafe(method_family = none)]
         pub unsafe fn portForName_host(
             &self,
@@ -101,12 +101,12 @@ extern_methods!(
 
         #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(registerPort:name:)]
+        #[unsafe(method(registerPort:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerPort_name(&self, port: &NSPort, name: &NSString) -> bool;
 
         #[cfg(all(feature = "NSPort", feature = "NSString"))]
-        #[method(servicePortWithName:)]
+        #[unsafe(method(servicePortWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn servicePortWithName(&self, name: &NSString) -> Option<Retained<NSPort>>;
     }
@@ -115,11 +115,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMachBootstrapServer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -138,19 +138,19 @@ unsafe impl NSObjectProtocol for NSMessagePortNameServer {}
 extern_methods!(
     unsafe impl NSMessagePortNameServer {
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(sharedInstance)]
+        #[unsafe(method(sharedInstance))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedInstance() -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(portForName:)]
+        #[unsafe(method(portForName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn portForName(&self, name: &NSString) -> Option<Retained<NSPort>>;
 
         #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(portForName:host:)]
+        #[unsafe(method(portForName:host:))]
         #[unsafe(method_family = none)]
         pub unsafe fn portForName_host(
             &self,
@@ -163,11 +163,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMessagePortNameServer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -186,19 +186,19 @@ unsafe impl NSObjectProtocol for NSSocketPortNameServer {}
 extern_methods!(
     unsafe impl NSSocketPortNameServer {
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(sharedInstance)]
+        #[unsafe(method(sharedInstance))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedInstance() -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(portForName:)]
+        #[unsafe(method(portForName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn portForName(&self, name: &NSString) -> Option<Retained<NSPort>>;
 
         #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(portForName:host:)]
+        #[unsafe(method(portForName:host:))]
         #[unsafe(method_family = none)]
         pub unsafe fn portForName_host(
             &self,
@@ -208,19 +208,19 @@ extern_methods!(
 
         #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(registerPort:name:)]
+        #[unsafe(method(registerPort:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerPort_name(&self, port: &NSPort, name: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(removePortForName:)]
+        #[unsafe(method(removePortForName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removePortForName(&self, name: &NSString) -> bool;
 
         #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(portForName:host:nameServerPortNumber:)]
+        #[unsafe(method(portForName:host:nameServerPortNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn portForName_host_nameServerPortNumber(
             &self,
@@ -231,7 +231,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSPort", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(registerPort:name:nameServerPortNumber:)]
+        #[unsafe(method(registerPort:name:nameServerPortNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerPort_name_nameServerPortNumber(
             &self,
@@ -241,13 +241,13 @@ extern_methods!(
         ) -> bool;
 
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(defaultNameServerPortNumber)]
+        #[unsafe(method(defaultNameServerPortNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultNameServerPortNumber(&self) -> u16;
 
         /// Setter for [`defaultNameServerPortNumber`][Self::defaultNameServerPortNumber].
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method(setDefaultNameServerPortNumber:)]
+        #[unsafe(method(setDefaultNameServerPortNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultNameServerPortNumber(&self, default_name_server_port_number: u16);
     }
@@ -256,11 +256,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSocketPortNameServer {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

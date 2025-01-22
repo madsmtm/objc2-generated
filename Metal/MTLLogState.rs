@@ -43,7 +43,7 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         /// Add a function block to handle log message output.
         /// In the absence of any handlers, log messages go through the default handler.
-        #[method(addLogHandler:)]
+        #[unsafe(method(addLogHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn addLogHandler(
             &self,
@@ -73,22 +73,22 @@ extern_methods!(
     unsafe impl MTLLogStateDescriptor {
         /// level indicates the minimum level of the logs that will be printed.
         /// All the logs with level less than given level will be skipped on the GPU Side.
-        #[method(level)]
+        #[unsafe(method(level))]
         #[unsafe(method_family = none)]
         pub unsafe fn level(&self) -> MTLLogLevel;
 
         /// Setter for [`level`][Self::level].
-        #[method(setLevel:)]
+        #[unsafe(method(setLevel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLevel(&self, level: MTLLogLevel);
 
         /// bufferSize indicates the size of the buffer where GPU will store the logging content from shaders. Minimum value is 1KB
-        #[method(bufferSize)]
+        #[unsafe(method(bufferSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn bufferSize(&self) -> NSInteger;
 
         /// Setter for [`bufferSize`][Self::bufferSize].
-        #[method(setBufferSize:)]
+        #[unsafe(method(setBufferSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBufferSize(&self, buffer_size: NSInteger);
     }
@@ -97,11 +97,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLLogStateDescriptor {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

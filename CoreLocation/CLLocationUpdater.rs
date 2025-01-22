@@ -43,49 +43,49 @@ unsafe impl NSObjectProtocol for CLUpdate {}
 
 extern_methods!(
     unsafe impl CLUpdate {
-        #[method(authorizationDenied)]
+        #[unsafe(method(authorizationDenied))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationDenied(&self) -> bool;
 
-        #[method(authorizationDeniedGlobally)]
+        #[unsafe(method(authorizationDeniedGlobally))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationDeniedGlobally(&self) -> bool;
 
-        #[method(authorizationRestricted)]
+        #[unsafe(method(authorizationRestricted))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationRestricted(&self) -> bool;
 
         #[deprecated]
-        #[method(isStationary)]
+        #[unsafe(method(isStationary))]
         #[unsafe(method_family = none)]
         pub unsafe fn isStationary(&self) -> bool;
 
-        #[method(stationary)]
+        #[unsafe(method(stationary))]
         #[unsafe(method_family = none)]
         pub unsafe fn stationary(&self) -> bool;
 
-        #[method(insufficientlyInUse)]
+        #[unsafe(method(insufficientlyInUse))]
         #[unsafe(method_family = none)]
         pub unsafe fn insufficientlyInUse(&self) -> bool;
 
-        #[method(locationUnavailable)]
+        #[unsafe(method(locationUnavailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn locationUnavailable(&self) -> bool;
 
-        #[method(accuracyLimited)]
+        #[unsafe(method(accuracyLimited))]
         #[unsafe(method_family = none)]
         pub unsafe fn accuracyLimited(&self) -> bool;
 
-        #[method(serviceSessionRequired)]
+        #[unsafe(method(serviceSessionRequired))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceSessionRequired(&self) -> bool;
 
-        #[method(authorizationRequestInProgress)]
+        #[unsafe(method(authorizationRequestInProgress))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationRequestInProgress(&self) -> bool;
 
         #[cfg(feature = "CLLocation")]
-        #[method(location)]
+        #[unsafe(method(location))]
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
     }
@@ -94,11 +94,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLUpdate {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -115,23 +115,23 @@ unsafe impl NSObjectProtocol for CLLocationUpdater {}
 
 extern_methods!(
     unsafe impl CLLocationUpdater {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method(resume)]
+        #[unsafe(method(resume))]
         #[unsafe(method_family = none)]
         pub unsafe fn resume(&self);
 
-        #[method(pause)]
+        #[unsafe(method(pause))]
         #[unsafe(method_family = none)]
         pub unsafe fn pause(&self);
 
-        #[method(invalidate)]
+        #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
     }

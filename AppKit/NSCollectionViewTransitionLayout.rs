@@ -30,25 +30,25 @@ extern_methods!(
     #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl NSCollectionViewTransitionLayout {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(transitionProgress)]
+        #[unsafe(method(transitionProgress))]
         #[unsafe(method_family = none)]
         pub unsafe fn transitionProgress(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`transitionProgress`][Self::transitionProgress].
-        #[method(setTransitionProgress:)]
+        #[unsafe(method(setTransitionProgress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransitionProgress(&self, transition_progress: CGFloat);
 
-        #[method(currentLayout)]
+        #[unsafe(method(currentLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentLayout(&self) -> Retained<NSCollectionViewLayout>;
 
-        #[method(nextLayout)]
+        #[unsafe(method(nextLayout))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextLayout(&self) -> Retained<NSCollectionViewLayout>;
 
-        #[method(initWithCurrentLayout:nextLayout:)]
+        #[unsafe(method(initWithCurrentLayout:nextLayout:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCurrentLayout_nextLayout(
             this: Allocated<Self>,
@@ -57,7 +57,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(updateValue:forAnimatedKey:)]
+        #[unsafe(method(updateValue:forAnimatedKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateValue_forAnimatedKey(
             &self,
@@ -66,7 +66,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(valueForAnimatedKey:)]
+        #[unsafe(method(valueForAnimatedKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueForAnimatedKey(
             &self,
@@ -79,11 +79,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl NSCollectionViewTransitionLayout {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -43,7 +43,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKStoreProductViewController {
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -51,7 +51,7 @@ extern_methods!(
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -59,7 +59,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method(loadProductWithParameters:completionBlock:)]
+        #[unsafe(method(loadProductWithParameters:completionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadProductWithParameters_completionBlock(
             &self,
@@ -68,7 +68,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "SKAdImpression", feature = "block2"))]
-        #[method(loadProductWithParameters:impression:completionBlock:)]
+        #[unsafe(method(loadProductWithParameters:impression:completionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadProductWithParameters_impression_completionBlock(
             &self,
@@ -84,7 +84,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKStoreProductViewController {
-        #[method(initWithNibName:bundle:)]
+        #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -92,7 +92,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method(initWithCoder:)]
+        #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -106,7 +106,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKStoreProductViewController {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -117,7 +117,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKStoreProductViewController {
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -129,7 +129,7 @@ extern_protocol!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[optional]
-        #[method(productViewControllerDidFinish:)]
+        #[unsafe(method(productViewControllerDidFinish:))]
         #[unsafe(method_family = none)]
         unsafe fn productViewControllerDidFinish(
             &self,

@@ -82,7 +82,7 @@ extern_methods!(
         /// Parameter `outError`: the status of the operation
         ///
         /// This method reads from file and allocates memory, so it should not be called on a real time thread.
-        #[method(loadSoundBankInstrumentAtURL:program:bankMSB:bankLSB:error:_)]
+        #[unsafe(method(loadSoundBankInstrumentAtURL:program:bankMSB:bankLSB:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSoundBankInstrumentAtURL_program_bankMSB_bankLSB_error(
             &self,
@@ -105,7 +105,7 @@ extern_methods!(
         /// Any information contained in the file regarding its keyboard placement (e.g. root key,
         /// key range) will be used.
         /// This method reads from file and allocates memory, so it should not be called on a real time thread.
-        #[method(loadInstrumentAtURL:error:_)]
+        #[unsafe(method(loadInstrumentAtURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadInstrumentAtURL_error(
             &self,
@@ -122,7 +122,7 @@ extern_methods!(
         /// into its own sampler zone. Any information contained in the audio file regarding
         /// their placement on the keyboard (e.g. root key, key range) will be used.
         /// This method reads from file and allocates memory, so it should not be called on a real time thread.
-        #[method(loadAudioFilesAtURLs:error:_)]
+        #[unsafe(method(loadAudioFilesAtURLs:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAudioFilesAtURLs_error(
             &self,
@@ -132,24 +132,24 @@ extern_methods!(
         /// adjusts the pan for all the notes played.
         /// Range:     -100 -> +100
         /// Default:   0
-        #[method(stereoPan)]
+        #[unsafe(method(stereoPan))]
         #[unsafe(method_family = none)]
         pub unsafe fn stereoPan(&self) -> c_float;
 
         /// Setter for [`stereoPan`][Self::stereoPan].
-        #[method(setStereoPan:)]
+        #[unsafe(method(setStereoPan:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStereoPan(&self, stereo_pan: c_float);
 
         /// adjusts the gain of all the notes played
         /// Range:     -90.0 -> +12 db
         /// Default: 0 db
-        #[method(overallGain)]
+        #[unsafe(method(overallGain))]
         #[unsafe(method_family = none)]
         pub unsafe fn overallGain(&self) -> c_float;
 
         /// Setter for [`overallGain`][Self::overallGain].
-        #[method(setOverallGain:)]
+        #[unsafe(method(setOverallGain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverallGain(&self, overall_gain: c_float);
 
@@ -157,25 +157,25 @@ extern_methods!(
         /// Range:     -90.0 -> +12 db
         /// Default: 0 db
         #[deprecated]
-        #[method(masterGain)]
+        #[unsafe(method(masterGain))]
         #[unsafe(method_family = none)]
         pub unsafe fn masterGain(&self) -> c_float;
 
         /// Setter for [`masterGain`][Self::masterGain].
         #[deprecated]
-        #[method(setMasterGain:)]
+        #[unsafe(method(setMasterGain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMasterGain(&self, master_gain: c_float);
 
         /// adjusts the tuning of all the notes played.
         /// Range:     -2400 -> +2400 cents
         /// Default:   0
-        #[method(globalTuning)]
+        #[unsafe(method(globalTuning))]
         #[unsafe(method_family = none)]
         pub unsafe fn globalTuning(&self) -> c_float;
 
         /// Setter for [`globalTuning`][Self::globalTuning].
-        #[method(setGlobalTuning:)]
+        #[unsafe(method(setGlobalTuning:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlobalTuning(&self, global_tuning: c_float);
     }
@@ -195,7 +195,7 @@ extern_methods!(
         ///
         /// Parameter `description`: audio component description structure that describes the audio component of type kAudioUnitType_MusicDevice
         /// or kAudioUnitType_RemoteInstrument.
-        #[method(initWithAudioComponentDescription:)]
+        #[unsafe(method(initWithAudioComponentDescription:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
@@ -212,11 +212,11 @@ extern_methods!(
         feature = "AVAudioUnitMIDIInstrument"
     ))]
     unsafe impl AVAudioUnitSampler {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

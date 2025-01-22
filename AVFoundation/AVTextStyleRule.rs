@@ -23,11 +23,11 @@ unsafe impl NSObjectProtocol for AVTextStyleRule {}
 
 extern_methods!(
     unsafe impl AVTextStyleRule {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -38,7 +38,7 @@ extern_methods!(
         /// Returns: A serializable property list.
         ///
         /// For serialization utilities, see NSPropertyList.h.
-        #[method(propertyListForTextStyleRules:)]
+        #[unsafe(method(propertyListForTextStyleRules:))]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyListForTextStyleRules(
             text_style_rules: &NSArray<AVTextStyleRule>,
@@ -49,7 +49,7 @@ extern_methods!(
         /// Parameter `plist`: A property list, normally obtained previously via an invocation of +propertyListForTextStyleRules:.
         ///
         /// Returns: An NSArray of AVTextStyleRules
-        #[method(textStyleRulesFromPropertyList:)]
+        #[unsafe(method(textStyleRulesFromPropertyList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textStyleRulesFromPropertyList(
             plist: &AnyObject,
@@ -64,7 +64,7 @@ extern_methods!(
         /// Returns: An instance of AVTextStyleRule
         ///
         /// Equivalent to invoking +textStyleRuleWithTextMarkupAttributes:textSelector: with a value of nil for textSelector.
-        #[method(textStyleRuleWithTextMarkupAttributes:)]
+        #[unsafe(method(textStyleRuleWithTextMarkupAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textStyleRuleWithTextMarkupAttributes(
             text_markup_attributes: &NSDictionary<NSString, AnyObject>,
@@ -79,7 +79,7 @@ extern_methods!(
         /// Parameter `textSelector`: An identifier for the range or ranges of text to which the attributes should be applied. Eligible identifiers are determined by the format and content of the legible media. A value of nil indicates that the textMarkupAttributes should be applied as default styles for all text unless overridden by content markup or other applicable text selectors.
         ///
         /// Returns: An instance of AVTextStyleRule
-        #[method(textStyleRuleWithTextMarkupAttributes:textSelector:)]
+        #[unsafe(method(textStyleRuleWithTextMarkupAttributes:textSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textStyleRuleWithTextMarkupAttributes_textSelector(
             text_markup_attributes: &NSDictionary<NSString, AnyObject>,
@@ -95,7 +95,7 @@ extern_methods!(
         /// Returns: An instance of AVTextStyleRule
         ///
         /// Equivalent to invoking -initWithTextMarkupAttributes:textSelector: with a value of nil for textSelector.
-        #[method(initWithTextMarkupAttributes:)]
+        #[unsafe(method(initWithTextMarkupAttributes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTextMarkupAttributes(
             this: Allocated<Self>,
@@ -111,7 +111,7 @@ extern_methods!(
         /// Parameter `textSelector`: An identifier for the range or ranges of text to which the attributes should be applied. Eligible identifiers are determined by the format and content of the legible media. A value of nil indicates that the textMarkupAttributes should be applied as default styles for all text unless overridden by content markup or other applicable text selectors.
         ///
         /// Returns: An instance of AVTextStyleRule
-        #[method(initWithTextMarkupAttributes:textSelector:)]
+        #[unsafe(method(initWithTextMarkupAttributes:textSelector:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTextMarkupAttributes_textSelector(
             this: Allocated<Self>,
@@ -122,14 +122,14 @@ extern_methods!(
         /// An NSDictionary with keys representing text style attributes that are specifiable in text markup. Eligible keys and the expected types of their corresponding values are defined in
         /// <CoreMedia
         /// /CMTextMarkup.h>.
-        #[method(textMarkupAttributes)]
+        #[unsafe(method(textMarkupAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn textMarkupAttributes(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// A string that identifies the range or ranges of text to which the attributes should be applied. A value of nil indicates that the textMarkupAttributes should be applied as default styles for all text unless overridden by content markup or other applicable text selectors.
         ///
         /// The syntax of text selectors is determined by the format of the legible media. Eligible selectors may be determined by the content of the legible media (e.g. CSS selectors that are valid for a specific WebVTT document).
-        #[method(textSelector)]
+        #[unsafe(method(textSelector))]
         #[unsafe(method_family = none)]
         pub unsafe fn textSelector(&self) -> Option<Retained<NSString>>;
     }

@@ -26,18 +26,18 @@ extern_methods!(
         /// The CNContact keys to display when a contact is expanded.
         ///
         /// If no keys are provided, the picker will select contacts instead of values.
-        #[method(displayedKeys)]
+        #[unsafe(method(displayedKeys))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayedKeys(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`displayedKeys`][Self::displayedKeys].
-        #[method(setDisplayedKeys:)]
+        #[unsafe(method(setDisplayedKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayedKeys(&self, displayed_keys: &NSArray<NSString>);
 
         #[cfg(feature = "CNContactPickerDelegate")]
         /// The picker delegate to be notified when the user chooses a contact or value.
-        #[method(delegate)]
+        #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -46,7 +46,7 @@ extern_methods!(
         #[cfg(feature = "CNContactPickerDelegate")]
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
-        #[method(setDelegate:)]
+        #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
@@ -56,7 +56,7 @@ extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Shows the picker popover relative to a positioning rect for a view with a preferred edge. See NSPopover for more information.
-        #[method(showRelativeToRect:ofView:preferredEdge:)]
+        #[unsafe(method(showRelativeToRect:ofView:preferredEdge:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showRelativeToRect_ofView_preferredEdge(
             &self,
@@ -66,7 +66,7 @@ extern_methods!(
         );
 
         /// Closes the popover.
-        #[method(close)]
+        #[unsafe(method(close))]
         #[unsafe(method_family = none)]
         pub unsafe fn close(&self);
     }
@@ -75,11 +75,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContactPicker {
-        #[method(init)]
+        #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method(new)]
+        #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
