@@ -165,10 +165,16 @@ impl NSScriptClassDescription {
     );
 }
 
-extern_category!(
-    /// Category "NSScriptClassDescription" on [`NSObject`].
-    #[doc(alias = "NSScriptClassDescription")]
-    pub unsafe trait NSObjectNSScriptClassDescription {
+mod private_NSObjectNSScriptClassDescription {
+    pub trait Sealed {}
+}
+
+/// Category "NSScriptClassDescription" on [`NSObject`].
+#[doc(alias = "NSScriptClassDescription")]
+pub unsafe trait NSObjectNSScriptClassDescription:
+    ClassType + Sized + private_NSObjectNSScriptClassDescription::Sealed
+{
+    extern_methods!(
         #[unsafe(method(classCode))]
         #[unsafe(method_family = none)]
         unsafe fn classCode(&self) -> FourCharCode;
@@ -177,7 +183,8 @@ extern_category!(
         #[unsafe(method(className))]
         #[unsafe(method_family = none)]
         unsafe fn className(&self) -> Retained<NSString>;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSScriptClassDescription for NSObject {}
-);
+impl private_NSObjectNSScriptClassDescription::Sealed for NSObject {}
+unsafe impl NSObjectNSScriptClassDescription for NSObject {}

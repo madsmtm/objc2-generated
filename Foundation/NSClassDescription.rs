@@ -72,10 +72,16 @@ impl NSClassDescription {
     );
 }
 
-extern_category!(
-    /// Category "NSClassDescriptionPrimitives" on [`NSObject`].
-    #[doc(alias = "NSClassDescriptionPrimitives")]
-    pub unsafe trait NSObjectNSClassDescriptionPrimitives {
+mod private_NSObjectNSClassDescriptionPrimitives {
+    pub trait Sealed {}
+}
+
+/// Category "NSClassDescriptionPrimitives" on [`NSObject`].
+#[doc(alias = "NSClassDescriptionPrimitives")]
+pub unsafe trait NSObjectNSClassDescriptionPrimitives:
+    ClassType + Sized + private_NSObjectNSClassDescriptionPrimitives::Sealed
+{
+    extern_methods!(
         #[unsafe(method(classDescription))]
         #[unsafe(method_family = none)]
         unsafe fn classDescription(&self) -> Retained<NSClassDescription>;
@@ -102,10 +108,11 @@ extern_category!(
             &self,
             relationship_key: &NSString,
         ) -> Option<Retained<NSString>>;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSClassDescriptionPrimitives for NSObject {}
-);
+impl private_NSObjectNSClassDescriptionPrimitives::Sealed for NSObject {}
+unsafe impl NSObjectNSClassDescriptionPrimitives for NSObject {}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsclassdescriptionneededforclassnotification?language=objc)

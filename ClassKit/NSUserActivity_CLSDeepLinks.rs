@@ -5,10 +5,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "CLSDeepLinks" on [`NSUserActivity`].
-    #[doc(alias = "CLSDeepLinks")]
-    pub unsafe trait NSUserActivityCLSDeepLinks {
+mod private_NSUserActivityCLSDeepLinks {
+    pub trait Sealed {}
+}
+
+/// Category "CLSDeepLinks" on [`NSUserActivity`].
+#[doc(alias = "CLSDeepLinks")]
+pub unsafe trait NSUserActivityCLSDeepLinks:
+    ClassType + Sized + private_NSUserActivityCLSDeepLinks::Sealed
+{
+    extern_methods!(
         /// Returns whether the user activity is a ClassKit deep link.
         #[unsafe(method(isClassKitDeepLink))]
         #[unsafe(method_family = none)]
@@ -23,7 +29,8 @@ extern_category!(
         #[unsafe(method(contextIdentifierPath))]
         #[unsafe(method_family = none)]
         unsafe fn contextIdentifierPath(&self) -> Option<Retained<NSArray<NSString>>>;
-    }
+    );
+}
 
-    unsafe impl NSUserActivityCLSDeepLinks for NSUserActivity {}
-);
+impl private_NSUserActivityCLSDeepLinks::Sealed for NSUserActivity {}
+unsafe impl NSUserActivityCLSDeepLinks for NSUserActivity {}

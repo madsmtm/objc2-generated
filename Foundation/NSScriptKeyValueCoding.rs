@@ -12,10 +12,16 @@ extern "C" {
     pub static NSOperationNotSupportedForKeyException: &'static NSString;
 }
 
-extern_category!(
-    /// Category "NSScriptKeyValueCoding" on [`NSObject`].
-    #[doc(alias = "NSScriptKeyValueCoding")]
-    pub unsafe trait NSObjectNSScriptKeyValueCoding {
+mod private_NSObjectNSScriptKeyValueCoding {
+    pub trait Sealed {}
+}
+
+/// Category "NSScriptKeyValueCoding" on [`NSObject`].
+#[doc(alias = "NSScriptKeyValueCoding")]
+pub unsafe trait NSObjectNSScriptKeyValueCoding:
+    ClassType + Sized + private_NSObjectNSScriptKeyValueCoding::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueAtIndex:inPropertyWithKey:))]
         #[unsafe(method_family = none)]
@@ -81,7 +87,8 @@ extern_category!(
             value: Option<&AnyObject>,
             key: &NSString,
         ) -> Option<Retained<AnyObject>>;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSScriptKeyValueCoding for NSObject {}
-);
+impl private_NSObjectNSScriptKeyValueCoding::Sealed for NSObject {}
+unsafe impl NSObjectNSScriptKeyValueCoding for NSObject {}

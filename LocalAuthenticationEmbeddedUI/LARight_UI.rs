@@ -8,11 +8,15 @@ use objc2_local_authentication::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "UI" on [`LARight`].
-    #[doc(alias = "UI")]
-    /// Groups methods that control aspects of the UI used for authorizing a right
-    pub unsafe trait LARightUI {
+mod private_LARightUI {
+    pub trait Sealed {}
+}
+
+/// Category "UI" on [`LARight`].
+#[doc(alias = "UI")]
+/// Groups methods that control aspects of the UI used for authorizing a right
+pub unsafe trait LARightUI: ClassType + Sized + private_LARightUI::Sealed {
+    extern_methods!(
         #[cfg(all(
             feature = "LAPresentationContext",
             feature = "block2",
@@ -34,7 +38,8 @@ extern_category!(
             presentation_context: &LAPresentationContext,
             handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
-    }
+    );
+}
 
-    unsafe impl LARightUI for LARight {}
-);
+impl private_LARightUI::Sealed for LARight {}
+unsafe impl LARightUI for LARight {}

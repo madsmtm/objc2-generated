@@ -573,19 +573,26 @@ impl NSWorkspace {
     );
 }
 
-extern_category!(
-    /// Category "NSWorkspaceAuthorization" on [`NSFileManager`].
-    #[doc(alias = "NSWorkspaceAuthorization")]
-    pub unsafe trait NSFileManagerNSWorkspaceAuthorization {
+mod private_NSFileManagerNSWorkspaceAuthorization {
+    pub trait Sealed {}
+}
+
+/// Category "NSWorkspaceAuthorization" on [`NSFileManager`].
+#[doc(alias = "NSWorkspaceAuthorization")]
+pub unsafe trait NSFileManagerNSWorkspaceAuthorization:
+    ClassType + Sized + private_NSFileManagerNSWorkspaceAuthorization::Sealed
+{
+    extern_methods!(
         #[unsafe(method(fileManagerWithAuthorization:))]
         #[unsafe(method_family = none)]
         unsafe fn fileManagerWithAuthorization(
             authorization: &NSWorkspaceAuthorization,
         ) -> Retained<Self>;
-    }
+    );
+}
 
-    unsafe impl NSFileManagerNSWorkspaceAuthorization for NSFileManager {}
-);
+impl private_NSFileManagerNSWorkspaceAuthorization::Sealed for NSFileManager {}
+unsafe impl NSFileManagerNSWorkspaceAuthorization for NSFileManager {}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceapplicationkey?language=objc)

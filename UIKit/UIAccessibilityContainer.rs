@@ -7,10 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "UIAccessibilityContainer" on [`NSObject`].
-    #[doc(alias = "UIAccessibilityContainer")]
-    pub unsafe trait NSObjectUIAccessibilityContainer {
+mod private_NSObjectUIAccessibilityContainer {
+    pub trait Sealed {}
+}
+
+/// Category "UIAccessibilityContainer" on [`NSObject`].
+#[doc(alias = "UIAccessibilityContainer")]
+pub unsafe trait NSObjectUIAccessibilityContainer:
+    ClassType + Sized + private_NSObjectUIAccessibilityContainer::Sealed
+{
+    extern_methods!(
         #[unsafe(method(accessibilityElementCount))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityElementCount(&self, mtm: MainThreadMarker) -> NSInteger;
@@ -74,10 +80,11 @@ extern_category!(
             automation_elements: Option<&NSArray>,
             mtm: MainThreadMarker,
         );
-    }
+    );
+}
 
-    unsafe impl NSObjectUIAccessibilityContainer for NSObject {}
-);
+impl private_NSObjectUIAccessibilityContainer::Sealed for NSObject {}
+unsafe impl NSObjectUIAccessibilityContainer for NSObject {}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainerdatatablecell?language=objc)

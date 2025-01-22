@@ -6,10 +6,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "UTAdditions" on [`NSString`].
-    #[doc(alias = "UTAdditions")]
-    pub unsafe trait NSStringUTAdditions {
+mod private_NSStringUTAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "UTAdditions" on [`NSString`].
+#[doc(alias = "UTAdditions")]
+pub unsafe trait NSStringUTAdditions:
+    ClassType + Sized + private_NSStringUTAdditions::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "UTType")]
         /// Generate a path component based on a partial filename and a file
         /// type, then append it to a copy of the receiver.
@@ -98,15 +104,22 @@ extern_category!(
             &self,
             content_type: &UTType,
         ) -> Retained<NSString>;
-    }
+    );
+}
 
-    unsafe impl NSStringUTAdditions for NSString {}
-);
+impl private_NSStringUTAdditions::Sealed for NSString {}
+unsafe impl NSStringUTAdditions for NSString {}
 
-extern_category!(
-    /// Category "UTAdditions" on [`NSURL`].
-    #[doc(alias = "UTAdditions")]
-    pub unsafe trait NSURLUTAdditions {
+mod private_NSURLUTAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "UTAdditions" on [`NSURL`].
+#[doc(alias = "UTAdditions")]
+pub unsafe trait NSURLUTAdditions:
+    ClassType + Sized + private_NSURLUTAdditions::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "UTType")]
         /// Generate a path component based on a partial filename and a file
         /// type, then append it to a copy of the receiver.
@@ -207,7 +220,8 @@ extern_category!(
             &self,
             content_type: &UTType,
         ) -> Retained<NSURL>;
-    }
+    );
+}
 
-    unsafe impl NSURLUTAdditions for NSURL {}
-);
+impl private_NSURLUTAdditions::Sealed for NSURL {}
+unsafe impl NSURLUTAdditions for NSURL {}

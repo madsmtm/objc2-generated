@@ -4886,22 +4886,29 @@ impl NEHotspotHelper {
     );
 }
 
-extern_category!(
-    /// Category "NEHotspotHelper" on [`NSMutableURLRequest`].
-    #[doc(alias = "NEHotspotHelper")]
-    /// Extend NSMutableURLRequest to include a method to bind the
-    /// request to the network interface associated with the specified
-    /// NEHotspotHelperCommand object.
-    pub unsafe trait NSMutableURLRequestNEHotspotHelper {
+mod private_NSMutableURLRequestNEHotspotHelper {
+    pub trait Sealed {}
+}
+
+/// Category "NEHotspotHelper" on [`NSMutableURLRequest`].
+#[doc(alias = "NEHotspotHelper")]
+/// Extend NSMutableURLRequest to include a method to bind the
+/// request to the network interface associated with the specified
+/// NEHotspotHelperCommand object.
+pub unsafe trait NSMutableURLRequestNEHotspotHelper:
+    ClassType + Sized + private_NSMutableURLRequestNEHotspotHelper::Sealed
+{
+    extern_methods!(
         /// Binds the NSMutableURLRequest to the network interface associated with
         /// the NEHotspotHelperCommand object.
         #[unsafe(method(bindToHotspotHelperCommand:))]
         #[unsafe(method_family = none)]
         unsafe fn bindToHotspotHelperCommand(&self, command: &NEHotspotHelperCommand);
-    }
+    );
+}
 
-    unsafe impl NSMutableURLRequestNEHotspotHelper for NSMutableURLRequest {}
-);
+impl private_NSMutableURLRequestNEHotspotHelper::Sealed for NSMutableURLRequest {}
+unsafe impl NSMutableURLRequestNEHotspotHelper for NSMutableURLRequest {}
 
 /// EAP Type.
 ///

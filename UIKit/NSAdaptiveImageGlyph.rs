@@ -76,16 +76,23 @@ impl NSAdaptiveImageGlyph {
     );
 }
 
-extern_category!(
-    /// Category on [`NSAttributedString`].
-    pub unsafe trait NSAttributedStringAdaptiveImageGlyphConveniences {
+mod private_NSAttributedStringAdaptiveImageGlyphConveniences {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSAttributedString`].
+pub unsafe trait NSAttributedStringAdaptiveImageGlyphConveniences:
+    ClassType + Sized + private_NSAttributedStringAdaptiveImageGlyphConveniences::Sealed
+{
+    extern_methods!(
         #[unsafe(method(attributedStringWithAdaptiveImageGlyph:attributes:))]
         #[unsafe(method_family = none)]
         unsafe fn attributedStringWithAdaptiveImageGlyph_attributes(
             adaptive_image_glyph: &NSAdaptiveImageGlyph,
             attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
         ) -> Retained<Self>;
-    }
+    );
+}
 
-    unsafe impl NSAttributedStringAdaptiveImageGlyphConveniences for NSAttributedString {}
-);
+impl private_NSAttributedStringAdaptiveImageGlyphConveniences::Sealed for NSAttributedString {}
+unsafe impl NSAttributedStringAdaptiveImageGlyphConveniences for NSAttributedString {}

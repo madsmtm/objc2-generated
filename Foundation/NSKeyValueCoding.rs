@@ -83,10 +83,16 @@ extern "C" {
     pub static NSUnionOfSetsKeyValueOperator: &'static NSKeyValueOperator;
 }
 
-extern_category!(
-    /// Category "NSKeyValueCoding" on [`NSObject`].
-    #[doc(alias = "NSKeyValueCoding")]
-    pub unsafe trait NSObjectNSKeyValueCoding {
+mod private_NSObjectNSKeyValueCoding {
+    pub trait Sealed {}
+}
+
+/// Category "NSKeyValueCoding" on [`NSObject`].
+#[doc(alias = "NSKeyValueCoding")]
+pub unsafe trait NSObjectNSKeyValueCoding:
+    ClassType + Sized + private_NSObjectNSKeyValueCoding::Sealed
+{
+    extern_methods!(
         #[unsafe(method(accessInstanceVariablesDirectly))]
         #[unsafe(method_family = none)]
         unsafe fn accessInstanceVariablesDirectly() -> bool;
@@ -198,10 +204,11 @@ extern_category!(
             &self,
             keyed_values: &NSDictionary<NSString, AnyObject>,
         );
-    }
+    );
+}
 
-    unsafe impl NSObjectNSKeyValueCoding for NSObject {}
-);
+impl private_NSObjectNSKeyValueCoding::Sealed for NSObject {}
+unsafe impl NSObjectNSKeyValueCoding for NSObject {}
 
 /// NSKeyValueCoding.
 #[cfg(feature = "NSArray")]

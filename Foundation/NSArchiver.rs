@@ -217,11 +217,17 @@ impl NSUnarchiver {
     );
 }
 
-extern_category!(
-    /// Category "NSArchiverCallback" on [`NSObject`].
-    #[doc(alias = "NSArchiverCallback")]
-    /// **********        Object call back        ***************
-    pub unsafe trait NSObjectNSArchiverCallback {
+mod private_NSObjectNSArchiverCallback {
+    pub trait Sealed {}
+}
+
+/// Category "NSArchiverCallback" on [`NSObject`].
+#[doc(alias = "NSArchiverCallback")]
+/// **********        Object call back        ***************
+pub unsafe trait NSObjectNSArchiverCallback:
+    ClassType + Sized + private_NSObjectNSArchiverCallback::Sealed
+{
+    extern_methods!(
         #[unsafe(method(classForArchiver))]
         #[unsafe(method_family = none)]
         unsafe fn classForArchiver(&self) -> Option<&'static AnyClass>;
@@ -234,7 +240,8 @@ extern_category!(
             &self,
             archiver: &NSArchiver,
         ) -> Option<Retained<AnyObject>>;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSArchiverCallback for NSObject {}
-);
+impl private_NSObjectNSArchiverCallback::Sealed for NSObject {}
+unsafe impl NSObjectNSArchiverCallback for NSObject {}

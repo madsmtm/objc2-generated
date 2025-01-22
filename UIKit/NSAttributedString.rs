@@ -236,17 +236,24 @@ extern "C" {
     pub static NSTextHighlightColorSchemeBlue: &'static NSTextHighlightColorScheme;
 }
 
-extern_category!(
-    /// Category on [`NSMutableAttributedString`].
-    /// ********************** Attribute fixing ***********************
-    pub unsafe trait NSAttributedStringAttributeFixing {
+mod private_NSAttributedStringAttributeFixing {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSMutableAttributedString`].
+/// ********************** Attribute fixing ***********************
+pub unsafe trait NSAttributedStringAttributeFixing:
+    ClassType + Sized + private_NSAttributedStringAttributeFixing::Sealed
+{
+    extern_methods!(
         #[unsafe(method(fixAttributesInRange:))]
         #[unsafe(method_family = none)]
         unsafe fn fixAttributesInRange(&self, range: NSRange);
-    }
+    );
+}
 
-    unsafe impl NSAttributedStringAttributeFixing for NSMutableAttributedString {}
-);
+impl private_NSAttributedStringAttributeFixing::Sealed for NSMutableAttributedString {}
+unsafe impl NSAttributedStringAttributeFixing for NSMutableAttributedString {}
 
 /// ********************** Document formats ***********************
 ///
@@ -437,9 +444,15 @@ extern "C" {
         &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
-extern_category!(
-    /// Category on [`NSAttributedString`].
-    pub unsafe trait NSAttributedStringDocumentFormats {
+mod private_NSAttributedStringDocumentFormats {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSAttributedString`].
+pub unsafe trait NSAttributedStringDocumentFormats:
+    ClassType + Sized + private_NSAttributedStringDocumentFormats::Sealed
+{
+    extern_methods!(
         #[unsafe(method(initWithURL:options:documentAttributes:error:_))]
         #[unsafe(method_family = init)]
         unsafe fn initWithURL_options_documentAttributes_error(
@@ -481,14 +494,21 @@ extern_category!(
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Result<Retained<NSFileWrapper>, Retained<NSError>>;
-    }
+    );
+}
 
-    unsafe impl NSAttributedStringDocumentFormats for NSAttributedString {}
-);
+impl private_NSAttributedStringDocumentFormats::Sealed for NSAttributedString {}
+unsafe impl NSAttributedStringDocumentFormats for NSAttributedString {}
 
-extern_category!(
-    /// Category on [`NSMutableAttributedString`].
-    pub unsafe trait NSMutableAttributedStringDocumentFormats {
+mod private_NSMutableAttributedStringDocumentFormats {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSMutableAttributedString`].
+pub unsafe trait NSMutableAttributedStringDocumentFormats:
+    ClassType + Sized + private_NSMutableAttributedStringDocumentFormats::Sealed
+{
+    extern_methods!(
         #[unsafe(method(readFromURL:options:documentAttributes:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn readFromURL_options_documentAttributes_error(
@@ -514,15 +534,22 @@ extern_category!(
                 >,
             >,
         ) -> Result<(), Retained<NSError>>;
-    }
+    );
+}
 
-    unsafe impl NSMutableAttributedStringDocumentFormats for NSMutableAttributedString {}
-);
+impl private_NSMutableAttributedStringDocumentFormats::Sealed for NSMutableAttributedString {}
+unsafe impl NSMutableAttributedStringDocumentFormats for NSMutableAttributedString {}
 
-extern_category!(
-    /// Category on [`NSAttributedString`].
-    /// ********************** Misc methods ***********************
-    pub unsafe trait NSAttributedStringKitAdditions {
+mod private_NSAttributedStringKitAdditions {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSAttributedString`].
+/// ********************** Misc methods ***********************
+pub unsafe trait NSAttributedStringKitAdditions:
+    ClassType + Sized + private_NSAttributedStringKitAdditions::Sealed
+{
+    extern_methods!(
         #[unsafe(method(containsAttachmentsInRange:))]
         #[unsafe(method_family = none)]
         unsafe fn containsAttachmentsInRange(&self, range: NSRange) -> bool;
@@ -530,10 +557,11 @@ extern_category!(
         #[unsafe(method(prefersRTFDInRange:))]
         #[unsafe(method_family = none)]
         unsafe fn prefersRTFDInRange(&self, range: NSRange) -> bool;
-    }
+    );
+}
 
-    unsafe impl NSAttributedStringKitAdditions for NSAttributedString {}
-);
+impl private_NSAttributedStringKitAdditions::Sealed for NSAttributedString {}
+unsafe impl NSAttributedStringKitAdditions for NSAttributedString {}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nspapermargindocumentattribute?language=objc)

@@ -30,11 +30,17 @@ extern_protocol!(
     }
 );
 
-extern_category!(
-    /// Category "NSCoderMethods" on [`NSObject`].
-    #[doc(alias = "NSCoderMethods")]
-    /// *********    Base class        **********
-    pub unsafe trait NSObjectNSCoderMethods {
+mod private_NSObjectNSCoderMethods {
+    pub trait Sealed {}
+}
+
+/// Category "NSCoderMethods" on [`NSObject`].
+#[doc(alias = "NSCoderMethods")]
+/// *********    Base class        **********
+pub unsafe trait NSObjectNSCoderMethods:
+    ClassType + Sized + private_NSObjectNSCoderMethods::Sealed
+{
+    extern_methods!(
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         unsafe fn version() -> NSInteger;
@@ -51,10 +57,11 @@ extern_category!(
         #[unsafe(method(replacementObjectForCoder:))]
         #[unsafe(method_family = none)]
         unsafe fn replacementObjectForCoder(&self, coder: &NSCoder) -> Option<Retained<AnyObject>>;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSCoderMethods for NSObject {}
-);
+impl private_NSObjectNSCoderMethods::Sealed for NSObject {}
+unsafe impl NSObjectNSCoderMethods for NSObject {}
 
 extern_protocol!(
     /// *********    Discardable Content        **********
@@ -79,17 +86,24 @@ extern_protocol!(
     }
 );
 
-extern_category!(
-    /// Category "NSDiscardableContentProxy" on [`NSObject`].
-    #[doc(alias = "NSDiscardableContentProxy")]
-    pub unsafe trait NSObjectNSDiscardableContentProxy {
+mod private_NSObjectNSDiscardableContentProxy {
+    pub trait Sealed {}
+}
+
+/// Category "NSDiscardableContentProxy" on [`NSObject`].
+#[doc(alias = "NSDiscardableContentProxy")]
+pub unsafe trait NSObjectNSDiscardableContentProxy:
+    ClassType + Sized + private_NSObjectNSDiscardableContentProxy::Sealed
+{
+    extern_methods!(
         #[unsafe(method(autoContentAccessingProxy))]
         #[unsafe(method_family = none)]
         unsafe fn autoContentAccessingProxy(&self) -> Retained<AnyObject>;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSDiscardableContentProxy for NSObject {}
-);
+impl private_NSObjectNSDiscardableContentProxy::Sealed for NSObject {}
+unsafe impl NSObjectNSDiscardableContentProxy for NSObject {}
 
 /// *********    Object Allocation / Deallocation        ******
 #[cfg(feature = "NSZone")]

@@ -115,10 +115,16 @@ extern "C" {
     pub static NSKeyValueChangeNotificationIsPriorKey: &'static NSKeyValueChangeKey;
 }
 
-extern_category!(
-    /// Category "NSKeyValueObserving" on [`NSObject`].
-    #[doc(alias = "NSKeyValueObserving")]
-    pub unsafe trait NSObjectNSKeyValueObserving {
+mod private_NSObjectNSKeyValueObserving {
+    pub trait Sealed {}
+}
+
+/// Category "NSKeyValueObserving" on [`NSObject`].
+#[doc(alias = "NSKeyValueObserving")]
+pub unsafe trait NSObjectNSKeyValueObserving:
+    ClassType + Sized + private_NSObjectNSKeyValueObserving::Sealed
+{
+    extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(observeValueForKeyPath:ofObject:change:context:))]
         #[unsafe(method_family = none)]
@@ -129,15 +135,22 @@ extern_category!(
             change: Option<&NSDictionary<NSKeyValueChangeKey, AnyObject>>,
             context: *mut c_void,
         );
-    }
+    );
+}
 
-    unsafe impl NSObjectNSKeyValueObserving for NSObject {}
-);
+impl private_NSObjectNSKeyValueObserving::Sealed for NSObject {}
+unsafe impl NSObjectNSKeyValueObserving for NSObject {}
 
-extern_category!(
-    /// Category "NSKeyValueObserverRegistration" on [`NSObject`].
-    #[doc(alias = "NSKeyValueObserverRegistration")]
-    pub unsafe trait NSObjectNSKeyValueObserverRegistration {
+mod private_NSObjectNSKeyValueObserverRegistration {
+    pub trait Sealed {}
+}
+
+/// Category "NSKeyValueObserverRegistration" on [`NSObject`].
+#[doc(alias = "NSKeyValueObserverRegistration")]
+pub unsafe trait NSObjectNSKeyValueObserverRegistration:
+    ClassType + Sized + private_NSObjectNSKeyValueObserverRegistration::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(addObserver:forKeyPath:options:context:))]
         #[unsafe(method_family = none)]
@@ -163,10 +176,11 @@ extern_category!(
         #[unsafe(method(removeObserver:forKeyPath:))]
         #[unsafe(method_family = none)]
         unsafe fn removeObserver_forKeyPath(&self, observer: &NSObject, key_path: &NSString);
-    }
+    );
+}
 
-    unsafe impl NSObjectNSKeyValueObserverRegistration for NSObject {}
-);
+impl private_NSObjectNSKeyValueObserverRegistration::Sealed for NSObject {}
+unsafe impl NSObjectNSKeyValueObserverRegistration for NSObject {}
 
 /// NSKeyValueObserverRegistration.
 #[cfg(feature = "NSArray")]
@@ -297,10 +311,16 @@ impl<ObjectType: Message> NSSet<ObjectType> {
     );
 }
 
-extern_category!(
-    /// Category "NSKeyValueObserverNotification" on [`NSObject`].
-    #[doc(alias = "NSKeyValueObserverNotification")]
-    pub unsafe trait NSObjectNSKeyValueObserverNotification {
+mod private_NSObjectNSKeyValueObserverNotification {
+    pub trait Sealed {}
+}
+
+/// Category "NSKeyValueObserverNotification" on [`NSObject`].
+#[doc(alias = "NSKeyValueObserverNotification")]
+pub unsafe trait NSObjectNSKeyValueObserverNotification:
+    ClassType + Sized + private_NSObjectNSKeyValueObserverNotification::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "NSString")]
         #[unsafe(method(willChangeValueForKey:))]
         #[unsafe(method_family = none)]
@@ -350,15 +370,22 @@ extern_category!(
             mutation_kind: NSKeyValueSetMutationKind,
             objects: &NSSet,
         );
-    }
+    );
+}
 
-    unsafe impl NSObjectNSKeyValueObserverNotification for NSObject {}
-);
+impl private_NSObjectNSKeyValueObserverNotification::Sealed for NSObject {}
+unsafe impl NSObjectNSKeyValueObserverNotification for NSObject {}
 
-extern_category!(
-    /// Category "NSKeyValueObservingCustomization" on [`NSObject`].
-    #[doc(alias = "NSKeyValueObservingCustomization")]
-    pub unsafe trait NSObjectNSKeyValueObservingCustomization {
+mod private_NSObjectNSKeyValueObservingCustomization {
+    pub trait Sealed {}
+}
+
+/// Category "NSKeyValueObservingCustomization" on [`NSObject`].
+#[doc(alias = "NSKeyValueObservingCustomization")]
+pub unsafe trait NSObjectNSKeyValueObservingCustomization:
+    ClassType + Sized + private_NSObjectNSKeyValueObservingCustomization::Sealed
+{
+    extern_methods!(
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
         #[unsafe(method(keyPathsForValuesAffectingValueForKey:))]
         #[unsafe(method_family = none)]
@@ -379,7 +406,8 @@ extern_category!(
         #[unsafe(method(setObservationInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn setObservationInfo(&self, observation_info: *mut c_void);
-    }
+    );
+}
 
-    unsafe impl NSObjectNSKeyValueObservingCustomization for NSObject {}
-);
+impl private_NSObjectNSKeyValueObservingCustomization::Sealed for NSObject {}
+unsafe impl NSObjectNSKeyValueObservingCustomization for NSObject {}

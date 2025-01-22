@@ -56,9 +56,15 @@ impl NSStringDrawingContext {
     );
 }
 
-extern_category!(
-    /// Category on [`NSString`].
-    pub unsafe trait NSStringDrawing {
+mod private_NSStringDrawing {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSString`].
+pub unsafe trait NSStringDrawing:
+    ClassType + Sized + private_NSStringDrawing::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(sizeWithAttributes:))]
         #[unsafe(method_family = none)]
@@ -84,15 +90,22 @@ extern_category!(
             rect: CGRect,
             attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         );
-    }
+    );
+}
 
-    unsafe impl NSStringDrawing for NSString {}
-);
+impl private_NSStringDrawing::Sealed for NSString {}
+unsafe impl NSStringDrawing for NSString {}
 
-extern_category!(
-    /// Category "NSStringDrawing" on [`NSAttributedString`].
-    #[doc(alias = "NSStringDrawing")]
-    pub unsafe trait NSAttributedStringNSStringDrawing {
+mod private_NSAttributedStringNSStringDrawing {
+    pub trait Sealed {}
+}
+
+/// Category "NSStringDrawing" on [`NSAttributedString`].
+#[doc(alias = "NSStringDrawing")]
+pub unsafe trait NSAttributedStringNSStringDrawing:
+    ClassType + Sized + private_NSAttributedStringNSStringDrawing::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(size))]
         #[unsafe(method_family = none)]
@@ -107,10 +120,11 @@ extern_category!(
         #[unsafe(method(drawInRect:))]
         #[unsafe(method_family = none)]
         unsafe fn drawInRect(&self, rect: CGRect);
-    }
+    );
+}
 
-    unsafe impl NSAttributedStringNSStringDrawing for NSAttributedString {}
-);
+impl private_NSAttributedStringNSStringDrawing::Sealed for NSAttributedString {}
+unsafe impl NSAttributedStringNSStringDrawing for NSAttributedString {}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringdrawingoptions?language=objc)
 // NS_OPTIONS
@@ -144,10 +158,16 @@ unsafe impl RefEncode for NSStringDrawingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_category!(
-    /// Category "NSExtendedStringDrawing" on [`NSString`].
-    #[doc(alias = "NSExtendedStringDrawing")]
-    pub unsafe trait NSStringNSExtendedStringDrawing {
+mod private_NSStringNSExtendedStringDrawing {
+    pub trait Sealed {}
+}
+
+/// Category "NSExtendedStringDrawing" on [`NSString`].
+#[doc(alias = "NSExtendedStringDrawing")]
+pub unsafe trait NSStringNSExtendedStringDrawing:
+    ClassType + Sized + private_NSStringNSExtendedStringDrawing::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawWithRect:options:attributes:context:))]
         #[unsafe(method_family = none)]
@@ -169,15 +189,22 @@ extern_category!(
             attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
             context: Option<&NSStringDrawingContext>,
         ) -> CGRect;
-    }
+    );
+}
 
-    unsafe impl NSStringNSExtendedStringDrawing for NSString {}
-);
+impl private_NSStringNSExtendedStringDrawing::Sealed for NSString {}
+unsafe impl NSStringNSExtendedStringDrawing for NSString {}
 
-extern_category!(
-    /// Category "NSExtendedStringDrawing" on [`NSAttributedString`].
-    #[doc(alias = "NSExtendedStringDrawing")]
-    pub unsafe trait NSAttributedStringNSExtendedStringDrawing {
+mod private_NSAttributedStringNSExtendedStringDrawing {
+    pub trait Sealed {}
+}
+
+/// Category "NSExtendedStringDrawing" on [`NSAttributedString`].
+#[doc(alias = "NSExtendedStringDrawing")]
+pub unsafe trait NSAttributedStringNSExtendedStringDrawing:
+    ClassType + Sized + private_NSAttributedStringNSExtendedStringDrawing::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawWithRect:options:context:))]
         #[unsafe(method_family = none)]
@@ -197,15 +224,22 @@ extern_category!(
             options: NSStringDrawingOptions,
             context: Option<&NSStringDrawingContext>,
         ) -> CGRect;
-    }
+    );
+}
 
-    unsafe impl NSAttributedStringNSExtendedStringDrawing for NSAttributedString {}
-);
+impl private_NSAttributedStringNSExtendedStringDrawing::Sealed for NSAttributedString {}
+unsafe impl NSAttributedStringNSExtendedStringDrawing for NSAttributedString {}
 
-extern_category!(
-    /// Category on [`NSString`].
-    /// ********************** Deprecated ***********************
-    pub unsafe trait NSStringDrawingDeprecated {
+mod private_NSStringDrawingDeprecated {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSString`].
+/// ********************** Deprecated ***********************
+pub unsafe trait NSStringDrawingDeprecated:
+    ClassType + Sized + private_NSStringDrawingDeprecated::Sealed
+{
+    extern_methods!(
         #[unsafe(method(drawWithRect:options:attributes:))]
         #[unsafe(method_family = none)]
         unsafe fn drawWithRect_options_attributes(
@@ -223,15 +257,22 @@ extern_category!(
             options: NSStringDrawingOptions,
             attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         ) -> NSRect;
-    }
+    );
+}
 
-    unsafe impl NSStringDrawingDeprecated for NSString {}
-);
+impl private_NSStringDrawingDeprecated::Sealed for NSString {}
+unsafe impl NSStringDrawingDeprecated for NSString {}
 
-extern_category!(
-    /// Category "NSStringDrawingDeprecated" on [`NSAttributedString`].
-    #[doc(alias = "NSStringDrawingDeprecated")]
-    pub unsafe trait NSAttributedStringNSStringDrawingDeprecated {
+mod private_NSAttributedStringNSStringDrawingDeprecated {
+    pub trait Sealed {}
+}
+
+/// Category "NSStringDrawingDeprecated" on [`NSAttributedString`].
+#[doc(alias = "NSStringDrawingDeprecated")]
+pub unsafe trait NSAttributedStringNSStringDrawingDeprecated:
+    ClassType + Sized + private_NSAttributedStringNSStringDrawingDeprecated::Sealed
+{
+    extern_methods!(
         #[unsafe(method(drawWithRect:options:))]
         #[unsafe(method_family = none)]
         unsafe fn drawWithRect_options(&self, rect: NSRect, options: NSStringDrawingOptions);
@@ -243,7 +284,8 @@ extern_category!(
             size: NSSize,
             options: NSStringDrawingOptions,
         ) -> NSRect;
-    }
+    );
+}
 
-    unsafe impl NSAttributedStringNSStringDrawingDeprecated for NSAttributedString {}
-);
+impl private_NSAttributedStringNSStringDrawingDeprecated::Sealed for NSAttributedString {}
+unsafe impl NSAttributedStringNSStringDrawingDeprecated for NSAttributedString {}

@@ -34,10 +34,16 @@ extern "C" {
         Option<&'static NSNotificationName>;
 }
 
-extern_category!(
-    /// Category "NSDeviceCertification" on [`NSProcessInfo`].
-    #[doc(alias = "NSDeviceCertification")]
-    pub unsafe trait NSProcessInfoNSDeviceCertification {
+mod private_NSProcessInfoNSDeviceCertification {
+    pub trait Sealed {}
+}
+
+/// Category "NSDeviceCertification" on [`NSProcessInfo`].
+#[doc(alias = "NSDeviceCertification")]
+pub unsafe trait NSProcessInfoNSDeviceCertification:
+    ClassType + Sized + private_NSProcessInfoNSDeviceCertification::Sealed
+{
+    extern_methods!(
         #[unsafe(method(isDeviceCertifiedFor:))]
         #[unsafe(method_family = none)]
         unsafe fn isDeviceCertifiedFor(&self, performance_tier: NSDeviceCertification) -> bool;
@@ -48,7 +54,8 @@ extern_category!(
             &self,
             performance_profile: NSProcessPerformanceProfile,
         ) -> bool;
-    }
+    );
+}
 
-    unsafe impl NSProcessInfoNSDeviceCertification for NSProcessInfo {}
-);
+impl private_NSProcessInfoNSDeviceCertification::Sealed for NSProcessInfo {}
+unsafe impl NSProcessInfoNSDeviceCertification for NSProcessInfo {}

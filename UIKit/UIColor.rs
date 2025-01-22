@@ -320,19 +320,28 @@ unsafe impl NSItemProviderReading for UIColor {}
 
 unsafe impl NSItemProviderWriting for UIColor {}
 
-extern_category!(
-    /// Category "UIKitAdditions" on [`CIColor`].
-    #[doc(alias = "UIKitAdditions")]
-    pub unsafe trait CIColorUIKitAdditions {
+mod private_CIColorUIKitAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "UIKitAdditions" on [`CIColor`].
+#[doc(alias = "UIKitAdditions")]
+pub unsafe trait CIColorUIKitAdditions:
+    ClassType + Sized + private_CIColorUIKitAdditions::Sealed
+{
+    extern_methods!(
         #[unsafe(method(initWithColor:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithColor(this: Allocated<Self>, color: &UIColor) -> Retained<Self>;
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-core-image")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl CIColorUIKitAdditions for CIColor {}
-);
+#[cfg(feature = "objc2-core-image")]
+#[cfg(not(target_os = "watchos"))]
+impl private_CIColorUIKitAdditions::Sealed for CIColor {}
+#[cfg(feature = "objc2-core-image")]
+#[cfg(not(target_os = "watchos"))]
+unsafe impl CIColorUIKitAdditions for CIColor {}
 
 /// UIColorNamedColors.
 impl UIColor {

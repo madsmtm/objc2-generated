@@ -456,9 +456,15 @@ extern "C-unwind" {
     pub fn UIOffsetFromString(string: &NSString) -> UIOffset;
 }
 
-extern_category!(
-    /// Category on [`NSValue`].
-    pub unsafe trait NSValueUIGeometryExtensions {
+mod private_NSValueUIGeometryExtensions {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSValue`].
+pub unsafe trait NSValueUIGeometryExtensions:
+    ClassType + Sized + private_NSValueUIGeometryExtensions::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(valueWithCGPoint:))]
         #[unsafe(method_family = none)]
@@ -540,15 +546,22 @@ extern_category!(
         #[unsafe(method(UIOffsetValue))]
         #[unsafe(method_family = none)]
         unsafe fn UIOffsetValue(&self) -> UIOffset;
-    }
+    );
+}
 
-    unsafe impl NSValueUIGeometryExtensions for NSValue {}
-);
+impl private_NSValueUIGeometryExtensions::Sealed for NSValue {}
+unsafe impl NSValueUIGeometryExtensions for NSValue {}
 
-extern_category!(
-    /// Category "UIGeometryKeyedCoding" on [`NSCoder`].
-    #[doc(alias = "UIGeometryKeyedCoding")]
-    pub unsafe trait NSCoderUIGeometryKeyedCoding {
+mod private_NSCoderUIGeometryKeyedCoding {
+    pub trait Sealed {}
+}
+
+/// Category "UIGeometryKeyedCoding" on [`NSCoder`].
+#[doc(alias = "UIGeometryKeyedCoding")]
+pub unsafe trait NSCoderUIGeometryKeyedCoding:
+    ClassType + Sized + private_NSCoderUIGeometryKeyedCoding::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(encodeCGPoint:forKey:))]
         #[unsafe(method_family = none)]
@@ -639,7 +652,8 @@ extern_category!(
         #[unsafe(method(decodeUIOffsetForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn decodeUIOffsetForKey(&self, key: &NSString) -> UIOffset;
-    }
+    );
+}
 
-    unsafe impl NSCoderUIGeometryKeyedCoding for NSCoder {}
-);
+impl private_NSCoderUIGeometryKeyedCoding::Sealed for NSCoder {}
+unsafe impl NSCoderUIGeometryKeyedCoding for NSCoder {}

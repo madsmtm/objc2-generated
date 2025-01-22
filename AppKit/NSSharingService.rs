@@ -469,10 +469,16 @@ extern_protocol!(
     }
 );
 
-extern_category!(
-    /// Category "NSCloudKitSharing" on [`NSItemProvider`].
-    #[doc(alias = "NSCloudKitSharing")]
-    pub unsafe trait NSItemProviderNSCloudKitSharing {
+mod private_NSItemProviderNSCloudKitSharing {
+    pub trait Sealed {}
+}
+
+/// Category "NSCloudKitSharing" on [`NSItemProvider`].
+#[doc(alias = "NSCloudKitSharing")]
+pub unsafe trait NSItemProviderNSCloudKitSharing:
+    ClassType + Sized + private_NSItemProviderNSCloudKitSharing::Sealed
+{
+    extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-cloud-kit"))]
         #[cfg(target_vendor = "apple")]
         /// Use this method when you want to share a collection of CKRecords but don't currently have a CKShare. When the preparationHandler is called, you should create a new CKShare with the appropriate root CKRecord. After ensuring the share and all records have been saved to the server, invoke the preparationCompletionHandler with either the resulting CKShare and its CKContainer, or an NSError if saving failed. Invoking the service with a CKShare registered with this method will prompt the user to start sharing.
@@ -493,10 +499,11 @@ extern_category!(
         #[unsafe(method(registerCloudKitShare:container:))]
         #[unsafe(method_family = none)]
         unsafe fn registerCloudKitShare_container(&self, share: &CKShare, container: &CKContainer);
-    }
+    );
+}
 
-    unsafe impl NSItemProviderNSCloudKitSharing for NSItemProvider {}
-);
+impl private_NSItemProviderNSCloudKitSharing::Sealed for NSItemProvider {}
+unsafe impl NSItemProviderNSCloudKitSharing for NSItemProvider {}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicepicker?language=objc)

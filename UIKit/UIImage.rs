@@ -665,10 +665,16 @@ impl UIImage {
     );
 }
 
-extern_category!(
-    /// Category "UIKitAdditions" on [`CIImage`].
-    #[doc(alias = "UIKitAdditions")]
-    pub unsafe trait CIImageUIKitAdditions {
+mod private_CIImageUIKitAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "UIKitAdditions" on [`CIImage`].
+#[doc(alias = "UIKitAdditions")]
+pub unsafe trait CIImageUIKitAdditions:
+    ClassType + Sized + private_CIImageUIKitAdditions::Sealed
+{
+    extern_methods!(
         #[unsafe(method(initWithImage:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithImage(this: Allocated<Self>, image: &UIImage) -> Option<Retained<Self>>;
@@ -682,12 +688,15 @@ extern_category!(
             image: &UIImage,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Option<Retained<Self>>;
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-core-image")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl CIImageUIKitAdditions for CIImage {}
-);
+#[cfg(feature = "objc2-core-image")]
+#[cfg(not(target_os = "watchos"))]
+impl private_CIImageUIKitAdditions::Sealed for CIImage {}
+#[cfg(feature = "objc2-core-image")]
+#[cfg(not(target_os = "watchos"))]
+unsafe impl CIImageUIKitAdditions for CIImage {}
 
 /// return image as PNG. May return nil if image has no CGImageRef or invalid bitmap format
 #[inline]

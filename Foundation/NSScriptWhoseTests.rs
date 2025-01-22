@@ -190,10 +190,16 @@ impl NSSpecifierTest {
     );
 }
 
-extern_category!(
-    /// Category "NSComparisonMethods" on [`NSObject`].
-    #[doc(alias = "NSComparisonMethods")]
-    pub unsafe trait NSObjectNSComparisonMethods {
+mod private_NSObjectNSComparisonMethods {
+    pub trait Sealed {}
+}
+
+/// Category "NSComparisonMethods" on [`NSObject`].
+#[doc(alias = "NSComparisonMethods")]
+pub unsafe trait NSObjectNSComparisonMethods:
+    ClassType + Sized + private_NSObjectNSComparisonMethods::Sealed
+{
+    extern_methods!(
         #[unsafe(method(isEqualTo:))]
         #[unsafe(method_family = none)]
         unsafe fn isEqualTo(&self, object: Option<&AnyObject>) -> bool;
@@ -231,15 +237,22 @@ extern_category!(
         #[unsafe(method(isCaseInsensitiveLike:))]
         #[unsafe(method_family = none)]
         unsafe fn isCaseInsensitiveLike(&self, object: &NSString) -> bool;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSComparisonMethods for NSObject {}
-);
+impl private_NSObjectNSComparisonMethods::Sealed for NSObject {}
+unsafe impl NSObjectNSComparisonMethods for NSObject {}
 
-extern_category!(
-    /// Category "NSScriptingComparisonMethods" on [`NSObject`].
-    #[doc(alias = "NSScriptingComparisonMethods")]
-    pub unsafe trait NSObjectNSScriptingComparisonMethods {
+mod private_NSObjectNSScriptingComparisonMethods {
+    pub trait Sealed {}
+}
+
+/// Category "NSScriptingComparisonMethods" on [`NSObject`].
+#[doc(alias = "NSScriptingComparisonMethods")]
+pub unsafe trait NSObjectNSScriptingComparisonMethods:
+    ClassType + Sized + private_NSObjectNSScriptingComparisonMethods::Sealed
+{
+    extern_methods!(
         #[unsafe(method(scriptingIsEqualTo:))]
         #[unsafe(method_family = none)]
         unsafe fn scriptingIsEqualTo(&self, object: &AnyObject) -> bool;
@@ -271,7 +284,8 @@ extern_category!(
         #[unsafe(method(scriptingContains:))]
         #[unsafe(method_family = none)]
         unsafe fn scriptingContains(&self, object: &AnyObject) -> bool;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSScriptingComparisonMethods for NSObject {}
-);
+impl private_NSObjectNSScriptingComparisonMethods::Sealed for NSObject {}
+unsafe impl NSObjectNSScriptingComparisonMethods for NSObject {}

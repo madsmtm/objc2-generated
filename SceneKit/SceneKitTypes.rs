@@ -223,11 +223,17 @@ extern "C-unwind" {
     pub fn SCNMatrix4Mult(a: SCNMatrix4, b: SCNMatrix4) -> SCNMatrix4;
 }
 
-extern_category!(
-    /// Category "SceneKitAdditions" on [`NSValue`].
-    #[doc(alias = "SceneKitAdditions")]
-    /// Adds methods to wrap vectors in NSValue objects.
-    pub unsafe trait NSValueSceneKitAdditions {
+mod private_NSValueSceneKitAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "SceneKitAdditions" on [`NSValue`].
+#[doc(alias = "SceneKitAdditions")]
+/// Adds methods to wrap vectors in NSValue objects.
+pub unsafe trait NSValueSceneKitAdditions:
+    ClassType + Sized + private_NSValueSceneKitAdditions::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(valueWithSCNVector3:))]
         #[unsafe(method_family = none)]
@@ -259,10 +265,11 @@ extern_category!(
         #[unsafe(method(SCNMatrix4Value))]
         #[unsafe(method_family = none)]
         unsafe fn SCNMatrix4Value(&self) -> SCNMatrix4;
-    }
+    );
+}
 
-    unsafe impl NSValueSceneKitAdditions for NSValue {}
-);
+impl private_NSValueSceneKitAdditions::Sealed for NSValue {}
+unsafe impl NSValueSceneKitAdditions for NSValue {}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnerrordomain?language=objc)

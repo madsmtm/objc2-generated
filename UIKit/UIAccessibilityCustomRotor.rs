@@ -94,10 +94,16 @@ pub type UIAccessibilityCustomRotorSearch = *mut block2::Block<
 pub type AXCustomRotorsReturnBlock =
     *mut block2::Block<dyn Fn() -> *mut NSArray<UIAccessibilityCustomRotor>>;
 
-extern_category!(
-    /// Category "UIAccessibilityCustomRotor" on [`NSObject`].
-    #[doc(alias = "UIAccessibilityCustomRotor")]
-    pub unsafe trait NSObjectUIAccessibilityCustomRotor {
+mod private_NSObjectUIAccessibilityCustomRotor {
+    pub trait Sealed {}
+}
+
+/// Category "UIAccessibilityCustomRotor" on [`NSObject`].
+#[doc(alias = "UIAccessibilityCustomRotor")]
+pub unsafe trait NSObjectUIAccessibilityCustomRotor:
+    ClassType + Sized + private_NSObjectUIAccessibilityCustomRotor::Sealed
+{
+    extern_methods!(
         #[unsafe(method(accessibilityCustomRotors))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityCustomRotors(
@@ -131,10 +137,11 @@ extern_category!(
             accessibility_custom_rotors_block: AXCustomRotorsReturnBlock,
             mtm: MainThreadMarker,
         );
-    }
+    );
+}
 
-    unsafe impl NSObjectUIAccessibilityCustomRotor for NSObject {}
-);
+impl private_NSObjectUIAccessibilityCustomRotor::Sealed for NSObject {}
+unsafe impl NSObjectUIAccessibilityCustomRotor for NSObject {}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotorsearchpredicate?language=objc)

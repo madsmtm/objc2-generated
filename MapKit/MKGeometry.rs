@@ -273,9 +273,15 @@ extern "C-unwind" {
     pub fn MKMapRectRemainder(rect: MKMapRect) -> MKMapRect;
 }
 
-extern_category!(
-    /// Category on [`NSValue`].
-    pub unsafe trait NSValueMapKitGeometryExtensions {
+mod private_NSValueMapKitGeometryExtensions {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSValue`].
+pub unsafe trait NSValueMapKitGeometryExtensions:
+    ClassType + Sized + private_NSValueMapKitGeometryExtensions::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "objc2-core-location")]
         #[unsafe(method(valueWithMKCoordinate:))]
         #[unsafe(method_family = none)]
@@ -295,7 +301,8 @@ extern_category!(
         #[unsafe(method(MKCoordinateSpanValue))]
         #[unsafe(method_family = none)]
         unsafe fn MKCoordinateSpanValue(&self) -> MKCoordinateSpan;
-    }
+    );
+}
 
-    unsafe impl NSValueMapKitGeometryExtensions for NSValue {}
-);
+impl private_NSValueMapKitGeometryExtensions::Sealed for NSValue {}
+unsafe impl NSValueMapKitGeometryExtensions for NSValue {}

@@ -252,10 +252,16 @@ unsafe impl RefEncode for NSFileProviderErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_category!(
-    /// Category "NSFileProviderError" on [`NSError`].
-    #[doc(alias = "NSFileProviderError")]
-    pub unsafe trait NSErrorNSFileProviderError {
+mod private_NSErrorNSFileProviderError {
+    pub trait Sealed {}
+}
+
+/// Category "NSFileProviderError" on [`NSError`].
+#[doc(alias = "NSFileProviderError")]
+pub unsafe trait NSErrorNSFileProviderError:
+    ClassType + Sized + private_NSErrorNSFileProviderError::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "NSFileProviderItem")]
         #[unsafe(method(fileProviderErrorForCollisionWithItem:))]
         #[unsafe(method_family = none)]
@@ -276,7 +282,8 @@ extern_category!(
         unsafe fn fileProviderErrorForRejectedDeletionOfItem(
             updated_version: &NSFileProviderItem,
         ) -> Retained<Self>;
-    }
+    );
+}
 
-    unsafe impl NSErrorNSFileProviderError for NSError {}
-);
+impl private_NSErrorNSFileProviderError::Sealed for NSError {}
+unsafe impl NSErrorNSFileProviderError for NSError {}

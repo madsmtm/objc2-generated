@@ -105,10 +105,16 @@ impl NSKeyValueSharedObservers {
     );
 }
 
-extern_category!(
-    /// Category "NSKeyValueSharedObserverRegistration" on [`NSObject`].
-    #[doc(alias = "NSKeyValueSharedObserverRegistration")]
-    pub unsafe trait NSObjectNSKeyValueSharedObserverRegistration {
+mod private_NSObjectNSKeyValueSharedObserverRegistration {
+    pub trait Sealed {}
+}
+
+/// Category "NSKeyValueSharedObserverRegistration" on [`NSObject`].
+#[doc(alias = "NSKeyValueSharedObserverRegistration")]
+pub unsafe trait NSObjectNSKeyValueSharedObserverRegistration:
+    ClassType + Sized + private_NSObjectNSKeyValueSharedObserverRegistration::Sealed
+{
+    extern_methods!(
         /// Register shared observations.
         ///
         /// A shared observation collection might be shared between multiple observables
@@ -129,7 +135,8 @@ extern_category!(
             &self,
             shared_observers: Option<&NSKeyValueSharedObserversSnapshot>,
         );
-    }
+    );
+}
 
-    unsafe impl NSObjectNSKeyValueSharedObserverRegistration for NSObject {}
-);
+impl private_NSObjectNSKeyValueSharedObserverRegistration::Sealed for NSObject {}
+unsafe impl NSObjectNSKeyValueSharedObserverRegistration for NSObject {}

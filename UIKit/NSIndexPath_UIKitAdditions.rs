@@ -6,10 +6,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "UIKitAdditions" on [`NSIndexPath`].
-    #[doc(alias = "UIKitAdditions")]
-    pub unsafe trait NSIndexPathUIKitAdditions {
+mod private_NSIndexPathUIKitAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "UIKitAdditions" on [`NSIndexPath`].
+#[doc(alias = "UIKitAdditions")]
+pub unsafe trait NSIndexPathUIKitAdditions:
+    ClassType + Sized + private_NSIndexPathUIKitAdditions::Sealed
+{
+    extern_methods!(
         #[unsafe(method(indexPathForRow:inSection:))]
         #[unsafe(method_family = none)]
         unsafe fn indexPathForRow_inSection(row: NSInteger, section: NSInteger) -> Retained<Self>;
@@ -30,7 +36,8 @@ extern_category!(
         #[unsafe(method(item))]
         #[unsafe(method_family = none)]
         unsafe fn item(&self) -> NSInteger;
-    }
+    );
+}
 
-    unsafe impl NSIndexPathUIKitAdditions for NSIndexPath {}
-);
+impl private_NSIndexPathUIKitAdditions::Sealed for NSIndexPath {}
+unsafe impl NSIndexPathUIKitAdditions for NSIndexPath {}

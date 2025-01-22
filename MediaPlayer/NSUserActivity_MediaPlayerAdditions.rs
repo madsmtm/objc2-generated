@@ -6,10 +6,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "MediaPlayerAdditions" on [`NSUserActivity`].
-    #[doc(alias = "MediaPlayerAdditions")]
-    pub unsafe trait NSUserActivityMediaPlayerAdditions {
+mod private_NSUserActivityMediaPlayerAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "MediaPlayerAdditions" on [`NSUserActivity`].
+#[doc(alias = "MediaPlayerAdditions")]
+pub unsafe trait NSUserActivityMediaPlayerAdditions:
+    ClassType + Sized + private_NSUserActivityMediaPlayerAdditions::Sealed
+{
+    extern_methods!(
         /// A unique identifier relative to the app's media content catalog for the displayed media item.
         #[unsafe(method(externalMediaContentIdentifier))]
         #[unsafe(method_family = none)]
@@ -22,7 +28,8 @@ extern_category!(
             &self,
             external_media_content_identifier: Option<&NSString>,
         );
-    }
+    );
+}
 
-    unsafe impl NSUserActivityMediaPlayerAdditions for NSUserActivity {}
-);
+impl private_NSUserActivityMediaPlayerAdditions::Sealed for NSUserActivity {}
+unsafe impl NSUserActivityMediaPlayerAdditions for NSUserActivity {}

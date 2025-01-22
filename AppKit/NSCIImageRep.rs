@@ -84,10 +84,16 @@ impl NSCIImageRep {
     );
 }
 
-extern_category!(
-    /// Category "NSAppKitAdditions" on [`CIImage`].
-    #[doc(alias = "NSAppKitAdditions")]
-    pub unsafe trait CIImageNSAppKitAdditions {
+mod private_CIImageNSAppKitAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "NSAppKitAdditions" on [`CIImage`].
+#[doc(alias = "NSAppKitAdditions")]
+pub unsafe trait CIImageNSAppKitAdditions:
+    ClassType + Sized + private_CIImageNSAppKitAdditions::Sealed
+{
+    extern_methods!(
         #[cfg(all(feature = "NSBitmapImageRep", feature = "NSImageRep"))]
         #[unsafe(method(initWithBitmapImageRep:))]
         #[unsafe(method_family = init)]
@@ -117,9 +123,12 @@ extern_category!(
             op: NSCompositingOperation,
             delta: CGFloat,
         );
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-core-image")]
-    #[cfg(target_vendor = "apple")]
-    unsafe impl CIImageNSAppKitAdditions for CIImage {}
-);
+#[cfg(feature = "objc2-core-image")]
+#[cfg(target_vendor = "apple")]
+impl private_CIImageNSAppKitAdditions::Sealed for CIImage {}
+#[cfg(feature = "objc2-core-image")]
+#[cfg(target_vendor = "apple")]
+unsafe impl CIImageNSAppKitAdditions for CIImage {}

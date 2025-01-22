@@ -7,10 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "WebScripting" on [`NSObject`].
-    #[doc(alias = "WebScripting")]
-    pub unsafe trait NSObjectWebScripting {
+mod private_NSObjectWebScripting {
+    pub trait Sealed {}
+}
+
+/// Category "WebScripting" on [`NSObject`].
+#[doc(alias = "WebScripting")]
+pub unsafe trait NSObjectWebScripting:
+    ClassType + Sized + private_NSObjectWebScripting::Sealed
+{
+    extern_methods!(
         /// Parameter `selector`: The selector that will be exposed to the script environment.
         ///
         /// Use the returned string as the exported name for the selector
@@ -104,10 +110,11 @@ extern_category!(
         #[unsafe(method(finalizeForWebScript))]
         #[unsafe(method_family = none)]
         unsafe fn finalizeForWebScript(&self);
-    }
+    );
+}
 
-    unsafe impl NSObjectWebScripting for NSObject {}
-);
+impl private_NSObjectWebScripting::Sealed for NSObject {}
+unsafe impl NSObjectWebScripting for NSObject {}
 
 extern_class!(
     /// WebScriptObjects are used to wrap script objects passed from

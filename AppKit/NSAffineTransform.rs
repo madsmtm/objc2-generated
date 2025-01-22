@@ -7,10 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "NSAppKitAdditions" on [`NSAffineTransform`].
-    #[doc(alias = "NSAppKitAdditions")]
-    pub unsafe trait NSAffineTransformNSAppKitAdditions {
+mod private_NSAffineTransformNSAppKitAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "NSAppKitAdditions" on [`NSAffineTransform`].
+#[doc(alias = "NSAppKitAdditions")]
+pub unsafe trait NSAffineTransformNSAppKitAdditions:
+    ClassType + Sized + private_NSAffineTransformNSAppKitAdditions::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "NSBezierPath")]
         #[unsafe(method(transformBezierPath:))]
         #[unsafe(method_family = none)]
@@ -23,7 +29,8 @@ extern_category!(
         #[unsafe(method(concat))]
         #[unsafe(method_family = none)]
         unsafe fn concat(&self);
-    }
+    );
+}
 
-    unsafe impl NSAffineTransformNSAppKitAdditions for NSAffineTransform {}
-);
+impl private_NSAffineTransformNSAppKitAdditions::Sealed for NSAffineTransform {}
+unsafe impl NSAffineTransformNSAppKitAdditions for NSAffineTransform {}

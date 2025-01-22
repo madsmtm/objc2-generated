@@ -208,10 +208,16 @@ extern "C" {
     pub static NSThreadWillExitNotification: &'static NSNotificationName;
 }
 
-extern_category!(
-    /// Category "NSThreadPerformAdditions" on [`NSObject`].
-    #[doc(alias = "NSThreadPerformAdditions")]
-    pub unsafe trait NSObjectNSThreadPerformAdditions {
+mod private_NSObjectNSThreadPerformAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "NSThreadPerformAdditions" on [`NSObject`].
+#[doc(alias = "NSThreadPerformAdditions")]
+pub unsafe trait NSObjectNSThreadPerformAdditions:
+    ClassType + Sized + private_NSObjectNSThreadPerformAdditions::Sealed
+{
+    extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(performSelectorOnMainThread:withObject:waitUntilDone:modes:))]
         #[unsafe(method_family = none)]
@@ -261,7 +267,8 @@ extern_category!(
             a_selector: Sel,
             arg: Option<&AnyObject>,
         );
-    }
+    );
+}
 
-    unsafe impl NSObjectNSThreadPerformAdditions for NSObject {}
-);
+impl private_NSObjectNSThreadPerformAdditions::Sealed for NSObject {}
+unsafe impl NSObjectNSThreadPerformAdditions for NSObject {}

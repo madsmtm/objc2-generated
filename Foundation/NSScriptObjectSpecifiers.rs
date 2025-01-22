@@ -274,10 +274,16 @@ impl NSScriptObjectSpecifier {
     );
 }
 
-extern_category!(
-    /// Category "NSScriptObjectSpecifiers" on [`NSObject`].
-    #[doc(alias = "NSScriptObjectSpecifiers")]
-    pub unsafe trait NSObjectNSScriptObjectSpecifiers {
+mod private_NSObjectNSScriptObjectSpecifiers {
+    pub trait Sealed {}
+}
+
+/// Category "NSScriptObjectSpecifiers" on [`NSObject`].
+#[doc(alias = "NSScriptObjectSpecifiers")]
+pub unsafe trait NSObjectNSScriptObjectSpecifiers:
+    ClassType + Sized + private_NSObjectNSScriptObjectSpecifiers::Sealed
+{
+    extern_methods!(
         #[unsafe(method(objectSpecifier))]
         #[unsafe(method_family = none)]
         unsafe fn objectSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
@@ -289,10 +295,11 @@ extern_category!(
             &self,
             specifier: &NSScriptObjectSpecifier,
         ) -> Option<Retained<NSArray<NSNumber>>>;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSScriptObjectSpecifiers for NSObject {}
-);
+impl private_NSObjectNSScriptObjectSpecifiers::Sealed for NSObject {}
+unsafe impl NSObjectNSScriptObjectSpecifiers for NSObject {}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsindexspecifier?language=objc)

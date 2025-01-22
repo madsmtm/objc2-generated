@@ -6,10 +6,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "NSItemSourceInfo" on [`NSItemProvider`].
-    #[doc(alias = "NSItemSourceInfo")]
-    pub unsafe trait NSItemProviderNSItemSourceInfo {
+mod private_NSItemProviderNSItemSourceInfo {
+    pub trait Sealed {}
+}
+
+/// Category "NSItemSourceInfo" on [`NSItemProvider`].
+#[doc(alias = "NSItemSourceInfo")]
+pub unsafe trait NSItemProviderNSItemSourceInfo:
+    ClassType + Sized + private_NSItemProviderNSItemSourceInfo::Sealed
+{
+    extern_methods!(
         #[unsafe(method(sourceFrame))]
         #[unsafe(method_family = none)]
         unsafe fn sourceFrame(&self) -> NSRect;
@@ -21,10 +27,11 @@ extern_category!(
         #[unsafe(method(preferredPresentationSize))]
         #[unsafe(method_family = none)]
         unsafe fn preferredPresentationSize(&self) -> NSSize;
-    }
+    );
+}
 
-    unsafe impl NSItemProviderNSItemSourceInfo for NSItemProvider {}
-);
+impl private_NSItemProviderNSItemSourceInfo::Sealed for NSItemProvider {}
+unsafe impl NSItemProviderNSItemSourceInfo for NSItemProvider {}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypeidentifierdatetext?language=objc)

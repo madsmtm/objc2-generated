@@ -141,11 +141,17 @@ impl NSRunLoop {
     );
 }
 
-extern_category!(
-    /// Category "NSDelayedPerforming" on [`NSObject`].
-    #[doc(alias = "NSDelayedPerforming")]
-    /// **************     Delayed perform     *****************
-    pub unsafe trait NSObjectNSDelayedPerforming {
+mod private_NSObjectNSDelayedPerforming {
+    pub trait Sealed {}
+}
+
+/// Category "NSDelayedPerforming" on [`NSObject`].
+#[doc(alias = "NSDelayedPerforming")]
+/// **************     Delayed perform     *****************
+pub unsafe trait NSObjectNSDelayedPerforming:
+    ClassType + Sized + private_NSObjectNSDelayedPerforming::Sealed
+{
+    extern_methods!(
         #[cfg(all(
             feature = "NSArray",
             feature = "NSDate",
@@ -183,10 +189,11 @@ extern_category!(
         #[unsafe(method(cancelPreviousPerformRequestsWithTarget:))]
         #[unsafe(method_family = none)]
         unsafe fn cancelPreviousPerformRequestsWithTarget(a_target: &AnyObject);
-    }
+    );
+}
 
-    unsafe impl NSObjectNSDelayedPerforming for NSObject {}
-);
+impl private_NSObjectNSDelayedPerforming::Sealed for NSObject {}
+unsafe impl NSObjectNSDelayedPerforming for NSObject {}
 
 /// NSOrderedPerform.
 impl NSRunLoop {

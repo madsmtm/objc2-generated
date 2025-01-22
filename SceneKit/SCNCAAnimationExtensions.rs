@@ -16,11 +16,17 @@ use crate::*;
 #[cfg(not(target_os = "watchos"))]
 unsafe impl SCNAnimationProtocol for CAAnimation {}
 
-extern_category!(
-    /// Category "SceneKitAdditions" on [`CAAnimation`].
-    #[doc(alias = "SceneKitAdditions")]
-    /// Extends the CAAnimation class for SceneKit explicit animations.
-    pub unsafe trait CAAnimationSceneKitAdditions {
+mod private_CAAnimationSceneKitAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "SceneKitAdditions" on [`CAAnimation`].
+#[doc(alias = "SceneKitAdditions")]
+/// Extends the CAAnimation class for SceneKit explicit animations.
+pub unsafe trait CAAnimationSceneKitAdditions:
+    ClassType + Sized + private_CAAnimationSceneKitAdditions::Sealed
+{
+    extern_methods!(
         #[cfg(all(feature = "SCNAnimation", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Bridge with SCNAnimation
@@ -81,9 +87,12 @@ extern_category!(
         #[unsafe(method(setAnimationEvents:))]
         #[unsafe(method_family = none)]
         unsafe fn setAnimationEvents(&self, animation_events: Option<&NSArray<SCNAnimationEvent>>);
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-quartz-core")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl CAAnimationSceneKitAdditions for CAAnimation {}
-);
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+impl private_CAAnimationSceneKitAdditions::Sealed for CAAnimation {}
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+unsafe impl CAAnimationSceneKitAdditions for CAAnimation {}

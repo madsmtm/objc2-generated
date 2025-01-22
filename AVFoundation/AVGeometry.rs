@@ -28,9 +28,15 @@ extern "C-unwind" {
     ) -> CGRect;
 }
 
-extern_category!(
-    /// Category on [`NSValue`].
-    pub unsafe trait NSValueCMVideoDimensionsExtensions {
+mod private_NSValueCMVideoDimensionsExtensions {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSValue`].
+pub unsafe trait NSValueCMVideoDimensionsExtensions:
+    ClassType + Sized + private_NSValueCMVideoDimensionsExtensions::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Creates a NSValue object encoding a CMVideoDimensions struct value.
         ///
@@ -55,7 +61,8 @@ extern_category!(
         #[unsafe(method(CMVideoDimensionsValue))]
         #[unsafe(method_family = none)]
         unsafe fn CMVideoDimensionsValue(&self) -> CMVideoDimensions;
-    }
+    );
+}
 
-    unsafe impl NSValueCMVideoDimensionsExtensions for NSValue {}
-);
+impl private_NSValueCMVideoDimensionsExtensions::Sealed for NSValue {}
+unsafe impl NSValueCMVideoDimensionsExtensions for NSValue {}

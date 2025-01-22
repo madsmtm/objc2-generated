@@ -112,10 +112,16 @@ pub type AXCustomActionsReturnBlock =
 pub type AXUITextInputReturnBlock =
     *mut block2::Block<dyn Fn() -> *mut ProtocolObject<dyn UITextInput>>;
 
-extern_category!(
-    /// Category "UIAccessibility" on [`NSObject`].
-    #[doc(alias = "UIAccessibility")]
-    pub unsafe trait NSObjectUIAccessibility {
+mod private_NSObjectUIAccessibility {
+    pub trait Sealed {}
+}
+
+/// Category "UIAccessibility" on [`NSObject`].
+#[doc(alias = "UIAccessibility")]
+pub unsafe trait NSObjectUIAccessibility:
+    ClassType + Sized + private_NSObjectUIAccessibility::Sealed
+{
+    extern_methods!(
         #[unsafe(method(isAccessibilityElement))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessibilityElement(&self, mtm: MainThreadMarker) -> bool;
@@ -989,10 +995,11 @@ extern_category!(
             accessibility_custom_actions_block: AXCustomActionsReturnBlock,
             mtm: MainThreadMarker,
         );
-    }
+    );
+}
 
-    unsafe impl NSObjectUIAccessibility for NSObject {}
-);
+impl private_NSObjectUIAccessibility::Sealed for NSObject {}
+unsafe impl NSObjectUIAccessibility for NSObject {}
 
 #[cfg(feature = "UIAccessibilityConstants")]
 #[inline]
@@ -1008,10 +1015,16 @@ pub unsafe extern "C-unwind" fn UIAccessibilityFocusedElement(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern_category!(
-    /// Category "UIAccessibilityFocus" on [`NSObject`].
-    #[doc(alias = "UIAccessibilityFocus")]
-    pub unsafe trait NSObjectUIAccessibilityFocus {
+mod private_NSObjectUIAccessibilityFocus {
+    pub trait Sealed {}
+}
+
+/// Category "UIAccessibilityFocus" on [`NSObject`].
+#[doc(alias = "UIAccessibilityFocus")]
+pub unsafe trait NSObjectUIAccessibilityFocus:
+    ClassType + Sized + private_NSObjectUIAccessibilityFocus::Sealed
+{
+    extern_methods!(
         #[unsafe(method(accessibilityElementDidBecomeFocused))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityElementDidBecomeFocused(&self, mtm: MainThreadMarker);
@@ -1031,10 +1044,11 @@ extern_category!(
             &self,
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSSet<UIAccessibilityAssistiveTechnologyIdentifier>>>;
-    }
+    );
+}
 
-    unsafe impl NSObjectUIAccessibilityFocus for NSObject {}
-);
+impl private_NSObjectUIAccessibilityFocus::Sealed for NSObject {}
+unsafe impl NSObjectUIAccessibilityFocus for NSObject {}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection?language=objc)
 // NS_ENUM
@@ -1064,10 +1078,16 @@ unsafe impl RefEncode for UIAccessibilityScrollDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_category!(
-    /// Category "UIAccessibilityAction" on [`NSObject`].
-    #[doc(alias = "UIAccessibilityAction")]
-    pub unsafe trait NSObjectUIAccessibilityAction {
+mod private_NSObjectUIAccessibilityAction {
+    pub trait Sealed {}
+}
+
+/// Category "UIAccessibilityAction" on [`NSObject`].
+#[doc(alias = "UIAccessibilityAction")]
+pub unsafe trait NSObjectUIAccessibilityAction:
+    ClassType + Sized + private_NSObjectUIAccessibilityAction::Sealed
+{
+    extern_methods!(
         #[unsafe(method(accessibilityActivate))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityActivate(&self, mtm: MainThreadMarker) -> bool;
@@ -1124,10 +1144,11 @@ extern_category!(
             accessibility_custom_actions: Option<&NSArray<UIAccessibilityCustomAction>>,
             mtm: MainThreadMarker,
         );
-    }
+    );
+}
 
-    unsafe impl NSObjectUIAccessibilityAction for NSObject {}
-);
+impl private_NSObjectUIAccessibilityAction::Sealed for NSObject {}
+unsafe impl NSObjectUIAccessibilityAction for NSObject {}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityreadingcontent?language=objc)
@@ -1169,10 +1190,16 @@ extern_protocol!(
     }
 );
 
-extern_category!(
-    /// Category "UIAccessibilityDragging" on [`NSObject`].
-    #[doc(alias = "UIAccessibilityDragging")]
-    pub unsafe trait NSObjectUIAccessibilityDragging {
+mod private_NSObjectUIAccessibilityDragging {
+    pub trait Sealed {}
+}
+
+/// Category "UIAccessibilityDragging" on [`NSObject`].
+#[doc(alias = "UIAccessibilityDragging")]
+pub unsafe trait NSObjectUIAccessibilityDragging:
+    ClassType + Sized + private_NSObjectUIAccessibilityDragging::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "UIAccessibilityLocationDescriptor")]
         #[unsafe(method(accessibilityDragSourceDescriptors))]
         #[unsafe(method_family = none)]
@@ -1212,15 +1239,22 @@ extern_category!(
             >,
             mtm: MainThreadMarker,
         );
-    }
+    );
+}
 
-    unsafe impl NSObjectUIAccessibilityDragging for NSObject {}
-);
+impl private_NSObjectUIAccessibilityDragging::Sealed for NSObject {}
+unsafe impl NSObjectUIAccessibilityDragging for NSObject {}
 
-extern_category!(
-    /// Category "UIAccessibilityHitTest" on [`NSObject`].
-    #[doc(alias = "UIAccessibilityHitTest")]
-    pub unsafe trait NSObjectUIAccessibilityHitTest {
+mod private_NSObjectUIAccessibilityHitTest {
+    pub trait Sealed {}
+}
+
+/// Category "UIAccessibilityHitTest" on [`NSObject`].
+#[doc(alias = "UIAccessibilityHitTest")]
+pub unsafe trait NSObjectUIAccessibilityHitTest:
+    ClassType + Sized + private_NSObjectUIAccessibilityHitTest::Sealed
+{
+    extern_methods!(
         #[cfg(all(feature = "UIEvent", feature = "objc2-core-foundation"))]
         #[unsafe(method(accessibilityHitTest:withEvent:))]
         #[unsafe(method_family = none)]
@@ -1230,15 +1264,22 @@ extern_category!(
             event: Option<&UIEvent>,
             mtm: MainThreadMarker,
         ) -> Option<Retained<AnyObject>>;
-    }
+    );
+}
 
-    unsafe impl NSObjectUIAccessibilityHitTest for NSObject {}
-);
+impl private_NSObjectUIAccessibilityHitTest::Sealed for NSObject {}
+unsafe impl NSObjectUIAccessibilityHitTest for NSObject {}
 
-extern_category!(
-    /// Category "UIAccessibilityTextNavigation" on [`NSObject`].
-    #[doc(alias = "UIAccessibilityTextNavigation")]
-    pub unsafe trait NSObjectUIAccessibilityTextNavigation {
+mod private_NSObjectUIAccessibilityTextNavigation {
+    pub trait Sealed {}
+}
+
+/// Category "UIAccessibilityTextNavigation" on [`NSObject`].
+#[doc(alias = "UIAccessibilityTextNavigation")]
+pub unsafe trait NSObjectUIAccessibilityTextNavigation:
+    ClassType + Sized + private_NSObjectUIAccessibilityTextNavigation::Sealed
+{
+    extern_methods!(
         #[unsafe(method(accessibilityPreviousTextNavigationElement))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPreviousTextNavigationElement(
@@ -1306,15 +1347,22 @@ extern_category!(
             accessibility_next_text_navigation_element_block: AXObjectReturnBlock,
             mtm: MainThreadMarker,
         );
-    }
+    );
+}
 
-    unsafe impl NSObjectUIAccessibilityTextNavigation for NSObject {}
-);
+impl private_NSObjectUIAccessibilityTextNavigation::Sealed for NSObject {}
+unsafe impl NSObjectUIAccessibilityTextNavigation for NSObject {}
 
-extern_category!(
-    /// Category "UIAccessibilityTextOperations" on [`NSObject`].
-    #[doc(alias = "UIAccessibilityTextOperations")]
-    pub unsafe trait NSObjectUIAccessibilityTextOperations {
+mod private_NSObjectUIAccessibilityTextOperations {
+    pub trait Sealed {}
+}
+
+/// Category "UIAccessibilityTextOperations" on [`NSObject`].
+#[doc(alias = "UIAccessibilityTextOperations")]
+pub unsafe trait NSObjectUIAccessibilityTextOperations:
+    ClassType + Sized + private_NSObjectUIAccessibilityTextOperations::Sealed
+{
+    extern_methods!(
         #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
         #[unsafe(method(accessibilityTextInputResponder))]
         #[unsafe(method_family = none)]
@@ -1359,10 +1407,11 @@ extern_category!(
             accessibility_text_input_responder_block: AXUITextInputReturnBlock,
             mtm: MainThreadMarker,
         );
-    }
+    );
+}
 
-    unsafe impl NSObjectUIAccessibilityTextOperations for NSObject {}
-);
+impl private_NSObjectUIAccessibilityTextOperations::Sealed for NSObject {}
+unsafe impl NSObjectUIAccessibilityTextOperations for NSObject {}
 
 extern "C-unwind" {
     #[cfg(feature = "UIAccessibilityConstants")]

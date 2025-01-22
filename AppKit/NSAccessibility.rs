@@ -7,11 +7,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "NSAccessibility" on [`NSObject`].
-    #[doc(alias = "NSAccessibility")]
-    /// * Accessibility Informal Protocol **
-    pub unsafe trait NSObjectNSAccessibility {
+mod private_NSObjectNSAccessibility {
+    pub trait Sealed {}
+}
+
+/// Category "NSAccessibility" on [`NSObject`].
+#[doc(alias = "NSAccessibility")]
+/// * Accessibility Informal Protocol **
+pub unsafe trait NSObjectNSAccessibility:
+    ClassType + Sized + private_NSObjectNSAccessibility::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[unsafe(method(accessibilityAttributeNames))]
@@ -125,10 +131,11 @@ extern_category!(
         #[unsafe(method(accessibilityNotifiesWhenDestroyed))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityNotifiesWhenDestroyed(&self) -> bool;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSAccessibility for NSObject {}
-);
+impl private_NSObjectNSAccessibility::Sealed for NSObject {}
+unsafe impl NSObjectNSAccessibility for NSObject {}
 
 /// NSWorkspaceAccessibilityDisplay.
 #[cfg(feature = "NSWorkspace")]

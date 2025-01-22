@@ -5,10 +5,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "NSNibAwaking" on [`NSObject`].
-    #[doc(alias = "NSNibAwaking")]
-    pub unsafe trait NSObjectNSNibAwaking {
+mod private_NSObjectNSNibAwaking {
+    pub trait Sealed {}
+}
+
+/// Category "NSNibAwaking" on [`NSObject`].
+#[doc(alias = "NSNibAwaking")]
+pub unsafe trait NSObjectNSNibAwaking:
+    ClassType + Sized + private_NSObjectNSNibAwaking::Sealed
+{
+    extern_methods!(
         #[unsafe(method(awakeFromNib))]
         #[unsafe(method_family = none)]
         unsafe fn awakeFromNib(&self);
@@ -16,7 +22,8 @@ extern_category!(
         #[unsafe(method(prepareForInterfaceBuilder))]
         #[unsafe(method_family = none)]
         unsafe fn prepareForInterfaceBuilder(&self);
-    }
+    );
+}
 
-    unsafe impl NSObjectNSNibAwaking for NSObject {}
-);
+impl private_NSObjectNSNibAwaking::Sealed for NSObject {}
+unsafe impl NSObjectNSNibAwaking for NSObject {}

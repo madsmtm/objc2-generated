@@ -7,10 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "UTType" on [`NSItemProvider`].
-    #[doc(alias = "UTType")]
-    pub unsafe trait NSItemProviderUTType {
+mod private_NSItemProviderUTType {
+    pub trait Sealed {}
+}
+
+/// Category "UTType" on [`NSItemProvider`].
+#[doc(alias = "UTType")]
+pub unsafe trait NSItemProviderUTType:
+    ClassType + Sized + private_NSItemProviderUTType::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "UTType")]
         /// Initialize this instance with the contents of a URL
         ///
@@ -203,7 +209,8 @@ extern_category!(
             open_in_place: bool,
             completion_handler: &block2::Block<dyn Fn(*mut NSURL, Bool, *mut NSError)>,
         ) -> Retained<NSProgress>;
-    }
+    );
+}
 
-    unsafe impl NSItemProviderUTType for NSItemProvider {}
-);
+impl private_NSItemProviderUTType::Sealed for NSItemProvider {}
+unsafe impl NSItemProviderUTType for NSItemProvider {}

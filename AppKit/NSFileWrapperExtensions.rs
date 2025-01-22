@@ -6,10 +6,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "NSExtensions" on [`NSFileWrapper`].
-    #[doc(alias = "NSExtensions")]
-    pub unsafe trait NSFileWrapperNSExtensions {
+mod private_NSFileWrapperNSExtensions {
+    pub trait Sealed {}
+}
+
+/// Category "NSExtensions" on [`NSFileWrapper`].
+#[doc(alias = "NSExtensions")]
+pub unsafe trait NSFileWrapperNSExtensions:
+    ClassType + Sized + private_NSFileWrapperNSExtensions::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "NSImage")]
         #[unsafe(method(icon))]
         #[unsafe(method_family = none)]
@@ -20,7 +26,8 @@ extern_category!(
         #[unsafe(method(setIcon:))]
         #[unsafe(method_family = none)]
         unsafe fn setIcon(&self, icon: Option<&NSImage>);
-    }
+    );
+}
 
-    unsafe impl NSFileWrapperNSExtensions for NSFileWrapper {}
-);
+impl private_NSFileWrapperNSExtensions::Sealed for NSFileWrapper {}
+unsafe impl NSFileWrapperNSExtensions for NSFileWrapper {}

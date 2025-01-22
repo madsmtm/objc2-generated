@@ -6,17 +6,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "UNUserNotificationCenterSupport" on [`NSString`].
-    #[doc(alias = "UNUserNotificationCenterSupport")]
-    pub unsafe trait NSStringUNUserNotificationCenterSupport {
+mod private_NSStringUNUserNotificationCenterSupport {
+    pub trait Sealed {}
+}
+
+/// Category "UNUserNotificationCenterSupport" on [`NSString`].
+#[doc(alias = "UNUserNotificationCenterSupport")]
+pub unsafe trait NSStringUNUserNotificationCenterSupport:
+    ClassType + Sized + private_NSStringUNUserNotificationCenterSupport::Sealed
+{
+    extern_methods!(
         #[unsafe(method(localizedUserNotificationStringForKey:arguments:))]
         #[unsafe(method_family = none)]
         unsafe fn localizedUserNotificationStringForKey_arguments(
             key: &NSString,
             arguments: Option<&NSArray>,
         ) -> Retained<NSString>;
-    }
+    );
+}
 
-    unsafe impl NSStringUNUserNotificationCenterSupport for NSString {}
-);
+impl private_NSStringUNUserNotificationCenterSupport::Sealed for NSString {}
+unsafe impl NSStringUNUserNotificationCenterSupport for NSString {}

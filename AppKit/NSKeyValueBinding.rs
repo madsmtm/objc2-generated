@@ -121,10 +121,16 @@ extern "C" {
     pub static NSOptionsKey: &'static NSBindingInfoKey;
 }
 
-extern_category!(
-    /// Category "NSKeyValueBindingCreation" on [`NSObject`].
-    #[doc(alias = "NSKeyValueBindingCreation")]
-    pub unsafe trait NSObjectNSKeyValueBindingCreation {
+mod private_NSObjectNSKeyValueBindingCreation {
+    pub trait Sealed {}
+}
+
+/// Category "NSKeyValueBindingCreation" on [`NSObject`].
+#[doc(alias = "NSKeyValueBindingCreation")]
+pub unsafe trait NSObjectNSKeyValueBindingCreation:
+    ClassType + Sized + private_NSObjectNSKeyValueBindingCreation::Sealed
+{
+    extern_methods!(
         #[unsafe(method(exposeBinding:))]
         #[unsafe(method_family = none)]
         unsafe fn exposeBinding(binding: &NSBindingName);
@@ -167,10 +173,11 @@ extern_category!(
             &self,
             binding: &NSBindingName,
         ) -> Retained<NSArray<NSAttributeDescription>>;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSKeyValueBindingCreation for NSObject {}
-);
+impl private_NSObjectNSKeyValueBindingCreation::Sealed for NSObject {}
+unsafe impl NSObjectNSKeyValueBindingCreation for NSObject {}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseditor?language=objc)

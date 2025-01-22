@@ -17,10 +17,16 @@ pub type CKSharePreparationCompletionHandler =
 pub type CKSharePreparationHandler =
     *mut block2::Block<dyn Fn(CKSharePreparationCompletionHandler)>;
 
-extern_category!(
-    /// Category "CKSharingSupport" on [`NSItemProvider`].
-    #[doc(alias = "CKSharingSupport")]
-    pub unsafe trait NSItemProviderCKSharingSupport {
+mod private_NSItemProviderCKSharingSupport {
+    pub trait Sealed {}
+}
+
+/// Category "CKSharingSupport" on [`NSItemProvider`].
+#[doc(alias = "CKSharingSupport")]
+pub unsafe trait NSItemProviderCKSharingSupport:
+    ClassType + Sized + private_NSItemProviderCKSharingSupport::Sealed
+{
+    extern_methods!(
         #[cfg(all(
             feature = "CKAllowedSharingOptions",
             feature = "CKContainer",
@@ -65,7 +71,8 @@ extern_category!(
             container: &CKContainer,
             allowed_options: &CKAllowedSharingOptions,
         );
-    }
+    );
+}
 
-    unsafe impl NSItemProviderCKSharingSupport for NSItemProvider {}
-);
+impl private_NSItemProviderCKSharingSupport::Sealed for NSItemProvider {}
+unsafe impl NSItemProviderCKSharingSupport for NSItemProvider {}

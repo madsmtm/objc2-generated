@@ -73,10 +73,16 @@ impl UISceneActivationConditions {
     );
 }
 
-extern_category!(
-    /// Category "UISceneActivationConditions" on [`NSUserActivity`].
-    #[doc(alias = "UISceneActivationConditions")]
-    pub unsafe trait NSUserActivityUISceneActivationConditions {
+mod private_NSUserActivityUISceneActivationConditions {
+    pub trait Sealed {}
+}
+
+/// Category "UISceneActivationConditions" on [`NSUserActivity`].
+#[doc(alias = "UISceneActivationConditions")]
+pub unsafe trait NSUserActivityUISceneActivationConditions:
+    ClassType + Sized + private_NSUserActivityUISceneActivationConditions::Sealed
+{
+    extern_methods!(
         #[unsafe(method(targetContentIdentifier))]
         #[unsafe(method_family = none)]
         unsafe fn targetContentIdentifier(&self) -> Option<Retained<NSString>>;
@@ -85,7 +91,8 @@ extern_category!(
         #[unsafe(method(setTargetContentIdentifier:))]
         #[unsafe(method_family = none)]
         unsafe fn setTargetContentIdentifier(&self, target_content_identifier: Option<&NSString>);
-    }
+    );
+}
 
-    unsafe impl NSUserActivityUISceneActivationConditions for NSUserActivity {}
-);
+impl private_NSUserActivityUISceneActivationConditions::Sealed for NSUserActivity {}
+unsafe impl NSUserActivityUISceneActivationConditions for NSUserActivity {}

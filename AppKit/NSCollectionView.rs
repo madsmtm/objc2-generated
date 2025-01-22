@@ -1275,10 +1275,16 @@ extern_protocol!(
     }
 );
 
-extern_category!(
-    /// Category "NSCollectionViewAdditions" on [`NSIndexPath`].
-    #[doc(alias = "NSCollectionViewAdditions")]
-    pub unsafe trait NSIndexPathNSCollectionViewAdditions {
+mod private_NSIndexPathNSCollectionViewAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "NSCollectionViewAdditions" on [`NSIndexPath`].
+#[doc(alias = "NSCollectionViewAdditions")]
+pub unsafe trait NSIndexPathNSCollectionViewAdditions:
+    ClassType + Sized + private_NSIndexPathNSCollectionViewAdditions::Sealed
+{
+    extern_methods!(
         #[unsafe(method(indexPathForItem:inSection:))]
         #[unsafe(method_family = none)]
         unsafe fn indexPathForItem_inSection(
@@ -1293,15 +1299,22 @@ extern_category!(
         #[unsafe(method(section))]
         #[unsafe(method_family = none)]
         unsafe fn section(&self) -> NSInteger;
-    }
+    );
+}
 
-    unsafe impl NSIndexPathNSCollectionViewAdditions for NSIndexPath {}
-);
+impl private_NSIndexPathNSCollectionViewAdditions::Sealed for NSIndexPath {}
+unsafe impl NSIndexPathNSCollectionViewAdditions for NSIndexPath {}
 
-extern_category!(
-    /// Category "NSCollectionViewAdditions" on [`NSSet`].
-    #[doc(alias = "NSCollectionViewAdditions")]
-    pub unsafe trait NSSetNSCollectionViewAdditions {
+mod private_NSSetNSCollectionViewAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "NSCollectionViewAdditions" on [`NSSet`].
+#[doc(alias = "NSCollectionViewAdditions")]
+pub unsafe trait NSSetNSCollectionViewAdditions:
+    ClassType + Sized + private_NSSetNSCollectionViewAdditions::Sealed
+{
+    extern_methods!(
         #[unsafe(method(setWithCollectionViewIndexPath:))]
         #[unsafe(method_family = none)]
         unsafe fn setWithCollectionViewIndexPath(index_path: &NSIndexPath) -> Retained<Self>;
@@ -1320,10 +1333,11 @@ extern_category!(
             opts: NSEnumerationOptions,
             block: &block2::Block<dyn Fn(NonNull<NSIndexPath>, NonNull<Bool>) + '_>,
         );
-    }
+    );
+}
 
-    unsafe impl NSSetNSCollectionViewAdditions for NSSet {}
-);
+impl private_NSSetNSCollectionViewAdditions::Sealed for NSSet {}
+unsafe impl NSSetNSCollectionViewAdditions for NSSet {}
 
 /// NSDeprecated.
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]

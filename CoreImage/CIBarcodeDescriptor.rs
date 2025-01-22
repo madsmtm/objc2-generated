@@ -502,15 +502,22 @@ impl CIDataMatrixCodeDescriptor {
     );
 }
 
-extern_category!(
-    /// Category "CIBarcodeDescriptor" on [`NSUserActivity`].
-    #[doc(alias = "CIBarcodeDescriptor")]
-    pub unsafe trait NSUserActivityCIBarcodeDescriptor {
+mod private_NSUserActivityCIBarcodeDescriptor {
+    pub trait Sealed {}
+}
+
+/// Category "CIBarcodeDescriptor" on [`NSUserActivity`].
+#[doc(alias = "CIBarcodeDescriptor")]
+pub unsafe trait NSUserActivityCIBarcodeDescriptor:
+    ClassType + Sized + private_NSUserActivityCIBarcodeDescriptor::Sealed
+{
+    extern_methods!(
         /// The scanned code in the user activity passed in by system scanner.
         #[unsafe(method(detectedBarcodeDescriptor))]
         #[unsafe(method_family = none)]
         unsafe fn detectedBarcodeDescriptor(&self) -> Option<Retained<CIBarcodeDescriptor>>;
-    }
+    );
+}
 
-    unsafe impl NSUserActivityCIBarcodeDescriptor for NSUserActivity {}
-);
+impl private_NSUserActivityCIBarcodeDescriptor::Sealed for NSUserActivity {}
+unsafe impl NSUserActivityCIBarcodeDescriptor for NSUserActivity {}

@@ -112,19 +112,26 @@ extern "C" {
     pub static NSContextHelpModeDidDeactivateNotification: &'static NSNotificationName;
 }
 
-extern_category!(
-    /// Category on [`NSBundle`].
-    pub unsafe trait NSBundleHelpExtension {
+mod private_NSBundleHelpExtension {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSBundle`].
+pub unsafe trait NSBundleHelpExtension:
+    ClassType + Sized + private_NSBundleHelpExtension::Sealed
+{
+    extern_methods!(
         #[unsafe(method(contextHelpForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn contextHelpForKey(
             &self,
             key: &NSHelpManagerContextHelpKey,
         ) -> Option<Retained<NSAttributedString>>;
-    }
+    );
+}
 
-    unsafe impl NSBundleHelpExtension for NSBundle {}
-);
+impl private_NSBundleHelpExtension::Sealed for NSBundle {}
+unsafe impl NSBundleHelpExtension for NSBundle {}
 
 /// NSApplicationHelpExtension.
 #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]

@@ -948,19 +948,28 @@ impl NSColor {
     );
 }
 
-extern_category!(
-    /// Category "NSAppKitAdditions" on [`CIColor`].
-    #[doc(alias = "NSAppKitAdditions")]
-    pub unsafe trait CIColorNSAppKitAdditions {
+mod private_CIColorNSAppKitAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "NSAppKitAdditions" on [`CIColor`].
+#[doc(alias = "NSAppKitAdditions")]
+pub unsafe trait CIColorNSAppKitAdditions:
+    ClassType + Sized + private_CIColorNSAppKitAdditions::Sealed
+{
+    extern_methods!(
         #[unsafe(method(initWithColor:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithColor(this: Allocated<Self>, color: &NSColor) -> Option<Retained<Self>>;
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-core-image")]
-    #[cfg(target_vendor = "apple")]
-    unsafe impl CIColorNSAppKitAdditions for CIColor {}
-);
+#[cfg(feature = "objc2-core-image")]
+#[cfg(target_vendor = "apple")]
+impl private_CIColorNSAppKitAdditions::Sealed for CIColor {}
+#[cfg(feature = "objc2-core-image")]
+#[cfg(target_vendor = "apple")]
+unsafe impl CIColorNSAppKitAdditions for CIColor {}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssystemcolorsdidchangenotification?language=objc)

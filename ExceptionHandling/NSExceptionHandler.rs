@@ -112,10 +112,16 @@ impl NSExceptionHandler {
     );
 }
 
-extern_category!(
-    /// Category "NSExceptionHandlerDelegate" on [`NSObject`].
-    #[doc(alias = "NSExceptionHandlerDelegate")]
-    pub unsafe trait NSObjectNSExceptionHandlerDelegate {
+mod private_NSObjectNSExceptionHandlerDelegate {
+    pub trait Sealed {}
+}
+
+/// Category "NSExceptionHandlerDelegate" on [`NSObject`].
+#[doc(alias = "NSExceptionHandlerDelegate")]
+pub unsafe trait NSObjectNSExceptionHandlerDelegate:
+    ClassType + Sized + private_NSObjectNSExceptionHandlerDelegate::Sealed
+{
+    extern_methods!(
         #[unsafe(method(exceptionHandler:shouldLogException:mask:))]
         #[unsafe(method_family = none)]
         unsafe fn exceptionHandler_shouldLogException_mask(
@@ -133,7 +139,8 @@ extern_category!(
             exception: Option<&NSException>,
             a_mask: NSUInteger,
         ) -> bool;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSExceptionHandlerDelegate for NSObject {}
-);
+impl private_NSObjectNSExceptionHandlerDelegate::Sealed for NSObject {}
+unsafe impl NSObjectNSExceptionHandlerDelegate for NSObject {}

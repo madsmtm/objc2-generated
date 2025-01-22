@@ -9,9 +9,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category on [`NSValue`].
-    pub unsafe trait NSValueAVFoundationExtensions {
+mod private_NSValueAVFoundationExtensions {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSValue`].
+pub unsafe trait NSValueAVFoundationExtensions:
+    ClassType + Sized + private_NSValueAVFoundationExtensions::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         #[unsafe(method(valueWithCMTime:))]
         #[unsafe(method_family = none)]
@@ -41,15 +47,22 @@ extern_category!(
         #[unsafe(method(CMTimeMappingValue))]
         #[unsafe(method_family = none)]
         unsafe fn CMTimeMappingValue(&self) -> CMTimeMapping;
-    }
+    );
+}
 
-    unsafe impl NSValueAVFoundationExtensions for NSValue {}
-);
+impl private_NSValueAVFoundationExtensions::Sealed for NSValue {}
+unsafe impl NSValueAVFoundationExtensions for NSValue {}
 
-extern_category!(
-    /// Category "AVTimeCoding" on [`NSCoder`].
-    #[doc(alias = "AVTimeCoding")]
-    pub unsafe trait NSCoderAVTimeCoding {
+mod private_NSCoderAVTimeCoding {
+    pub trait Sealed {}
+}
+
+/// Category "AVTimeCoding" on [`NSCoder`].
+#[doc(alias = "AVTimeCoding")]
+pub unsafe trait NSCoderAVTimeCoding:
+    ClassType + Sized + private_NSCoderAVTimeCoding::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         #[unsafe(method(encodeCMTime:forKey:))]
         #[unsafe(method_family = none)]
@@ -79,7 +92,8 @@ extern_category!(
         #[unsafe(method(decodeCMTimeMappingForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn decodeCMTimeMappingForKey(&self, key: &NSString) -> CMTimeMapping;
-    }
+    );
+}
 
-    unsafe impl NSCoderAVTimeCoding for NSCoder {}
-);
+impl private_NSCoderAVTimeCoding::Sealed for NSCoder {}
+unsafe impl NSCoderAVTimeCoding for NSCoder {}

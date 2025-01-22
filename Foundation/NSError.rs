@@ -244,10 +244,16 @@ impl NSError {
     );
 }
 
-extern_category!(
-    /// Category "NSErrorRecoveryAttempting" on [`NSObject`].
-    #[doc(alias = "NSErrorRecoveryAttempting")]
-    pub unsafe trait NSObjectNSErrorRecoveryAttempting {
+mod private_NSObjectNSErrorRecoveryAttempting {
+    pub trait Sealed {}
+}
+
+/// Category "NSErrorRecoveryAttempting" on [`NSObject`].
+#[doc(alias = "NSErrorRecoveryAttempting")]
+pub unsafe trait NSObjectNSErrorRecoveryAttempting:
+    ClassType + Sized + private_NSObjectNSErrorRecoveryAttempting::Sealed
+{
+    extern_methods!(
         #[unsafe(method(attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn attemptRecoveryFromError_optionIndex_delegate_didRecoverSelector_contextInfo(
@@ -266,7 +272,8 @@ extern_category!(
             error: &NSError,
             recovery_option_index: NSUInteger,
         ) -> bool;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSErrorRecoveryAttempting for NSObject {}
-);
+impl private_NSObjectNSErrorRecoveryAttempting::Sealed for NSObject {}
+unsafe impl NSObjectNSErrorRecoveryAttempting for NSObject {}

@@ -194,9 +194,15 @@ impl NSTextAttachment {
     );
 }
 
-extern_category!(
-    /// Category on [`NSAttributedString`].
-    pub unsafe trait NSAttributedStringAttachmentConveniences {
+mod private_NSAttributedStringAttachmentConveniences {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSAttributedString`].
+pub unsafe trait NSAttributedStringAttachmentConveniences:
+    ClassType + Sized + private_NSAttributedStringAttachmentConveniences::Sealed
+{
+    extern_methods!(
         #[unsafe(method(attributedStringWithAttachment:))]
         #[unsafe(method_family = none)]
         unsafe fn attributedStringWithAttachment(
@@ -209,10 +215,11 @@ extern_category!(
             attachment: &NSTextAttachment,
             attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
         ) -> Retained<Self>;
-    }
+    );
+}
 
-    unsafe impl NSAttributedStringAttachmentConveniences for NSAttributedString {}
-);
+impl private_NSAttributedStringAttachmentConveniences::Sealed for NSAttributedString {}
+unsafe impl NSAttributedStringAttachmentConveniences for NSAttributedString {}
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextattachmentviewprovider?language=objc)

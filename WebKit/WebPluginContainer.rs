@@ -9,12 +9,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "WebPlugInContainer" on [`NSObject`].
-    #[doc(alias = "WebPlugInContainer")]
-    /// This informal protocol enables a plug-in to request that its containing application
-    /// perform certain operations.
-    pub unsafe trait NSObjectWebPlugInContainer {
+mod private_NSObjectWebPlugInContainer {
+    pub trait Sealed {}
+}
+
+/// Category "WebPlugInContainer" on [`NSObject`].
+#[doc(alias = "WebPlugInContainer")]
+/// This informal protocol enables a plug-in to request that its containing application
+/// perform certain operations.
+pub unsafe trait NSObjectWebPlugInContainer:
+    ClassType + Sized + private_NSObjectWebPlugInContainer::Sealed
+{
+    extern_methods!(
         /// Tell the application to show a URL in a target frame
         ///
         /// Parameter `request`: The request to be loaded.
@@ -53,7 +59,8 @@ extern_category!(
         #[unsafe(method(webFrame))]
         #[unsafe(method_family = none)]
         unsafe fn webFrame(&self) -> Option<Retained<WebFrame>>;
-    }
+    );
+}
 
-    unsafe impl NSObjectWebPlugInContainer for NSObject {}
-);
+impl private_NSObjectWebPlugInContainer::Sealed for NSObject {}
+unsafe impl NSObjectWebPlugInContainer for NSObject {}

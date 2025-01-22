@@ -8,10 +8,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "MPAdditions" on [`AVPlayerItem`].
-    #[doc(alias = "MPAdditions")]
-    pub unsafe trait AVPlayerItemMPAdditions {
+mod private_AVPlayerItemMPAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "MPAdditions" on [`AVPlayerItem`].
+#[doc(alias = "MPAdditions")]
+pub unsafe trait AVPlayerItemMPAdditions:
+    ClassType + Sized + private_AVPlayerItemMPAdditions::Sealed
+{
+    extern_methods!(
         /// The current now playing info for the player item.
         /// Setting the info to nil will clear it.
         #[unsafe(method(nowPlayingInfo))]
@@ -25,8 +31,10 @@ extern_category!(
             &self,
             now_playing_info: Option<&NSDictionary<NSString, AnyObject>>,
         );
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-av-foundation")]
-    unsafe impl AVPlayerItemMPAdditions for AVPlayerItem {}
-);
+#[cfg(feature = "objc2-av-foundation")]
+impl private_AVPlayerItemMPAdditions::Sealed for AVPlayerItem {}
+#[cfg(feature = "objc2-av-foundation")]
+unsafe impl AVPlayerItemMPAdditions for AVPlayerItem {}

@@ -31,10 +31,16 @@ unsafe impl RefEncode for UIPreferredPresentationStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern_category!(
-    /// Category "UIKitAdditions" on [`NSItemProvider`].
-    #[doc(alias = "UIKitAdditions")]
-    pub unsafe trait NSItemProviderUIKitAdditions {
+mod private_NSItemProviderUIKitAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "UIKitAdditions" on [`NSItemProvider`].
+#[doc(alias = "UIKitAdditions")]
+pub unsafe trait NSItemProviderUIKitAdditions:
+    ClassType + Sized + private_NSItemProviderUIKitAdditions::Sealed
+{
+    extern_methods!(
         #[unsafe(method(teamData))]
         #[unsafe(method_family = none)]
         unsafe fn teamData(&self) -> Option<Retained<NSData>>;
@@ -66,10 +72,11 @@ extern_category!(
             &self,
             preferred_presentation_style: UIPreferredPresentationStyle,
         );
-    }
+    );
+}
 
-    unsafe impl NSItemProviderUIKitAdditions for NSItemProvider {}
-);
+impl private_NSItemProviderUIKitAdditions::Sealed for NSItemProvider {}
+unsafe impl NSItemProviderUIKitAdditions for NSItemProvider {}
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiitemproviderpresentationsizeproviding?language=objc)

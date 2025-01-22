@@ -639,9 +639,15 @@ extern_protocol!(
     }
 );
 
-extern_category!(
-    /// Category on [`NSBundle`].
-    pub unsafe trait NSBundleImageExtension {
+mod private_NSBundleImageExtension {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSBundle`].
+pub unsafe trait NSBundleImageExtension:
+    ClassType + Sized + private_NSBundleImageExtension::Sealed
+{
+    extern_methods!(
         #[unsafe(method(imageForResource:))]
         #[unsafe(method_family = none)]
         unsafe fn imageForResource(&self, name: &NSImageName) -> Option<Retained<NSImage>>;
@@ -653,10 +659,11 @@ extern_category!(
         #[unsafe(method(URLForImageResource:))]
         #[unsafe(method_family = none)]
         unsafe fn URLForImageResource(&self, name: &NSImageName) -> Option<Retained<NSURL>>;
-    }
+    );
+}
 
-    unsafe impl NSBundleImageExtension for NSBundle {}
-);
+impl private_NSBundleImageExtension::Sealed for NSBundle {}
+unsafe impl NSBundleImageExtension for NSBundle {}
 
 /// Deprecated.
 impl NSImage {

@@ -7,11 +7,17 @@ use objc2_av_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "MPNowPlayingInfoLanguageOptionAdditions" on [`AVMediaSelectionOption`].
-    #[doc(alias = "MPNowPlayingInfoLanguageOptionAdditions")]
-    /// Category for creating language options from AV types
-    pub unsafe trait AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions {
+mod private_AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "MPNowPlayingInfoLanguageOptionAdditions" on [`AVMediaSelectionOption`].
+#[doc(alias = "MPNowPlayingInfoLanguageOptionAdditions")]
+/// Category for creating language options from AV types
+pub unsafe trait AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions:
+    ClassType + Sized + private_AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "MPNowPlayingInfoLanguageOption")]
         /// Will create a language option from the AVMediaSelectionOption
         /// Returns nil if the AVMediaSelectionOption does not represent an Audible or Legible selection option.
@@ -20,19 +26,30 @@ extern_category!(
         unsafe fn makeNowPlayingInfoLanguageOption(
             &self,
         ) -> Option<Retained<MPNowPlayingInfoLanguageOption>>;
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-av-foundation")]
-    unsafe impl AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions
-        for AVMediaSelectionOption
-    {
-    }
-);
+#[cfg(feature = "objc2-av-foundation")]
+impl private_AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions::Sealed
+    for AVMediaSelectionOption
+{
+}
+#[cfg(feature = "objc2-av-foundation")]
+unsafe impl AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions
+    for AVMediaSelectionOption
+{
+}
 
-extern_category!(
-    /// Category "MPNowPlayingInfoLanguageOptionAdditions" on [`AVMediaSelectionGroup`].
-    #[doc(alias = "MPNowPlayingInfoLanguageOptionAdditions")]
-    pub unsafe trait AVMediaSelectionGroupMPNowPlayingInfoLanguageOptionAdditions {
+mod private_AVMediaSelectionGroupMPNowPlayingInfoLanguageOptionAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "MPNowPlayingInfoLanguageOptionAdditions" on [`AVMediaSelectionGroup`].
+#[doc(alias = "MPNowPlayingInfoLanguageOptionAdditions")]
+pub unsafe trait AVMediaSelectionGroupMPNowPlayingInfoLanguageOptionAdditions:
+    ClassType + Sized + private_AVMediaSelectionGroupMPNowPlayingInfoLanguageOptionAdditions::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "MPNowPlayingInfoLanguageOption")]
         /// Will create a language option group from the AVMediaSelectionGroup
         /// Any AVMediaSelectionOptions in the AVMediaSelectionGroup not representing
@@ -42,8 +59,13 @@ extern_category!(
         unsafe fn makeNowPlayingInfoLanguageOptionGroup(
             &self,
         ) -> Retained<MPNowPlayingInfoLanguageOptionGroup>;
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-av-foundation")]
-    unsafe impl AVMediaSelectionGroupMPNowPlayingInfoLanguageOptionAdditions for AVMediaSelectionGroup {}
-);
+#[cfg(feature = "objc2-av-foundation")]
+impl private_AVMediaSelectionGroupMPNowPlayingInfoLanguageOptionAdditions::Sealed
+    for AVMediaSelectionGroup
+{
+}
+#[cfg(feature = "objc2-av-foundation")]
+unsafe impl AVMediaSelectionGroupMPNowPlayingInfoLanguageOptionAdditions for AVMediaSelectionGroup {}

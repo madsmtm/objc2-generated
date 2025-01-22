@@ -6,10 +6,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "NSScripting" on [`NSObject`].
-    #[doc(alias = "NSScripting")]
-    pub unsafe trait NSObjectNSScripting {
+mod private_NSObjectNSScripting {
+    pub trait Sealed {}
+}
+
+/// Category "NSScripting" on [`NSObject`].
+#[doc(alias = "NSScripting")]
+pub unsafe trait NSObjectNSScripting:
+    ClassType + Sized + private_NSObjectNSScripting::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[unsafe(method(scriptingValueForSpecifier:))]
         #[unsafe(method_family = none)]
@@ -53,7 +59,8 @@ extern_category!(
             contents_value: Option<&AnyObject>,
             properties: &NSDictionary<NSString, AnyObject>,
         ) -> Option<Retained<AnyObject>>;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSScripting for NSObject {}
-);
+impl private_NSObjectNSScripting::Sealed for NSObject {}
+unsafe impl NSObjectNSScripting for NSObject {}

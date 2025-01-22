@@ -474,10 +474,16 @@ extern_protocol!(
     }
 );
 
-extern_category!(
-    /// Category "NSPasteboardSupport" on [`NSURL`].
-    #[doc(alias = "NSPasteboardSupport")]
-    pub unsafe trait NSURLNSPasteboardSupport {
+mod private_NSURLNSPasteboardSupport {
+    pub trait Sealed {}
+}
+
+/// Category "NSPasteboardSupport" on [`NSURL`].
+#[doc(alias = "NSPasteboardSupport")]
+pub unsafe trait NSURLNSPasteboardSupport:
+    ClassType + Sized + private_NSURLNSPasteboardSupport::Sealed
+{
+    extern_methods!(
         #[unsafe(method(URLFromPasteboard:))]
         #[unsafe(method_family = none)]
         unsafe fn URLFromPasteboard(paste_board: &NSPasteboard) -> Option<Retained<NSURL>>;
@@ -485,10 +491,11 @@ extern_category!(
         #[unsafe(method(writeToPasteboard:))]
         #[unsafe(method_family = none)]
         unsafe fn writeToPasteboard(&self, paste_board: &NSPasteboard);
-    }
+    );
+}
 
-    unsafe impl NSURLNSPasteboardSupport for NSURL {}
-);
+impl private_NSURLNSPasteboardSupport::Sealed for NSURL {}
+unsafe impl NSURLNSPasteboardSupport for NSURL {}
 
 unsafe impl NSPasteboardReading for NSURL {}
 

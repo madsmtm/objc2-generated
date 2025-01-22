@@ -40,11 +40,17 @@ impl CIImage {
     );
 }
 
-extern_category!(
-    /// Category "CIImageProvider" on [`NSObject`].
-    #[doc(alias = "CIImageProvider")]
-    /// Informal protocol used to lazily supply image data.
-    pub unsafe trait NSObjectCIImageProvider {
+mod private_NSObjectCIImageProvider {
+    pub trait Sealed {}
+}
+
+/// Category "CIImageProvider" on [`NSObject`].
+#[doc(alias = "CIImageProvider")]
+/// Informal protocol used to lazily supply image data.
+pub unsafe trait NSObjectCIImageProvider:
+    ClassType + Sized + private_NSObjectCIImageProvider::Sealed
+{
+    extern_methods!(
         #[unsafe(method(provideImageData:bytesPerRow:origin::size::userInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn provideImageData_bytesPerRow_origin__size__userInfo(
@@ -57,10 +63,11 @@ extern_category!(
             height: usize,
             info: Option<&AnyObject>,
         );
-    }
+    );
+}
 
-    unsafe impl NSObjectCIImageProvider for NSObject {}
-);
+impl private_NSObjectCIImageProvider::Sealed for NSObject {}
+unsafe impl NSObjectCIImageProvider for NSObject {}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageprovidertilesize?language=objc)

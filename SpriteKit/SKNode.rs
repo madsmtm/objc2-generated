@@ -544,18 +544,27 @@ impl SKNode {
     );
 }
 
-extern_category!(
-    /// Category "SKNodeEvent" on [`NSEvent`].
-    #[doc(alias = "SKNodeEvent")]
-    pub unsafe trait NSEventSKNodeEvent {
+mod private_NSEventSKNodeEvent {
+    pub trait Sealed {}
+}
+
+/// Category "SKNodeEvent" on [`NSEvent`].
+#[doc(alias = "SKNodeEvent")]
+pub unsafe trait NSEventSKNodeEvent:
+    ClassType + Sized + private_NSEventSKNodeEvent::Sealed
+{
+    extern_methods!(
         #[cfg(all(feature = "objc2-app-kit", feature = "objc2-core-foundation"))]
         #[cfg(target_os = "macos")]
         #[unsafe(method(locationInNode:))]
         #[unsafe(method_family = none)]
         unsafe fn locationInNode(&self, node: &SKNode) -> CGPoint;
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-app-kit")]
-    #[cfg(target_os = "macos")]
-    unsafe impl NSEventSKNodeEvent for NSEvent {}
-);
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl private_NSEventSKNodeEvent::Sealed for NSEvent {}
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+unsafe impl NSEventSKNodeEvent for NSEvent {}

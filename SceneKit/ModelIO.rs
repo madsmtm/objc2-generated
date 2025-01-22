@@ -23,10 +23,16 @@ impl SCNScene {
     );
 }
 
-extern_category!(
-    /// Category "SCNModelIO" on [`MDLAsset`].
-    #[doc(alias = "SCNModelIO")]
-    pub unsafe trait MDLAssetSCNModelIO {
+mod private_MDLAssetSCNModelIO {
+    pub trait Sealed {}
+}
+
+/// Category "SCNModelIO" on [`MDLAsset`].
+#[doc(alias = "SCNModelIO")]
+pub unsafe trait MDLAssetSCNModelIO:
+    ClassType + Sized + private_MDLAssetSCNModelIO::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "SCNScene")]
         #[unsafe(method(assetWithSCNScene:))]
         #[unsafe(method_family = none)]
@@ -40,12 +46,15 @@ extern_category!(
             scn_scene: &SCNScene,
             buffer_allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
         ) -> Retained<Self>;
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-model-io")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl MDLAssetSCNModelIO for MDLAsset {}
-);
+#[cfg(feature = "objc2-model-io")]
+#[cfg(not(target_os = "watchos"))]
+impl private_MDLAssetSCNModelIO::Sealed for MDLAsset {}
+#[cfg(feature = "objc2-model-io")]
+#[cfg(not(target_os = "watchos"))]
+unsafe impl MDLAssetSCNModelIO for MDLAsset {}
 
 /// SCNModelIO.
 #[cfg(feature = "SCNNode")]
@@ -59,10 +68,16 @@ impl SCNNode {
     );
 }
 
-extern_category!(
-    /// Category "SCNModelIO" on [`MDLObject`].
-    #[doc(alias = "SCNModelIO")]
-    pub unsafe trait MDLObjectSCNModelIO {
+mod private_MDLObjectSCNModelIO {
+    pub trait Sealed {}
+}
+
+/// Category "SCNModelIO" on [`MDLObject`].
+#[doc(alias = "SCNModelIO")]
+pub unsafe trait MDLObjectSCNModelIO:
+    ClassType + Sized + private_MDLObjectSCNModelIO::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "SCNNode")]
         #[unsafe(method(objectWithSCNNode:))]
         #[unsafe(method_family = none)]
@@ -76,12 +91,15 @@ extern_category!(
             scn_node: &SCNNode,
             buffer_allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
         ) -> Retained<Self>;
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-model-io")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl MDLObjectSCNModelIO for MDLObject {}
-);
+#[cfg(feature = "objc2-model-io")]
+#[cfg(not(target_os = "watchos"))]
+impl private_MDLObjectSCNModelIO::Sealed for MDLObject {}
+#[cfg(feature = "objc2-model-io")]
+#[cfg(not(target_os = "watchos"))]
+unsafe impl MDLObjectSCNModelIO for MDLObject {}
 
 /// SCNModelIO.
 #[cfg(feature = "SCNGeometry")]
@@ -95,10 +113,16 @@ impl SCNGeometry {
     );
 }
 
-extern_category!(
-    /// Category "SCNModelIO" on [`MDLMesh`].
-    #[doc(alias = "SCNModelIO")]
-    pub unsafe trait MDLMeshSCNModelIO {
+mod private_MDLMeshSCNModelIO {
+    pub trait Sealed {}
+}
+
+/// Category "SCNModelIO" on [`MDLMesh`].
+#[doc(alias = "SCNModelIO")]
+pub unsafe trait MDLMeshSCNModelIO:
+    ClassType + Sized + private_MDLMeshSCNModelIO::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "SCNGeometry")]
         #[unsafe(method(meshWithSCNGeometry:))]
         #[unsafe(method_family = none)]
@@ -112,12 +136,15 @@ extern_category!(
             scn_geometry: &SCNGeometry,
             buffer_allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
         ) -> Retained<Self>;
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-model-io")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl MDLMeshSCNModelIO for MDLMesh {}
-);
+#[cfg(feature = "objc2-model-io")]
+#[cfg(not(target_os = "watchos"))]
+impl private_MDLMeshSCNModelIO::Sealed for MDLMesh {}
+#[cfg(feature = "objc2-model-io")]
+#[cfg(not(target_os = "watchos"))]
+unsafe impl MDLMeshSCNModelIO for MDLMesh {}
 
 /// SCNModelIO.
 #[cfg(feature = "SCNGeometry")]
@@ -131,10 +158,16 @@ impl SCNGeometryElement {
     );
 }
 
-extern_category!(
-    /// Category "SCNModelIO" on [`MDLSubmesh`].
-    #[doc(alias = "SCNModelIO")]
-    pub unsafe trait MDLSubmeshSCNModelIO {
+mod private_MDLSubmeshSCNModelIO {
+    pub trait Sealed {}
+}
+
+/// Category "SCNModelIO" on [`MDLSubmesh`].
+#[doc(alias = "SCNModelIO")]
+pub unsafe trait MDLSubmeshSCNModelIO:
+    ClassType + Sized + private_MDLSubmeshSCNModelIO::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "SCNGeometry")]
         #[unsafe(method(submeshWithSCNGeometryElement:))]
         #[unsafe(method_family = none)]
@@ -150,12 +183,15 @@ extern_category!(
             scn_geometry_element: &SCNGeometryElement,
             buffer_allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
         ) -> Retained<Self>;
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-model-io")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl MDLSubmeshSCNModelIO for MDLSubmesh {}
-);
+#[cfg(feature = "objc2-model-io")]
+#[cfg(not(target_os = "watchos"))]
+impl private_MDLSubmeshSCNModelIO::Sealed for MDLSubmesh {}
+#[cfg(feature = "objc2-model-io")]
+#[cfg(not(target_os = "watchos"))]
+unsafe impl MDLSubmeshSCNModelIO for MDLSubmesh {}
 
 /// SCNModelIO.
 #[cfg(feature = "SCNMaterial")]
@@ -169,20 +205,29 @@ impl SCNMaterial {
     );
 }
 
-extern_category!(
-    /// Category "SCNModelIO" on [`MDLMaterial`].
-    #[doc(alias = "SCNModelIO")]
-    pub unsafe trait MDLMaterialSCNModelIO {
+mod private_MDLMaterialSCNModelIO {
+    pub trait Sealed {}
+}
+
+/// Category "SCNModelIO" on [`MDLMaterial`].
+#[doc(alias = "SCNModelIO")]
+pub unsafe trait MDLMaterialSCNModelIO:
+    ClassType + Sized + private_MDLMaterialSCNModelIO::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "SCNMaterial")]
         #[unsafe(method(materialWithSCNMaterial:))]
         #[unsafe(method_family = none)]
         unsafe fn materialWithSCNMaterial(scn_material: &SCNMaterial) -> Retained<Self>;
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-model-io")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl MDLMaterialSCNModelIO for MDLMaterial {}
-);
+#[cfg(feature = "objc2-model-io")]
+#[cfg(not(target_os = "watchos"))]
+impl private_MDLMaterialSCNModelIO::Sealed for MDLMaterial {}
+#[cfg(feature = "objc2-model-io")]
+#[cfg(not(target_os = "watchos"))]
+unsafe impl MDLMaterialSCNModelIO for MDLMaterial {}
 
 /// SCNModelIO.
 #[cfg(feature = "SCNLight")]
@@ -196,20 +241,29 @@ impl SCNLight {
     );
 }
 
-extern_category!(
-    /// Category "SCNModelIO" on [`MDLLight`].
-    #[doc(alias = "SCNModelIO")]
-    pub unsafe trait MDLLightSCNModelIO {
+mod private_MDLLightSCNModelIO {
+    pub trait Sealed {}
+}
+
+/// Category "SCNModelIO" on [`MDLLight`].
+#[doc(alias = "SCNModelIO")]
+pub unsafe trait MDLLightSCNModelIO:
+    ClassType + Sized + private_MDLLightSCNModelIO::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "SCNLight")]
         #[unsafe(method(lightWithSCNLight:))]
         #[unsafe(method_family = none)]
         unsafe fn lightWithSCNLight(scn_light: &SCNLight) -> Retained<Self>;
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-model-io")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl MDLLightSCNModelIO for MDLLight {}
-);
+#[cfg(feature = "objc2-model-io")]
+#[cfg(not(target_os = "watchos"))]
+impl private_MDLLightSCNModelIO::Sealed for MDLLight {}
+#[cfg(feature = "objc2-model-io")]
+#[cfg(not(target_os = "watchos"))]
+unsafe impl MDLLightSCNModelIO for MDLLight {}
 
 /// SCNModelIO.
 #[cfg(feature = "SCNCamera")]
@@ -223,17 +277,26 @@ impl SCNCamera {
     );
 }
 
-extern_category!(
-    /// Category "SCNModelIO" on [`MDLCamera`].
-    #[doc(alias = "SCNModelIO")]
-    pub unsafe trait MDLCameraSCNModelIO {
+mod private_MDLCameraSCNModelIO {
+    pub trait Sealed {}
+}
+
+/// Category "SCNModelIO" on [`MDLCamera`].
+#[doc(alias = "SCNModelIO")]
+pub unsafe trait MDLCameraSCNModelIO:
+    ClassType + Sized + private_MDLCameraSCNModelIO::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "SCNCamera")]
         #[unsafe(method(cameraWithSCNCamera:))]
         #[unsafe(method_family = none)]
         unsafe fn cameraWithSCNCamera(scn_camera: &SCNCamera) -> Retained<Self>;
-    }
+    );
+}
 
-    #[cfg(feature = "objc2-model-io")]
-    #[cfg(not(target_os = "watchos"))]
-    unsafe impl MDLCameraSCNModelIO for MDLCamera {}
-);
+#[cfg(feature = "objc2-model-io")]
+#[cfg(not(target_os = "watchos"))]
+impl private_MDLCameraSCNModelIO::Sealed for MDLCamera {}
+#[cfg(feature = "objc2-model-io")]
+#[cfg(not(target_os = "watchos"))]
+unsafe impl MDLCameraSCNModelIO for MDLCamera {}

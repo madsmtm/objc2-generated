@@ -234,10 +234,16 @@ pub extern "C-unwind" fn CATransform3DGetAffineTransform(t: CATransform3D) -> CG
     unsafe { CATransform3DGetAffineTransform(t) }
 }
 
-extern_category!(
-    /// Category "CATransform3DAdditions" on [`NSValue`].
-    #[doc(alias = "CATransform3DAdditions")]
-    pub unsafe trait NSValueCATransform3DAdditions {
+mod private_NSValueCATransform3DAdditions {
+    pub trait Sealed {}
+}
+
+/// Category "CATransform3DAdditions" on [`NSValue`].
+#[doc(alias = "CATransform3DAdditions")]
+pub unsafe trait NSValueCATransform3DAdditions:
+    ClassType + Sized + private_NSValueCATransform3DAdditions::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(valueWithCATransform3D:))]
         #[unsafe(method_family = none)]
@@ -247,7 +253,8 @@ extern_category!(
         #[unsafe(method(CATransform3DValue))]
         #[unsafe(method_family = none)]
         unsafe fn CATransform3DValue(&self) -> CATransform3D;
-    }
+    );
+}
 
-    unsafe impl NSValueCATransform3DAdditions for NSValue {}
-);
+impl private_NSValueCATransform3DAdditions::Sealed for NSValue {}
+unsafe impl NSValueCATransform3DAdditions for NSValue {}

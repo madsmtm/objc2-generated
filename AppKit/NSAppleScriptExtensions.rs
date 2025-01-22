@@ -5,14 +5,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "NSExtensions" on [`NSAppleScript`].
-    #[doc(alias = "NSExtensions")]
-    pub unsafe trait NSAppleScriptNSExtensions {
+mod private_NSAppleScriptNSExtensions {
+    pub trait Sealed {}
+}
+
+/// Category "NSExtensions" on [`NSAppleScript`].
+#[doc(alias = "NSExtensions")]
+pub unsafe trait NSAppleScriptNSExtensions:
+    ClassType + Sized + private_NSAppleScriptNSExtensions::Sealed
+{
+    extern_methods!(
         #[unsafe(method(richTextSource))]
         #[unsafe(method_family = none)]
         unsafe fn richTextSource(&self) -> Option<Retained<NSAttributedString>>;
-    }
+    );
+}
 
-    unsafe impl NSAppleScriptNSExtensions for NSAppleScript {}
-);
+impl private_NSAppleScriptNSExtensions::Sealed for NSAppleScript {}
+unsafe impl NSAppleScriptNSExtensions for NSAppleScript {}

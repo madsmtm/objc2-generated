@@ -43,10 +43,14 @@ pub unsafe extern "C-unwind" fn NSStringFromGCPoint2(point: GCPoint2) -> Retaine
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern_category!(
-    /// Category "GCTypes" on [`NSValue`].
-    #[doc(alias = "GCTypes")]
-    pub unsafe trait NSValueGCTypes {
+mod private_NSValueGCTypes {
+    pub trait Sealed {}
+}
+
+/// Category "GCTypes" on [`NSValue`].
+#[doc(alias = "GCTypes")]
+pub unsafe trait NSValueGCTypes: ClassType + Sized + private_NSValueGCTypes::Sealed {
+    extern_methods!(
         #[unsafe(method(valueWithGCPoint2:))]
         #[unsafe(method_family = none)]
         unsafe fn valueWithGCPoint2(point: GCPoint2) -> Retained<Self>;
@@ -54,7 +58,8 @@ extern_category!(
         #[unsafe(method(GCPoint2Value))]
         #[unsafe(method_family = none)]
         unsafe fn GCPoint2Value(&self) -> GCPoint2;
-    }
+    );
+}
 
-    unsafe impl NSValueGCTypes for NSValue {}
-);
+impl private_NSValueGCTypes::Sealed for NSValue {}
+unsafe impl NSValueGCTypes for NSValue {}

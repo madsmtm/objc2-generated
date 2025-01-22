@@ -228,13 +228,20 @@ extern_protocol!(
     }
 );
 
-extern_category!(
-    /// Category on [`NSBundle`].
-    pub unsafe trait NSBundleSoundExtensions {
+mod private_NSBundleSoundExtensions {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSBundle`].
+pub unsafe trait NSBundleSoundExtensions:
+    ClassType + Sized + private_NSBundleSoundExtensions::Sealed
+{
+    extern_methods!(
         #[unsafe(method(pathForSoundResource:))]
         #[unsafe(method_family = none)]
         unsafe fn pathForSoundResource(&self, name: &NSSoundName) -> Option<Retained<NSString>>;
-    }
+    );
+}
 
-    unsafe impl NSBundleSoundExtensions for NSBundle {}
-);
+impl private_NSBundleSoundExtensions::Sealed for NSBundle {}
+unsafe impl NSBundleSoundExtensions for NSBundle {}

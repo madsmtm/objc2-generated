@@ -40,17 +40,23 @@ pub type NSAttributedStringCompletionHandler = *mut block2::Block<
     ),
 >;
 
-extern_category!(
-    /// Category on [`NSAttributedString`].
-    /// Extension of
-    ///
-    /// ```text
-    ///  //apple_ref/occ/NSAttributedString NSAttributedString
-    /// ```
-    ///
-    /// to
-    /// create attributed strings from HTML content using WebKit.
-    pub unsafe trait NSAttributedStringWebKitAdditions {
+mod private_NSAttributedStringWebKitAdditions {
+    pub trait Sealed {}
+}
+
+/// Category on [`NSAttributedString`].
+/// Extension of
+///
+/// ```text
+///  //apple_ref/occ/NSAttributedString NSAttributedString
+/// ```
+///
+/// to
+/// create attributed strings from HTML content using WebKit.
+pub unsafe trait NSAttributedStringWebKitAdditions:
+    ClassType + Sized + private_NSAttributedStringWebKitAdditions::Sealed
+{
+    extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Loads an HTML URL request and converts the contents into an attributed string.
@@ -141,7 +147,8 @@ extern_category!(
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
             completion_handler: NSAttributedStringCompletionHandler,
         );
-    }
+    );
+}
 
-    unsafe impl NSAttributedStringWebKitAdditions for NSAttributedString {}
-);
+impl private_NSAttributedStringWebKitAdditions::Sealed for NSAttributedString {}
+unsafe impl NSAttributedStringWebKitAdditions for NSAttributedString {}

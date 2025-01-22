@@ -642,10 +642,16 @@ extern_protocol!(
     }
 );
 
-extern_category!(
-    /// Category "NSKeyedArchiverObjectSubstitution" on [`NSObject`].
-    #[doc(alias = "NSKeyedArchiverObjectSubstitution")]
-    pub unsafe trait NSObjectNSKeyedArchiverObjectSubstitution {
+mod private_NSObjectNSKeyedArchiverObjectSubstitution {
+    pub trait Sealed {}
+}
+
+/// Category "NSKeyedArchiverObjectSubstitution" on [`NSObject`].
+#[doc(alias = "NSKeyedArchiverObjectSubstitution")]
+pub unsafe trait NSObjectNSKeyedArchiverObjectSubstitution:
+    ClassType + Sized + private_NSObjectNSKeyedArchiverObjectSubstitution::Sealed
+{
+    extern_methods!(
         #[unsafe(method(classForKeyedArchiver))]
         #[unsafe(method_family = none)]
         unsafe fn classForKeyedArchiver(&self) -> Option<&'static AnyClass>;
@@ -662,19 +668,27 @@ extern_category!(
         #[unsafe(method(classFallbacksForKeyedArchiver))]
         #[unsafe(method_family = none)]
         unsafe fn classFallbacksForKeyedArchiver() -> Retained<NSArray<NSString>>;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSKeyedArchiverObjectSubstitution for NSObject {}
-);
+impl private_NSObjectNSKeyedArchiverObjectSubstitution::Sealed for NSObject {}
+unsafe impl NSObjectNSKeyedArchiverObjectSubstitution for NSObject {}
 
-extern_category!(
-    /// Category "NSKeyedUnarchiverObjectSubstitution" on [`NSObject`].
-    #[doc(alias = "NSKeyedUnarchiverObjectSubstitution")]
-    pub unsafe trait NSObjectNSKeyedUnarchiverObjectSubstitution {
+mod private_NSObjectNSKeyedUnarchiverObjectSubstitution {
+    pub trait Sealed {}
+}
+
+/// Category "NSKeyedUnarchiverObjectSubstitution" on [`NSObject`].
+#[doc(alias = "NSKeyedUnarchiverObjectSubstitution")]
+pub unsafe trait NSObjectNSKeyedUnarchiverObjectSubstitution:
+    ClassType + Sized + private_NSObjectNSKeyedUnarchiverObjectSubstitution::Sealed
+{
+    extern_methods!(
         #[unsafe(method(classForKeyedUnarchiver))]
         #[unsafe(method_family = none)]
         unsafe fn classForKeyedUnarchiver() -> &'static AnyClass;
-    }
+    );
+}
 
-    unsafe impl NSObjectNSKeyedUnarchiverObjectSubstitution for NSObject {}
-);
+impl private_NSObjectNSKeyedUnarchiverObjectSubstitution::Sealed for NSObject {}
+unsafe impl NSObjectNSKeyedUnarchiverObjectSubstitution for NSObject {}

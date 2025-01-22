@@ -6,12 +6,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "WebPlugIn" on [`NSObject`].
-    #[doc(alias = "WebPlugIn")]
-    /// WebPlugIn is an informal protocol that enables interaction between an application
-    /// and web related plug-ins it may contain.
-    pub unsafe trait NSObjectWebPlugIn {
+mod private_NSObjectWebPlugIn {
+    pub trait Sealed {}
+}
+
+/// Category "WebPlugIn" on [`NSObject`].
+#[doc(alias = "WebPlugIn")]
+/// WebPlugIn is an informal protocol that enables interaction between an application
+/// and web related plug-ins it may contain.
+pub unsafe trait NSObjectWebPlugIn:
+    ClassType + Sized + private_NSObjectWebPlugIn::Sealed
+{
+    extern_methods!(
         /// Tell the plug-in to perform one-time initialization.
         ///
         /// This method must be only called once per instance of the plug-in
@@ -103,7 +109,8 @@ extern_category!(
         #[unsafe(method(webPlugInMainResourceDidFinishLoading))]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInMainResourceDidFinishLoading(&self);
-    }
+    );
+}
 
-    unsafe impl NSObjectWebPlugIn for NSObject {}
-);
+impl private_NSObjectWebPlugIn::Sealed for NSObject {}
+unsafe impl NSObjectWebPlugIn for NSObject {}

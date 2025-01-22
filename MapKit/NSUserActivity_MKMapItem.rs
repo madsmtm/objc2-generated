@@ -6,10 +6,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_category!(
-    /// Category "MKMapItem" on [`NSUserActivity`].
-    #[doc(alias = "MKMapItem")]
-    pub unsafe trait NSUserActivityMKMapItem {
+mod private_NSUserActivityMKMapItem {
+    pub trait Sealed {}
+}
+
+/// Category "MKMapItem" on [`NSUserActivity`].
+#[doc(alias = "MKMapItem")]
+pub unsafe trait NSUserActivityMKMapItem:
+    ClassType + Sized + private_NSUserActivityMKMapItem::Sealed
+{
+    extern_methods!(
         #[cfg(feature = "MKMapItem")]
         #[unsafe(method(mapItem))]
         #[unsafe(method_family = none)]
@@ -20,7 +26,8 @@ extern_category!(
         #[unsafe(method(setMapItem:))]
         #[unsafe(method_family = none)]
         unsafe fn setMapItem(&self, map_item: Option<&MKMapItem>);
-    }
+    );
+}
 
-    unsafe impl NSUserActivityMKMapItem for NSUserActivity {}
-);
+impl private_NSUserActivityMKMapItem::Sealed for NSUserActivity {}
+unsafe impl NSUserActivityMKMapItem for NSUserActivity {}
